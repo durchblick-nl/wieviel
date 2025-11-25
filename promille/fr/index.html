@@ -201,6 +201,11 @@
                     <strong>Important :</strong> Ce calculateur fournit uniquement des estimations. Le taux réel dépend de nombreux facteurs individuels. En cas de doute : ne conduisez pas !
                 </div>
 
+                <div class="warning" id="drinkWarning" style="display: none; background-color: #f8d7da; border-left-color: #dc3545;">
+                    <i class="fas fa-ban" style="color: #dc3545;"></i>
+                    <strong>Recommandation :</strong> Toute personne ayant consommé de l'alcool ne devrait pas conduire – quel que soit le taux calculé.
+                </div>
+
                 <button type="submit">Calculer le taux d'alcoolémie</button>
             </form>
 
@@ -379,6 +384,10 @@
 
             const minusBtn = card.querySelector('button:first-of-type');
             minusBtn.disabled = state.drinks[drink] === 0;
+
+            // Show warning if any drinks
+            const totalDrinks = Object.values(state.drinks).reduce((a, b) => a + b, 0);
+            document.getElementById('drinkWarning').style.display = totalDrinks > 0 ? 'block' : 'none';
 
             calculateBAC();
         }
