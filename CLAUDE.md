@@ -98,16 +98,16 @@ Where:
 | 0.8‰+ | License suspension (min. 3 months) + fine |
 | 1.6‰+ | License suspension (min. 2 years) + criminal record |
 
-## Key Functions
-
-### scripts/calculations.js
+## Key Functions (inline in HTML)
 
 | Function | Purpose |
 |----------|---------|
 | `calculateBAC()` | Main Widmark formula calculation |
-| `getReductionFactor()` | Get r factor based on gender/weight/height |
-| `alcoholInGrams()` | Convert drink to pure alcohol grams |
-| `timeToSober()` | Calculate time until BAC reaches target |
+| `selectGender()` | Update gender selection and recalculate |
+| `updateWeight()` | Update weight slider value |
+| `changeDrink()` | Add/remove drinks and update UI |
+| `displayResult()` | Render BAC result and timeline |
+| `getStatusClass()` | Get color coding based on BAC level |
 | `formatTime()` | Format time for display |
 
 ## Zusammengehörige Projekte
