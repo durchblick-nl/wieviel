@@ -160,7 +160,7 @@
                         <div class="drink-card" id="drink-shot">
                             <div class="drink-icon">🥃</div>
                             <div class="drink-name">Spiritueux</div>
-                            <div class="drink-info">2cl, 40%</div>
+                            <div class="drink-info">4cl, 40%</div>
                             <div class="drink-counter">
                                 <button type="button" onclick="changeDrink('shot', -1)" disabled>−</button>
                                 <span class="drink-count" id="count-shot">0</span>
@@ -346,12 +346,12 @@
 
         // Alcohol content in grams per drink
         const drinkAlcohol = {
-            'beer': 12,
-            'beer-large': 20,
-            'wine': 9.6,
-            'wine-glass': 14.4,
-            'shot': 6.4,
-            'cocktail': 12.8
+            'beer': 12,        // 300ml × 5% × 0.8
+            'beer-large': 20,  // 500ml × 5% × 0.8
+            'wine': 9.6,       // 100ml × 12% × 0.8
+            'wine-glass': 14.4,// 150ml × 12% × 0.8
+            'shot': 12.8,      // 40ml × 40% × 0.8 (CH Standard: 4cl)
+            'cocktail': 12.8   // ~40ml × 40% × 0.8
         };
 
         // Reduction factors
