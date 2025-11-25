@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur d'alcoolémie Suisse - Taux d'alcool | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta name="description" content="Calculez votre taux d'alcoolémie (TAC) avec le calculateur suisse. Découvrez quand vous serez à nouveau apte à conduire.">
+    <meta name="keywords" content="calculateur alcoolémie, taux alcool, TAC, alcool, Suisse, aptitude à conduire, Widmark">
+    <meta name="author" content="Durchblick Consultancy BV">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wieviel.ch/promille/fr/">
+    <meta property="og:title" content="Calculateur d'alcoolémie Suisse">
+    <meta property="og:description" content="Calculez votre taux d'alcoolémie et découvrez quand vous serez à nouveau apte à conduire.">
+    <meta property="og:locale" content="fr_CH">
+
+    <!-- Canonical & Language -->
+    <link rel="canonical" href="https://wieviel.ch/promille/fr/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/promille/de/">
+    <link rel="alternate" hreflang="fr" href="https://wieviel.ch/promille/fr/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="../de/" class="lang-btn">DE</a>
+                <a href="../fr/" class="lang-btn active">FR</a>
+            </div>
+        </div>
+
+        <h1><img src="../../favicon.svg" alt="" class="title-icon">Calculateur d'alcoolémie</h1>
+
+        <nav class="tool-nav">
+            <a href="../../">Tous les outils</a>
+            <a href="../fr/" class="active">Alcoolémie</a>
+        </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-user"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Données personnelles</h3>
+                    <p>Le sexe et le poids corporel influencent l'absorption de l'alcool.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-beer-mug-empty"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Saisir les boissons</h3>
+                    <p>Sélectionnez le type et la quantité de boissons consommées.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-clock"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Résultat</h3>
+                    <p>Consultez votre taux d'alcoolémie estimé et le temps d'élimination.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <form id="promilleForm">
+                <!-- Gender Selection -->
+                <div class="form-group">
+                    <label class="required">Sexe</label>
+                    <div class="gender-selection">
+                        <button type="button" class="gender-btn active" data-gender="male" onclick="selectGender('male')">
+                            <i class="fas fa-mars"></i>
+                            <span>Homme</span>
+                        </button>
+                        <button type="button" class="gender-btn" data-gender="female" onclick="selectGender('female')">
+                            <i class="fas fa-venus"></i>
+                            <span>Femme</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Weight Slider -->
+                <div class="form-group">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label class="required">Poids corporel</label>
+                            <span class="slider-value" id="weightValue">75 kg</span>
+                        </div>
+                        <input type="range" id="weight" min="40" max="150" value="75" oninput="updateWeight(this.value)">
+                    </div>
+                </div>
+
+                <!-- Drinks Selection -->
+                <div class="form-group">
+                    <label class="required">Qu'avez-vous bu ?</label>
+                    <div class="drinks-grid">
+                        <div class="drink-card" id="drink-beer">
+                            <div class="drink-icon">🍺</div>
+                            <div class="drink-name">Bière</div>
+                            <div class="drink-info">3dl, 5%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('beer', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-beer">0</span>
+                                <button type="button" onclick="changeDrink('beer', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="drink-card" id="drink-beer-large">
+                            <div class="drink-icon">🍻</div>
+                            <div class="drink-name">Grande bière</div>
+                            <div class="drink-info">5dl, 5%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('beer-large', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-beer-large">0</span>
+                                <button type="button" onclick="changeDrink('beer-large', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="drink-card" id="drink-wine">
+                            <div class="drink-icon">🍷</div>
+                            <div class="drink-name">Vin</div>
+                            <div class="drink-info">1dl, 12%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('wine', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-wine">0</span>
+                                <button type="button" onclick="changeDrink('wine', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="drink-card" id="drink-wine-glass">
+                            <div class="drink-icon">🥂</div>
+                            <div class="drink-name">Verre de vin</div>
+                            <div class="drink-info">1.5dl, 12%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('wine-glass', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-wine-glass">0</span>
+                                <button type="button" onclick="changeDrink('wine-glass', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="drink-card" id="drink-shot">
+                            <div class="drink-icon">🥃</div>
+                            <div class="drink-name">Spiritueux</div>
+                            <div class="drink-info">2cl, 40%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('shot', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-shot">0</span>
+                                <button type="button" onclick="changeDrink('shot', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="drink-card" id="drink-cocktail">
+                            <div class="drink-icon">🍸</div>
+                            <div class="drink-name">Cocktail</div>
+                            <div class="drink-info">~4cl alc.</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('cocktail', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-cocktail">0</span>
+                                <button type="button" onclick="changeDrink('cocktail', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time inputs -->
+                <div class="form-group">
+                    <label>Période de consommation</label>
+                    <div class="time-inputs">
+                        <div>
+                            <label for="startTime">Début</label>
+                            <input type="time" id="startTime" value="20:00">
+                        </div>
+                        <div>
+                            <label for="endTime">Fin / Maintenant</label>
+                            <input type="time" id="endTime">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Important :</strong> Ce calculateur fournit uniquement des estimations. Le taux réel dépend de nombreux facteurs individuels. En cas de doute : ne conduisez pas !
+                </div>
+
+                <button type="submit">Calculer le taux d'alcoolémie</button>
+            </form>
+
+            <div id="result" class="result" style="display: none;">
+                <div class="bac-display">
+                    <div class="bac-value" id="bacValue">0.00<span class="bac-unit">‰</span></div>
+                    <div class="bac-status" id="bacStatus">À jeun</div>
+                </div>
+                <div class="result-summary" id="resultSummary"></div>
+                <div class="sobriety-timeline" id="sobrietyTimeline"></div>
+            </div>
+        </div>
+
+        <div class="info-cards-container">
+            <div class="info-step-card highlight">
+                <div class="step-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <div class="step-content">
+                    <h3>Limites d'alcoolémie en Suisse</h3>
+                    <div class="legal-limit-card standard">
+                        <div class="legal-limit-value">0.5‰</div>
+                        <div>
+                            <strong>Conducteurs normaux</strong><br>
+                            <small>Avec permis définitif</small>
+                        </div>
+                    </div>
+                    <div class="legal-limit-card strict">
+                        <div class="legal-limit-value">0.1‰</div>
+                        <div>
+                            <strong>Nouveaux conducteurs & professionnels</strong><br>
+                            <small>Tolérance pratiquement zéro</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-step-card">
+                <div class="step-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <div class="step-content">
+                    <h3>Élimination de l'alcool</h3>
+                    <p>Le corps élimine l'alcool à raison d'environ <strong>0.1 – 0.15‰ par heure</strong>.</p>
+                    <p>Cette élimination est constante et ne peut pas être accélérée – ni par le café, ni par une douche, ni par l'air frais.</p>
+                </div>
+            </div>
+
+            <div class="info-step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="step-content">
+                    <h3>Formule de Widmark</h3>
+                    <p>Le calcul est basé sur la formule scientifique de Widmark de 1932 :</p>
+                    <p><strong>TAC = A ÷ (m × r)</strong></p>
+                    <p><small>A = Alcool en grammes, m = Poids corporel, r = Facteur de distribution</small></p>
+                </div>
+            </div>
+
+            <div class="info-step-card">
+                <div class="step-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="step-content">
+                    <h3>Facteurs d'influence</h3>
+                    <p>Le taux réel varie selon :</p>
+                    <ul>
+                        <li>Contenu de l'estomac (à jeun = absorption plus rapide)</li>
+                        <li>Vitesse de consommation</li>
+                        <li>Composition corporelle</li>
+                        <li>État de santé général</li>
+                        <li>Prise de médicaments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="law-section">
+            <h2>Sanctions pour conduite en état d'ivresse</h2>
+            <p class="law-subtitle">Suisse – Art. 91 LCR</p>
+
+            <div class="law-card">
+                <div class="law-header">
+                    <h3>0.5 – 0.79‰</h3>
+                </div>
+                <div class="law-content">
+                    <p><strong>Avertissement</strong> et amende (dès CHF 600)</p>
+                    <p>Première infraction avec comportement irréprochable par ailleurs.</p>
+                </div>
+            </div>
+
+            <div class="law-card">
+                <div class="law-header">
+                    <h3>0.8‰ et plus</h3>
+                </div>
+                <div class="law-content">
+                    <p><strong>Retrait du permis</strong> minimum 3 mois</p>
+                    <p>Amende ou peine privative de liberté jusqu'à 3 ans</p>
+                </div>
+            </div>
+
+            <div class="law-card">
+                <div class="law-header">
+                    <h3>1.6‰ et plus</h3>
+                </div>
+                <div class="law-content">
+                    <p><strong>Retrait du permis</strong> minimum 2 ans</p>
+                    <p>Examen médical obligatoire</p>
+                    <p>Inscription au casier judiciaire</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Ce calculateur est fourni à titre indicatif et ne remplace pas une mesure d'alcoolémie.</p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement dans votre navigateur. Aucune donnée n'est enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        // State
+        let state = {
+            gender: 'male',
+            weight: 75,
+            drinks: {
+                'beer': 0,
+                'beer-large': 0,
+                'wine': 0,
+                'wine-glass': 0,
+                'shot': 0,
+                'cocktail': 0
+            }
+        };
+
+        // Alcohol content in grams per drink
+        const drinkAlcohol = {
+            'beer': 12,
+            'beer-large': 20,
+            'wine': 9.6,
+            'wine-glass': 14.4,
+            'shot': 6.4,
+            'cocktail': 12.8
+        };
+
+        // Reduction factors
+        const reductionFactor = {
+            'male': 0.68,
+            'female': 0.55
+        };
+
+        // Functions
+        function selectGender(gender) {
+            state.gender = gender;
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.gender === gender);
+            });
+            calculateBAC();
+        }
+
+        function updateWeight(value) {
+            state.weight = parseInt(value);
+            document.getElementById('weightValue').textContent = value + ' kg';
+            calculateBAC();
+        }
+
+        function changeDrink(drink, delta) {
+            state.drinks[drink] = Math.max(0, state.drinks[drink] + delta);
+            document.getElementById('count-' + drink).textContent = state.drinks[drink];
+
+            const card = document.getElementById('drink-' + drink);
+            card.classList.toggle('has-drinks', state.drinks[drink] > 0);
+
+            const minusBtn = card.querySelector('button:first-of-type');
+            minusBtn.disabled = state.drinks[drink] === 0;
+
+            calculateBAC();
+        }
+
+        function calculateBAC() {
+            let totalAlcohol = 0;
+            for (const [drink, count] of Object.entries(state.drinks)) {
+                totalAlcohol += drinkAlcohol[drink] * count;
+            }
+
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            let hoursElapsed = 0;
+
+            if (startTime && endTime) {
+                const start = new Date(`2000-01-01T${startTime}`);
+                let end = new Date(`2000-01-01T${endTime}`);
+                if (end < start) end.setDate(end.getDate() + 1);
+                hoursElapsed = (end - start) / (1000 * 60 * 60);
+            }
+
+            const resorptionDeficit = 0.8;
+            const r = reductionFactor[state.gender];
+            const eliminationRate = 0.15;
+
+            let bac = (totalAlcohol * resorptionDeficit) / (state.weight * r);
+            bac = Math.max(0, bac - (hoursElapsed * eliminationRate));
+
+            return {
+                bac: bac,
+                totalAlcohol: totalAlcohol,
+                hoursElapsed: hoursElapsed
+            };
+        }
+
+        function getStatusClass(bac) {
+            if (bac < 0.3) return { class: 'safe', text: 'Probablement apte à conduire' };
+            if (bac < 0.5) return { class: 'caution', text: 'Attention – proche de la limite' };
+            if (bac < 0.8) return { class: 'danger', text: 'Inapte à conduire !' };
+            return { class: 'critical', text: 'Fortement alcoolisé !' };
+        }
+
+        function formatTime(date) {
+            return date.toLocaleTimeString('fr-CH', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function displayResult(result) {
+            const { bac, totalAlcohol, hoursElapsed } = result;
+            const status = getStatusClass(bac);
+
+            document.getElementById('bacValue').innerHTML = bac.toFixed(2) + '<span class="bac-unit">‰</span>';
+            document.getElementById('bacValue').className = 'bac-value bac-' + status.class;
+
+            const statusEl = document.getElementById('bacStatus');
+            statusEl.textContent = status.text;
+            statusEl.className = 'bac-status ' + status.class;
+
+            let summaryHTML = `
+                <h3>Résumé</h3>
+                <p><strong>Alcool total :</strong> ${totalAlcohol.toFixed(1)}g d'alcool pur</p>
+                <p><strong>TAC estimé :</strong> ${bac.toFixed(2)}‰</p>
+            `;
+
+            if (bac >= 0.5) {
+                const hoursTo05 = (bac - 0.5) / 0.15;
+                const hoursTo0 = bac / 0.15;
+
+                const now = new Date();
+                const timeTo05 = new Date(now.getTime() + hoursTo05 * 60 * 60 * 1000);
+                const timeTo0 = new Date(now.getTime() + hoursTo0 * 60 * 60 * 1000);
+
+                summaryHTML += `
+                    <p><strong>Sous 0.5‰ :</strong> env. ${formatTime(timeTo05)} (dans ${hoursTo05.toFixed(1)}h)</p>
+                    <p><strong>Complètement sobre :</strong> env. ${formatTime(timeTo0)} (dans ${hoursTo0.toFixed(1)}h)</p>
+                `;
+            } else if (bac > 0) {
+                const hoursTo0 = bac / 0.15;
+                const now = new Date();
+                const timeTo0 = new Date(now.getTime() + hoursTo0 * 60 * 60 * 1000);
+                summaryHTML += `
+                    <p><strong>Complètement sobre :</strong> env. ${formatTime(timeTo0)} (dans ${hoursTo0.toFixed(1)}h)</p>
+                `;
+            }
+
+            document.getElementById('resultSummary').innerHTML = summaryHTML;
+
+            if (bac > 0) {
+                let timelineHTML = '<h4>Prévision d\'élimination</h4>';
+                const now = new Date();
+                let currentBAC = bac;
+
+                for (let h = 0; currentBAC > 0 && h <= 12; h++) {
+                    const time = new Date(now.getTime() + h * 60 * 60 * 1000);
+                    const bacAtTime = Math.max(0, bac - (h * 0.15));
+                    const bacStatus = getStatusClass(bacAtTime);
+
+                    timelineHTML += `
+                        <div class="timeline-item">
+                            <span class="timeline-time">${formatTime(time)}</span>
+                            <span class="timeline-bac bac-${bacStatus.class}">${bacAtTime.toFixed(2)}‰</span>
+                            <span class="timeline-note">${h === 0 ? 'Maintenant' : `+${h}h`}</span>
+                        </div>
+                    `;
+                    currentBAC = bacAtTime;
+                    if (bacAtTime === 0) break;
+                }
+
+                document.getElementById('sobrietyTimeline').innerHTML = timelineHTML;
+                document.getElementById('sobrietyTimeline').style.display = 'block';
+            } else {
+                document.getElementById('sobrietyTimeline').style.display = 'none';
+            }
+
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('promilleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const result = calculateBAC();
+            displayResult(result);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            document.getElementById('endTime').value =
+                now.getHours().toString().padStart(2, '0') + ':' +
+                now.getMinutes().toString().padStart(2, '0');
+        });
+
+        // Dark Mode
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    this.enable(false);
+                }
+                this.updateButton();
+            },
+            enable(save = true) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                if (save) localStorage.setItem(this.STORAGE_KEY, 'true');
+                this.updateButton();
+            },
+            disable(save = true) {
+                document.documentElement.removeAttribute('data-theme');
+                if (save) localStorage.setItem(this.STORAGE_KEY, 'false');
+                this.updateButton();
+            },
+            toggle() {
+                document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable();
+            },
+            updateButton() {
+                const btn = document.querySelector('.dark-mode-toggle i');
+                if (btn) {
+                    btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            }
+        };
+        DarkMode.init();
+    </script>
+</body>
+</html>

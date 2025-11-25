@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wieviel.ch - Praktische Online-Rechner</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Kostenlose Online-Rechner für den Alltag. Promillerechner, und mehr.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            margin: -2rem -1rem 2rem -1rem;
+            border-radius: 0 0 20px 20px;
+        }
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .tool-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .tool-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .tool-card p {
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+        .coming-soon {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .coming-soon .badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus umschalten" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <div class="hero">
+            <h1>wieviel.ch</h1>
+            <p>Praktische Online-Rechner für den Alltag</p>
+        </div>
+
+        <div class="tools-grid">
+            <a href="/promille/" class="tool-card">
+                <div class="tool-icon">🍺</div>
+                <h2>Promillerechner</h2>
+                <p>Berechne deinen ungefähren Blutalkoholwert und erfahre, wann du wieder fahrtüchtig bist.</p>
+            </a>
+
+            <div class="tool-card coming-soon">
+                <div class="tool-icon">🏖️</div>
+                <h2>Ferienkürzung</h2>
+                <p>Berechne die zulässige Ferienkürzung bei Arbeitsverhinderung nach Art. 329b OR.</p>
+                <span class="badge">Bald verfügbar</span>
+            </div>
+
+            <div class="tool-card coming-soon">
+                <div class="tool-icon">📊</div>
+                <h2>Weitere Tools</h2>
+                <p>Mehr praktische Rechner sind in Planung.</p>
+                <span class="badge">Bald verfügbar</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Alle Rechner dienen nur zur Orientierung.</p>
+            <p class="footer-privacy">Alle Berechnungen erfolgen lokal in Ihrem Browser. Es werden keine Daten gespeichert.</p>
+        </div>
+    </footer>
+
+    <script>
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    this.enable(false);
+                }
+                this.updateButton();
+            },
+            enable(save = true) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                if (save) localStorage.setItem(this.STORAGE_KEY, 'true');
+                this.updateButton();
+            },
+            disable(save = true) {
+                document.documentElement.removeAttribute('data-theme');
+                if (save) localStorage.setItem(this.STORAGE_KEY, 'false');
+                this.updateButton();
+            },
+            toggle() {
+                document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable();
+            },
+            updateButton() {
+                const btn = document.querySelector('.dark-mode-toggle i');
+                if (btn) {
+                    btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            }
+        };
+        DarkMode.init();
+    </script>
+</body>
+</html>
