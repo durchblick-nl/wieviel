@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI-Rechner – Body Mass Index berechnen | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta name="description" content="Berechne deinen BMI (Body Mass Index) und erfahre, ob dein Gewicht im gesunden Bereich liegt. Einfach, schnell und anonym.">
+    <link rel="canonical" href="https://wieviel.ch/bmi/de/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/bmi/de/">
+    <link rel="alternate" hreflang="fr" href="https://wieviel.ch/bmi/fr/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .bmi-result { text-align: center; padding: 2rem; margin: 1.5rem 0; border-radius: 16px; }
+        .bmi-result .value { font-size: 4rem; font-weight: bold; font-family: 'Economica', sans-serif; line-height: 1; }
+        .bmi-result .category { font-size: 1.5rem; font-weight: 600; margin-top: 0.5rem; }
+        .bmi-result.underweight { background: linear-gradient(135deg, #3498db, #5dade2); color: white; }
+        .bmi-result.normal { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; }
+        .bmi-result.overweight { background: linear-gradient(135deg, #f39c12, #f1c40f); color: white; }
+        .bmi-result.obese { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
+        .bmi-scale-container { margin: 1.5rem 0; }
+        .bmi-bar { height: 24px; border-radius: 12px; background: linear-gradient(to right, #3498db 0%, #3498db 18.5%, #2ecc71 18.5%, #2ecc71 25%, #f1c40f 25%, #f1c40f 30%, #e67e22 30%, #e67e22 35%, #e74c3c 35%, #e74c3c 100%); position: relative; margin-bottom: 0.5rem; }
+        .bmi-marker { position: absolute; top: -4px; width: 6px; height: 32px; background: var(--text-color); border-radius: 3px; transform: translateX(-50%); box-shadow: 0 2px 4px rgba(0,0,0,0.3); transition: left 0.3s ease; }
+        .bmi-labels { display: flex; font-size: 0.8rem; color: var(--text-color); }
+        .bmi-labels span { text-align: center; }
+        .bmi-labels span:nth-child(1) { width: 18.5%; }
+        .bmi-labels span:nth-child(2) { width: 6.5%; }
+        .bmi-labels span:nth-child(3) { width: 5%; }
+        .bmi-labels span:nth-child(4) { width: 5%; }
+        .bmi-labels span:nth-child(5) { width: 65%; }
+        .slider-group { margin: 1.5rem 0; }
+        .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .slider-header label { font-weight: 600; }
+        .slider-value { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); font-family: 'Economica', sans-serif; }
+        .slider-wrapper { position: relative; }
+        input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: var(--border-color); outline: none; -webkit-appearance: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        input[type="range"]::-moz-range-thumb { width: 28px; height: 28px; border-radius: 50%; background: var(--primary-color); cursor: pointer; border: none; }
+        .slider-marks { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-color); opacity: 0.7; margin-top: 0.25rem; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .bmi-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+        .bmi-info-item { padding: 0.75rem; border-radius: 8px; text-align: center; font-size: 0.85rem; }
+        .bmi-info-item.underweight { background: rgba(52, 152, 219, 0.15); color: #2980b9; }
+        .bmi-info-item.normal { background: rgba(46, 204, 113, 0.15); color: #27ae60; }
+        .bmi-info-item.overweight { background: rgba(241, 196, 15, 0.15); color: #d68910; }
+        .bmi-info-item.obese { background: rgba(231, 76, 60, 0.15); color: #c0392b; }
+        .bmi-info-item .range { font-weight: 700; font-size: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="../de/" class="lang-btn active">DE</a>
+                <a href="../fr/" class="lang-btn">FR</a>
+            </div>
+        </div>
+
+        <h1><img src="../../favicon.svg" alt="" class="title-icon">BMI-Rechner</h1>
+
+        <nav class="tool-nav">
+            <a href="../../">Alle Tools</a>
+            <a href="../de/" class="active">BMI</a>
+        </nav>
+
+        <div class="calculator-card">
+            <div class="slider-group">
+                <div class="slider-header">
+                    <label>Grösse</label>
+                    <span class="slider-value" id="heightValue">170 cm</span>
+                </div>
+                <div class="slider-wrapper">
+                    <input type="range" id="height" min="120" max="220" value="170" oninput="updateHeight()">
+                </div>
+                <div class="slider-marks">
+                    <span>120 cm</span>
+                    <span>170 cm</span>
+                    <span>220 cm</span>
+                </div>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <label>Gewicht</label>
+                    <span class="slider-value" id="weightValue">70 kg</span>
+                </div>
+                <div class="slider-wrapper">
+                    <input type="range" id="weight" min="30" max="200" value="70" oninput="updateWeight()">
+                </div>
+                <div class="slider-marks">
+                    <span>30 kg</span>
+                    <span>115 kg</span>
+                    <span>200 kg</span>
+                </div>
+            </div>
+
+            <div id="result" class="bmi-result normal">
+                <div class="value" id="bmiValue">24.2</div>
+                <div class="category" id="bmiCategory">Normalgewicht</div>
+            </div>
+
+            <div class="bmi-scale-container">
+                <div class="bmi-bar">
+                    <div class="bmi-marker" id="bmiMarker" style="left: 50%;"></div>
+                </div>
+                <div class="bmi-labels">
+                    <span>Untergewicht</span>
+                    <span>Normal</span>
+                    <span>Über.</span>
+                    <span>Adip. I</span>
+                    <span>Adipositas II+</span>
+                </div>
+            </div>
+
+            <div class="bmi-info-grid">
+                <div class="bmi-info-item underweight">
+                    <div class="range">&lt; 18.5</div>
+                    <div>Untergewicht</div>
+                </div>
+                <div class="bmi-info-item normal">
+                    <div class="range">18.5 - 24.9</div>
+                    <div>Normalgewicht</div>
+                </div>
+                <div class="bmi-info-item overweight">
+                    <div class="range">25 - 29.9</div>
+                    <div>Übergewicht</div>
+                </div>
+                <div class="bmi-info-item obese">
+                    <div class="range">&ge; 30</div>
+                    <div>Adipositas</div>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Teilen
+                </button>
+                <button class="share-btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i> Kopieren
+                </button>
+            </div>
+        </div>
+
+        <div class="info-cards-container">
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-calculator"></i></div>
+                <div class="step-content">
+                    <h3>Was ist der BMI?</h3>
+                    <p>Der Body Mass Index (BMI) ist eine Masszahl für die Bewertung des Körpergewichts im Verhältnis zur Körpergrösse.</p>
+                    <p><strong>Formel:</strong> BMI = Gewicht (kg) / Grösse² (m)</p>
+                </div>
+            </div>
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="step-content">
+                    <h3>Einschränkungen</h3>
+                    <p>Der BMI berücksichtigt nicht:</p>
+                    <ul>
+                        <li>Muskelmasse vs. Fettmasse</li>
+                        <li>Fettverteilung</li>
+                        <li>Alter und Geschlecht</li>
+                        <li>Körperbau</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-privacy">Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert.</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateHeight() {
+            document.getElementById('heightValue').textContent = document.getElementById('height').value + ' cm';
+            calculate();
+        }
+
+        function updateWeight() {
+            document.getElementById('weightValue').textContent = document.getElementById('weight').value + ' kg';
+            calculate();
+        }
+
+        function calculate() {
+            const height = parseFloat(document.getElementById('height').value) / 100; // cm to m
+            const weight = parseFloat(document.getElementById('weight').value);
+            const bmi = weight / (height * height);
+
+            document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+
+            let category, className;
+            if (bmi < 18.5) {
+                category = 'Untergewicht';
+                className = 'underweight';
+            } else if (bmi < 25) {
+                category = 'Normalgewicht';
+                className = 'normal';
+            } else if (bmi < 30) {
+                category = 'Übergewicht';
+                className = 'overweight';
+            } else {
+                category = 'Adipositas';
+                className = 'obese';
+            }
+
+            document.getElementById('bmiCategory').textContent = category;
+            const resultEl = document.getElementById('result');
+            resultEl.className = 'bmi-result ' + className;
+
+            // Update marker position (BMI 15-40 mapped to 0-100%)
+            const markerPos = Math.min(100, Math.max(0, ((bmi - 15) / 25) * 100));
+            document.getElementById('bmiMarker').style.left = markerPos + '%';
+        }
+
+        function getShareText() {
+            const height = document.getElementById('height').value;
+            const weight = document.getElementById('weight').value;
+            const bmi = document.getElementById('bmiValue').textContent;
+            const category = document.getElementById('bmiCategory').textContent;
+            return `📊 Mein BMI-Ergebnis\n\nGrösse: ${height} cm\nGewicht: ${weight} kg\nBMI: ${bmi}\nKategorie: ${category}\n\nBerechnet mit wieviel.ch/bmi`;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> Kopiert!';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Kopieren', 2000);
+            });
+        }
+
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) this.enable(false);
+                this.updateButton();
+            },
+            enable(save = true) { document.documentElement.setAttribute('data-theme', 'dark'); if (save) localStorage.setItem(this.STORAGE_KEY, 'true'); this.updateButton(); },
+            disable(save = true) { document.documentElement.removeAttribute('data-theme'); if (save) localStorage.setItem(this.STORAGE_KEY, 'false'); this.updateButton(); },
+            toggle() { document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable(); },
+            updateButton() { const btn = document.querySelector('.dark-mode-toggle i'); if (btn) btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; }
+        };
+        DarkMode.init();
+        calculate();
+    </script>
+</body>
+</html>

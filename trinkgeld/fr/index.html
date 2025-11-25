@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de pourboire – Combien donner? | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta name="description" content="Calculez le pourboire approprié et partagez l'addition équitablement. Simple, rapide et pratique.">
+    <link rel="canonical" href="https://wieviel.ch/trinkgeld/fr/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/trinkgeld/de/">
+    <link rel="alternate" hreflang="fr" href="https://wieviel.ch/trinkgeld/fr/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .tip-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+        .tip-btn { flex: 1; min-width: 60px; padding: 1rem; border-radius: 8px; text-align: center; }
+        .tip-btn .percent { font-size: 1.5rem; font-weight: bold; }
+        .tip-btn .label { font-size: 0.8rem; opacity: 0.8; }
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .total { font-size: 3rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .breakdown { display: flex; justify-content: space-around; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.3); }
+        .result-box .breakdown div { text-align: center; }
+        .result-box .breakdown .value { font-size: 1.25rem; font-weight: bold; }
+        .result-box .breakdown .label { font-size: 0.85rem; opacity: 0.9; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn.share { background: var(--primary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .input-with-icon { position: relative; }
+        .input-with-icon input { padding-left: 2.5rem; }
+        .input-with-icon .icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.5; }
+        .split-input { display: flex; align-items: center; gap: 1rem; }
+        .split-input button { width: 44px; height: 44px; border-radius: 50%; font-size: 1.25rem; cursor: pointer; }
+        .split-input .count { font-size: 1.5rem; font-weight: bold; min-width: 3rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="../de/" class="lang-btn">DE</a>
+                <a href="../fr/" class="lang-btn active">FR</a>
+            </div>
+        </div>
+
+        <h1><img src="../../favicon.svg" alt="" class="title-icon">Calculateur de pourboire</h1>
+
+        <nav class="tool-nav">
+            <a href="../../">Tous les outils</a>
+            <a href="../fr/" class="active">Pourboire</a>
+        </nav>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label class="required">Montant de l'addition</label>
+                <div class="input-with-icon">
+                    <span class="icon">CHF</span>
+                    <input type="number" id="billAmount" placeholder="0.00" step="0.05" min="0" style="padding-left: 3.5rem;" oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Pourboire</label>
+                <div class="tip-buttons">
+                    <button type="button" class="tip-btn" data-tip="5" onclick="setTip(5)">
+                        <div class="percent">5%</div>
+                        <div class="label">Correct</div>
+                    </button>
+                    <button type="button" class="tip-btn" data-tip="10" onclick="setTip(10)">
+                        <div class="percent">10%</div>
+                        <div class="label">Bien</div>
+                    </button>
+                    <button type="button" class="tip-btn active" data-tip="15" onclick="setTip(15)">
+                        <div class="percent">15%</div>
+                        <div class="label">Super</div>
+                    </button>
+                    <button type="button" class="tip-btn" data-tip="20" onclick="setTip(20)">
+                        <div class="percent">20%</div>
+                        <div class="label">Wow!</div>
+                    </button>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <label>Ou valeur personnalisée: </label>
+                    <input type="number" id="customTip" placeholder="%" min="0" max="100" style="width: 80px;" oninput="setCustomTip()">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre de personnes</label>
+                <div class="split-input">
+                    <button type="button" onclick="changePeople(-1)">−</button>
+                    <span class="count" id="peopleCount">1</span>
+                    <button type="button" onclick="changePeople(1)">+</button>
+                </div>
+            </div>
+
+            <div id="result" class="result-box" style="display: none;">
+                <div class="label">Montant total</div>
+                <div class="total" id="totalAmount">CHF 0.00</div>
+                <div class="breakdown">
+                    <div>
+                        <div class="value" id="tipAmount">CHF 0.00</div>
+                        <div class="label">Pourboire</div>
+                    </div>
+                    <div>
+                        <div class="value" id="perPerson">CHF 0.00</div>
+                        <div class="label">Par personne</div>
+                    </div>
+                </div>
+                <div class="share-buttons">
+                    <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Partager
+                    </button>
+                    <button class="share-btn copy" onclick="copyResult()">
+                        <i class="fas fa-copy"></i> Copier
+                    </button>
+                    <button class="share-btn share" onclick="shareNative()" id="nativeShare" style="display: none;">
+                        <i class="fas fa-share-alt"></i> Partager
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-cards-container">
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-globe"></i></div>
+                <div class="step-content">
+                    <h3>Pourboire international</h3>
+                    <ul>
+                        <li><strong>Suisse:</strong> 0-10% (service incl.)</li>
+                        <li><strong>France:</strong> 5-10%</li>
+                        <li><strong>USA:</strong> 15-25% (attendu!)</li>
+                        <li><strong>Japon:</strong> 0% (impoli)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="step-content">
+                    <h3>Conseils</h3>
+                    <p>En Suisse, le service est généralement inclus dans le prix. Le pourboire est une reconnaissance volontaire pour un bon service.</p>
+                    <p>Habituel: arrondir ou 5-10% si satisfait.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        let state = { tip: 15, people: 1 };
+
+        function setTip(percent) {
+            state.tip = percent;
+            document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.toggle('active', parseInt(btn.dataset.tip) === percent));
+            document.getElementById('customTip').value = '';
+            calculate();
+        }
+
+        function setCustomTip() {
+            const custom = parseFloat(document.getElementById('customTip').value);
+            if (!isNaN(custom) && custom >= 0) {
+                state.tip = custom;
+                document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.remove('active'));
+                calculate();
+            }
+        }
+
+        function changePeople(delta) {
+            state.people = Math.max(1, state.people + delta);
+            document.getElementById('peopleCount').textContent = state.people;
+            calculate();
+        }
+
+        function calculate() {
+            const bill = parseFloat(document.getElementById('billAmount').value) || 0;
+            if (bill <= 0) { document.getElementById('result').style.display = 'none'; return; }
+            const tip = bill * (state.tip / 100);
+            const total = bill + tip;
+            const perPerson = total / state.people;
+            document.getElementById('tipAmount').textContent = 'CHF ' + tip.toFixed(2);
+            document.getElementById('totalAmount').textContent = 'CHF ' + total.toFixed(2);
+            document.getElementById('perPerson').textContent = 'CHF ' + perPerson.toFixed(2);
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function getShareText() {
+            const bill = parseFloat(document.getElementById('billAmount').value) || 0;
+            const tip = bill * (state.tip / 100);
+            const total = bill + tip;
+            const perPerson = total / state.people;
+            let text = `🧾 Addition: CHF ${bill.toFixed(2)}\n💰 Pourboire (${state.tip}%): CHF ${tip.toFixed(2)}\n✨ Total: CHF ${total.toFixed(2)}`;
+            if (state.people > 1) text += `\n👥 Par personne (${state.people}): CHF ${perPerson.toFixed(2)}`;
+            text += `\n\nCalculé avec wieviel.ch/trinkgeld`;
+            return text;
+        }
+
+        function shareWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank'); }
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Copier', 2000);
+            });
+        }
+        function shareNative() { if (navigator.share) navigator.share({ title: 'Calcul pourboire', text: getShareText(), url: 'https://wieviel.ch/trinkgeld/' }); }
+        if (navigator.share) document.getElementById('nativeShare').style.display = 'flex';
+
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() { const saved = localStorage.getItem(this.STORAGE_KEY); if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) this.enable(false); this.updateButton(); },
+            enable(save = true) { document.documentElement.setAttribute('data-theme', 'dark'); if (save) localStorage.setItem(this.STORAGE_KEY, 'true'); this.updateButton(); },
+            disable(save = true) { document.documentElement.removeAttribute('data-theme'); if (save) localStorage.setItem(this.STORAGE_KEY, 'false'); this.updateButton(); },
+            toggle() { document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable(); },
+            updateButton() { const btn = document.querySelector('.dark-mode-toggle i'); if (btn) btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; }
+        };
+        DarkMode.init();
+    </script>
+</body>
+</html>

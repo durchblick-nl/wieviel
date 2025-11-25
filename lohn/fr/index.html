@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur salaire brut-net Suisse | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta name="description" content="Calculez votre salaire net en Suisse. Avec AVS, AI, APG, AC et caisse de pension. Rapide et simple.">
+    <link rel="canonical" href="https://wieviel.ch/lohn/fr/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/lohn/de/">
+    <link rel="alternate" hreflang="fr" href="https://wieviel.ch/lohn/fr/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        /* Uses shared CSS for .salary-toggle */
+        .deduction-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .deduction-row:last-child { border-bottom: none; }
+        .deduction-row .value.negative { color: var(--accent-color); }
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .total { font-size: 3rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .deductions-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .deductions-card h3 { color: var(--primary-color); margin-bottom: 1rem; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .info-box { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" onclick="DarkMode.toggle()"><i class="fas fa-moon"></i></button>
+            <div class="language-switcher">
+                <a href="../de/" class="lang-btn">DE</a>
+                <a href="../fr/" class="lang-btn active">FR</a>
+            </div>
+        </div>
+
+        <h1><img src="../../favicon.svg" alt="" class="title-icon">Calculateur brut-net</h1>
+
+        <nav class="tool-nav">
+            <a href="../../">Tous les outils</a>
+            <a href="../fr/" class="active">Salaire</a>
+        </nav>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <div class="salary-toggle">
+                    <button type="button" class="active" onclick="setMode('monthly')">Salaire mensuel</button>
+                    <button type="button" onclick="setMode('yearly')">Salaire annuel</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Salaire brut (CHF)</label>
+                <input type="number" id="grossSalary" placeholder="6000" min="0" oninput="calculate()">
+            </div>
+
+            <div class="form-group">
+                <label>Âge</label>
+                <select id="age" onchange="calculate()">
+                    <option value="25-34">25-34 ans</option>
+                    <option value="35-44">35-44 ans</option>
+                    <option value="45-54">45-54 ans</option>
+                    <option value="55-65">55-65 ans</option>
+                </select>
+                <small class="form-hint">Influence la cotisation LPP</small>
+            </div>
+
+            <div class="form-group">
+                <label><input type="checkbox" id="hasKids" onchange="calculate()"> Allocations familiales</label>
+                <div id="kidsInput" style="display: none; margin-top: 0.5rem;">
+                    <label>Nombre d'enfants:</label>
+                    <input type="number" id="numKids" value="1" min="1" max="10" style="width: 80px;" onchange="calculate()">
+                </div>
+            </div>
+
+            <div id="result" style="display: none;">
+                <div class="result-box">
+                    <div class="label">Votre salaire net</div>
+                    <div class="total" id="netSalary">CHF 0</div>
+                    <div class="sub" id="netPeriod">par mois</div>
+                </div>
+
+                <div class="deductions-card">
+                    <h3><i class="fas fa-minus-circle"></i> Déductions</h3>
+                    <div class="deduction-row"><span>AVS/AI/APG (5.3%)</span><span class="value negative" id="ahv">-CHF 0</span></div>
+                    <div class="deduction-row"><span>AC (1.1%)</span><span class="value negative" id="alv">-CHF 0</span></div>
+                    <div class="deduction-row"><span>AANP (~0.5%)</span><span class="value negative" id="nbu">-CHF 0</span></div>
+                    <div class="deduction-row"><span>LPP (2e pilier)</span><span class="value negative" id="bvg">-CHF 0</span></div>
+                    <div class="deduction-row" style="border-top: 2px solid var(--primary-color); padding-top: 1rem;"><strong>Total déductions</strong><span class="value negative" id="totalDeductions"><strong>-CHF 0</strong></span></div>
+                </div>
+
+                <div id="kidsBonus" class="deductions-card" style="display: none;">
+                    <h3><i class="fas fa-plus-circle" style="color: #28a745;"></i> Allocations</h3>
+                    <div class="deduction-row"><span>Allocations familiales</span><span class="value" style="color: #28a745;" id="childAllowance">+CHF 0</span></div>
+                </div>
+
+                <div class="share-buttons">
+                    <button class="share-btn whatsapp" onclick="shareWhatsApp()"><i class="fab fa-whatsapp"></i> Partager</button>
+                    <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> Copier</button>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i> <strong>Note:</strong> Estimation simplifiée. Le salaire réel dépend du canton et de l'employeur. L'impôt à la source n'est pas inclus.
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-privacy">Calculs locaux. Aucune donnée enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        let mode = 'monthly';
+        function setMode(m) { mode = m; document.querySelectorAll('.salary-toggle button').forEach(btn => btn.classList.remove('active')); document.querySelector(`.salary-toggle button:${m === 'monthly' ? 'first' : 'last'}-child`).classList.add('active'); calculate(); }
+        document.getElementById('hasKids').addEventListener('change', function() { document.getElementById('kidsInput').style.display = this.checked ? 'block' : 'none'; });
+        const bvgRates = { '25-34': 0.07, '35-44': 0.10, '45-54': 0.15, '55-65': 0.18 };
+
+        function calculate() {
+            let gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+            if (gross <= 0) { document.getElementById('result').style.display = 'none'; return; }
+            const monthly = mode === 'yearly' ? gross / 12 : gross;
+            const ahv = monthly * 0.053, alv = Math.min(monthly, 148200/12) * 0.011, nbu = monthly * 0.005;
+            const bvg = monthly * bvgRates[document.getElementById('age').value];
+            const totalDeductions = ahv + alv + nbu + bvg;
+            let childAllowance = 0;
+            if (document.getElementById('hasKids').checked) childAllowance = (parseInt(document.getElementById('numKids').value) || 1) * 200;
+            const net = monthly - totalDeductions + childAllowance;
+
+            document.getElementById('ahv').textContent = '-CHF ' + ahv.toFixed(2);
+            document.getElementById('alv').textContent = '-CHF ' + alv.toFixed(2);
+            document.getElementById('nbu').textContent = '-CHF ' + nbu.toFixed(2);
+            document.getElementById('bvg').textContent = '-CHF ' + bvg.toFixed(2);
+            document.getElementById('totalDeductions').innerHTML = '<strong>-CHF ' + totalDeductions.toFixed(2) + '</strong>';
+            document.getElementById('childAllowance').textContent = '+CHF ' + childAllowance.toFixed(2);
+            document.getElementById('kidsBonus').style.display = childAllowance > 0 ? 'block' : 'none';
+            document.getElementById('netSalary').textContent = 'CHF ' + net.toFixed(0);
+            document.getElementById('netPeriod').textContent = 'par mois' + (mode === 'yearly' ? ' (CHF ' + (net * 12).toFixed(0) + '/an)' : '');
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function getShareText() { const gross = parseFloat(document.getElementById('grossSalary').value) || 0; const net = parseFloat(document.getElementById('netSalary').textContent.replace(/[^0-9.-]/g, '')) || 0; return `💰 Calcul salaire\n\nBrut: CHF ${gross.toFixed(0)}\nNet: CHF ${net.toFixed(0)}/mois\n\nCalculé avec wieviel.ch/lohn`; }
+        function shareWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank'); }
+        function copyResult() { navigator.clipboard.writeText(getShareText()).then(() => { const btn = document.querySelector('.share-btn.copy'); btn.innerHTML = '<i class="fas fa-check"></i> Copié!'; setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Copier', 2000); }); }
+
+        const DarkMode = { STORAGE_KEY: 'darkMode', init() { const saved = localStorage.getItem(this.STORAGE_KEY); if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) this.enable(false); this.updateButton(); }, enable(save = true) { document.documentElement.setAttribute('data-theme', 'dark'); if (save) localStorage.setItem(this.STORAGE_KEY, 'true'); this.updateButton(); }, disable(save = true) { document.documentElement.removeAttribute('data-theme'); if (save) localStorage.setItem(this.STORAGE_KEY, 'false'); this.updateButton(); }, toggle() { document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable(); }, updateButton() { const btn = document.querySelector('.dark-mode-toggle i'); if (btn) btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; } };
+        DarkMode.init();
+    </script>
+</body>
+</html>

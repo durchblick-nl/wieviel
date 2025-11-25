@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de sommeil – Heures optimales | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta name="description" content="Calculez l'heure optimale pour vous endormir ou vous réveiller basé sur les cycles de sommeil de 90 minutes. Réveillez-vous en forme!">
+    <link rel="canonical" href="https://wieviel.ch/schlaf/fr/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/schlaf/de/">
+    <link rel="alternate" hreflang="fr" href="https://wieviel.ch/schlaf/fr/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .mode-toggle { margin-bottom: 1.5rem; }
+        .mode-toggle button { padding: 1rem; font-size: 0.95rem; }
+        .time-input-group { display: flex; align-items: center; gap: 0.5rem; justify-content: center; margin: 1rem 0; }
+        .time-input-group input[type="time"] { font-size: 2rem; padding: 0.75rem 1rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: 'Economica', sans-serif; text-align: center; }
+        .time-input-group input[type="time"]:focus { border-color: var(--primary-color); outline: none; }
+        .now-btn { padding: 0.75rem 1.5rem; background: var(--secondary-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .now-btn:hover { opacity: 0.9; }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .time-card { border-radius: 12px; padding: 1.25rem; text-align: center; cursor: pointer; }
+        .time-card:hover { transform: translateY(-2px); }
+        .time-card .time { font-size: 1.75rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .time-card .cycles { font-size: 0.85rem; opacity: 0.8; margin-top: 0.25rem; }
+        .time-card .duration { font-size: 0.9rem; margin-top: 0.5rem; }
+        .time-card.recommended .badge { background: rgba(255,255,255,0.2); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-top: 0.5rem; display: inline-block; }
+        .info-text { text-align: center; color: var(--text-color); opacity: 0.8; margin-bottom: 1rem; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+        .sleep-icon { font-size: 3rem; text-align: center; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="../de/" class="lang-btn">DE</a>
+                <a href="../fr/" class="lang-btn active">FR</a>
+            </div>
+        </div>
+
+        <h1><img src="../../favicon.svg" alt="" class="title-icon">Calculateur de sommeil</h1>
+
+        <nav class="tool-nav">
+            <a href="../../">Tous les outils</a>
+            <a href="../fr/" class="active">Sommeil</a>
+        </nav>
+
+        <div class="calculator-card">
+            <div class="sleep-icon">
+                <i class="fas fa-moon" style="color: var(--primary-color);"></i>
+            </div>
+
+            <div class="mode-toggle">
+                <button type="button" class="active" onclick="setMode('wakeup')">
+                    <i class="fas fa-sun"></i> Je dois me lever à...
+                </button>
+                <button type="button" onclick="setMode('sleep')">
+                    <i class="fas fa-bed"></i> Je vais dormir à...
+                </button>
+            </div>
+
+            <p class="info-text" id="modeDescription">À quelle heure devriez-vous vous endormir?</p>
+
+            <div class="time-input-group">
+                <input type="time" id="targetTime" value="07:00" onchange="calculate()">
+                <button type="button" class="now-btn" onclick="setNow()" id="nowBtn" style="display: none;">
+                    <i class="fas fa-clock"></i> Maintenant
+                </button>
+            </div>
+
+            <div id="result" style="display: none;">
+                <p class="info-text" id="resultDescription">Heures d'endormissement optimales:</p>
+                <div class="results-grid" id="resultsGrid"></div>
+
+                <div class="share-buttons">
+                    <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Partager
+                    </button>
+                    <button class="share-btn copy" onclick="copyResult()">
+                        <i class="fas fa-copy"></i> Copier
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-cards-container">
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-sync-alt"></i></div>
+                <div class="step-content">
+                    <h3>Cycles de sommeil</h3>
+                    <p>Un cycle de sommeil complet dure environ <strong>90 minutes</strong>.</p>
+                    <p>Nous passons par <strong>4-6 cycles</strong> par nuit.</p>
+                    <p>Se réveiller entre les cycles = réveil en forme!</p>
+                </div>
+            </div>
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-hourglass-half"></i></div>
+                <div class="step-content">
+                    <h3>Temps d'endormissement</h3>
+                    <p>Le temps moyen pour s'endormir est de <strong>14 minutes</strong>.</p>
+                    <p>Ce temps est pris en compte dans le calcul.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        let mode = 'wakeup';
+        const CYCLE_MINUTES = 90;
+        const FALL_ASLEEP_MINUTES = 14;
+
+        function setMode(m) {
+            mode = m;
+            document.querySelectorAll('.mode-toggle button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.mode-toggle button:${m === 'wakeup' ? 'first' : 'last'}-child`).classList.add('active');
+
+            if (m === 'wakeup') {
+                document.getElementById('modeDescription').textContent = 'À quelle heure devriez-vous vous endormir?';
+                document.getElementById('nowBtn').style.display = 'none';
+                document.getElementById('targetTime').value = '07:00';
+            } else {
+                document.getElementById('modeDescription').textContent = 'À quelle heure voulez-vous dormir?';
+                document.getElementById('nowBtn').style.display = 'inline-flex';
+                setNow();
+            }
+            calculate();
+        }
+
+        function setNow() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('targetTime').value = `${hours}:${minutes}`;
+            calculate();
+        }
+
+        function addMinutes(time, minutes) {
+            const [h, m] = time.split(':').map(Number);
+            const date = new Date();
+            date.setHours(h, m, 0, 0);
+            date.setMinutes(date.getMinutes() + minutes);
+            return {
+                time: `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`,
+                hours: date.getHours(),
+                minutes: date.getMinutes()
+            };
+        }
+
+        function subtractMinutes(time, minutes) {
+            return addMinutes(time, -minutes);
+        }
+
+        function formatDuration(totalMinutes) {
+            const hours = Math.floor(totalMinutes / 60);
+            const mins = totalMinutes % 60;
+            if (mins === 0) return `${hours}h`;
+            return `${hours}h ${mins}min`;
+        }
+
+        function calculate() {
+            const targetTime = document.getElementById('targetTime').value;
+            if (!targetTime) return;
+
+            const cycles = [6, 5, 4, 3];
+            const results = [];
+
+            if (mode === 'wakeup') {
+                document.getElementById('resultDescription').textContent = 'Heures d\'endormissement optimales:';
+                cycles.forEach(numCycles => {
+                    const sleepMinutes = numCycles * CYCLE_MINUTES;
+                    const totalMinutes = sleepMinutes + FALL_ASLEEP_MINUTES;
+                    const bedtime = subtractMinutes(targetTime, totalMinutes);
+                    results.push({
+                        time: bedtime.time,
+                        cycles: numCycles,
+                        duration: sleepMinutes,
+                        recommended: numCycles === 5 || numCycles === 6
+                    });
+                });
+            } else {
+                document.getElementById('resultDescription').textContent = 'Heures de réveil optimales:';
+                cycles.forEach(numCycles => {
+                    const sleepMinutes = numCycles * CYCLE_MINUTES;
+                    const wakeTime = addMinutes(targetTime, sleepMinutes + FALL_ASLEEP_MINUTES);
+                    results.push({
+                        time: wakeTime.time,
+                        cycles: numCycles,
+                        duration: sleepMinutes,
+                        recommended: numCycles === 5 || numCycles === 6
+                    });
+                });
+            }
+
+            const grid = document.getElementById('resultsGrid');
+            grid.innerHTML = results.map(r => `
+                <div class="time-card ${r.recommended ? 'recommended' : ''}" onclick="selectTime('${r.time}', ${r.cycles})">
+                    <div class="time">${r.time}</div>
+                    <div class="cycles">${r.cycles} cycles</div>
+                    <div class="duration">${formatDuration(r.duration)} de sommeil</div>
+                    ${r.recommended ? '<div class="badge">Recommandé</div>' : ''}
+                </div>
+            `).join('');
+
+            document.getElementById('result').style.display = 'block';
+        }
+
+        let selectedTime = null;
+        let selectedCycles = null;
+
+        function selectTime(time, cycles) {
+            selectedTime = time;
+            selectedCycles = cycles;
+            document.querySelectorAll('.time-card').forEach(card => {
+                card.style.boxShadow = card.querySelector('.time').textContent === time ? '0 0 0 3px var(--primary-color)' : 'none';
+            });
+        }
+
+        function getShareText() {
+            const targetTime = document.getElementById('targetTime').value;
+            const description = document.getElementById('resultDescription').textContent;
+
+            let text = mode === 'wakeup'
+                ? `Je dois me lever à ${targetTime}.\n\n${description}\n`
+                : `Je vais dormir à ${targetTime}.\n\n${description}\n`;
+
+            const cards = document.querySelectorAll('.time-card');
+            cards.forEach(card => {
+                const time = card.querySelector('.time').textContent;
+                const cycles = card.querySelector('.cycles').textContent;
+                const duration = card.querySelector('.duration').textContent;
+                const isRecommended = card.classList.contains('recommended');
+                text += `\n${isRecommended ? '⭐ ' : ''}${time} (${cycles}, ${duration})`;
+            });
+
+            text += '\n\nCalculé avec wieviel.ch/schlaf';
+            return text;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Copier', 2000);
+            });
+        }
+
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) this.enable(false);
+                this.updateButton();
+            },
+            enable(save = true) { document.documentElement.setAttribute('data-theme', 'dark'); if (save) localStorage.setItem(this.STORAGE_KEY, 'true'); this.updateButton(); },
+            disable(save = true) { document.documentElement.removeAttribute('data-theme'); if (save) localStorage.setItem(this.STORAGE_KEY, 'false'); this.updateButton(); },
+            toggle() { document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable(); },
+            updateButton() { const btn = document.querySelector('.dark-mode-toggle i'); if (btn) btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; }
+        };
+        DarkMode.init();
+        calculate();
+    </script>
+</body>
+</html>

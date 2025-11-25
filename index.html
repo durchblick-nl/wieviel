@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wieviel.ch - Praktische Online-Rechner</title>
+    <title>wieviel.ch - Kostenlose Online-Rechner Schweiz | Promille, BMI, Lohn & mehr</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Kostenlose Online-Rechner für den Alltag. Promillerechner, und mehr.">
+    <meta name="description" content="Kostenlose Online-Rechner für die Schweiz: Promillerechner, Brutto-Netto-Lohnrechner, BMI-Rechner, Trinkgeld-Rechner & Schlafrechner. Schnell, anonym und ohne Registrierung.">
+    <meta name="keywords" content="Rechner Schweiz, Promillerechner, Lohnrechner, BMI Rechner, Trinkgeld Rechner, Schlafrechner, Online Tools, kostenlos">
+    <link rel="canonical" href="https://wieviel.ch/">
+    <meta property="og:title" content="wieviel.ch - Kostenlose Online-Rechner">
+    <meta property="og:description" content="Praktische Online-Rechner für den Alltag. 100% kostenlos, keine Registrierung, alle Berechnungen lokal.">
+    <meta property="og:url" content="https://wieviel.ch/">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
@@ -28,39 +34,66 @@
         .hero p {
             font-size: 1.25rem;
             opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
             margin: 2rem 0;
         }
         .tool-card {
             background: var(--card-bg);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
             text-decoration: none;
             color: inherit;
             display: block;
+            border: 2px solid transparent;
         }
         .tool-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
         }
         .tool-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
         }
         .tool-card h2 {
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            font-size: 1.4rem;
         }
         .tool-card p {
             color: var(--text-color);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .tool-card .languages {
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--secondary-color);
         }
         .coming-soon {
             opacity: 0.5;
@@ -72,8 +105,60 @@
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
-            margin-top: 1rem;
+            margin-top: 0.75rem;
             display: inline-block;
+        }
+        .seo-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .seo-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .seo-section p {
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 1rem;
+        }
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+        .feature-item h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -86,8 +171,13 @@
         </div>
 
         <div class="hero">
-            <h1>wieviel.ch</h1>
-            <p>Praktische Online-Rechner für den Alltag</p>
+            <h1><img src="favicon.svg" alt="" style="height: 1em; vertical-align: middle; margin-right: 0.25em;">wieviel.ch</h1>
+            <p>Praktische Online-Rechner für den Alltag in der Schweiz</p>
+            <div class="hero-badges">
+                <span class="hero-badge"><i class="fas fa-lock"></i> 100% Lokal</span>
+                <span class="hero-badge"><i class="fas fa-euro-sign" style="text-decoration: line-through;"></i> Kostenlos</span>
+                <span class="hero-badge"><i class="fas fa-globe"></i> DE / FR</span>
+            </div>
         </div>
 
         <div class="tools-grid">
@@ -95,6 +185,35 @@
                 <div class="tool-icon">🍺</div>
                 <h2>Promillerechner</h2>
                 <p>Berechne deinen ungefähren Blutalkoholwert und erfahre, wann du wieder fahrtüchtig bist.</p>
+                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
+            </a>
+
+            <a href="/lohn/" class="tool-card">
+                <div class="tool-icon">💰</div>
+                <h2>Brutto-Netto-Rechner</h2>
+                <p>Berechne deinen Nettolohn in der Schweiz mit allen Sozialabzügen (AHV, ALV, BVG).</p>
+                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
+            </a>
+
+            <a href="/trinkgeld/" class="tool-card">
+                <div class="tool-icon">🧾</div>
+                <h2>Trinkgeld-Rechner</h2>
+                <p>Berechne das passende Trinkgeld und teile die Rechnung fair unter Freunden auf.</p>
+                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
+            </a>
+
+            <a href="/schlaf/" class="tool-card">
+                <div class="tool-icon">😴</div>
+                <h2>Schlafrechner</h2>
+                <p>Finde die optimale Einschlaf- oder Aufwachzeit basierend auf 90-Minuten-Schlafzyklen.</p>
+                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
+            </a>
+
+            <a href="/bmi/" class="tool-card">
+                <div class="tool-icon">📊</div>
+                <h2>BMI-Rechner</h2>
+                <p>Berechne deinen Body Mass Index und erfahre, ob dein Gewicht im gesunden Bereich liegt.</p>
+                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
             </a>
 
             <div class="tool-card coming-soon">
@@ -103,20 +222,66 @@
                 <p>Berechne die zulässige Ferienkürzung bei Arbeitsverhinderung nach Art. 329b OR.</p>
                 <span class="badge">Bald verfügbar</span>
             </div>
+        </div>
 
-            <div class="tool-card coming-soon">
-                <div class="tool-icon">📊</div>
-                <h2>Weitere Tools</h2>
-                <p>Mehr praktische Rechner sind in Planung.</p>
-                <span class="badge">Bald verfügbar</span>
+        <div class="seo-section">
+            <h2>Warum wieviel.ch?</h2>
+            <p>
+                <strong>wieviel.ch</strong> bietet eine Sammlung kostenloser Online-Rechner, die speziell für die Schweiz entwickelt wurden.
+                Ob du wissen möchtest, wie viel Nettolohn du nach allen Abzügen erhältst, wie lange der Alkohol in deinem Blut nachweisbar ist,
+                oder wann du aufwachen solltest, um erfrischt zu sein - unsere Tools liefern schnelle Antworten.
+            </p>
+            <p>
+                Alle Berechnungen erfolgen <strong>direkt in deinem Browser</strong>. Es werden keine Daten an Server gesendet oder gespeichert.
+                Deine Privatsphäre ist uns wichtig.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Datenschutz</h3>
+                    <p>Keine Cookies, keine Registrierung, keine Datensammlung</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Blitzschnell</h3>
+                    <p>Sofortige Ergebnisse ohne Wartezeit</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobilfreundlich</h3>
+                    <p>Optimiert für Smartphones und Tablets</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-share-alt"></i>
+                    <h3>Teilbar</h3>
+                    <p>Ergebnisse einfach per WhatsApp teilen</p>
+                </div>
             </div>
+        </div>
+
+        <div class="seo-section">
+            <h2>Schweizer Rechner für den Alltag</h2>
+            <p>
+                Der <strong>Brutto-Netto-Lohnrechner</strong> berücksichtigt die Schweizer Sozialversicherungsabzüge:
+                AHV/IV/EO (5.3%), ALV (1.1%), NBU (~0.5%) und die altersabhängige Pensionskasse (BVG).
+                Optional können Kinderzulagen hinzugerechnet werden.
+            </p>
+            <p>
+                Unser <strong>Promillerechner</strong> verwendet die wissenschaftlich anerkannte Widmark-Formel zur Berechnung
+                des Blutalkoholwerts. Er zeigt auch, wann du voraussichtlich wieder unter dem Schweizer Grenzwert von 0.5 Promille liegst.
+            </p>
+            <p>
+                Der <strong>Schlafrechner</strong> basiert auf dem Konzept der 90-minütigen Schlafzyklen.
+                Wenn du am Ende eines Zyklus aufwachst, fühlst du dich erholter, als wenn der Wecker dich mitten in einer Tiefschlafphase weckt.
+            </p>
         </div>
     </div>
 
     <footer class="site-footer">
         <div class="footer-content">
             <p><a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick Consultancy BV</a></p>
-            <p class="footer-disclaimer">Alle Rechner dienen nur zur Orientierung.</p>
+            <p class="footer-disclaimer">Alle Rechner dienen nur zur Orientierung und ersetzen keine professionelle Beratung.</p>
             <p class="footer-privacy">Alle Berechnungen erfolgen lokal in Ihrem Browser. Es werden keine Daten gespeichert.</p>
         </div>
     </footer>
