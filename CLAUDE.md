@@ -6,12 +6,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **wieviel.ch** - Praktische Online-Rechner für den Alltag (Practical online calculators for everyday use)
 
-A collection of useful calculators for the general public (not just lawyers).
+A collection of useful calculators for the general public in Switzerland.
 
 **Live Site**: https://wieviel.ch
 
 ### Current Tools:
-- **Promillerechner** (`/promille/`) - Blood alcohol concentration calculator
+
+| Tool | Path | Description |
+|------|------|-------------|
+| **Promillerechner** | `/promille/` | Blood alcohol concentration calculator (Widmark formula) |
+| **Brutto-Netto-Rechner** | `/lohn/` | Swiss salary calculator with AHV, ALV, NBU, BVG |
+| **Trinkgeld-Rechner** | `/trinkgeld/` | Tip calculator with bill splitting |
+| **Schlafrechner** | `/schlaf/` | Optimal sleep/wake times based on 90-min cycles |
+| **BMI-Rechner** | `/bmi/` | Body Mass Index calculator |
+
+### Planned Tools:
+- **Ferienkürzung** (`/ferienkuerzung/`) - Holiday reduction calculator (Art. 329b OR)
 
 ## Deployment
 
@@ -25,102 +35,114 @@ Hosted via **Cloudflare Pages** with automatic deployment on push to main branch
 
 ```
 wieviel.ch/
-├── index.html              # Landing page with tool overview
-├── promille/
-│   ├── index.html          # Language redirect (auto-detects DE/FR)
-│   ├── de/index.html       # Promillerechner (German)
-│   └── fr/index.html       # Calculateur d'alcoolémie (French)
+├── index.html              # Landing page with tool overview + SEO
 ├── css/
-│   └── styles.css          # Shared styles (Durchblick brand colors)
-├── scripts/                # Shared scripts (if needed)
-├── images/                 # Images and OG images
-└── favicon.svg             # Site icon
+│   └── styles.css          # Shared styles (dark mode, responsive)
+├── favicon.svg             # Site icon
+├── promille/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # German version
+│   └── fr/index.html       # French version
+├── lohn/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # Brutto-Netto-Rechner (DE)
+│   └── fr/index.html       # Calculateur brut-net (FR)
+├── trinkgeld/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # Trinkgeld-Rechner (DE)
+│   └── fr/index.html       # Calculateur de pourboire (FR)
+├── schlaf/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # Schlafrechner (DE)
+│   └── fr/index.html       # Calculateur de sommeil (FR)
+└── bmi/
+    ├── index.html          # Language redirect
+    ├── de/index.html       # BMI-Rechner (DE)
+    └── fr/index.html       # Calculateur IMC (FR)
 ```
-
-### Future Tools (planned):
-- **Ferienkürzung** (`/ferienkuerzung/`) - Holiday reduction calculator (Art. 329b OR)
 
 ## Tech Stack
 
-- **Frontend**: Vanilla HTML5/CSS3/JavaScript
-- **Styling**: CSS Variables, Font Awesome icons
-- **Bilingual**: German (DE) and French (FR) versions
-- **Brand**: Durchblick Consultancy BV colors (#3f606f, #cc5c53, #5a8a9d)
+- **Frontend**: Vanilla HTML5/CSS3/JavaScript (no frameworks)
+- **Styling**: CSS Variables for theming, Font Awesome icons
+- **Bilingual**: German (DE) and French (FR) with auto-detection
+- **Dark Mode**: System preference detection + manual toggle
+- **Sharing**: WhatsApp, Copy to clipboard
+- **Brand**: Durchblick colors (#3f606f, #cc5c53, #5a8a9d)
 - **No backend** - all calculation logic runs client-side
 
-## Commands
+## Common Patterns
 
-```bash
-# Run tests
-node test.js
+### Language Redirect (index.html in each tool folder)
+```javascript
+const lang = navigator.language || navigator.userLanguage;
+const isFrench = lang.toLowerCase().startsWith('fr');
+window.location.replace(isFrench ? 'fr/' : 'de/');
+```
+
+### Dark Mode
+```javascript
+const DarkMode = {
+    STORAGE_KEY: 'darkMode',
+    init() { /* checks localStorage and prefers-color-scheme */ },
+    toggle() { /* toggles data-theme attribute */ }
+};
+```
+
+### Share Functionality
+```javascript
+function shareWhatsApp() {
+    window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+}
+function copyResult() {
+    navigator.clipboard.writeText(getShareText()).then(() => { /* feedback */ });
+}
 ```
 
 ## Calculation Logic
 
-### Widmark Formula (1932)
-
+### Promillerechner - Widmark Formula
 ```
 BAK (‰) = A / (m × r) - (t × β)
 ```
+- A = consumed alcohol in grams
+- m = body weight in kg
+- r = reduction factor (men: 0.68, women: 0.55)
+- β = elimination rate (~0.15‰/hour)
 
-Where:
-- **A** = consumed alcohol in grams
-- **m** = body weight in kg
-- **r** = reduction factor (men: 0.68-0.70, women: 0.55-0.60)
-- **t** = time since drinking started (hours)
-- **β** = alcohol elimination rate (~0.1-0.15‰ per hour)
+### Lohnrechner - Swiss Deductions
+| Deduction | Rate | Notes |
+|-----------|------|-------|
+| AHV/IV/EO | 5.3% | Employee share |
+| ALV | 1.1% | Up to CHF 148'200/year |
+| NBU | ~0.5% | Varies by employer |
+| BVG | 7-18% | Age-dependent (25-34: 7%, 35-44: 10%, 45-54: 15%, 55-65: 18%) |
 
-### Alcohol Content by Drink Type
+### Schlafrechner - Sleep Cycles
+- 1 cycle = 90 minutes
+- Time to fall asleep = 14 minutes
+- Recommended: 5-6 cycles (7.5-9 hours)
 
-| Drink | Volume | Alcohol % | Pure Alcohol (g) |
-|-------|--------|-----------|------------------|
-| Beer (Stange) | 300ml | 5% | ~12g |
-| Beer (gross) | 500ml | 5% | ~20g |
-| Wine | 100ml | 12% | ~10g |
-| Wine (glass) | 150ml | 12% | ~15g |
-| Spirits | 20ml | 40% | ~6g |
-| Spirits (double) | 40ml | 40% | ~12g |
+### BMI-Rechner
+```
+BMI = weight (kg) / height² (m)
+```
+| Category | BMI Range |
+|----------|-----------|
+| Underweight | < 18.5 |
+| Normal | 18.5 - 24.9 |
+| Overweight | 25 - 29.9 |
+| Obese | ≥ 30 |
 
-### Swiss Legal Limits
+## Related Projects
 
-| Category | BAC Limit | Breath Alcohol |
-|----------|-----------|----------------|
-| Standard drivers | 0.5‰ | 0.25 mg/l |
-| New drivers (< 3 years) | 0.1‰ | 0.05 mg/l |
-| Professional drivers | 0.1‰ | 0.05 mg/l |
-| Driving instructors | 0.1‰ | 0.05 mg/l |
+| Project | Description | URL |
+|---------|-------------|-----|
+| **frist.ch** | Deadline calculator (ZPO, OR) | [frist.ch](https://frist.ch) |
+| **gerichtskostenrechner.ch** | Court fee calculator | [gerichtskostenrechner.ch](https://gerichtskostenrechner.ch) |
+| **verzugszinsrechner.ch** | Default interest calculator | [verzugszinsrechner.ch](https://verzugszinsrechner.ch) |
+| **wieviel.ch** | Everyday calculators | [wieviel.ch](https://wieviel.ch) |
 
-### Legal Consequences (Switzerland)
-
-| BAC Level | Consequence |
-|-----------|-------------|
-| 0.5-0.79‰ | Warning + fine |
-| 0.8‰+ | License suspension (min. 3 months) + fine |
-| 1.6‰+ | License suspension (min. 2 years) + criminal record |
-
-## Key Functions (inline in HTML)
-
-| Function | Purpose |
-|----------|---------|
-| `calculateBAC()` | Main Widmark formula calculation |
-| `selectGender()` | Update gender selection and recalculate |
-| `updateWeight()` | Update weight slider value |
-| `changeDrink()` | Add/remove drinks and update UI |
-| `displayResult()` | Render BAC result and timeline |
-| `getStatusClass()` | Get color coding based on BAC level |
-| `formatTime()` | Format time for display |
-
-## Zusammengehörige Projekte
-
-Dieses Projekt ist Teil einer Suite von Schweizer Rechtstools:
-
-| Projekt | Beschreibung | URL |
-|---------|--------------|-----|
-| **frist.ch** | Fristenrechner (ZPO, OR, etc.) | [frist.ch](https://frist.ch) |
-| **gerichtskostenrechner.ch** | Gerichtskosten für Zivilverfahren | [gerichtskostenrechner.ch](https://gerichtskostenrechner.ch) |
-| **verzugszinsrechner.ch** | Verzugszinsen nach OR 104 | [verzugszinsrechner.ch](https://verzugszinsrechner.ch) |
-| **wieviel.ch** | Promillerechner | [wieviel.ch](https://wieviel.ch) |
-
-## Kontakt
+## Contact
 
 [Durchblick Consultancy BV](https://durchblick.nl)
