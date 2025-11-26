@@ -360,6 +360,24 @@
             margin-bottom: 1rem;
         }
 
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -708,16 +726,10 @@
 
             <section class="tools-section">
                 <h2 class="section-title">Alle Rechner</h2>
-                <div class="tools-grid">
-                    <a href="/promille/" class="tool-card">
-                        <div class="tool-icon">🍺</div>
-                        <div class="tool-content">
-                            <div class="tool-title">Promillerechner <span class="lang-tag">DE | FR</span></div>
-                            <div class="tool-desc">Blutalkohol berechnen und Abbauzeit ermitteln</div>
-                        </div>
-                        <i class="fas fa-chevron-right tool-arrow"></i>
-                    </a>
 
+                <!-- Geld & Finanzen -->
+                <h3 class="category-title"><span class="category-icon">💰</span> Geld & Finanzen</h3>
+                <div class="tools-grid">
                     <a href="/lohn/" class="tool-card">
                         <div class="tool-icon">💰</div>
                         <div class="tool-content">
@@ -727,15 +739,37 @@
                         <i class="fas fa-chevron-right tool-arrow"></i>
                     </a>
 
-                    <a href="/busse/" class="tool-card">
-                        <div class="tool-icon">🚗</div>
+                    <a href="/mwst/" class="tool-card">
+                        <div class="tool-icon">🧾</div>
                         <div class="tool-content">
-                            <div class="tool-title">Bussenrechner <span class="lang-tag">DE | FR</span></div>
-                            <div class="tool-desc">Busse für Geschwindigkeits&shy;überschreitung</div>
+                            <div class="tool-title">MWST-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Mehrwertsteuer berechnen: 8.1%, 2.6%, 3.8%</div>
                         </div>
                         <i class="fas fa-chevron-right tool-arrow"></i>
                     </a>
 
+                    <a href="/trinkgeld/" class="tool-card">
+                        <div class="tool-icon">🍽️</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Trinkgeld-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Trinkgeld berechnen & Rechnung teilen</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/teilzeit/" class="tool-card">
+                        <div class="tool-icon">⏰</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Teilzeit-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Was kostet Teilzeit wirklich? BVG, AHV & Pension Gap</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+                </div>
+
+                <!-- Arbeit & Ferien -->
+                <h3 class="category-title"><span class="category-icon">📅</span> Arbeit & Ferien</h3>
+                <div class="tools-grid">
                     <a href="/tage/" class="tool-card">
                         <div class="tool-icon">📅</div>
                         <div class="tool-content">
@@ -745,11 +779,24 @@
                         <i class="fas fa-chevron-right tool-arrow"></i>
                     </a>
 
-                    <a href="/trinkgeld/" class="tool-card">
-                        <div class="tool-icon">🧾</div>
+                    <a href="/ferienkuerzung/" class="tool-card">
+                        <div class="tool-icon">🏖️</div>
                         <div class="tool-content">
-                            <div class="tool-title">Trinkgeld-Rechner <span class="lang-tag">DE | FR</span></div>
-                            <div class="tool-desc">Trinkgeld berechnen & Rechnung teilen</div>
+                            <div class="tool-title">Ferienkürzung <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Kürzung bei Krankheit, Schwangerschaft (Art. 329b OR)</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+                </div>
+
+                <!-- Gesundheit & Lifestyle -->
+                <h3 class="category-title"><span class="category-icon">❤️</span> Gesundheit & Lifestyle</h3>
+                <div class="tools-grid">
+                    <a href="/bmi/" class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <div class="tool-content">
+                            <div class="tool-title">BMI-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Body Mass Index berechnen</div>
                         </div>
                         <i class="fas fa-chevron-right tool-arrow"></i>
                     </a>
@@ -763,15 +810,6 @@
                         <i class="fas fa-chevron-right tool-arrow"></i>
                     </a>
 
-                    <a href="/bmi/" class="tool-card">
-                        <div class="tool-icon">📊</div>
-                        <div class="tool-content">
-                            <div class="tool-title">BMI-Rechner <span class="lang-tag">DE | FR</span></div>
-                            <div class="tool-desc">Body Mass Index berechnen</div>
-                        </div>
-                        <i class="fas fa-chevron-right tool-arrow"></i>
-                    </a>
-
                     <a href="/fleisch/" class="tool-card">
                         <div class="tool-icon">🥩</div>
                         <div class="tool-content">
@@ -780,30 +818,25 @@
                         </div>
                         <i class="fas fa-chevron-right tool-arrow"></i>
                     </a>
+                </div>
 
-                    <a href="/ferienkuerzung/" class="tool-card">
-                        <div class="tool-icon">🏖️</div>
+                <!-- Verkehr -->
+                <h3 class="category-title"><span class="category-icon">🚗</span> Verkehr</h3>
+                <div class="tools-grid">
+                    <a href="/busse/" class="tool-card">
+                        <div class="tool-icon">🚗</div>
                         <div class="tool-content">
-                            <div class="tool-title">Ferienkürzung <span class="lang-tag">DE | FR</span></div>
-                            <div class="tool-desc">Kürzung bei Krankheit, Schwangerschaft (Art. 329b OR)</div>
+                            <div class="tool-title">Bussenrechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Busse für Geschwindigkeits&shy;überschreitung</div>
                         </div>
                         <i class="fas fa-chevron-right tool-arrow"></i>
                     </a>
 
-                    <a href="/teilzeit/" class="tool-card">
-                        <div class="tool-icon">⏰</div>
+                    <a href="/promille/" class="tool-card">
+                        <div class="tool-icon">🍺</div>
                         <div class="tool-content">
-                            <div class="tool-title">Teilzeit-Rechner <span class="lang-tag">DE | FR</span></div>
-                            <div class="tool-desc">Was kostet Teilzeit wirklich? BVG, AHV & Pension Gap</div>
-                        </div>
-                        <i class="fas fa-chevron-right tool-arrow"></i>
-                    </a>
-
-                    <a href="/mwst/" class="tool-card">
-                        <div class="tool-icon">🧾</div>
-                        <div class="tool-content">
-                            <div class="tool-title">MWST-Rechner <span class="lang-tag">DE | FR</span></div>
-                            <div class="tool-desc">Mehrwertsteuer berechnen: 8.1%, 2.6%, 3.8%</div>
+                            <div class="tool-title">Promillerechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Blutalkohol berechnen und Abbauzeit ermitteln</div>
                         </div>
                         <i class="fas fa-chevron-right tool-arrow"></i>
                     </a>
