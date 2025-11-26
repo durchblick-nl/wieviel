@@ -9,10 +9,10 @@
  */
 
 // German tool paths (served on wieviel.ch)
-const GERMAN_PATHS = ['/promille', '/lohn', '/trinkgeld', '/schlaf', '/bmi', '/fleisch', '/busse', '/tage', '/ferienkuerzung', '/teilzeit', '/mwst'];
+const GERMAN_PATHS = ['/promille', '/lohn', '/trinkgeld', '/schlaf', '/bmi', '/fleisch', '/busse', '/tage', '/ferienkuerzung', '/teilzeit', '/mwst', '/miete', '/hypothek', '/zinseszins'];
 
 // French tool paths (served on calcule.ch)
-const FRENCH_PATHS = ['/viande', '/amende', '/jours', '/tva', '/salaire', '/alcoolemie', '/pourboire', '/sommeil', '/imc', '/reduction-vacances', '/temps-partiel'];
+const FRENCH_PATHS = ['/viande', '/amende', '/jours', '/tva', '/salaire', '/alcoolemie', '/pourboire', '/sommeil', '/imc', '/reduction-vacances', '/temps-partiel', '/loyer', '/hypotheque', '/interets-composes'];
 
 // Path mapping for legacy /fr/ redirects (German path → French path)
 const DE_TO_FR_PATH = {
@@ -26,7 +26,10 @@ const DE_TO_FR_PATH = {
     '/tage': '/jours',
     '/ferienkuerzung': '/reduction-vacances',
     '/teilzeit': '/temps-partiel',
-    '/mwst': '/tva'
+    '/mwst': '/tva',
+    '/miete': '/loyer',
+    '/hypothek': '/hypotheque',
+    '/zinseszins': '/interets-composes'
 };
 
 export default {
