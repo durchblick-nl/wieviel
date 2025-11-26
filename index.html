@@ -3,424 +3,660 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wieviel.ch - Kostenlose Online-Rechner Schweiz | Promille, BMI, Lohn & mehr</title>
+    <title>wieviel.ch - Kostenlose Online-Rechner Schweiz</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Kostenlose Online-Rechner für die Schweiz: Promillerechner, Brutto-Netto-Lohnrechner, BMI-Rechner, Trinkgeld-Rechner & Schlafrechner. Schnell, anonym und ohne Registrierung.">
-    <meta name="keywords" content="Rechner Schweiz, Promillerechner, Lohnrechner, BMI Rechner, Trinkgeld Rechner, Schlafrechner, Online Tools, kostenlos">
+    <meta name="description" content="Kostenlose Online-Rechner für die Schweiz: Promillerechner, Lohnrechner, BMI, Trinkgeld, Schlaf & mehr. Schnell, anonym, ohne Registrierung.">
+    <meta name="keywords" content="Rechner Schweiz, Promillerechner, Lohnrechner, BMI Rechner, Online Tools, kostenlos">
     <link rel="canonical" href="https://wieviel.ch/">
     <meta property="og:title" content="wieviel.ch - Kostenlose Online-Rechner">
-    <meta property="og:description" content="Praktische Online-Rechner für den Alltag. 100% kostenlos, keine Registrierung, alle Berechnungen lokal.">
+    <meta property="og:description" content="Praktische Online-Rechner für den Alltag. 100% kostenlos, keine Registrierung.">
     <meta property="og:url" content="https://wieviel.ch/">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_CH">
+    <meta property="og:site_name" content="wieviel.ch">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="wieviel.ch - Kostenlose Online-Rechner Schweiz">
+    <meta name="twitter:description" content="Praktische Online-Rechner für den Alltag. 100% kostenlos, keine Registrierung.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Durchblick Consultancy BV">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "wieviel.ch",
+        "url": "https://wieviel.ch",
+        "description": "Kostenlose Online-Rechner für die Schweiz: Promillerechner, Lohnrechner, BMI, Bussenrechner und mehr.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://wieviel.ch/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Online-Rechner",
+        "description": "Kostenlose Online-Rechner für die Schweiz",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Promillerechner",
+                    "url": "https://wieviel.ch/promille/",
+                    "description": "Blutalkohol berechnen mit der Widmark-Formel",
+                    "applicationCategory": "HealthApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Brutto-Netto-Lohnrechner",
+                    "url": "https://wieviel.ch/lohn/",
+                    "description": "Schweizer Lohnrechner mit AHV, ALV, BVG Abzügen",
+                    "applicationCategory": "FinanceApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Bussenrechner",
+                    "url": "https://wieviel.ch/busse/",
+                    "description": "Schweizer Bussenrechner für Geschwindigkeitsüberschreitung",
+                    "applicationCategory": "UtilitiesApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Tagerechner",
+                    "url": "https://wieviel.ch/tage/",
+                    "description": "Tage zwischen Daten berechnen, Wochentag finden",
+                    "applicationCategory": "UtilitiesApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "BMI-Rechner",
+                    "url": "https://wieviel.ch/bmi/",
+                    "description": "Body Mass Index berechnen",
+                    "applicationCategory": "HealthApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
     <style>
-        .hero {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            margin: -2rem -1rem 2rem -1rem;
-            border-radius: 0 0 20px 20px;
+        :root {
+            --primary: #3f606f;
+            --primary-dark: #2d4a56;
+            --accent: #cc5c53;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 12px;
         }
-        .hero h1 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
         }
-        .hero p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 600px;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
-        .hero-badges {
+
+        /* Header */
+        header {
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 2rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--card-bg);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            margin-top: 1.5rem;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+
+        .btn-icon:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .badges {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
             flex-wrap: wrap;
         }
-        .hero-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 0.875rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .badge i {
+            color: var(--primary);
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .tool-card:active {
+            transform: translateY(0);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .tool-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tool-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        .tool-section {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            align-items: start;
+
+        .tool-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
-        .tool-section:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+
+        .lang-tag {
+            font-size: 0.65rem;
+            background: var(--bg);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            color: var(--text-muted);
+            font-weight: 500;
         }
-        .tool-card {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            display: block;
-            transition: all 0.3s;
+
+        .tool-arrow {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--border);
+            transition: all 0.2s;
         }
-        .tool-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+        .tool-card:hover .tool-arrow {
+            color: var(--primary);
+            right: 0.75rem;
         }
-        .tool-icon {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-        .tool-card h2 {
-            color: white;
-            margin-bottom: 0.25rem;
-            font-size: 1.3rem;
-        }
-        .tool-card .languages {
-            font-size: 0.8rem;
-            opacity: 0.9;
-        }
-        .tool-description {
-            color: var(--text-color);
-        }
-        .tool-description h3 {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-        }
-        .tool-description p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 0.75rem;
-        }
-        .tool-description ul {
-            margin: 0.5rem 0;
-            padding-left: 1.25rem;
-        }
-        .tool-description li {
-            margin-bottom: 0.25rem;
-            font-size: 0.9rem;
-        }
-        .coming-soon-section {
+
+        /* Coming Soon */
+        .tool-card.coming-soon {
             opacity: 0.6;
-        }
-        .coming-soon-section .tool-card {
-            background: var(--border-color);
             pointer-events: none;
         }
-        .badge {
-            background: var(--accent-color);
+
+        .tool-card.coming-soon .tool-icon {
+            background: var(--border);
+        }
+
+        .coming-badge {
+            font-size: 0.65rem;
+            background: var(--accent);
             color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin-top: 0.5rem;
-            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
         }
-        .seo-section {
-            margin: 3rem 0;
-            padding: 2rem;
-            background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+        /* Trust Section */
+        .trust-section {
+            padding: 2rem 0 3rem;
         }
-        .seo-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        .seo-section p {
-            color: var(--text-color);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-        .features-grid {
+
+        .trust-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0 0 0;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
         }
-        .feature-item {
+
+        .trust-item {
             text-align: center;
-            padding: 1rem;
+            padding: 1.25rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
         }
-        .feature-item i {
-            font-size: 2rem;
-            color: var(--primary-color);
+
+        .trust-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
-        .feature-item h3 {
-            color: var(--primary-color);
-            font-size: 1rem;
+
+        .trust-item h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text);
             margin-bottom: 0.25rem;
         }
-        .feature-item p {
-            font-size: 0.85rem;
-            color: var(--text-color);
-            margin: 0;
+
+        .trust-item p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
         }
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 2rem 0 1.5rem;
             }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
             .hero p {
                 font-size: 1rem;
             }
-            .tool-section {
+
+            .badges {
+                gap: 0.5rem;
+            }
+
+            .badge {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .tools-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 0.75rem;
             }
+
             .tool-card {
-                max-width: 280px;
-                margin: 0 auto;
+                padding: 1rem;
             }
+
+            .tool-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.25rem;
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .trust-item {
+                padding: 1rem 0.75rem;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus states for accessibility */
+        .tool-card:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .btn-icon:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-row">
-            <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus umschalten" onclick="DarkMode.toggle()">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-
-        <div class="hero">
-            <h1><img src="favicon.svg" alt="" style="height: 1em; vertical-align: middle; margin-right: 0.25em;">wieviel.ch</h1>
-            <p>Praktische Online-Rechner für den Alltag in der Schweiz</p>
-            <div class="hero-badges">
-                <span class="hero-badge"><i class="fas fa-lock"></i> 100% Lokal</span>
-                <span class="hero-badge"><i class="fas fa-ban"></i> Kostenlos</span>
-                <span class="hero-badge"><i class="fas fa-globe"></i> DE / FR</span>
-            </div>
-        </div>
-
-        <!-- Promillerechner -->
-        <div class="tool-section">
-            <a href="/promille/" class="tool-card">
-                <div class="tool-icon">🍺</div>
-                <h2>Promillerechner</h2>
-                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
-            </a>
-            <div class="tool-description">
-                <h3>Blutalkohol berechnen</h3>
-                <p>
-                    Unser Promillerechner verwendet die wissenschaftlich anerkannte <strong>Widmark-Formel</strong> zur Berechnung
-                    des Blutalkoholwerts. Er zeigt auch, wann du voraussichtlich wieder unter dem Schweizer Grenzwert von 0.5 Promille liegst.
-                </p>
-                <p>
-                    Wähle einfach dein Geschlecht, Gewicht und die konsumierten Getränke aus - der Rechner zeigt dir sofort
-                    deinen geschätzten Promillewert und eine Abbau-Timeline.
-                </p>
-            </div>
-        </div>
-
-        <!-- Brutto-Netto-Rechner -->
-        <div class="tool-section">
-            <a href="/lohn/" class="tool-card">
-                <div class="tool-icon">💰</div>
-                <h2>Brutto-Netto-Rechner</h2>
-                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
-            </a>
-            <div class="tool-description">
-                <h3>Schweizer Lohnrechner</h3>
-                <p>
-                    Der Brutto-Netto-Lohnrechner berücksichtigt die <strong>Schweizer Sozialversicherungsabzüge</strong>:
-                </p>
-                <ul>
-                    <li>AHV/IV/EO (5.3%)</li>
-                    <li>ALV (1.1% bis CHF 148'200)</li>
-                    <li>NBU (~0.5%)</li>
-                    <li>BVG/Pensionskasse (altersabhängig 7-18%)</li>
-                </ul>
-                <p>Optional können Kinderzulagen (CHF 200/Monat pro Kind) hinzugerechnet werden.</p>
-            </div>
-        </div>
-
-        <!-- Trinkgeld-Rechner -->
-        <div class="tool-section">
-            <a href="/trinkgeld/" class="tool-card">
-                <div class="tool-icon">🧾</div>
-                <h2>Trinkgeld-Rechner</h2>
-                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
-            </a>
-            <div class="tool-description">
-                <h3>Trinkgeld berechnen & Rechnung teilen</h3>
-                <p>
-                    Berechne das passende Trinkgeld mit voreingestellten Prozentsätzen (5%, 10%, 15%, 20%) oder einem eigenen Wert.
-                    Teile die Rechnung fair unter Freunden auf.
-                </p>
-                <p>
-                    In der Schweiz ist der Service meist im Preis inbegriffen. Trinkgeld ist eine freiwillige Anerkennung
-                    für guten Service - üblich sind 5-10% bei Zufriedenheit.
-                </p>
-            </div>
-        </div>
-
-        <!-- Schlafrechner -->
-        <div class="tool-section">
-            <a href="/schlaf/" class="tool-card">
-                <div class="tool-icon">😴</div>
-                <h2>Schlafrechner</h2>
-                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
-            </a>
-            <div class="tool-description">
-                <h3>Optimale Schlafzeiten</h3>
-                <p>
-                    Der Schlafrechner basiert auf dem Konzept der <strong>90-minütigen Schlafzyklen</strong>.
-                    Wenn du am Ende eines Zyklus aufwachst, fühlst du dich erholter, als wenn der Wecker dich mitten in einer Tiefschlafphase weckt.
-                </p>
-                <p>
-                    Zwei Modi: "Ich muss aufstehen um..." berechnet die optimalen Einschlafzeiten,
-                    "Ich gehe schlafen um..." zeigt die besten Aufwachzeiten. Empfohlen: 5-6 Zyklen (7.5-9 Stunden).
-                </p>
-            </div>
-        </div>
-
-        <!-- BMI-Rechner -->
-        <div class="tool-section">
-            <a href="/bmi/" class="tool-card">
-                <div class="tool-icon">📊</div>
-                <h2>BMI-Rechner</h2>
-                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
-            </a>
-            <div class="tool-description">
-                <h3>Body Mass Index</h3>
-                <p>
-                    Berechne deinen BMI mit intuitiven Slidern für Grösse und Gewicht.
-                    Die visuelle Skala zeigt dir sofort, in welcher Kategorie du liegst: Untergewicht, Normalgewicht, Übergewicht oder Adipositas.
-                </p>
-                <p>
-                    <strong>Hinweis:</strong> Der BMI ist nur ein grober Richtwert und berücksichtigt nicht Muskelmasse, Fettverteilung, Alter oder Geschlecht.
-                </p>
-            </div>
-        </div>
-
-        <!-- Fleisch- & CO2-Rechner -->
-        <div class="tool-section">
-            <a href="/fleisch/" class="tool-card">
-                <div class="tool-icon">🥩</div>
-                <h2>Fleisch- & CO2-Rechner</h2>
-                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
-            </a>
-            <div class="tool-description">
-                <h3>Fleischkonsum & Klimabilanz</h3>
-                <p>
-                    Berechne den <strong>CO2-Fussabdruck</strong> deines Fleischkonsums und vergleiche ihn mit den
-                    Empfehlungen der Schweizerischen Gesellschaft für Ernährung (SGE).
-                </p>
-                <p>
-                    Der Rechner zeigt dir, wie viele <strong>km Autofahrt</strong> oder <strong>Flüge</strong>
-                    dein Konsum entspricht und welches Einsparpotenzial du hast.
-                </p>
-            </div>
-        </div>
-
-        <!-- Bussenrechner -->
-        <div class="tool-section">
-            <a href="/busse/" class="tool-card">
-                <div class="tool-icon">🚗</div>
-                <h2>Bussenrechner</h2>
-                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
-            </a>
-            <div class="tool-description">
-                <h3>Geschwindigkeitsbusse Schweiz</h3>
-                <p>
-                    Berechne deine Busse für <strong>Geschwindigkeitsüberschreitung</strong> in der Schweiz.
-                    Wähle die Zone (30, 50, 80, 100 oder 120 km/h) und gib deine gemessene Geschwindigkeit ein.
-                </p>
-                <p>
-                    Der Rechner zeigt dir die <strong>Busse</strong>, ob ein <strong>Führerausweisentzug</strong> droht
-                    und ob es sich um ein <strong>Raserdelikt</strong> handeln könnte. Mit offiziellen Quellen.
-                </p>
-            </div>
-        </div>
-
-        <!-- Tagerechner -->
-        <div class="tool-section">
-            <a href="/tage/" class="tool-card">
-                <div class="tool-icon">📅</div>
-                <h2>Tagerechner</h2>
-                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
-            </a>
-            <div class="tool-description">
-                <h3>Datum & Tage berechnen</h3>
-                <p>
-                    Berechne die <strong>Anzahl Tage</strong> zwischen zwei Daten, addiere oder subtrahiere Tage von einem Datum,
-                    finde den <strong>Wochentag</strong> für ein beliebiges Datum oder berechne die <strong>Werktage</strong> (ohne Wochenenden).
-                </p>
-                <p>
-                    Der Rechner zeigt dir auch die <strong>Kalenderwochen</strong> (ISO 8601), die Aufschlüsselung in Jahren, Monaten, Wochen
-                    und Tagen, sowie eine übersichtliche Darstellung mit farbigen Wochentagsanzeigen.
-                </p>
-            </div>
-        </div>
-
-        <!-- Ferienkürzung (Coming Soon) -->
-        <div class="tool-section coming-soon-section">
-            <div class="tool-card">
-                <div class="tool-icon">🏖️</div>
-                <h2>Ferienkürzung</h2>
-                <span class="badge">Bald verfügbar</span>
-            </div>
-            <div class="tool-description">
-                <h3>Ferienkürzung berechnen</h3>
-                <p>
-                    Berechne die zulässige Ferienkürzung bei Arbeitsverhinderung nach <strong>Art. 329b OR</strong>.
-                    Bei längerer Abwesenheit (z.B. Krankheit, Unfall, Militärdienst) darf der Arbeitgeber die Ferien anteilsmässig kürzen.
-                </p>
-            </div>
-        </div>
-
-        <div class="seo-section">
-            <h2>Warum wieviel.ch?</h2>
-            <p>
-                Alle Berechnungen erfolgen <strong>direkt in deinem Browser</strong>. Es werden keine Daten an Server gesendet oder gespeichert.
-                Deine Privatsphäre ist uns wichtig.
-            </p>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Datenschutz</h3>
-                    <p>Keine Cookies, keine Registrierung</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Blitzschnell</h3>
-                    <p>Sofortige Ergebnisse</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Mobilfreundlich</h3>
-                    <p>Optimiert für Smartphones</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-share-alt"></i>
-                    <h3>Teilbar</h3>
-                    <p>Per WhatsApp teilen</p>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="logo">
+                    <img src="favicon.svg" alt="">
+                    wieviel.ch
+                </a>
+                <div class="header-actions">
+                    <button type="button" class="btn-icon" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
 
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p><a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick Consultancy BV</a></p>
-            <p class="footer-disclaimer">Alle Rechner dienen nur zur Orientierung und ersetzen keine professionelle Beratung.</p>
-            <p class="footer-privacy">Alle Berechnungen erfolgen lokal in Ihrem Browser. Es werden keine Daten gespeichert.</p>
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>Praktische Rechner für deinen Alltag</h1>
+                <p>Kostenlose Tools für die Schweiz. Schnell, anonym und direkt im Browser.</p>
+                <div class="badges">
+                    <span class="badge"><i class="fas fa-lock"></i> 100% lokal</span>
+                    <span class="badge"><i class="fas fa-bolt"></i> Sofort-Ergebnis</span>
+                    <span class="badge"><i class="fas fa-globe"></i> DE & FR</span>
+                </div>
+            </section>
+
+            <section class="tools-section">
+                <h2 class="section-title">Alle Rechner</h2>
+                <div class="tools-grid">
+                    <a href="/promille/" class="tool-card">
+                        <div class="tool-icon">🍺</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Promillerechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Blutalkohol berechnen und Abbauzeit ermitteln</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/lohn/" class="tool-card">
+                        <div class="tool-icon">💰</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Lohnrechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Brutto-Netto mit AHV, ALV, BVG & mehr</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/busse/" class="tool-card">
+                        <div class="tool-icon">🚗</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Bussenrechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Busse für Geschwindigkeitsüberschreitung</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/tage/" class="tool-card">
+                        <div class="tool-icon">📅</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Tagerechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Tage zwischen Daten, Wochentag, Werktage</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/trinkgeld/" class="tool-card">
+                        <div class="tool-icon">🧾</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Trinkgeld-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Trinkgeld berechnen & Rechnung teilen</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/schlaf/" class="tool-card">
+                        <div class="tool-icon">😴</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Schlafrechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Optimale Schlaf- und Aufwachzeiten</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/bmi/" class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <div class="tool-content">
+                            <div class="tool-title">BMI-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Body Mass Index berechnen</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/fleisch/" class="tool-card">
+                        <div class="tool-icon">🥩</div>
+                        <div class="tool-content">
+                            <div class="tool-title">CO2-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Klimabilanz deines Fleischkonsums</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <div class="tool-card coming-soon">
+                        <div class="tool-icon">🏖️</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Ferienkürzung <span class="coming-badge">Bald</span></div>
+                            <div class="tool-desc">Ferienkürzung bei Abwesenheit berechnen</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="trust-section">
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Datenschutz</h3>
+                        <p>Keine Cookies oder Tracking</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Blitzschnell</h3>
+                        <p>Sofortige Berechnung</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobil optimiert</h3>
+                        <p>Perfekt auf dem Handy</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-share-alt"></i>
+                        <h3>Einfach teilen</h3>
+                        <p>Per WhatsApp senden</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick Consultancy BV</a>
+            <p>Alle Rechner dienen zur Orientierung und ersetzen keine professionelle Beratung.</p>
         </div>
     </footer>
 
@@ -448,7 +684,7 @@
                 document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable();
             },
             updateButton() {
-                const btn = document.querySelector('.dark-mode-toggle i');
+                const btn = document.querySelector('.btn-icon i');
                 if (btn) {
                     btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
                 }
