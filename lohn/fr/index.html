@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculateur salaire brut-net Suisse 2025 – AVS, LPP | wieviel.ch</title>
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-    <meta name="description" content="Calculateur brut-net gratuit pour la Suisse 2025. Calculez votre salaire net avec toutes les déductions: AVS 5.3%, AC 1.1%, AANP, LPP. Instantané et sans inscription.">
+    <meta name="description" content="Calculateur brut-net gratuit pour la Suisse 2025. Calcule ton salaire net avec toutes les déductions: AVS 5.3%, AC 1.1%, AANP, LPP. Instantané et sans inscription.">
     <meta name="keywords" content="calculateur brut net Suisse, salaire net, déductions salariales, AVS, LPP, cotisations sociales Suisse">
     <link rel="canonical" href="https://wieviel.ch/lohn/fr/">
     <link rel="alternate" hreflang="de" href="https://wieviel.ch/lohn/de/">
     <link rel="alternate" hreflang="fr" href="https://wieviel.ch/lohn/fr/">
     <meta property="og:title" content="Calculateur salaire brut-net Suisse 2025">
-    <meta property="og:description" content="Calculez votre salaire net avec toutes les déductions suisses: AVS, AC, AANP, LPP. Gratuit et sans inscription.">
+    <meta property="og:description" content="Calcule ton salaire net avec toutes les déductions suisses: AVS, AC, AANP, LPP. Gratuit et sans inscription.">
     <meta property="og:url" content="https://wieviel.ch/lohn/fr/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_CH">
@@ -85,6 +85,15 @@
         .faq-item[open] summary::after { content: '−'; }
         .faq-item[open] summary { border-bottom: 1px solid var(--border-color); }
         .faq-item p { padding: 1rem; margin: 0; }
+
+        /* Partner hint section */
+        .partner-hint { background: linear-gradient(135deg, rgba(63, 96, 111, 0.08), rgba(90, 138, 157, 0.08)); border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .partner-content { display: flex; gap: 1rem; align-items: flex-start; }
+        .partner-content > i { font-size: 1.5rem; color: var(--primary-color); margin-top: 0.25rem; flex-shrink: 0; }
+        .partner-content strong { color: var(--text-color); font-size: 1rem; }
+        .partner-content p { margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-color); opacity: 0.85; line-height: 1.5; }
+        .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+        .partner-content a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -112,7 +121,7 @@
                 </div>
                 <div class="step-content">
                     <h3>Entrer le salaire brut</h3>
-                    <p>Entrez votre salaire mensuel ou annuel.</p>
+                    <p>Entre ton salaire mensuel ou annuel.</p>
                 </div>
             </div>
 
@@ -123,7 +132,7 @@
                 </div>
                 <div class="step-content">
                     <h3>Choisir l'âge</h3>
-                    <p>Votre âge détermine le taux de cotisation LPP.</p>
+                    <p>Ton âge détermine le taux de cotisation LPP.</p>
                 </div>
             </div>
 
@@ -173,7 +182,7 @@
 
             <div id="result" style="display: none;">
                 <div class="result-box">
-                    <div class="label">Votre salaire net</div>
+                    <div class="label">Ton salaire net</div>
                     <div class="total" id="netSalary">CHF 0</div>
                     <div class="sub" id="netPeriod">par mois</div>
                 </div>
@@ -206,7 +215,7 @@
         <section class="seo-content">
             <h2>Calculateur brut-net Suisse: Comment fonctionne le calcul</h2>
             <p>
-                Le <strong>calculateur brut-net</strong> vous montre combien reste de votre salaire suisse après toutes
+                Le <strong>calculateur brut-net</strong> te montre combien reste de ton salaire suisse après toutes
                 les déductions obligatoires. En Suisse, <strong>13-20% du salaire brut</strong> sont typiquement déduits
                 pour les assurances sociales, selon l'âge et le niveau de salaire.
             </p>
@@ -219,12 +228,25 @@
                 </details>
                 <details class="faq-item">
                     <summary>Quelle est la différence entre salaire brut et net?</summary>
-                    <p>Le <strong>salaire brut</strong> est le montant convenu avant déductions. Le <strong>salaire net</strong> est ce qui est versé sur votre compte après les cotisations sociales.</p>
+                    <p>Le <strong>salaire brut</strong> est le montant convenu avant déductions. Le <strong>salaire net</strong> est ce qui est versé sur ton compte après les cotisations sociales.</p>
                 </details>
                 <details class="faq-item">
                     <summary>L'impôt à la source est-il inclus?</summary>
                     <p>Non, ce calculateur ne prend pas en compte l'<strong>impôt à la source</strong>. Les personnes sans permis C sont soumises à cet impôt qui varie selon le canton.</p>
                 </details>
+            </div>
+        </section>
+
+        <!-- JUSTIS Protection juridique -->
+        <section class="partner-hint">
+            <div class="partner-content">
+                <i class="fas fa-balance-scale"></i>
+                <div>
+                    <strong>Conflit avec ton employeur?</strong>
+                    <p>Une assurance protection juridique peut aider – mais uniquement pour les problèmes survenus pendant la période assurée.
+                    Chez <a href="https://www.justis.ch" target="_blank" rel="noopener">JUSTIS</a>, tu obtiens aussi des conseils juridiques
+                    pour les problèmes non encore assurés, pour t'aider à évaluer ta situation et trouver une solution.</p>
+                </div>
             </div>
         </section>
     </div>

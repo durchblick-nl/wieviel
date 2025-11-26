@@ -86,6 +86,15 @@
         .faq-item[open] summary::after { content: '−'; }
         .faq-item[open] summary { border-bottom: 1px solid var(--border-color); }
         .faq-item p { padding: 1rem; margin: 0; }
+
+        /* Partner hint section */
+        .partner-hint { background: linear-gradient(135deg, rgba(63, 96, 111, 0.08), rgba(90, 138, 157, 0.08)); border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .partner-content { display: flex; gap: 1rem; align-items: flex-start; }
+        .partner-content > i { font-size: 1.5rem; color: var(--primary-color); margin-top: 0.25rem; flex-shrink: 0; }
+        .partner-content strong { color: var(--text-color); font-size: 1rem; }
+        .partner-content p { margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-color); opacity: 0.85; line-height: 1.5; }
+        .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+        .partner-content a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -115,7 +124,7 @@
                 </div>
                 <div class="step-content">
                     <h3>Droit aux vacances</h3>
-                    <p>Entrez votre droit annuel aux vacances en jours.</p>
+                    <p>Entre ton droit annuel aux vacances en jours.</p>
                 </div>
             </div>
 
@@ -137,7 +146,7 @@
                 </div>
                 <div class="step-content">
                     <h3>Réduction</h3>
-                    <p>Voyez combien de jours de vacances il vous reste.</p>
+                    <p>Vois combien de jours de vacances il te reste.</p>
                 </div>
             </div>
         </div>
@@ -267,6 +276,19 @@
                     <summary>Comment fonctionne la réduction en cas de grossesse?</summary>
                     <p>En cas de grossesse, la travailleuse bénéficie d'une protection spéciale: les deux premiers mois d'absence sont "libres" et ne sont pas comptabilisés. L'employeur ne peut réduire qu'à partir du 3ème mois.</p>
                 </details>
+            </div>
+        </section>
+
+        <!-- JUSTIS Protection juridique -->
+        <section class="partner-hint">
+            <div class="partner-content">
+                <i class="fas fa-balance-scale"></i>
+                <div>
+                    <strong>Conflit avec ton employeur?</strong>
+                    <p>Une assurance protection juridique peut aider – mais uniquement pour les problèmes survenus pendant la période assurée.
+                    Chez <a href="https://www.justis.ch" target="_blank" rel="noopener">JUSTIS</a>, tu obtiens aussi des conseils juridiques
+                    pour les problèmes non encore assurés, pour t'aider à évaluer ta situation et trouver une solution.</p>
+                </div>
             </div>
         </section>
     </div>
