@@ -549,6 +549,87 @@
             outline: 2px solid var(--primary);
             outline-offset: 2px;
         }
+
+        /* Install Banner */
+        .install-banner {
+            display: none;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .install-banner.show {
+            display: block;
+        }
+
+        .install-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .install-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .install-text {
+            flex: 1;
+        }
+
+        .install-text strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .install-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .install-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .install-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 640px) {
+            .install-content {
+                flex-wrap: wrap;
+            }
+            .install-close {
+                position: absolute;
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+            .install-banner {
+                position: relative;
+                padding-right: 3rem;
+            }
+        }
+
+        /* Hide in standalone/PWA mode */
+        @media (display-mode: standalone) {
+            .install-banner {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -667,6 +748,18 @@
                 </div>
             </section>
 
+            <!-- Install Banner - only shown in browser, not in PWA -->
+            <section class="install-banner" id="installBanner">
+                <div class="install-content">
+                    <div class="install-icon">📱</div>
+                    <div class="install-text">
+                        <strong>Als App installieren</strong>
+                        <p id="installInstructions">Füge wieviel.ch zu deinem Startbildschirm hinzu für schnellen Zugriff.</p>
+                    </div>
+                    <button class="install-close" onclick="closeInstallBanner()" aria-label="Schliessen">&times;</button>
+                </div>
+            </section>
+
             <section class="trust-section">
                 <div class="trust-grid">
                     <div class="trust-item">
@@ -737,6 +830,50 @@
             }
         };
         DarkMode.init();
+
+        // Install Banner Logic
+        const InstallBanner = {
+            STORAGE_KEY: 'installBannerDismissed',
+
+            init() {
+                // Don't show if already dismissed
+                if (localStorage.getItem(this.STORAGE_KEY)) return;
+
+                // Don't show if running as PWA (standalone mode)
+                if (window.matchMedia('(display-mode: standalone)').matches) return;
+                if (window.navigator.standalone === true) return; // iOS Safari
+
+                // Show banner with platform-specific instructions
+                const banner = document.getElementById('installBanner');
+                const instructions = document.getElementById('installInstructions');
+
+                if (this.isIOS()) {
+                    instructions.innerHTML = 'Tippe auf <strong>Teilen</strong> (□↑) und dann <strong>«Zum Home-Bildschirm»</strong>';
+                } else if (this.isAndroid()) {
+                    instructions.innerHTML = 'Tippe auf <strong>Menü</strong> (⋮) und dann <strong>«App installieren»</strong>';
+                } else {
+                    instructions.textContent = 'Füge wieviel.ch zu deinem Startbildschirm hinzu für schnellen Zugriff.';
+                }
+
+                banner.classList.add('show');
+            },
+
+            isIOS() {
+                return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            },
+
+            isAndroid() {
+                return /Android/.test(navigator.userAgent);
+            }
+        };
+
+        function closeInstallBanner() {
+            const banner = document.getElementById('installBanner');
+            banner.classList.remove('show');
+            localStorage.setItem(InstallBanner.STORAGE_KEY, 'true');
+        }
+
+        InstallBanner.init();
     </script>
 </body>
 </html>
