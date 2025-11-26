@@ -1,0 +1,5 @@
+# robots.txt for wieviel.ch
+User-agent: *
+Allow: /
+
+Sitemap: https://wieviel.ch/sitemap.xml
