@@ -102,6 +102,18 @@
         .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
         .partner-content a:hover { text-decoration: underline; }
 
+        /* DE Disclaimer */
+        .de-disclaimer { background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(221, 0, 0, 0.05)); border: 1px solid var(--border-color); border-left: 4px solid #dd0000; border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0; }
+        .disclaimer-content { display: flex; gap: 1rem; align-items: flex-start; }
+        .disclaimer-icon { font-size: 2rem; flex-shrink: 0; }
+        .disclaimer-content strong { color: var(--text-color); font-size: 1.05rem; display: block; margin-bottom: 0.5rem; }
+        .disclaimer-content p { margin: 0.5rem 0; font-size: 0.9rem; color: var(--text-color); line-height: 1.5; }
+        .disclaimer-content ul { margin: 0.75rem 0; padding-left: 1.25rem; font-size: 0.9rem; }
+        .disclaimer-content li { margin-bottom: 0.35rem; color: var(--text-color); }
+        .disclaimer-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+        .disclaimer-content a:hover { text-decoration: underline; }
+        .disclaimer-source { font-size: 0.8rem !important; opacity: 0.7; margin-top: 0.75rem !important; }
+
         .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
         .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
         .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
@@ -375,6 +387,23 @@
                     <p>Une assurance protection juridique peut aider – mais uniquement pour les problèmes survenus pendant la période assurée.
                     Chez <a href="https://www.justis.ch" target="_blank" rel="noopener">JUSTIS</a>, tu obtiens aussi des conseils juridiques
                     pour les problèmes non encore assurés, pour t'aider à évaluer ta situation et trouver une solution.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hinweis für deutsche Autofahrer -->
+        <section class="de-disclaimer">
+            <div class="disclaimer-content">
+                <div class="disclaimer-icon">🇩🇪</div>
+                <div>
+                    <strong>Information pour les automobilistes allemands</strong>
+                    <p>Depuis le <strong>1er mai 2024</strong>, les amendes suisses peuvent être exécutées en Allemagne. L'Office fédéral de la justice peut recouvrer les amendes à partir de <strong>CHF 80 / EUR 70</strong> (frais compris).</p>
+                    <ul>
+                        <li>Délai de prescription: 3-5 ans selon le montant</li>
+                        <li>Les retraits de permis et points ne sont <strong>pas</strong> transférés</li>
+                        <li>En cas de non-paiement: risque d'exécution lors d'une réentrée</li>
+                    </ul>
+                    <p class="disclaimer-source">Sources: <a href="https://www.bundesjustizamt.de/DE/Themen/OrdnungsgeldVollstreckung/GeldforderungenSchweiz/GeldforderungenSchweiz_node.html" target="_blank" rel="noopener">Office fédéral de la justice (DE)</a> · <a href="https://www.adac.de/verkehr/recht/bussgeld-punkte/ausland/bussgeld-schweiz/" target="_blank" rel="noopener">ADAC</a></p>
                 </div>
             </div>
         </section>
