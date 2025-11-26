@@ -3,19 +3,569 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brutto-Netto-Rechner Schweiz | wieviel.ch</title>
+    <title>Brutto-Netto-Rechner Schweiz 2025 – Lohn berechnen mit AHV, BVG | wieviel.ch</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <script>
-        (function() {
-            const lang = navigator.language || navigator.userLanguage;
-            const isFrench = lang.toLowerCase().startsWith('fr');
-            window.location.replace(isFrench ? 'fr/' : 'de/');
-        })();
+    <meta name="description" content="Kostenloser Brutto-Netto-Rechner für die Schweiz 2025. Berechne deinen Nettolohn mit allen Abzügen: AHV 5.3%, ALV 1.1%, NBU, BVG/Pensionskasse. Sofort & ohne Anmeldung.">
+    <meta name="keywords" content="Brutto Netto Rechner Schweiz, Lohnrechner, Nettolohn berechnen, AHV Abzug, BVG Beitrag, Sozialversicherung Schweiz, Lohnabrechnung">
+    <link rel="canonical" href="https://wieviel.ch/lohn/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/lohn/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/salaire/">
+    <meta property="og:title" content="Brutto-Netto-Rechner Schweiz 2025 – Lohn berechnen">
+    <meta property="og:description" content="Berechne deinen Nettolohn mit allen Schweizer Sozialabzügen: AHV, ALV, NBU, BVG. Kostenlos und ohne Anmeldung.">
+    <meta property="og:url" content="https://wieviel.ch/lohn/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_CH">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Brutto-Netto-Rechner Schweiz 2025">
+    <meta name="twitter:description" content="Nettolohn berechnen mit AHV, ALV, BVG. Kostenlos & sofort.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Brutto-Netto-Rechner Schweiz",
+        "url": "https://wieviel.ch/lohn/",
+        "description": "Kostenloser Lohnrechner für die Schweiz. Berechnet Nettolohn mit allen Sozialversicherungsabzügen.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        }
+    }
     </script>
-    <noscript><meta http-equiv="refresh" content="0;url=de/"></noscript>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Wie viel wird vom Bruttolohn in der Schweiz abgezogen?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "In der Schweiz werden typischerweise 13-20% vom Bruttolohn abgezogen. Die obligatorischen Abzüge sind: AHV/IV/EO (5.3%), ALV (1.1%), NBU (~0.5%) und BVG/Pensionskasse (7-18% je nach Alter). Dazu können Quellensteuer und weitere Abzüge kommen."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Was ist der Unterschied zwischen Brutto- und Nettolohn?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Der Bruttolohn ist Ihr vereinbarter Lohn vor Abzügen. Der Nettolohn ist der Betrag, der tatsächlich auf Ihr Konto überwiesen wird – also nach Abzug von AHV, ALV, NBU, Pensionskasse und ggf. Quellensteuer."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wie hoch ist der AHV-Beitrag in der Schweiz?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Der AHV/IV/EO-Beitrag beträgt insgesamt 10.6% des Bruttolohns, wobei Arbeitnehmer und Arbeitgeber je die Hälfte (5.3%) tragen. Der Arbeitnehmeranteil wird direkt vom Lohn abgezogen."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Ab welchem Lohn zahlt man in die Pensionskasse ein?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Die BVG-Pflicht beginnt ab einem Jahreslohn von CHF 22'050 (Eintrittsschwelle 2024). Versichert wird der koordinierte Lohn zwischen CHF 25'725 und CHF 88'200. Die Beiträge sind altersabhängig: 7% (25-34 J.), 10% (35-44 J.), 15% (45-54 J.), 18% (55-65 J.)."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Uses shared CSS for .salary-toggle */
+        .deduction-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .deduction-row:last-child { border-bottom: none; }
+        .deduction-row .label { color: var(--text-color); }
+        .deduction-row .value { font-weight: 600; }
+        .deduction-row .value.negative { color: var(--accent-color); }
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 3rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1.1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .deductions-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .deductions-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+        .info-box { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+
+        /* SEO Content Styles */
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
+        .seo-content h4 { color: var(--text-color); font-size: 1rem; margin-bottom: 0.5rem; }
+        .seo-content p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-color); }
+
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        /* Table Styles */
+        .table-container { overflow-x: auto; margin: 1rem 0; }
+        .info-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 8px; overflow: hidden; }
+        .info-table th, .info-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .info-table th { background: var(--primary-color); color: white; font-weight: 600; }
+        .info-table tr:last-child td { border-bottom: none; }
+        .info-table tr:hover td { background: var(--light-bg); }
+        .table-note { color: var(--text-color); opacity: 0.8; margin-top: 0.5rem; }
+
+        /* Partner hint section */
+        .partner-hint { background: linear-gradient(135deg, rgba(63, 96, 111, 0.08), rgba(90, 138, 157, 0.08)); border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .partner-content { display: flex; gap: 1rem; align-items: flex-start; }
+        .partner-content > i { font-size: 1.5rem; color: var(--primary-color); margin-top: 0.25rem; flex-shrink: 0; }
+        .partner-content strong { color: var(--text-color); font-size: 1rem; }
+        .partner-content p { margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-color); opacity: 0.85; line-height: 1.5; }
+        .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+        .partner-content a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
-    <p>Weiterleitung... / Redirection...</p>
-    <p><a href="de/">Deutsch</a> | <a href="fr/">Français</a></p>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <span class="lang-btn active">DE</span>
+                <a href="https://calcule.ch/salaire/" class="lang-btn">FR</a>
+            </div>
+        </div>
+
+        <h1><span class="title-icon">💰</span>Brutto-Netto-Rechner</h1>
+
+        <nav class="tool-nav">
+            <a href="../">Alle Tools</a>
+        </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-wallet"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Bruttolohn eingeben</h3>
+                    <p>Gib deinen Monats- oder Jahreslohn ein.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-user"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Alter wählen</h3>
+                    <p>Dein Alter bestimmt den BVG-Beitragssatz.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calculator"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Nettolohn</h3>
+                    <p>Sieh alle Abzüge im Detail aufgeschlüsselt.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <div class="salary-toggle">
+                    <button type="button" class="active" onclick="setMode('monthly')">Monatslohn</button>
+                    <button type="button" onclick="setMode('yearly')">Jahreslohn</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Bruttolohn (CHF)</label>
+                <input type="number" id="grossSalary" placeholder="6000" min="0" oninput="calculate()">
+            </div>
+
+            <div class="form-group">
+                <label>Alter</label>
+                <select id="age" onchange="calculate()">
+                    <option value="25-34">25-34 Jahre</option>
+                    <option value="35-44">35-44 Jahre</option>
+                    <option value="45-54">45-54 Jahre</option>
+                    <option value="55-65">55-65 Jahre</option>
+                </select>
+                <small class="form-hint">Beeinflusst den BVG-Beitrag</small>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="hasKids" onchange="calculate()"> Kinderzulagen berücksichtigen
+                </label>
+                <div id="kidsInput" style="display: none; margin-top: 0.5rem;">
+                    <label>Anzahl Kinder:</label>
+                    <input type="number" id="numKids" value="1" min="1" max="10" style="width: 80px;" onchange="calculate()">
+                </div>
+            </div>
+
+            <div id="result" style="display: none;">
+                <div class="result-box">
+                    <div class="label">Ihr Nettolohn</div>
+                    <div class="total" id="netSalary">CHF 0</div>
+                    <div class="sub" id="netPeriod">pro Monat</div>
+                </div>
+
+                <div class="deductions-card">
+                    <h3><i class="fas fa-minus-circle"></i> Abzüge</h3>
+                    <div class="deduction-row">
+                        <span class="label">AHV/IV/EO (5.3%)</span>
+                        <span class="value negative" id="ahv">-CHF 0</span>
+                    </div>
+                    <div class="deduction-row">
+                        <span class="label">ALV (1.1%)</span>
+                        <span class="value negative" id="alv">-CHF 0</span>
+                    </div>
+                    <div class="deduction-row">
+                        <span class="label">NBU (~0.5%)</span>
+                        <span class="value negative" id="nbu">-CHF 0</span>
+                    </div>
+                    <div class="deduction-row">
+                        <span class="label">Pensionskasse (BVG)</span>
+                        <span class="value negative" id="bvg">-CHF 0</span>
+                    </div>
+                    <div class="deduction-row" style="border-top: 2px solid var(--primary-color); margin-top: 0.5rem; padding-top: 1rem;">
+                        <span class="label"><strong>Total Abzüge</strong></span>
+                        <span class="value negative" id="totalDeductions"><strong>-CHF 0</strong></span>
+                    </div>
+                </div>
+
+                <div id="kidsBonus" class="deductions-card" style="display: none;">
+                    <h3><i class="fas fa-plus-circle" style="color: #28a745;"></i> Zulagen</h3>
+                    <div class="deduction-row">
+                        <span class="label">Kinderzulagen</span>
+                        <span class="value" style="color: #28a745;" id="childAllowance">+CHF 0</span>
+                    </div>
+                </div>
+
+                <div class="share-buttons">
+                    <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Teilen
+                    </button>
+                    <button class="share-btn copy" onclick="copyResult()">
+                        <i class="fas fa-copy"></i> Kopieren
+                    </button>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                <strong>Hinweis:</strong> Dies ist eine vereinfachte Schätzung. Der tatsächliche Nettolohn hängt von Kanton, Arbeitgeber und individuellen Faktoren ab. Quellensteuer wird nicht berücksichtigt.
+            </div>
+        </div>
+
+        <div class="info-cards-container">
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-percent"></i></div>
+                <div class="step-content">
+                    <h3>Sozialabzüge Schweiz</h3>
+                    <ul>
+                        <li><strong>AHV/IV/EO:</strong> 5.3% (Arbeitnehmer)</li>
+                        <li><strong>ALV:</strong> 1.1% (bis CHF 148'200)</li>
+                        <li><strong>NBU:</strong> ~0.5% (variiert)</li>
+                        <li><strong>BVG:</strong> 7-18% (altersabhängig)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-child"></i></div>
+                <div class="step-content">
+                    <h3>Kinderzulagen</h3>
+                    <p>Mindestens <strong>CHF 200/Monat</strong> pro Kind (bis 16 Jahre).</p>
+                    <p>In Ausbildung: <strong>CHF 250/Monat</strong> (16-25 Jahre).</p>
+                    <p>Kantone können höhere Beträge festlegen.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Section -->
+        <section class="seo-content">
+            <h2>Brutto-Netto-Rechner Schweiz: So funktioniert die Lohnabrechnung</h2>
+            <p>
+                Der <strong>Brutto-Netto-Rechner</strong> zeigt dir, wie viel von deinem Schweizer Lohn nach allen
+                obligatorischen Abzügen übrig bleibt. In der Schweiz gehen typischerweise <strong>13-20% des Bruttolohns</strong>
+                für Sozial&shy;versicherungen ab – je nach Alter und Lohnhöhe.
+            </p>
+
+            <h3>Welche Abzüge gibt es vom Schweizer Lohn?</h3>
+            <div class="info-cards-container">
+                <div class="info-step-card">
+                    <div class="step-icon"><i class="fas fa-umbrella"></i></div>
+                    <div class="step-content">
+                        <h4>AHV/IV/EO – 5.3%</h4>
+                        <p>Die <strong>Alters- und Hinter&shy;lassenen&shy;versicherung (AHV)</strong>, <strong>Invaliden&shy;versicherung (IV)</strong>
+                        und <strong>Erwerbs&shy;ersatz&shy;ordnung (EO)</strong> bilden die 1. Säule der Schweizer Altersvorsorge.
+                        Der Gesamtbeitrag von 10.6% wird hälftig zwischen Arbeitgeber und Arbeitnehmer aufgeteilt.</p>
+                    </div>
+                </div>
+                <div class="info-step-card">
+                    <div class="step-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="step-content">
+                        <h4>ALV – 1.1%</h4>
+                        <p>Die <strong>Arbeitslosen&shy;versicherung (ALV)</strong> sichert dich bei Arbeitslosigkeit ab.
+                        Der Beitrag von 2.2% wird ebenfalls hälftig geteilt. Ab einem Jahreslohn von CHF 148'200
+                        entfällt der ALV-Beitrag auf den übersteigenden Teil.</p>
+                    </div>
+                </div>
+                <div class="info-step-card">
+                    <div class="step-icon"><i class="fas fa-medkit"></i></div>
+                    <div class="step-content">
+                        <h4>NBU – ~0.5%</h4>
+                        <p>Die <strong>Nicht&shy;berufs&shy;unfall&shy;versicherung (NBU)</strong> deckt Unfälle in der Freizeit.
+                        Der Beitrag variiert je nach Arbeitgeber und Branche, liegt aber typischerweise bei 0.4-0.8%
+                        und wird vollständig vom Arbeitnehmer getragen.</p>
+                    </div>
+                </div>
+                <div class="info-step-card">
+                    <div class="step-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <div class="step-content">
+                        <h4>BVG/Pensionskasse – 7-18%</h4>
+                        <p>Die <strong>berufliche Vorsorge (BVG)</strong> ist die 2. Säule und obligatorisch ab einem
+                        Jahreslohn von CHF 22'050. Die Beiträge steigen mit dem Alter: 7% (25-34 J.), 10% (35-44 J.),
+                        15% (45-54 J.), 18% (55-65 J.). Arbeitgeber zahlen mindestens 50%.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Häufige Fragen zum Schweizer Lohn</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Wie viel wird vom Bruttolohn in der Schweiz abgezogen?</summary>
+                    <p>In der Schweiz werden typischerweise <strong>13-20% vom Bruttolohn</strong> für Sozial&shy;versicherungen abgezogen.
+                    Die obligatorischen Abzüge sind: AHV/IV/EO (5.3%), ALV (1.1%), NBU (~0.5%) und BVG/Pensionskasse (7-18% je nach Alter).
+                    Dazu können Quellensteuer und weitere Abzüge kommen.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was ist der Unterschied zwischen Brutto- und Nettolohn?</summary>
+                    <p>Der <strong>Bruttolohn</strong> ist dein vereinbarter Lohn vor Abzügen – der Betrag, der im Arbeitsvertrag steht.
+                    Der <strong>Nettolohn</strong> ist der Betrag, der tatsächlich auf dein Konto überwiesen wird – also nach Abzug
+                    von AHV, ALV, NBU, Pensionskasse und ggf. Quellensteuer.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie hoch ist der AHV-Beitrag 2025?</summary>
+                    <p>Der AHV/IV/EO-Beitrag beträgt insgesamt <strong>10.6% des Bruttolohns</strong>. Arbeitnehmer und Arbeitgeber
+                    tragen je die Hälfte (5.3%). Der Arbeitnehmeranteil wird direkt vom Lohn abgezogen. Seit 2024 gibt es
+                    einen zusätzlichen AHV-Beitrag von 0.5% zur Finanzierung der 13. AHV-Rente.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Ab welchem Lohn zahlt man in die Pensionskasse ein?</summary>
+                    <p>Die BVG-Pflicht beginnt ab einem <strong>Jahreslohn von CHF 22'050</strong> (Eintrittsschwelle 2024).
+                    Versichert wird der koordinierte Lohn zwischen CHF 25'725 und CHF 88'200. Wer weniger verdient,
+                    ist nicht obligatorisch BVG-versichert, kann sich aber freiwillig versichern.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wird in diesem Rechner die Quellensteuer berücksichtigt?</summary>
+                    <p>Nein, die <strong>Quellensteuer</strong> wird in diesem Rechner nicht berücksichtigt. Ausländische
+                    Arbeitnehmer ohne C-Bewilligung sowie Grenzgänger unterliegen der Quellensteuer, die je nach Kanton,
+                    Zivilstand und Kinderzahl variiert. Für eine genaue Berechnung wende dich an deinen Arbeitgeber.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was ist der 13. Monatslohn?</summary>
+                    <p>In der Schweiz ist der <strong>13. Monatslohn</strong> weit verbreitet, aber nicht gesetzlich vorgeschrieben.
+                    Wenn dein Arbeitsvertrag einen 13. Monatslohn vorsieht, wird dein Jahreslohn auf 13 statt 12 Monate verteilt.
+                    Gib bei Monatslohn deinen regulären Monatslohn ein (ohne den 13. Monatslohn zu berücksichtigen).</p>
+                </details>
+            </div>
+
+            <h3>Lohnabzüge 2025 im Überblick</h3>
+            <div class="table-container">
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>Abzug</th>
+                            <th>Satz</th>
+                            <th>Arbeitnehmer</th>
+                            <th>Bemerkung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AHV/IV/EO</td>
+                            <td>10.6%</td>
+                            <td>5.3%</td>
+                            <td>Obligatorisch für alle</td>
+                        </tr>
+                        <tr>
+                            <td>ALV</td>
+                            <td>2.2%</td>
+                            <td>1.1%</td>
+                            <td>Bis CHF 148'200/Jahr</td>
+                        </tr>
+                        <tr>
+                            <td>NBU</td>
+                            <td>~0.5%</td>
+                            <td>~0.5%</td>
+                            <td>Variiert nach Branche</td>
+                        </tr>
+                        <tr>
+                            <td>BVG (25-34 J.)</td>
+                            <td>7%</td>
+                            <td>3.5%</td>
+                            <td>Ab CHF 22'050/Jahr</td>
+                        </tr>
+                        <tr>
+                            <td>BVG (35-44 J.)</td>
+                            <td>10%</td>
+                            <td>5%</td>
+                            <td>Ab CHF 22'050/Jahr</td>
+                        </tr>
+                        <tr>
+                            <td>BVG (45-54 J.)</td>
+                            <td>15%</td>
+                            <td>7.5%</td>
+                            <td>Ab CHF 22'050/Jahr</td>
+                        </tr>
+                        <tr>
+                            <td>BVG (55-65 J.)</td>
+                            <td>18%</td>
+                            <td>9%</td>
+                            <td>Ab CHF 22'050/Jahr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="table-note">
+                <small>* Die BVG-Beiträge in diesem Rechner zeigen den vollen Arbeitnehmeranteil. Viele Arbeitgeber übernehmen
+                freiwillig mehr als die gesetzlichen 50%, was deinen tatsächlichen Abzug reduziert.</small>
+            </p>
+        </section>
+
+        <!-- JUSTIS Rechtsschutz Hinweis -->
+        <section class="partner-hint">
+            <div class="partner-content">
+                <i class="fas fa-balance-scale"></i>
+                <div>
+                    <strong>Streit mit dem Arbeitgeber?</strong>
+                    <p>Eine Rechtsschutzversicherung hilft – aber nur bei Problemen, die während der versicherten Zeit entstehen.
+                    Bei <a href="https://www.justis.ch" target="_blank" rel="noopener">JUSTIS</a> erhältst du auch bei noch nicht versicherten
+                    Problemen eine Rechtsauskunft, die dir hilft, dein Problem selbst einzuordnen und zu lösen.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-privacy">Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert.</p>
+        </div>
+    </footer>
+
+    <script>
+        let mode = 'monthly';
+
+        function setMode(m) {
+            mode = m;
+            document.querySelectorAll('.salary-toggle button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.salary-toggle button:${m === 'monthly' ? 'first' : 'last'}-child`).classList.add('active');
+            calculate();
+        }
+
+        document.getElementById('hasKids').addEventListener('change', function() {
+            document.getElementById('kidsInput').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // BVG rates by age group (approximate)
+        const bvgRates = { '25-34': 0.07, '35-44': 0.10, '45-54': 0.15, '55-65': 0.18 };
+
+        function calculate() {
+            let gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+            if (gross <= 0) { document.getElementById('result').style.display = 'none'; return; }
+
+            // Convert to monthly if yearly
+            const monthly = mode === 'yearly' ? gross / 12 : gross;
+            const yearly = mode === 'yearly' ? gross : gross * 12;
+
+            // Calculate deductions
+            const ahv = monthly * 0.053;
+            const alv = Math.min(monthly, 148200/12) * 0.011;
+            const nbu = monthly * 0.005;
+            const age = document.getElementById('age').value;
+            const bvgRate = bvgRates[age];
+            const bvg = monthly * bvgRate;
+            const totalDeductions = ahv + alv + nbu + bvg;
+
+            // Child allowance
+            let childAllowance = 0;
+            if (document.getElementById('hasKids').checked) {
+                const numKids = parseInt(document.getElementById('numKids').value) || 1;
+                childAllowance = numKids * 200;
+            }
+
+            const net = monthly - totalDeductions + childAllowance;
+
+            // Display
+            document.getElementById('ahv').textContent = '-CHF ' + ahv.toFixed(2);
+            document.getElementById('alv').textContent = '-CHF ' + alv.toFixed(2);
+            document.getElementById('nbu').textContent = '-CHF ' + nbu.toFixed(2);
+            document.getElementById('bvg').textContent = '-CHF ' + bvg.toFixed(2);
+            document.getElementById('totalDeductions').innerHTML = '<strong>-CHF ' + totalDeductions.toFixed(2) + '</strong>';
+
+            if (childAllowance > 0) {
+                document.getElementById('childAllowance').textContent = '+CHF ' + childAllowance.toFixed(2);
+                document.getElementById('kidsBonus').style.display = 'block';
+            } else {
+                document.getElementById('kidsBonus').style.display = 'none';
+            }
+
+            document.getElementById('netSalary').textContent = 'CHF ' + net.toFixed(0);
+            document.getElementById('netPeriod').textContent = 'pro Monat' + (mode === 'yearly' ? ' (CHF ' + (net * 12).toFixed(0) + '/Jahr)' : '');
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function getShareText() {
+            const gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+            const net = parseFloat(document.getElementById('netSalary').textContent.replace(/[^0-9.-]/g, '')) || 0;
+            const periodLabel = mode === 'yearly' ? 'Jahr' : 'Monat';
+            return `💰 Lohnrechnung\n\nBrutto: CHF ${gross.toFixed(0)}/${periodLabel}\nNetto: CHF ${net.toFixed(0)}/Monat\n\nBerechnet mit wieviel.ch/lohn`;
+        }
+
+        function shareWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank'); }
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> Kopiert!';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Kopieren', 2000);
+            });
+        }
+
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() { const saved = localStorage.getItem(this.STORAGE_KEY); if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) this.enable(false); this.updateButton(); },
+            enable(save = true) { document.documentElement.setAttribute('data-theme', 'dark'); if (save) localStorage.setItem(this.STORAGE_KEY, 'true'); this.updateButton(); },
+            disable(save = true) { document.documentElement.removeAttribute('data-theme'); if (save) localStorage.setItem(this.STORAGE_KEY, 'false'); this.updateButton(); },
+            toggle() { document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable(); },
+            updateButton() { const btn = document.querySelector('.dark-mode-toggle i'); if (btn) btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; }
+        };
+        DarkMode.init();
+    </script>
 </body>
 </html>

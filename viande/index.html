@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fleisch- & CO2-Rechner Schweiz | wieviel.ch</title>
+    <title>Calculateur viande & CO2 Suisse | calcule.ch</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <meta name="description" content="Berechne deinen Fleischkonsum und die CO2-Emissionen. Vergleiche mit den Schweizer Ernährungsempfehlungen und erfahre dein Einsparpotenzial.">
-    <link rel="canonical" href="https://wieviel.ch/fleisch/">
+    <meta name="description" content="Calculez votre consommation de viande et les émissions de CO2. Comparez avec les recommandations suisses et découvrez votre potentiel d'économie.">
+    <link rel="canonical" href="https://calcule.ch/viande/">
     <link rel="alternate" hreflang="de" href="https://wieviel.ch/fleisch/">
     <link rel="alternate" hreflang="fr" href="https://calcule.ch/viande/">
+    <meta property="og:url" content="https://calcule.ch/viande/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
@@ -69,7 +70,6 @@
         input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: var(--border-color); outline: none; -webkit-appearance: none; }
         input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; }
 
-        /* FAQ Styles */
         .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
         .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
         .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
@@ -83,19 +83,19 @@
 <body>
     <div class="container">
         <div class="header-row">
-            <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
                 <i class="fas fa-moon"></i>
             </button>
             <div class="language-switcher">
-                <span class="lang-btn active">DE</span>
-                <a href="https://calcule.ch/viande/" class="lang-btn">FR</a>
+                <a href="https://wieviel.ch/fleisch/" class="lang-btn">DE</a>
+                <span class="lang-btn active">FR</span>
             </div>
         </div>
 
-        <h1><span class="title-icon">🥩</span>Fleisch- & CO2-Rechner</h1>
+        <h1><span class="title-icon">🥩</span>Calculateur viande & CO2</h1>
 
         <nav class="tool-nav">
-            <a href="../">Alle Tools</a>
+            <a href="../">Tous les outils</a>
         </nav>
 
         <div class="steps-container">
@@ -105,8 +105,8 @@
                     <div class="step-number">1</div>
                 </div>
                 <div class="step-content">
-                    <h3>Konsum eingeben</h3>
-                    <p>Wie viel Fleisch isst du pro Woche?</p>
+                    <h3>Entrer la consommation</h3>
+                    <p>Combien de viande mangez-vous par semaine?</p>
                 </div>
             </div>
 
@@ -116,8 +116,8 @@
                     <div class="step-number">2</div>
                 </div>
                 <div class="step-content">
-                    <h3>CO2 berechnen</h3>
-                    <p>Dein ökologischer Fussabdruck.</p>
+                    <h3>Calculer le CO2</h3>
+                    <p>Votre empreinte écologique.</p>
                 </div>
             </div>
 
@@ -127,22 +127,22 @@
                     <div class="step-number">3</div>
                 </div>
                 <div class="step-content">
-                    <h3>Einspar&shy;potenzial</h3>
-                    <p>Was du für die Umwelt tun kannst.</p>
+                    <h3>Potentiel d'économie</h3>
+                    <p>Ce que vous pouvez faire pour l'environnement.</p>
                 </div>
             </div>
         </div>
 
         <div class="calculator-card">
-            <h3 style="margin-top: 0;"><i class="fas fa-utensils"></i> Dein wöchentlicher Fleischkonsum</h3>
+            <h3 style="margin-top: 0;"><i class="fas fa-utensils"></i> Votre consommation hebdomadaire</h3>
 
             <div class="meat-input">
                 <div class="meat-icon">🐄</div>
                 <div class="meat-details">
-                    <h4>Rindfleisch</h4>
-                    <small>Steak, Hackfleisch, Braten, Burger</small>
+                    <h4>Bœuf</h4>
+                    <small>Steak, viande hachée, rôti, burger</small>
                     <input type="range" class="meat-slider" id="beef" min="0" max="1000" value="210" oninput="calculate()">
-                    <div class="swiss-average">CH-Durchschnitt: 210g/Woche</div>
+                    <div class="swiss-average">Moyenne CH: 210g/semaine</div>
                 </div>
                 <div class="meat-value" id="beefValue">210g</div>
             </div>
@@ -150,10 +150,10 @@
             <div class="meat-input">
                 <div class="meat-icon">🐷</div>
                 <div class="meat-details">
-                    <h4>Schweine&shy;fleisch</h4>
-                    <small>Schnitzel, Wurst, Speck, Schinken</small>
+                    <h4>Porc</h4>
+                    <small>Escalope, saucisse, lard, jambon</small>
                     <input type="range" class="meat-slider" id="pork" min="0" max="1000" value="370" oninput="calculate()">
-                    <div class="swiss-average">CH-Durchschnitt: 370g/Woche</div>
+                    <div class="swiss-average">Moyenne CH: 370g/semaine</div>
                 </div>
                 <div class="meat-value" id="porkValue">370g</div>
             </div>
@@ -161,53 +161,53 @@
             <div class="meat-input">
                 <div class="meat-icon">🐔</div>
                 <div class="meat-details">
-                    <h4>Geflügel</h4>
-                    <small>Poulet, Truthahn, Ente</small>
+                    <h4>Volaille</h4>
+                    <small>Poulet, dinde, canard</small>
                     <input type="range" class="meat-slider" id="poultry" min="0" max="1000" value="305" oninput="calculate()">
-                    <div class="swiss-average">CH-Durchschnitt: 305g/Woche</div>
+                    <div class="swiss-average">Moyenne CH: 305g/semaine</div>
                 </div>
                 <div class="meat-value" id="poultryValue">305g</div>
             </div>
 
             <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--border-color);">
-                <span style="font-size: 0.9rem; color: var(--text-color);">Gesamt pro Woche:</span>
+                <span style="font-size: 0.9rem; color: var(--text-color);">Total par semaine:</span>
                 <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); font-family: 'Economica', sans-serif;" id="totalWeekly">885g</div>
             </div>
         </div>
 
         <div class="results-grid">
             <div class="result-card">
-                <h3><i class="fas fa-cloud"></i> Dein CO2-Fussabdruck</h3>
-                <div class="big-number" id="co2Total">329</div>
-                <div>kg CO2 pro Jahr durch Fleisch</div>
+                <h3><i class="fas fa-cloud"></i> Votre empreinte CO2</h3>
+                <div class="big-number" id="co2Total">590</div>
+                <div>kg CO2 par an pour la viande</div>
 
                 <div class="equivalents">
                     <div class="equivalent-item">
                         <i class="fas fa-car"></i>
-                        <span>Entspricht <span class="value" id="carKm">4'200</span> km Autofahrt</span>
+                        <span>Équivaut à <span class="value" id="carKm">4'200</span> km en voiture</span>
                     </div>
                     <div class="equivalent-item">
                         <i class="fas fa-plane"></i>
-                        <span>Oder <span class="value" id="flights">2.4</span> Flüge Zürich–Mallorca (retour)</span>
+                        <span>Ou <span class="value" id="flights">1.7</span> vols Zurich–Majorque (A/R)</span>
                     </div>
                     <div class="equivalent-item">
                         <i class="fas fa-fire"></i>
-                        <span>Oder <span class="value" id="heatingMonths">4</span> Monate Heizung</span>
+                        <span>Ou <span class="value" id="heatingMonths">4</span> mois de chauffage</span>
                     </div>
                     <div class="equivalent-item">
                         <i class="fas fa-tree"></i>
-                        <span><span class="value" id="trees">27</span> Bäume müssten das kompensieren</span>
+                        <span><span class="value" id="trees">27</span> arbres devraient compenser cela</span>
                     </div>
                     <div class="equivalent-item">
                         <i class="fas fa-tint"></i>
-                        <span><span class="value" id="water">95'000</span> Liter Wasser verbraucht</span>
+                        <span><span class="value" id="water">95'000</span> litres d'eau consommés</span>
                     </div>
                 </div>
             </div>
 
             <div class="result-card">
-                <h3><i class="fas fa-balance-scale"></i> Vergleich mit SGE-Empfehlung</h3>
-                <p style="margin: 0 0 0.5rem 0;">Die Schweizerische Gesellschaft für Ernährung empfiehlt max. <strong>200-360g pro Woche</strong>.</p>
+                <h3><i class="fas fa-balance-scale"></i> Comparaison avec la recommandation SSN</h3>
+                <p style="margin: 0 0 0.5rem 0;">La Société Suisse de Nutrition recommande max. <strong>200-360g par semaine</strong>.</p>
 
                 <div class="comparison-bar">
                     <div class="comparison-fill" id="comparisonFill" style="width: 50%;"></div>
@@ -215,32 +215,32 @@
                 </div>
                 <div class="comparison-labels">
                     <span>0g</span>
-                    <span>SGE max (360g)</span>
+                    <span>SSN max (360g)</span>
                     <span>CH ⌀ (885g)</span>
                 </div>
 
                 <div class="recommendation" id="recommendation">
-                    <strong><i class="fas fa-exclamation-triangle"></i> Du isst mehr als empfohlen</strong>
-                    <span id="recommendationText">Dein Konsum liegt über der SGE-Empfehlung von max. 360g/Woche.</span>
+                    <strong><i class="fas fa-exclamation-triangle"></i> Vous mangez plus que recommandé</strong>
+                    <span id="recommendationText">Votre consommation dépasse la recommandation SSN de max. 360g/semaine.</span>
                 </div>
             </div>
 
             <div class="result-card">
-                <h3><i class="fas fa-piggy-bank"></i> Tiere pro Jahr</h3>
-                <p style="margin: 0;">Für deinen Konsum werden jährlich geschlachtet:</p>
+                <h3><i class="fas fa-piggy-bank"></i> Animaux par an</h3>
+                <p style="margin: 0;">Pour votre consommation, sont abattus chaque année:</p>
 
                 <div style="margin: 1rem 0;">
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0;">
                         <span style="font-size: 1.5rem;">🐄</span>
-                        <span><strong id="cowCount">0.13</strong> Rinder</span>
+                        <span><strong id="cowCount">0.13</strong> bovins</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0;">
                         <span style="font-size: 1.5rem;">🐷</span>
-                        <span><strong id="pigCount">0.24</strong> Schweine</span>
+                        <span><strong id="pigCount">0.24</strong> porcs</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0;">
                         <span style="font-size: 1.5rem;">🐔</span>
-                        <span><strong id="chickenCount">10.6</strong> Hühner</span>
+                        <span><strong id="chickenCount">10.6</strong> poulets</span>
                     </div>
                 </div>
 
@@ -248,43 +248,43 @@
             </div>
 
             <div class="result-card">
-                <h3><i class="fas fa-seedling"></i> Wenn du kein Fleisch essen würdest...</h3>
+                <h3><i class="fas fa-seedling"></i> Si vous ne mangiez pas de viande...</h3>
 
                 <div class="savings-box">
-                    <h3><i class="fas fa-leaf"></i> Dein jährliches Einspar&shy;potenzial</h3>
-                    <div class="big-number" id="savingsCO2">329</div>
-                    <div>kg CO2 weniger pro Jahr</div>
+                    <h3><i class="fas fa-leaf"></i> Votre potentiel d'économie annuel</h3>
+                    <div class="big-number" id="savingsCO2">590</div>
+                    <div>kg CO2 en moins par an</div>
 
                     <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.3);">
                         <div style="display: flex; justify-content: space-around; text-align: center;">
                             <div>
-                                <div style="font-size: 1.5rem; font-weight: bold;" id="savingsFlights">1.3</div>
-                                <small>Flüge weniger</small>
+                                <div style="font-size: 1.5rem; font-weight: bold;" id="savingsFlights">1.7</div>
+                                <small>vols en moins</small>
                             </div>
                             <div>
                                 <div style="font-size: 1.5rem; font-weight: bold;" id="savingsAnimals">11</div>
-                                <small>Tiere gerettet</small>
+                                <small>animaux sauvés</small>
                             </div>
                             <div>
-                                <div style="font-size: 1.5rem; font-weight: bold;" id="savingsTrees">15</div>
-                                <small>Bäume äquivalent</small>
+                                <div style="font-size: 1.5rem; font-weight: bold;" id="savingsTrees">27</div>
+                                <small>arbres équivalent</small>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                    <i class="fas fa-info-circle"></i> Auch eine Reduktion hilft! Bei 50% weniger Fleisch sparst du <strong id="halfSavings">165</strong> kg CO2.
+                    <i class="fas fa-info-circle"></i> Une réduction aide aussi! Avec 50% de viande en moins, vous économisez <strong id="halfSavings">295</strong> kg CO2.
                 </p>
             </div>
         </div>
 
         <div class="share-buttons">
             <button class="share-btn whatsapp" onclick="shareWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Teilen
+                <i class="fab fa-whatsapp"></i> Partager
             </button>
             <button class="share-btn copy" onclick="copyResult()">
-                <i class="fas fa-copy"></i> Kopieren
+                <i class="fas fa-copy"></i> Copier
             </button>
         </div>
 
@@ -292,41 +292,41 @@
             <div class="info-step-card">
                 <div class="step-icon"><i class="fas fa-chart-pie"></i></div>
                 <div class="step-content">
-                    <h3>Schweizer Fleischkonsum</h3>
-                    <p>2024 wurden in der Schweiz <strong>86 Millionen Tiere</strong> geschlachtet – ein neuer Rekord.</p>
-                    <p>Pro Kopf: ~50 kg Fleisch pro Jahr, davon 19 kg Schwein, 16 kg Geflügel und 11 kg Rind.</p>
-                    <p><small>Quelle: Proviande, Animal Rights Switzerland</small></p>
+                    <h3>Consommation de viande en Suisse</h3>
+                    <p>En 2024, <strong>86 millions d'animaux</strong> ont été abattus en Suisse – un nouveau record.</p>
+                    <p>Par habitant: ~50 kg de viande par an, dont 19 kg de porc, 16 kg de volaille et 11 kg de bœuf.</p>
+                    <p><small>Source: Proviande, Animal Rights Switzerland</small></p>
                 </div>
             </div>
             <div class="info-step-card">
                 <div class="step-icon"><i class="fas fa-apple-alt"></i></div>
                 <div class="step-content">
-                    <h3>SGE-Empfehlung</h3>
-                    <p>Die Schweizerische Gesellschaft für Ernährung empfiehlt max. <strong>2-3 Portionen Fleisch pro Woche</strong> (200-360g).</p>
-                    <p>Der durchschnittliche Schweizer isst etwa <strong>3x mehr</strong> als empfohlen.</p>
-                    <p><small>Quelle: BLV, SGE Lebensmittelpyramide 2024</small></p>
+                    <h3>Recommandation SSN</h3>
+                    <p>La Société Suisse de Nutrition recommande max. <strong>2-3 portions de viande par semaine</strong> (200-360g).</p>
+                    <p>Le Suisse moyen mange environ <strong>3 fois plus</strong> que recommandé.</p>
+                    <p><small>Source: OSAV, Pyramide alimentaire SSN 2024</small></p>
                 </div>
             </div>
         </div>
 
         <section class="seo-content">
-            <h3>Häufige Fragen zu Fleisch&shy;konsum und CO2</h3>
+            <h3>Questions fréquentes sur la viande et le CO2</h3>
             <div class="faq-section">
                 <details class="faq-item">
-                    <summary>Wie viel Fleisch isst ein Schweizer pro Jahr?</summary>
-                    <p>Der durchschnittliche Schweizer konsumiert etwa <strong>50kg Fleisch pro Jahr</strong>. Das entspricht ca. 1kg pro Woche. Die Schweizerische Gesellschaft für Ernährung (SGE) empfiehlt jedoch nur <strong>2-3 Portionen</strong> (200-360g) pro Woche.</p>
+                    <summary>Combien de viande un Suisse consomme-t-il par an?</summary>
+                    <p>Un Suisse moyen consomme environ <strong>50kg de viande par an</strong>. Cela représente environ 1kg par semaine. La Société Suisse de Nutrition (SSN) recommande cependant seulement <strong>2-3 portions</strong> (200-360g) par semaine.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Welches Fleisch hat die schlechteste CO2-Bilanz?</summary>
-                    <p><strong>Rindfleisch</strong> hat mit etwa 25kg CO2 pro kg Fleisch die höchste Klimabelastung. Zum Vergleich: Schweine&shy;fleisch verursacht ca. 8kg CO2/kg, Geflügel nur etwa 5kg CO2/kg.</p>
+                    <summary>Quelle viande a le pire bilan CO2?</summary>
+                    <p>Le <strong>bœuf</strong> a l'impact climatique le plus élevé avec environ 25kg de CO2 par kg de viande. En comparaison: le porc cause environ 8kg de CO2/kg, la volaille seulement environ 5kg de CO2/kg.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Wie viel CO2 spare ich als Vegetarier?</summary>
-                    <p>Wer komplett auf Fleisch verzichtet, spart durchschnittlich <strong>300-400kg CO2 pro Jahr</strong> – das entspricht etwa einer Flugreise Zürich-Mallorca oder 2'000-3'000 Autokilometern.</p>
+                    <summary>Combien de CO2 économise un végétarien?</summary>
+                    <p>Celui qui renonce complètement à la viande économise en moyenne <strong>300-400kg de CO2 par an</strong> – cela correspond environ à un vol Zurich-Majorque ou 2'000-3'000 kilomètres en voiture.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Ist Bio-Fleisch besser für die Umwelt?</summary>
-                    <p>Bio-Fleisch hat eine <strong>ähnliche CO2-Bilanz</strong> wie konventionelles Fleisch, da die Tiere länger leben und mehr Futter brauchen. Vorteile liegen eher bei Tierwohl, Antibiotika-Verzicht und Boden&shy;gesundheit.</p>
+                    <summary>La viande bio est-elle meilleure pour l'environnement?</summary>
+                    <p>La viande bio a un <strong>bilan CO2 similaire</strong> à la viande conventionnelle, car les animaux vivent plus longtemps et ont besoin de plus de nourriture. Les avantages concernent plutôt le bien-être animal, l'absence d'antibiotiques et la santé des sols.</p>
                 </details>
             </div>
         </section>
@@ -335,50 +335,48 @@
     <footer class="site-footer">
         <div class="footer-content">
             <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
-            <p class="footer-disclaimer">Alle Angaben ohne Gewähr. CO2-Werte basieren auf Durchschnittswerten.</p>
-            <p class="footer-privacy">Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert.</p>
+            <p class="footer-disclaimer">Toutes les informations sans garantie. Valeurs CO2 basées sur des moyennes.</p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée.</p>
         </div>
     </footer>
 
     <script>
-        // CO2 per kg meat (kg CO2e) - Schweizer Werte von energie-umwelt.ch
+        // CO2 per kg meat (kg CO2e) - Swiss values from energie-umwelt.ch
         const CO2_PER_KG = {
-            beef: 25,      // Rindfleisch (CH: 25-34 kg, konservativ 25)
-            pork: 8,       // Schweinefleisch
-            poultry: 5     // Geflügel
+            beef: 25,
+            pork: 8,
+            poultry: 5
         };
 
         // Water per kg meat (liters)
         const WATER_PER_KG = {
-            beef: 15400,   // Rindfleisch
-            pork: 6000,    // Schweinefleisch
-            poultry: 4300  // Geflügel
+            beef: 15400,
+            pork: 6000,
+            poultry: 4300
         };
 
         // Meat yield per animal (kg edible meat)
         const MEAT_PER_ANIMAL = {
-            beef: 250,     // ~250kg per cow
-            pork: 80,      // ~80kg per pig
-            poultry: 1.5   // ~1.5kg per chicken
+            beef: 250,
+            pork: 80,
+            poultry: 1.5
         };
 
-        // SGE recommendation
-        const SGE_MAX_WEEKLY = 360; // grams
-        const SWISS_AVG_WEEKLY = 885; // grams
+        // SSN recommendation
+        const SGE_MAX_WEEKLY = 360;
+        const SWISS_AVG_WEEKLY = 885;
 
         // Equivalents
-        const CO2_PER_FLIGHT_ZH_LONDON = 250; // kg CO2 return flight
-        const CO2_PER_FLIGHT_ZH_MALLORCA = 340; // kg CO2 return flight
-        const CO2_PER_CAR_KM = 0.14; // kg CO2 per km (Durchschnittsauto)
-        const CO2_PER_TREE_YEAR = 22; // kg CO2 absorbed by tree per year
-        const CO2_HEATING_MONTH = 150; // kg CO2 für Heizung pro Monat
+        const CO2_PER_FLIGHT_ZH_MALLORCA = 340;
+        const CO2_PER_CAR_KM = 0.14;
+        const CO2_PER_TREE_YEAR = 22;
+        const CO2_HEATING_MONTH = 150;
 
         function calculate() {
             const beef = parseInt(document.getElementById('beef').value);
             const pork = parseInt(document.getElementById('pork').value);
             const poultry = parseInt(document.getElementById('poultry').value);
 
-            // Update display values
             document.getElementById('beefValue').textContent = beef + 'g';
             document.getElementById('porkValue').textContent = pork + 'g';
             document.getElementById('poultryValue').textContent = poultry + 'g';
@@ -386,40 +384,34 @@
             const totalWeekly = beef + pork + poultry;
             document.getElementById('totalWeekly').textContent = totalWeekly + 'g';
 
-            // Calculate yearly values (in kg)
             const beefYearly = (beef * 52) / 1000;
             const porkYearly = (pork * 52) / 1000;
             const poultryYearly = (poultry * 52) / 1000;
 
-            // CO2 calculations
             const co2Beef = beefYearly * CO2_PER_KG.beef;
             const co2Pork = porkYearly * CO2_PER_KG.pork;
             const co2Poultry = poultryYearly * CO2_PER_KG.poultry;
             const co2Total = co2Beef + co2Pork + co2Poultry;
 
-            // Update CO2 display
             document.getElementById('co2Total').textContent = Math.round(co2Total);
             document.getElementById('co2Total').className = 'big-number ' + (co2Total < 250 ? 'green' : co2Total < 500 ? 'orange' : 'red');
 
-            // Water calculation
             const waterBeef = beefYearly * WATER_PER_KG.beef;
             const waterPork = porkYearly * WATER_PER_KG.pork;
             const waterPoultry = poultryYearly * WATER_PER_KG.poultry;
             const waterTotal = waterBeef + waterPork + waterPoultry;
 
-            // Equivalents
             const flights = co2Total / CO2_PER_FLIGHT_ZH_MALLORCA;
             const carKm = co2Total / CO2_PER_CAR_KM;
             const trees = co2Total / CO2_PER_TREE_YEAR;
             const heatingMonths = co2Total / CO2_HEATING_MONTH;
 
             document.getElementById('flights').textContent = flights.toFixed(1);
-            document.getElementById('carKm').textContent = Math.round(carKm).toLocaleString('de-CH');
+            document.getElementById('carKm').textContent = Math.round(carKm).toLocaleString('fr-CH');
             document.getElementById('trees').textContent = Math.round(trees);
             document.getElementById('heatingMonths').textContent = heatingMonths.toFixed(1);
-            document.getElementById('water').textContent = Math.round(waterTotal).toLocaleString('de-CH');
+            document.getElementById('water').textContent = Math.round(waterTotal).toLocaleString('fr-CH');
 
-            // Animal counts
             const cows = beefYearly / MEAT_PER_ANIMAL.beef;
             const pigs = porkYearly / MEAT_PER_ANIMAL.pork;
             const chickens = poultryYearly / MEAT_PER_ANIMAL.poultry;
@@ -428,38 +420,32 @@
             document.getElementById('pigCount').textContent = pigs.toFixed(2);
             document.getElementById('chickenCount').textContent = chickens.toFixed(1);
 
-            // Animal icons
             const animalIcons = document.getElementById('animalIcons');
             let icons = '';
             for (let i = 0; i < Math.min(Math.round(chickens), 20); i++) icons += '🐔';
             if (Math.round(chickens) > 20) icons += '...';
             animalIcons.innerHTML = icons;
 
-            // Comparison bar
             const percentage = Math.min((totalWeekly / SWISS_AVG_WEEKLY) * 100, 100);
             const fill = document.getElementById('comparisonFill');
             fill.style.width = percentage + '%';
             fill.className = 'comparison-fill ' + (totalWeekly <= SGE_MAX_WEEKLY ? 'green' : totalWeekly <= 600 ? 'orange' : 'red');
 
-            // SGE marker position (360g = ~40% of 885g average)
             const markerPos = (SGE_MAX_WEEKLY / SWISS_AVG_WEEKLY) * 100;
             document.getElementById('recommendationMarker').style.left = markerPos + '%';
 
-            // Recommendation text
             const rec = document.getElementById('recommendation');
-            const recText = document.getElementById('recommendationText');
             if (totalWeekly <= SGE_MAX_WEEKLY) {
                 rec.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
-                rec.innerHTML = '<strong><i class="fas fa-check-circle"></i> Super! Du isst im empfohlenen Bereich</strong><span>Dein Konsum liegt innerhalb der SGE-Empfehlung von max. 360g/Woche.</span>';
+                rec.innerHTML = '<strong><i class="fas fa-check-circle"></i> Super! Vous êtes dans la plage recommandée</strong><span>Votre consommation respecte la recommandation SSN de max. 360g/semaine.</span>';
             } else if (totalWeekly <= 600) {
                 rec.style.background = 'linear-gradient(135deg, #f39c12, #f1c40f)';
-                rec.innerHTML = '<strong><i class="fas fa-exclamation-circle"></i> Leicht über der Empfehlung</strong><span>Dein Konsum liegt etwas über der SGE-Empfehlung. Eine kleine Reduktion wäre gut.</span>';
+                rec.innerHTML = '<strong><i class="fas fa-exclamation-circle"></i> Légèrement au-dessus de la recommandation</strong><span>Votre consommation dépasse un peu la recommandation SSN. Une petite réduction serait bénéfique.</span>';
             } else {
                 rec.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
-                rec.innerHTML = '<strong><i class="fas fa-exclamation-triangle"></i> Deutlich über der Empfehlung</strong><span>Dein Konsum liegt ' + Math.round((totalWeekly / SGE_MAX_WEEKLY - 1) * 100) + '% über der SGE-Empfehlung.</span>';
+                rec.innerHTML = '<strong><i class="fas fa-exclamation-triangle"></i> Nettement au-dessus de la recommandation</strong><span>Votre consommation dépasse de ' + Math.round((totalWeekly / SGE_MAX_WEEKLY - 1) * 100) + '% la recommandation SSN.</span>';
             }
 
-            // Savings
             document.getElementById('savingsCO2').textContent = Math.round(co2Total);
             document.getElementById('savingsFlights').textContent = flights.toFixed(1);
             document.getElementById('savingsAnimals').textContent = Math.round(cows + pigs + chickens);
@@ -472,7 +458,7 @@
             const weekly = document.getElementById('totalWeekly').textContent;
             const flights = document.getElementById('flights').textContent;
 
-            return `🥩 Mein Fleischkonsum: ${weekly}/Woche\n🌍 CO2-Fussabdruck: ${co2} kg/Jahr\n✈️ Das entspricht ${flights} Flügen Zürich-London\n\nBerechnet mit wieviel.ch/fleisch`;
+            return `🥩 Ma consommation de viande: ${weekly}/semaine\n🌍 Empreinte CO2: ${co2} kg/an\n✈️ Équivaut à ${flights} vols Zurich-Majorque\n\nCalculé avec calcule.ch/viande`;
         }
 
         function shareWhatsApp() {
@@ -482,8 +468,8 @@
         function copyResult() {
             navigator.clipboard.writeText(getShareText()).then(() => {
                 const btn = document.querySelector('.share-btn.copy');
-                btn.innerHTML = '<i class="fas fa-check"></i> Kopiert!';
-                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Kopieren', 2000);
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Copier', 2000);
             });
         }
 

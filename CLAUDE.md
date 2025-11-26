@@ -23,6 +23,8 @@ A collection of useful calculators for the general public in Switzerland.
 | **Bussenrechner** | `/busse/` | Swiss speed fine calculator (OBV) |
 | **Tagerechner** | `/tage/` | Date/day calculator (days between dates, weekdays, working days) |
 | **Ferienkürzung** | `/ferienkuerzung/` | Holiday reduction calculator (Art. 329b OR) |
+| **Teilzeit-Rechner** | `/teilzeit/` | True cost of part-time work (BVG, AHV impact) |
+| **MWST-Rechner** | `/mwst/` | Swiss VAT calculator (8.1%, 2.6%, 3.8%) |
 
 ### Planned Tools:
 - (none currently)
@@ -75,10 +77,18 @@ wieviel.ch/
 │   ├── index.html          # Language redirect
 │   ├── de/index.html       # Tagerechner (DE)
 │   └── fr/index.html       # Calculateur de jours (FR)
-└── ferienkuerzung/
+├── ferienkuerzung/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # Ferienkürzung Rechner (DE)
+│   └── fr/index.html       # Calculateur réduction vacances (FR)
+├── teilzeit/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # Teilzeit-Rechner (DE)
+│   └── fr/index.html       # Calculateur temps partiel (FR)
+└── mwst/
     ├── index.html          # Language redirect
-    ├── de/index.html       # Ferienkürzung Rechner (DE)
-    └── fr/index.html       # Calculateur réduction vacances (FR)
+    ├── de/index.html       # MWST-Rechner (DE)
+    └── fr/index.html       # Calculateur TVA (FR)
 ```
 
 ## Tech Stack
@@ -213,6 +223,50 @@ Example: 20 days vacation, 3 months illness
 - Free: 1 month → Reducible: 2 months
 - Reduction: 2 × (20/12) = 3.33 days
 - Remaining: 20 - 3.33 = 16.67 days
+
+### Teilzeit-Rechner - Part-Time Cost Calculator
+Calculates the true lifetime cost of working part-time:
+
+**Key Concept - Coordination Deduction (Koordinationsabzug)**
+- 2025: CHF 26'460
+- Not proportionally reduced for part-time work in many pension plans
+- Causes disproportionate reduction in BVG-insured salary
+
+**Calculations:**
+1. **Direct Income Loss**: (Current salary - New salary) × Duration
+2. **BVG Capital Loss**: Difference in BVG contributions compounded until retirement
+3. **AHV Pension Reduction**: Impact on average lifetime income
+
+**BVG Contribution Rates (total):**
+| Age Group | Rate |
+|-----------|------|
+| 25-34 | 7% |
+| 35-44 | 10% |
+| 45-54 | 15% |
+| 55-65 | 18% |
+
+**Example**: CHF 85'000 salary, 100% → 60% for 10 years
+- BVG insured at 100%: CHF 58'540 (85'000 - 26'460)
+- BVG insured at 60%: CHF 24'540 (51'000 - 26'460) = only 42% of original!
+
+**Gender Pension Gap**: Women in Switzerland receive ~33% less pension than men, primarily due to part-time work and career interruptions.
+
+### MWST-Rechner - Swiss VAT Calculator
+Calculates Swiss VAT (Mehrwertsteuer) in both directions:
+
+**Swiss VAT Rates 2025:**
+| Rate | Name | Application |
+|------|------|-------------|
+| 8.1% | Normalsatz | Most goods and services |
+| 2.6% | Reduzierter Satz | Food, books, newspapers, medicine |
+| 3.8% | Sondersatz | Accommodation/hotels |
+
+**Formulas:**
+- Gross to Net: `Net = Gross ÷ (1 + rate)`
+- Net to Gross: `Gross = Net × (1 + rate)`
+- VAT Amount: `VAT = Gross - Net`
+
+**VAT Obligation**: Businesses with annual turnover > CHF 100'000 must register for VAT.
 
 ## Related Projects
 

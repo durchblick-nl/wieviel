@@ -4,106 +4,106 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://wieviel.ch/</loc>
+    <loc>https://calcule.ch/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/"/>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Promillerechner -->
+  <!-- Calculateur d'alcoolémie -->
   <url>
-    <loc>https://wieviel.ch/promille/</loc>
+    <loc>https://calcule.ch/alcoolemie/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/promille/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/alcoolemie/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Lohnrechner -->
+  <!-- Calculateur de salaire -->
   <url>
-    <loc>https://wieviel.ch/lohn/</loc>
+    <loc>https://calcule.ch/salaire/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/lohn/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/salaire/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Trinkgeld-Rechner -->
+  <!-- Calculateur de pourboire -->
   <url>
-    <loc>https://wieviel.ch/trinkgeld/</loc>
+    <loc>https://calcule.ch/pourboire/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/trinkgeld/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/pourboire/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Schlafrechner -->
+  <!-- Calculateur de sommeil -->
   <url>
-    <loc>https://wieviel.ch/schlaf/</loc>
+    <loc>https://calcule.ch/sommeil/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/schlaf/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/sommeil/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- BMI-Rechner -->
+  <!-- Calculateur IMC -->
   <url>
-    <loc>https://wieviel.ch/bmi/</loc>
+    <loc>https://calcule.ch/imc/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/bmi/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/imc/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Fleisch- & CO2-Rechner -->
+  <!-- Calculateur viande & CO2 -->
   <url>
-    <loc>https://wieviel.ch/fleisch/</loc>
+    <loc>https://calcule.ch/viande/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/fleisch/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/viande/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Bussenrechner -->
+  <!-- Calculateur d'amendes -->
   <url>
-    <loc>https://wieviel.ch/busse/</loc>
+    <loc>https://calcule.ch/amende/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/busse/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/amende/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Tagerechner -->
+  <!-- Calculateur de jours -->
   <url>
-    <loc>https://wieviel.ch/tage/</loc>
+    <loc>https://calcule.ch/jours/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/tage/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/jours/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Ferienkürzung -->
+  <!-- Calculateur réduction vacances -->
   <url>
-    <loc>https://wieviel.ch/ferienkuerzung/</loc>
+    <loc>https://calcule.ch/reduction-vacances/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/ferienkuerzung/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/reduction-vacances/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Teilzeit-Rechner -->
+  <!-- Calculateur temps partiel -->
   <url>
-    <loc>https://wieviel.ch/teilzeit/</loc>
+    <loc>https://calcule.ch/temps-partiel/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/teilzeit/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/temps-partiel/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- MWST-Rechner -->
+  <!-- Calculateur TVA -->
   <url>
-    <loc>https://wieviel.ch/mwst/</loc>
+    <loc>https://calcule.ch/tva/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/mwst/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/tva/"/>
     <changefreq>monthly</changefreq>

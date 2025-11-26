@@ -151,6 +151,29 @@
             font-weight: 700;
         }
 
+        /* Page Header with Subtitle */
+        .page-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .page-header h1 {
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-color);
+            opacity: 0.75;
+            font-size: 1rem;
+            margin: 0;
+            padding-left: 60px; /* Align with title after icon */
+        }
+
+        @media (max-width: 768px) {
+            .page-subtitle {
+                padding-left: 44px; /* Smaller icon on mobile */
+            }
+        }
+
         .steps {
             display: flex;
             gap: 1.5rem;

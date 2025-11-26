@@ -1,18 +1,552 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teilzeit-Rechner | Calculateur temps partiel</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <script>
-        const lang = navigator.language || navigator.userLanguage;
-        const isFrench = lang.toLowerCase().startsWith('fr');
-        window.location.replace(isFrench ? 'fr/' : 'de/');
+    <title>Teilzeit-Rechner Schweiz 2025 – Was kostet Teilzeit wirklich? | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta name="description" content="Berechne die wahren Kosten von Teilzeit: Einkommensverlust, BVG-Einbusse und AHV-Lücke. Verstehe den Einfluss des Koordinationsabzugs auf deine Rente.">
+    <meta name="keywords" content="Teilzeit Rechner Schweiz, Teilzeitarbeit Kosten, BVG Koordinationsabzug, Pensionskasse Teilzeit, Gender Pension Gap, Vorsorgelücke berechnen">
+    <link rel="canonical" href="https://wieviel.ch/teilzeit/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/teilzeit/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/temps-partiel/">
+    <meta property="og:title" content="Teilzeit-Rechner Schweiz 2025 – Was kostet Teilzeit wirklich?">
+    <meta property="og:description" content="Berechne Einkommensverlust, BVG-Einbusse und AHV-Lücke bei Teilzeitarbeit. Der versteckte Preis der Reduktion.">
+    <meta property="og:url" content="https://wieviel.ch/teilzeit/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_CH">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Teilzeit-Rechner Schweiz 2025">
+    <meta name="twitter:description" content="Was kostet Teilzeit wirklich? Berechne den Einfluss auf Lohn und Rente.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Teilzeit-Rechner Schweiz",
+        "url": "https://wieviel.ch/teilzeit/",
+        "description": "Berechnet die wahren Kosten von Teilzeitarbeit: Einkommensverlust, BVG-Einbusse durch Koordinationsabzug und AHV-Lücke.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        }
+    }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Warum kostet Teilzeit mehr als nur der Lohnausfall?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bei Teilzeit wird der BVG-Koordinationsabzug (CHF 25'725) nicht proportional reduziert. Dadurch sinkt der versicherte Lohn überproportional. Zusätzlich sinkt der AHV-Durchschnittslohn, was die Rente reduziert."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Was ist der Koordinationsabzug?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Der Koordinationsabzug (2025: CHF 26'460) ist der Teil des Lohns, der bereits durch die AHV abgedeckt ist und daher nicht zusätzlich über die Pensionskasse versichert wird. Bei Teilzeit bleibt dieser Abzug oft gleich hoch, was die BVG-Versicherung stark reduziert."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wie wirkt sich Teilzeit auf die AHV-Rente aus?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Die AHV-Rente basiert auf dem durchschnittlichen Einkommen über alle Beitragsjahre. Teilzeitjahre senken diesen Durchschnitt und damit die spätere Rente. Die maximale AHV-Rente (2025: CHF 2'520/Monat) erreicht man nur mit einem Durchschnittseinkommen von CHF 90'720 oder mehr."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Was ist der Gender Pension Gap?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Frauen erhalten in der Schweiz durchschnittlich 33% weniger Rente als Männer. Hauptursachen sind Teilzeitarbeit, Karriereunterbrüche für Kinderbetreuung und der überproportionale Effekt des Koordinationsabzugs bei tieferen Pensen."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .result-box.warning { background: linear-gradient(135deg, #cc5c53, #e07a6e); }
+
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; }
+        .breakdown-row .value.negative { color: var(--accent-color); }
+        .breakdown-row .value.positive { color: #25a55f; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+        .comparison-box { background: var(--card-bg); border-radius: 12px; padding: 1.25rem; text-align: center; border: 2px solid var(--border-color); }
+        .comparison-box.highlight { border-color: var(--primary-color); background: rgba(63, 96, 111, 0.05); }
+        .comparison-box .box-label { font-size: 0.85rem; color: var(--text-color); opacity: 0.8; margin-bottom: 0.5rem; }
+        .comparison-box .box-value { font-size: 1.5rem; font-weight: bold; font-family: 'Economica', sans-serif; color: var(--primary-color); }
+        .comparison-box .box-sub { font-size: 0.8rem; color: var(--text-color); opacity: 0.7; margin-top: 0.25rem; }
+        @media (max-width: 500px) { .comparison-grid { grid-template-columns: 1fr; } }
+
+        .slider-container { margin: 1.5rem 0; }
+        .slider-label { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: 600; }
+        .slider-value { color: var(--primary-color); font-family: 'Economica', sans-serif; font-size: 1.2rem; }
+        input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: var(--border-color); outline: none; -webkit-appearance: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; border: none; }
+
+        .info-box { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+        .info-box.warning { background: rgba(204, 92, 83, 0.1); border-left-color: var(--accent-color); }
+        .info-box strong { color: var(--primary-color); }
+        .info-box.warning strong { color: var(--accent-color); }
+
+        .visual-bar { margin: 1.5rem 0; }
+        .bar-label { font-size: 0.85rem; margin-bottom: 0.5rem; color: var(--text-color); }
+        .bar-container { height: 32px; background: var(--border-color); border-radius: 8px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; border-radius: 8px; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.75rem; color: white; font-weight: bold; font-size: 0.85rem; }
+        .bar-fill.full { background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); }
+        .bar-fill.reduced { background: linear-gradient(90deg, var(--accent-color), #e07a6e); }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
+        .seo-content p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-color); }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        .partner-hint { background: linear-gradient(135deg, rgba(63, 96, 111, 0.08), rgba(90, 138, 157, 0.08)); border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .partner-content { display: flex; gap: 1rem; align-items: flex-start; }
+        .partner-content > i { font-size: 1.5rem; color: var(--primary-color); margin-top: 0.25rem; flex-shrink: 0; }
+        .partner-content strong { color: var(--text-color); font-size: 1rem; }
+        .partner-content p { margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-color); opacity: 0.85; line-height: 1.5; }
+        .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+        .partner-content a:hover { text-decoration: underline; }
+
+        .equivalent-box { background: var(--card-bg); border: 2px dashed var(--border-color); border-radius: 12px; padding: 1.25rem; text-align: center; margin: 1.5rem 0; }
+        .equivalent-box .eq-label { font-size: 0.9rem; color: var(--text-color); opacity: 0.8; }
+        .equivalent-box .eq-value { font-size: 1.8rem; font-weight: bold; color: var(--accent-color); font-family: 'Economica', sans-serif; margin: 0.5rem 0; }
+        .equivalent-box .eq-sub { font-size: 0.85rem; color: var(--text-color); }
+    </style>
 </head>
 <body>
-    <p>Redirecting... / Redirection...</p>
-    <p><a href="de/">Deutsch</a> | <a href="fr/">Français</a></p>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <span class="lang-btn active">DE</span>
+                <a href="https://calcule.ch/temps-partiel/" class="lang-btn">FR</a>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1><span class="title-icon">⏰</span>Teilzeit-Rechner</h1>
+            <p class="page-subtitle">Was kostet Teilzeit wirklich?</p>
+        </div>
+
+        <nav class="tool-nav">
+            <a href="../">Alle Tools</a>
+        </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-wallet"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Lohn & Pensum</h3>
+                    <p>Gib deinen aktuellen Bruttolohn und Pensum ein.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Reduktion planen</h3>
+                    <p>Wähle das neue Pensum und die Dauer.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-piggy-bank"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Wahre Kosten</h3>
+                    <p>Sieh Einkommens- und Rentenverlust.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label for="salary">Aktueller Brutto&shy;jahres&shy;lohn bei 100%</label>
+                <div style="position: relative;">
+                    <input type="number" id="salary" value="85000" min="0" step="1000" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF/Jahr</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Alter</label>
+                <select id="age" onchange="calculate()">
+                    <option value="25">25-34 Jahre</option>
+                    <option value="35">35-44 Jahre</option>
+                    <option value="45" selected>45-54 Jahre</option>
+                    <option value="55">55-65 Jahre</option>
+                </select>
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Aktuelles Pensum</span>
+                    <span class="slider-value" id="currentPensumDisplay">100%</span>
+                </div>
+                <input type="range" id="currentPensum" min="20" max="100" step="10" value="100" oninput="calculate()">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Neues Pensum</span>
+                    <span class="slider-value" id="newPensumDisplay">60%</span>
+                </div>
+                <input type="range" id="newPensum" min="20" max="100" step="10" value="60" oninput="calculate()">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Dauer der Reduktion</span>
+                    <span class="slider-value" id="durationDisplay">10 Jahre</span>
+                </div>
+                <input type="range" id="duration" min="1" max="30" step="1" value="10" oninput="calculate()">
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box warning">
+                <div class="label">Gesamte Einbusse über dein Leben</div>
+                <div class="total" id="totalLoss">CHF 0</div>
+                <div class="sub" id="equivalentMonths">= 0 Monatsgehälter</div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-box highlight">
+                    <div class="box-label">Aktuelles Einkommen/Jahr</div>
+                    <div class="box-value" id="currentIncome">CHF 85'000</div>
+                    <div class="box-sub">bei <span id="currentPensumText">100%</span></div>
+                </div>
+                <div class="comparison-box">
+                    <div class="box-label">Neues Einkommen/Jahr</div>
+                    <div class="box-value" id="newIncome">CHF 51'000</div>
+                    <div class="box-sub">bei <span id="newPensumText">60%</span></div>
+                </div>
+            </div>
+
+            <div class="visual-bar">
+                <div class="bar-label">BVG-versicherter Lohn (nach Koordinationsabzug)</div>
+                <div class="bar-container">
+                    <div class="bar-fill full" id="bvgBarFull" style="width: 100%;">100%</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 0.25rem; color: var(--text-color); opacity: 0.7;">
+                    <span>Aktuell: <strong id="bvgCurrentLabel">CHF 59'275</strong></span>
+                    <span>Neu: <strong id="bvgNewLabel">CHF 24'540</strong></span>
+                </div>
+                <div class="bar-container" style="margin-top: 0.5rem;">
+                    <div class="bar-fill reduced" id="bvgBarReduced" style="width: 41%;">41%</div>
+                </div>
+            </div>
+
+            <div class="info-box warning">
+                <strong>Das Problem:</strong> Der Koordinationsabzug (CHF 26'460) bleibt bei vielen Pensionskassen gleich – egal ob du 100% oder 60% arbeitest. Dadurch sinkt dein BVG-versicherter Lohn überproportional!
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-list"></i> Aufschlüsselung der Einbusse</h3>
+                <div class="breakdown-row">
+                    <span class="label">Direkter Einkommens&shy;verlust</span>
+                    <span class="value negative" id="incomeLoss">- CHF 340'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">BVG-Kapital&shy;verlust (bis Pension)</span>
+                    <span class="value negative" id="bvgLoss">- CHF 85'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">AHV-Renten&shy;einbusse (20 Jahre)</span>
+                    <span class="value negative" id="ahvLoss">- CHF 24'000</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Total Lebenseinbusse</span>
+                    <span class="value negative" id="totalLossBreakdown">- CHF 449'000</span>
+                </div>
+            </div>
+
+            <div class="equivalent-box">
+                <div class="eq-label">Das entspricht</div>
+                <div class="eq-value" id="equivalentValue">5.3 Jahren</div>
+                <div class="eq-sub">Vollzeit-Arbeit bei deinem Lohn</div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Teilen
+                </button>
+                <button class="share-btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i> Kopieren
+                </button>
+            </div>
+        </div>
+
+        <!-- Partner Hint: ellexx -->
+        <section class="partner-hint">
+            <div class="partner-content">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                    <strong>Lücke schliessen?</strong>
+                    <p>Bei <a href="https://www.ellexx.com/de/close-the-gaps/" target="_blank" rel="noopener">ellexx</a> erhältst du unabhängige Finanz&shy;beratung,
+                    die dir hilft, deine Vorsorge&shy;lücke zu verstehen und Lösungen zu finden – auch wenn du dein Pensum reduzieren möchtest.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="seo-content">
+            <h2>Warum kostet Teilzeit mehr als der Lohn&shy;ausfall?</h2>
+            <p>Viele Menschen unterschätzen die wahren Kosten von Teilzeit&shy;arbeit. Auf den ersten Blick scheint es einfach: 60% arbeiten bedeutet 40% weniger Lohn. Doch die Realität ist komplexer – und teurer.</p>
+
+            <h3>Der Koordinationsabzug – die versteckte Falle</h3>
+            <p>In der Schweiz wird nur der Lohn oberhalb des <strong>Koordinationsabzugs</strong> (2025: CHF 26'460) in der Pensionskasse (BVG) versichert. Dieser Abzug bleibt bei vielen Arbeitgebern gleich hoch – unabhängig vom Beschäftigungsgrad.</p>
+            <p><strong>Beispiel:</strong> Bei CHF 85'000 Jahres&shy;lohn und 100% Pensum sind CHF 58'540 BVG-versichert. Bei 60% Pensum (CHF 51'000) sind nur noch CHF 24'540 versichert – das sind nur 42% des ursprünglichen BVG-Lohns, obwohl du 60% arbeitest!</p>
+
+            <h3>Der Gender Pension Gap</h3>
+            <p>Frauen erhalten in der Schweiz durchschnittlich <strong>33% weniger Rente</strong> als Männer. Der Haupt&shy;grund: Teilzeit&shy;arbeit und Erwerbs&shy;unterbrüche für Familie und Kinder&shy;betreuung. Der Koordinations&shy;abzug verstärkt diesen Effekt massiv.</p>
+
+            <h3>Häufige Fragen</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Warum reduziert sich mein BVG überpropor&shy;tional?</summary>
+                    <p>Der Koordinations&shy;abzug (CHF 26'460) wird bei Standard-Pensions&shy;kassen nicht ans Pensum angepasst. Bei 60% Pensum "frisst" dieser Abzug einen viel grösseren Anteil deines Lohns. Einige moderne Arbeitgeber bieten jedoch angepasste BVG-Lösungen an.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie wirkt sich Teilzeit auf meine AHV aus?</summary>
+                    <p>Die AHV-Rente basiert auf deinem <strong>durchschnittlichen Lebens&shy;einkommen</strong>. Teilzeit&shy;jahre senken diesen Durchschnitt. Für die maximale AHV-Rente (CHF 2'520/Monat) brauchst du einen Durchschnitt von ca. CHF 90'720/Jahr über alle Beitragsjahre.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Kann ich die Lücke kompensieren?</summary>
+                    <p>Ja, zum Beispiel durch: <strong>Säule 3a</strong> (steuerlich absetzbar, max. CHF 7'258/Jahr mit PK), <strong>freiwillige PK-Einkäufe</strong>, oder Investitionen in die <strong>Säule 3b</strong>. Eine unabhängige Beratung kann helfen, die beste Strategie zu finden.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was kann ich als Arbeit&shy;nehmer:in tun?</summary>
+                    <p>Frag deinen Arbeitgeber, ob er den Koordinations&shy;abzug ans Pensum anpasst. Immer mehr Firmen bieten diese Option an. Falls nicht, prüfe private Vorsorge&shy;lösungen, um die Lücke zu schliessen.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie genau ist diese Berechnung?</summary>
+                    <p>Diese Berechnung zeigt eine <strong>Schätzung</strong> basierend auf Standard-BVG-Sätzen und aktuellen AHV-Regeln. Die tatsächlichen Werte hängen von deiner spezifischen Pensions&shy;kasse, Lohn&shy;entwicklung und zukünftigen Gesetzes&shy;änderungen ab.</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Quellen & weiter&shy;führende Informationen</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/wirtschaftliche-soziale-situation-bevoelkerung/gleichstellung-frau-mann/einkommen/pension-gap.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Gender Pension Gap – Bundesamt für Statistik</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.ahv-iv.ch/de/Sozialversicherungen/Alters-und-Hinterlassenenversicherung-AHV/Allgemeines" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> AHV-Informationen – ahv-iv.ch</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/bv/grundlagen-und-gesetze/grundlagen.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> BVG-Grundlagen – Bundesamt für Sozialversicherungen</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.ellexx.com/de/close-the-gaps/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Close the Gaps – ellexx</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Alle Angaben ohne Gewähr. Die Berechnung ist eine Schätzung und ersetzt keine professionelle Finanz&shy;beratung.</p>
+            <p class="footer-privacy">Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Constants 2025
+        const COORDINATION_DEDUCTION = 26460; // Koordinationsabzug 2025
+        const MAX_INSURED_SALARY = 90720; // Obere BVG-Grenze 2025
+        const MIN_INSURED_SALARY = 3780; // Untere BVG-Grenze 2025
+        const BVG_INTEREST_RATE = 0.0125; // BVG-Mindestzins
+        const MAX_AHV_MONTHLY = 2520; // Max AHV-Rente 2025
+        const MIN_AHV_MONTHLY = 1260; // Min AHV-Rente 2025
+        const RETIREMENT_YEARS = 20; // Angenommene Rentenbezugsdauer
+
+        // BVG contribution rates (employee share only)
+        const BVG_RATES = {
+            25: 0.035, // 7% total, 3.5% employee
+            35: 0.05,  // 10% total, 5% employee
+            45: 0.075, // 15% total, 7.5% employee
+            55: 0.09   // 18% total, 9% employee
+        };
+
+        function calculate() {
+            const salary100 = parseFloat(document.getElementById('salary').value) || 0;
+            const currentPensum = parseInt(document.getElementById('currentPensum').value);
+            const newPensum = parseInt(document.getElementById('newPensum').value);
+            const duration = parseInt(document.getElementById('duration').value);
+            const ageGroup = parseInt(document.getElementById('age').value);
+
+            // Update displays
+            document.getElementById('currentPensumDisplay').textContent = currentPensum + '%';
+            document.getElementById('newPensumDisplay').textContent = newPensum + '%';
+            document.getElementById('durationDisplay').textContent = duration + (duration === 1 ? ' Jahr' : ' Jahre');
+            document.getElementById('currentPensumText').textContent = currentPensum + '%';
+            document.getElementById('newPensumText').textContent = newPensum + '%';
+
+            // Calculate actual salaries
+            const currentSalary = salary100 * (currentPensum / 100);
+            const newSalary = salary100 * (newPensum / 100);
+
+            document.getElementById('currentIncome').textContent = formatCHF(currentSalary);
+            document.getElementById('newIncome').textContent = formatCHF(newSalary);
+
+            // 1. Direct income loss
+            const yearlyIncomeLoss = currentSalary - newSalary;
+            const totalIncomeLoss = yearlyIncomeLoss * duration;
+
+            // 2. BVG calculation
+            // Current BVG-insured salary (with coordination deduction)
+            const currentBvgSalary = Math.max(0, Math.min(currentSalary - COORDINATION_DEDUCTION, MAX_INSURED_SALARY - COORDINATION_DEDUCTION));
+            const newBvgSalary = Math.max(0, Math.min(newSalary - COORDINATION_DEDUCTION, MAX_INSURED_SALARY - COORDINATION_DEDUCTION));
+
+            document.getElementById('bvgCurrentLabel').textContent = formatCHF(currentBvgSalary);
+            document.getElementById('bvgNewLabel').textContent = formatCHF(newBvgSalary);
+
+            // BVG bar visualization
+            const bvgPercentage = currentBvgSalary > 0 ? Math.round((newBvgSalary / currentBvgSalary) * 100) : 0;
+            document.getElementById('bvgBarReduced').style.width = bvgPercentage + '%';
+            document.getElementById('bvgBarReduced').textContent = bvgPercentage + '%';
+
+            // BVG capital loss calculation
+            const bvgRate = BVG_RATES[ageGroup] * 2; // Total rate (employer + employee)
+            const yearlyBvgCurrent = currentBvgSalary * bvgRate;
+            const yearlyBvgNew = newBvgSalary * bvgRate;
+            const yearlyBvgLoss = yearlyBvgCurrent - yearlyBvgNew;
+
+            // Calculate years until retirement (assume 65)
+            const currentAge = ageGroup + 5; // Middle of age group
+            const yearsToRetirement = Math.max(0, 65 - currentAge);
+
+            // Compound BVG loss with interest until retirement
+            let totalBvgLoss = 0;
+            for (let i = 0; i < duration && i < yearsToRetirement; i++) {
+                const yearsToCompound = yearsToRetirement - i;
+                totalBvgLoss += yearlyBvgLoss * Math.pow(1 + BVG_INTEREST_RATE, yearsToCompound);
+            }
+
+            // 3. AHV calculation (simplified)
+            // AHV depends on average lifetime income
+            // Rough estimate: Each 1% lower average = ~0.5% lower pension
+            const avgIncomeReduction = (yearlyIncomeLoss * duration) / (44 * salary100); // Rough lifetime impact
+            const estimatedAhvMonthlyLoss = MAX_AHV_MONTHLY * avgIncomeReduction * 0.5;
+            const totalAhvLoss = Math.max(0, estimatedAhvMonthlyLoss * 12 * RETIREMENT_YEARS);
+
+            // Total lifetime loss
+            const totalLoss = totalIncomeLoss + totalBvgLoss + totalAhvLoss;
+
+            // Update UI
+            document.getElementById('totalLoss').textContent = formatCHF(totalLoss);
+            document.getElementById('incomeLoss').textContent = '- ' + formatCHF(totalIncomeLoss);
+            document.getElementById('bvgLoss').textContent = '- ' + formatCHF(totalBvgLoss);
+            document.getElementById('ahvLoss').textContent = '- ' + formatCHF(totalAhvLoss);
+            document.getElementById('totalLossBreakdown').textContent = '- ' + formatCHF(totalLoss);
+
+            // Equivalents
+            const monthsEquivalent = Math.round(totalLoss / (currentSalary / 12));
+            document.getElementById('equivalentMonths').textContent = '= ' + monthsEquivalent + ' Monatsgehälter';
+
+            const yearsEquivalent = (totalLoss / salary100).toFixed(1);
+            document.getElementById('equivalentValue').textContent = yearsEquivalent + ' Jahren';
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + Math.round(amount).toLocaleString('de-CH');
+        }
+
+        function getShareText() {
+            const totalLoss = document.getElementById('totalLoss').textContent;
+            const currentPensum = document.getElementById('currentPensum').value;
+            const newPensum = document.getElementById('newPensum').value;
+            const duration = document.getElementById('duration').value;
+            return `Teilzeit-Rechner: Eine Reduktion von ${currentPensum}% auf ${newPensum}% für ${duration} Jahre kostet mich ${totalLoss} über mein Leben! 😱 Berechne deine Einbusse: https://wieviel.ch/teilzeit/`;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Kopiert!';
+                setTimeout(() => btn.innerHTML = originalText, 2000);
+            });
+        }
+
+        // Dark mode
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            },
+            toggle() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem(this.STORAGE_KEY, !isDark);
+            }
+        };
+
+        DarkMode.init();
+        calculate();
+    </script>
 </body>
 </html>
