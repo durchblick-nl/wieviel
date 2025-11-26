@@ -52,6 +52,50 @@
         .bmi-info-item.overweight { background: rgba(241, 196, 15, 0.15); color: #d68910; }
         .bmi-info-item.obese { background: rgba(231, 76, 60, 0.15); color: #c0392b; }
         .bmi-info-item .range { font-weight: 700; font-size: 1rem; }
+
+        /* Info sections */
+        .info-section { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border-color); }
+        .info-section h2 { margin: 0 0 1rem 0; font-size: 1.3rem; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem; }
+        .info-section p { margin: 0.5rem 0; line-height: 1.6; }
+
+        /* WHO Classification table */
+        .bmi-table-container { overflow-x: auto; margin-top: 1rem; }
+        .bmi-classification-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .bmi-classification-table th, .bmi-classification-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .bmi-classification-table th { background: var(--primary-color); color: white; font-weight: 600; }
+        .bmi-classification-table tbody tr:hover { background: rgba(63, 96, 111, 0.05); }
+        .cat-underweight-severe td:first-child { border-left: 4px solid #2980b9; }
+        .cat-underweight-moderate td:first-child { border-left: 4px solid #3498db; }
+        .cat-underweight-mild td:first-child { border-left: 4px solid #5dade2; }
+        .cat-normal td:first-child { border-left: 4px solid #27ae60; }
+        .cat-normal { background: rgba(46, 204, 113, 0.1); }
+        .cat-overweight td:first-child { border-left: 4px solid #f1c40f; }
+        .cat-obese1 td:first-child { border-left: 4px solid #e67e22; }
+        .cat-obese2 td:first-child { border-left: 4px solid #e74c3c; }
+        .cat-obese3 td:first-child { border-left: 4px solid #c0392b; }
+
+        /* Formula box */
+        .formula-box { background: var(--primary-color); color: white; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; font-size: 1.1rem; margin: 0.75rem 0; }
+
+        /* Waist table */
+        .waist-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
+        .waist-table th, .waist-table td { padding: 0.5rem; text-align: center; border: 1px solid var(--border-color); }
+        .waist-table th { background: rgba(63, 96, 111, 0.1); font-weight: 600; }
+        .waist-table td:first-child { text-align: left; font-weight: 500; }
+
+        /* Full width card */
+        .info-step-card.full-width { grid-column: 1 / -1; }
+
+        /* Disclaimer section */
+        .disclaimer-section { background: rgba(52, 152, 219, 0.1); border-left: 4px solid #3498db; }
+        .disclaimer-section p { margin: 0; }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .bmi-classification-table { font-size: 0.8rem; }
+            .bmi-classification-table th, .bmi-classification-table td { padding: 0.5rem 0.75rem; }
+            .waist-table { font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body>
@@ -186,28 +230,146 @@
             </div>
         </div>
 
+        <!-- Ausführliche WHO-Klassifikation -->
+        <div class="info-section">
+            <h2><i class="fas fa-table"></i> WHO-Klassifikation</h2>
+            <p>Die Weltgesundheitsorganisation (WHO) teilt den BMI seit 1995 in folgende Kategorien ein:</p>
+            <div class="bmi-table-container">
+                <table class="bmi-classification-table">
+                    <thead>
+                        <tr>
+                            <th>Kategorie</th>
+                            <th>BMI (kg/m²)</th>
+                            <th>Gesundheitsrisiko</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cat-underweight-severe">
+                            <td>Starkes Untergewicht</td>
+                            <td>&lt; 16.0</td>
+                            <td>Hoch</td>
+                        </tr>
+                        <tr class="cat-underweight-moderate">
+                            <td>Mässiges Untergewicht</td>
+                            <td>16.0 – 16.9</td>
+                            <td>Mässig erhöht</td>
+                        </tr>
+                        <tr class="cat-underweight-mild">
+                            <td>Leichtes Untergewicht</td>
+                            <td>17.0 – 18.4</td>
+                            <td>Leicht erhöht</td>
+                        </tr>
+                        <tr class="cat-normal">
+                            <td><strong>Normalgewicht</strong></td>
+                            <td><strong>18.5 – 24.9</strong></td>
+                            <td><strong>Niedrig</strong></td>
+                        </tr>
+                        <tr class="cat-overweight">
+                            <td>Präadipositas (Übergewicht)</td>
+                            <td>25.0 – 29.9</td>
+                            <td>Leicht erhöht</td>
+                        </tr>
+                        <tr class="cat-obese1">
+                            <td>Adipositas Grad I</td>
+                            <td>30.0 – 34.9</td>
+                            <td>Erhöht</td>
+                        </tr>
+                        <tr class="cat-obese2">
+                            <td>Adipositas Grad II</td>
+                            <td>35.0 – 39.9</td>
+                            <td>Hoch</td>
+                        </tr>
+                        <tr class="cat-obese3">
+                            <td>Adipositas Grad III</td>
+                            <td>≥ 40.0</td>
+                            <td>Sehr hoch</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div class="info-cards-container">
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-history"></i></div>
+                <div class="step-content">
+                    <h3>Geschichte des BMI</h3>
+                    <p>Der BMI wurde <strong>1832</strong> vom belgischen Mathematiker und Statistiker <strong>Adolphe Quetelet</strong> entwickelt – ursprünglich als «Quetelet-Index» für Bevölkerungsstudien, nicht für medizinische Einzelbewertungen.</p>
+                    <p>Erst <strong>1972</strong> machte der Physiologe <strong>Ancel Keys</strong> den Index unter dem Namen «Body Mass Index» bekannt und empfahl ihn für epidemiologische Studien.</p>
+                </div>
+            </div>
             <div class="info-step-card">
                 <div class="step-icon"><i class="fas fa-calculator"></i></div>
                 <div class="step-content">
-                    <h3>Was ist der BMI?</h3>
-                    <p>Der Body Mass Index (BMI) ist eine Masszahl für die Bewertung des Körpergewichts im Verhältnis zur Körpergrösse.</p>
-                    <p><strong>Formel:</strong> BMI = Gewicht (kg) / Grösse² (m)</p>
+                    <h3>Berechnung</h3>
+                    <p>Der BMI ist der Quotient aus Körpergewicht und Körpergrösse zum Quadrat:</p>
+                    <p class="formula-box"><strong>BMI = Gewicht (kg) ÷ Grösse² (m)</strong></p>
+                    <p><em>Beispiel:</em> 75 kg bei 1.75 m → 75 ÷ 1.75² = 75 ÷ 3.0625 = <strong>24.5</strong></p>
                 </div>
             </div>
+        </div>
+
+        <div class="info-cards-container">
             <div class="info-step-card">
                 <div class="step-icon"><i class="fas fa-exclamation-triangle"></i></div>
                 <div class="step-content">
-                    <h3>Einschränkungen</h3>
-                    <p>Der BMI berücksichtigt nicht:</p>
+                    <h3>Einschränkungen & Kritik</h3>
+                    <p>Der BMI ist als <strong>alleinige Masszahl wenig aussagekräftig</strong>, da er wichtige Faktoren nicht berücksichtigt:</p>
                     <ul>
-                        <li>Muskelmasse vs. Fettmasse</li>
-                        <li>Fettverteilung</li>
-                        <li>Alter und Geschlecht</li>
-                        <li>Körperbau</li>
+                        <li><strong>Körperzusammensetzung:</strong> Unterscheidet nicht zwischen Muskel- und Fettmasse (Sportler können «übergewichtig» erscheinen)</li>
+                        <li><strong>Fettverteilung:</strong> Bauchfett (Apfeltyp) ist gefährlicher als Hüftfett (Birnentyp)</li>
+                        <li><strong>Alter & Geschlecht:</strong> Werden nicht einbezogen</li>
+                        <li><strong>Körperbau:</strong> Sehr grosse oder kleine Menschen werden verzerrt dargestellt</li>
                     </ul>
+                    <p><em>Quetelet selbst entwickelte den Index für Bevölkerungsstudien – nicht für individuelle Diagnosen.</em></p>
                 </div>
             </div>
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-ruler-horizontal"></i></div>
+                <div class="step-content">
+                    <h3>Bessere Alternative: Taillenumfang</h3>
+                    <p>Der <strong>Taillenumfang</strong> ist ein besserer Indikator für gesundheitliche Risiken, da er das gefährliche Bauchfett misst:</p>
+                    <table class="waist-table">
+                        <tr>
+                            <th></th>
+                            <th>Erhöhtes Risiko</th>
+                            <th>Stark erhöht</th>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-female"></i> Frauen</td>
+                            <td>≥ 80 cm</td>
+                            <td>≥ 88 cm</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-male"></i> Männer</td>
+                            <td>≥ 94 cm</td>
+                            <td>≥ 102 cm</td>
+                        </tr>
+                    </table>
+                    <p><em>Messen Sie auf Höhe des Bauchnabels, entspannt ausatmen.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-cards-container">
+            <div class="info-step-card full-width">
+                <div class="step-icon"><i class="fas fa-child"></i></div>
+                <div class="step-content">
+                    <h3>BMI bei Kindern und Jugendlichen</h3>
+                    <p>Die obigen Grenzwerte gelten <strong>nur für Erwachsene ab 18 Jahren</strong>. Bei Kindern und Jugendlichen müssen alters- und geschlechtsspezifische Veränderungen berücksichtigt werden.</p>
+                    <p>Für Kinder werden <strong>BMI-Perzentilenkurven</strong> verwendet. Dabei gilt:</p>
+                    <ul>
+                        <li><strong>Übergewicht:</strong> BMI über der 90. Perzentile</li>
+                        <li><strong>Adipositas:</strong> BMI über der 97. Perzentile</li>
+                        <li><strong>Extreme Adipositas:</strong> BMI über der 99.5. Perzentile</li>
+                    </ul>
+                    <p><em>Konsultieren Sie bei Kindern einen Kinderarzt für eine korrekte Einschätzung.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section disclaimer-section">
+            <p><i class="fas fa-info-circle"></i> <strong>Hinweis:</strong> Gesund sein bedeutet mehr als einen «normalen» BMI-Wert zu haben. Der BMI ist ein Richtwert und ersetzt keine ärztliche Beratung. Bei Fragen zu Ihrem Gewicht wenden Sie sich an Ihren Arzt.</p>
         </div>
     </div>
 

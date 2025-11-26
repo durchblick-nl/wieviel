@@ -52,6 +52,50 @@
         .bmi-info-item.overweight { background: rgba(241, 196, 15, 0.15); color: #d68910; }
         .bmi-info-item.obese { background: rgba(231, 76, 60, 0.15); color: #c0392b; }
         .bmi-info-item .range { font-weight: 700; font-size: 1rem; }
+
+        /* Info sections */
+        .info-section { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border-color); }
+        .info-section h2 { margin: 0 0 1rem 0; font-size: 1.3rem; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem; }
+        .info-section p { margin: 0.5rem 0; line-height: 1.6; }
+
+        /* WHO Classification table */
+        .bmi-table-container { overflow-x: auto; margin-top: 1rem; }
+        .bmi-classification-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .bmi-classification-table th, .bmi-classification-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .bmi-classification-table th { background: var(--primary-color); color: white; font-weight: 600; }
+        .bmi-classification-table tbody tr:hover { background: rgba(63, 96, 111, 0.05); }
+        .cat-underweight-severe td:first-child { border-left: 4px solid #2980b9; }
+        .cat-underweight-moderate td:first-child { border-left: 4px solid #3498db; }
+        .cat-underweight-mild td:first-child { border-left: 4px solid #5dade2; }
+        .cat-normal td:first-child { border-left: 4px solid #27ae60; }
+        .cat-normal { background: rgba(46, 204, 113, 0.1); }
+        .cat-overweight td:first-child { border-left: 4px solid #f1c40f; }
+        .cat-obese1 td:first-child { border-left: 4px solid #e67e22; }
+        .cat-obese2 td:first-child { border-left: 4px solid #e74c3c; }
+        .cat-obese3 td:first-child { border-left: 4px solid #c0392b; }
+
+        /* Formula box */
+        .formula-box { background: var(--primary-color); color: white; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; font-size: 1.1rem; margin: 0.75rem 0; }
+
+        /* Waist table */
+        .waist-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
+        .waist-table th, .waist-table td { padding: 0.5rem; text-align: center; border: 1px solid var(--border-color); }
+        .waist-table th { background: rgba(63, 96, 111, 0.1); font-weight: 600; }
+        .waist-table td:first-child { text-align: left; font-weight: 500; }
+
+        /* Full width card */
+        .info-step-card.full-width { grid-column: 1 / -1; }
+
+        /* Disclaimer section */
+        .disclaimer-section { background: rgba(52, 152, 219, 0.1); border-left: 4px solid #3498db; }
+        .disclaimer-section p { margin: 0; }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .bmi-classification-table { font-size: 0.8rem; }
+            .bmi-classification-table th, .bmi-classification-table td { padding: 0.5rem 0.75rem; }
+            .waist-table { font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body>
@@ -186,28 +230,146 @@
             </div>
         </div>
 
+        <!-- Classification OMS détaillée -->
+        <div class="info-section">
+            <h2><i class="fas fa-table"></i> Classification OMS</h2>
+            <p>L'Organisation mondiale de la santé (OMS) classe l'IMC dans les catégories suivantes depuis 1995:</p>
+            <div class="bmi-table-container">
+                <table class="bmi-classification-table">
+                    <thead>
+                        <tr>
+                            <th>Catégorie</th>
+                            <th>IMC (kg/m²)</th>
+                            <th>Risque santé</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cat-underweight-severe">
+                            <td>Insuffisance pondérale sévère</td>
+                            <td>&lt; 16.0</td>
+                            <td>Élevé</td>
+                        </tr>
+                        <tr class="cat-underweight-moderate">
+                            <td>Insuffisance pondérale modérée</td>
+                            <td>16.0 – 16.9</td>
+                            <td>Modérément élevé</td>
+                        </tr>
+                        <tr class="cat-underweight-mild">
+                            <td>Insuffisance pondérale légère</td>
+                            <td>17.0 – 18.4</td>
+                            <td>Légèrement élevé</td>
+                        </tr>
+                        <tr class="cat-normal">
+                            <td><strong>Poids normal</strong></td>
+                            <td><strong>18.5 – 24.9</strong></td>
+                            <td><strong>Faible</strong></td>
+                        </tr>
+                        <tr class="cat-overweight">
+                            <td>Pré-obésité (surpoids)</td>
+                            <td>25.0 – 29.9</td>
+                            <td>Légèrement élevé</td>
+                        </tr>
+                        <tr class="cat-obese1">
+                            <td>Obésité classe I</td>
+                            <td>30.0 – 34.9</td>
+                            <td>Élevé</td>
+                        </tr>
+                        <tr class="cat-obese2">
+                            <td>Obésité classe II</td>
+                            <td>35.0 – 39.9</td>
+                            <td>Très élevé</td>
+                        </tr>
+                        <tr class="cat-obese3">
+                            <td>Obésité classe III</td>
+                            <td>≥ 40.0</td>
+                            <td>Extrêmement élevé</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div class="info-cards-container">
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-history"></i></div>
+                <div class="step-content">
+                    <h3>Histoire de l'IMC</h3>
+                    <p>L'IMC a été développé en <strong>1832</strong> par le mathématicien et statisticien belge <strong>Adolphe Quetelet</strong> – à l'origine sous le nom d'«Indice de Quetelet» pour des études de population, et non pour des évaluations médicales individuelles.</p>
+                    <p>Ce n'est qu'en <strong>1972</strong> que le physiologiste <strong>Ancel Keys</strong> a popularisé l'indice sous le nom d'«Indice de Masse Corporelle» et l'a recommandé pour les études épidémiologiques.</p>
+                </div>
+            </div>
             <div class="info-step-card">
                 <div class="step-icon"><i class="fas fa-calculator"></i></div>
                 <div class="step-content">
-                    <h3>Qu'est-ce que l'IMC?</h3>
-                    <p>L'Indice de Masse Corporelle (IMC) est une mesure permettant d'évaluer le poids corporel par rapport à la taille.</p>
-                    <p><strong>Formule:</strong> IMC = Poids (kg) / Taille² (m)</p>
+                    <h3>Calcul</h3>
+                    <p>L'IMC est le quotient du poids corporel par le carré de la taille:</p>
+                    <p class="formula-box"><strong>IMC = Poids (kg) ÷ Taille² (m)</strong></p>
+                    <p><em>Exemple:</em> 75 kg pour 1.75 m → 75 ÷ 1.75² = 75 ÷ 3.0625 = <strong>24.5</strong></p>
                 </div>
             </div>
+        </div>
+
+        <div class="info-cards-container">
             <div class="info-step-card">
                 <div class="step-icon"><i class="fas fa-exclamation-triangle"></i></div>
                 <div class="step-content">
-                    <h3>Limites</h3>
-                    <p>L'IMC ne prend pas en compte:</p>
+                    <h3>Limites & critiques</h3>
+                    <p>L'IMC seul est <strong>peu significatif</strong> car il ne tient pas compte de facteurs importants:</p>
                     <ul>
-                        <li>Masse musculaire vs graisseuse</li>
-                        <li>Répartition des graisses</li>
-                        <li>Âge et sexe</li>
-                        <li>Morphologie</li>
+                        <li><strong>Composition corporelle:</strong> Ne distingue pas la masse musculaire de la masse grasse (les sportifs peuvent paraître «en surpoids»)</li>
+                        <li><strong>Répartition des graisses:</strong> La graisse abdominale (type pomme) est plus dangereuse que la graisse des hanches (type poire)</li>
+                        <li><strong>Âge & sexe:</strong> Non pris en compte</li>
+                        <li><strong>Morphologie:</strong> Les personnes très grandes ou petites sont mal représentées</li>
                     </ul>
+                    <p><em>Quetelet lui-même a développé l'indice pour des études de population – pas pour des diagnostics individuels.</em></p>
                 </div>
             </div>
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-ruler-horizontal"></i></div>
+                <div class="step-content">
+                    <h3>Meilleure alternative: Tour de taille</h3>
+                    <p>Le <strong>tour de taille</strong> est un meilleur indicateur des risques pour la santé car il mesure la graisse abdominale dangereuse:</p>
+                    <table class="waist-table">
+                        <tr>
+                            <th></th>
+                            <th>Risque élevé</th>
+                            <th>Risque très élevé</th>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-female"></i> Femmes</td>
+                            <td>≥ 80 cm</td>
+                            <td>≥ 88 cm</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-male"></i> Hommes</td>
+                            <td>≥ 94 cm</td>
+                            <td>≥ 102 cm</td>
+                        </tr>
+                    </table>
+                    <p><em>Mesurez à la hauteur du nombril, en expirant normalement.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-cards-container">
+            <div class="info-step-card full-width">
+                <div class="step-icon"><i class="fas fa-child"></i></div>
+                <div class="step-content">
+                    <h3>IMC chez les enfants et adolescents</h3>
+                    <p>Les valeurs limites ci-dessus ne s'appliquent <strong>qu'aux adultes de 18 ans et plus</strong>. Pour les enfants et adolescents, les variations liées à l'âge et au sexe doivent être prises en compte.</p>
+                    <p>Pour les enfants, on utilise des <strong>courbes de percentiles d'IMC</strong>. En règle générale:</p>
+                    <ul>
+                        <li><strong>Surpoids:</strong> IMC au-dessus du 90e percentile</li>
+                        <li><strong>Obésité:</strong> IMC au-dessus du 97e percentile</li>
+                        <li><strong>Obésité extrême:</strong> IMC au-dessus du 99.5e percentile</li>
+                    </ul>
+                    <p><em>Pour les enfants, consultez un pédiatre pour une évaluation correcte.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section disclaimer-section">
+            <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> Être en bonne santé, c'est plus qu'avoir un IMC «normal». L'IMC est une valeur indicative et ne remplace pas un avis médical. Pour toute question concernant votre poids, consultez votre médecin.</p>
         </div>
     </div>
 
