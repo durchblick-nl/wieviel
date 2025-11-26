@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Light version for dark backgrounds -->
+  <defs>
+    <linearGradient id="grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5a8a9d"/>
+      <stop offset="100%" style="stop-color:#8ab4c4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main circle - lighter for dark backgrounds -->
+  <circle cx="50" cy="50" r="46" fill="url(#grad-light)"/>
+
+  <!-- Stylized "?" -->
+  <path d="M 35 28 Q 35 20 50 20 Q 65 20 65 32 Q 65 42 50 48 L 50 56"
+        fill="none"
+        stroke="white"
+        stroke-width="8"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Equals sign -->
+  <rect x="42" y="68" width="16" height="6" rx="3" fill="white"/>
+  <rect x="42" y="78" width="16" height="6" rx="3" fill="#cc5c53"/>
+</svg>
