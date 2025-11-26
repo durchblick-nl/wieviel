@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagerechner | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script>
+        const lang = navigator.language || navigator.userLanguage;
+        const isFrench = lang.toLowerCase().startsWith('fr');
+        window.location.replace(isFrench ? 'fr/' : 'de/');
+    </script>
+</head>
+<body>
+    <p>Redirecting... / Redirection...</p>
+    <p><a href="de/">Deutsch</a> | <a href="fr/">Français</a></p>
+</body>
+</html>

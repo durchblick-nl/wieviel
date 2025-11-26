@@ -21,6 +21,7 @@ A collection of useful calculators for the general public in Switzerland.
 | **BMI-Rechner** | `/bmi/` | Body Mass Index calculator |
 | **Fleisch- & CO2-Rechner** | `/fleisch/` | Meat consumption & CO2 footprint calculator |
 | **Bussenrechner** | `/busse/` | Swiss speed fine calculator (OBV) |
+| **Tagerechner** | `/tage/` | Date/day calculator (days between dates, weekdays, working days) |
 
 ### Planned Tools:
 - **Ferienkürzung** (`/ferienkuerzung/`) - Holiday reduction calculator (Art. 329b OR)
@@ -65,10 +66,14 @@ wieviel.ch/
 │   ├── index.html          # Language redirect
 │   ├── de/index.html       # Fleisch- & CO2-Rechner (DE)
 │   └── fr/index.html       # Calculateur viande & CO2 (FR)
-└── busse/
+├── busse/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # Bussenrechner (DE)
+│   └── fr/index.html       # Calculateur d'amendes (FR)
+└── tage/
     ├── index.html          # Language redirect
-    ├── de/index.html       # Bussenrechner (DE)
-    └── fr/index.html       # Calculateur d'amendes (FR)
+    ├── de/index.html       # Tagerechner (DE)
+    └── fr/index.html       # Calculateur de jours (FR)
 ```
 
 ## Tech Stack
@@ -174,6 +179,18 @@ Raser thresholds (Via Sicura, Art. 90 SVG):
 | 50 km/h | +50 km/h |
 | 80 km/h | +60 km/h |
 | 120 km/h | +80 km/h |
+
+### Tagerechner - Date/Day Calculator
+Four calculation modes:
+1. **Tage zählen**: Days between two dates (inclusive option)
+2. **Datum +/-**: Add or subtract days/weeks/months/years from a date
+3. **Wochentag**: Find the weekday for any date
+4. **Werktage**: Count working days (Mon-Fri) between dates
+
+Features:
+- ISO 8601 calendar week calculation
+- Breakdown into years, months, weeks, days
+- Color-coded weekday display (weekend = red)
 
 ## Related Projects
 
