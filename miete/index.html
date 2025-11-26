@@ -240,33 +240,6 @@
         .share-btn.copy { background: var(--secondary-color); color: white; }
         .share-btn:hover { transform: translateY(-2px); }
 
-        .timeline-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-        .timeline-date {
-            min-width: 100px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        .timeline-rate {
-            font-family: 'Economica', sans-serif;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-        .timeline-change {
-            font-size: 0.85rem;
-            color: var(--text-color);
-            opacity: 0.7;
-        }
-        .timeline-change.down { color: #2e7d32; opacity: 1; }
-        .timeline-change.up { color: #cc5c53; opacity: 1; }
-
         .seo-content { margin-top: 3rem; }
         .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
         .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
@@ -281,9 +254,32 @@
         .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
         .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
 
-        .timeline {
-            margin: 2rem 0;
-            overflow-x: auto;
+        .rate-chart {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .chart-svg {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+        .chart-label {
+            font-size: 12px;
+            fill: var(--text-color);
+            opacity: 0.7;
+        }
+        .chart-label-small {
+            font-size: 10px;
+            fill: var(--text-color);
+            opacity: 0.6;
+        }
+        .chart-current {
+            font-size: 14px;
+            font-weight: bold;
+            fill: var(--accent-color);
         }
 
         .justis-card {
@@ -491,32 +487,73 @@
             <p>Diese unterschiedlichen Sätze ergeben sich mathematisch: Eine Erhöhung um 3% und anschliessende Senkung um 2.91% führt wieder zum ursprünglichen Betrag.</p>
 
             <h3>Entwicklung des Referenzzinssatzes</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="timeline-date">Sep. 2025</span>
-                    <span class="timeline-rate">1.25%</span>
-                    <span class="timeline-change down">↓ von 1.50%</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">März 2025</span>
-                    <span class="timeline-rate">1.50%</span>
-                    <span class="timeline-change down">↓ von 1.75%</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">Dez. 2024</span>
-                    <span class="timeline-rate">1.75%</span>
-                    <span class="timeline-change up">↑ von 1.50%</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">Juni 2023</span>
-                    <span class="timeline-rate">1.50%</span>
-                    <span class="timeline-change up">↑ von 1.25%</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">2008–2023</span>
-                    <span class="timeline-rate">1.25%–3.50%</span>
-                    <span class="timeline-change">Einführung Referenzzinssatz</span>
-                </div>
+            <div class="rate-chart">
+                <svg viewBox="0 0 600 280" class="chart-svg">
+                    <!-- Grid lines -->
+                    <line x1="60" y1="40" x2="580" y2="40" stroke="var(--border-color)" stroke-dasharray="4"/>
+                    <line x1="60" y1="80" x2="580" y2="80" stroke="var(--border-color)" stroke-dasharray="4"/>
+                    <line x1="60" y1="120" x2="580" y2="120" stroke="var(--border-color)" stroke-dasharray="4"/>
+                    <line x1="60" y1="160" x2="580" y2="160" stroke="var(--border-color)" stroke-dasharray="4"/>
+                    <line x1="60" y1="200" x2="580" y2="200" stroke="var(--border-color)" stroke-dasharray="4"/>
+
+                    <!-- Y-axis labels -->
+                    <text x="50" y="44" text-anchor="end" class="chart-label">3.5%</text>
+                    <text x="50" y="84" text-anchor="end" class="chart-label">3.0%</text>
+                    <text x="50" y="124" text-anchor="end" class="chart-label">2.5%</text>
+                    <text x="50" y="164" text-anchor="end" class="chart-label">2.0%</text>
+                    <text x="50" y="204" text-anchor="end" class="chart-label">1.5%</text>
+                    <text x="50" y="244" text-anchor="end" class="chart-label">1.0%</text>
+
+                    <!-- X-axis labels -->
+                    <text x="80" y="268" text-anchor="middle" class="chart-label">2008</text>
+                    <text x="180" y="268" text-anchor="middle" class="chart-label">2012</text>
+                    <text x="280" y="268" text-anchor="middle" class="chart-label">2016</text>
+                    <text x="380" y="268" text-anchor="middle" class="chart-label">2020</text>
+                    <text x="480" y="268" text-anchor="middle" class="chart-label">2024</text>
+                    <text x="560" y="268" text-anchor="middle" class="chart-label">2025</text>
+
+                    <!-- Rate line - historical data -->
+                    <polyline
+                        fill="none"
+                        stroke="var(--primary-color)"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        points="
+                            80,40
+                            100,56
+                            130,72
+                            160,88
+                            200,104
+                            240,120
+                            280,152
+                            320,168
+                            360,184
+                            400,200
+                            440,200
+                            470,200
+                            490,184
+                            510,168
+                            530,184
+                            550,200
+                            570,216
+                        "/>
+
+                    <!-- Data points with labels -->
+                    <circle cx="80" cy="40" r="5" fill="var(--primary-color)"/>
+                    <circle cx="470" cy="200" r="5" fill="var(--primary-color)"/>
+                    <circle cx="510" cy="168" r="5" fill="var(--primary-color)"/>
+                    <circle cx="550" cy="184" r="5" fill="var(--primary-color)"/>
+                    <circle cx="570" cy="216" r="6" fill="var(--accent-color)" stroke="white" stroke-width="2"/>
+
+                    <!-- Current rate highlight -->
+                    <text x="570" y="235" text-anchor="middle" class="chart-current">1.25%</text>
+                    <text x="570" y="248" text-anchor="middle" class="chart-label-small">aktuell</text>
+
+                    <!-- Key events -->
+                    <text x="80" y="30" text-anchor="middle" class="chart-label-small">3.5%</text>
+                    <text x="470" y="190" text-anchor="middle" class="chart-label-small">1.5%</text>
+                </svg>
             </div>
 
             <h3>Häufige Fragen</h3>
