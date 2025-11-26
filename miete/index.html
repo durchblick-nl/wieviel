@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mietzinsrechner Schweiz 2025 – Referenzzinssatz Miete berechnen | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta name="description" content="Kostenloser Mietzinsrechner für die Schweiz. Berechne deine Mietzinsanpassung basierend auf dem aktuellen Referenzzinssatz (1.25%). Mietsenkung oder Mieterhöhung?">
+    <meta name="keywords" content="Mietzinsrechner, Referenzzinssatz, Miete berechnen, Mietzinssenkung, Mieterhöhung, Schweiz, BWO">
+    <link rel="canonical" href="https://wieviel.ch/miete/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/miete/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/loyer/">
+    <meta property="og:title" content="Mietzinsrechner Schweiz 2025 – Referenzzinssatz">
+    <meta property="og:description" content="Berechne deine Mietzinsanpassung basierend auf dem aktuellen Referenzzinssatz. Mietsenkung oder Mieterhöhung?">
+    <meta property="og:url" content="https://wieviel.ch/miete/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_CH">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mietzinsrechner Schweiz 2025">
+    <meta name="twitter:description" content="Mietzinsanpassung berechnen mit aktuellem Referenzzinssatz.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Mietzinsrechner Schweiz",
+        "url": "https://wieviel.ch/miete/",
+        "description": "Kostenloser Mietzinsrechner für die Schweiz. Berechne Mietzinsanpassungen basierend auf dem Referenzzinssatz.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Wie hoch ist der aktuelle Referenzzinssatz?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Der hypothekarische Referenzzinssatz beträgt aktuell 1.25% (Stand: September 2025). Er wird vom Bundesamt für Wohnungswesen (BWO) vierteljährlich publiziert."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wie viel Mietsenkung kann ich verlangen?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Pro 0.25% Senkung des Referenzzinssatzes können Sie eine Mietzinssenkung von 2.91% verlangen. Allerdings kann der Vermieter Teuerung und Kostensteigerungen gegenrechnen."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wann kann ich eine Mietsenkung verlangen?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sie können eine Mietsenkung verlangen, wenn der aktuelle Referenzzinssatz tiefer liegt als der Referenzzinssatz bei Ihrer letzten Mietzinsfestsetzung. Der Anspruch verjährt nicht."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Kann der Vermieter die Mietsenkung ablehnen?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Der Vermieter kann die Mietsenkung nicht ablehnen, aber Kostensteigerungen (Teuerung, Unterhaltskosten) gegenrechnen. Bei Streitigkeiten ist die Schlichtungsbehörde zuständig."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rate-display {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .rate-display .rate-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.25rem;
+        }
+        .rate-display .rate-value {
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Economica', sans-serif;
+        }
+        .rate-display .rate-date {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        .rate-display .rate-source {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+        }
+        .rate-display .rate-source a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .direction-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .direction-btn {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--primary-color);
+            background: var(--card-bg);
+            color: var(--primary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .direction-btn:hover {
+            background: var(--light-bg);
+        }
+        .direction-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .rate-select-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 500px) {
+            .rate-select-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .rate-option {
+            padding: 0.75rem 0.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--card-bg);
+            font-weight: 600;
+        }
+        .rate-option:hover {
+            border-color: var(--primary-color);
+        }
+        .rate-option.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        .rate-option.current {
+            position: relative;
+        }
+        .rate-option.current::after {
+            content: 'aktuell';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .result-box.increase { background: linear-gradient(135deg, #cc5c53, #e07a71); }
+        .result-box.decrease { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+        .result-box.neutral { background: linear-gradient(135deg, #666, #888); }
+
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .breakdown-row.total .value { color: var(--primary-color); }
+
+        .info-box {
+            background: var(--light-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        .info-box.warning {
+            border-left-color: var(--accent-color);
+            background: rgba(204, 92, 83, 0.1);
+        }
+        .info-box h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+        .info-box.warning h4 {
+            color: var(--accent-color);
+        }
+        .info-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        .timeline {
+            margin: 2rem 0;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-date {
+            min-width: 100px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .timeline-rate {
+            font-family: 'Economica', sans-serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .timeline-change {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        .timeline-change.down { color: #2e7d32; opacity: 1; }
+        .timeline-change.up { color: #cc5c53; opacity: 1; }
+
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
+        .seo-content p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-color); }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        .justis-card {
+            background: linear-gradient(135deg, #1a365d, #2c5282);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: white;
+            margin: 1.5rem 0;
+        }
+        .justis-card h4 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.1rem;
+        }
+        .justis-card p {
+            margin: 0 0 1rem 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        .justis-card a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: #1a365d;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .justis-card a:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <span class="lang-btn active">DE</span>
+                <a href="https://calcule.ch/loyer/" class="lang-btn">FR</a>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1><span class="title-icon">🏠</span>Mietzinsrechner</h1>
+            <p class="page-subtitle">Mietzinsanpassung nach Referenzzinssatz</p>
+        </div>
+
+        <nav class="tool-nav">
+            <a href="../">Alle Tools</a>
+        </nav>
+
+        <div class="rate-display">
+            <div class="rate-label">Aktueller Referenzzinssatz</div>
+            <div class="rate-value">1.25%</div>
+            <div class="rate-date">Gültig seit 3. September 2025</div>
+            <div class="rate-source">Quelle: <a href="https://www.bwo.admin.ch/de/referenzzinssatz" target="_blank" rel="noopener">BWO</a></div>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-file-contract"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Mietvertrag</h3>
+                    <p>Gib deine aktuelle Miete und den Referenzzinssatz bei Vertragsabschluss ein.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-percentage"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Zinssatz</h3>
+                    <p>Wähle den Referenzzinssatz bei der letzten Mietzinsfestsetzung.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calculator"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Anpassung</h3>
+                    <p>Sieh, ob du eine Mietsenkung verlangen kannst.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label for="currentRent">Aktuelle Nettomiete (monatlich)</label>
+                <div style="position: relative;">
+                    <input type="number" id="currentRent" value="1500" min="0" step="10" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                </div>
+                <small class="form-hint">Mietzins ohne Nebenkosten (Heizung, etc.)</small>
+            </div>
+
+            <div class="form-group">
+                <label>Referenzzinssatz bei letzter Mietzinsfestsetzung</label>
+                <div class="rate-select-grid">
+                    <div class="rate-option" data-rate="3.00">3.00%</div>
+                    <div class="rate-option" data-rate="2.75">2.75%</div>
+                    <div class="rate-option" data-rate="2.50">2.50%</div>
+                    <div class="rate-option" data-rate="2.25">2.25%</div>
+                    <div class="rate-option" data-rate="2.00">2.00%</div>
+                    <div class="rate-option" data-rate="1.75">1.75%</div>
+                    <div class="rate-option active" data-rate="1.50">1.50%</div>
+                    <div class="rate-option current" data-rate="1.25">1.25%</div>
+                </div>
+                <small class="form-hint">Steht im Mietvertrag oder auf der letzten Mietzinsanpassung</small>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fas fa-info-circle"></i> Nicht sicher?</h4>
+                <p>Der Referenzzinssatz steht auf dem Mietvertrag (seit 2008) oder auf der letzten Mitteilung zur Mietzinsanpassung. Falls nicht vorhanden, gilt der Satz bei Mietbeginn.</p>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box decrease" id="resultBox">
+                <div class="label" id="resultLabel">Mögliche Mietsenkung</div>
+                <div class="total" id="mainResult">- CHF 43.65</div>
+                <div class="sub" id="resultSub">pro Monat (2.91% Senkung)</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-list"></i> Berechnung</h3>
+                <div class="breakdown-row">
+                    <span class="label">Referenzzinssatz bei Festsetzung</span>
+                    <span class="value" id="oldRate">1.50%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Aktueller Referenzzinssatz</span>
+                    <span class="value" id="newRate">1.25%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Differenz</span>
+                    <span class="value" id="rateDiff">-0.25%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Mietzinsanpassung</span>
+                    <span class="value" id="percentChange">-2.91%</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Neuer Mietzins</span>
+                    <span class="value" id="newRent">CHF 1'456.35</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-piggy-bank"></i> Ersparnis</h3>
+                <div class="breakdown-row">
+                    <span class="label">Pro Monat</span>
+                    <span class="value" id="savingsMonth">CHF 43.65</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Pro Jahr</span>
+                    <span class="value" id="savingsYear">CHF 523.80</span>
+                </div>
+            </div>
+
+            <div class="info-box warning" id="warningBox">
+                <h4><i class="fas fa-exclamation-triangle"></i> Wichtig</h4>
+                <p>Der Vermieter kann Kostensteigerungen gegenrechnen: 40% Teuerung seit letzter Festsetzung plus allgemeine Kostensteigerungen (ca. 0.5% pro Jahr). Die effektive Senkung kann daher geringer ausfallen.</p>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Teilen
+                </button>
+                <button class="share-btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i> Kopieren
+                </button>
+            </div>
+        </div>
+
+        <div class="justis-card">
+            <h4><i class="fas fa-balance-scale"></i> Rechtliche Beratung nötig?</h4>
+            <p>Bei Fragen zur Mietzinsanpassung oder wenn der Vermieter nicht reagiert: Bei <a href="https://www.justis.ch" target="_blank" rel="noopener">JUSTIS</a> erhältst du auch bei noch nicht versicherten Fällen eine kostenlose Ersteinschätzung.</p>
+            <a href="https://www.justis.ch" target="_blank" rel="noopener">
+                <i class="fas fa-external-link-alt"></i> Zu JUSTIS
+            </a>
+        </div>
+
+        <section class="seo-content">
+            <h2>So funktioniert der Mietzinsrechner</h2>
+            <p>Der hypothekarische Referenzzinssatz ist die Grundlage für Mietzinsanpassungen in der Schweiz. Er wird vom <strong>Bundesamt für Wohnungswesen (BWO)</strong> vierteljährlich publiziert und basiert auf dem Durchschnittszinssatz für Hypotheken.</p>
+
+            <h3>Die Formel zur Mietzinsanpassung</h3>
+            <p>Die Berechnung basiert auf der sogenannten «relativen Methode»:</p>
+            <ul>
+                <li><strong>Senkung:</strong> Pro 0.25% Senkung des Referenzzinssatzes = <strong>2.91% Mietsenkung</strong></li>
+                <li><strong>Erhöhung:</strong> Pro 0.25% Erhöhung des Referenzzinssatzes = <strong>3.00% Mieterhöhung</strong></li>
+            </ul>
+            <p>Diese unterschiedlichen Sätze ergeben sich mathematisch: Eine Erhöhung um 3% und anschliessende Senkung um 2.91% führt wieder zum ursprünglichen Betrag.</p>
+
+            <h3>Entwicklung des Referenzzinssatzes</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">Sep. 2025</span>
+                    <span class="timeline-rate">1.25%</span>
+                    <span class="timeline-change down">↓ von 1.50%</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">März 2025</span>
+                    <span class="timeline-rate">1.50%</span>
+                    <span class="timeline-change down">↓ von 1.75%</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Dez. 2024</span>
+                    <span class="timeline-rate">1.75%</span>
+                    <span class="timeline-change up">↑ von 1.50%</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Juni 2023</span>
+                    <span class="timeline-rate">1.50%</span>
+                    <span class="timeline-change up">↑ von 1.25%</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2008–2023</span>
+                    <span class="timeline-rate">1.25%–3.50%</span>
+                    <span class="timeline-change">Einführung Referenzzinssatz</span>
+                </div>
+            </div>
+
+            <h3>Häufige Fragen</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Wie verlange ich eine Mietsenkung?</summary>
+                    <p>Schreibe deinem Vermieter einen <strong>eingeschriebenen Brief</strong> mit Verweis auf den gesunkenen Referenzzinssatz. Verlange die Anpassung per nächstmöglichem Kündigungstermin. Der Vermieter muss innerhalb von 30 Tagen antworten. Musterbriefe findest du beim <a href="https://www.mieterverband.ch" target="_blank" rel="noopener">Mieterverband</a>.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was kann der Vermieter gegenrechnen?</summary>
+                    <p>Der Vermieter kann <strong>40% der Teuerung</strong> (Landesindex der Konsumentenpreise) seit der letzten Festsetzung geltend machen. Zusätzlich werden oft <strong>allgemeine Kostensteigerungen</strong> von 0.5% pro Jahr akzeptiert. Wertvermehrende Investitionen können ebenfalls angerechnet werden.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Gilt die Berechnung auch für Altbauwohnungen?</summary>
+                    <p>Ja, der Referenzzinssatz gilt für alle Mietverhältnisse in der Schweiz – Neubau wie Altbau. Bei Altbauten vor 2008 gilt der Zinssatz bei Einführung (3.50%) oder der Satz bei der letzten dokumentierten Mietzinsanpassung.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was ist, wenn mein Vermieter nicht reagiert?</summary>
+                    <p>Wenn der Vermieter nicht innerhalb von 30 Tagen antwortet oder die Senkung ablehnt, kannst du zur <strong>Schlichtungsbehörde</strong> deines Kantons gehen. Das Verfahren ist kostenlos und einfach. Die Behörde vermittelt zwischen den Parteien.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Kann ich rückwirkend eine Senkung verlangen?</summary>
+                    <p>Nein, eine Mietsenkung wirkt immer erst ab dem nächstmöglichen Kündigungstermin (meist 3 Monate). Es gibt keinen Anspruch auf Rückerstattung für die Vergangenheit. Deshalb lohnt es sich, schnell zu handeln.</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Offizielle Quellen</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.bwo.admin.ch/de/referenzzinssatz" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Aktueller Referenzzinssatz – BWO</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.mieterverband.ch/mv/mietrecht-beratung/ratgeber-mietrecht/top-themen/mietzinssenkung.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Mietzinssenkung – Mieterverband</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.hev-schweiz.ch/vermieten/mietverhaeltnis/referenzzinssatz" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Referenzzinssatz – HEV Schweiz</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Alle Angaben ohne Gewähr. Für verbindliche Auskünfte wende dich an die Schlichtungsbehörde.</p>
+            <p class="footer-privacy">Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Current reference rate (update this when BWO publishes new rate)
+        const CURRENT_RATE = 1.25;
+        const RATE_DATE = '3. September 2025';
+
+        // State
+        let oldRate = 1.50;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Rate selection
+            document.querySelectorAll('.rate-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.rate-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    oldRate = parseFloat(this.dataset.rate);
+                    calculate();
+                });
+            });
+
+            calculate();
+        });
+
+        function calculate() {
+            const currentRent = parseFloat(document.getElementById('currentRent').value) || 0;
+
+            // Calculate rate difference in quarter percent steps
+            const rateDiff = CURRENT_RATE - oldRate;
+            const quarterSteps = Math.round(rateDiff / 0.25);
+
+            // Calculate percentage change
+            // For decreases: 2.91% per 0.25%
+            // For increases: 3.00% per 0.25%
+            let percentChange = 0;
+            if (quarterSteps < 0) {
+                // Decrease - use 2.91% per step
+                percentChange = quarterSteps * 2.91;
+            } else if (quarterSteps > 0) {
+                // Increase - use 3.00% per step
+                percentChange = quarterSteps * 3.00;
+            }
+
+            // Calculate new rent
+            const rentChange = currentRent * (percentChange / 100);
+            const newRent = currentRent + rentChange;
+
+            // Update UI
+            const resultBox = document.getElementById('resultBox');
+            const resultLabel = document.getElementById('resultLabel');
+            const mainResult = document.getElementById('mainResult');
+            const resultSub = document.getElementById('resultSub');
+            const warningBox = document.getElementById('warningBox');
+
+            resultBox.classList.remove('increase', 'decrease', 'neutral');
+
+            if (percentChange < 0) {
+                resultBox.classList.add('decrease');
+                resultLabel.textContent = 'Mögliche Mietsenkung';
+                mainResult.textContent = '- ' + formatCHF(Math.abs(rentChange));
+                resultSub.textContent = `pro Monat (${Math.abs(percentChange).toFixed(2)}% Senkung)`;
+                warningBox.style.display = 'block';
+                document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'block';
+            } else if (percentChange > 0) {
+                resultBox.classList.add('increase');
+                resultLabel.textContent = 'Mögliche Mieterhöhung';
+                mainResult.textContent = '+ ' + formatCHF(rentChange);
+                resultSub.textContent = `pro Monat (${percentChange.toFixed(2)}% Erhöhung)`;
+                warningBox.style.display = 'none';
+                document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'none';
+            } else {
+                resultBox.classList.add('neutral');
+                resultLabel.textContent = 'Keine Anpassung';
+                mainResult.textContent = 'CHF 0.00';
+                resultSub.textContent = 'Der Referenzzinssatz hat sich nicht verändert';
+                warningBox.style.display = 'none';
+                document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'none';
+            }
+
+            // Update breakdown
+            document.getElementById('oldRate').textContent = oldRate.toFixed(2) + '%';
+            document.getElementById('newRate').textContent = CURRENT_RATE.toFixed(2) + '%';
+            document.getElementById('rateDiff').textContent = (rateDiff >= 0 ? '+' : '') + rateDiff.toFixed(2) + '%';
+            document.getElementById('percentChange').textContent = (percentChange >= 0 ? '+' : '') + percentChange.toFixed(2) + '%';
+            document.getElementById('newRent').textContent = formatCHF(newRent);
+
+            // Update savings
+            document.getElementById('savingsMonth').textContent = formatCHF(Math.abs(rentChange));
+            document.getElementById('savingsYear').textContent = formatCHF(Math.abs(rentChange) * 12);
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        }
+
+        function getShareText() {
+            const currentRent = document.getElementById('currentRent').value;
+            const newRent = document.getElementById('newRent').textContent;
+            const change = document.getElementById('percentChange').textContent;
+            return `Mietzinsrechner: Bei CHF ${currentRent} Miete und Referenzzinssatz ${oldRate}% → ${CURRENT_RATE}% ergibt sich eine Anpassung von ${change}.\nNeue Miete: ${newRent}\n\nBerechne selbst: https://wieviel.ch/miete/`;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Kopiert!';
+                setTimeout(() => btn.innerHTML = originalText, 2000);
+            });
+        }
+
+        // Dark mode
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            },
+            toggle() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem(this.STORAGE_KEY, !isDark);
+            }
+        };
+
+        DarkMode.init();
+    </script>
+</body>
+</html>

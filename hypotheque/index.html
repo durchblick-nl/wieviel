@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur hypothécaire Suisse 2025 – Capacité financière | calcule.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta name="description" content="Calculateur hypothécaire gratuit pour la Suisse. Calcule ta capacité financière, le prix d'achat maximal et les coûts mensuels. Avec taux d'intérêt théorique de 5%.">
+    <meta name="keywords" content="calculateur hypothécaire, capacité financière, hypothèque Suisse, acheter immobilier, taux d'avance, taux théorique">
+    <link rel="canonical" href="https://calcule.ch/hypotheque/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/hypothek/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/hypotheque/">
+    <meta property="og:title" content="Calculateur hypothécaire Suisse 2025 – Capacité financière">
+    <meta property="og:description" content="Calcule ta capacité financière, le prix d'achat maximal et les coûts mensuels.">
+    <meta property="og:url" content="https://calcule.ch/hypotheque/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CH">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculateur hypothécaire Suisse 2025">
+    <meta name="twitter:description" content="Capacité financière et prix d'achat maximal.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculateur hypothécaire Suisse",
+        "url": "https://calcule.ch/hypotheque/",
+        "description": "Calculateur hypothécaire gratuit pour la Suisse. Calcule la capacité financière et le prix d'achat maximal.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce que la capacité financière pour une hypothèque?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La capacité financière signifie que les coûts du logement (intérêts hypothécaires, charges, amortissement) ne doivent pas dépasser 33% du revenu brut. Les banques calculent avec un taux d'intérêt théorique de 5%."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Combien de fonds propres faut-il pour une hypothèque?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Au moins 20% du prix d'achat doivent être apportés en fonds propres. Parmi ceux-ci, au moins 10% doivent provenir de fonds propres 'durs' (pas de la caisse de pension)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Pourquoi les banques calculent-elles avec 5% d'intérêts?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le taux d'intérêt théorique de 5% correspond à la moyenne historique à long terme. Il garantit que l'hypothèque reste supportable même en cas de hausse des taux."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce que la 2e hypothèque et dois-je l'amortir?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La 1re hypothèque couvre jusqu'à 67% de la valeur immobilière et n'a pas besoin d'être remboursée. La 2e hypothèque (67-80%) doit être remboursée en 15 ans ou jusqu'à la retraite."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .mode-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .mode-btn {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--primary-color);
+            background: var(--card-bg);
+            color: var(--primary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .mode-btn:hover {
+            background: var(--light-bg);
+        }
+        .mode-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 500px) {
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .result-box.success { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+        .result-box.warning { background: linear-gradient(135deg, #f57c00, #ff9800); }
+        .result-box.error { background: linear-gradient(135deg, #cc5c53, #e07a71); }
+
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .breakdown-row.total .value { color: var(--primary-color); }
+        .breakdown-row .value.success { color: #2e7d32; }
+        .breakdown-row .value.warning { color: #f57c00; }
+        .breakdown-row .value.error { color: #cc5c53; }
+
+        .progress-bar {
+            background: var(--border-color);
+            border-radius: 10px;
+            height: 12px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s, background 0.3s;
+        }
+        .progress-fill.success { background: linear-gradient(90deg, #2e7d32, #4caf50); }
+        .progress-fill.warning { background: linear-gradient(90deg, #f57c00, #ff9800); }
+        .progress-fill.error { background: linear-gradient(90deg, #cc5c53, #e07a71); }
+
+        .info-box {
+            background: var(--light-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        .info-box h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+        .info-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
+        .seo-content p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-color); }
+
+        .info-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .info-table th, .info-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .info-table th { background: var(--primary-color); color: white; }
+        .info-table td:last-child { text-align: right; font-family: 'Economica', sans-serif; font-weight: 700; }
+        .info-table tr:hover td { background: var(--light-bg); }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        .visual-breakdown {
+            display: flex;
+            height: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .visual-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: flex 0.3s;
+        }
+        .visual-segment.equity { background: #2e7d32; }
+        .visual-segment.mortgage1 { background: var(--primary-color); }
+        .visual-segment.mortgage2 { background: var(--secondary-color); }
+
+        .legend {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+        .legend-dot.equity { background: #2e7d32; }
+        .legend-dot.mortgage1 { background: var(--primary-color); }
+        .legend-dot.mortgage2 { background: var(--secondary-color); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="https://wieviel.ch/hypothek/" class="lang-btn">DE</a>
+                <span class="lang-btn active">FR</span>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1><span class="title-icon">🏡</span>Calculateur hypothécaire</h1>
+            <p class="page-subtitle">Capacité financière et prix d'achat maximal</p>
+        </div>
+
+        <nav class="tool-nav">
+            <a href="../fr/">Tous les outils</a>
+        </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-wallet"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Revenu</h3>
+                    <p>Revenu annuel brut de tous les emprunteurs.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-piggy-bank"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Fonds propres</h3>
+                    <p>Épargne, 3e pilier, caisse de pension (min. 20%).</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-home"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Résultat</h3>
+                    <p>Prix d'achat maximal et coûts mensuels.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="mode-toggle">
+                <button type="button" class="mode-btn active" data-mode="max-price">
+                    <i class="fas fa-search-dollar"></i> Prix max.
+                </button>
+                <button type="button" class="mode-btn" data-mode="check-property">
+                    <i class="fas fa-clipboard-check"></i> Vérifier un bien
+                </button>
+            </div>
+
+            <div id="maxPriceInputs">
+                <div class="form-group">
+                    <label for="income">Revenu annuel brut (tous emprunteurs)</label>
+                    <div style="position: relative;">
+                        <input type="number" id="income" value="150000" min="0" step="1000" oninput="calculate()">
+                        <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                    </div>
+                    <small class="form-hint">Somme de tous les revenus avant impôts</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="equity">Fonds propres disponibles</label>
+                    <div style="position: relative;">
+                        <input type="number" id="equity" value="200000" min="0" step="10000" oninput="calculate()">
+                        <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                    </div>
+                    <small class="form-hint">Épargne, 3e pilier, retrait anticipé de la caisse de pension</small>
+                </div>
+            </div>
+
+            <div id="checkPropertyInputs" style="display: none;">
+                <div class="form-group">
+                    <label for="propertyPrice">Prix d'achat du bien immobilier</label>
+                    <div style="position: relative;">
+                        <input type="number" id="propertyPrice" value="800000" min="0" step="10000" oninput="calculate()">
+                        <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="form-group">
+                        <label for="income2">Revenu annuel brut</label>
+                        <div style="position: relative;">
+                            <input type="number" id="income2" value="150000" min="0" step="1000" oninput="calculate()">
+                            <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="equity2">Fonds propres</label>
+                        <div style="position: relative;">
+                            <input type="number" id="equity2" value="200000" min="0" step="10000" oninput="calculate()">
+                            <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fas fa-info-circle"></i> Taux d'intérêt théorique: 5%</h4>
+                <p>Les banques calculent avec 5% d'intérêts (pas le taux actuel) pour s'assurer que tu peux supporter l'hypothèque même si les taux augmentent.</p>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box success" id="resultBox">
+                <div class="label" id="resultLabel">Prix d'achat maximal</div>
+                <div class="total" id="mainResult">CHF 1'000'000</div>
+                <div class="sub" id="resultSub">Capacité financière remplie</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-chart-pie"></i> Structure de financement</h3>
+                <div class="visual-breakdown" id="visualBreakdown">
+                    <div class="visual-segment equity" style="flex: 20;">20%</div>
+                    <div class="visual-segment mortgage1" style="flex: 67;">67%</div>
+                    <div class="visual-segment mortgage2" style="flex: 13;">13%</div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-dot equity"></div> Fonds propres</div>
+                    <div class="legend-item"><div class="legend-dot mortgage1"></div> 1re hypothèque</div>
+                    <div class="legend-item"><div class="legend-dot mortgage2"></div> 2e hypothèque</div>
+                </div>
+                <div class="breakdown-row" style="margin-top: 1rem;">
+                    <span class="label">Fonds propres (min. 20%)</span>
+                    <span class="value" id="equityAmount">CHF 200'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">1re hypothèque (jusqu'à 67%)</span>
+                    <span class="value" id="mortgage1Amount">CHF 670'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">2e hypothèque (67-80%)</span>
+                    <span class="value" id="mortgage2Amount">CHF 130'000</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Prix d'achat</span>
+                    <span class="value" id="totalPrice">CHF 1'000'000</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-calculator"></i> Calcul de capacité (théorique)</h3>
+                <div class="breakdown-row">
+                    <span class="label">Intérêts hypothécaires (5% de l'hypothèque)</span>
+                    <span class="value" id="interestCost">CHF 40'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Charges (1% du prix d'achat)</span>
+                    <span class="value" id="maintenanceCost">CHF 10'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Amortissement 2e hypothèque (en 15 ans)</span>
+                    <span class="value" id="amortizationCost">CHF 8'667</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Total coûts du logement / an</span>
+                    <span class="value" id="totalCost">CHF 58'667</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-percentage"></i> Capacité financière</h3>
+                <div class="breakdown-row">
+                    <span class="label">Coûts du logement / revenu</span>
+                    <span class="value" id="affordabilityPercent">32.5%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill success" id="affordabilityBar" style="width: 32.5%;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-color); opacity: 0.7;">
+                    <span>0%</span>
+                    <span style="color: #2e7d32;">≤33% supportable</span>
+                    <span>50%</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-coins"></i> Coûts mensuels (estimés)</h3>
+                <div class="breakdown-row">
+                    <span class="label">Intérêts hypothécaires (actuel ~2%)</span>
+                    <span class="value" id="monthlyInterest">CHF 1'333</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Charges</span>
+                    <span class="value" id="monthlyMaintenance">CHF 833</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Amortissement</span>
+                    <span class="value" id="monthlyAmortization">CHF 722</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Total par mois</span>
+                    <span class="value" id="monthlyTotal">CHF 2'889</span>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Partager
+                </button>
+                <button class="share-btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i> Copier
+                </button>
+            </div>
+        </div>
+
+        <section class="seo-content">
+            <h2>Comment fonctionne le calcul de capacité financière</h2>
+            <p>En Suisse, les banques vérifient pour chaque hypothèque si tu peux te permettre le bien immobilier à long terme. Il existe des règles claires pour cela.</p>
+
+            <h3>Les règles principales</h3>
+            <table class="info-table">
+                <tr>
+                    <th>Critère</th>
+                    <th>Exigence</th>
+                </tr>
+                <tr>
+                    <td><strong>Fonds propres</strong></td>
+                    <td>Min. 20% du prix d'achat</td>
+                </tr>
+                <tr>
+                    <td><strong>Fonds propres durs</strong></td>
+                    <td>Min. 10% (pas de la CP)</td>
+                </tr>
+                <tr>
+                    <td><strong>Capacité financière</strong></td>
+                    <td>Max. 33% du revenu</td>
+                </tr>
+                <tr>
+                    <td><strong>Taux d'intérêt théorique</strong></td>
+                    <td>5% (pas le taux actuel)</td>
+                </tr>
+                <tr>
+                    <td><strong>Charges</strong></td>
+                    <td>1% du prix d'achat/an</td>
+                </tr>
+                <tr>
+                    <td><strong>2e hypothèque</strong></td>
+                    <td>Amortissement en 15 ans</td>
+                </tr>
+            </table>
+
+            <h3>1re et 2e hypothèque</h3>
+            <p>Le financement est généralement divisé comme suit:</p>
+            <ul>
+                <li><strong>1re hypothèque (jusqu'à 67%):</strong> N'a pas besoin d'être remboursée</li>
+                <li><strong>2e hypothèque (67-80%):</strong> Doit être amortie en 15 ans ou jusqu'à la retraite</li>
+                <li><strong>Fonds propres (min. 20%):</strong> Dont au moins 10% de fonds propres «durs» (épargne, 3e pilier), le reste peut provenir de la caisse de pension</li>
+            </ul>
+
+            <h3>Questions fréquentes</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Puis-je utiliser ma caisse de pension pour les fonds propres?</summary>
+                    <p>Oui, mais maximum 10% du prix d'achat peuvent provenir de la caisse de pension. Les 10% restants doivent venir de fonds propres «durs» (épargne, 3e pilier, avancement d'hoirie). À partir de 50 ans, il y a des restrictions supplémentaires pour les retraits de la CP.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Pourquoi les banques calculent-elles avec 5% et pas le taux actuel?</summary>
+                    <p>Le taux d'intérêt théorique de 5% correspond à la moyenne historique à long terme. Il garantit que tu peux supporter l'hypothèque même en cas de forte hausse des taux. Le taux actuel (env. 1.5-2.5%) n'influence que tes coûts mensuels réels.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Le revenu de mon partenaire compte-t-il?</summary>
+                    <p>Oui, en cas de responsabilité solidaire (les deux sont responsables de l'hypothèque), les deux revenus sont additionnés. Pour les couples non mariés, certaines banques exigent un pacte successoral ou une convention.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Que se passe-t-il si la capacité n'est pas tout à fait remplie?</summary>
+                    <p>Certaines banques sont plus flexibles, surtout si tu as une part de fonds propres élevée (>30%) ou si tu peux prouver un revenu stable. Compare plusieurs offres ou fais appel à un courtier en hypothèques.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Dois-je un jour rembourser la 1re hypothèque?</summary>
+                    <p>En principe non, tant que tu restes en dessous de 67% de taux d'avance. Cependant, à la retraite, il peut y avoir des problèmes si le revenu de rente ne suffit plus pour la capacité. Un amortissement volontaire peut être judicieux.</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Liens utiles</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.snb.ch/fr/ifor/finmkt/id/finmkt_hypo" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Marché hypothécaire – BNS</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.finma.ch/fr/surveillance/banques-et-maisons-de-titres/instruments-de-surveillance/autoregulation/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Autorégulation hypothèques – FINMA</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.hev-schweiz.ch/fr/propriete/financement/hypotheques" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Guide hypothèques – APF Suisse</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Toutes les informations sont fournies sans garantie. Pour des renseignements contraignants, adresse-toi à ta banque.</p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Constants
+        const CALC_INTEREST_RATE = 0.05;
+        const ACTUAL_INTEREST_RATE = 0.02;
+        const MAINTENANCE_RATE = 0.01;
+        const MAX_AFFORDABILITY = 0.33;
+        const MIN_EQUITY_PERCENT = 0.20;
+        const FIRST_MORTGAGE_MAX = 0.67;
+        const AMORTIZATION_YEARS = 15;
+
+        // State
+        let mode = 'max-price';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    mode = this.dataset.mode;
+                    updateInputVisibility();
+                    calculate();
+                });
+            });
+
+            calculate();
+        });
+
+        function updateInputVisibility() {
+            const maxPriceInputs = document.getElementById('maxPriceInputs');
+            const checkPropertyInputs = document.getElementById('checkPropertyInputs');
+
+            if (mode === 'max-price') {
+                maxPriceInputs.style.display = 'block';
+                checkPropertyInputs.style.display = 'none';
+            } else {
+                maxPriceInputs.style.display = 'none';
+                checkPropertyInputs.style.display = 'block';
+            }
+        }
+
+        function calculate() {
+            let income, equity, propertyPrice;
+
+            if (mode === 'max-price') {
+                income = parseFloat(document.getElementById('income').value) || 0;
+                equity = parseFloat(document.getElementById('equity').value) || 0;
+                propertyPrice = calculateMaxPrice(income, equity);
+            } else {
+                propertyPrice = parseFloat(document.getElementById('propertyPrice').value) || 0;
+                income = parseFloat(document.getElementById('income2').value) || 0;
+                equity = parseFloat(document.getElementById('equity2').value) || 0;
+            }
+
+            const minEquityRequired = propertyPrice * MIN_EQUITY_PERCENT;
+            const actualEquity = Math.min(equity, propertyPrice);
+            const equityPercent = propertyPrice > 0 ? (actualEquity / propertyPrice) : 0;
+
+            const totalMortgage = propertyPrice - actualEquity;
+            const firstMortgageMax = propertyPrice * FIRST_MORTGAGE_MAX;
+            const firstMortgage = Math.min(totalMortgage, firstMortgageMax);
+            const secondMortgage = Math.max(0, totalMortgage - firstMortgage);
+
+            const interestCost = totalMortgage * CALC_INTEREST_RATE;
+            const maintenanceCost = propertyPrice * MAINTENANCE_RATE;
+            const amortizationCost = secondMortgage / AMORTIZATION_YEARS;
+            const totalCost = interestCost + maintenanceCost + amortizationCost;
+
+            const affordabilityPercent = income > 0 ? (totalCost / income) : 0;
+            const isAffordable = affordabilityPercent <= MAX_AFFORDABILITY;
+            const hasEnoughEquity = equity >= minEquityRequired;
+
+            const monthlyInterest = (totalMortgage * ACTUAL_INTEREST_RATE) / 12;
+            const monthlyMaintenance = maintenanceCost / 12;
+            const monthlyAmortization = amortizationCost / 12;
+            const monthlyTotal = monthlyInterest + monthlyMaintenance + monthlyAmortization;
+
+            updateResults(propertyPrice, income, equity, actualEquity, firstMortgage, secondMortgage,
+                         interestCost, maintenanceCost, amortizationCost, totalCost,
+                         affordabilityPercent, isAffordable, hasEnoughEquity,
+                         monthlyInterest, monthlyMaintenance, monthlyAmortization, monthlyTotal,
+                         equityPercent);
+        }
+
+        function calculateMaxPrice(income, equity) {
+            const maxPriceFromEquity = equity / MIN_EQUITY_PERCENT;
+
+            let maxPriceFromAffordability = 0;
+            const maxAffordableCost = income * MAX_AFFORDABILITY;
+
+            for (let price = 100000; price <= 10000000; price += 10000) {
+                const mortgage = price * 0.80;
+                const secondMort = Math.max(0, mortgage - price * FIRST_MORTGAGE_MAX);
+                const cost = mortgage * CALC_INTEREST_RATE + price * MAINTENANCE_RATE + secondMort / AMORTIZATION_YEARS;
+
+                if (cost <= maxAffordableCost) {
+                    maxPriceFromAffordability = price;
+                } else {
+                    break;
+                }
+            }
+
+            return Math.min(maxPriceFromEquity, maxPriceFromAffordability);
+        }
+
+        function updateResults(price, income, equity, actualEquity, mortgage1, mortgage2,
+                              interestCost, maintenanceCost, amortizationCost, totalCost,
+                              affordPercent, isAffordable, hasEnoughEquity,
+                              monthlyInt, monthlyMaint, monthlyAmort, monthlyTotal,
+                              equityPercent) {
+
+            const resultBox = document.getElementById('resultBox');
+            const resultLabel = document.getElementById('resultLabel');
+            const mainResult = document.getElementById('mainResult');
+            const resultSub = document.getElementById('resultSub');
+
+            resultBox.classList.remove('success', 'warning', 'error');
+
+            if (mode === 'max-price') {
+                resultLabel.textContent = 'Prix d\'achat maximal';
+                mainResult.textContent = formatCHF(price);
+                if (price > 0) {
+                    resultBox.classList.add('success');
+                    resultSub.textContent = 'avec ton revenu et tes fonds propres';
+                } else {
+                    resultBox.classList.add('error');
+                    resultSub.textContent = 'Entre ton revenu et tes fonds propres';
+                }
+            } else {
+                resultLabel.textContent = 'Vérification de la capacité';
+                if (!hasEnoughEquity) {
+                    resultBox.classList.add('error');
+                    mainResult.textContent = 'Fonds propres insuffisants';
+                    resultSub.textContent = `Au moins ${formatCHF(price * MIN_EQUITY_PERCENT)} nécessaires`;
+                } else if (!isAffordable) {
+                    resultBox.classList.add('warning');
+                    mainResult.textContent = 'Non supportable';
+                    resultSub.textContent = `${(affordPercent * 100).toFixed(1)}% > 33% du revenu`;
+                } else {
+                    resultBox.classList.add('success');
+                    mainResult.textContent = 'Supportable';
+                    resultSub.textContent = `${(affordPercent * 100).toFixed(1)}% du revenu`;
+                }
+            }
+
+            const equityPct = Math.max(0, Math.min(100, equityPercent * 100));
+            const mort1Pct = price > 0 ? (mortgage1 / price * 100) : 0;
+            const mort2Pct = price > 0 ? (mortgage2 / price * 100) : 0;
+
+            document.querySelector('.visual-segment.equity').style.flex = equityPct;
+            document.querySelector('.visual-segment.equity').textContent = equityPct >= 10 ? Math.round(equityPct) + '%' : '';
+            document.querySelector('.visual-segment.mortgage1').style.flex = mort1Pct;
+            document.querySelector('.visual-segment.mortgage1').textContent = mort1Pct >= 10 ? Math.round(mort1Pct) + '%' : '';
+            document.querySelector('.visual-segment.mortgage2').style.flex = mort2Pct;
+            document.querySelector('.visual-segment.mortgage2').textContent = mort2Pct >= 5 ? Math.round(mort2Pct) + '%' : '';
+
+            document.getElementById('equityAmount').textContent = formatCHF(actualEquity);
+            document.getElementById('mortgage1Amount').textContent = formatCHF(mortgage1);
+            document.getElementById('mortgage2Amount').textContent = formatCHF(mortgage2);
+            document.getElementById('totalPrice').textContent = formatCHF(price);
+
+            document.getElementById('interestCost').textContent = formatCHF(interestCost) + '/an';
+            document.getElementById('maintenanceCost').textContent = formatCHF(maintenanceCost) + '/an';
+            document.getElementById('amortizationCost').textContent = formatCHF(amortizationCost) + '/an';
+            document.getElementById('totalCost').textContent = formatCHF(totalCost) + '/an';
+
+            const affordabilityBar = document.getElementById('affordabilityBar');
+            const affordabilityPercent = document.getElementById('affordabilityPercent');
+            const displayPercent = Math.min(affordPercent * 100, 50);
+
+            affordabilityBar.style.width = (displayPercent / 50 * 100) + '%';
+            affordabilityBar.classList.remove('success', 'warning', 'error');
+
+            if (affordPercent <= 0.33) {
+                affordabilityBar.classList.add('success');
+                affordabilityPercent.className = 'value success';
+            } else if (affordPercent <= 0.40) {
+                affordabilityBar.classList.add('warning');
+                affordabilityPercent.className = 'value warning';
+            } else {
+                affordabilityBar.classList.add('error');
+                affordabilityPercent.className = 'value error';
+            }
+            affordabilityPercent.textContent = (affordPercent * 100).toFixed(1) + '%';
+
+            document.getElementById('monthlyInterest').textContent = formatCHF(monthlyInt);
+            document.getElementById('monthlyMaintenance').textContent = formatCHF(monthlyMaint);
+            document.getElementById('monthlyAmortization').textContent = formatCHF(monthlyAmort);
+            document.getElementById('monthlyTotal').textContent = formatCHF(monthlyTotal);
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + Math.round(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        }
+
+        function getShareText() {
+            const price = document.getElementById('totalPrice').textContent;
+            const affordability = document.getElementById('affordabilityPercent').textContent;
+            const monthly = document.getElementById('monthlyTotal').textContent;
+            return `Calculateur hypothécaire:\nPrix d'achat: ${price}\nCapacité financière: ${affordability}\nCoûts mensuels: ${monthly}\n\nCalcule toi-même: https://calcule.ch/hypotheque/`;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => btn.innerHTML = originalText, 2000);
+            });
+        }
+
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            },
+            toggle() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem(this.STORAGE_KEY, !isDark);
+            }
+        };
+
+        DarkMode.init();
+    </script>
+</body>
+</html>

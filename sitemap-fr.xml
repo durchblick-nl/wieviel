@@ -110,4 +110,31 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Calculateur de loyer -->
+  <url>
+    <loc>https://calcule.ch/loyer/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/miete/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/loyer/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Calculateur hypothécaire -->
+  <url>
+    <loc>https://calcule.ch/hypotheque/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/hypothek/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/hypotheque/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Calculateur d'intérêts composés -->
+  <url>
+    <loc>https://calcule.ch/interets-composes/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/zinseszins/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/interets-composes/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

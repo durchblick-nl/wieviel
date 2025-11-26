@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur d'intérêts composés Suisse 2025 – Patrimoine | calcule.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta name="description" content="Calculateur d'intérêts composés gratuit. Calcule comment ton patrimoine croît grâce aux intérêts composés. Idéal pour le pilier 3a, comptes d'épargne et ETF.">
+    <meta name="keywords" content="calculateur intérêts composés, intérêts composés, constitution patrimoine, pilier 3a, calculateur épargne, ETF">
+    <link rel="canonical" href="https://calcule.ch/interets-composes/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/zinseszins/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/interets-composes/">
+    <meta property="og:title" content="Calculateur d'intérêts composés Suisse 2025">
+    <meta property="og:description" content="Calcule comment ton patrimoine croît grâce aux intérêts composés. Idéal pour le pilier 3a.">
+    <meta property="og:url" content="https://calcule.ch/interets-composes/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CH">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculateur d'intérêts composés Suisse 2025">
+    <meta name="twitter:description" content="Calcule les intérêts composés et la croissance du patrimoine.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculateur d'intérêts composés",
+        "url": "https://calcule.ch/interets-composes/",
+        "description": "Calculateur d'intérêts composés gratuit. Calcule comment ton patrimoine croît.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce que l'effet des intérêts composés?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Avec les intérêts composés, les intérêts sont calculés sur les intérêts déjà reçus. Cela conduit à une croissance exponentielle. Albert Einstein l'aurait appelé la 'huitième merveille du monde'."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment calculer les intérêts composés?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La formule est: Capital final = Capital initial × (1 + Taux)^Années. Avec des versements mensuels, la formule devient plus complexe et prend en compte chaque versement."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Combien rapporte le pilier 3a à long terme?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Avec le montant maximal de CHF 7'056/an (2025) et un rendement de 5% sur 30 ans, on obtient environ CHF 500'000 – dont environ CHF 290'000 de gains d'intérêts purs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quel rendement est réaliste?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Compte d'épargne: 0.5-1.5%, Pilier 3a compte: 0.5-1%, Pilier 3a titres: 3-7% (long terme), ETF mondial: 5-8% (historique). Après inflation et frais, correspondamment moins."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .preset-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .preset-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .preset-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .preset-btn.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 500px) {
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .breakdown-row.total .value { color: var(--primary-color); }
+        .breakdown-row .value.highlight { color: #2e7d32; }
+
+        .chart-container {
+            height: 250px;
+            margin: 1rem 0;
+            position: relative;
+        }
+        .chart-bar-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            padding: 0 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .chart-bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            max-width: 60px;
+        }
+        .chart-bar {
+            width: 100%;
+            max-width: 40px;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .chart-bar .deposits {
+            background: var(--secondary-color);
+            border-radius: 0 0 0 0;
+        }
+        .chart-bar .interest {
+            background: var(--primary-color);
+            border-radius: 4px 4px 0 0;
+        }
+        .chart-label {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            color: var(--text-color);
+        }
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+        .legend-dot.deposits { background: var(--secondary-color); }
+        .legend-dot.interest { background: var(--primary-color); }
+
+        .info-box {
+            background: var(--light-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        .info-box h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+        .info-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
+        .seo-content p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-color); }
+
+        .info-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .info-table th, .info-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .info-table th { background: var(--primary-color); color: white; }
+        .info-table td:last-child { text-align: right; font-family: 'Economica', sans-serif; font-weight: 700; }
+        .info-table tr:hover td { background: var(--light-bg); }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        .formula-box {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .formula-box .formula {
+            font-family: 'Economica', monospace;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .formula-box .explanation {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="https://wieviel.ch/zinseszins/" class="lang-btn">DE</a>
+                <span class="lang-btn active">FR</span>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1><span class="title-icon">📈</span>Intérêts composés</h1>
+            <p class="page-subtitle">Calcule la croissance de ton patrimoine</p>
+        </div>
+
+        <nav class="tool-nav">
+            <a href="../fr/">Tous les outils</a>
+        </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-piggy-bank"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Capital initial</h3>
+                    <p>Combien as-tu déjà épargné?</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calendar-plus"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Versements</h3>
+                    <p>Épargne mensuelle régulière.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Croissance</h3>
+                    <p>Vois comment ton patrimoine croît.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Sélection rapide</label>
+            <div class="preset-buttons">
+                <button type="button" class="preset-btn" data-preset="epargne">Compte épargne</button>
+                <button type="button" class="preset-btn active" data-preset="3a">Pilier 3a</button>
+                <button type="button" class="preset-btn" data-preset="etf">Plan ETF</button>
+                <button type="button" class="preset-btn" data-preset="custom">Valeurs perso</button>
+            </div>
+
+            <div class="form-group">
+                <label for="principal">Capital initial</label>
+                <div style="position: relative;">
+                    <input type="number" id="principal" value="0" min="0" step="1000" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                </div>
+                <small class="form-hint">Capital déjà disponible</small>
+            </div>
+
+            <div class="input-row">
+                <div class="form-group">
+                    <label for="monthly">Versement mensuel</label>
+                    <div style="position: relative;">
+                        <input type="number" id="monthly" value="588" min="0" step="50" oninput="calculate()">
+                        <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                    </div>
+                    <small class="form-hint">3a max 2025: CHF 588/mois</small>
+                </div>
+                <div class="form-group">
+                    <label for="years">Durée de placement</label>
+                    <div style="position: relative;">
+                        <input type="number" id="years" value="30" min="1" max="60" step="1" oninput="calculate()">
+                        <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">ans</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="rate">Rendement annuel</label>
+                <div style="position: relative;">
+                    <input type="number" id="rate" value="5" min="0" max="20" step="0.5" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">%</span>
+                </div>
+                <small class="form-hint">Historique: ETF actions ~5-7%, compte épargne ~1%</small>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fas fa-lightbulb"></i> L'effet des intérêts composés</h4>
+                <p>Albert Einstein aurait appelé les intérêts composés la «huitième merveille du monde». Plus tu commences tôt à épargner, plus l'effet est puissant – les intérêts génèrent eux-mêmes des intérêts!</p>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box">
+                <div class="label">Patrimoine final après <span id="yearsDisplay">30</span> ans</div>
+                <div class="total" id="mainResult">CHF 489'627</div>
+                <div class="sub" id="resultSub">dont CHF 277'867 de gains d'intérêts</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-chart-bar"></i> Évolution du patrimoine</h3>
+                <div class="chart-container">
+                    <div class="chart-bar-container" id="chartBars">
+                        <!-- Generated by JavaScript -->
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-dot deposits"></div> Versements</div>
+                        <div class="legend-item"><div class="legend-dot interest"></div> Gains d'intérêts</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-list"></i> Détail</h3>
+                <div class="breakdown-row">
+                    <span class="label">Capital initial</span>
+                    <span class="value" id="principalDisplay">CHF 0</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Versements (<span id="monthsDisplay">360</span> mois)</span>
+                    <span class="value" id="depositsDisplay">CHF 211'760</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Gains d'intérêts</span>
+                    <span class="value highlight" id="interestDisplay">CHF 277'867</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Patrimoine final</span>
+                    <span class="value" id="totalDisplay">CHF 489'627</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-info-circle"></i> Vue détaillée</h3>
+                <div class="breakdown-row">
+                    <span class="label">Total versé</span>
+                    <span class="value" id="totalPaid">CHF 211'760</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Rendement sur versements</span>
+                    <span class="value highlight" id="returnPercent">+131%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Gain d'intérêts moyen/an</span>
+                    <span class="value" id="avgYearlyInterest">CHF 9'262</span>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Partager
+                </button>
+                <button class="share-btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i> Copier
+                </button>
+            </div>
+        </div>
+
+        <section class="seo-content">
+            <h2>La puissance des intérêts composés</h2>
+            <p>L'effet des intérêts composés est l'un des concepts les plus importants pour la constitution d'un patrimoine. Contrairement aux intérêts simples, où seul le capital initial est rémunéré, avec les intérêts composés, les intérêts déjà obtenus sont également réinvestis et rémunérés.</p>
+
+            <div class="formula-box">
+                <div class="formula">A = P × (1 + r)ⁿ + M × [(1 + r)ⁿ - 1] / r</div>
+                <div class="explanation">
+                    A = Capital final | P = Capital initial | r = Taux (mensuel) | n = Nombre de mois | M = Versement mensuel
+                </div>
+            </div>
+
+            <h3>Rendements typiques en Suisse</h3>
+            <table class="info-table">
+                <tr>
+                    <th>Type de placement</th>
+                    <th>Rendement attendu</th>
+                </tr>
+                <tr>
+                    <td>Compte d'épargne</td>
+                    <td>0.5 – 1.5%</td>
+                </tr>
+                <tr>
+                    <td>Pilier 3a compte</td>
+                    <td>0.5 – 1.0%</td>
+                </tr>
+                <tr>
+                    <td>Pilier 3a titres</td>
+                    <td>3 – 7%*</td>
+                </tr>
+                <tr>
+                    <td>ETF mondial (p.ex. MSCI World)</td>
+                    <td>5 – 8%*</td>
+                </tr>
+                <tr>
+                    <td>Actions suisses (SMI)</td>
+                    <td>4 – 7%*</td>
+                </tr>
+            </table>
+            <p style="font-size: 0.85rem; opacity: 0.8;">* Valeurs moyennes historiques, aucune garantie pour l'avenir. Peut fortement fluctuer.</p>
+
+            <h3>Pilier 3a – Cotisations maximales 2025</h3>
+            <table class="info-table">
+                <tr>
+                    <th>Catégorie</th>
+                    <th>Montant maximal</th>
+                </tr>
+                <tr>
+                    <td>Salariés avec caisse de pension</td>
+                    <td>CHF 7'056/an</td>
+                </tr>
+                <tr>
+                    <td>Indépendants sans caisse de pension</td>
+                    <td>20% du revenu, max. CHF 35'280</td>
+                </tr>
+            </table>
+
+            <h3>Questions fréquentes</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Quelle différence entre intérêts simples et composés?</summary>
+                    <p>Avec les <strong>intérêts simples</strong>, seul le capital initial est rémunéré. Avec les <strong>intérêts composés</strong>, les intérêts déjà obtenus sont également réinvestis et rémunérés. Exemple: CHF 10'000 à 5% donnent après 10 ans CHF 15'000 (simple) vs. CHF 16'289 (composé).</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Pourquoi épargner tôt est-il si important?</summary>
+                    <p>L'effet des intérêts composés a besoin de temps pour déployer tout son potentiel. Qui commence à 25 ans à épargner CHF 500/mois (5% de rendement) aura à 65 ans env. CHF 760'000. Qui ne commence qu'à 35 ans n'atteindra que env. CHF 420'000 – bien que seulement 10 ans d'épargne en moins.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Un rendement de 5% est-il réaliste?</summary>
+                    <p>Historiquement, les ETF actions diversifiés (p.ex. MSCI World) ont rapporté 7-8% par an à long terme. Après inflation et frais, il reste environ 4-5% de rendement réel. Sur des périodes plus courtes, il peut y avoir de fortes fluctuations – des pertes sont aussi possibles.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Le pilier 3a vaut-il la peine?</summary>
+                    <p>Oui, doublement: Tu économises des <strong>impôts lors du versement</strong> (selon le taux marginal 20-40% du montant) et profites de la <strong>croissance exonérée d'impôts</strong>. Au retrait, l'imposition est à un taux réduit. Particulièrement attractif avec un 3a en titres et un long horizon de placement.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Comment l'inflation affecte-t-elle le résultat?</summary>
+                    <p>L'inflation réduit le rendement réel. Avec 5% de rendement nominal et 2% d'inflation, le rendement réel n'est que d'env. 3%. Pour une planification à long terme, il faut toujours calculer avec des rendements réels (corrigés de l'inflation).</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Liens utiles</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.ch.ch/fr/impots/prevoyance-et-assurances/pilier-3a/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Pilier 3a expliqué – ch.ch</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.moneyland.ch/fr/pilier-3a-comparatif" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Comparatif pilier 3a – Moneyland</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.finpension.ch" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Finpension – 3a avantageux avec ETFs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Toutes les informations sont fournies sans garantie. Pas de conseil en placement. Les rendements passés ne garantissent pas les résultats futurs.</p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        const presets = {
+            epargne: { principal: 10000, monthly: 200, years: 10, rate: 1 },
+            '3a': { principal: 0, monthly: 588, years: 30, rate: 5 },
+            etf: { principal: 5000, monthly: 500, years: 20, rate: 6 },
+            custom: null
+        };
+
+        let currentPreset = '3a';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentPreset = this.dataset.preset;
+
+                    if (presets[currentPreset]) {
+                        document.getElementById('principal').value = presets[currentPreset].principal;
+                        document.getElementById('monthly').value = presets[currentPreset].monthly;
+                        document.getElementById('years').value = presets[currentPreset].years;
+                        document.getElementById('rate').value = presets[currentPreset].rate;
+                    }
+
+                    calculate();
+                });
+            });
+
+            calculate();
+        });
+
+        function calculate() {
+            const principal = parseFloat(document.getElementById('principal').value) || 0;
+            const monthly = parseFloat(document.getElementById('monthly').value) || 0;
+            const years = parseInt(document.getElementById('years').value) || 1;
+            const annualRate = parseFloat(document.getElementById('rate').value) || 0;
+
+            const months = years * 12;
+            const monthlyRate = annualRate / 100 / 12;
+
+            let finalAmount;
+            if (monthlyRate === 0) {
+                finalAmount = principal + (monthly * months);
+            } else {
+                const compoundFactor = Math.pow(1 + monthlyRate, months);
+                finalAmount = principal * compoundFactor + monthly * ((compoundFactor - 1) / monthlyRate);
+            }
+
+            const totalDeposits = principal + (monthly * months);
+            const interestEarned = finalAmount - totalDeposits;
+            const returnPercent = totalDeposits > 0 ? ((interestEarned / totalDeposits) * 100) : 0;
+
+            document.getElementById('yearsDisplay').textContent = years;
+            document.getElementById('mainResult').textContent = formatCHF(finalAmount);
+            document.getElementById('resultSub').textContent = `dont ${formatCHF(interestEarned)} de gains d'intérêts`;
+
+            document.getElementById('principalDisplay').textContent = formatCHF(principal);
+            document.getElementById('monthsDisplay').textContent = months;
+            document.getElementById('depositsDisplay').textContent = formatCHF(monthly * months);
+            document.getElementById('interestDisplay').textContent = formatCHF(interestEarned);
+            document.getElementById('totalDisplay').textContent = formatCHF(finalAmount);
+
+            document.getElementById('totalPaid').textContent = formatCHF(totalDeposits);
+            document.getElementById('returnPercent').textContent = '+' + returnPercent.toFixed(0) + '%';
+            document.getElementById('avgYearlyInterest').textContent = formatCHF(interestEarned / years);
+
+            generateChart(principal, monthly, years, monthlyRate);
+        }
+
+        function generateChart(principal, monthly, years, monthlyRate) {
+            const container = document.getElementById('chartBars');
+            container.innerHTML = '';
+
+            const intervals = Math.min(years, 10);
+            const step = Math.ceil(years / intervals);
+            const maxValue = calculateValueAtYear(principal, monthly, years, monthlyRate);
+
+            for (let year = step; year <= years; year += step) {
+                const value = calculateValueAtYear(principal, monthly, year, monthlyRate);
+                const deposits = principal + (monthly * year * 12);
+                const interest = value - deposits;
+
+                const depositsHeight = (deposits / maxValue) * 180;
+                const interestHeight = (interest / maxValue) * 180;
+
+                const group = document.createElement('div');
+                group.className = 'chart-bar-group';
+
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.height = (depositsHeight + interestHeight) + 'px';
+
+                const interestDiv = document.createElement('div');
+                interestDiv.className = 'interest';
+                interestDiv.style.height = interestHeight + 'px';
+
+                const depositsDiv = document.createElement('div');
+                depositsDiv.className = 'deposits';
+                depositsDiv.style.height = depositsHeight + 'px';
+
+                bar.appendChild(interestDiv);
+                bar.appendChild(depositsDiv);
+
+                const label = document.createElement('div');
+                label.className = 'chart-label';
+                label.textContent = year + 'a';
+
+                group.appendChild(bar);
+                group.appendChild(label);
+                container.appendChild(group);
+            }
+        }
+
+        function calculateValueAtYear(principal, monthly, year, monthlyRate) {
+            const months = year * 12;
+            if (monthlyRate === 0) {
+                return principal + (monthly * months);
+            }
+            const compoundFactor = Math.pow(1 + monthlyRate, months);
+            return principal * compoundFactor + monthly * ((compoundFactor - 1) / monthlyRate);
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + Math.round(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        }
+
+        function getShareText() {
+            const principal = document.getElementById('principal').value;
+            const monthly = document.getElementById('monthly').value;
+            const years = document.getElementById('years').value;
+            const rate = document.getElementById('rate').value;
+            const result = document.getElementById('mainResult').textContent;
+            const interest = document.getElementById('interestDisplay').textContent;
+
+            return `Calculateur d'intérêts composés:\nCapital initial: CHF ${principal}\nMensuel: CHF ${monthly}\nDurée: ${years} ans\nRendement: ${rate}%\n\nPatrimoine final: ${result}\nDont gains d'intérêts: ${interest}\n\nCalcule toi-même: https://calcule.ch/interets-composes/`;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => btn.innerHTML = originalText, 2000);
+            });
+        }
+
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            },
+            toggle() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem(this.STORAGE_KEY, !isDark);
+            }
+        };
+
+        DarkMode.init();
+    </script>
+</body>
+</html>
