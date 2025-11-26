@@ -240,9 +240,6 @@
         .share-btn.copy { background: var(--secondary-color); color: white; }
         .share-btn:hover { transform: translateY(-2px); }
 
-        .timeline {
-            margin: 2rem 0;
-        }
         .timeline-item {
             display: flex;
             gap: 1rem;
@@ -284,6 +281,11 @@
         .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
         .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
 
+        .timeline {
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
         .justis-card {
             background: linear-gradient(135deg, #1a365d, #2c5282);
             border-radius: 12px;
@@ -301,7 +303,7 @@
             opacity: 0.9;
             line-height: 1.5;
         }
-        .justis-card a {
+        .justis-card .justis-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -313,7 +315,7 @@
             font-weight: 600;
             transition: transform 0.2s;
         }
-        .justis-card a:hover {
+        .justis-card .justis-btn:hover {
             transform: translateY(-2px);
         }
     </style>
@@ -470,8 +472,8 @@
 
         <div class="justis-card">
             <h4><i class="fas fa-balance-scale"></i> Rechtliche Beratung nötig?</h4>
-            <p>Bei Fragen zur Mietzinsanpassung oder wenn der Vermieter nicht reagiert: Bei <a href="https://www.justis.ch" target="_blank" rel="noopener">JUSTIS</a> erhältst du auch bei noch nicht versicherten Fällen eine kostenlose Ersteinschätzung.</p>
-            <a href="https://www.justis.ch" target="_blank" rel="noopener">
+            <p>Bei Fragen zur Mietzinsanpassung oder wenn der Vermieter nicht reagiert: Bei JUSTIS erhältst du auch bei noch nicht versicherten Fällen eine kostenlose Ersteinschätzung.</p>
+            <a href="https://www.justis.ch" target="_blank" rel="noopener" class="justis-btn">
                 <i class="fas fa-external-link-alt"></i> Zu JUSTIS
             </a>
         </div>
