@@ -19,6 +19,8 @@ A collection of useful calculators for the general public in Switzerland.
 | **Trinkgeld-Rechner** | `/trinkgeld/` | Tip calculator with bill splitting |
 | **Schlafrechner** | `/schlaf/` | Optimal sleep/wake times based on 90-min cycles |
 | **BMI-Rechner** | `/bmi/` | Body Mass Index calculator |
+| **Fleisch- & CO2-Rechner** | `/fleisch/` | Meat consumption & CO2 footprint calculator |
+| **Bussenrechner** | `/busse/` | Swiss speed fine calculator (OBV) |
 
 ### Planned Tools:
 - **Ferienkürzung** (`/ferienkuerzung/`) - Holiday reduction calculator (Art. 329b OR)
@@ -55,10 +57,18 @@ wieviel.ch/
 │   ├── index.html          # Language redirect
 │   ├── de/index.html       # Schlafrechner (DE)
 │   └── fr/index.html       # Calculateur de sommeil (FR)
-└── bmi/
+├── bmi/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # BMI-Rechner (DE)
+│   └── fr/index.html       # Calculateur IMC (FR)
+├── fleisch/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # Fleisch- & CO2-Rechner (DE)
+│   └── fr/index.html       # Calculateur viande & CO2 (FR)
+└── busse/
     ├── index.html          # Language redirect
-    ├── de/index.html       # BMI-Rechner (DE)
-    └── fr/index.html       # Calculateur IMC (FR)
+    ├── de/index.html       # Bussenrechner (DE)
+    └── fr/index.html       # Calculateur d'amendes (FR)
 ```
 
 ## Tech Stack
@@ -133,6 +143,37 @@ BMI = weight (kg) / height² (m)
 | Normal | 18.5 - 24.9 |
 | Overweight | 25 - 29.9 |
 | Obese | ≥ 30 |
+
+### Fleisch- & CO2-Rechner
+CO2 emissions per kg of meat (Swiss values):
+| Meat Type | CO2 (kg/kg) | Water (L/kg) |
+|-----------|-------------|--------------|
+| Beef | 25 | 15,400 |
+| Pork | 8 | 6,000 |
+| Poultry | 5 | 4,300 |
+
+Comparisons:
+- 1 flight Zurich-Mallorca = 340 kg CO2
+- 1 km car = 0.14 kg CO2
+- SGE recommendation: 200-360g meat/week
+
+### Bussenrechner - Swiss Speed Fines
+Based on Ordnungsbussenverordnung (OBV).
+
+Safety margin (tolerance):
+| Speed | Margin |
+|-------|--------|
+| ≤100 km/h | 5 km/h |
+| 101-150 km/h | 6 km/h |
+| >150 km/h | 7 km/h |
+
+Raser thresholds (Via Sicura, Art. 90 SVG):
+| Zone | Excess for Raser |
+|------|------------------|
+| 30 km/h | +40 km/h |
+| 50 km/h | +50 km/h |
+| 80 km/h | +60 km/h |
+| 120 km/h | +80 km/h |
 
 ## Related Projects
 

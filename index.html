@@ -53,59 +53,82 @@
             align-items: center;
             gap: 0.5rem;
         }
-        .tools-grid {
+        .tool-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
             margin: 2rem 0;
-        }
-        .tool-card {
+            padding: 1.5rem;
             background: var(--card-bg);
             border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            align-items: start;
+        }
+        .tool-section:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        .tool-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
             padding: 1.5rem;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
             text-decoration: none;
-            color: inherit;
+            color: white;
             display: block;
-            border: 2px solid transparent;
+            transition: all 0.3s;
         }
         .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
         .tool-icon {
             font-size: 3rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
         .tool-card h2 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.4rem;
-        }
-        .tool-card p {
-            color: var(--text-color);
-            font-size: 0.9rem;
-            line-height: 1.5;
+            color: white;
+            margin-bottom: 0.25rem;
+            font-size: 1.3rem;
         }
         .tool-card .languages {
-            margin-top: 0.75rem;
             font-size: 0.8rem;
-            color: var(--secondary-color);
+            opacity: 0.9;
         }
-        .coming-soon {
-            opacity: 0.5;
+        .tool-description {
+            color: var(--text-color);
+        }
+        .tool-description h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+        .tool-description p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        .tool-description ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+        .tool-description li {
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+        .coming-soon-section {
+            opacity: 0.6;
+        }
+        .coming-soon-section .tool-card {
+            background: var(--border-color);
             pointer-events: none;
         }
-        .coming-soon .badge {
+        .badge {
             background: var(--accent-color);
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
             display: inline-block;
         }
         .seo-section {
@@ -128,36 +151,41 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin: 1.5rem 0 0 0;
         }
         .feature-item {
             text-align: center;
             padding: 1rem;
         }
         .feature-item i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--primary-color);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
         .feature-item h3 {
             color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
         }
         .feature-item p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-color);
             margin: 0;
         }
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.2rem;
             }
             .hero p {
                 font-size: 1rem;
             }
-            .tools-grid {
+            .tool-section {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .tool-card {
+                max-width: 280px;
+                margin: 0 auto;
             }
         }
     </style>
@@ -175,106 +203,196 @@
             <p>Praktische Online-Rechner für den Alltag in der Schweiz</p>
             <div class="hero-badges">
                 <span class="hero-badge"><i class="fas fa-lock"></i> 100% Lokal</span>
-                <span class="hero-badge"><i class="fas fa-euro-sign" style="text-decoration: line-through;"></i> Kostenlos</span>
+                <span class="hero-badge"><i class="fas fa-ban"></i> Kostenlos</span>
                 <span class="hero-badge"><i class="fas fa-globe"></i> DE / FR</span>
             </div>
         </div>
 
-        <div class="tools-grid">
+        <!-- Promillerechner -->
+        <div class="tool-section">
             <a href="/promille/" class="tool-card">
                 <div class="tool-icon">🍺</div>
                 <h2>Promillerechner</h2>
-                <p>Berechne deinen ungefähren Blutalkoholwert und erfahre, wann du wieder fahrtüchtig bist.</p>
                 <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
             </a>
+            <div class="tool-description">
+                <h3>Blutalkohol berechnen</h3>
+                <p>
+                    Unser Promillerechner verwendet die wissenschaftlich anerkannte <strong>Widmark-Formel</strong> zur Berechnung
+                    des Blutalkoholwerts. Er zeigt auch, wann du voraussichtlich wieder unter dem Schweizer Grenzwert von 0.5 Promille liegst.
+                </p>
+                <p>
+                    Wähle einfach dein Geschlecht, Gewicht und die konsumierten Getränke aus - der Rechner zeigt dir sofort
+                    deinen geschätzten Promillewert und eine Abbau-Timeline.
+                </p>
+            </div>
+        </div>
 
+        <!-- Brutto-Netto-Rechner -->
+        <div class="tool-section">
             <a href="/lohn/" class="tool-card">
                 <div class="tool-icon">💰</div>
                 <h2>Brutto-Netto-Rechner</h2>
-                <p>Berechne deinen Nettolohn in der Schweiz mit allen Sozialabzügen (AHV, ALV, BVG).</p>
                 <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
             </a>
+            <div class="tool-description">
+                <h3>Schweizer Lohnrechner</h3>
+                <p>
+                    Der Brutto-Netto-Lohnrechner berücksichtigt die <strong>Schweizer Sozialversicherungsabzüge</strong>:
+                </p>
+                <ul>
+                    <li>AHV/IV/EO (5.3%)</li>
+                    <li>ALV (1.1% bis CHF 148'200)</li>
+                    <li>NBU (~0.5%)</li>
+                    <li>BVG/Pensionskasse (altersabhängig 7-18%)</li>
+                </ul>
+                <p>Optional können Kinderzulagen (CHF 200/Monat pro Kind) hinzugerechnet werden.</p>
+            </div>
+        </div>
 
+        <!-- Trinkgeld-Rechner -->
+        <div class="tool-section">
             <a href="/trinkgeld/" class="tool-card">
                 <div class="tool-icon">🧾</div>
                 <h2>Trinkgeld-Rechner</h2>
-                <p>Berechne das passende Trinkgeld und teile die Rechnung fair unter Freunden auf.</p>
                 <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
             </a>
+            <div class="tool-description">
+                <h3>Trinkgeld berechnen & Rechnung teilen</h3>
+                <p>
+                    Berechne das passende Trinkgeld mit voreingestellten Prozentsätzen (5%, 10%, 15%, 20%) oder einem eigenen Wert.
+                    Teile die Rechnung fair unter Freunden auf.
+                </p>
+                <p>
+                    In der Schweiz ist der Service meist im Preis inbegriffen. Trinkgeld ist eine freiwillige Anerkennung
+                    für guten Service - üblich sind 5-10% bei Zufriedenheit.
+                </p>
+            </div>
+        </div>
 
+        <!-- Schlafrechner -->
+        <div class="tool-section">
             <a href="/schlaf/" class="tool-card">
                 <div class="tool-icon">😴</div>
                 <h2>Schlafrechner</h2>
-                <p>Finde die optimale Einschlaf- oder Aufwachzeit basierend auf 90-Minuten-Schlafzyklen.</p>
                 <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
             </a>
+            <div class="tool-description">
+                <h3>Optimale Schlafzeiten</h3>
+                <p>
+                    Der Schlafrechner basiert auf dem Konzept der <strong>90-minütigen Schlafzyklen</strong>.
+                    Wenn du am Ende eines Zyklus aufwachst, fühlst du dich erholter, als wenn der Wecker dich mitten in einer Tiefschlafphase weckt.
+                </p>
+                <p>
+                    Zwei Modi: "Ich muss aufstehen um..." berechnet die optimalen Einschlafzeiten,
+                    "Ich gehe schlafen um..." zeigt die besten Aufwachzeiten. Empfohlen: 5-6 Zyklen (7.5-9 Stunden).
+                </p>
+            </div>
+        </div>
 
+        <!-- BMI-Rechner -->
+        <div class="tool-section">
             <a href="/bmi/" class="tool-card">
                 <div class="tool-icon">📊</div>
                 <h2>BMI-Rechner</h2>
-                <p>Berechne deinen Body Mass Index und erfahre, ob dein Gewicht im gesunden Bereich liegt.</p>
                 <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
             </a>
+            <div class="tool-description">
+                <h3>Body Mass Index</h3>
+                <p>
+                    Berechne deinen BMI mit intuitiven Slidern für Grösse und Gewicht.
+                    Die visuelle Skala zeigt dir sofort, in welcher Kategorie du liegst: Untergewicht, Normalgewicht, Übergewicht oder Adipositas.
+                </p>
+                <p>
+                    <strong>Hinweis:</strong> Der BMI ist nur ein grober Richtwert und berücksichtigt nicht Muskelmasse, Fettverteilung, Alter oder Geschlecht.
+                </p>
+            </div>
+        </div>
 
-            <div class="tool-card coming-soon">
+        <!-- Fleisch- & CO2-Rechner -->
+        <div class="tool-section">
+            <a href="/fleisch/" class="tool-card">
+                <div class="tool-icon">🥩</div>
+                <h2>Fleisch- & CO2-Rechner</h2>
+                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
+            </a>
+            <div class="tool-description">
+                <h3>Fleischkonsum & Klimabilanz</h3>
+                <p>
+                    Berechne den <strong>CO2-Fussabdruck</strong> deines Fleischkonsums und vergleiche ihn mit den
+                    Empfehlungen der Schweizerischen Gesellschaft für Ernährung (SGE).
+                </p>
+                <p>
+                    Der Rechner zeigt dir, wie viele <strong>km Autofahrt</strong> oder <strong>Flüge</strong>
+                    dein Konsum entspricht und welches Einsparpotenzial du hast.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bussenrechner -->
+        <div class="tool-section">
+            <a href="/busse/" class="tool-card">
+                <div class="tool-icon">🚗</div>
+                <h2>Bussenrechner</h2>
+                <div class="languages"><i class="fas fa-language"></i> DE | FR</div>
+            </a>
+            <div class="tool-description">
+                <h3>Geschwindigkeitsbusse Schweiz</h3>
+                <p>
+                    Berechne deine Busse für <strong>Geschwindigkeitsüberschreitung</strong> in der Schweiz.
+                    Wähle die Zone (30, 50, 80, 100 oder 120 km/h) und gib deine gemessene Geschwindigkeit ein.
+                </p>
+                <p>
+                    Der Rechner zeigt dir die <strong>Busse</strong>, ob ein <strong>Führerausweisentzug</strong> droht
+                    und ob es sich um ein <strong>Raserdelikt</strong> handeln könnte. Mit offiziellen Quellen.
+                </p>
+            </div>
+        </div>
+
+        <!-- Ferienkürzung (Coming Soon) -->
+        <div class="tool-section coming-soon-section">
+            <div class="tool-card">
                 <div class="tool-icon">🏖️</div>
                 <h2>Ferienkürzung</h2>
-                <p>Berechne die zulässige Ferienkürzung bei Arbeitsverhinderung nach Art. 329b OR.</p>
                 <span class="badge">Bald verfügbar</span>
+            </div>
+            <div class="tool-description">
+                <h3>Ferienkürzung berechnen</h3>
+                <p>
+                    Berechne die zulässige Ferienkürzung bei Arbeitsverhinderung nach <strong>Art. 329b OR</strong>.
+                    Bei längerer Abwesenheit (z.B. Krankheit, Unfall, Militärdienst) darf der Arbeitgeber die Ferien anteilsmässig kürzen.
+                </p>
             </div>
         </div>
 
         <div class="seo-section">
             <h2>Warum wieviel.ch?</h2>
             <p>
-                <strong>wieviel.ch</strong> bietet eine Sammlung kostenloser Online-Rechner, die speziell für die Schweiz entwickelt wurden.
-                Ob du wissen möchtest, wie viel Nettolohn du nach allen Abzügen erhältst, wie lange der Alkohol in deinem Blut nachweisbar ist,
-                oder wann du aufwachen solltest, um erfrischt zu sein - unsere Tools liefern schnelle Antworten.
-            </p>
-            <p>
                 Alle Berechnungen erfolgen <strong>direkt in deinem Browser</strong>. Es werden keine Daten an Server gesendet oder gespeichert.
                 Deine Privatsphäre ist uns wichtig.
             </p>
-
             <div class="features-grid">
                 <div class="feature-item">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Datenschutz</h3>
-                    <p>Keine Cookies, keine Registrierung, keine Datensammlung</p>
+                    <p>Keine Cookies, keine Registrierung</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-bolt"></i>
                     <h3>Blitzschnell</h3>
-                    <p>Sofortige Ergebnisse ohne Wartezeit</p>
+                    <p>Sofortige Ergebnisse</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Mobilfreundlich</h3>
-                    <p>Optimiert für Smartphones und Tablets</p>
+                    <p>Optimiert für Smartphones</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-share-alt"></i>
                     <h3>Teilbar</h3>
-                    <p>Ergebnisse einfach per WhatsApp teilen</p>
+                    <p>Per WhatsApp teilen</p>
                 </div>
             </div>
-        </div>
-
-        <div class="seo-section">
-            <h2>Schweizer Rechner für den Alltag</h2>
-            <p>
-                Der <strong>Brutto-Netto-Lohnrechner</strong> berücksichtigt die Schweizer Sozialversicherungsabzüge:
-                AHV/IV/EO (5.3%), ALV (1.1%), NBU (~0.5%) und die altersabhängige Pensionskasse (BVG).
-                Optional können Kinderzulagen hinzugerechnet werden.
-            </p>
-            <p>
-                Unser <strong>Promillerechner</strong> verwendet die wissenschaftlich anerkannte Widmark-Formel zur Berechnung
-                des Blutalkoholwerts. Er zeigt auch, wann du voraussichtlich wieder unter dem Schweizer Grenzwert von 0.5 Promille liegst.
-            </p>
-            <p>
-                Der <strong>Schlafrechner</strong> basiert auf dem Konzept der 90-minütigen Schlafzyklen.
-                Wenn du am Ende eines Zyklus aufwachst, fühlst du dich erholter, als wenn der Wecker dich mitten in einer Tiefschlafphase weckt.
-            </p>
         </div>
     </div>
 

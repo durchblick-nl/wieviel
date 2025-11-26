@@ -35,8 +35,15 @@
         .input-with-icon input { padding-left: 2.5rem; }
         .input-with-icon .icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.5; }
         .split-input { display: flex; align-items: center; gap: 1rem; }
-        .split-input button { width: 44px; height: 44px; border-radius: 50%; font-size: 1.25rem; cursor: pointer; }
-        .split-input .count { font-size: 1.5rem; font-weight: bold; min-width: 3rem; text-align: center; }
+        .split-input button { width: 48px; height: 48px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border: none; font-weight: bold; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .split-input button:hover { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .split-input button:active { transform: scale(0.95); }
+        .split-input .count { font-size: 2rem; font-weight: bold; min-width: 3rem; text-align: center; color: var(--primary-color); font-family: 'Economica', sans-serif; }
+        .country-list li { cursor: pointer; padding: 0.25rem 0.5rem; margin: 0.1rem 0; border-radius: 4px; transition: all 0.2s; }
+        .country-list li:hover { background: var(--primary-color); color: white; }
+        .country-list li:hover strong { color: white; }
+        .country-list li.selected { background: var(--secondary-color); color: white; }
+        .country-list li.selected strong { color: white; }
     </style>
 </head>
 <body>
@@ -51,12 +58,47 @@
             </div>
         </div>
 
-        <h1><img src="../../favicon.svg" alt="" class="title-icon">Trinkgeld-Rechner</h1>
+        <h1><span class="title-icon">🧾</span>Trinkgeld-Rechner</h1>
 
         <nav class="tool-nav">
             <a href="../../">Alle Tools</a>
             <a href="../de/" class="active">Trinkgeld</a>
         </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-receipt"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Rechnung eingeben</h3>
+                    <p>Geben Sie den Rechnungsbetrag ein.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-percent"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Trinkgeld wählen</h3>
+                    <p>Wählen Sie den gewünschten Prozentsatz.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-users"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Aufteilen</h3>
+                    <p>Teilen Sie die Rechnung unter Freunden auf.</p>
+                </div>
+            </div>
+        </div>
 
         <div class="calculator-card">
             <div class="form-group">
@@ -130,16 +172,46 @@
         </div>
 
         <div class="info-cards-container">
-            <div class="info-step-card">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
                 <div class="step-icon"><i class="fas fa-globe"></i></div>
                 <div class="step-content">
-                    <h3>Trinkgeld international</h3>
-                    <ul>
-                        <li><strong>Schweiz:</strong> 0-10% (Service inkl.)</li>
-                        <li><strong>Deutschland:</strong> 5-10%</li>
-                        <li><strong>USA:</strong> 15-25% (erwartet!)</li>
-                        <li><strong>Japan:</strong> 0% (unhöflich)</li>
-                    </ul>
+                    <h3>Trinkgeld international <small style="font-weight: normal; opacity: 0.7;">(klicken zum Übernehmen)</small></h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem 2rem;">
+                        <div>
+                            <h4 style="color: var(--primary-color); margin: 0.5rem 0; font-size: 0.95rem;">Europa</h4>
+                            <ul class="country-list" style="margin: 0;">
+                                <li onclick="setCountryTip(5, this)"><strong>Schweiz:</strong> 0-10% (Service inkl.)</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Deutschland:</strong> 5-10%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Österreich:</strong> 5-10%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Italien:</strong> 5-10% (coperto beachten)</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Frankreich:</strong> 5-10% (Service inkl.)</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Spanien:</strong> 5-10%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Portugal:</strong> 5-10%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Griechenland:</strong> 5-10%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Kroatien:</strong> 10-15%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Türkei:</strong> 10-15%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Niederlande:</strong> 5-10% (Service inkl.)</li>
+                                <li onclick="setCountryTip(10, this)"><strong>UK:</strong> 10-15%</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--primary-color); margin: 0.5rem 0; font-size: 0.95rem;">Fernreisen</h4>
+                            <ul class="country-list" style="margin: 0;">
+                                <li onclick="setCountryTip(20, this)"><strong>USA:</strong> 15-25% (erwartet!)</li>
+                                <li onclick="setCountryTip(15, this)"><strong>Kanada:</strong> 15-20%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Mexiko:</strong> 10-15%</li>
+                                <li onclick="setCountryTip(15, this)"><strong>Karibik:</strong> 15-20%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Thailand:</strong> 10% (freiwillig)</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Bali:</strong> 5-10%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Malediven:</strong> 10% (oft inkl.)</li>
+                                <li onclick="setCountryTip(10, this)"><strong>VAE/Dubai:</strong> 10-15%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Ägypten:</strong> 10-15%</li>
+                                <li onclick="setCountryTip(10, this)"><strong>Südafrika:</strong> 10-15%</li>
+                                <li onclick="setCountryTip(5, this)"><strong>Australien:</strong> 0-10%</li>
+                                <li onclick="setCountryTip(0, this)"><strong>Japan:</strong> 0% (unhöflich!)</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="info-step-card">
@@ -183,6 +255,20 @@
             state.people = Math.max(1, state.people + delta);
             document.getElementById('peopleCount').textContent = state.people;
             calculate();
+        }
+
+        function setCountryTip(percent, element) {
+            // Remove selection from all countries
+            document.querySelectorAll('.country-list li').forEach(li => li.classList.remove('selected'));
+            // Mark this country as selected
+            element.classList.add('selected');
+            // Set the tip percentage
+            state.tip = percent;
+            document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.toggle('active', parseInt(btn.dataset.tip) === percent));
+            document.getElementById('customTip').value = percent;
+            calculate();
+            // Scroll to calculator smoothly
+            document.querySelector('.calculator-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function calculate() {

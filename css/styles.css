@@ -740,11 +740,29 @@
             margin-right: 12px;
         }
 
+        span.title-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            font-size: 1.5rem;
+            vertical-align: middle;
+            margin-right: 12px;
+        }
+
         @media (max-width: 768px) {
             .title-icon {
                 width: 36px;
                 height: 36px;
                 margin-right: 8px;
+            }
+            span.title-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.2rem;
             }
         }
 
@@ -1694,6 +1712,7 @@
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
+            color: var(--text-color);
         }
 
         .gender-btn:hover {
@@ -1711,6 +1730,11 @@
             font-size: 2rem;
             display: block;
             margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .gender-btn.active i {
+            color: white;
         }
 
         .gender-btn span {
