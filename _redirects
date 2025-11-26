@@ -15,35 +15,59 @@
 # Cross-domain redirects: German tools accessed on calcule.ch → wieviel.ch
 # =============================================================================
 /promille/*  https://wieviel.ch/promille/:splat  301  Host=calcule.ch
+/promille/*  https://wieviel.ch/promille/:splat  301  Host=www.calcule.ch
 /lohn/*  https://wieviel.ch/lohn/:splat  301  Host=calcule.ch
+/lohn/*  https://wieviel.ch/lohn/:splat  301  Host=www.calcule.ch
 /trinkgeld/*  https://wieviel.ch/trinkgeld/:splat  301  Host=calcule.ch
+/trinkgeld/*  https://wieviel.ch/trinkgeld/:splat  301  Host=www.calcule.ch
 /schlaf/*  https://wieviel.ch/schlaf/:splat  301  Host=calcule.ch
+/schlaf/*  https://wieviel.ch/schlaf/:splat  301  Host=www.calcule.ch
 /bmi/*  https://wieviel.ch/bmi/:splat  301  Host=calcule.ch
+/bmi/*  https://wieviel.ch/bmi/:splat  301  Host=www.calcule.ch
 /fleisch/*  https://wieviel.ch/fleisch/:splat  301  Host=calcule.ch
+/fleisch/*  https://wieviel.ch/fleisch/:splat  301  Host=www.calcule.ch
 /busse/*  https://wieviel.ch/busse/:splat  301  Host=calcule.ch
+/busse/*  https://wieviel.ch/busse/:splat  301  Host=www.calcule.ch
 /tage/*  https://wieviel.ch/tage/:splat  301  Host=calcule.ch
+/tage/*  https://wieviel.ch/tage/:splat  301  Host=www.calcule.ch
 /ferienkuerzung/*  https://wieviel.ch/ferienkuerzung/:splat  301  Host=calcule.ch
+/ferienkuerzung/*  https://wieviel.ch/ferienkuerzung/:splat  301  Host=www.calcule.ch
 /teilzeit/*  https://wieviel.ch/teilzeit/:splat  301  Host=calcule.ch
+/teilzeit/*  https://wieviel.ch/teilzeit/:splat  301  Host=www.calcule.ch
 /mwst/*  https://wieviel.ch/mwst/:splat  301  Host=calcule.ch
+/mwst/*  https://wieviel.ch/mwst/:splat  301  Host=www.calcule.ch
 
 # =============================================================================
 # Cross-domain redirects: French tools accessed on wieviel.ch → calcule.ch
 # =============================================================================
 /viande/*  https://calcule.ch/viande/:splat  301  Host=wieviel.ch
+/viande/*  https://calcule.ch/viande/:splat  301  Host=www.wieviel.ch
 /amende/*  https://calcule.ch/amende/:splat  301  Host=wieviel.ch
+/amende/*  https://calcule.ch/amende/:splat  301  Host=www.wieviel.ch
 /jours/*  https://calcule.ch/jours/:splat  301  Host=wieviel.ch
+/jours/*  https://calcule.ch/jours/:splat  301  Host=www.wieviel.ch
 /tva/*  https://calcule.ch/tva/:splat  301  Host=wieviel.ch
+/tva/*  https://calcule.ch/tva/:splat  301  Host=www.wieviel.ch
 /salaire/*  https://calcule.ch/salaire/:splat  301  Host=wieviel.ch
+/salaire/*  https://calcule.ch/salaire/:splat  301  Host=www.wieviel.ch
 /alcoolemie/*  https://calcule.ch/alcoolemie/:splat  301  Host=wieviel.ch
+/alcoolemie/*  https://calcule.ch/alcoolemie/:splat  301  Host=www.wieviel.ch
 /pourboire/*  https://calcule.ch/pourboire/:splat  301  Host=wieviel.ch
+/pourboire/*  https://calcule.ch/pourboire/:splat  301  Host=www.wieviel.ch
 /sommeil/*  https://calcule.ch/sommeil/:splat  301  Host=wieviel.ch
+/sommeil/*  https://calcule.ch/sommeil/:splat  301  Host=www.wieviel.ch
 /imc/*  https://calcule.ch/imc/:splat  301  Host=wieviel.ch
+/imc/*  https://calcule.ch/imc/:splat  301  Host=www.wieviel.ch
 /reduction-vacances/*  https://calcule.ch/reduction-vacances/:splat  301  Host=wieviel.ch
+/reduction-vacances/*  https://calcule.ch/reduction-vacances/:splat  301  Host=www.wieviel.ch
 /temps-partiel/*  https://calcule.ch/temps-partiel/:splat  301  Host=wieviel.ch
+/temps-partiel/*  https://calcule.ch/temps-partiel/:splat  301  Host=www.wieviel.ch
 
 # French homepage folder on wieviel.ch → calcule.ch
 /fr/  https://calcule.ch/  301  Host=wieviel.ch
+/fr/  https://calcule.ch/  301  Host=www.wieviel.ch
 /fr/*  https://calcule.ch/:splat  301  Host=wieviel.ch
+/fr/*  https://calcule.ch/:splat  301  Host=www.wieviel.ch
 
 # =============================================================================
 # Legacy redirects: Old /de/ subfolder URLs → new structure
