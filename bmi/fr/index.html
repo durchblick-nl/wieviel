@@ -96,6 +96,16 @@
             .bmi-classification-table th, .bmi-classification-table td { padding: 0.5rem 0.75rem; }
             .waist-table { font-size: 0.75rem; }
         }
+
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -367,6 +377,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Questions fréquentes sur l'IMC</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Qu'est-ce qu'un IMC sain?</summary>
+                    <p>Selon l'OMS, un IMC entre <strong>18.5 et 24.9</strong> est considéré comme un poids normal. Cette plage est statistiquement associée au risque de santé le plus faible. Cependant, l'IMC ne prend pas en compte des facteurs individuels comme la masse musculaire, l'âge ou la morphologie.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Pourquoi l'IMC est-il controversé?</summary>
+                    <p>L'IMC ne distingue pas entre <strong>masse musculaire et masse grasse</strong>. Un bodybuilder peut avoir le même IMC qu'une personne avec beaucoup de graisse abdominale. De plus, il ne tient pas compte de la répartition des graisses – la graisse abdominale est plus dangereuse que la graisse des hanches.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Y a-t-il de meilleures alternatives à l'IMC?</summary>
+                    <p>Le <strong>tour de taille</strong> est un meilleur indicateur des risques pour la santé. Risque accru: femmes à partir de 80cm, hommes à partir de 94cm. Fortement accru: femmes à partir de 88cm, hommes à partir de 102cm. Le <strong>rapport taille-hanches</strong> est également plus significatif.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Comment calcule-t-on l'IMC chez les enfants?</summary>
+                    <p>Chez les enfants, l'IMC est comparé à des <strong>percentiles spécifiques à l'âge et au sexe</strong>. Un enfant est en surpoids si son IMC est au-dessus du 90e percentile, obèse à partir du 97e percentile. Les valeurs limites normales de l'IMC ne s'appliquent qu'à partir d'environ 18 ans.</p>
+                </details>
+            </div>
+        </section>
 
         <div class="info-section disclaimer-section">
             <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> Être en bonne santé, c'est plus qu'avoir un IMC «normal». L'IMC est une valeur indicative et ne remplace pas un avis médical. Pour toute question concernant votre poids, consultez votre médecin.</p>

@@ -36,6 +36,15 @@
         .share-btn.copy { background: var(--secondary-color); color: white; }
         .share-btn:hover { transform: translateY(-2px); }
         .sleep-icon { font-size: 3rem; text-align: center; margin-bottom: 1rem; }
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -149,6 +158,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Häufige Fragen zum Schlaf</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Wie viel Schlaf braucht man wirklich?</summary>
+                    <p>Erwachsene brauchen in der Regel <strong>7-9 Stunden Schlaf</strong> pro Nacht. Das entspricht 5-6 Schlafzyklen à 90 Minuten. Wichtiger als die Gesamtdauer ist jedoch, in einer Leichtschlafphase aufzuwachen.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was ist ein Schlafzyklus?</summary>
+                    <p>Ein Schlafzyklus dauert etwa <strong>90 Minuten</strong> und umfasst verschiedene Phasen: Leichtschlaf, Tiefschlaf und REM-Schlaf (Traumschlaf). Wer am Ende eines Zyklus aufwacht, fühlt sich ausgeruhter als mitten in einer Tiefschlafphase.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie lange dauert es einzuschlafen?</summary>
+                    <p>Die durchschnittliche Einschlafzeit beträgt etwa <strong>14 Minuten</strong>. Dieser Rechner berücksichtigt dies bei der Berechnung der optimalen Schlafens- und Aufwachzeiten.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Ist ein Mittagsschlaf gesund?</summary>
+                    <p>Ein kurzer <strong>Power-Nap von 10-20 Minuten</strong> kann die Leistungsfähigkeit steigern. Längere Mittagsschläfchen (über 30 Min.) können jedoch den Nachtschlaf stören und zu Schlafträgheit führen.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

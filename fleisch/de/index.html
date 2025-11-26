@@ -68,6 +68,16 @@
 
         input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: var(--border-color); outline: none; -webkit-appearance: none; }
         input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; }
+
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -299,6 +309,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Häufige Fragen zu Fleisch&shy;konsum und CO2</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Wie viel Fleisch isst ein Schweizer pro Jahr?</summary>
+                    <p>Der durchschnittliche Schweizer konsumiert etwa <strong>50kg Fleisch pro Jahr</strong>. Das entspricht ca. 1kg pro Woche. Die Schweizerische Gesellschaft für Ernährung (SGE) empfiehlt jedoch nur <strong>2-3 Portionen</strong> (200-360g) pro Woche.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Welches Fleisch hat die schlechteste CO2-Bilanz?</summary>
+                    <p><strong>Rindfleisch</strong> hat mit etwa 25kg CO2 pro kg Fleisch die höchste Klimabelastung. Zum Vergleich: Schweine&shy;fleisch verursacht ca. 8kg CO2/kg, Geflügel nur etwa 5kg CO2/kg.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie viel CO2 spare ich als Vegetarier?</summary>
+                    <p>Wer komplett auf Fleisch verzichtet, spart durchschnittlich <strong>300-400kg CO2 pro Jahr</strong> – das entspricht etwa einer Flugreise Zürich-Mallorca oder 2'000-3'000 Autokilometern.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Ist Bio-Fleisch besser für die Umwelt?</summary>
+                    <p>Bio-Fleisch hat eine <strong>ähnliche CO2-Bilanz</strong> wie konventionelles Fleisch, da die Tiere länger leben und mehr Futter brauchen. Vorteile liegen eher bei Tierwohl, Antibiotika-Verzicht und Boden&shy;gesundheit.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

@@ -44,6 +44,15 @@
         .country-list li:hover strong { color: white; }
         .country-list li.selected { background: var(--secondary-color); color: white; }
         .country-list li.selected strong { color: white; }
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -223,6 +232,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Häufige Fragen zum Trinkgeld</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Wie viel Trinkgeld gibt man in der Schweiz?</summary>
+                    <p>In der Schweiz ist Trinkgeld <strong>nicht obligatorisch</strong>, da der Service im Preis inbegriffen ist. Üblich sind jedoch <strong>5-10%</strong> bei zufriedenem Service. Bei kleinen Beträgen rundet man oft auf den nächsten Franken auf.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Ist der Service in der Schweiz im Preis inbegriffen?</summary>
+                    <p>Ja, seit 1974 ist der <strong>Service gesetzlich im Preis inbegriffen</strong>. Trinkgeld ist daher eine freiwillige Anerkennung für besonders guten Service – keine Pflicht wie in den USA.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Gibt man im Taxi auch Trinkgeld?</summary>
+                    <p>Im <strong>Taxi</strong> ist Aufrunden üblich (z.B. von CHF 18.50 auf CHF 20). Bei längeren Fahrten oder wenn der Fahrer mit dem Gepäck hilft, sind <strong>5-10%</strong> angemessen.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie teilt man eine Rechnung fair auf?</summary>
+                    <p>Am einfachsten teilt man den <strong>Gesamtbetrag inkl. Trinkgeld</strong> durch die Anzahl Personen. So zahlt jeder gleich viel – auch für das Trinkgeld. Dieser Rechner erledigt das automatisch.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

@@ -68,6 +68,16 @@
 
         input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: var(--border-color); outline: none; -webkit-appearance: none; }
         input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; }
+
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -299,6 +309,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Questions fréquentes sur la viande et le CO2</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Combien de viande un Suisse consomme-t-il par an?</summary>
+                    <p>Un Suisse moyen consomme environ <strong>50kg de viande par an</strong>. Cela représente environ 1kg par semaine. La Société Suisse de Nutrition (SSN) recommande cependant seulement <strong>2-3 portions</strong> (200-360g) par semaine.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quelle viande a le pire bilan CO2?</summary>
+                    <p>Le <strong>bœuf</strong> a l'impact climatique le plus élevé avec environ 25kg de CO2 par kg de viande. En comparaison: le porc cause environ 8kg de CO2/kg, la volaille seulement environ 5kg de CO2/kg.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Combien de CO2 économise un végétarien?</summary>
+                    <p>Celui qui renonce complètement à la viande économise en moyenne <strong>300-400kg de CO2 par an</strong> – cela correspond environ à un vol Zurich-Majorque ou 2'000-3'000 kilomètres en voiture.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>La viande bio est-elle meilleure pour l'environnement?</summary>
+                    <p>La viande bio a un <strong>bilan CO2 similaire</strong> à la viande conventionnelle, car les animaux vivent plus longtemps et ont besoin de plus de nourriture. Les avantages concernent plutôt le bien-être animal, l'absence d'antibiotiques et la santé des sols.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

@@ -44,6 +44,15 @@
         .country-list li:hover strong { color: white; }
         .country-list li.selected { background: var(--secondary-color); color: white; }
         .country-list li.selected strong { color: white; }
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -223,6 +232,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Questions fréquentes sur le pourboire</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Combien de pourboire donne-t-on en Suisse?</summary>
+                    <p>En Suisse, le pourboire n'est <strong>pas obligatoire</strong> car le service est inclus dans le prix. Cependant, <strong>5-10%</strong> sont habituels pour un bon service. Pour les petits montants, on arrondit souvent au franc supérieur.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Le service est-il inclus en Suisse?</summary>
+                    <p>Oui, depuis 1974, le <strong>service est légalement inclus dans le prix</strong>. Le pourboire est donc une reconnaissance volontaire pour un service particulièrement bon – pas une obligation comme aux États-Unis.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Donne-t-on un pourboire au taxi?</summary>
+                    <p>En <strong>taxi</strong>, il est courant d'arrondir (p.ex. de CHF 18.50 à CHF 20). Pour les trajets plus longs ou si le chauffeur aide avec les bagages, <strong>5-10%</strong> sont appropriés.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Comment partager équitablement une addition?</summary>
+                    <p>Le plus simple est de diviser le <strong>montant total avec pourboire</strong> par le nombre de personnes. Ainsi, chacun paie la même chose – y compris pour le pourboire. Ce calculateur le fait automatiquement.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

@@ -39,6 +39,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -332,6 +343,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Questions fréquentes sur l'alcoolémie</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Combien de promilles après une bière?</summary>
+                    <p>Une bière standard (300ml, 5%) contient environ 12g d'alcool. Pour un homme de 80kg, cela donne environ <strong>0.2‰</strong>, pour une femme de 60kg environ <strong>0.35‰</strong>. La valeur varie selon le poids corporel et le sexe.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quelle est la limite d'alcoolémie en Suisse?</summary>
+                    <p>En Suisse, la limite pour les conducteurs normaux est de <strong>0.5‰</strong>. Pour les nouveaux conducteurs (3 premières années) et les chauffeurs professionnels, la tolérance zéro s'applique (<strong>0.1‰</strong>).</p>
+                </details>
+                <details class="faq-item">
+                    <summary>À quelle vitesse le corps élimine-t-il l'alcool?</summary>
+                    <p>Le corps élimine l'alcool à raison d'environ <strong>0.1-0.15‰ par heure</strong>. Cette élimination est constante et ne peut être accélérée – ni par le café, ni par une douche, ni par l'air frais.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quelles sanctions en cas d'alcool au volant en Suisse?</summary>
+                    <p>Entre <strong>0.5-0.79‰</strong>: avertissement et amende (dès CHF 600). À partir de <strong>0.8‰</strong>: retrait du permis (min. 3 mois) et amende. À partir de <strong>1.6‰</strong>: retrait du permis (min. 2 ans), examen médical obligatoire et inscription au casier judiciaire.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

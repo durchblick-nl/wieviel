@@ -103,6 +103,16 @@
         .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
         .partner-content a:hover { text-decoration: underline; }
 
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
         @media (max-width: 480px) {
             .speed-input input { width: 100px; font-size: 1.5rem; }
             .result-box .fine { font-size: 3rem; }
@@ -406,6 +416,28 @@
                     Chez <a href="https://www.justis.ch" target="_blank" rel="noopener">JUSTIS</a>, tu obtiens aussi des conseils juridiques
                     pour les problèmes non encore assurés, pour t'aider à évaluer ta situation et trouver une solution.</p>
                 </div>
+            </div>
+        </section>
+
+        <section class="seo-content">
+            <h3>Questions fréquentes sur les amendes en Suisse</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Combien coûte une amende pour 10 km/h de trop?</summary>
+                    <p><strong>En localité:</strong> CHF 120. <strong>Hors localité:</strong> CHF 100. <strong>Autoroute:</strong> CHF 60. Ces montants s'appliquent après déduction de la marge de sécurité (tolérance) de 5 km/h.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>À partir de quand risque-t-on un retrait de permis?</summary>
+                    <p><strong>En localité:</strong> dès 16 km/h de trop (avertissement), dès 21 km/h (1 mois de retrait). <strong>Hors localité:</strong> dès 21 km/h (avertissement), dès 26 km/h (1 mois). <strong>Autoroute:</strong> dès 26 km/h (avertissement), dès 31 km/h (1 mois de retrait).</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quelle est la marge de sécurité pour les radars?</summary>
+                    <p>La marge de sécurité (tolérance) est automatiquement déduite: <strong>Jusqu'à 100 km/h:</strong> 5 km/h. <strong>101-150 km/h:</strong> 6 km/h. <strong>Plus de 150 km/h:</strong> 7 km/h. Pour les mesures par poursuite, des déductions plus élevées s'appliquent (10-15%).</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Puis-je contester une amende?</summary>
+                    <p>Oui, pour une <strong>amende d'ordre</strong>, vous avez 10 jours pour faire opposition. Pour une <strong>ordonnance pénale</strong>, également 10 jours, après quoi la procédure se poursuit devant le tribunal.</p>
+                </details>
             </div>
         </section>
     </div>

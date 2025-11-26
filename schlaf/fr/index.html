@@ -36,6 +36,15 @@
         .share-btn.copy { background: var(--secondary-color); color: white; }
         .share-btn:hover { transform: translateY(-2px); }
         .sleep-icon { font-size: 3rem; text-align: center; margin-bottom: 1rem; }
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -149,6 +158,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Questions fréquentes sur le sommeil</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>De combien de sommeil a-t-on vraiment besoin?</summary>
+                    <p>Les adultes ont généralement besoin de <strong>7-9 heures de sommeil</strong> par nuit. Cela correspond à 5-6 cycles de sommeil de 90 minutes chacun. Plus important que la durée totale est de se réveiller pendant une phase de sommeil léger.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Qu'est-ce qu'un cycle de sommeil?</summary>
+                    <p>Un cycle de sommeil dure environ <strong>90 minutes</strong> et comprend différentes phases: sommeil léger, sommeil profond et sommeil paradoxal (REM). Celui qui se réveille à la fin d'un cycle se sent plus reposé que celui qui est interrompu en plein sommeil profond.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Combien de temps faut-il pour s'endormir?</summary>
+                    <p>Le temps moyen d'endormissement est d'environ <strong>14 minutes</strong>. Ce calculateur en tient compte lors du calcul des heures de coucher et de réveil optimales.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>La sieste est-elle bonne pour la santé?</summary>
+                    <p>Une courte <strong>sieste de 10-20 minutes</strong> peut améliorer les performances. Cependant, des siestes plus longues (plus de 30 min.) peuvent perturber le sommeil nocturne et provoquer une inertie du sommeil.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

@@ -133,6 +133,16 @@
             .mode-tab span { font-size: 0.75rem; }
             .result-box .main-result { font-size: 2.5rem; }
         }
+
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -417,6 +427,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Häufige Fragen zum Tagerechner</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Wie berechnet man Werktage zwischen zwei Daten?</summary>
+                    <p><strong>Werktage</strong> sind Montag bis Freitag ohne Feiertage. Dieser Rechner zählt automatisch die Arbeitstage zwischen zwei Daten – ideal für Projekt&shy;planung, Fristen oder Urlaubsberechnung.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Werden Feiertage berücksichtigt?</summary>
+                    <p>Dieser Rechner zählt <strong>Montag bis Freitag als Werktage</strong>. Kantonale Feiertage werden nicht automatisch abgezogen, da diese je nach Kanton unterschiedlich sind.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie funktioniert die Kalenderwochenberechnung?</summary>
+                    <p>Die <strong>Kalenderwoche (KW)</strong> wird nach ISO 8601 berechnet: Woche 1 ist die erste Woche mit mindestens 4 Tagen im neuen Jahr. Wochen beginnen am Montag.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Kann ich auch Monate oder Jahre addieren?</summary>
+                    <p>Ja, im Modus «Datum +/−» kannst du <strong>Tage, Wochen, Monate oder Jahre</strong> zu einem Datum addieren oder davon abziehen. Praktisch für Fristen, Kündigungsfristen oder Meilensteine.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

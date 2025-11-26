@@ -80,6 +80,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -373,6 +384,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Häufige Fragen zum Promillerechner</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Wie viel Promille hat man nach einem Bier?</summary>
+                    <p>Ein Standardbier (300ml, 5%) enthält etwa 12g Alkohol. Bei einem 80kg schweren Mann ergibt das ca. <strong>0.2‰</strong>, bei einer 60kg schweren Frau ca. <strong>0.35‰</strong>. Der Wert variiert je nach Körpergewicht und Geschlecht.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was ist die Promillegrenze in der Schweiz?</summary>
+                    <p>In der Schweiz gilt für normale Fahrer eine Promillegrenze von <strong>0.5‰</strong>. Für Neulenker (erste 3 Jahre) und Berufs&shy;chauffeure gilt praktisch Null-Toleranz (<strong>0.1‰</strong>).</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie schnell baut der Körper Alkohol ab?</summary>
+                    <p>Der Körper baut Alkohol mit etwa <strong>0.1-0.15‰ pro Stunde</strong> ab. Dieser Abbau ist konstant und kann nicht beschleunigt werden – weder durch Kaffee, Duschen noch frische Luft.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was passiert bei Alkohol am Steuer in der Schweiz?</summary>
+                    <p>Bei <strong>0.5-0.79‰</strong>: Verwarnung und Busse (ab CHF 600). Bei <strong>0.8‰ und mehr</strong>: Führer&shy;ausweis&shy;entzug (mind. 3 Monate) und Geldstrafe. Bei <strong>1.6‰ und mehr</strong>: Führer&shy;ausweis&shy;entzug (mind. 2 Jahre), verkehrs&shy;medizinische Untersuchung und Straf&shy;register&shy;eintrag.</p>
+                </details>
+            </div>
+        </section>
     </div>
 
     <footer class="site-footer">

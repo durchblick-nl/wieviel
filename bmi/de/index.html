@@ -96,6 +96,16 @@
             .bmi-classification-table th, .bmi-classification-table td { padding: 0.5rem 0.75rem; }
             .waist-table { font-size: 0.75rem; }
         }
+
+        /* FAQ Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -367,6 +377,28 @@
                 </div>
             </div>
         </div>
+
+        <section class="seo-content">
+            <h3>Häufige Fragen zum BMI</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Was ist ein gesunder BMI?</summary>
+                    <p>Nach der WHO gilt ein BMI zwischen <strong>18.5 und 24.9</strong> als Normalgewicht. Dieser Bereich ist statistisch mit dem geringsten Gesundheitsrisiko verbunden. Allerdings berücksichtigt der BMI keine individuellen Faktoren wie Muskelmasse, Alter oder Körperbau.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Warum ist der BMI umstritten?</summary>
+                    <p>Der BMI unterscheidet nicht zwischen <strong>Muskelmasse und Fettmasse</strong>. Ein Bodybuilder kann denselben BMI haben wie jemand mit viel Bauchfett. Ausserdem berücksichtigt er nicht die Fettverteilung – Bauchfett ist gefährlicher als Hüftfett.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Gibt es bessere Alternativen zum BMI?</summary>
+                    <p>Der <strong>Taillenumfang</strong> ist ein besserer Indikator für gesundheitliche Risiken. Erhöhtes Risiko: Frauen ab 80cm, Männer ab 94cm. Stark erhöht: Frauen ab 88cm, Männer ab 102cm. Auch das <strong>Taille-Hüft-Verhältnis</strong> ist aussagekräftiger.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Wie berechnet man den BMI bei Kindern?</summary>
+                    <p>Bei Kindern wird der BMI mit <strong>alters- und geschlechts&shy;spezifischen Perzentilen</strong> verglichen. Ein Kind ist übergewichtig, wenn sein BMI über der 90. Perzentile liegt, adipös ab der 97. Perzentile. Normale BMI-Grenzwerte gelten erst ab etwa 18 Jahren.</p>
+                </details>
+            </div>
+        </section>
 
         <div class="info-section disclaimer-section">
             <p><i class="fas fa-info-circle"></i> <strong>Hinweis:</strong> Gesund sein bedeutet mehr als einen «normalen» BMI-Wert zu haben. Der BMI ist ein Richtwert und ersetzt keine ärztliche Beratung. Bei Fragen zu deinem Gewicht wende dich an deinen Arzt.</p>
