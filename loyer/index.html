@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de loyer Suisse 2025 – Taux de référence hypothécaire | calcule.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta name="description" content="Calculateur de loyer gratuit pour la Suisse. Calcule l'adaptation de ton loyer selon le taux de référence actuel (1.25%). Baisse ou hausse de loyer?">
+    <meta name="keywords" content="calculateur loyer, taux de référence, loyer suisse, baisse de loyer, hausse de loyer, OFL">
+    <link rel="canonical" href="https://calcule.ch/loyer/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/miete/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/loyer/">
+    <meta property="og:title" content="Calculateur de loyer Suisse 2025 – Taux de référence">
+    <meta property="og:description" content="Calcule l'adaptation de ton loyer selon le taux de référence hypothécaire actuel.">
+    <meta property="og:url" content="https://calcule.ch/loyer/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CH">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculateur de loyer Suisse 2025">
+    <meta name="twitter:description" content="Adaptation du loyer selon le taux de référence hypothécaire.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculateur de loyer Suisse",
+        "url": "https://calcule.ch/loyer/",
+        "description": "Calculateur de loyer gratuit pour la Suisse. Calcule les adaptations de loyer selon le taux de référence.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Quel est le taux de référence actuel?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le taux de référence hypothécaire est actuellement de 1.25% (état: septembre 2025). Il est publié trimestriellement par l'Office fédéral du logement (OFL)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quelle baisse de loyer puis-je demander?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Par baisse de 0.25% du taux de référence, vous pouvez demander une réduction de loyer de 2.91%. Toutefois, le bailleur peut compenser avec le renchérissement et les hausses de coûts."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quand puis-je demander une baisse de loyer?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Vous pouvez demander une baisse si le taux de référence actuel est inférieur à celui lors de la dernière fixation de votre loyer. Ce droit ne se prescrit pas."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Le bailleur peut-il refuser la baisse?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le bailleur ne peut pas refuser la baisse, mais il peut compenser avec des hausses de coûts (renchérissement, frais d'entretien). En cas de litige, l'autorité de conciliation est compétente."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .rate-display {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .rate-display .rate-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.25rem;
+        }
+        .rate-display .rate-value {
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Economica', sans-serif;
+        }
+        .rate-display .rate-date {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        .rate-display .rate-source {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+        }
+        .rate-display .rate-source a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .rate-select-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 500px) {
+            .rate-select-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .rate-option {
+            padding: 0.75rem 0.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--card-bg);
+            font-weight: 600;
+        }
+        .rate-option:hover {
+            border-color: var(--primary-color);
+        }
+        .rate-option.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        .rate-option.current {
+            position: relative;
+        }
+        .rate-option.current::after {
+            content: 'actuel';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .result-box.increase { background: linear-gradient(135deg, #cc5c53, #e07a71); }
+        .result-box.decrease { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+        .result-box.neutral { background: linear-gradient(135deg, #666, #888); }
+
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .breakdown-row.total .value { color: var(--primary-color); }
+
+        .info-box {
+            background: var(--light-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        .info-box.warning {
+            border-left-color: var(--accent-color);
+            background: rgba(204, 92, 83, 0.1);
+        }
+        .info-box h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+        .info-box.warning h4 {
+            color: var(--accent-color);
+        }
+        .info-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        .timeline {
+            margin: 2rem 0;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-date {
+            min-width: 100px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .timeline-rate {
+            font-family: 'Economica', sans-serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .timeline-change {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        .timeline-change.down { color: #2e7d32; opacity: 1; }
+        .timeline-change.up { color: #cc5c53; opacity: 1; }
+
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
+        .seo-content p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-color); }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        .justis-card {
+            background: linear-gradient(135deg, #1a365d, #2c5282);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: white;
+            margin: 1.5rem 0;
+        }
+        .justis-card h4 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.1rem;
+        }
+        .justis-card p {
+            margin: 0 0 1rem 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        .justis-card a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: #1a365d;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .justis-card a:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="https://wieviel.ch/miete/" class="lang-btn">DE</a>
+                <span class="lang-btn active">FR</span>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1><span class="title-icon">🏠</span>Calculateur de loyer</h1>
+            <p class="page-subtitle">Adaptation du loyer selon le taux de référence</p>
+        </div>
+
+        <nav class="tool-nav">
+            <a href="../fr/">Tous les outils</a>
+        </nav>
+
+        <div class="rate-display">
+            <div class="rate-label">Taux de référence actuel</div>
+            <div class="rate-value">1.25%</div>
+            <div class="rate-date">Valable depuis le 3 septembre 2025</div>
+            <div class="rate-source">Source: <a href="https://www.bwo.admin.ch/fr/referenzzinssatz" target="_blank" rel="noopener">OFL</a></div>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-file-contract"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Contrat de bail</h3>
+                    <p>Entre ton loyer actuel et le taux de référence à la signature du contrat.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-percentage"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Taux de référence</h3>
+                    <p>Choisis le taux lors de la dernière fixation du loyer.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calculator"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Adaptation</h3>
+                    <p>Vois si tu peux demander une baisse de loyer.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label for="currentRent">Loyer net actuel (mensuel)</label>
+                <div style="position: relative;">
+                    <input type="number" id="currentRent" value="1500" min="0" step="10" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                </div>
+                <small class="form-hint">Loyer sans charges (chauffage, etc.)</small>
+            </div>
+
+            <div class="form-group">
+                <label>Taux de référence lors de la dernière fixation du loyer</label>
+                <div class="rate-select-grid">
+                    <div class="rate-option" data-rate="3.00">3.00%</div>
+                    <div class="rate-option" data-rate="2.75">2.75%</div>
+                    <div class="rate-option" data-rate="2.50">2.50%</div>
+                    <div class="rate-option" data-rate="2.25">2.25%</div>
+                    <div class="rate-option" data-rate="2.00">2.00%</div>
+                    <div class="rate-option" data-rate="1.75">1.75%</div>
+                    <div class="rate-option active" data-rate="1.50">1.50%</div>
+                    <div class="rate-option current" data-rate="1.25">1.25%</div>
+                </div>
+                <small class="form-hint">Indiqué sur le contrat de bail ou la dernière adaptation de loyer</small>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fas fa-info-circle"></i> Pas sûr?</h4>
+                <p>Le taux de référence figure sur le contrat de bail (depuis 2008) ou sur la dernière notification d'adaptation du loyer. S'il n'est pas indiqué, c'est le taux au début du bail qui s'applique.</p>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box decrease" id="resultBox">
+                <div class="label" id="resultLabel">Baisse de loyer possible</div>
+                <div class="total" id="mainResult">- CHF 43.65</div>
+                <div class="sub" id="resultSub">par mois (baisse de 2.91%)</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-list"></i> Calcul</h3>
+                <div class="breakdown-row">
+                    <span class="label">Taux de référence à la fixation</span>
+                    <span class="value" id="oldRate">1.50%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Taux de référence actuel</span>
+                    <span class="value" id="newRate">1.25%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Différence</span>
+                    <span class="value" id="rateDiff">-0.25%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Adaptation du loyer</span>
+                    <span class="value" id="percentChange">-2.91%</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Nouveau loyer</span>
+                    <span class="value" id="newRent">CHF 1'456.35</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-piggy-bank"></i> Économies</h3>
+                <div class="breakdown-row">
+                    <span class="label">Par mois</span>
+                    <span class="value" id="savingsMonth">CHF 43.65</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Par an</span>
+                    <span class="value" id="savingsYear">CHF 523.80</span>
+                </div>
+            </div>
+
+            <div class="info-box warning" id="warningBox">
+                <h4><i class="fas fa-exclamation-triangle"></i> Important</h4>
+                <p>Le bailleur peut compenser avec des hausses de coûts: 40% du renchérissement depuis la dernière fixation plus les hausses générales de coûts (env. 0.5% par an). La baisse effective peut donc être inférieure.</p>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Partager
+                </button>
+                <button class="share-btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i> Copier
+                </button>
+            </div>
+        </div>
+
+        <div class="justis-card">
+            <h4><i class="fas fa-balance-scale"></i> Besoin de conseils juridiques?</h4>
+            <p>Pour des questions sur l'adaptation du loyer ou si le bailleur ne répond pas: Chez <a href="https://www.justis.ch" target="_blank" rel="noopener">JUSTIS</a>, tu obtiens aussi des conseils juridiques gratuits pour les cas non encore assurés.</p>
+            <a href="https://www.justis.ch" target="_blank" rel="noopener">
+                <i class="fas fa-external-link-alt"></i> Vers JUSTIS
+            </a>
+        </div>
+
+        <section class="seo-content">
+            <h2>Comment fonctionne le calculateur de loyer</h2>
+            <p>Le taux de référence hypothécaire est la base pour les adaptations de loyer en Suisse. Il est publié trimestriellement par l'<strong>Office fédéral du logement (OFL)</strong> et se base sur le taux d'intérêt moyen des hypothèques.</p>
+
+            <h3>La formule d'adaptation du loyer</h3>
+            <p>Le calcul se base sur la «méthode relative»:</p>
+            <ul>
+                <li><strong>Baisse:</strong> Par baisse de 0.25% du taux de référence = <strong>2.91% de baisse de loyer</strong></li>
+                <li><strong>Hausse:</strong> Par hausse de 0.25% du taux de référence = <strong>3.00% de hausse de loyer</strong></li>
+            </ul>
+            <p>Ces taux différents s'expliquent mathématiquement: une hausse de 3% suivie d'une baisse de 2.91% ramène au montant initial.</p>
+
+            <h3>Évolution du taux de référence</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">Sept. 2025</span>
+                    <span class="timeline-rate">1.25%</span>
+                    <span class="timeline-change down">↓ de 1.50%</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Mars 2025</span>
+                    <span class="timeline-rate">1.50%</span>
+                    <span class="timeline-change down">↓ de 1.75%</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Déc. 2024</span>
+                    <span class="timeline-rate">1.75%</span>
+                    <span class="timeline-change up">↑ de 1.50%</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Juin 2023</span>
+                    <span class="timeline-rate">1.50%</span>
+                    <span class="timeline-change up">↑ de 1.25%</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2008–2023</span>
+                    <span class="timeline-rate">1.25%–3.50%</span>
+                    <span class="timeline-change">Introduction du taux de référence</span>
+                </div>
+            </div>
+
+            <h3>Questions fréquentes</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Comment demander une baisse de loyer?</summary>
+                    <p>Écris une <strong>lettre recommandée</strong> à ton bailleur en te référant à la baisse du taux de référence. Demande l'adaptation pour le prochain terme de résiliation possible. Le bailleur doit répondre dans les 30 jours. Des modèles de lettres sont disponibles auprès de l'<a href="https://www.asloca.ch" target="_blank" rel="noopener">ASLOCA</a>.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Que peut compenser le bailleur?</summary>
+                    <p>Le bailleur peut faire valoir <strong>40% du renchérissement</strong> (indice des prix à la consommation) depuis la dernière fixation. En plus, des <strong>hausses générales de coûts</strong> de 0.5% par an sont souvent acceptées. Les investissements créant une plus-value peuvent également être imputés.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Le calcul s'applique-t-il aux anciens bâtiments?</summary>
+                    <p>Oui, le taux de référence s'applique à tous les baux en Suisse – nouvelles constructions comme anciens bâtiments. Pour les anciens bâtiments d'avant 2008, c'est le taux à l'introduction (3.50%) ou le taux de la dernière adaptation de loyer documentée qui s'applique.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Que faire si le bailleur ne répond pas?</summary>
+                    <p>Si le bailleur ne répond pas dans les 30 jours ou refuse la baisse, tu peux t'adresser à l'<strong>autorité de conciliation</strong> de ton canton. La procédure est gratuite et simple. L'autorité fait office de médiateur entre les parties.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Puis-je demander une baisse rétroactive?</summary>
+                    <p>Non, une baisse de loyer ne prend effet qu'à partir du prochain terme de résiliation possible (généralement 3 mois). Il n'y a pas de droit au remboursement pour le passé. Il vaut donc la peine d'agir rapidement.</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Sources officielles</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.bwo.admin.ch/fr/referenzzinssatz" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Taux de référence actuel – OFL</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.asloca.ch" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Baisse de loyer – ASLOCA</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.hev-schweiz.ch/fr/louer/rapports-de-location/taux-de-reference" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Taux de référence – APF Suisse</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Toutes les informations sont fournies sans garantie. Pour des renseignements contraignants, adresse-toi à l'autorité de conciliation.</p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Current reference rate (update this when BWO publishes new rate)
+        const CURRENT_RATE = 1.25;
+        const RATE_DATE = '3 septembre 2025';
+
+        // State
+        let oldRate = 1.50;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Rate selection
+            document.querySelectorAll('.rate-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.rate-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    oldRate = parseFloat(this.dataset.rate);
+                    calculate();
+                });
+            });
+
+            calculate();
+        });
+
+        function calculate() {
+            const currentRent = parseFloat(document.getElementById('currentRent').value) || 0;
+
+            // Calculate rate difference in quarter percent steps
+            const rateDiff = CURRENT_RATE - oldRate;
+            const quarterSteps = Math.round(rateDiff / 0.25);
+
+            // Calculate percentage change
+            // For decreases: 2.91% per 0.25%
+            // For increases: 3.00% per 0.25%
+            let percentChange = 0;
+            if (quarterSteps < 0) {
+                // Decrease - use 2.91% per step
+                percentChange = quarterSteps * 2.91;
+            } else if (quarterSteps > 0) {
+                // Increase - use 3.00% per step
+                percentChange = quarterSteps * 3.00;
+            }
+
+            // Calculate new rent
+            const rentChange = currentRent * (percentChange / 100);
+            const newRent = currentRent + rentChange;
+
+            // Update UI
+            const resultBox = document.getElementById('resultBox');
+            const resultLabel = document.getElementById('resultLabel');
+            const mainResult = document.getElementById('mainResult');
+            const resultSub = document.getElementById('resultSub');
+            const warningBox = document.getElementById('warningBox');
+
+            resultBox.classList.remove('increase', 'decrease', 'neutral');
+
+            if (percentChange < 0) {
+                resultBox.classList.add('decrease');
+                resultLabel.textContent = 'Baisse de loyer possible';
+                mainResult.textContent = '- ' + formatCHF(Math.abs(rentChange));
+                resultSub.textContent = `par mois (baisse de ${Math.abs(percentChange).toFixed(2)}%)`;
+                warningBox.style.display = 'block';
+                document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'block';
+            } else if (percentChange > 0) {
+                resultBox.classList.add('increase');
+                resultLabel.textContent = 'Hausse de loyer possible';
+                mainResult.textContent = '+ ' + formatCHF(rentChange);
+                resultSub.textContent = `par mois (hausse de ${percentChange.toFixed(2)}%)`;
+                warningBox.style.display = 'none';
+                document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'none';
+            } else {
+                resultBox.classList.add('neutral');
+                resultLabel.textContent = 'Pas d\'adaptation';
+                mainResult.textContent = 'CHF 0.00';
+                resultSub.textContent = 'Le taux de référence n\'a pas changé';
+                warningBox.style.display = 'none';
+                document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'none';
+            }
+
+            // Update breakdown
+            document.getElementById('oldRate').textContent = oldRate.toFixed(2) + '%';
+            document.getElementById('newRate').textContent = CURRENT_RATE.toFixed(2) + '%';
+            document.getElementById('rateDiff').textContent = (rateDiff >= 0 ? '+' : '') + rateDiff.toFixed(2) + '%';
+            document.getElementById('percentChange').textContent = (percentChange >= 0 ? '+' : '') + percentChange.toFixed(2) + '%';
+            document.getElementById('newRent').textContent = formatCHF(newRent);
+
+            // Update savings
+            document.getElementById('savingsMonth').textContent = formatCHF(Math.abs(rentChange));
+            document.getElementById('savingsYear').textContent = formatCHF(Math.abs(rentChange) * 12);
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        }
+
+        function getShareText() {
+            const currentRent = document.getElementById('currentRent').value;
+            const newRent = document.getElementById('newRent').textContent;
+            const change = document.getElementById('percentChange').textContent;
+            return `Calculateur de loyer: Avec un loyer de CHF ${currentRent} et un taux de référence de ${oldRate}% → ${CURRENT_RATE}%, l'adaptation est de ${change}.\nNouveau loyer: ${newRent}\n\nCalcule toi-même: https://calcule.ch/loyer/`;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => btn.innerHTML = originalText, 2000);
+            });
+        }
+
+        // Dark mode
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            },
+            toggle() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem(this.STORAGE_KEY, !isDark);
+            }
+        };
+
+        DarkMode.init();
+    </script>
+</body>
+</html>

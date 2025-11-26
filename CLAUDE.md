@@ -27,6 +27,9 @@ A collection of useful calculators for the general public in Switzerland.
 | **Ferienkürzung** | `/ferienkuerzung/` | Holiday reduction calculator (Art. 329b OR) |
 | **Teilzeit-Rechner** | `/teilzeit/` | True cost of part-time work (BVG, AHV impact) |
 | **MWST-Rechner** | `/mwst/` | Swiss VAT calculator (8.1%, 2.6%, 3.8%) |
+| **Mietzinsrechner** | `/miete/` | Rent adjustment calculator (Referenzzinssatz) |
+| **Hypothekenrechner** | `/hypothek/` | Mortgage affordability calculator |
+| **Zinseszinsrechner** | `/zinseszins/` | Compound interest calculator |
 
 ### Current Tools (calcule.ch - French):
 
@@ -43,6 +46,9 @@ A collection of useful calculators for the general public in Switzerland.
 | **Réduction vacances** | `/reduction-vacances/` | Holiday reduction calculator |
 | **Calculateur temps partiel** | `/temps-partiel/` | Part-time cost calculator |
 | **Calculateur TVA** | `/tva/` | Swiss VAT calculator |
+| **Calculateur de loyer** | `/loyer/` | Rent adjustment calculator (taux de référence) |
+| **Calculateur hypothécaire** | `/hypotheque/` | Mortgage affordability calculator |
+| **Calculateur d'intérêts composés** | `/interets-composes/` | Compound interest calculator |
 
 ### URL Mapping (DE ↔ FR):
 
@@ -59,6 +65,9 @@ A collection of useful calculators for the general public in Switzerland.
 | `/ferienkuerzung/` | `/reduction-vacances/` |
 | `/teilzeit/` | `/temps-partiel/` |
 | `/mwst/` | `/tva/` |
+| `/miete/` | `/loyer/` |
+| `/hypothek/` | `/hypotheque/` |
+| `/zinseszins/` | `/interets-composes/` |
 
 ### Planned Tools:
 - (none currently)
@@ -104,6 +113,9 @@ wieviel.ch/
 ├── ferienkuerzung/index.html # Ferienkürzung
 ├── teilzeit/index.html     # Teilzeit-Rechner
 ├── mwst/index.html         # MWST-Rechner
+├── miete/index.html        # Mietzinsrechner
+├── hypothek/index.html     # Hypothekenrechner
+├── zinseszins/index.html   # Zinseszinsrechner
 │
 ├── # French homepage
 ├── fr/index.html           # French homepage (calcule.ch)
@@ -119,7 +131,10 @@ wieviel.ch/
 ├── jours/index.html        # Calculateur de jours
 ├── reduction-vacances/index.html # Réduction vacances
 ├── temps-partiel/index.html # Calculateur temps partiel
-└── tva/index.html          # Calculateur TVA
+├── tva/index.html          # Calculateur TVA
+├── loyer/index.html        # Calculateur de loyer
+├── hypotheque/index.html   # Calculateur hypothécaire
+└── interets-composes/index.html # Calculateur d'intérêts composés
 ```
 
 ## Tech Stack
@@ -292,6 +307,68 @@ Calculates Swiss VAT (Mehrwertsteuer) in both directions:
 - VAT Amount: `VAT = Gross - Net`
 
 **VAT Obligation**: Businesses with annual turnover > CHF 100'000 must register for VAT.
+
+### Mietzinsrechner - Rent Adjustment (Referenzzinssatz)
+Calculates rent adjustments based on the Swiss reference interest rate.
+
+**Current Reference Rate**: 1.25% (as of September 2025)
+Published by BWO (Bundesamt für Wohnungswesen) quarterly.
+
+**Adjustment Formula**:
+- Per 0.25% decrease in reference rate: **2.91% rent reduction**
+- Per 0.25% increase in reference rate: **3.00% rent increase**
+
+Formula for reduction: `(Increase rate × 100) / (100 + Increase rate) = Reduction rate`
+
+**Note**: Landlords can offset with 40% of inflation since last adjustment plus general cost increases (~0.5%/year).
+
+### Hypothekenrechner - Mortgage Affordability
+Calculates maximum affordable property price and monthly costs.
+
+**Swiss Mortgage Rules**:
+| Criterion | Requirement |
+|-----------|-------------|
+| Equity | Min. 20% of purchase price |
+| Hard equity | Min. 10% (not from pension fund) |
+| Affordability | Max. 33% of gross income |
+| Imputed interest | 5% (not actual rate) |
+| Maintenance costs | 1% of property value/year |
+| 2nd mortgage | Amortization within 15 years |
+
+**Mortgage Structure**:
+- **1st mortgage** (up to 67%): Does not need to be repaid
+- **2nd mortgage** (67-80%): Must be amortized within 15 years or by retirement
+- **Equity** (min. 20%): At least 10% must be "hard" equity (savings, pillar 3a)
+
+**Affordability Formula**:
+```
+(Mortgage × 5% + Property × 1% + 2nd Mortgage ÷ 15) ÷ Gross Income ≤ 33%
+```
+
+### Zinseszinsrechner - Compound Interest
+Calculates future value with compound interest and regular contributions.
+
+**Formula**:
+```
+A = P × (1 + r)ⁿ + M × [(1 + r)ⁿ - 1] / r
+```
+- A = Final amount
+- P = Principal (starting capital)
+- r = Interest rate per period (monthly = annual/12)
+- n = Number of periods (months)
+- M = Monthly contribution
+
+**Typical Returns in Switzerland**:
+| Investment Type | Expected Return |
+|-----------------|-----------------|
+| Savings account | 0.5 – 1.5% |
+| Pillar 3a account | 0.5 – 1.0% |
+| Pillar 3a securities | 3 – 7% |
+| World ETF (e.g., MSCI World) | 5 – 8% |
+
+**Pillar 3a Maximum Contributions 2025**:
+- Employees with pension fund: CHF 7'056/year (CHF 588/month)
+- Self-employed without pension fund: 20% of income, max. CHF 35'280
 
 ## Related Projects
 
