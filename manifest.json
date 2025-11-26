@@ -1,0 +1,33 @@
+{
+  "name": "wieviel.ch - Online-Rechner Schweiz",
+  "short_name": "wieviel.ch",
+  "description": "Praktische Online-Rechner für die Schweiz. Promille, Lohn, Bussen, Ferien und mehr.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#3f606f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "finance", "lifestyle"],
+  "lang": "de-CH",
+  "dir": "ltr"
+}
