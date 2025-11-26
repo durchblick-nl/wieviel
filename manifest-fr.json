@@ -1,0 +1,33 @@
+{
+  "name": "calcule.ch - Calculateurs en ligne Suisse",
+  "short_name": "calcule.ch",
+  "description": "Calculateurs pratiques pour la Suisse. Alcoolémie, salaire, amendes, vacances et plus.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#3f606f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "finance", "lifestyle"],
+  "lang": "fr-CH",
+  "dir": "ltr"
+}
