@@ -5,6 +5,7 @@
             --secondary-color: #5a8a9d;
             --accent-color: #cc5c53;
             --text-color: #5a5a5a;
+            --link-color: #1a73e8;
             --light-bg: #f8fafc;
             --border-color: #dfe5e8;
             --success-color: #10b981;
@@ -23,6 +24,7 @@
             --primary-dark: #6aa0b5;
             --secondary-color: #7ab0c5;
             --text-color: #e0e0e0;
+            --link-color: #6db3f2;
             --light-bg: #1a1a2e;
             --border-color: #3a3a5a;
             --card-bg: #252542;
@@ -32,6 +34,11 @@
             --holiday-color: #8a7a2a;
             --court-holiday-color: #3a5a7a;
         }
+
+        /* Link colors */
+        a { color: var(--link-color); }
+        a:visited { color: var(--link-color); opacity: 0.85; }
+        a:hover { color: var(--primary-color); }
 
         [data-theme="dark"] body {
             background-color: var(--light-bg);

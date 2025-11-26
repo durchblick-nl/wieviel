@@ -138,8 +138,10 @@
         .share-btn.copy { background: var(--secondary-color); color: white; }
         .share-btn:hover { transform: translateY(-2px); }
 
-        .disclaimer { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; margin: 1.5rem 0; font-size: 0.9rem; }
+        .disclaimer { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
         .disclaimer i { color: #856404; }
+        [data-theme="dark"] .disclaimer { background: rgba(255, 193, 7, 0.15); border-color: rgba(255, 193, 7, 0.4); color: #ffc107; }
+        [data-theme="dark"] .disclaimer i { color: #ffc107; }
 
         /* Partner hint section */
         .partner-hint { background: linear-gradient(135deg, rgba(63, 96, 111, 0.08), rgba(90, 138, 157, 0.08)); border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
