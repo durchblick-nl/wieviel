@@ -1,4 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="45" fill="#3f606f"/>
-  <text x="50" y="62" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">‰</text>
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3f606f"/>
+      <stop offset="100%" style="stop-color:#5a8a9d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main circle -->
+  <circle cx="50" cy="50" r="46" fill="url(#grad)"/>
+
+  <!-- Stylized "?" that looks like a calculator/equals -->
+  <path d="M 35 28 Q 35 20 50 20 Q 65 20 65 32 Q 65 42 50 48 L 50 56"
+        fill="none"
+        stroke="white"
+        stroke-width="8"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Dot of question mark as equals sign -->
+  <rect x="42" y="68" width="16" height="6" rx="3" fill="white"/>
+  <rect x="42" y="78" width="16" height="6" rx="3" fill="#cc5c53"/>
 </svg>
