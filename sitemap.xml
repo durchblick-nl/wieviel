@@ -166,4 +166,20 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- MWST-Rechner -->
+  <url>
+    <loc>https://wieviel.ch/mwst/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/mwst/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/mwst/fr/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wieviel.ch/mwst/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/mwst/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/mwst/fr/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

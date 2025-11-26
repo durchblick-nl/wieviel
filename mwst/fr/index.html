@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur TVA Suisse 2025 – Calculer la TVA | wieviel.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta name="description" content="Calculateur TVA gratuit pour la Suisse. Calculez la TVA avec le taux normal 8.1%, taux réduit 2.6% ou hébergement 3.8%. Brut ↔ Net.">
+    <meta name="keywords" content="calculateur TVA, taxe sur la valeur ajoutée Suisse, calculer TVA, 8.1%, taux normal, taux réduit, hébergement, brut net">
+    <link rel="canonical" href="https://wieviel.ch/mwst/fr/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/mwst/de/">
+    <link rel="alternate" hreflang="fr" href="https://wieviel.ch/mwst/fr/">
+    <meta property="og:title" content="Calculateur TVA Suisse 2025 – Calculer la TVA">
+    <meta property="og:description" content="Calculez la TVA avec le taux normal 8.1%, taux réduit 2.6% ou hébergement 3.8%. Brut ↔ Net.">
+    <meta property="og:url" content="https://wieviel.ch/mwst/fr/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CH">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculateur TVA Suisse 2025">
+    <meta name="twitter:description" content="Calculer la TVA. Brut ↔ Net avec tous les taux TVA suisses.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculateur TVA Suisse",
+        "url": "https://wieviel.ch/mwst/fr/",
+        "description": "Calculateur TVA gratuit pour la Suisse. Taux normal 8.1%, taux réduit 2.6%, hébergement 3.8%.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Quel est le taux de TVA en Suisse?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La Suisse a trois taux de TVA: taux normal 8.1% (la plupart des biens/services), taux réduit 2.6% (alimentation, livres, médicaments) et taux spécial 3.8% (hébergement/hôtels)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment calculer la TVA à partir d'un montant brut?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Montant net = Montant brut ÷ 1.081 (pour 8.1%). La TVA est alors: Brut - Net. Pour 2.6%: diviser par 1.026, pour 3.8%: diviser par 1.038."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce qui est soumis au taux réduit de 2.6%?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le taux réduit s'applique à: alimentation (sauf alcool/tabac), livres et journaux, médicaments, plantes et semences ainsi que nourriture pour animaux."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "À partir de quel chiffre d'affaires faut-il déclarer la TVA?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "L'assujettissement à la TVA commence à partir d'un chiffre d'affaires annuel de CHF 100'000 provenant de prestations imposables. En dessous, une inscription volontaire est possible."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .direction-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .direction-btn {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--primary-color);
+            background: var(--card-bg);
+            color: var(--primary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .direction-btn:hover {
+            background: var(--light-bg);
+        }
+        .direction-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .rate-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 500px) {
+            .rate-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        .rate-card {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            background: var(--card-bg);
+        }
+        .rate-card:hover {
+            border-color: var(--primary-color);
+            background: var(--light-bg);
+        }
+        .rate-card.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        .rate-card .rate-value {
+            font-family: 'Economica', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .rate-card .rate-label {
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            opacity: 0.8;
+        }
+
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .breakdown-row.total .value { color: var(--primary-color); }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        .info-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .info-table th, .info-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .info-table th { background: var(--primary-color); color: white; }
+        .info-table td:last-child { text-align: right; font-family: 'Economica', sans-serif; font-weight: 700; }
+        .info-table tr:hover td { background: var(--light-bg); }
+
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
+        .seo-content p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-color); }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="../de/" class="lang-btn">DE</a>
+                <a href="../fr/" class="lang-btn active">FR</a>
+            </div>
+        </div>
+
+        <h1><span class="title-icon">🧾</span>Calculateur TVA</h1>
+        <p style="text-align: center; color: var(--text-color); opacity: 0.8; margin-top: -0.5rem;">Calculer la TVA suisse</p>
+
+        <nav class="tool-nav">
+            <a href="../../">Tous les outils</a>
+            <a href="../../lohn/fr/">Calculateur salaire</a>
+            <a href="../fr/" class="active">TVA</a>
+        </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Choisir le sens</h3>
+                    <p>Brut → Net ou Net → Brut.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-percent"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Taux de TVA</h3>
+                    <p>Choisir 8.1%, 2.6% ou 3.8%.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calculator"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Résultat</h3>
+                    <p>Voir net, TVA et brut.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="direction-toggle">
+                <button type="button" class="direction-btn active" data-direction="gross-to-net">
+                    <i class="fas fa-arrow-down"></i> Brut → Net
+                </button>
+                <button type="button" class="direction-btn" data-direction="net-to-gross">
+                    <i class="fas fa-arrow-up"></i> Net → Brut
+                </button>
+            </div>
+
+            <div class="rate-cards">
+                <div class="rate-card active" data-rate="8.1">
+                    <div class="rate-value">8.1%</div>
+                    <div class="rate-label">Taux normal</div>
+                </div>
+                <div class="rate-card" data-rate="2.6">
+                    <div class="rate-value">2.6%</div>
+                    <div class="rate-label">Réduit</div>
+                </div>
+                <div class="rate-card" data-rate="3.8">
+                    <div class="rate-value">3.8%</div>
+                    <div class="rate-label">Hébergement</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount" id="amountLabel">Montant brut</label>
+                <div style="position: relative;">
+                    <input type="number" id="amount" value="1000" min="0" step="0.01" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                </div>
+                <small class="form-hint" id="amountHint">Montant TVA comprise</small>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box">
+                <div class="label" id="resultLabel">Montant net (hors TVA)</div>
+                <div class="total" id="mainResult">CHF 925.07</div>
+                <div class="sub">à <span id="rateDisplay">8.1%</span> de TVA</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-list"></i> Détail</h3>
+                <div class="breakdown-row">
+                    <span class="label">Montant net</span>
+                    <span class="value" id="netAmount">CHF 925.07</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">TVA (<span id="rateDisplayBreakdown">8.1%</span>)</span>
+                    <span class="value" id="vatAmount">CHF 74.93</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Montant brut</span>
+                    <span class="value" id="grossAmount">CHF 1'000.00</span>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Partager
+                </button>
+                <button class="share-btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i> Copier
+                </button>
+            </div>
+        </div>
+
+        <section class="seo-content">
+            <h2>Taux de TVA en Suisse 2025</h2>
+            <table class="info-table">
+                <tr>
+                    <th>Taux</th>
+                    <th>Application</th>
+                    <th>Taux</th>
+                </tr>
+                <tr>
+                    <td><strong>Taux normal</strong></td>
+                    <td>La plupart des biens et services</td>
+                    <td>8.1%</td>
+                </tr>
+                <tr>
+                    <td><strong>Taux réduit</strong></td>
+                    <td>Alimentation, livres, journaux, médicaments</td>
+                    <td>2.6%</td>
+                </tr>
+                <tr>
+                    <td><strong>Taux spécial</strong></td>
+                    <td>Prestations d'hébergement (hôtels, etc.)</td>
+                    <td>3.8%</td>
+                </tr>
+            </table>
+
+            <h3>Questions fréquentes sur la TVA</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Comment calculer la TVA à partir d'un montant brut?</summary>
+                    <p><strong>Formule:</strong> Net = Brut ÷ (1 + taux). Pour 8.1%: Net = Brut ÷ 1.081. La TVA est alors: Brut − Net. Exemple: CHF 1'000 brut → CHF 925.07 net + CHF 74.93 TVA.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Qu'est-ce qui est soumis au taux réduit de 2.6%?</summary>
+                    <p>Le taux réduit s'applique à: <strong>alimentation</strong> (sauf alcool et tabac), <strong>livres et journaux</strong>, <strong>médicaments</strong>, <strong>plantes et semences</strong> ainsi que <strong>nourriture pour animaux</strong>. L'eau du robinet est également concernée.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>À partir de quel chiffre d'affaires faut-il déclarer la TVA?</summary>
+                    <p>L'assujettissement à la TVA commence à partir d'un <strong>chiffre d'affaires annuel de CHF 100'000</strong> provenant de prestations imposables en Suisse. En dessous, une inscription volontaire est possible, ce qui peut être judicieux pour récupérer l'impôt préalable.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quelle est la différence entre TVA et impôt préalable?</summary>
+                    <p>La <strong>TVA</strong> est l'impôt que tu ajoutes sur tes ventes et que tu reverses au fisc. L'<strong>impôt préalable</strong> est la TVA que tu paies toi-même lors de tes achats. En tant qu'entrepreneur, tu peux déduire l'impôt préalable de la TVA due.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quand le taux spécial de 3.8% s'applique-t-il?</summary>
+                    <p>Le taux spécial s'applique aux <strong>prestations d'hébergement</strong>: nuitées dans les hôtels, pensions, appartements de vacances, etc. <strong>Ne sont pas</strong> concernés: services de restauration (8.1%), offres wellness ou minibar.</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Sources officielles</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.estv.admin.ch/estv/fr/accueil/taxe-sur-la-valeur-ajoutee/taux-tva.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Taux de TVA actuels – AFC</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.fedlex.admin.ch/eli/cc/2009/615/fr" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Loi sur la TVA (LTVA) – Fedlex</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.kmu.admin.ch/kmu/fr/home/savoir-pratique/finances/impots/tva.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> TVA pour PME – kmu.admin.ch</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Toutes les informations sans garantie. Pour des renseignements contraignants, contacte l'AFC.</p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        // State
+        let direction = 'gross-to-net';
+        let rate = 8.1;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Direction toggle
+            document.querySelectorAll('.direction-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.direction-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    direction = this.dataset.direction;
+                    updateLabels();
+                    calculate();
+                });
+            });
+
+            // Rate cards
+            document.querySelectorAll('.rate-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.rate-card').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    rate = parseFloat(this.dataset.rate);
+                    calculate();
+                });
+            });
+
+            calculate();
+        });
+
+        function updateLabels() {
+            const label = document.getElementById('amountLabel');
+            const hint = document.getElementById('amountHint');
+            const resultLabel = document.getElementById('resultLabel');
+
+            if (direction === 'gross-to-net') {
+                label.textContent = 'Montant brut';
+                hint.textContent = 'Montant TVA comprise';
+                resultLabel.textContent = 'Montant net (hors TVA)';
+            } else {
+                label.textContent = 'Montant net';
+                hint.textContent = 'Montant hors TVA';
+                resultLabel.textContent = 'Montant brut (TVA comprise)';
+            }
+        }
+
+        function calculate() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+
+            let netAmount, vatAmount, grossAmount;
+
+            if (direction === 'gross-to-net') {
+                grossAmount = amount;
+                netAmount = amount / (1 + rate / 100);
+                vatAmount = grossAmount - netAmount;
+                document.getElementById('mainResult').textContent = formatCHF(netAmount);
+            } else {
+                netAmount = amount;
+                vatAmount = amount * rate / 100;
+                grossAmount = netAmount + vatAmount;
+                document.getElementById('mainResult').textContent = formatCHF(grossAmount);
+            }
+
+            document.getElementById('netAmount').textContent = formatCHF(netAmount);
+            document.getElementById('vatAmount').textContent = formatCHF(vatAmount);
+            document.getElementById('grossAmount').textContent = formatCHF(grossAmount);
+            document.getElementById('rateDisplay').textContent = rate + '%';
+            document.getElementById('rateDisplayBreakdown').textContent = rate + '%';
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        }
+
+        function getShareText() {
+            const net = document.getElementById('netAmount').textContent;
+            const vat = document.getElementById('vatAmount').textContent;
+            const gross = document.getElementById('grossAmount').textContent;
+            return `Calcul TVA (${rate}%):\nNet: ${net}\nTVA: ${vat}\nBrut: ${gross}\n\nCalcule toi-même: https://wieviel.ch/mwst/fr/`;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => btn.innerHTML = originalText, 2000);
+            });
+        }
+
+        // Dark mode
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            },
+            toggle() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem(this.STORAGE_KEY, !isDark);
+            }
+        };
+
+        DarkMode.init();
+    </script>
+</body>
+</html>
