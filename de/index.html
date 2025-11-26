@@ -252,28 +252,55 @@
 
         .header-actions {
             display: flex;
-            gap: 0.5rem;
+            align-items: center;
+            gap: 15px;
         }
 
-        .btn-icon {
+        .dark-mode-toggle {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
             width: 40px;
             height: 40px;
-            border: none;
-            background: var(--card-bg);
-            border-radius: 10px;
+            border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
+            font-size: 1rem;
             transition: all 0.2s;
-            border: 1px solid var(--border);
         }
 
-        .btn-icon:hover {
+        .dark-mode-toggle:hover {
             background: var(--primary);
             color: white;
-            border-color: var(--primary);
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            border: 2px solid var(--primary);
+            background: var(--card-bg);
+            color: var(--primary);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: var(--bg);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
         }
 
         /* Hero */
@@ -655,10 +682,13 @@
                     wieviel.ch
                 </a>
                 <div class="header-actions">
-                    <a href="https://calcule.ch/" class="btn-icon lang-btn" title="Français">FR</a>
-                    <button type="button" class="btn-icon" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                    <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus umschalten" onclick="DarkMode.toggle()">
                         <i class="fas fa-moon"></i>
                     </button>
+                    <div class="language-switcher">
+                        <span class="lang-btn active">DE</span>
+                        <a href="https://calcule.ch/" class="lang-btn">FR</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -855,7 +885,7 @@
                 document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable();
             },
             updateButton() {
-                const btn = document.querySelector('.btn-icon i');
+                const btn = document.querySelector('.dark-mode-toggle i');
                 if (btn) {
                     btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
                 }
