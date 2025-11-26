@@ -22,9 +22,10 @@ A collection of useful calculators for the general public in Switzerland.
 | **Fleisch- & CO2-Rechner** | `/fleisch/` | Meat consumption & CO2 footprint calculator |
 | **Bussenrechner** | `/busse/` | Swiss speed fine calculator (OBV) |
 | **Tagerechner** | `/tage/` | Date/day calculator (days between dates, weekdays, working days) |
+| **Ferienkürzung** | `/ferienkuerzung/` | Holiday reduction calculator (Art. 329b OR) |
 
 ### Planned Tools:
-- **Ferienkürzung** (`/ferienkuerzung/`) - Holiday reduction calculator (Art. 329b OR)
+- (none currently)
 
 ## Deployment
 
@@ -70,10 +71,14 @@ wieviel.ch/
 │   ├── index.html          # Language redirect
 │   ├── de/index.html       # Bussenrechner (DE)
 │   └── fr/index.html       # Calculateur d'amendes (FR)
-└── tage/
+├── tage/
+│   ├── index.html          # Language redirect
+│   ├── de/index.html       # Tagerechner (DE)
+│   └── fr/index.html       # Calculateur de jours (FR)
+└── ferienkuerzung/
     ├── index.html          # Language redirect
-    ├── de/index.html       # Tagerechner (DE)
-    └── fr/index.html       # Calculateur de jours (FR)
+    ├── de/index.html       # Ferienkürzung Rechner (DE)
+    └── fr/index.html       # Calculateur réduction vacances (FR)
 ```
 
 ## Tech Stack
@@ -191,6 +196,23 @@ Features:
 - ISO 8601 calendar week calculation
 - Breakdown into years, months, weeks, days
 - Color-coded weekday display (weekend = red)
+
+### Ferienkürzung - Holiday Reduction (Art. 329b OR)
+```
+Reduction = (Absence months - Free months) × (Annual vacation / 12)
+```
+Free months before reduction applies:
+| Absence Type | Free Months | Reduction from |
+|--------------|-------------|----------------|
+| Illness/Accident | 1 month | 2nd month |
+| Pregnancy | 2 months | 3rd month |
+| Military/Civil service | 0 months | 1st month |
+| Unpaid leave | 0 months | 1st month |
+
+Example: 20 days vacation, 3 months illness
+- Free: 1 month → Reducible: 2 months
+- Reduction: 2 × (20/12) = 3.33 days
+- Remaining: 20 - 3.33 = 16.67 days
 
 ## Related Projects
 
