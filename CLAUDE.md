@@ -4,13 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**wieviel.ch** - Praktische Online-Rechner für den Alltag (Practical online calculators for everyday use)
+**wieviel.ch + calcule.ch** - Praktische Online-Rechner für den Alltag (Practical online calculators for everyday use)
 
 A collection of useful calculators for the general public in Switzerland.
 
-**Live Site**: https://wieviel.ch
+**Live Sites**:
+- https://wieviel.ch (German)
+- https://calcule.ch (French)
 
-### Current Tools:
+### Current Tools (wieviel.ch - German):
 
 | Tool | Path | Description |
 |------|------|-------------|
@@ -26,6 +28,38 @@ A collection of useful calculators for the general public in Switzerland.
 | **Teilzeit-Rechner** | `/teilzeit/` | True cost of part-time work (BVG, AHV impact) |
 | **MWST-Rechner** | `/mwst/` | Swiss VAT calculator (8.1%, 2.6%, 3.8%) |
 
+### Current Tools (calcule.ch - French):
+
+| Tool | Path | Description |
+|------|------|-------------|
+| **Calculateur d'alcoolémie** | `/alcoolemie/` | Blood alcohol concentration calculator |
+| **Calculateur de salaire** | `/salaire/` | Swiss salary calculator |
+| **Calculateur de pourboire** | `/pourboire/` | Tip calculator |
+| **Calculateur de sommeil** | `/sommeil/` | Sleep cycle calculator |
+| **Calculateur IMC** | `/imc/` | Body Mass Index calculator |
+| **Calculateur viande & CO2** | `/viande/` | Meat & CO2 footprint calculator |
+| **Calculateur d'amendes** | `/amende/` | Swiss speed fine calculator |
+| **Calculateur de jours** | `/jours/` | Date/day calculator |
+| **Réduction vacances** | `/reduction-vacances/` | Holiday reduction calculator |
+| **Calculateur temps partiel** | `/temps-partiel/` | Part-time cost calculator |
+| **Calculateur TVA** | `/tva/` | Swiss VAT calculator |
+
+### URL Mapping (DE ↔ FR):
+
+| wieviel.ch | calcule.ch |
+|------------|------------|
+| `/promille/` | `/alcoolemie/` |
+| `/lohn/` | `/salaire/` |
+| `/trinkgeld/` | `/pourboire/` |
+| `/schlaf/` | `/sommeil/` |
+| `/bmi/` | `/imc/` |
+| `/fleisch/` | `/viande/` |
+| `/busse/` | `/amende/` |
+| `/tage/` | `/jours/` |
+| `/ferienkuerzung/` | `/reduction-vacances/` |
+| `/teilzeit/` | `/temps-partiel/` |
+| `/mwst/` | `/tva/` |
+
 ### Planned Tools:
 - (none currently)
 
@@ -33,82 +67,73 @@ A collection of useful calculators for the general public in Switzerland.
 
 Hosted via **Cloudflare Pages** with automatic deployment on push to main branch.
 
+- **Primary domain**: wieviel.ch (German content)
+- **Secondary domain**: calcule.ch (French content)
+- **Routing**: `_redirects` file handles domain-based content serving
 - Build command: (none)
 - Build output: (none)
 - Build system version: v3
+
+### Domain Routing (`_redirects`)
+- `calcule.ch/` serves `/fr/index.html` (French homepage)
+- `calcule.ch/sitemap.xml` serves `/sitemap-fr.xml`
+- Cross-domain redirects for wrong-language content
+- Legacy redirects for old `/de/` and `/fr/` subfolder URLs
 
 ## Project Structure
 
 ```
 wieviel.ch/
-├── index.html              # Landing page with tool overview + SEO
+├── index.html              # German homepage (wieviel.ch)
+├── _redirects              # Cloudflare Pages routing rules
+├── sitemap.xml             # German sitemap
+├── sitemap-fr.xml          # French sitemap (served as sitemap.xml on calcule.ch)
 ├── css/
 │   └── styles.css          # Shared styles (dark mode, responsive)
 ├── favicon.svg             # Site icon
-├── promille/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # German version
-│   └── fr/index.html       # French version
-├── lohn/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # Brutto-Netto-Rechner (DE)
-│   └── fr/index.html       # Calculateur brut-net (FR)
-├── trinkgeld/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # Trinkgeld-Rechner (DE)
-│   └── fr/index.html       # Calculateur de pourboire (FR)
-├── schlaf/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # Schlafrechner (DE)
-│   └── fr/index.html       # Calculateur de sommeil (FR)
-├── bmi/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # BMI-Rechner (DE)
-│   └── fr/index.html       # Calculateur IMC (FR)
-├── fleisch/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # Fleisch- & CO2-Rechner (DE)
-│   └── fr/index.html       # Calculateur viande & CO2 (FR)
-├── busse/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # Bussenrechner (DE)
-│   └── fr/index.html       # Calculateur d'amendes (FR)
-├── tage/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # Tagerechner (DE)
-│   └── fr/index.html       # Calculateur de jours (FR)
-├── ferienkuerzung/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # Ferienkürzung Rechner (DE)
-│   └── fr/index.html       # Calculateur réduction vacances (FR)
-├── teilzeit/
-│   ├── index.html          # Language redirect
-│   ├── de/index.html       # Teilzeit-Rechner (DE)
-│   └── fr/index.html       # Calculateur temps partiel (FR)
-└── mwst/
-    ├── index.html          # Language redirect
-    ├── de/index.html       # MWST-Rechner (DE)
-    └── fr/index.html       # Calculateur TVA (FR)
+│
+├── # German tools (wieviel.ch/[tool]/)
+├── promille/index.html     # Promillerechner
+├── lohn/index.html         # Brutto-Netto-Rechner
+├── trinkgeld/index.html    # Trinkgeld-Rechner
+├── schlaf/index.html       # Schlafrechner
+├── bmi/index.html          # BMI-Rechner
+├── fleisch/index.html      # Fleisch- & CO2-Rechner
+├── busse/index.html        # Bussenrechner
+├── tage/index.html         # Tagerechner
+├── ferienkuerzung/index.html # Ferienkürzung
+├── teilzeit/index.html     # Teilzeit-Rechner
+├── mwst/index.html         # MWST-Rechner
+│
+├── # French homepage
+├── fr/index.html           # French homepage (calcule.ch)
+│
+├── # French tools (calcule.ch/[outil]/)
+├── alcoolemie/index.html   # Calculateur d'alcoolémie
+├── salaire/index.html      # Calculateur de salaire
+├── pourboire/index.html    # Calculateur de pourboire
+├── sommeil/index.html      # Calculateur de sommeil
+├── imc/index.html          # Calculateur IMC
+├── viande/index.html       # Calculateur viande & CO2
+├── amende/index.html       # Calculateur d'amendes
+├── jours/index.html        # Calculateur de jours
+├── reduction-vacances/index.html # Réduction vacances
+├── temps-partiel/index.html # Calculateur temps partiel
+└── tva/index.html          # Calculateur TVA
 ```
 
 ## Tech Stack
 
 - **Frontend**: Vanilla HTML5/CSS3/JavaScript (no frameworks)
 - **Styling**: CSS Variables for theming, Font Awesome icons
-- **Bilingual**: German (DE) and French (FR) with auto-detection
+- **Dual-Domain**: German (wieviel.ch) and French (calcule.ch) with native URLs
 - **Dark Mode**: System preference detection + manual toggle
 - **Sharing**: WhatsApp, Copy to clipboard
 - **Brand**: Durchblick colors (#3f606f, #cc5c53, #5a8a9d)
+- **SEO**: Cross-domain hreflang annotations, separate sitemaps
 - **No backend** - all calculation logic runs client-side
 
 ## Common Patterns
-
-### Language Redirect (index.html in each tool folder)
-```javascript
-const lang = navigator.language || navigator.userLanguage;
-const isFrench = lang.toLowerCase().startsWith('fr');
-window.location.replace(isFrench ? 'fr/' : 'de/');
-```
 
 ### Dark Mode
 ```javascript
@@ -275,7 +300,8 @@ Calculates Swiss VAT (Mehrwertsteuer) in both directions:
 | **frist.ch** | Deadline calculator (ZPO, OR) | [frist.ch](https://frist.ch) |
 | **gerichtskostenrechner.ch** | Court fee calculator | [gerichtskostenrechner.ch](https://gerichtskostenrechner.ch) |
 | **verzugszinsrechner.ch** | Default interest calculator | [verzugszinsrechner.ch](https://verzugszinsrechner.ch) |
-| **wieviel.ch** | Everyday calculators | [wieviel.ch](https://wieviel.ch) |
+| **wieviel.ch** | Everyday calculators (DE) | [wieviel.ch](https://wieviel.ch) |
+| **calcule.ch** | Everyday calculators (FR) | [calcule.ch](https://calcule.ch) |
 
 ## Contact
 
