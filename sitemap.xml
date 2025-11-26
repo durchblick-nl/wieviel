@@ -1,97 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wieviel.ch/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Promillerechner -->
   <url>
     <loc>https://wieviel.ch/promille/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/promille/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/promille/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/promille/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/promille/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/promille/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Lohnrechner -->
   <url>
     <loc>https://wieviel.ch/lohn/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/lohn/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/lohn/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/lohn/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/lohn/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/lohn/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Bussenrechner -->
   <url>
     <loc>https://wieviel.ch/busse/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/busse/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/busse/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/busse/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/busse/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/busse/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Tagerechner -->
   <url>
     <loc>https://wieviel.ch/tage/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/tage/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/tage/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/tage/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/tage/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/tage/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Trinkgeldrechner -->
   <url>
     <loc>https://wieviel.ch/trinkgeld/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/trinkgeld/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/trinkgeld/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/trinkgeld/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/trinkgeld/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/trinkgeld/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Schlafrechner -->
   <url>
     <loc>https://wieviel.ch/schlaf/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/schlaf/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/schlaf/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/schlaf/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/schlaf/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/schlaf/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- BMI-Rechner -->
   <url>
     <loc>https://wieviel.ch/bmi/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/bmi/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/bmi/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/bmi/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/bmi/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/bmi/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Fleisch- & CO2-Rechner -->
   <url>
     <loc>https://wieviel.ch/fleisch/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/fleisch/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/fleisch/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/fleisch/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/fleisch/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/fleisch/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Ferienkürzung -->
   <url>
     <loc>https://wieviel.ch/ferienkuerzung/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/ferienkuerzung/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/ferienkuerzung/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wieviel.ch/ferienkuerzung/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/ferienkuerzung/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wieviel.ch/ferienkuerzung/fr/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
