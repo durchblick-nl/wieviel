@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wieviel.ch - Kostenlose Online-Rechner Schweiz</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#3f606f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="wieviel.ch">
+    <meta name="description" content="Kostenlose Online-Rechner für die Schweiz: Promillerechner, Lohnrechner, BMI, Trinkgeld, Schlaf & mehr. Schnell, anonym, ohne Registrierung.">
+    <meta name="keywords" content="Rechner Schweiz, Promillerechner, Lohnrechner, BMI Rechner, Online Tools, kostenlos">
+    <link rel="canonical" href="https://wieviel.ch/">
+    <meta property="og:title" content="wieviel.ch - Kostenlose Online-Rechner">
+    <meta property="og:description" content="Praktische Online-Rechner für den Alltag. 100% kostenlos, keine Registrierung.">
+    <meta property="og:url" content="https://wieviel.ch/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_CH">
+    <meta property="og:site_name" content="wieviel.ch">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="wieviel.ch - Kostenlose Online-Rechner Schweiz">
+    <meta name="twitter:description" content="Praktische Online-Rechner für den Alltag. 100% kostenlos, keine Registrierung.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Durchblick Consultancy BV">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "wieviel.ch",
+        "url": "https://wieviel.ch",
+        "description": "Kostenlose Online-Rechner für die Schweiz: Promillerechner, Lohnrechner, BMI, Bussenrechner und mehr.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Durchblick Consultancy BV",
+            "url": "https://durchblick.nl"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://wieviel.ch/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Online-Rechner",
+        "description": "Kostenlose Online-Rechner für die Schweiz",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Promillerechner",
+                    "url": "https://wieviel.ch/promille/",
+                    "description": "Blutalkohol berechnen mit der Widmark-Formel",
+                    "applicationCategory": "HealthApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Brutto-Netto-Lohnrechner",
+                    "url": "https://wieviel.ch/lohn/",
+                    "description": "Schweizer Lohnrechner mit AHV, ALV, BVG Abzügen",
+                    "applicationCategory": "FinanceApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Bussenrechner",
+                    "url": "https://wieviel.ch/busse/",
+                    "description": "Schweizer Bussenrechner für Geschwindigkeitsüberschreitung",
+                    "applicationCategory": "UtilitiesApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Tagerechner",
+                    "url": "https://wieviel.ch/tage/",
+                    "description": "Tage zwischen Daten berechnen, Wochentag finden",
+                    "applicationCategory": "UtilitiesApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "BMI-Rechner",
+                    "url": "https://wieviel.ch/bmi/",
+                    "description": "Body Mass Index berechnen",
+                    "applicationCategory": "HealthApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                    "@type": "WebApplication",
+                    "name": "Teilzeit-Rechner",
+                    "url": "https://wieviel.ch/teilzeit/",
+                    "description": "Wahre Kosten von Teilzeit berechnen: BVG, AHV, Pension Gap",
+                    "applicationCategory": "FinanceApplication",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f606f;
+            --primary-dark: #2d4a56;
+            --accent: #cc5c53;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-sm: 12px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 2.25rem;
+            width: 2.25rem;
+        }
+
+        .logo .logo-light,
+        .footer-brand .logo-light {
+            display: none;
+        }
+
+        [data-theme="dark"] .logo .logo-dark,
+        [data-theme="dark"] .footer-brand .logo-dark {
+            display: none;
+        }
+
+        [data-theme="dark"] .logo .logo-light,
+        [data-theme="dark"] .footer-brand .logo-light {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-brand img {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+
+        .footer-brand span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--card-bg);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+
+        .btn-icon:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .badges {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 0.875rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .badge i {
+            color: var(--primary);
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .tool-card:active {
+            transform: translateY(0);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .tool-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tool-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tool-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .lang-tag {
+            font-size: 0.65rem;
+            background: var(--bg);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .tool-arrow {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--border);
+            transition: all 0.2s;
+        }
+
+        .tool-card:hover .tool-arrow {
+            color: var(--primary);
+            right: 0.75rem;
+        }
+
+        /* Coming Soon */
+        .tool-card.coming-soon {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .tool-card.coming-soon .tool-icon {
+            background: var(--border);
+        }
+
+        .coming-badge {
+            font-size: 0.65rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 2rem 0 3rem;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 1.25rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+        }
+
+        .trust-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-item h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .trust-item p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 2rem 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .badges {
+                gap: 0.5rem;
+            }
+
+            .badge {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .tool-card {
+                padding: 1rem;
+            }
+
+            .tool-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.25rem;
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .trust-item {
+                padding: 1rem 0.75rem;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus states for accessibility */
+        .tool-card:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .btn-icon:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Install Banner */
+        .install-banner {
+            display: none;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .install-banner.show {
+            display: block;
+        }
+
+        .install-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .install-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .install-text {
+            flex: 1;
+        }
+
+        .install-text strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .install-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .install-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .install-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 640px) {
+            .install-content {
+                flex-wrap: wrap;
+            }
+            .install-close {
+                position: absolute;
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+            .install-banner {
+                position: relative;
+                padding-right: 3rem;
+            }
+        }
+
+        /* Hide in standalone/PWA mode */
+        @media (display-mode: standalone) {
+            .install-banner {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="logo">
+                    <img src="../favicon.svg" alt="" class="logo-dark">
+                    <img src="../favicon-light.svg" alt="" class="logo-light">
+                    wieviel.ch
+                </a>
+                <div class="header-actions">
+                    <a href="https://calcule.ch/" class="btn-icon lang-btn" title="Français">FR</a>
+                    <button type="button" class="btn-icon" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>Praktische Rechner für deinen Alltag</h1>
+                <p>Kostenlose Tools für die Schweiz. Schnell, anonym und direkt im Browser.</p>
+                <div class="badges">
+                    <span class="badge"><i class="fas fa-lock"></i> 100% lokal</span>
+                    <span class="badge"><i class="fas fa-bolt"></i> Sofort-Ergebnis</span>
+                    <span class="badge"><i class="fas fa-globe"></i> DE & FR</span>
+                </div>
+            </section>
+
+            <section class="tools-section">
+                <h2 class="section-title">Alle Rechner</h2>
+                <div class="tools-grid">
+                    <a href="/promille/" class="tool-card">
+                        <div class="tool-icon">🍺</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Promillerechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Blutalkohol berechnen und Abbauzeit ermitteln</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/lohn/" class="tool-card">
+                        <div class="tool-icon">💰</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Lohnrechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Brutto-Netto mit AHV, ALV, BVG & mehr</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/busse/" class="tool-card">
+                        <div class="tool-icon">🚗</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Bussenrechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Busse für Geschwindigkeits&shy;überschreitung</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/tage/" class="tool-card">
+                        <div class="tool-icon">📅</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Tagerechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Tage zwischen Daten, Wochentag, Werktage</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/trinkgeld/" class="tool-card">
+                        <div class="tool-icon">🧾</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Trinkgeld-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Trinkgeld berechnen & Rechnung teilen</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/schlaf/" class="tool-card">
+                        <div class="tool-icon">😴</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Schlafrechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Optimale Schlaf- und Aufwachzeiten</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/bmi/" class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <div class="tool-content">
+                            <div class="tool-title">BMI-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Body Mass Index berechnen</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/fleisch/" class="tool-card">
+                        <div class="tool-icon">🥩</div>
+                        <div class="tool-content">
+                            <div class="tool-title">CO2-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Klimabilanz deines Fleischkonsums</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/ferienkuerzung/" class="tool-card">
+                        <div class="tool-icon">🏖️</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Ferienkürzung <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Kürzung bei Krankheit, Schwangerschaft (Art. 329b OR)</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/teilzeit/" class="tool-card">
+                        <div class="tool-icon">⏰</div>
+                        <div class="tool-content">
+                            <div class="tool-title">Teilzeit-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Was kostet Teilzeit wirklich? BVG, AHV & Pension Gap</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+
+                    <a href="/mwst/" class="tool-card">
+                        <div class="tool-icon">🧾</div>
+                        <div class="tool-content">
+                            <div class="tool-title">MWST-Rechner <span class="lang-tag">DE | FR</span></div>
+                            <div class="tool-desc">Mehrwertsteuer berechnen: 8.1%, 2.6%, 3.8%</div>
+                        </div>
+                        <i class="fas fa-chevron-right tool-arrow"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Install Banner - only shown in browser, not in PWA -->
+            <section class="install-banner" id="installBanner">
+                <div class="install-content">
+                    <div class="install-icon">📱</div>
+                    <div class="install-text">
+                        <strong>Als App installieren</strong>
+                        <p id="installInstructions">Füge wieviel.ch zu deinem Start&shy;bildschirm hinzu für schnellen Zugriff.</p>
+                    </div>
+                    <button class="install-close" onclick="closeInstallBanner()" aria-label="Schliessen">&times;</button>
+                </div>
+            </section>
+
+            <section class="trust-section">
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Datenschutz</h3>
+                        <p>Keine Cookies oder Tracking</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Blitzschnell</h3>
+                        <p>Sofortige Berechnung</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobil optimiert</h3>
+                        <p>Perfekt auf dem Handy</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-share-alt"></i>
+                        <h3>Einfach teilen</h3>
+                        <p>Per WhatsApp senden</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-brand">
+                <img src="favicon.svg" alt="wieviel.ch" class="logo-dark">
+                <img src="favicon-light.svg" alt="wieviel.ch" class="logo-light">
+                <span>wieviel.ch</span>
+            </div>
+            <p>Alle Rechner dienen zur Orientierung und ersetzen keine professionelle Beratung.</p>
+            <p><a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick Consultancy BV</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    this.enable(false);
+                }
+                this.updateButton();
+            },
+            enable(save = true) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                if (save) localStorage.setItem(this.STORAGE_KEY, 'true');
+                this.updateButton();
+            },
+            disable(save = true) {
+                document.documentElement.removeAttribute('data-theme');
+                if (save) localStorage.setItem(this.STORAGE_KEY, 'false');
+                this.updateButton();
+            },
+            toggle() {
+                document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable();
+            },
+            updateButton() {
+                const btn = document.querySelector('.btn-icon i');
+                if (btn) {
+                    btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            }
+        };
+        DarkMode.init();
+
+        // Install Banner Logic
+        const InstallBanner = {
+            STORAGE_KEY: 'installBannerDismissed',
+
+            init() {
+                // Don't show if already dismissed
+                if (localStorage.getItem(this.STORAGE_KEY)) return;
+
+                // Don't show if running as PWA (standalone mode)
+                if (window.matchMedia('(display-mode: standalone)').matches) return;
+                if (window.navigator.standalone === true) return; // iOS Safari
+
+                // Show banner with platform-specific instructions
+                const banner = document.getElementById('installBanner');
+                const instructions = document.getElementById('installInstructions');
+
+                if (this.isIOS()) {
+                    instructions.innerHTML = 'Tippe auf <strong>Teilen</strong> (□↑) und dann <strong>«Zum Home-Bildschirm»</strong>';
+                } else if (this.isAndroid()) {
+                    instructions.innerHTML = 'Tippe auf <strong>Menü</strong> (⋮) und dann <strong>«App installieren»</strong>';
+                } else {
+                    instructions.innerHTML = 'Füge wieviel.ch zu deinem Start&shy;bildschirm hinzu für schnellen Zugriff.';
+                }
+
+                banner.classList.add('show');
+            },
+
+            isIOS() {
+                return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            },
+
+            isAndroid() {
+                return /Android/.test(navigator.userAgent);
+            }
+        };
+
+        function closeInstallBanner() {
+            const banner = document.getElementById('installBanner');
+            banner.classList.remove('show');
+            localStorage.setItem(InstallBanner.STORAGE_KEY, 'true');
+        }
+
+        InstallBanner.init();
+    </script>
+</body>
+</html>

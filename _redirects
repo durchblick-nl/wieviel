@@ -2,8 +2,10 @@
 # Documentation: https://developers.cloudflare.com/pages/configuration/redirects/
 
 # =============================================================================
-# calcule.ch: French domain - serve French homepage
+# Homepage serving based on domain
 # =============================================================================
+/  /de/index.html  200  Host=wieviel.ch
+/  /de/index.html  200  Host=www.wieviel.ch
 /  /fr/index.html  200  Host=calcule.ch
 /  /fr/index.html  200  Host=www.calcule.ch
 
@@ -70,6 +72,12 @@
 /fr/  https://www.calcule.ch/  301  Host=www.wieviel.ch
 /fr/*  https://calcule.ch/:splat  301  Host=wieviel.ch
 /fr/*  https://www.calcule.ch/:splat  301  Host=www.wieviel.ch
+
+# German homepage folder on calcule.ch → wieviel.ch
+/de/  https://wieviel.ch/  301  Host=calcule.ch
+/de/  https://www.wieviel.ch/  301  Host=www.calcule.ch
+/de/*  https://wieviel.ch/:splat  301  Host=calcule.ch
+/de/*  https://www.wieviel.ch/:splat  301  Host=www.calcule.ch
 
 # =============================================================================
 # Legacy redirects: Old /de/ subfolder URLs → new structure
