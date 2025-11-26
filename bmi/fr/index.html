@@ -255,7 +255,8 @@
             const resultEl = document.getElementById('result');
             resultEl.className = 'bmi-result ' + className;
 
-            const markerPos = Math.min(100, Math.max(0, ((bmi - 15) / 25) * 100));
+            // Update marker position (BMI value = percentage position, matching the gradient)
+            const markerPos = Math.min(100, Math.max(0, bmi));
             document.getElementById('bmiMarker').style.left = markerPos + '%';
         }
 
