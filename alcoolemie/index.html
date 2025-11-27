@@ -474,7 +474,7 @@
             const statusEl = document.getElementById('bacStatus');
             statusEl.textContent = status.text;
             statusEl.className = 'bac-status ' + status.class;
-            let summaryHTML = `<h3>Résumé</h3><p><strong>Alcool total :</strong> ${totalAlcohol.toFixed(1)}g</p><p><strong>TAC estimé :</strong> ${bac.toFixed(2)}‰</p>`;
+            let summaryHTML = `<h3>Résumé</h3><p><strong>Alcool total :</strong> ${totalAlcohol.toFixed(1)}g</p><p><strong>Taux estimé :</strong> ${bac.toFixed(2)}‰</p>`;
             if (bac >= 0.5) {
                 const hoursTo05 = (bac - 0.5) / 0.15;
                 const hoursTo0 = bac / 0.15;

@@ -287,7 +287,7 @@
 
                 <div class="warning">
                     <i class="fas fa-exclamation-triangle"></i>
-                    <strong>Wichtig:</strong> Dieser Rechner liefert nur Schätzwerte. Die tatsächliche BAK hängt von vielen individuellen Faktoren ab. Im Zweifelsfall: Nicht fahren!
+                    <strong>Wichtig:</strong> Dieser Rechner liefert nur Schätzwerte. Der tatsächliche Blutalkoholwert hängt von vielen individuellen Faktoren ab. Im Zweifelsfall: Nicht fahren!
                 </div>
 
                 <div class="warning" id="drinkWarning" style="display: none; background-color: #f8d7da; border-left-color: #dc3545;">
@@ -422,7 +422,7 @@
                 </div>
                 <div class="step-content">
                     <h3>Einflussfaktoren</h3>
-                    <p>Die tatsächliche BAK variiert je nach:</p>
+                    <p>Der tatsächliche Blutalkoholwert variiert je nach:</p>
                     <ul>
                         <li>Mageninhalt (nüchtern = schnellere Aufnahme)</li>
                         <li>Trink&shy;geschwindigkeit</li>
@@ -692,7 +692,7 @@
             let summaryHTML = `
                 <h3>Zusammenfassung</h3>
                 <p><strong>Gesamtalkohol:</strong> ${totalAlcohol.toFixed(1)}g reiner Alkohol</p>
-                <p><strong>Geschätzte BAK:</strong> ${bac.toFixed(2)}‰</p>
+                <p><strong>Geschätzter Promillewert:</strong> ${bac.toFixed(2)}‰</p>
             `;
 
             if (bac >= 0.5) {
