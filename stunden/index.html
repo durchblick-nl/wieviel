@@ -198,6 +198,17 @@
             font-weight: bold;
             font-size: 0.9rem;
         }
+        /* Dark mode date picker fix */
+        [data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+        input[type="date"], input[type="time"] {
+            color-scheme: light;
+        }
+        [data-theme="dark"] input[type="date"],
+        [data-theme="dark"] input[type="time"] {
+            color-scheme: dark;
+        }
     </style>
 </head>
 <body>
@@ -220,6 +231,41 @@
         <nav class="tool-nav">
             <a href="../">Alle Tools</a>
         </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-user-clock"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Arbeitszeit eingeben</h3>
+                    <p>Beginn, Ende und Pausenregelung wählen.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calculator"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Berechnen</h3>
+                    <p>Netto-Arbeitszeit und Zuschläge ermitteln.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Prüfung</h3>
+                    <p>Einhaltung der ArG-Vorschriften kontrollieren.</p>
+                </div>
+            </div>
+        </div>
 
         <div class="calculator-card">
             <form id="stundenForm">

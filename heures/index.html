@@ -66,6 +66,9 @@
         @media (max-width: 480px) { .time-input-group { grid-template-columns: 1fr; } }
         .info-step-card .step-icon { position: relative; display: flex; align-items: center; gap: 1rem; }
         .info-step-card .step-number { background: var(--accent-color); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; }
+        [data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+        input[type="date"], input[type="time"] { color-scheme: light; }
+        [data-theme="dark"] input[type="date"], [data-theme="dark"] input[type="time"] { color-scheme: dark; }
     </style>
 </head>
 <body>
@@ -88,6 +91,41 @@
         <nav class="tool-nav">
             <a href="../">Tous les outils</a>
         </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-user-clock"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Saisir les heures</h3>
+                    <p>Début, fin et réglage des pauses.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calculator"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Calculer</h3>
+                    <p>Temps de travail net et suppléments.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Vérification</h3>
+                    <p>Conformité avec la LTr.</p>
+                </div>
+            </div>
+        </div>
 
         <div class="calculator-card">
             <form id="stundenForm">
