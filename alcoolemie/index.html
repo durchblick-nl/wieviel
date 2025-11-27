@@ -100,6 +100,16 @@
                 </div>
 
                 <div class="form-group">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label class="required">Taille</label>
+                            <span class="slider-value" id="heightValue">175 cm</span>
+                        </div>
+                        <input type="range" id="height" min="140" max="210" value="175" oninput="updateHeight(this.value)">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label class="required">Qu'avez-vous bu ?</label>
                     <div class="drinks-grid">
                         <div class="drink-card" id="drink-beer">
@@ -219,12 +229,72 @@
                     <p>Cette élimination est constante et ne peut pas être accélérée.</p>
                 </div>
             </div>
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-globe-europe"></i></div>
+                <div class="step-content">
+                    <h3>Limites d'alcoolémie dans les pays voisins</h3>
+                    <p style="margin-bottom: 1rem;">Limites différentes en conduisant à l'étranger :</p>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 400px;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                                    <th style="padding: 0.5rem;">Pays</th>
+                                    <th style="padding: 0.5rem; text-align: center;">Normal</th>
+                                    <th style="padding: 0.5rem; text-align: center;">Jeune conducteur</th>
+                                    <th style="padding: 0.5rem; text-align: center;">Professionnel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇨🇭 Suisse</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇩🇪 Allemagne</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇦🇹 Autriche</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇫🇷 France</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.2‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.2‰</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇮🇹 Italie</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.5rem;">🇱🇮 Liechtenstein</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600; color: #28a745;">0.8‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="font-size: 0.8rem; margin-top: 0.75rem; opacity: 0.8;"><i class="fas fa-info-circle"></i> Jeune conducteur : pendant les 2-3 premières années après l'obtention du permis.</p>
+                </div>
+            </div>
+
             <div class="info-step-card">
                 <div class="step-icon"><i class="fas fa-calculator"></i></div>
                 <div class="step-content">
-                    <h3>Formule de Widmark</h3>
+                    <h3>Formule de Widmark (étendue)</h3>
+                    <p>Le calcul est basé sur la formule de Widmark, étendue par l'<strong>étude Watson/Seidl</strong> :</p>
                     <p><strong>TAC = A ÷ (m × r)</strong></p>
-                    <p><small>A = Alcool en grammes, m = Poids, r = Facteur de distribution</small></p>
+                    <p><small>Le facteur de distribution <em>r</em> est calculé à partir du sexe, du poids et de la taille – plus précis que des valeurs fixes.</small></p>
                 </div>
             </div>
         </div>
@@ -274,9 +344,19 @@
     </footer>
 
     <script>
-        let state = { gender: 'male', weight: 75, drinks: { 'beer': 0, 'beer-large': 0, 'wine': 0, 'wine-glass': 0, 'shot': 0, 'cocktail': 0 } };
+        let state = { gender: 'male', weight: 75, height: 175, drinks: { 'beer': 0, 'beer-large': 0, 'wine': 0, 'wine-glass': 0, 'shot': 0, 'cocktail': 0 } };
         const drinkAlcohol = { 'beer': 12, 'beer-large': 20, 'wine': 9.6, 'wine-glass': 14.4, 'shot': 12.8, 'cocktail': 12.8 };
-        const reductionFactor = { 'male': 0.68, 'female': 0.55 };
+
+        // Seidl formula (2000) - more accurate than fixed Widmark factors
+        // Source: Seidl, Jensen, Alt: "The calculation of blood ethanol concentrations
+        // in males and females" - International Journal of Legal Medicine, Vol. 114, 2000, S. 71-77
+        function calculateReductionFactor(gender, weight, height) {
+            if (gender === 'male') {
+                return 0.31608 - 0.004821 * weight + 0.004632 * height;
+            } else {
+                return 0.31223 - 0.006446 * weight + 0.004466 * height;
+            }
+        }
 
         function selectGender(gender) {
             state.gender = gender;
@@ -287,6 +367,12 @@
         function updateWeight(value) {
             state.weight = parseInt(value);
             document.getElementById('weightValue').textContent = value + ' kg';
+            calculateBAC();
+        }
+
+        function updateHeight(value) {
+            state.height = parseInt(value);
+            document.getElementById('heightValue').textContent = value + ' cm';
             calculateBAC();
         }
 
@@ -314,7 +400,7 @@
                 if (end < start) end.setDate(end.getDate() + 1);
                 hoursElapsed = (end - start) / (1000 * 60 * 60);
             }
-            const r = reductionFactor[state.gender];
+            const r = calculateReductionFactor(state.gender, state.weight, state.height);
             let bac = (totalAlcohol * 0.8) / (state.weight * r);
             bac = Math.max(0, bac - (hoursElapsed * 0.15));
             return { bac, totalAlcohol, hoursElapsed };

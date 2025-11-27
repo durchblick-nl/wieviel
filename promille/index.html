@@ -176,6 +176,17 @@
                     </div>
                 </div>
 
+                <!-- Height Slider -->
+                <div class="form-group">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label class="required">Körpergrösse</label>
+                            <span class="slider-value" id="heightValue">175 cm</span>
+                        </div>
+                        <input type="range" id="height" min="140" max="210" value="175" oninput="updateHeight(this.value)">
+                    </div>
+                </div>
+
                 <!-- Drinks Selection -->
                 <div class="form-group">
                     <label class="required">Was hast du getrunken?</label>
@@ -321,15 +332,76 @@
                 </div>
             </div>
 
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon">
+                    <i class="fas fa-globe-europe"></i>
+                </div>
+                <div class="step-content">
+                    <h3>Promillegrenzen in Nachbarländern</h3>
+                    <p style="margin-bottom: 1rem;">Beim Autofahren im Ausland gelten andere Grenzen:</p>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 400px;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                                    <th style="padding: 0.5rem;">Land</th>
+                                    <th style="padding: 0.5rem; text-align: center;">Normal</th>
+                                    <th style="padding: 0.5rem; text-align: center;">Neulenker</th>
+                                    <th style="padding: 0.5rem; text-align: center;">Berufsfahrer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇨🇭 Schweiz</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇩🇪 Deutschland</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇦🇹 Österreich</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇫🇷 Frankreich</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.2‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.2‰</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-color);">
+                                    <td style="padding: 0.5rem;">🇮🇹 Italien</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.5rem;">🇱🇮 Liechtenstein</td>
+                                    <td style="padding: 0.5rem; text-align: center; font-weight: 600; color: #28a745;">0.8‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                    <td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="font-size: 0.8rem; margin-top: 0.75rem; opacity: 0.8;"><i class="fas fa-info-circle"></i> Neulenker: In den ersten 2-3 Jahren nach Führerscheinerwerb. Strenger = sicherer!</p>
+                </div>
+            </div>
+
             <div class="info-step-card">
                 <div class="step-icon">
                     <i class="fas fa-calculator"></i>
                 </div>
                 <div class="step-content">
-                    <h3>Widmark-Formel</h3>
-                    <p>Die Berechnung basiert auf der wissenschaftlichen Widmark-Formel von 1932:</p>
+                    <h3>Widmark-Formel (erweitert)</h3>
+                    <p>Die Berechnung basiert auf der Widmark-Formel, erweitert durch die <strong>Watson/Seidl-Studie</strong>:</p>
                     <p><strong>BAK = A ÷ (m × r)</strong></p>
-                    <p><small>A = Alkohol in Gramm, m = Körpergewicht, r = Verteilungsfaktor</small></p>
+                    <p><small>Der Verteilungsfaktor <em>r</em> wird aus Geschlecht, Gewicht und Körpergrösse berechnet – genauer als fixe Werte.</small></p>
                 </div>
             </div>
 
@@ -423,6 +495,7 @@
         let state = {
             gender: 'male',
             weight: 75,
+            height: 175,
             drinks: {
                 'beer': 0,
                 'beer-large': 0,
@@ -443,11 +516,19 @@
             'cocktail': 12.8   // ~40ml × 40% × 0.8
         };
 
-        // Reduction factors
-        const reductionFactor = {
-            'male': 0.68,
-            'female': 0.55
-        };
+        // Seidl formula (2000) - more accurate than fixed Widmark factors
+        // Source: Seidl, Jensen, Alt: "The calculation of blood ethanol concentrations
+        // in males and females" - International Journal of Legal Medicine, Vol. 114, 2000, S. 71-77
+        // Returns reduction factor based on gender, weight (kg) and height (cm)
+        function calculateReductionFactor(gender, weight, height) {
+            if (gender === 'male') {
+                // RM = 0.31608 − 0.004821 × Gewicht + 0.004632 × Körperlänge
+                return 0.31608 - 0.004821 * weight + 0.004632 * height;
+            } else {
+                // RW = 0.31223 − 0.006446 × Gewicht + 0.004466 × Körperlänge
+                return 0.31223 - 0.006446 * weight + 0.004466 * height;
+            }
+        }
 
         // Functions
         function selectGender(gender) {
@@ -461,6 +542,12 @@
         function updateWeight(value) {
             state.weight = parseInt(value);
             document.getElementById('weightValue').textContent = value + ' kg';
+            calculateBAC();
+        }
+
+        function updateHeight(value) {
+            state.height = parseInt(value);
+            document.getElementById('heightValue').textContent = value + ' cm';
             calculateBAC();
         }
 
@@ -504,10 +591,10 @@
 
             // Widmark formula with resorption deficit (10-30%, we use 20%)
             const resorptionDeficit = 0.8;
-            const r = reductionFactor[state.gender];
+            const r = calculateReductionFactor(state.gender, state.weight, state.height);
             const eliminationRate = 0.15; // ‰ per hour
 
-            // Peak BAC
+            // Peak BAC (using Watson/Seidl formula with height)
             let bac = (totalAlcohol * resorptionDeficit) / (state.weight * r);
 
             // Subtract elimination
