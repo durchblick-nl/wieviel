@@ -1,24 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Light version for dark backgrounds -->
   <defs>
-    <linearGradient id="grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#5a8a9d"/>
-      <stop offset="100%" style="stop-color:#8ab4c4"/>
+    <!-- Light gradient -->
+    <linearGradient id="bgLight" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e8f4f8"/>
+      <stop offset="50%" style="stop-color:#f0f7fa"/>
+      <stop offset="100%" style="stop-color:#ffffff"/>
     </linearGradient>
+
+    <linearGradient id="glossLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9"/>
+      <stop offset="40%" style="stop-color:#ffffff;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </linearGradient>
+
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a7a8c"/>
+      <stop offset="100%" style="stop-color:#3f606f"/>
+    </linearGradient>
+
+    <linearGradient id="redGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dd6b5c"/>
+      <stop offset="100%" style="stop-color:#cc5c53"/>
+    </linearGradient>
+
+    <filter id="glowLight">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
   </defs>
 
-  <!-- Main circle - lighter for dark backgrounds -->
-  <circle cx="50" cy="50" r="46" fill="url(#grad-light)"/>
+  <!-- Light background -->
+  <rect x="4" y="4" width="92" height="92" rx="24" fill="url(#bgLight)" filter="url(#shadow)"/>
 
-  <!-- Stylized "?" -->
-  <path d="M 35 28 Q 35 20 50 20 Q 65 20 65 32 Q 65 42 50 48 L 50 56"
-        fill="none"
-        stroke="white"
-        stroke-width="8"
-        stroke-linecap="round"
-        stroke-linejoin="round"/>
+  <!-- Subtle border -->
+  <rect x="4" y="4" width="92" height="92" rx="24" fill="none" stroke="#d0e0e8" stroke-width="1"/>
 
-  <!-- Equals sign -->
-  <rect x="42" y="68" width="16" height="6" rx="3" fill="white"/>
-  <rect x="42" y="78" width="16" height="6" rx="3" fill="#cc5c53"/>
+  <!-- Glass shine -->
+  <rect x="4" y="4" width="92" height="46" rx="24" fill="url(#glossLight)"/>
+
+  <!-- Swiss cross - split design (teal + red) -->
+  <rect x="43" y="22" width="14" height="28" rx="3" fill="url(#tealGrad)" opacity="0.95"/>
+  <rect x="43" y="50" width="14" height="28" rx="3" fill="url(#redGradLight)" opacity="0.95"/>
+  <rect x="22" y="43" width="28" height="14" rx="3" fill="url(#tealGrad)" opacity="0.95"/>
+  <rect x="50" y="43" width="28" height="14" rx="3" fill="url(#redGradLight)" opacity="0.95"/>
+
+  <!-- Glow on intersection -->
+  <circle cx="50" cy="50" r="8" fill="white" opacity="0.5" filter="url(#glowLight)"/>
 </svg>
