@@ -1,81 +1,75 @@
-# wieviel.ch
+# wieviel.ch + calcule.ch
 
 Praktische Online-Rechner für den Alltag in der Schweiz.
 
-**Live:** https://wieviel.ch
+**Live:**
+- 🇩🇪 https://wieviel.ch (Deutsch)
+- 🇫🇷 https://calcule.ch (Français)
 
-## Tools
+## Alle 16 Tools
 
-### Promillerechner (`/promille/`)
+### Gesundheit & Lifestyle
 
-Berechne deinen ungefähren Blutalkoholwert (BAK) und erfahre, wann du wieder fahrtüchtig bist.
+| Tool | DE | FR | Beschreibung |
+|------|----|----|--------------|
+| Promillerechner | `/promille/` | `/alcoolemie/` | Blutalkohol berechnen (Watson-Formel) |
+| BMI-Rechner | `/bmi/` | `/imc/` | Body Mass Index berechnen |
+| Schlafrechner | `/schlaf/` | `/sommeil/` | Optimale Schlafzeiten (90-Min-Zyklen) |
+| Fleisch- & CO2-Rechner | `/fleisch/` | `/viande/` | Fleischkonsum & CO2-Fussabdruck |
 
-- Visuelle Getränke-Auswahl (Bier, Wein, Schnaps, Cocktails)
-- Widmark-Formel mit Geschlecht und Gewicht
-- Abbau-Timeline (wann wieder bei 0.5‰ / 0.0‰)
-- Schweizer Promillegrenzen und Strafen
+### Finanzen & Arbeit
 
-**Wichtig:** Der Rechner liefert nur Schätzwerte. Wer Alkohol getrunken hat, sollte grundsätzlich nicht Auto fahren.
+| Tool | DE | FR | Beschreibung |
+|------|----|----|--------------|
+| Brutto-Netto-Rechner | `/lohn/` | `/salaire/` | Schweizer Lohn mit AHV, ALV, BVG |
+| Trinkgeld-Rechner | `/trinkgeld/` | `/pourboire/` | Trinkgeld & Rechnung aufteilen |
+| Teilzeit-Rechner | `/teilzeit/` | `/temps-partiel/` | Wahre Kosten von Teilzeit |
+| MWST-Rechner | `/mwst/` | `/tva/` | Mehrwertsteuer (8.1%, 2.6%, 3.8%) |
+| Stundenrechner | `/stunden/` | `/heures/` | Arbeitszeit nach ArG |
+| Ferienkürzung | `/ferienkuerzung/` | `/reduction-vacances/` | Art. 329b OR |
 
-### Brutto-Netto-Rechner (`/lohn/`)
+### Immobilien & Vermögen
 
-Berechne deinen Nettolohn in der Schweiz mit allen Sozialabzügen.
+| Tool | DE | FR | Beschreibung |
+|------|----|----|--------------|
+| Mietzinsrechner | `/miete/` | `/loyer/` | Referenzzinssatz-Anpassung |
+| Hypothekenrechner | `/hypothek/` | `/hypotheque/` | Tragbarkeit berechnen |
+| Zinseszinsrechner | `/zinseszins/` | `/interets-composes/` | Vermögensaufbau & Säule 3a |
 
-- AHV/IV/EO (5.3%)
-- ALV (1.1% bis CHF 148'200)
-- NBU (~0.5%)
-- BVG/Pensionskasse (altersabhängig 7-18%)
-- Kinderzulagen optional
+### Alltag & Mobilität
 
-### Trinkgeld-Rechner (`/trinkgeld/`)
+| Tool | DE | FR | Beschreibung |
+|------|----|----|--------------|
+| Bussenrechner | `/busse/` | `/amende/` | Geschwindigkeitsbusse (OBV) |
+| Tagerechner | `/tage/` | `/jours/` | Tage zwischen Daten |
+| Wanderzeit-Rechner | `/wandern/` | `/randonnee/` | Gehzeit berechnen |
 
-Berechne das passende Trinkgeld und teile die Rechnung fair auf.
+## Features
 
-- Voreingestellte Prozentsätze (5%, 10%, 15%, 20%)
-- Eigener Prozentsatz möglich
-- Rechnung auf mehrere Personen aufteilen
-- Internationale Trinkgeld-Tipps
-
-### Schlafrechner (`/schlaf/`)
-
-Finde die optimale Einschlaf- oder Aufwachzeit basierend auf Schlafzyklen.
-
-- 90-Minuten-Schlafzyklen
-- Zwei Modi: "Ich muss aufstehen um..." / "Ich gehe schlafen um..."
-- 14 Minuten Einschlafzeit berücksichtigt
-- Empfehlung für 5-6 Zyklen (7.5-9h Schlaf)
-
-### BMI-Rechner (`/bmi/`)
-
-Berechne deinen Body Mass Index und erfahre, in welcher Kategorie du liegst.
-
-- Intuitive Slider für Grösse und Gewicht
-- Visuelle BMI-Skala mit Marker
-- WHO-Kategorien (Untergewicht, Normal, Übergewicht, Adipositas)
-- Hinweis auf Einschränkungen des BMI
-
-## Features (alle Tools)
-
-- **Bilingual**: Deutsch (DE) und Französisch (FR)
-- **Dark Mode**: Automatisch oder manuell
-- **Responsive**: Optimiert für Smartphones
-- **Teilen**: WhatsApp und Kopieren
-- **Datenschutz**: 100% client-side, keine Daten werden gespeichert
+- **Bilingual**: Deutsch (wieviel.ch) + Französisch (calcule.ch)
+- **Dark Mode**: System-Erkennung + manueller Toggle
+- **Responsive**: Optimiert für Mobile
+- **PWA**: Als App installierbar
+- **Teilen**: WhatsApp & Kopieren
+- **Datenschutz**: 100% client-side, keine Daten gespeichert
+- **SEO**: Vollständige Open Graph & Twitter Cards
 
 ## Tech Stack
 
-- Vanilla HTML5/CSS3/JavaScript
-- Keine Frameworks, keine Dependencies
+- Vanilla HTML5/CSS3/JavaScript (keine Frameworks)
 - CSS Variables für Theming
 - Font Awesome Icons
+- Cloudflare Pages Hosting
 
 ## Deployment
 
-Hosted via [Cloudflare Pages](https://pages.cloudflare.com/) mit automatischem Deployment bei Push auf `main`.
+Automatisches Deployment via [Cloudflare Pages](https://pages.cloudflare.com/) bei Push auf `main`.
 
-## Geplante Tools
+## Verwandte Projekte
 
-- **Ferienkürzung** - Berechnung nach Art. 329b OR
+- [frist.ch](https://frist.ch) - Fristenrechner (ZPO, OR)
+- [gerichtskostenrechner.ch](https://gerichtskostenrechner.ch) - Gerichtskosten berechnen
+- [verzugszinsrechner.ch](https://verzugszinsrechner.ch) - Verzugszins berechnen
 
 ## Lizenz
 
