@@ -57,7 +57,7 @@
 
         <div class="page-header">
             <h1><span class="title-icon">🍺</span>Calculateur d'alcoolémie</h1>
-            <p class="page-subtitle">Taux d'alcool selon Widmark</p>
+            <p class="page-subtitle">Taux d'alcool selon Watson</p>
         </div>
 
         <nav class="tool-nav">
@@ -106,6 +106,16 @@
                             <span class="slider-value" id="heightValue">175 cm</span>
                         </div>
                         <input type="range" id="height" min="140" max="210" value="175" oninput="updateHeight(this.value)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label class="required">Âge</label>
+                            <span class="slider-value" id="ageValue">30 ans</span>
+                        </div>
+                        <input type="range" id="age" min="18" max="80" value="30" oninput="updateAge(this.value)">
                     </div>
                 </div>
 
@@ -291,10 +301,10 @@
             <div class="info-step-card">
                 <div class="step-icon"><i class="fas fa-calculator"></i></div>
                 <div class="step-content">
-                    <h3>Formule de Widmark (étendue)</h3>
-                    <p>Le calcul est basé sur la formule de Widmark, étendue par l'<strong>étude Watson/Seidl</strong> :</p>
-                    <p><strong>TAC = A ÷ (m × r)</strong></p>
-                    <p><small>Le facteur de distribution <em>r</em> est calculé à partir du sexe, du poids et de la taille – plus précis que des valeurs fixes.</small></p>
+                    <h3>Formule de Watson</h3>
+                    <p>Le calcul est basé sur la <strong>formule de Watson</strong> (1981), qui calcule l'eau corporelle totale :</p>
+                    <p><strong>TAC = A ÷ (0.8 × TBW)</strong></p>
+                    <p><small>TBW (Total Body Water) est calculé à partir du sexe, du poids, de la taille et de l'âge – la méthode la plus précise disponible.</small></p>
                 </div>
             </div>
         </div>
@@ -344,17 +354,18 @@
     </footer>
 
     <script>
-        let state = { gender: 'male', weight: 75, height: 175, drinks: { 'beer': 0, 'beer-large': 0, 'wine': 0, 'wine-glass': 0, 'shot': 0, 'cocktail': 0 } };
+        let state = { gender: 'male', weight: 75, height: 175, age: 30, drinks: { 'beer': 0, 'beer-large': 0, 'wine': 0, 'wine-glass': 0, 'shot': 0, 'cocktail': 0 } };
         const drinkAlcohol = { 'beer': 12, 'beer-large': 20, 'wine': 9.6, 'wine-glass': 14.4, 'shot': 12.8, 'cocktail': 12.8 };
 
-        // Seidl formula (2000) - more accurate than fixed Widmark factors
-        // Source: Seidl, Jensen, Alt: "The calculation of blood ethanol concentrations
-        // in males and females" - International Journal of Legal Medicine, Vol. 114, 2000, S. 71-77
-        function calculateReductionFactor(gender, weight, height) {
+        // Watson formula (1981) - calculates Total Body Water
+        // Source: Watson PE, Watson ID, Batt RD: "Total body water volumes for adult males
+        // and females estimated from simple anthropometric measurements"
+        // Am J Clin Nutr. 1980;33(1):27-39
+        function calculateTBW(gender, weight, height, age) {
             if (gender === 'male') {
-                return 0.31608 - 0.004821 * weight + 0.004632 * height;
+                return 2.447 - 0.09516 * age + 0.1074 * height + 0.3362 * weight;
             } else {
-                return 0.31223 - 0.006446 * weight + 0.004466 * height;
+                return -2.097 + 0.1069 * height + 0.2466 * weight;
             }
         }
 
@@ -373,6 +384,12 @@
         function updateHeight(value) {
             state.height = parseInt(value);
             document.getElementById('heightValue').textContent = value + ' cm';
+            calculateBAC();
+        }
+
+        function updateAge(value) {
+            state.age = parseInt(value);
+            document.getElementById('ageValue').textContent = value + ' ans';
             calculateBAC();
         }
 
@@ -400,8 +417,8 @@
                 if (end < start) end.setDate(end.getDate() + 1);
                 hoursElapsed = (end - start) / (1000 * 60 * 60);
             }
-            const r = calculateReductionFactor(state.gender, state.weight, state.height);
-            let bac = (totalAlcohol * 0.8) / (state.weight * r);
+            const tbw = calculateTBW(state.gender, state.weight, state.height, state.age);
+            let bac = totalAlcohol / (tbw * 0.8);
             bac = Math.max(0, bac - (hoursElapsed * 0.15));
             return { bac, totalAlcohol, hoursElapsed };
         }

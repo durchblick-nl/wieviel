@@ -106,7 +106,7 @@
 
         <div class="page-header">
             <h1><span class="title-icon">🍺</span>Promillerechner</h1>
-            <p class="page-subtitle">Blutalkohol nach Widmark-Formel</p>
+            <p class="page-subtitle">Blutalkohol nach Watson-Formel</p>
         </div>
 
         <nav class="tool-nav">
@@ -184,6 +184,17 @@
                             <span class="slider-value" id="heightValue">175 cm</span>
                         </div>
                         <input type="range" id="height" min="140" max="210" value="175" oninput="updateHeight(this.value)">
+                    </div>
+                </div>
+
+                <!-- Age Slider -->
+                <div class="form-group">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label class="required">Alter</label>
+                            <span class="slider-value" id="ageValue">30 Jahre</span>
+                        </div>
+                        <input type="range" id="age" min="18" max="80" value="30" oninput="updateAge(this.value)">
                     </div>
                 </div>
 
@@ -398,10 +409,10 @@
                     <i class="fas fa-calculator"></i>
                 </div>
                 <div class="step-content">
-                    <h3>Widmark-Formel (erweitert)</h3>
-                    <p>Die Berechnung basiert auf der Widmark-Formel, erweitert durch die <strong>Watson/Seidl-Studie</strong>:</p>
-                    <p><strong>BAK = A ÷ (m × r)</strong></p>
-                    <p><small>Der Verteilungsfaktor <em>r</em> wird aus Geschlecht, Gewicht und Körpergrösse berechnet – genauer als fixe Werte.</small></p>
+                    <h3>Watson-Formel</h3>
+                    <p>Die Berechnung basiert auf der <strong>Watson-Formel</strong> (1981), die das Gesamtkörperwasser berechnet:</p>
+                    <p><strong>BAK = A ÷ (0.8 × TBW)</strong></p>
+                    <p><small>TBW (Total Body Water) wird aus Geschlecht, Gewicht, Grösse und Alter berechnet – die genaueste verfügbare Methode.</small></p>
                 </div>
             </div>
 
@@ -496,6 +507,7 @@
             gender: 'male',
             weight: 75,
             height: 175,
+            age: 30,
             drinks: {
                 'beer': 0,
                 'beer-large': 0,
@@ -516,17 +528,19 @@
             'cocktail': 12.8   // ~40ml × 40% × 0.8
         };
 
-        // Seidl formula (2000) - more accurate than fixed Widmark factors
-        // Source: Seidl, Jensen, Alt: "The calculation of blood ethanol concentrations
-        // in males and females" - International Journal of Legal Medicine, Vol. 114, 2000, S. 71-77
-        // Returns reduction factor based on gender, weight (kg) and height (cm)
-        function calculateReductionFactor(gender, weight, height) {
+        // Watson formula (1981) - calculates Total Body Water
+        // Source: Watson PE, Watson ID, Batt RD: "Total body water volumes for adult males
+        // and females estimated from simple anthropometric measurements"
+        // Am J Clin Nutr. 1980;33(1):27-39
+        // Returns TBW in liters based on gender, weight (kg), height (cm) and age (years)
+        function calculateTBW(gender, weight, height, age) {
             if (gender === 'male') {
-                // RM = 0.31608 − 0.004821 × Gewicht + 0.004632 × Körperlänge
-                return 0.31608 - 0.004821 * weight + 0.004632 * height;
+                // TBW (men) = 2.447 − 0.09516 × age + 0.1074 × height + 0.3362 × weight
+                return 2.447 - 0.09516 * age + 0.1074 * height + 0.3362 * weight;
             } else {
-                // RW = 0.31223 − 0.006446 × Gewicht + 0.004466 × Körperlänge
-                return 0.31223 - 0.006446 * weight + 0.004466 * height;
+                // TBW (women) = −2.097 + 0.1069 × height + 0.2466 × weight
+                // Note: Age is not a factor for women in Watson's formula
+                return -2.097 + 0.1069 * height + 0.2466 * weight;
             }
         }
 
@@ -548,6 +562,12 @@
         function updateHeight(value) {
             state.height = parseInt(value);
             document.getElementById('heightValue').textContent = value + ' cm';
+            calculateBAC();
+        }
+
+        function updateAge(value) {
+            state.age = parseInt(value);
+            document.getElementById('ageValue').textContent = value + ' Jahre';
             calculateBAC();
         }
 
@@ -589,13 +609,15 @@
                 hoursElapsed = (end - start) / (1000 * 60 * 60);
             }
 
-            // Widmark formula with resorption deficit (10-30%, we use 20%)
-            const resorptionDeficit = 0.8;
-            const r = calculateReductionFactor(state.gender, state.weight, state.height);
+            // Watson formula: BAC = A / (0.8 × TBW)
+            // TBW = Total Body Water in liters
+            // 0.8 = specific gravity of ethanol (g/ml)
+            const tbw = calculateTBW(state.gender, state.weight, state.height, state.age);
             const eliminationRate = 0.15; // ‰ per hour
 
-            // Peak BAC (using Watson/Seidl formula with height)
-            let bac = (totalAlcohol * resorptionDeficit) / (state.weight * r);
+            // Peak BAC in g/L, then convert to ‰ (promille)
+            // BAC (‰) = (alcohol in grams) / (TBW in liters × 0.8)
+            let bac = totalAlcohol / (tbw * 0.8);
 
             // Subtract elimination
             bac = Math.max(0, bac - (hoursElapsed * eliminationRate));
