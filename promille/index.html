@@ -16,11 +16,13 @@
     <meta property="og:description" content="Berechne deinen Blutalkoholwert und erfahre, wann du wieder fahrtüchtig bist.">
     <meta property="og:locale" content="de_CH">
     <meta property="og:site_name" content="wieviel.ch">
-    <meta property="og:image" content="https://wieviel.ch/icons/icon-512.png">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://wieviel.ch/og/promille.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Promillerechner Schweiz - Blutalkohol berechnen">
     <meta name="twitter:description" content="Berechne deinen Blutalkoholwert und erfahre, wann du wieder fahrtüchtig bist.">
-    <meta name="twitter:image" content="https://wieviel.ch/icons/icon-512.png">
+    <meta name="twitter:image" content="https://wieviel.ch/og/promille.png">
 
     <!-- Canonical & Language -->
     <link rel="canonical" href="https://wieviel.ch/promille/">
@@ -96,6 +98,15 @@
         .faq-item[open] summary::after { content: '−'; }
         .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
         .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        /* Share buttons */
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; font-family: inherit; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.secondary { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .share-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .share-copied { background: #28a745 !important; }
     </style>
 </head>
 <body>
@@ -311,6 +322,14 @@
                 </div>
                 <div class="result-summary" id="resultSummary"></div>
                 <div class="sobriety-timeline" id="sobrietyTimeline"></div>
+                <div class="share-buttons">
+                    <button class="share-btn primary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> <span id="shareButtonText">Teilen</span>
+                    </button>
+                    <button class="share-btn secondary" onclick="copyResultLink()">
+                        <i class="fas fa-link"></i> <span id="copyButtonText">Link kopieren</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -763,13 +782,122 @@
             displayResult(result);
         });
 
-        // Set current time as end time
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
+            // Set current time as end time
             const now = new Date();
             document.getElementById('endTime').value =
                 now.getHours().toString().padStart(2, '0') + ':' +
                 now.getMinutes().toString().padStart(2, '0');
+
+            // Load state from URL if shared link
+            loadFromUrl();
         });
+
+        // Share functionality
+        function getShareableUrl() {
+            const params = new URLSearchParams();
+            params.set('g', state.gender === 'male' ? 'm' : 'f');
+            params.set('w', state.weight);
+            params.set('h', state.height);
+            params.set('a', state.age);
+
+            // Encode drinks compactly
+            const drinkCodes = ['beer', 'beer-large', 'wine', 'wine-glass', 'shot', 'cocktail'];
+            const drinkValues = drinkCodes.map(d => state.drinks[d]).join(',');
+            if (drinkValues !== '0,0,0,0,0,0') {
+                params.set('d', drinkValues);
+            }
+
+            return window.location.origin + window.location.pathname + '?' + params.toString();
+        }
+
+        function getShareText() {
+            const result = calculateBAC();
+            return `Promillerechner: ${result.bac.toFixed(2)}‰ geschätzter Blutalkohol\n${getShareableUrl()}`;
+        }
+
+        function shareResult() {
+            const shareData = {
+                title: 'Promillerechner Schweiz',
+                text: `Mein geschätzter Blutalkoholwert: ${calculateBAC().bac.toFixed(2)}‰`,
+                url: getShareableUrl()
+            };
+
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                // Fallback to WhatsApp
+                window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+            }
+        }
+
+        function copyResultLink() {
+            const url = getShareableUrl();
+            navigator.clipboard.writeText(url).then(() => {
+                const btn = document.querySelector('.share-btn.secondary');
+                const text = document.getElementById('copyButtonText');
+                btn.classList.add('share-copied');
+                text.textContent = 'Kopiert!';
+                setTimeout(() => {
+                    btn.classList.remove('share-copied');
+                    text.textContent = 'Link kopieren';
+                }, 2000);
+            });
+        }
+
+        function loadFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.has('g')) {
+                const gender = params.get('g') === 'm' ? 'male' : 'female';
+                selectGender(gender);
+            }
+
+            if (params.has('w')) {
+                const weight = parseInt(params.get('w'));
+                if (weight >= 40 && weight <= 150) {
+                    document.getElementById('weight').value = weight;
+                    updateWeight(weight);
+                }
+            }
+
+            if (params.has('h')) {
+                const height = parseInt(params.get('h'));
+                if (height >= 140 && height <= 210) {
+                    document.getElementById('height').value = height;
+                    updateHeight(height);
+                }
+            }
+
+            if (params.has('a')) {
+                const age = parseInt(params.get('a'));
+                if (age >= 18 && age <= 80) {
+                    document.getElementById('age').value = age;
+                    updateAge(age);
+                }
+            }
+
+            if (params.has('d')) {
+                const drinkCodes = ['beer', 'beer-large', 'wine', 'wine-glass', 'shot', 'cocktail'];
+                const values = params.get('d').split(',').map(v => parseInt(v) || 0);
+                drinkCodes.forEach((code, i) => {
+                    if (values[i] > 0) {
+                        for (let j = 0; j < values[i]; j++) {
+                            changeDrink(code, 1);
+                        }
+                    }
+                });
+            }
+
+            // If URL had params, auto-calculate
+            if (params.toString()) {
+                const result = calculateBAC();
+                if (result.bac > 0) {
+                    displayResult(result);
+                }
+            }
+        }
 
         // Dark Mode
         const DarkMode = {

@@ -16,11 +16,13 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_CH">
     <meta property="og:site_name" content="calcule.ch">
-    <meta property="og:image" content="https://calcule.ch/icons/icon-512.png">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://calcule.ch/og/alcoolemie.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Calculateur d'alcoolémie Suisse">
     <meta name="twitter:description" content="Calculez votre taux d'alcoolémie et découvrez quand vous serez à nouveau apte à conduire.">
-    <meta name="twitter:image" content="https://calcule.ch/icons/icon-512.png">
+    <meta name="twitter:image" content="https://calcule.ch/og/alcoolemie.png">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -47,6 +49,12 @@
         .faq-item[open] summary::after { content: '−'; }
         .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
         .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; font-family: inherit; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -219,6 +227,14 @@
                 </div>
                 <div class="result-summary" id="resultSummary"></div>
                 <div class="sobriety-timeline" id="sobrietyTimeline"></div>
+                <div class="share-buttons">
+                    <button class="share-btn primary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> Partager
+                    </button>
+                    <button class="share-btn copy" onclick="copyResult()">
+                        <i class="fas fa-copy"></i> Copier
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -529,6 +545,30 @@
             updateButton() { const btn = document.querySelector('.dark-mode-toggle i'); if (btn) btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; }
         };
         DarkMode.init();
+
+        // Share functions
+        function getShareText() {
+            const bac = document.getElementById('bacValue').innerText;
+            return 'Calculateur d\'alcoolémie: ' + bac + ' estimé\n' + window.location.href;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+            }
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+            });
+        }
     </script>
 </body>
 </html>

@@ -15,11 +15,13 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_CH">
     <meta property="og:site_name" content="calcule.ch">
-    <meta property="og:image" content="https://calcule.ch/icons/icon-512.png">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://calcule.ch/og/reduction-vacances.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Calculateur réduction de vacances Suisse">
     <meta name="twitter:description" content="Calculez la réduction du droit aux vacances selon l'art. 329b CO.">
-    <meta name="twitter:image" content="https://calcule.ch/icons/icon-512.png">
+    <meta name="twitter:image" content="https://calcule.ch/og/reduction-vacances.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
@@ -52,7 +54,7 @@
         .info-note { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
         .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
         .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
-        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
         .share-btn.copy { background: var(--secondary-color); color: white; }
         @media (max-width: 480px) { .input-row { grid-template-columns: 1fr; } }
         .faq-section { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -136,7 +138,7 @@
                 <div class="info-note" id="infoNote"><i class="fas fa-info-circle"></i> <strong>Note:</strong> En cas de maladie ou d'accident, le premier mois d'absence est "libre".</div>
 
                 <div class="share-buttons">
-                    <button class="share-btn whatsapp" onclick="shareWhatsApp()"><i class="fab fa-whatsapp"></i> Partager</button>
+                    <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> Partager</button>
                     <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> Copier</button>
                 </div>
             </div>
@@ -203,7 +205,14 @@
             return `🏖️ Calculateur réduction vacances\n\nDroit: ${document.getElementById('vacationDays').value} jours\nAbsence: ${document.getElementById('absenceMonths').value} mois (${TYPE_LABELS[absenceType]})\nRestant: ${document.getElementById('remainingDays').textContent} jours\n\nCalculé avec calcule.ch/reduction-vacances`;
         }
 
-        function shareWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank'); }
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+            }
+        }
         function copyResult() {
             navigator.clipboard.writeText(getShareText()).then(() => {
                 const btn = document.querySelector('.share-btn.copy');

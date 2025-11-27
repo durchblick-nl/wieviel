@@ -16,11 +16,13 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_CH">
     <meta property="og:site_name" content="wieviel.ch">
-    <meta property="og:image" content="https://wieviel.ch/icons/icon-512.png">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://wieviel.ch/og/lohn.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Brutto-Netto-Rechner Schweiz 2025">
     <meta name="twitter:description" content="Nettolohn berechnen mit AHV, ALV, BVG. Kostenlos & sofort.">
-    <meta name="twitter:image" content="https://wieviel.ch/icons/icon-512.png">
+    <meta name="twitter:image" content="https://wieviel.ch/og/lohn.png">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -102,7 +104,7 @@
         .deductions-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
         .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
         .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
-        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
         .share-btn.copy { background: var(--secondary-color); color: white; }
         .share-btn:hover { transform: translateY(-2px); }
         .info-box { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
@@ -273,8 +275,8 @@
                 </div>
 
                 <div class="share-buttons">
-                    <button class="share-btn whatsapp" onclick="shareWhatsApp()">
-                        <i class="fab fa-whatsapp"></i> Teilen
+                    <button class="share-btn primary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> Teilen
                     </button>
                     <button class="share-btn copy" onclick="copyResult()">
                         <i class="fas fa-copy"></i> Kopieren
@@ -554,7 +556,14 @@
             return `💰 Lohnrechnung\n\nBrutto: CHF ${gross.toFixed(0)}/${periodLabel}\nNetto: CHF ${net.toFixed(0)}/Monat\n\nBerechnet mit wieviel.ch/lohn`;
         }
 
-        function shareWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank'); }
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+            }
+        }
         function copyResult() {
             navigator.clipboard.writeText(getShareText()).then(() => {
                 const btn = document.querySelector('.share-btn.copy');

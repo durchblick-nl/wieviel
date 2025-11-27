@@ -15,11 +15,13 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_CH">
     <meta property="og:site_name" content="calcule.ch">
-    <meta property="og:image" content="https://calcule.ch/icons/icon-512.png">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://calcule.ch/og/imc.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Calculateur IMC – Indice de Masse Corporelle">
     <meta name="twitter:description" content="Calculez votre IMC et découvrez si votre poids est dans une fourchette saine.">
-    <meta name="twitter:image" content="https://calcule.ch/icons/icon-512.png">
+    <meta name="twitter:image" content="https://calcule.ch/og/imc.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
@@ -54,7 +56,7 @@
         .slider-marks { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-color); opacity: 0.7; margin-top: 0.25rem; }
         .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
         .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
-        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
         .share-btn.copy { background: var(--secondary-color); color: white; }
         .bmi-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
         .bmi-info-item { padding: 0.75rem; border-radius: 8px; text-align: center; font-size: 0.85rem; }
@@ -228,8 +230,8 @@
             </div>
 
             <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> Partager
+                <button class="share-btn primary" onclick="shareResult()">
+                    <i class="fas fa-share-alt"></i> Partager
                 </button>
                 <button class="share-btn copy" onclick="copyResult()">
                     <i class="fas fa-copy"></i> Copier
@@ -356,8 +358,13 @@
             return `📊 Mon résultat IMC\n\nTaille: ${height} cm\nPoids: ${weight} kg\nIMC: ${bmi}\nCatégorie: ${category}\n\nCalculé avec calcule.ch/imc`;
         }
 
-        function shareWhatsApp() {
-            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+            }
         }
 
         function copyResult() {

@@ -16,11 +16,13 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_CH">
     <meta property="og:site_name" content="calcule.ch">
-    <meta property="og:image" content="https://calcule.ch/icons/icon-512.png">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://calcule.ch/og/salaire.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Calculateur salaire brut-net Suisse 2025">
     <meta name="twitter:description" content="Calcule ton salaire net avec toutes les déductions suisses.">
-    <meta name="twitter:image" content="https://calcule.ch/icons/icon-512.png">
+    <meta name="twitter:image" content="https://calcule.ch/og/salaire.png">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -73,7 +75,7 @@
         .deductions-card h3 { color: var(--primary-color); margin-bottom: 1rem; }
         .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
         .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
-        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
         .share-btn.copy { background: var(--secondary-color); color: white; }
         .info-box { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
 
@@ -209,7 +211,7 @@
                 </div>
 
                 <div class="share-buttons">
-                    <button class="share-btn whatsapp" onclick="shareWhatsApp()"><i class="fab fa-whatsapp"></i> Partager</button>
+                    <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> Partager</button>
                     <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> Copier</button>
                 </div>
             </div>
@@ -295,7 +297,14 @@
         }
 
         function getShareText() { const gross = parseFloat(document.getElementById('grossSalary').value) || 0; const net = parseFloat(document.getElementById('netSalary').textContent.replace(/[^0-9.-]/g, '')) || 0; return `💰 Calcul salaire\n\nBrut: CHF ${gross.toFixed(0)}\nNet: CHF ${net.toFixed(0)}/mois\n\nCalculé avec calcule.ch/salaire`; }
-        function shareWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank'); }
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+            }
+        }
         function copyResult() { navigator.clipboard.writeText(getShareText()).then(() => { const btn = document.querySelector('.share-btn.copy'); btn.innerHTML = '<i class="fas fa-check"></i> Copié!'; setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Copier', 2000); }); }
 
         const DarkMode = { STORAGE_KEY: 'darkMode', init() { const saved = localStorage.getItem(this.STORAGE_KEY); if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) this.enable(false); this.updateButton(); }, enable(save = true) { document.documentElement.setAttribute('data-theme', 'dark'); if (save) localStorage.setItem(this.STORAGE_KEY, 'true'); this.updateButton(); }, disable(save = true) { document.documentElement.removeAttribute('data-theme'); if (save) localStorage.setItem(this.STORAGE_KEY, 'false'); this.updateButton(); }, toggle() { document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable(); }, updateButton() { const btn = document.querySelector('.dark-mode-toggle i'); if (btn) btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; } };
