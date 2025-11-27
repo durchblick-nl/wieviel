@@ -137,4 +137,13 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Calculateur temps de marche -->
+  <url>
+    <loc>https://calcule.ch/randonnee/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/wandern/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/randonnee/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

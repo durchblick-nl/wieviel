@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur temps de marche Suisse - Randonn&eacute;e | calcule.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta name="description" content="Calculez le temps de marche pour votre randonn&eacute;e en Suisse. Avec la formule officielle Suisse Rando: distance, d&eacute;nivel&eacute; et niveau de forme.">
+    <meta name="keywords" content="temps de marche, randonn&eacute;e, Suisse, d&eacute;nivel&eacute;, montagne, sentiers, kilom&egrave;tres-effort">
+    <link rel="canonical" href="https://calcule.ch/randonnee/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/randonnee/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/wandern/">
+    <meta property="og:title" content="Calculateur temps de marche Suisse">
+    <meta property="og:description" content="Calculez le temps de marche avec la formule Suisse Rando.">
+    <meta property="og:url" content="https://calcule.ch/randonnee/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CH">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculateur temps de marche Suisse",
+        "url": "https://calcule.ch/randonnee/",
+        "description": "Calculez le temps de marche pour votre randonn&eacute;e en Suisse avec distance et d&eacute;nivel&eacute;.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .result-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 3rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+
+        .breakdown-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total {
+            font-weight: bold;
+            background: var(--light-bg);
+            margin: 0.5rem -1.5rem -1.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 0 0 12px 12px;
+        }
+        .breakdown-row.total .value { color: var(--primary-color); }
+
+        .fitness-selector {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .fitness-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .fitness-btn:hover { border-color: var(--primary-color); }
+        .fitness-btn.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        .fitness-btn .icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+        .fitness-btn .name { font-weight: 600; font-size: 0.9rem; }
+
+        .input-with-unit {
+            position: relative;
+        }
+        .input-with-unit input {
+            padding-right: 3rem;
+        }
+        .input-with-unit .unit {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-color);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        .tip-card {
+            background: linear-gradient(135deg, #2d5a27, #4a7c43);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: white;
+            margin: 1.5rem 0;
+        }
+        .tip-card h4 { margin: 0 0 0.75rem 0; }
+        .tip-card ul { margin: 0; padding-left: 1.25rem; }
+        .tip-card li { margin-bottom: 0.5rem; opacity: 0.9; }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; line-height: 1.6; }
+
+        .difficulty-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .difficulty-indicator.easy { background: #d4edda; color: #155724; }
+        .difficulty-indicator.moderate { background: #fff3cd; color: #856404; }
+        .difficulty-indicator.hard { background: #f8d7da; color: #721c24; }
+        .difficulty-indicator.expert { background: #d1c4e9; color: #4a148c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="https://wieviel.ch/wandern/" class="lang-btn">DE</a>
+                <span class="lang-btn active">FR</span>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1><span class="title-icon">🏔️</span>Temps de marche</h1>
+            <p class="page-subtitle">Calculer selon la formule Suisse Rando</p>
+        </div>
+
+        <nav class="tool-nav">
+            <a href="../">Tous les outils</a>
+        </nav>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-route"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>Parcours</h3>
+                    <p>Distance et d&eacute;nivel&eacute; de ta randonn&eacute;e.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-heart"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>Forme</h3>
+                    <p>Choisis ton niveau de forme physique.</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-clock"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>Temps</h3>
+                    <p>Temps de marche estim&eacute; avec pauses.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label for="distance">Distance</label>
+                <div class="input-with-unit">
+                    <input type="number" id="distance" value="12" min="0" step="0.1" oninput="calculate()">
+                    <span class="unit">km</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="elevationUp">D&eacute;nivel&eacute; positif (mont&eacute;e)</label>
+                <div class="input-with-unit">
+                    <input type="number" id="elevationUp" value="800" min="0" step="50" oninput="calculate()">
+                    <span class="unit">m</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="elevationDown">D&eacute;nivel&eacute; n&eacute;gatif (descente)</label>
+                <div class="input-with-unit">
+                    <input type="number" id="elevationDown" value="800" min="0" step="50" oninput="calculate()">
+                    <span class="unit">m</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Niveau de forme</label>
+                <div class="fitness-selector">
+                    <button type="button" class="fitness-btn" data-fitness="slow" onclick="setFitness('slow')">
+                        <div class="icon">🐢</div>
+                        <div class="name">Tranquille</div>
+                    </button>
+                    <button type="button" class="fitness-btn active" data-fitness="normal" onclick="setFitness('normal')">
+                        <div class="icon">🚶</div>
+                        <div class="name">Normal</div>
+                    </button>
+                    <button type="button" class="fitness-btn" data-fitness="fast" onclick="setFitness('fast')">
+                        <div class="icon">🏃</div>
+                        <div class="name">Sportif</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box">
+                <div class="label">Temps de marche estim&eacute;</div>
+                <div class="total" id="totalTime">3h 45min</div>
+                <div class="sub" id="totalSub">temps de marche pur sans pauses</div>
+            </div>
+
+            <div id="difficultyIndicator" class="difficulty-indicator moderate">
+                <i class="fas fa-mountain"></i>
+                <span id="difficultyText">Randonn&eacute;e moyenne</span>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-calculator"></i> Calcul</h3>
+                <div class="breakdown-row">
+                    <span class="label">Temps horizontal (distance)</span>
+                    <span class="value" id="timeHorizontal">3h 00min</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Temps de mont&eacute;e</span>
+                    <span class="value" id="timeUp">2h 00min</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Temps de descente</span>
+                    <span class="value" id="timeDown">1h 00min</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">Kilom&egrave;tres-effort</span>
+                    <span class="value" id="lkm">20 km-e</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Temps de marche pur</span>
+                    <span class="value" id="pureTime">3h 45min</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-coffee"></i> Avec pauses</h3>
+                <div class="breakdown-row">
+                    <span class="label">Temps de pause recommand&eacute;</span>
+                    <span class="value" id="breakTime">45min</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">Temps total avec pauses</span>
+                    <span class="value" id="totalWithBreaks">4h 30min</span>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Partager
+                </button>
+                <button class="share-btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i> Copier
+                </button>
+            </div>
+        </div>
+
+        <div class="tip-card">
+            <h4><i class="fas fa-lightbulb"></i> Conseils pour ta randonn&eacute;e</h4>
+            <ul>
+                <li><strong>Partir t&ocirc;t:</strong> En &eacute;t&eacute; avant 8h pour &eacute;viter les orages</li>
+                <li><strong>M&eacute;t&eacute;o:</strong> Le temps en montagne peut changer rapidement</li>
+                <li><strong>&Eacute;quipement:</strong> Assez d'eau (min. 1L par 3h), protection solaire, v&ecirc;tements de pluie</li>
+                <li><strong>App d'urgence:</strong> Installer l'app Rega pour la localisation GPS</li>
+            </ul>
+        </div>
+
+        <section class="seo-content" style="margin-top: 2rem;">
+            <h2 style="color: var(--primary-color);">La formule suisse du temps de marche</h2>
+            <p><strong>Suisse Rando</strong> calcule le temps de marche selon une formule &eacute;prouv&eacute;e:</p>
+            <ul>
+                <li><strong>Horizontal:</strong> 4 km par heure (15 min par km)</li>
+                <li><strong>Mont&eacute;e:</strong> 400 m&egrave;tres de d&eacute;nivel&eacute; par heure</li>
+                <li><strong>Descente:</strong> 800 m&egrave;tres de d&eacute;nivel&eacute; par heure</li>
+            </ul>
+            <p>La <strong>valeur la plus petite</strong> (horizontale ou verticale) est divis&eacute;e par deux et ajout&eacute;e &agrave; la plus grande. Cela donne des temps plus r&eacute;alistes qu'une simple addition.</p>
+
+            <h3 style="color: var(--primary-color); margin-top: 1.5rem;">Questions fr&eacute;quentes</h3>
+            <div class="faq-section">
+                <details class="faq-item">
+                    <summary>Quelle est la pr&eacute;cision du calcul?</summary>
+                    <p>La formule donne une bonne indication pour les randonneurs de condition moyenne. Des facteurs comme l'&eacute;tat du chemin, la m&eacute;t&eacute;o, le poids du sac et la forme personnelle influencent le temps r&eacute;el. Pr&eacute;vois toujours une marge!</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Que sont les kilom&egrave;tres-effort?</summary>
+                    <p>Les kilom&egrave;tres-effort combinent distance et d&eacute;nivel&eacute;: <strong>1 km-e = 1 km horizontal = 100 m de d&eacute;nivel&eacute; positif</strong>. Une sortie de 10 km avec 500 m de d&eacute;nivel&eacute; correspond donc &agrave; 15 km-e.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Pourquoi la descente est-elle plus rapide?</summary>
+                    <p>En descente, la gravit&eacute; travaille avec toi. Cependant, une descente raide est techniquement plus exigeante et sollicite davantage les genoux. Sur un terrain tr&egrave;s raide (&gt;40&deg;), la descente peut m&ecirc;me prendre plus de temps que la mont&eacute;e.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Combien de pauses pr&eacute;voir?</summary>
+                    <p>R&egrave;gle g&eacute;n&eacute;rale: <strong>10-15 minutes de pause par heure de marche</strong>. Pour les longues sorties, pr&eacute;vois une pause d&eacute;jeuner plus longue (30-45 min). Bois r&eacute;guli&egrave;rement m&ecirc;me sans soif et mange des en-cas pour une &eacute;nergie constante.</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Liens utiles</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.suissemobile.ch/fr/la-suisse-a-pied" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> SuisseMobile La Suisse &agrave; pied</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.sac-cas.ch/fr/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Club Alpin Suisse CAS</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.meteosuisse.admin.ch" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> M&eacute;t&eacute;oSuisse – M&eacute;t&eacute;o montagne</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Sans garantie. Le temps de marche r&eacute;el d&eacute;pend de nombreux facteurs.</p>
+            <p class="footer-privacy">Tous les calculs sont effectu&eacute;s localement. Aucune donn&eacute;e n'est enregistr&eacute;e.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fitness multipliers
+        const FITNESS = {
+            slow: { speed: 3.5, upSpeed: 350, downSpeed: 700, label: 'Tranquille' },
+            normal: { speed: 4.0, upSpeed: 400, downSpeed: 800, label: 'Normal' },
+            fast: { speed: 5.0, upSpeed: 500, downSpeed: 1000, label: 'Sportif' }
+        };
+
+        let currentFitness = 'normal';
+
+        function setFitness(level) {
+            currentFitness = level;
+            document.querySelectorAll('.fitness-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.fitness === level);
+            });
+            calculate();
+        }
+
+        function calculate() {
+            const distance = parseFloat(document.getElementById('distance').value) || 0;
+            const elevationUp = parseFloat(document.getElementById('elevationUp').value) || 0;
+            const elevationDown = parseFloat(document.getElementById('elevationDown').value) || 0;
+
+            const fitness = FITNESS[currentFitness];
+
+            // Time calculations in hours
+            const timeHorizontal = distance / fitness.speed;
+            const timeUp = elevationUp / fitness.upSpeed;
+            const timeDown = elevationDown / fitness.downSpeed;
+
+            // Swiss formula: add smaller half to larger
+            const verticalTime = timeUp + timeDown;
+            let totalTime;
+            if (timeHorizontal > verticalTime) {
+                totalTime = timeHorizontal + (verticalTime / 2);
+            } else {
+                totalTime = verticalTime + (timeHorizontal / 2);
+            }
+
+            // Leistungskilometer: 1 LKM = 1km = 100Hm
+            const lkm = distance + (elevationUp / 100);
+
+            // Recommended break time (10-15 min per hour)
+            const breakTime = totalTime * 0.2;
+
+            // Total with breaks
+            const totalWithBreaks = totalTime + breakTime;
+
+            // Difficulty assessment
+            let difficulty, difficultyText, difficultyClass;
+            if (lkm <= 10 && elevationUp <= 500) {
+                difficulty = 'easy';
+                difficultyText = 'Randonnée facile';
+                difficultyClass = 'easy';
+            } else if (lkm <= 18 && elevationUp <= 1000) {
+                difficulty = 'moderate';
+                difficultyText = 'Randonnée moyenne';
+                difficultyClass = 'moderate';
+            } else if (lkm <= 25 && elevationUp <= 1500) {
+                difficulty = 'hard';
+                difficultyText = 'Randonnée exigeante';
+                difficultyClass = 'hard';
+            } else {
+                difficulty = 'expert';
+                difficultyText = 'Sortie très exigeante';
+                difficultyClass = 'expert';
+            }
+
+            // Update UI
+            document.getElementById('totalTime').textContent = formatTime(totalTime);
+            document.getElementById('totalSub').textContent = `temps de marche pur (${FITNESS[currentFitness].label})`;
+
+            document.getElementById('timeHorizontal').textContent = formatTime(timeHorizontal);
+            document.getElementById('timeUp').textContent = formatTime(timeUp);
+            document.getElementById('timeDown').textContent = formatTime(timeDown);
+            document.getElementById('lkm').textContent = lkm.toFixed(1) + ' km-e';
+            document.getElementById('pureTime').textContent = formatTime(totalTime);
+
+            document.getElementById('breakTime').textContent = formatTime(breakTime);
+            document.getElementById('totalWithBreaks').textContent = formatTime(totalWithBreaks);
+
+            const diffIndicator = document.getElementById('difficultyIndicator');
+            diffIndicator.className = 'difficulty-indicator ' + difficultyClass;
+            document.getElementById('difficultyText').textContent = difficultyText;
+        }
+
+        function formatTime(hours) {
+            const h = Math.floor(hours);
+            const m = Math.round((hours - h) * 60);
+            if (h === 0) return m + 'min';
+            if (m === 0) return h + 'h';
+            return h + 'h ' + m.toString().padStart(2, '0') + 'min';
+        }
+
+        function getShareText() {
+            const distance = document.getElementById('distance').value;
+            const elevationUp = document.getElementById('elevationUp').value;
+            const totalTime = document.getElementById('totalTime').textContent;
+            const totalWithBreaks = document.getElementById('totalWithBreaks').textContent;
+            return `Temps de marche pour ${distance} km et ${elevationUp} m:\n⏱️ Marche: ${totalTime}\n☕ Avec pauses: ${totalWithBreaks}\n\nCalculé avec: https://calcule.ch/randonnee/`;
+        }
+
+        function shareWhatsApp() {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
+                setTimeout(() => btn.innerHTML = originalText, 2000);
+            });
+        }
+
+        // Dark mode
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const saved = localStorage.getItem(this.STORAGE_KEY);
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+                this.updateIcon();
+            },
+            toggle() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem(this.STORAGE_KEY, !isDark);
+                this.updateIcon();
+            },
+            updateIcon() {
+                const icon = document.querySelector('.dark-mode-toggle i');
+                if (icon) {
+                    icon.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            }
+        };
+
+        DarkMode.init();
+        calculate();
+    </script>
+</body>
+</html>
