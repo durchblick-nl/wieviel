@@ -146,4 +146,13 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Stundenrechner -->
+  <url>
+    <loc>https://wieviel.ch/stunden/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/stunden/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/heures/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

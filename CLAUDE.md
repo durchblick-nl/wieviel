@@ -30,6 +30,8 @@ A collection of useful calculators for the general public in Switzerland.
 | **Mietzinsrechner** | `/miete/` | Rent adjustment calculator (Referenzzinssatz) |
 | **Hypothekenrechner** | `/hypothek/` | Mortgage affordability calculator |
 | **Zinseszinsrechner** | `/zinseszins/` | Compound interest calculator |
+| **Wanderzeit-Rechner** | `/wandern/` | Hiking time calculator (Schweiz Mobil formula) |
+| **Stundenrechner** | `/stunden/` | Working hours calculator (ArG compliance) |
 
 ### Current Tools (calcule.ch - French):
 
@@ -49,6 +51,8 @@ A collection of useful calculators for the general public in Switzerland.
 | **Calculateur de loyer** | `/loyer/` | Rent adjustment calculator (taux de référence) |
 | **Calculateur hypothécaire** | `/hypotheque/` | Mortgage affordability calculator |
 | **Calculateur d'intérêts composés** | `/interets-composes/` | Compound interest calculator |
+| **Calculateur temps de marche** | `/randonnee/` | Hiking time calculator (Suisse Rando formula) |
+| **Calculateur d'heures** | `/heures/` | Working hours calculator (LTr compliance) |
 
 ### URL Mapping (DE ↔ FR):
 
@@ -68,6 +72,8 @@ A collection of useful calculators for the general public in Switzerland.
 | `/miete/` | `/loyer/` |
 | `/hypothek/` | `/hypotheque/` |
 | `/zinseszins/` | `/interets-composes/` |
+| `/wandern/` | `/randonnee/` |
+| `/stunden/` | `/heures/` |
 
 ### Planned Tools:
 - (none currently)
@@ -116,6 +122,8 @@ wieviel.ch/
 ├── miete/index.html        # Mietzinsrechner
 ├── hypothek/index.html     # Hypothekenrechner
 ├── zinseszins/index.html   # Zinseszinsrechner
+├── wandern/index.html      # Wanderzeit-Rechner
+├── stunden/index.html      # Stundenrechner
 │
 ├── # French homepage
 ├── fr/index.html           # French homepage (calcule.ch)
@@ -134,7 +142,9 @@ wieviel.ch/
 ├── tva/index.html          # Calculateur TVA
 ├── loyer/index.html        # Calculateur de loyer
 ├── hypotheque/index.html   # Calculateur hypothécaire
-└── interets-composes/index.html # Calculateur d'intérêts composés
+├── interets-composes/index.html # Calculateur d'intérêts composés
+├── randonnee/index.html    # Calculateur temps de marche
+└── heures/index.html       # Calculateur d'heures
 ```
 
 ## Tech Stack
@@ -171,14 +181,18 @@ function copyResult() {
 
 ## Calculation Logic
 
-### Promillerechner - Widmark Formula
+### Promillerechner - Watson Formula (1981)
 ```
-BAK (‰) = A / (m × r) - (t × β)
+BAC (‰) = A / (TBW × 0.8) - (t × β)
 ```
 - A = consumed alcohol in grams
-- m = body weight in kg
-- r = reduction factor (men: 0.68, women: 0.55)
+- TBW = Total Body Water (calculated from age, height, weight, gender)
+- t = time since drinking began (hours)
 - β = elimination rate (~0.15‰/hour)
+
+**Total Body Water (Watson Formula)**:
+- Men: TBW = 2.447 − 0.09516 × age + 0.1074 × height(cm) + 0.3362 × weight(kg)
+- Women: TBW = −2.097 + 0.1069 × height(cm) + 0.2466 × weight(kg)
 
 ### Lohnrechner - Swiss Deductions
 | Deduction | Rate | Notes |
@@ -369,6 +383,46 @@ A = P × (1 + r)ⁿ + M × [(1 + r)ⁿ - 1] / r
 **Pillar 3a Maximum Contributions 2025**:
 - Employees with pension fund: CHF 7'056/year (CHF 588/month)
 - Self-employed without pension fund: 20% of income, max. CHF 35'280
+
+### Stundenrechner - Working Hours (ArG)
+Calculates working hours in compliance with Swiss labor law (Arbeitsgesetz).
+
+**Maximum Working Hours (Art. 9 ArG)**:
+| Worker Type | Weekly Max |
+|-------------|------------|
+| Industrial/office workers | 45 hours |
+| Other employees | 50 hours |
+
+**Mandatory Breaks (Art. 15 ArG)**:
+| Working Time | Break Duration |
+|--------------|----------------|
+| > 5.5 hours | 15 minutes |
+| > 7 hours | 30 minutes |
+| > 9 hours | 60 minutes |
+
+**Night & Sunday Work Surcharges (Art. 17b, 19 ArG)**:
+- Night work (23:00–06:00): +25% surcharge OR time compensation
+- Sunday work: +50% surcharge
+- Youth under 18: No night/Sunday work (Art. 31 ArG)
+
+**Rest Time Requirements (Art. 15a ArG)**:
+| Worker Category | Minimum Rest |
+|-----------------|--------------|
+| Normal employees | 11 hours |
+| Youth under 18 | 12 hours |
+| Pregnant/nursing | 12 hours |
+
+**Maximum Daily Hours**:
+| Worker Category | Daily Max |
+|-----------------|-----------|
+| Normal employees | 12.5 hours (with breaks) |
+| Pregnant/nursing | 9 hours |
+| Youth under 18 | 9 hours |
+
+**Overtime (Überzeit)**:
+- Above weekly max (45h/50h) = overtime
+- Max 170h/year (45h weeks) or 140h/year (50h weeks)
+- +25% surcharge OR time compensation (with employee agreement)
 
 ## Related Projects
 

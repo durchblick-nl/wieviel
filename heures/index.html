@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur d'heures Suisse - Temps de travail | calcule.ch</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta name="description" content="Calculez votre temps de travail selon la loi suisse. Avec calcul automatique des pauses, suppléments de nuit/dimanche et avertissements.">
+    <meta name="keywords" content="calculateur heures, temps de travail, Suisse, loi travail, pauses, travail de nuit, heures supplémentaires">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calcule.ch/heures/">
+    <meta property="og:title" content="Calculateur d'heures Suisse - Temps de travail">
+    <meta property="og:description" content="Calculez votre temps de travail selon la loi suisse.">
+    <meta property="og:locale" content="fr_CH">
+
+    <link rel="canonical" href="https://calcule.ch/heures/">
+    <link rel="alternate" hreflang="de" href="https://wieviel.ch/stunden/">
+    <link rel="alternate" hreflang="fr" href="https://calcule.ch/heures/">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculateur d'heures Suisse",
+        "url": "https://calcule.ch/heures/",
+        "description": "Calculez votre temps de travail selon la loi suisse.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .time-input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .time-input-group > div { display: flex; flex-direction: column; gap: 0.5rem; }
+        .time-input-group input[type="time"], .time-input-group input[type="date"] { padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--card-bg); color: var(--text-color); }
+        .checkbox-group { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+        .checkbox-group input[type="checkbox"] { width: 1.2rem; height: 1.2rem; accent-color: var(--primary-color); }
+        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .result-item { background: var(--light-bg); padding: 1rem; border-radius: 8px; text-align: center; }
+        .result-item .value { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
+        .result-item .label { font-size: 0.85rem; opacity: 0.8; margin-top: 0.25rem; }
+        .result-item.warning .value { color: #dc3545; }
+        .result-item.success .value { color: #28a745; }
+        .warnings-list { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .warning-item { padding: 0.75rem 1rem; border-radius: 8px; display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; }
+        .warning-item.error { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+        .warning-item.info { background: #d1ecf1; color: #0c5460; border-left: 4px solid #17a2b8; }
+        .warning-item.success { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+        .mode-selector { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .mode-btn { padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 20px; background: var(--card-bg); color: var(--text-color); cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+        .mode-btn:hover { border-color: var(--primary-color); }
+        .mode-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .surcharge-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.9rem; }
+        .surcharge-table th, .surcharge-table td { padding: 0.5rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .surcharge-table th { font-weight: 600; }
+        @media (max-width: 480px) { .time-input-group { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="https://wieviel.ch/stunden/" class="lang-btn">DE</a>
+                <span class="lang-btn active">FR</span>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1><span class="title-icon"><i class="fas fa-clock"></i></span>Calculateur d'heures</h1>
+            <p class="page-subtitle">Temps de travail selon le droit suisse</p>
+        </div>
+
+        <nav class="tool-nav">
+            <a href="../">Tous les outils</a>
+        </nav>
+
+        <div class="calculator-card">
+            <form id="stundenForm">
+                <div class="form-group">
+                    <label>Type d'employé</label>
+                    <div class="mode-selector">
+                        <button type="button" class="mode-btn active" data-mode="normal" onclick="setMode('normal')">
+                            <i class="fas fa-user"></i> Normal
+                        </button>
+                        <button type="button" class="mode-btn" data-mode="pregnant" onclick="setMode('pregnant')">
+                            <i class="fas fa-person-pregnant"></i> Enceinte
+                        </button>
+                        <button type="button" class="mode-btn" data-mode="nursing" onclick="setMode('nursing')">
+                            <i class="fas fa-baby"></i> Allaitante
+                        </button>
+                        <button type="button" class="mode-btn" data-mode="youth" onclick="setMode('youth')">
+                            <i class="fas fa-child"></i> Jeune
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Catégorie de temps de travail</label>
+                    <div class="mode-selector">
+                        <button type="button" class="mode-btn active" data-week="45" onclick="setWeekHours(45)">
+                            45h/semaine
+                        </button>
+                        <button type="button" class="mode-btn" data-week="50" onclick="setWeekHours(50)">
+                            50h/semaine
+                        </button>
+                    </div>
+                    <small style="opacity: 0.7; margin-top: 0.25rem; display: block;">45h : Bureau, industrie, commerce de détail | 50h : Autres secteurs</small>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Début du travail</label>
+                    <div class="time-input-group">
+                        <div>
+                            <label for="startDate">Date</label>
+                            <input type="date" id="startDate" required>
+                        </div>
+                        <div>
+                            <label for="startTime">Heure</label>
+                            <input type="time" id="startTime" value="08:00" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Fin du travail</label>
+                    <div class="time-input-group">
+                        <div>
+                            <label for="endDate">Date</label>
+                            <input type="date" id="endDate" required>
+                        </div>
+                        <div>
+                            <label for="endTime">Heure</label>
+                            <input type="time" id="endTime" value="17:00" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Pause</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="autoBreak" checked onchange="toggleBreakInput()">
+                        <label for="autoBreak">Calculer automatiquement selon la loi</label>
+                    </div>
+                    <div id="manualBreakInput" style="display: none; margin-top: 0.75rem;">
+                        <div class="time-input-group">
+                            <div>
+                                <label for="breakMinutes">Pause (minutes)</label>
+                                <input type="number" id="breakMinutes" min="0" max="180" value="30"
+                                    style="padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--card-bg); color: var(--text-color);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Dernier repos</label>
+                    <div class="time-input-group">
+                        <div>
+                            <label for="lastShiftEnd">Fin du dernier service</label>
+                            <input type="time" id="lastShiftEnd" placeholder="Optionnel">
+                        </div>
+                    </div>
+                    <small style="opacity: 0.7;">Optionnel : pour vérifier le repos de 11h</small>
+                </div>
+
+                <button type="submit">Calculer le temps de travail</button>
+            </form>
+
+            <div id="result" class="result" style="display: none;">
+                <h3>Résultat</h3>
+                <div class="result-grid" id="resultGrid"></div>
+                <div class="warnings-list" id="warningsList"></div>
+            </div>
+        </div>
+
+        <div class="info-cards-container">
+            <div class="info-step-card highlight">
+                <div class="step-icon"><i class="fas fa-gavel"></i></div>
+                <div class="step-content">
+                    <h3>Pauses légales (Art. 15 LTr)</h3>
+                    <table class="surcharge-table">
+                        <tr><th>Temps de travail</th><th>Pause minimum</th></tr>
+                        <tr><td>> 5.5 heures</td><td>15 minutes</td></tr>
+                        <tr><td>> 7 heures</td><td>30 minutes</td></tr>
+                        <tr><td>> 9 heures</td><td>60 minutes</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-moon"></i></div>
+                <div class="step-content">
+                    <h3>Suppléments</h3>
+                    <table class="surcharge-table">
+                        <tr><th>Type</th><th>Supplément</th></tr>
+                        <tr><td>Travail de nuit (22h-06h)</td><td>+10% temps/salaire</td></tr>
+                        <tr><td>Travail du dimanche</td><td>+50% salaire</td></tr>
+                        <tr><td>Heures supp. (après 45/50h)</td><td>+25% salaire</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-bed"></i></div>
+                <div class="step-content">
+                    <h3>Temps de repos</h3>
+                    <p><strong>Quotidien :</strong> Min. 11 heures<br><small>(réductible à 8h 1× par semaine)</small></p>
+                    <p><strong>Week-end :</strong> Min. 35 heures consécutives</p>
+                    <p><strong>Amplitude journalière :</strong> Max. 14h par jour</p>
+                </div>
+            </div>
+
+            <div class="info-step-card">
+                <div class="step-icon"><i class="fas fa-person-pregnant"></i></div>
+                <div class="step-content">
+                    <h3>Règles spéciales</h3>
+                    <p><strong>Enceintes/Allaitantes :</strong><br>Max. 9h/jour, 12h de repos</p>
+                    <p><strong>Jeunes (< 18 ans) :</strong><br>Max. 9h/jour, pas de travail de nuit/dimanche</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-step-card" style="margin-top: 1rem;">
+            <div class="step-icon"><i class="fas fa-info-circle"></i></div>
+            <div class="step-content">
+                <h3>Qui est concerné ?</h3>
+                <p><strong>45 heures/semaine :</strong> Personnel de bureau, employés techniques, vendeurs dans les grandes surfaces, ouvriers industriels</p>
+                <p><strong>50 heures/semaine :</strong> Tous les autres employés (ex. hôtellerie, agriculture, petit commerce)</p>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;"><i class="fas fa-external-link-alt"></i> Source : <a href="https://www.seco.admin.ch/seco/fr/home/Arbeit/Personenfreizugigkeit_Arbeitsbeziehungen/Arbeitsrecht.html" target="_blank" rel="noopener">SECO - Droit du travail</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Ce calculateur est fourni à titre indicatif et ne remplace pas un conseil juridique.</p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée.</p>
+        </div>
+    </footer>
+
+    <script>
+        let state = { mode: 'normal', weekHours: 45 };
+        const modeLimits = {
+            normal: { maxDaily: 12.5, maxDailyWarning: 9, restTime: 11 },
+            pregnant: { maxDaily: 9, maxDailyWarning: 9, restTime: 12 },
+            nursing: { maxDaily: 9, maxDailyWarning: 9, restTime: 11 },
+            youth: { maxDaily: 9, maxDailyWarning: 9, restTime: 12, noNight: true, noSunday: true }
+        };
+        const modeLabels = { normal: 'employés normaux', pregnant: 'femmes enceintes', nursing: 'femmes allaitantes', youth: 'jeunes' };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('startDate').value = today;
+            document.getElementById('endDate').value = today;
+        });
+
+        function setMode(mode) {
+            state.mode = mode;
+            document.querySelectorAll('.mode-btn[data-mode]').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
+        }
+
+        function setWeekHours(hours) {
+            state.weekHours = hours;
+            document.querySelectorAll('.mode-btn[data-week]').forEach(btn => btn.classList.toggle('active', parseInt(btn.dataset.week) === hours));
+        }
+
+        function toggleBreakInput() {
+            document.getElementById('manualBreakInput').style.display = document.getElementById('autoBreak').checked ? 'none' : 'block';
+        }
+
+        function calculateLegalBreak(grossMinutes) {
+            if (grossMinutes > 9 * 60) return 60;
+            if (grossMinutes > 7 * 60) return 30;
+            if (grossMinutes > 5.5 * 60) return 15;
+            return 0;
+        }
+
+        function calculateNightMinutes(start, end) {
+            let nightMinutes = 0;
+            let current = new Date(start);
+            while (current < end) {
+                const h = current.getHours();
+                if (h >= 22 || h < 6) nightMinutes++;
+                current = new Date(current.getTime() + 60000);
+            }
+            return nightMinutes;
+        }
+
+        function calculateSundayMinutes(start, end) {
+            let sundayMinutes = 0;
+            let current = new Date(start);
+            while (current < end) {
+                if (current.getDay() === 0) sundayMinutes++;
+                current = new Date(current.getTime() + 60000);
+            }
+            return sundayMinutes;
+        }
+
+        function formatDuration(minutes) {
+            return `${Math.floor(minutes / 60)}:${Math.round(minutes % 60).toString().padStart(2, '0')}`;
+        }
+
+        function formatDecimal(minutes) {
+            return (minutes / 60).toFixed(2);
+        }
+
+        function calculate() {
+            const start = new Date(`${document.getElementById('startDate').value}T${document.getElementById('startTime').value}`);
+            const end = new Date(`${document.getElementById('endDate').value}T${document.getElementById('endTime').value}`);
+            if (end <= start) { alert('La fin doit être après le début.'); return null; }
+
+            const grossMinutes = (end - start) / 60000;
+            const breakMinutes = document.getElementById('autoBreak').checked ? calculateLegalBreak(grossMinutes) : (parseInt(document.getElementById('breakMinutes').value) || 0);
+            const netMinutes = grossMinutes - breakMinutes;
+            const nightMinutes = calculateNightMinutes(start, end);
+            const sundayMinutes = calculateSundayMinutes(start, end);
+
+            let restMinutes = null;
+            const lastShiftEnd = document.getElementById('lastShiftEnd').value;
+            if (lastShiftEnd) {
+                const lastEnd = new Date(`${document.getElementById('startDate').value}T${lastShiftEnd}`);
+                if (lastEnd > start) lastEnd.setDate(lastEnd.getDate() - 1);
+                restMinutes = (start - lastEnd) / 60000;
+            }
+
+            return { grossMinutes, breakMinutes, netMinutes, nightMinutes, sundayMinutes, nightSurchargeMinutes: Math.round(nightMinutes * 0.10), restMinutes, start, end };
+        }
+
+        function displayResult(result) {
+            const limits = modeLimits[state.mode];
+            const warnings = [];
+
+            let gridHTML = `
+                <div class="result-item"><div class="value">${formatDuration(result.netMinutes)}</div><div class="label">Temps net</div></div>
+                <div class="result-item"><div class="value">${formatDecimal(result.netMinutes)}</div><div class="label">Heures décimales</div></div>
+                <div class="result-item"><div class="value">${formatDuration(result.breakMinutes)}</div><div class="label">Pause</div></div>
+                <div class="result-item"><div class="value">${formatDuration(result.grossMinutes)}</div><div class="label">Brut (avec pause)</div></div>
+            `;
+
+            if (result.nightMinutes > 0) {
+                gridHTML += `
+                    <div class="result-item${limits.noNight ? ' warning' : ''}"><div class="value">${formatDuration(result.nightMinutes)}</div><div class="label">Travail de nuit</div></div>
+                    <div class="result-item success"><div class="value">+${formatDuration(result.nightSurchargeMinutes)}</div><div class="label">Suppl. nuit (10%)</div></div>
+                `;
+            }
+            if (result.sundayMinutes > 0) {
+                gridHTML += `
+                    <div class="result-item${limits.noSunday ? ' warning' : ''}"><div class="value">${formatDuration(result.sundayMinutes)}</div><div class="label">Travail dimanche</div></div>
+                    <div class="result-item success"><div class="value">+50%</div><div class="label">Suppl. dimanche</div></div>
+                `;
+            }
+            document.getElementById('resultGrid').innerHTML = gridHTML;
+
+            const netHours = result.netMinutes / 60;
+            if (netHours > limits.maxDaily) {
+                warnings.push({ type: 'error', icon: 'fas fa-exclamation-triangle', text: `Durée max. dépassée ! Max. ${limits.maxDaily}h pour les ${modeLabels[state.mode]}.` });
+            } else if (netHours > limits.maxDailyWarning && state.mode === 'normal') {
+                warnings.push({ type: 'info', icon: 'fas fa-info-circle', text: `Plus de 9 heures de travail. L'extension à ${limits.maxDaily}h n'est permise que sous certaines conditions.` });
+            }
+            if (result.grossMinutes / 60 > 14) {
+                warnings.push({ type: 'error', icon: 'fas fa-exclamation-triangle', text: 'Amplitude de 14 heures dépassée !' });
+            }
+            if (result.restMinutes !== null) {
+                const restHours = result.restMinutes / 60;
+                if (restHours < limits.restTime) {
+                    warnings.push({ type: 'error', icon: 'fas fa-bed', text: `Repos insuffisant ! ${restHours.toFixed(1)}h au lieu de ${limits.restTime}h min.` });
+                } else {
+                    warnings.push({ type: 'success', icon: 'fas fa-check-circle', text: `Repos respecté : ${restHours.toFixed(1)}h (min. ${limits.restTime}h requis)` });
+                }
+            }
+            if (limits.noNight && result.nightMinutes > 0) warnings.push({ type: 'error', icon: 'fas fa-moon', text: 'Le travail de nuit est interdit pour les jeunes !' });
+            if (limits.noSunday && result.sundayMinutes > 0) warnings.push({ type: 'error', icon: 'fas fa-calendar-times', text: 'Le travail du dimanche est interdit pour les jeunes !' });
+
+            const requiredBreak = calculateLegalBreak(result.grossMinutes);
+            if (result.breakMinutes < requiredBreak) {
+                warnings.push({ type: 'error', icon: 'fas fa-coffee', text: `Pause insuffisante ! Pour ${formatDuration(result.grossMinutes)} de travail brut, min. ${requiredBreak} min. de pause sont obligatoires.` });
+            }
+            if (warnings.length === 0) warnings.push({ type: 'success', icon: 'fas fa-check-circle', text: 'Toutes les exigences légales sont respectées !' });
+
+            document.getElementById('warningsList').innerHTML = warnings.map(w => `<div class="warning-item ${w.type}"><i class="${w.icon}"></i><span>${w.text}</span></div>`).join('');
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('stundenForm').addEventListener('submit', function(e) { e.preventDefault(); const r = calculate(); if (r) displayResult(r); });
+
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() { const s = localStorage.getItem(this.STORAGE_KEY); if (s === 'true' || (s === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) this.enable(false); this.updateButton(); },
+            enable(save = true) { document.documentElement.setAttribute('data-theme', 'dark'); if (save) localStorage.setItem(this.STORAGE_KEY, 'true'); this.updateButton(); },
+            disable(save = true) { document.documentElement.removeAttribute('data-theme'); if (save) localStorage.setItem(this.STORAGE_KEY, 'false'); this.updateButton(); },
+            toggle() { document.documentElement.getAttribute('data-theme') === 'dark' ? this.disable() : this.enable(); },
+            updateButton() { const btn = document.querySelector('.dark-mode-toggle i'); if (btn) btn.className = document.documentElement.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; }
+        };
+        DarkMode.init();
+    </script>
+</body>
+</html>
