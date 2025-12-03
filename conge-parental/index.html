@@ -135,12 +135,6 @@
         .info-box strong { color: var(--primary-color); }
         .info-box.warning strong { color: var(--accent-color); }
 
-        .timeline { margin: 1.5rem 0; padding: 1rem; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); }
-        .timeline-bar { height: 16px; background: var(--border-color); border-radius: 8px; overflow: hidden; position: relative; width: 100%; }
-        .timeline-fill { height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); border-radius: 8px; }
-        .timeline-labels { display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-color); font-weight: 500; width: 100%; }
-        .timeline-labels span { display: inline-block; }
-
         .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
         .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
         .share-btn.primary { background: var(--primary-color); color: white; }
@@ -284,16 +278,6 @@
                     <div class="box-label">Indemnité maximale</div>
                     <div class="box-value">CHF 220</div>
                     <div class="box-sub">maximum légal</div>
-                </div>
-            </div>
-
-            <div class="timeline">
-                <div class="timeline-bar">
-                    <div class="timeline-fill" id="timelineFill" style="width: 100%;"></div>
-                </div>
-                <div class="timeline-labels">
-                    <span>Naissance</span>
-                    <span id="timelineEnd">14 semaines</span>
                 </div>
             </div>
 
@@ -486,8 +470,6 @@
             document.getElementById('calcRate').textContent = formatCHF(dailyCompensation);
             document.getElementById('calcDays').textContent = `${days} jours`;
             document.getElementById('calcTotal').textContent = formatCHF(totalCompensation);
-
-            document.getElementById('timelineEnd').textContent = `${weeks} semaines`;
 
             updateInfoBox(dailyCompensation);
         }
