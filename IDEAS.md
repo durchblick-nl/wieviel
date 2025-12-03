@@ -185,3 +185,115 @@ Bewertungskriterien:
 - Kalorienrechner (zu viel Konkurrenz)
 - Erbschafts-/Schenkungssteuer (zu komplex, 26 Kantone)
 - Altersrechner (Überschneidung mit Tagerechner)
+
+---
+
+## Ideen basierend auf opendata.swiss
+
+Die folgenden Ideen nutzen offene Daten von [opendata.swiss](https://opendata.swiss/de):
+
+### 15. Krankenkassenprämien-Rechner (mit Live-Daten) ⭐⭐⭐⭐⭐
+**Aufwand**: 4 | **Realisierbarkeit**: 4 | **Suchvolumen**: ⭐⭐⭐⭐⭐ | **Konkurrenz**: ⭐⭐
+
+**Datenquelle**: [BAG Krankenkassenprämien](https://opendata.swiss/de/dataset/health-insurance-premiums) + [priminfo.admin.ch](https://www.priminfo.admin.ch/de/praemien)
+- 8 Millionen Einträge - beliebtester Datensatz auf opendata.swiss!
+- API verfügbar (JSON)
+- Jährliche Aktualisierung (September)
+- Daten nach Kanton, Alter, Franchise, Versicherer
+
+**Features**:
+- Prämie nach PLZ/Gemeinde
+- Vergleich Franchise-Stufen (300, 500, 1000, 1500, 2000, 2500)
+- Sparpotenzial bei Wechsel
+- Kinder/Jugendliche/Erwachsene
+
+**Herausforderung**: Jährlich neue Daten importieren, viele Kombinationen
+**Empfehlung**: Hohe Priorität (saisonaler Traffic Sep-Nov)
+
+### 16. Steuerfuss-Rechner (Gemeindevergleich)
+**Aufwand**: 3 | **Realisierbarkeit**: 4 | **Suchvolumen**: ⭐⭐⭐ | **Konkurrenz**: ⭐⭐⭐⭐
+
+**Datenquelle**: [Steuerfuss-Daten Kanton ZH](https://opendata.swiss/de/dataset?q=steuerfuss) und weitere Kantone
+- CSV-Daten verfügbar
+- Steuerfuss natürliche + juristische Personen
+
+**Features**:
+- Vergleich Gemeinden innerhalb eines Kantons
+- Steuerbelastung bei gleichem Einkommen
+- «Wo wohnt man günstig?»
+
+**Empfehlung**: Mittlere Priorität (regional interessant)
+
+### 17. Mietpreis-Index Rechner
+**Aufwand**: 3 | **Realisierbarkeit**: 3 | **Suchvolumen**: ⭐⭐⭐⭐ | **Konkurrenz**: ⭐⭐⭐
+
+**Datenquelle**: [BFS Mietpreisdaten](https://opendata.swiss/de/dataset?q=mietpreis)
+- Durchschnittliche Mietpreise nach Kanton
+- Zeitreihen verfügbar
+
+**Features**:
+- «Ist meine Miete fair?» - Vergleich mit Durchschnitt
+- Entwicklung über Zeit
+- Ergänzt bestehenden Mietzinsrechner
+
+**Empfehlung**: Mittlere Priorität
+
+### 18. Kita-Kosten-Rechner
+**Aufwand**: 3 | **Realisierbarkeit**: 3 | **Suchvolumen**: ⭐⭐⭐⭐ | **Konkurrenz**: ⭐⭐⭐⭐
+
+**Datenquelle**: [Kinderbetreuungs-Daten](https://opendata.swiss/de/dataset?q=kinderbetreuung+kita) (38 Datensätze)
+- Daten aus verschiedenen Kantonen
+- Anzahl Plätze, Standorte
+
+**Features**:
+- Kosten pro Tag/Woche/Monat
+- Subventionen nach Einkommen (kantonal unterschiedlich)
+- Vergleich: Kita vs. Tagesmutter vs. Au-pair
+
+**Herausforderung**: Sehr kantonal unterschiedlich
+**Empfehlung**: Mittlere Priorität (grosse Nachfrage bei Eltern)
+
+### 19. Pendler-Statistik Rechner
+**Aufwand**: 3 | **Realisierbarkeit**: 4 | **Suchvolumen**: ⭐⭐⭐ | **Konkurrenz**: ⭐⭐⭐⭐
+
+**Datenquelle**: [BFS Pendlerdaten](https://opendata.swiss/de/dataset?q=pendler) (1'676 Datensätze)
+- Pendler nach Verkehrsmittel
+- Verkehrsbelastung nach Region
+
+**Features**:
+- Durchschnittliche Pendelzeit nach Region
+- Vergleich Auto vs. ÖV
+- CO2-Auswirkung
+- Ergänzt Pendlerkosten-Rechner (#14)
+
+**Empfehlung**: Niedrige Priorität (Daten eher statistisch)
+
+### 20. E-Auto Ladestation-Finder + Kostenrechner
+**Aufwand**: 3 | **Realisierbarkeit**: 4 | **Suchvolumen**: ⭐⭐⭐⭐ | **Konkurrenz**: ⭐⭐⭐
+
+**Datenquelle**: [E-Autos und Ladestationen](https://opendata.swiss/de/dataset?q=ladestation+elektro) pro Gemeinde
+- Anzahl Ladestationen
+- Standorte
+
+**Features**:
+- Kosten öffentlich vs. Zuhause laden
+- Reichweite berechnen
+- Ergänzt Stromkosten-Rechner
+
+**Empfehlung**: Mittlere Priorität (wachsender Markt)
+
+---
+
+## Datenquellen-Übersicht (opendata.swiss)
+
+| Thema | Datensätze | API | Empfehlung |
+|-------|-----------|-----|------------|
+| Krankenkassenprämien | 8 Mio. Einträge | ✅ JSON | ⭐⭐⭐⭐⭐ |
+| Steuerfuss/Steuern | 178 (CSV) | ❌ | ⭐⭐⭐ |
+| Mietpreise | 602 | Teilweise | ⭐⭐⭐ |
+| Löhne/Einkommen | 268 | Teilweise | ⭐⭐⭐ |
+| Pendler/Verkehr | 1'676 | Teilweise | ⭐⭐ |
+| Kinderbetreuung | 38 | ❌ | ⭐⭐⭐ |
+| E-Mobilität | ~100 | Teilweise | ⭐⭐⭐ |
+
+**Wichtigste Erkenntnis**: Der Krankenkassenprämien-Datensatz ist mit Abstand der wertvollste - hohe Nachfrage, gute API, jährlich aktualisiert.
