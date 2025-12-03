@@ -640,6 +640,39 @@ calculate();
 - Both must have identical functionality
 - Cross-link with hreflang and language switcher
 
+### 5. OG Images (Open Graph)
+Every calculator needs a custom OG image for social sharing:
+
+**Location**: `/og/[toolname].png` (1200×630px)
+
+**Required elements**:
+- Background: `#3f606f` (Durchblick primary color)
+- Emoji icon at top (100×100px from `/og/emoji/`)
+- Tool title (Helvetica-Bold, 72pt, white)
+- Subtitle with "· Schweiz" or "· Suisse" (36pt, white)
+- Footer bar: `#cc5c53` with favicon + domain
+
+**Creation command** (ImageMagick):
+```bash
+magick -size 1200x630 xc:'#3f606f' \
+  -gravity north -fill white -font "Helvetica-Bold" \
+  -pointsize 72 -annotate +0+280 "Tool-Name" \
+  -pointsize 36 -annotate +0+380 "Beschreibung · Schweiz" \
+  -fill '#cc5c53' -draw "rectangle 0,560 1200,630" \
+  \( /og/emoji/[emoji].png \) -gravity north -geometry +0+100 -composite \
+  \( /og/favicon-small.png \) -gravity south -geometry -80+23 -composite \
+  -gravity south -fill white -font "Helvetica-Bold" -pointsize 28 -annotate +20+20 "wieviel.ch" \
+  /og/[toolname].png
+```
+
+Note: For French versions (calcule.ch), adjust favicon position to `-72+23`.
+
+**Emoji sources**: Download from Twemoji SVG and convert to 100×100 PNG:
+```bash
+curl -s "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/[code].svg" -o /tmp/emoji.svg
+magick -background none /tmp/emoji.svg -resize 100x100 /og/emoji/[name].png
+```
+
 ## Related Projects
 
 | Project | Description | URL |
