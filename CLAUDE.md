@@ -33,6 +33,7 @@ A collection of useful calculators for the general public in Switzerland.
 | **Wanderzeit-Rechner** | `/wandern/` | Hiking time calculator (Schweiz Mobil formula) |
 | **Stundenrechner** | `/stunden/` | Working hours calculator (ArG compliance) |
 | **Elternzeit-Rechner** | `/elternzeit/` | Maternity & paternity leave compensation calculator (EOG) |
+| **Haustier-Kosten-Rechner** | `/haustier/` | Pet ownership cost calculator (dog/cat) |
 
 ### Current Tools (calcule.ch - French):
 
@@ -55,6 +56,7 @@ A collection of useful calculators for the general public in Switzerland.
 | **Calculateur temps de marche** | `/randonnee/` | Hiking time calculator (Suisse Rando formula) |
 | **Calculateur d'heures** | `/heures/` | Working hours calculator (LTr compliance) |
 | **Calculateur congé parental** | `/conge-parental/` | Maternity & paternity leave compensation calculator (APG) |
+| **Calculateur coût animal** | `/animal/` | Pet ownership cost calculator (dog/cat) |
 
 ### URL Mapping (DE ↔ FR):
 
@@ -77,6 +79,7 @@ A collection of useful calculators for the general public in Switzerland.
 | `/wandern/` | `/randonnee/` |
 | `/stunden/` | `/heures/` |
 | `/elternzeit/` | `/conge-parental/` |
+| `/haustier/` | `/animal/` |
 
 ### Planned Tools:
 - (none currently)
@@ -128,6 +131,7 @@ wieviel.ch/
 ├── wandern/index.html      # Wanderzeit-Rechner
 ├── stunden/index.html      # Stundenrechner
 ├── elternzeit/index.html   # Elternzeit-Rechner
+├── haustier/index.html     # Haustier-Kosten-Rechner
 │
 ├── # French homepage
 ├── fr/index.html           # French homepage (calcule.ch)
@@ -149,7 +153,8 @@ wieviel.ch/
 ├── interets-composes/index.html # Calculateur d'intérêts composés
 ├── randonnee/index.html    # Calculateur temps de marche
 ├── heures/index.html       # Calculateur d'heures
-└── conge-parental/index.html # Calculateur congé parental
+├── conge-parental/index.html # Calculateur congé parental
+└── animal/index.html       # Calculateur coût animal
 ```
 
 ## Tech Stack
@@ -162,6 +167,17 @@ wieviel.ch/
 - **Brand**: Durchblick colors (#3f606f, #cc5c53, #5a8a9d)
 - **SEO**: Cross-domain hreflang annotations, separate sitemaps
 - **No backend** - all calculation logic runs client-side
+
+## Swiss Quotation Marks (Guillemets)
+
+In Switzerland, use guillemets («») instead of English quotation marks (""):
+
+| Language | Format | Example |
+|----------|--------|---------|
+| **German (DE)** | «text» (no spaces) | «Das ist ein Beispiel» |
+| **French (FR)** | « text » (with spaces) | « Ceci est un exemple » |
+
+**Important**: Always use guillemets in Swiss German and French content for a professional, localized appearance.
 
 ## Common Patterns
 
@@ -464,6 +480,50 @@ Total = Daily Rate × Number of Days
 - AHV-insured in Switzerland for 9 months before birth
 - Employed for at least 5 of those months
 - Valid employment contract at time of birth
+
+### Haustier-Kosten-Rechner - Pet Ownership Costs
+Calculates yearly and lifetime costs of pet ownership in Switzerland.
+
+**Cost Categories**:
+| Category | Description |
+|----------|-------------|
+| Futter | Food and treats |
+| Tierarzt | Veterinary care (vaccinations, checkups) |
+| Zubehör | Equipment (bed, leash, bowls, etc.) |
+| Versicherung | Pet insurance (optional) |
+| Fellpflege | Grooming (optional, mostly dogs) |
+| Training | Training/obedience school (optional) |
+| Betreuung | Pet sitting/boarding (optional) |
+
+**Dog Costs (CHF/year)**:
+| Size | Food | Vet | Accessories | Total Base |
+|------|------|-----|-------------|------------|
+| Small (<10kg) | 600 | 400 | 300 | ~1'300 |
+| Medium (10-25kg) | 900 | 500 | 400 | ~1'800 |
+| Large (>25kg) | 1'200 | 600 | 500 | ~2'300 |
+
+**Cat Costs (CHF/year)**:
+| Type | Food | Vet | Accessories | Total Base |
+|------|------|-----|-------------|------------|
+| Indoor | 500 | 350 | 250 | ~1'100 |
+| Outdoor | 600 | 450 | 300 | ~1'350 |
+
+**One-time Costs (first year)**:
+| Item | Dog | Cat |
+|------|-----|-----|
+| Purchase/Adoption | 500-2'500 | 100-1'500 |
+| Initial equipment | 300-800 | 200-500 |
+| Microchip + registration | 100 | 80 |
+
+**Life Expectancy**:
+| Pet | Average |
+|-----|---------|
+| Small dog | 14 years |
+| Medium dog | 12 years |
+| Large dog | 10 years |
+| Cat | 16 years |
+
+**Swiss-specific**: Dog tax varies by canton (CHF 50-200/year), mandatory liability insurance recommended.
 
 ## Calculator Page Structure
 

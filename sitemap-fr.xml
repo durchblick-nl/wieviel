@@ -164,4 +164,13 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Calculateur coût animal -->
+  <url>
+    <loc>https://calcule.ch/animal/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/haustier/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/animal/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
