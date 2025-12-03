@@ -182,4 +182,13 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Calculateur coût électricité -->
+  <url>
+    <loc>https://calcule.ch/electricite/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/strom/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/electricite/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
