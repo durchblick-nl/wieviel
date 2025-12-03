@@ -32,6 +32,7 @@ A collection of useful calculators for the general public in Switzerland.
 | **Zinseszinsrechner** | `/zinseszins/` | Compound interest calculator |
 | **Wanderzeit-Rechner** | `/wandern/` | Hiking time calculator (Schweiz Mobil formula) |
 | **Stundenrechner** | `/stunden/` | Working hours calculator (ArG compliance) |
+| **Elternzeit-Rechner** | `/elternzeit/` | Maternity & paternity leave compensation calculator (EOG) |
 
 ### Current Tools (calcule.ch - French):
 
@@ -53,6 +54,7 @@ A collection of useful calculators for the general public in Switzerland.
 | **Calculateur d'intérêts composés** | `/interets-composes/` | Compound interest calculator |
 | **Calculateur temps de marche** | `/randonnee/` | Hiking time calculator (Suisse Rando formula) |
 | **Calculateur d'heures** | `/heures/` | Working hours calculator (LTr compliance) |
+| **Calculateur congé parental** | `/conge-parental/` | Maternity & paternity leave compensation calculator (APG) |
 
 ### URL Mapping (DE ↔ FR):
 
@@ -74,6 +76,7 @@ A collection of useful calculators for the general public in Switzerland.
 | `/zinseszins/` | `/interets-composes/` |
 | `/wandern/` | `/randonnee/` |
 | `/stunden/` | `/heures/` |
+| `/elternzeit/` | `/conge-parental/` |
 
 ### Planned Tools:
 - (none currently)
@@ -124,6 +127,7 @@ wieviel.ch/
 ├── zinseszins/index.html   # Zinseszinsrechner
 ├── wandern/index.html      # Wanderzeit-Rechner
 ├── stunden/index.html      # Stundenrechner
+├── elternzeit/index.html   # Elternzeit-Rechner
 │
 ├── # French homepage
 ├── fr/index.html           # French homepage (calcule.ch)
@@ -144,7 +148,8 @@ wieviel.ch/
 ├── hypotheque/index.html   # Calculateur hypothécaire
 ├── interets-composes/index.html # Calculateur d'intérêts composés
 ├── randonnee/index.html    # Calculateur temps de marche
-└── heures/index.html       # Calculateur d'heures
+├── heures/index.html       # Calculateur d'heures
+└── conge-parental/index.html # Calculateur congé parental
 ```
 
 ## Tech Stack
@@ -423,6 +428,157 @@ Calculates working hours in compliance with Swiss labor law (Arbeitsgesetz).
 - Above weekly max (45h/50h) = overtime
 - Max 170h/year (45h weeks) or 140h/year (50h weeks)
 - +25% surcharge OR time compensation (with employee agreement)
+
+### Elternzeit-Rechner - Parental Leave Compensation (EOG)
+Calculates maternity and paternity compensation according to Swiss EOG.
+
+**Compensation Formula**:
+```
+Daily Rate = min(Monthly Salary / 30 × 0.80, CHF 220)
+Total = Daily Rate × Number of Days
+```
+
+**Maternity Leave (Mutterschaftsurlaub)**:
+| Parameter | Value |
+|-----------|-------|
+| Duration | 14 weeks (98 days) |
+| Compensation | 80% of salary |
+| Maximum daily rate | CHF 220 |
+| Maximum total | CHF 21'560 |
+| Start | Day of birth |
+| Mode | Must be taken consecutively |
+
+**Paternity Leave (Vaterschaftsurlaub)**:
+| Parameter | Value |
+|-----------|-------|
+| Duration | 2 weeks (14 daily allowances) |
+| Compensation | 80% of salary |
+| Maximum daily rate | CHF 220 |
+| Maximum total | CHF 3'080 |
+| Deadline | Within 6 months of birth |
+| Mode | Can be taken weekly or daily |
+
+**Maximum daily rate reached at**: CHF 8'250/month (CHF 99'000/year)
+
+**Eligibility Requirements**:
+- AHV-insured in Switzerland for 9 months before birth
+- Employed for at least 5 of those months
+- Valid employment contract at time of birth
+
+## Calculator Page Structure
+
+Every calculator page should follow this consistent structure:
+
+### 1. HTML Structure
+```html
+<!DOCTYPE html>
+<html lang="de"> <!-- or lang="fr" -->
+<head>
+    <!-- SEO: title, meta description, keywords -->
+    <!-- Canonical URL + hreflang alternates -->
+    <!-- Open Graph + Twitter Card meta tags -->
+    <!-- JSON-LD structured data (WebApplication + FAQPage) -->
+    <!-- Font imports (Economica, Inter) -->
+    <!-- Font Awesome icons -->
+    <!-- Link to ../css/styles.css -->
+    <!-- Page-specific <style> block -->
+</head>
+<body>
+    <div class="container">
+        <!-- Header Row: Dark mode toggle + Language switcher -->
+
+        <!-- Page Header: Emoji + Title + Subtitle -->
+
+        <!-- Tool Nav: Link back to homepage -->
+
+        <!-- Steps Container: 3 step cards explaining the process -->
+
+        <!-- Calculator Card: Input fields and controls -->
+
+        <!-- Results Section: Main result + breakdown -->
+
+        <!-- SEO Content Section -->
+        <section class="seo-content">
+            <h2>Topic explanation</h2>
+            <p>Introductory text...</p>
+
+            <h3>Overview table or key information</h3>
+            <table class="info-table">...</table>
+
+            <h3>Häufige Fragen / Questions fréquentes</h3>
+            <div class="faq-section">
+                <details class="faq-item">...</details>
+                <!-- 4-6 FAQ items -->
+            </div>
+        </section>
+
+        <!-- Official Sources Section -->
+        <div class="info-cards-container">
+            <div class="info-step-card">
+                <h3>Offizielle Quellen / Sources officielles</h3>
+                <ul>
+                    <li><a href="...">Official source 1</a></li>
+                    <li><a href="...">Official source 2</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><a href="https://durchblick.nl">Durchblick Consultancy BV</a></p>
+        <p class="footer-disclaimer">Disclaimer text</p>
+        <p class="footer-privacy">Privacy notice</p>
+    </footer>
+
+    <script>
+        // Calculation logic
+        // DarkMode object
+        // Share functions
+    </script>
+</body>
+</html>
+```
+
+### 2. Required Elements Checklist
+- [ ] **3 Step Cards** explaining the process (input → calculate → result)
+- [ ] **Calculator Card** with clear input fields
+- [ ] **Result Box** with gradient background showing main result
+- [ ] **Breakdown Card** showing calculation details
+- [ ] **Info Box** with contextual hints
+- [ ] **Share Buttons** (Share + Copy)
+- [ ] **SEO Content** with h2/h3 headings
+- [ ] **FAQ Section** with 4-6 expandable questions
+- [ ] **Official Sources** with external links
+- [ ] **Footer** with Durchblick link + disclaimers
+
+### 3. JavaScript Patterns
+```javascript
+// Always include DarkMode object
+const DarkMode = {
+    STORAGE_KEY: 'darkMode',
+    init() { /* ... */ },
+    toggle() { /* ... */ },
+    updateButton() { /* ... */ }
+};
+
+// Calculation function called on input change
+function calculate() { /* ... */ }
+
+// Share functionality
+function getShareText() { /* return formatted text */ }
+function shareResult() { /* Web Share API or WhatsApp fallback */ }
+function copyResult() { /* clipboard API */ }
+
+// Initialize on load
+DarkMode.init();
+calculate();
+```
+
+### 4. Bilingual Consistency
+- German page: `wieviel.ch/[tool]/`
+- French page: `calcule.ch/[outil]/`
+- Both must have identical functionality
+- Cross-link with hreflang and language switcher
 
 ## Related Projects
 

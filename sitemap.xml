@@ -155,4 +155,13 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Elternzeit-Rechner -->
+  <url>
+    <loc>https://wieviel.ch/elternzeit/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/elternzeit/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/conge-parental/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
