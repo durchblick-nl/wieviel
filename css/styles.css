@@ -2354,3 +2354,35 @@
             border-color: var(--primary-color);
             color: white;
         }
+
+        /* SEO Content Section */
+        .seo-content {
+            margin-top: 3rem;
+        }
+
+        .seo-content h2 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .seo-content h3 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.25rem;
+        }
+
+        .seo-content p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .seo-content ul, .seo-content ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .seo-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
