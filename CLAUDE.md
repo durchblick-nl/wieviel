@@ -34,6 +34,8 @@ A collection of useful calculators for the general public in Switzerland.
 | **Stundenrechner** | `/stunden/` | Working hours calculator (ArG compliance) |
 | **Elternzeit-Rechner** | `/elternzeit/` | Maternity & paternity leave compensation calculator (EOG) |
 | **Haustier-Kosten-Rechner** | `/haustier/` | Pet ownership cost calculator (dog/cat) |
+| **Rauchkosten-Rechner** | `/rauchen/` | Smoking cost calculator with savings potential |
+| **Stromkosten-Rechner** | `/strom/` | Electricity cost calculator with live ElCom tariffs |
 
 ### Current Tools (calcule.ch - French):
 
@@ -57,6 +59,8 @@ A collection of useful calculators for the general public in Switzerland.
 | **Calculateur d'heures** | `/heures/` | Working hours calculator (LTr compliance) |
 | **Calculateur congé parental** | `/conge-parental/` | Maternity & paternity leave compensation calculator (APG) |
 | **Calculateur coût animal** | `/animal/` | Pet ownership cost calculator (dog/cat) |
+| **Calculateur coût du tabac** | `/tabac/` | Smoking cost calculator with savings potential |
+| **Calculateur coût électricité** | `/electricite/` | Electricity cost calculator with live ElCom tariffs |
 
 ### URL Mapping (DE ↔ FR):
 
@@ -80,6 +84,8 @@ A collection of useful calculators for the general public in Switzerland.
 | `/stunden/` | `/heures/` |
 | `/elternzeit/` | `/conge-parental/` |
 | `/haustier/` | `/animal/` |
+| `/rauchen/` | `/tabac/` |
+| `/strom/` | `/electricite/` |
 
 ### Planned Tools:
 - (none currently)
@@ -132,6 +138,8 @@ wieviel.ch/
 ├── stunden/index.html      # Stundenrechner
 ├── elternzeit/index.html   # Elternzeit-Rechner
 ├── haustier/index.html     # Haustier-Kosten-Rechner
+├── rauchen/index.html      # Rauchkosten-Rechner
+├── strom/index.html        # Stromkosten-Rechner
 │
 ├── # French homepage
 ├── fr/index.html           # French homepage (calcule.ch)
@@ -154,7 +162,9 @@ wieviel.ch/
 ├── randonnee/index.html    # Calculateur temps de marche
 ├── heures/index.html       # Calculateur d'heures
 ├── conge-parental/index.html # Calculateur congé parental
-└── animal/index.html       # Calculateur coût animal
+├── animal/index.html       # Calculateur coût animal
+├── tabac/index.html        # Calculateur coût du tabac
+└── electricite/index.html  # Calculateur coût électricité
 ```
 
 ## Tech Stack
@@ -524,6 +534,104 @@ Calculates yearly and lifetime costs of pet ownership in Switzerland.
 | Cat | 16 years |
 
 **Swiss-specific**: Dog tax varies by canton (CHF 50-200/year), mandatory liability insurance recommended.
+
+### Rauchkosten-Rechner - Smoking Cost Calculator
+Calculates costs and potential savings from smoking/quitting.
+
+**Cost Calculation**:
+```
+Daily Cost = Cigarettes per day ÷ Pack size × Price per pack
+Yearly Cost = Daily Cost × 365
+```
+
+**Swiss Cigarette Prices 2025**:
+| Product | Price |
+|---------|-------|
+| Marlboro (20) | CHF 9.70 |
+| Camel (20) | CHF 9.20 |
+| Winston (20) | CHF 8.90 |
+| Average pack | ~CHF 9.00 |
+
+**Savings Visualization**:
+Shows what you could buy with saved money:
+- 1 year savings → vacation value
+- 5 year savings → car down payment
+- 10 year savings → invested amount with compound interest
+
+**Health Statistics** (Swiss-specific):
+- ~25% of Swiss population smokes
+- Average smoker: 14 cigarettes/day
+- Life years lost: estimated 10-15 years for heavy smokers
+
+### Stromkosten-Rechner - Electricity Cost Calculator
+Calculates electricity costs based on device consumption and live ElCom tariffs.
+
+**Data Source**: Live SPARQL queries to LINDAS (Swiss Linked Data Service)
+```
+Endpoint: https://lindas.admin.ch/query
+Graph: https://lindas.admin.ch/elcom/electricityprice
+```
+
+**SPARQL Query for Municipality Prices**:
+```sparql
+PREFIX schema: <http://schema.org/>
+PREFIX elcom: <https://energy.ld.admin.ch/elcom/electricityprice/dimension/>
+PREFIX cube: <https://cube.link/>
+SELECT ?municipalityName (AVG(?total) as ?avgPrice) WHERE {
+  GRAPH <https://lindas.admin.ch/elcom/electricityprice> {
+    ?obs a cube:Observation .
+    ?obs elcom:municipality ?municipality .
+    ?obs elcom:total ?total .
+    ?obs elcom:period "2025"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+    ?obs elcom:category <https://energy.ld.admin.ch/elcom/electricityprice/category/H4> .
+    ?obs elcom:product <https://energy.ld.admin.ch/elcom/electricityprice/product/standard> .
+  }
+  ?municipality schema:name ?municipalityName .
+  FILTER(REGEX(?municipalityName, "^[SearchTerm]", "i"))
+} GROUP BY ?municipalityName
+```
+
+**H4 Profile**: Typical 4-person household consuming 4'500 kWh/year
+
+**Swiss Electricity Prices 2025**:
+| Metric | Value |
+|--------|-------|
+| Median price | 29 Rp./kWh |
+| Minimum | ~9 Rp./kWh |
+| Maximum | ~46 Rp./kWh |
+
+**Price Comparison Badges**:
+| Price | Badge |
+|-------|-------|
+| < 25 Rp. | Günstig (green) |
+| 25-35 Rp. | Durchschnitt (orange) |
+| > 35 Rp. | Teuer (red) |
+
+**Device Categories**:
+1. **Haushalt** (Household): Fridge, washer, dryer, dishwasher, TV, etc.
+2. **Heizung** (Heating): Heat pump, boiler, infrared heating
+3. **Elektromobilität** (E-Mobility): Electric car, e-bike, e-scooter
+4. **Smarthome**: Router, NAS, smart hub, cameras (24/7 devices)
+
+**Sample Device Consumption** (kWh/year):
+| Device | Annual kWh |
+|--------|-----------|
+| Refrigerator A+++ | 150 |
+| Washing machine (3×/week) | 150 |
+| Heat pump (house) | 5'000 |
+| Electric car (15'000 km) | 2'850 |
+| WiFi router (24/7) | 88 |
+
+**Standby Cost Calculation**:
+```
+Standby kWh = Devices × Avg Watts × 24h × 365 days / 1000
+Example: 10 devices × 8W × 8760h / 1000 = 700 kWh ≈ CHF 200/year
+```
+
+**Cost Formula**:
+```
+Annual Cost = Σ(Device kWh) × Price per kWh
+```
 
 ## Calculator Page Structure
 
