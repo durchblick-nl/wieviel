@@ -173,4 +173,13 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Calculateur coût du tabac -->
+  <url>
+    <loc>https://calcule.ch/tabac/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/rauchen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/tabac/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
