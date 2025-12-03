@@ -197,17 +197,23 @@
 <body>
     <div class="container">
         <div class="header-row">
-            <a href="../fr/" class="back-link" aria-label="Retour à l'accueil"><i class="fas fa-arrow-left"></i></a>
-            <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Changer le mode sombre"><i class="fas fa-moon"></i></button>
+            <button type="button" class="dark-mode-toggle" aria-label="Mode sombre" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <a href="https://wieviel.ch/strom/" class="lang-btn">DE</a>
+                <span class="lang-btn active">FR</span>
+            </div>
         </div>
 
-        <h1><i class="fas fa-bolt"></i> Calculateur électricité</h1>
-        <p class="subtitle">Calculez vos coûts avec les tarifs officiels ElCom</p>
-
-        <div class="lang-switch">
-            <a href="https://wieviel.ch/strom/">DE</a>
-            <span class="active">FR</span>
+        <div class="page-header">
+            <h1><span class="title-icon">⚡</span>Calculateur électricité</h1>
+            <p class="page-subtitle">Calculez vos coûts avec les tarifs officiels ElCom</p>
         </div>
+
+        <nav class="tool-nav">
+            <a href="../fr/">Tous les outils</a>
+        </nav>
 
         <div class="steps-container">
             <div class="step-card">
@@ -426,14 +432,40 @@
                     <summary>Combien coûte l'électricité aux bornes publiques ?</summary>
                     <p>La recharge publique coûte typiquement 45-80 ct./kWh – nettement plus qu'à domicile. La recharge rapide (DC) est encore plus chère. Pour les gros rouleurs, une wallbox à domicile est rentable.</p>
                 </details>
+                <details class="faq-item">
+                    <summary>Quelle est la consommation d'une pompe à chaleur ?</summary>
+                    <p>Une pompe à chaleur pour une maison individuelle consomme typiquement 3'000-6'000 kWh par an, selon la taille de la maison, l'isolation et le type de pompe. Avec un COP de 3-4, elle produit 3 à 4 fois plus de chaleur.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Combien coûte la recharge d'une voiture électrique ?</summary>
+                    <p>Avec une consommation de 18-20 kWh/100km et un prix de 29 ct./kWh, la recharge à domicile coûte environ CHF 5-6 pour 100 km. Pour 15'000 km par an, cela représente environ CHF 800-900.</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Liens pratiques</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.strompreis.elcom.admin.ch/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Prix par commune – ElCom</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://opendata.swiss/fr/dataset/strompreis-per-stromnetzbetreiber" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Données ouvertes – opendata.swiss</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.bfe.admin.ch/bfe/fr/home/approvisionnement/approvisionnement-en-electricite.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Approvisionnement électrique – OFEN</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.suisseenergie.ch/menages/conseils/economiser-electricite/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Économiser l'électricité – SuisseEnergie</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-
-        <footer>
-            <p><a href="https://calcule.ch">calcule.ch</a> · Calculateurs pratiques pour le quotidien</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.7;">Un projet de <a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick</a></p>
-        </footer>
     </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Toutes les informations sans garantie. Les prix sont fournis par l'ElCom.</p>
+            <p class="footer-privacy">Tous les calculs sont effectués localement. Aucune donnée n'est stockée.</p>
+        </div>
+    </footer>
 
     <script>
         // Device definitions with annual kWh consumption
@@ -732,9 +764,7 @@
             STORAGE_KEY: 'darkMode',
             init() {
                 const saved = localStorage.getItem(this.STORAGE_KEY);
-                if (saved !== null) {
-                    document.documentElement.setAttribute('data-theme', saved === 'true' ? 'dark' : 'light');
-                } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.setAttribute('data-theme', 'dark');
                 }
                 this.updateIcon();
@@ -746,13 +776,12 @@
                 this.updateIcon();
             },
             updateIcon() {
-                const icon = document.querySelector('#darkModeToggle i');
+                const icon = document.querySelector('.dark-mode-toggle i');
                 const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                if (icon) icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
             }
         };
 
-        document.getElementById('darkModeToggle').addEventListener('click', () => DarkMode.toggle());
         DarkMode.init();
         init();
     </script>

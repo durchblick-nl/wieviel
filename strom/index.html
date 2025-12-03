@@ -197,17 +197,23 @@
 <body>
     <div class="container">
         <div class="header-row">
-            <a href="../" class="back-link" aria-label="Zurück zur Startseite"><i class="fas fa-arrow-left"></i></a>
-            <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Dark Mode umschalten"><i class="fas fa-moon"></i></button>
+            <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-switcher">
+                <span class="lang-btn active">DE</span>
+                <a href="https://calcule.ch/electricite/" class="lang-btn">FR</a>
+            </div>
         </div>
 
-        <h1><i class="fas fa-bolt"></i> Stromkosten-Rechner</h1>
-        <p class="subtitle">Berechne deine Stromkosten mit offiziellen ElCom-Tarifen</p>
-
-        <div class="lang-switch">
-            <span class="active">DE</span>
-            <a href="https://calcule.ch/electricite/">FR</a>
+        <div class="page-header">
+            <h1><span class="title-icon">⚡</span>Stromkosten-Rechner</h1>
+            <p class="page-subtitle">Berechne deine Stromkosten mit offiziellen ElCom-Tarifen</p>
         </div>
+
+        <nav class="tool-nav">
+            <a href="../">Alle Tools</a>
+        </nav>
 
         <div class="steps-container">
             <div class="step-card">
@@ -426,14 +432,40 @@
                     <summary>Was kostet Strom an öffentlichen Ladestationen?</summary>
                     <p>Öffentliches Laden kostet typischerweise 45-80 Rp./kWh – deutlich mehr als zu Hause. Schnellladen (DC) ist noch teurer. Für Vielfahrer lohnt sich eine Wallbox zu Hause.</p>
                 </details>
+                <details class="faq-item">
+                    <summary>Wie viel Strom verbraucht eine Wärmepumpe?</summary>
+                    <p>Eine Wärmepumpe für ein Einfamilienhaus verbraucht typischerweise 3'000-6'000 kWh pro Jahr, abhängig von Hausgrösse, Dämmung und Wärmepumpentyp. Mit einer Jahresarbeitszahl (JAZ) von 3-4 produziert sie das 3-4-fache an Wärme.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Was kostet das Laden eines Elektroautos zu Hause?</summary>
+                    <p>Bei einem Verbrauch von 18-20 kWh/100km und einem Strompreis von 29 Rp./kWh kostet das Laden zu Hause etwa CHF 5-6 pro 100 km. Bei 15'000 km Jahresfahrleistung sind das rund CHF 800-900 pro Jahr.</p>
+                </details>
+            </div>
+        </section>
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-link"></i></div>
+                <div class="step-content">
+                    <h3>Praktische Links</h3>
+                    <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.strompreis.elcom.admin.ch/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Strompreise pro Gemeinde – ElCom</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://opendata.swiss/de/dataset/strompreis-per-stromnetzbetreiber" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Offene Stromdaten – opendata.swiss</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.bfe.admin.ch/bfe/de/home/versorgung/stromversorgung.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Stromversorgung Schweiz – BFE</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.energieschweiz.ch/haushalte/tipps/strom-sparen/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Strom sparen – EnergieSchweiz</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-
-        <footer>
-            <p><a href="https://wieviel.ch">wieviel.ch</a> · Praktische Rechner für den Alltag</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.7;">Ein Projekt von <a href="https://durchblick.nl" target="_blank" rel="noopener">Durchblick</a></p>
-        </footer>
     </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p><a href="https://durchblick.nl" target="_blank">Durchblick Consultancy BV</a></p>
+            <p class="footer-disclaimer">Alle Angaben ohne Gewähr. Die Strompreise werden von der ElCom bereitgestellt.</p>
+            <p class="footer-privacy">Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert.</p>
+        </div>
+    </footer>
 
     <script>
         // Device definitions with annual kWh consumption
@@ -732,9 +764,7 @@
             STORAGE_KEY: 'darkMode',
             init() {
                 const saved = localStorage.getItem(this.STORAGE_KEY);
-                if (saved !== null) {
-                    document.documentElement.setAttribute('data-theme', saved === 'true' ? 'dark' : 'light');
-                } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.setAttribute('data-theme', 'dark');
                 }
                 this.updateIcon();
@@ -746,13 +776,12 @@
                 this.updateIcon();
             },
             updateIcon() {
-                const icon = document.querySelector('#darkModeToggle i');
+                const icon = document.querySelector('.dark-mode-toggle i');
                 const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                if (icon) icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
             }
         };
 
-        document.getElementById('darkModeToggle').addEventListener('click', () => DarkMode.toggle());
         DarkMode.init();
         init();
     </script>
