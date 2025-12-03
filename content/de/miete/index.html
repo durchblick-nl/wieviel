@@ -1,0 +1,134 @@
+---
+title: "Mietzinsrechner"
+subtitle: "Mietzinsanpassung nach Referenzzinssatz"
+icon: "🏠"
+description: "Kostenloser Mietzinsrechner für die Schweiz. Berechne deine Mietzinsanpassung basierend auf dem aktuellen Referenzzinssatz (1.25%). Mietsenkung oder Mieterhöhung?"
+keywords: "Mietzinsrechner, Referenzzinssatz, Miete berechnen, Mietzinssenkung, Mieterhöhung, Schweiz, BWO"
+ogTitle: "Mietzinsrechner Schweiz 2025 – Referenzzinssatz"
+ogDescription: "Berechne deine Mietzinsanpassung basierend auf dem aktuellen Referenzzinssatz. Mietsenkung oder Mieterhöhung?"
+ogImage: "https://wieviel.ch/og/miete.png"
+translationKey: "rent-calculator"
+type: "miete"
+---
+
+<div class="steps-container">
+    <div class="step-card">
+        <div class="step-icon">
+            <i class="fas fa-file-contract"></i>
+            <div class="step-number">1</div>
+        </div>
+        <div class="step-content">
+            <h3>Mietvertrag</h3>
+            <p>Gib deine aktuelle Miete und den Referenzzinssatz bei Vertragsabschluss ein.</p>
+        </div>
+    </div>
+    <div class="step-card">
+        <div class="step-icon">
+            <i class="fas fa-percentage"></i>
+            <div class="step-number">2</div>
+        </div>
+        <div class="step-content">
+            <h3>Zinssatz</h3>
+            <p>Wähle den Referenzzinssatz bei der letzten Mietzinsfestsetzung.</p>
+        </div>
+    </div>
+    <div class="step-card">
+        <div class="step-icon">
+            <i class="fas fa-calculator"></i>
+            <div class="step-number">3</div>
+        </div>
+        <div class="step-content">
+            <h3>Anpassung</h3>
+            <p>Sieh, ob du eine Mietsenkung verlangen kannst.</p>
+        </div>
+    </div>
+</div>
+
+<div class="calculator-card">
+    <div class="form-group">
+        <label for="currentRent">Aktuelle Nettomiete (monatlich)</label>
+        <div style="position: relative;">
+            <input type="number" id="currentRent" value="1500" min="0" step="10" oninput="calculate()">
+            <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+        </div>
+        <small class="form-hint">Mietzins ohne Nebenkosten (Heizung, etc.)</small>
+    </div>
+
+    <div class="form-group">
+        <label>Referenzzinssatz bei letzter Mietzinsfestsetzung</label>
+        <div class="rate-select-grid">
+            <div class="rate-option" data-rate="3.00">3.00%</div>
+            <div class="rate-option" data-rate="2.75">2.75%</div>
+            <div class="rate-option" data-rate="2.50">2.50%</div>
+            <div class="rate-option" data-rate="2.25">2.25%</div>
+            <div class="rate-option" data-rate="2.00">2.00%</div>
+            <div class="rate-option" data-rate="1.75">1.75%</div>
+            <div class="rate-option active" data-rate="1.50">1.50%</div>
+            <div class="rate-option current" data-rate="1.25">1.25%</div>
+        </div>
+        <small class="form-hint">Steht im Mietvertrag oder auf der letzten Mietzinsanpassung</small>
+    </div>
+
+    <div class="info-box">
+        <h4><i class="fas fa-info-circle"></i> Nicht sicher?</h4>
+        <p>Der Referenzzinssatz steht auf dem Mietvertrag (seit 2008) oder auf der letzten Mitteilung zur Mietzinsanpassung. Falls nicht vorhanden, gilt der Satz bei Mietbeginn.</p>
+    </div>
+</div>
+
+<div id="results">
+    <div class="result-box decrease" id="resultBox">
+        <div class="label" id="resultLabel">Mögliche Mietsenkung</div>
+        <div class="total" id="mainResult">- CHF 43.65</div>
+        <div class="sub" id="resultSub">pro Monat (2.91% Senkung)</div>
+    </div>
+
+    <div class="breakdown-card">
+        <h3><i class="fas fa-list"></i> Berechnung</h3>
+        <div class="breakdown-row">
+            <span class="label">Referenzzinssatz bei Festsetzung</span>
+            <span class="value" id="oldRate">1.50%</span>
+        </div>
+        <div class="breakdown-row">
+            <span class="label">Aktueller Referenzzinssatz</span>
+            <span class="value" id="newRate">1.25%</span>
+        </div>
+        <div class="breakdown-row">
+            <span class="label">Differenz</span>
+            <span class="value" id="rateDiff">-0.25%</span>
+        </div>
+        <div class="breakdown-row">
+            <span class="label">Mietzinsanpassung</span>
+            <span class="value" id="percentChange">-2.91%</span>
+        </div>
+        <div class="breakdown-row total">
+            <span class="label">Neuer Mietzins</span>
+            <span class="value" id="newRent">CHF 1'456.35</span>
+        </div>
+    </div>
+
+    <div class="breakdown-card">
+        <h3><i class="fas fa-piggy-bank"></i> Ersparnis</h3>
+        <div class="breakdown-row">
+            <span class="label">Pro Monat</span>
+            <span class="value" id="savingsMonth">CHF 43.65</span>
+        </div>
+        <div class="breakdown-row">
+            <span class="label">Pro Jahr</span>
+            <span class="value" id="savingsYear">CHF 523.80</span>
+        </div>
+    </div>
+
+    <div class="info-box warning" id="warningBox">
+        <h4><i class="fas fa-exclamation-triangle"></i> Wichtig</h4>
+        <p>Der Vermieter kann Kostensteigerungen gegenrechnen: 40% Teuerung seit letzter Festsetzung plus allgemeine Kostensteigerungen (ca. 0.5% pro Jahr). Die effektive Senkung kann daher geringer ausfallen.</p>
+    </div>
+
+    <div class="share-buttons">
+        <button class="share-btn primary" onclick="shareResult()">
+            <i class="fas fa-share-alt"></i> Teilen
+        </button>
+        <button class="share-btn copy" onclick="copyResult()">
+            <i class="fas fa-copy"></i> Kopieren
+        </button>
+    </div>
+</div>

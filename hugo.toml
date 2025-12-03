@@ -1,0 +1,72 @@
+baseURL = "https://wieviel.ch/"
+title = "wieviel.ch"
+languageCode = "de-CH"
+
+# Multilingual configuration
+defaultContentLanguage = "de"
+defaultContentLanguageInSubdir = true
+
+# Disable Hugo's default sitemap (we use custom)
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[languages]
+  [languages.de]
+    languageName = "Deutsch"
+    languageCode = "de-CH"
+    weight = 1
+    [languages.de.params]
+      domain = "wieviel.ch"
+      homePath = "/de/"
+      allToolsText = "Alle Tools"
+      disclaimerText = "Alle Angaben ohne Gewähr."
+      privacyText = "Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert."
+
+  [languages.fr]
+    languageName = "Français"
+    languageCode = "fr-CH"
+    weight = 2
+    [languages.fr.params]
+      domain = "calcule.ch"
+      homePath = "/fr/"
+      allToolsText = "Tous les outils"
+      disclaimerText = "Toutes les informations sans garantie."
+      privacyText = "Tous les calculs sont effectués localement. Aucune donnée n'est stockée."
+
+[params]
+  # Brand colors
+  primaryColor = "#3f606f"
+  secondaryColor = "#5a8a9d"
+  accentColor = "#cc5c53"
+
+  # Company info
+  companyName = "Durchblick Consultancy BV"
+  companyURL = "https://durchblick.nl"
+
+[build]
+  [build.buildStats]
+    enable = true
+
+# Content mounts per language
+[module]
+  [[module.mounts]]
+    source = "content/de"
+    target = "content"
+    lang = "de"
+  [[module.mounts]]
+    source = "content/fr"
+    target = "content"
+    lang = "fr"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

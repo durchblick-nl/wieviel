@@ -1,0 +1,14 @@
+{{- $icon := .Params.icon | default "🔢" -}}
+{{- $title := .Title -}}
+{{- $subtitle := .Params.subtitle -}}
+
+<div class="page-header">
+    <h1><span class="title-icon">{{ $icon }}</span>{{ $title }}</h1>
+    {{- if $subtitle }}
+    <p class="page-subtitle">{{ $subtitle }}</p>
+    {{- end }}
+</div>
+
+<nav class="tool-nav">
+    <a href="{{ .Site.Language.Params.homePath }}">{{ .Site.Language.Params.allToolsText }}</a>
+</nav>

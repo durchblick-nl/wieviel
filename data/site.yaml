@@ -1,0 +1,57 @@
+# Zentrale Daten für alle Rechner
+# Bei Änderungen: nur hier anpassen, Hugo baut alles neu
+
+# Referenzzinssatz (Mietzinsrechner)
+referenceRate: 1.25
+referenceRateDate: "3. September 2025"
+referenceRateDateFr: "3 septembre 2025"
+referenceRateSource: "https://www.bwo.admin.ch/de/referenzzinssatz"
+
+# MWST-Sätze 2025
+vatNormal: 8.1
+vatReduced: 2.6
+vatSpecial: 3.8
+
+# Strompreise (Median Schweiz 2025)
+electricityMedianPrice: 29
+electricityMinPrice: 9
+electricityMaxPrice: 46
+
+# AHV/Sozialversicherungen 2025
+ahvRate: 5.3
+alvRate: 1.1
+alvMaxSalary: 148200
+bvgCoordinationDeduction: 26460
+bvgEntryThreshold: 22680
+
+# BVG-Beitragssätze (Arbeitnehmer + Arbeitgeber)
+bvgRates:
+  - ageFrom: 25
+    ageTo: 34
+    rate: 7
+  - ageFrom: 35
+    ageTo: 44
+    rate: 10
+  - ageFrom: 45
+    ageTo: 54
+    rate: 15
+  - ageFrom: 55
+    ageTo: 65
+    rate: 18
+
+# Elternzeit
+maternityDays: 98
+maternityWeeks: 14
+paternityDays: 14
+paternityWeeks: 2
+parentalMaxDailyRate: 220
+
+# Säule 3a Maximum 2025
+pillar3aMax: 7056
+pillar3aMaxSelfEmployed: 35280
+
+# Zigarettenpreise (Durchschnitt)
+cigarettePackPrice: 9.00
+
+# Jahr für Copyright etc.
+currentYear: 2025

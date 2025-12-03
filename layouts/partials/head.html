@@ -1,0 +1,59 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ .Title }}</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+{{- with .Params.description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+
+{{- with .Params.keywords }}
+<meta name="keywords" content="{{ . }}">
+{{- end }}
+
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- /* Hreflang alternates */ -}}
+{{- if .Translations }}
+<link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="{{ .Permalink }}">
+{{- range .Translations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}
+{{- end }}
+
+{{- /* Open Graph */ -}}
+<meta property="og:title" content="{{ .Params.ogTitle | default .Title }}">
+<meta property="og:description" content="{{ .Params.ogDescription | default .Params.description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="{{ .Site.Language.LanguageCode | default "de_CH" }}">
+<meta property="og:site_name" content="{{ .Site.Language.Params.domain }}">
+{{- with .Params.ogImage }}
+<meta property="og:image" content="{{ . }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{{- end }}
+
+{{- /* Twitter Card */ -}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Params.ogTitle | default .Title }}">
+<meta name="twitter:description" content="{{ .Params.ogDescription | default .Params.description }}">
+{{- with .Params.ogImage }}
+<meta name="twitter:image" content="{{ . }}">
+{{- end }}
+
+{{- /* JSON-LD structured data */ -}}
+{{- with .Params.jsonLd }}
+<script type="application/ld+json">
+{{ . | safeJS }}
+</script>
+{{- end }}
+
+{{- /* Fonts */ -}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+{{- /* Main CSS */ -}}
+<link rel="stylesheet" href="/css/styles.css">

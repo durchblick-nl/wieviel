@@ -1,0 +1,24 @@
+<div class="header-row">
+    <button type="button" class="dark-mode-toggle" aria-label="{{ if eq .Site.Language.Lang "de" }}Dunkelmodus{{ else }}Mode sombre{{ end }}" onclick="DarkMode.toggle()">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="language-switcher">
+        {{- $currentLang := .Site.Language.Lang -}}
+        {{- $translations := .Translations -}}
+        {{- if eq $currentLang "de" -}}
+        <span class="lang-btn active">DE</span>
+        {{- if $translations -}}
+        <a href="{{ (index $translations 0).Permalink }}" class="lang-btn">FR</a>
+        {{- else -}}
+        <a href="https://calcule.ch/" class="lang-btn">FR</a>
+        {{- end -}}
+        {{- else -}}
+        {{- if $translations -}}
+        <a href="{{ (index $translations 0).Permalink }}" class="lang-btn">DE</a>
+        {{- else -}}
+        <a href="https://wieviel.ch/" class="lang-btn">DE</a>
+        {{- end -}}
+        <span class="lang-btn active">FR</span>
+        {{- end -}}
+    </div>
+</div>

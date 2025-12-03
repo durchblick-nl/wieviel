@@ -1,0 +1,19 @@
+{{ define "head" }}
+{{- with .Params.customCSS }}
+<style>
+{{ . | safeCSS }}
+</style>
+{{- end }}
+{{ end }}
+
+{{ define "main" }}
+{{ .Content }}
+{{ end }}
+
+{{ define "scripts" }}
+{{- with .Params.customJS }}
+<script>
+{{ . | safeJS }}
+</script>
+{{- end }}
+{{ end }}

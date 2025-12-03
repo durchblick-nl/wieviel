@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Teal gradient for dark mode -->
+    <linearGradient id="bg" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3f606f"/>
+      <stop offset="50%" style="stop-color:#4a7a8c"/>
+      <stop offset="100%" style="stop-color:#6a9fb0"/>
+    </linearGradient>
+
+    <linearGradient id="gloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.55"/>
+      <stop offset="40%" style="stop-color:#ffffff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </linearGradient>
+
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dd6b5c"/>
+      <stop offset="100%" style="stop-color:#cc5c53"/>
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="4" y="4" width="92" height="92" rx="24" fill="url(#bg)"/>
+
+  <!-- Glass shine -->
+  <rect x="4" y="4" width="92" height="46" rx="24" fill="url(#gloss)"/>
+
+  <!-- Swiss cross - split design -->
+  <rect x="43" y="22" width="14" height="28" rx="3" fill="white" opacity="0.95"/>
+  <rect x="43" y="50" width="14" height="28" rx="3" fill="url(#redGrad)" opacity="0.95"/>
+  <rect x="22" y="43" width="28" height="14" rx="3" fill="white" opacity="0.95"/>
+  <rect x="50" y="43" width="28" height="14" rx="3" fill="url(#redGrad)" opacity="0.95"/>
+
+  <!-- Glow on intersection -->
+  <circle cx="50" cy="50" r="8" fill="white" opacity="0.3" filter="url(#glow)"/>
+</svg>
