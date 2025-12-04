@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/css/*",
+    "/og/*",
+    "/favicon.svg",
+    "/sitemap.xml",
+    "/sitemap-fr.xml",
+    "/_redirects"
+  ]
+}

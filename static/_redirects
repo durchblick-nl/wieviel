@@ -1,25 +1,8 @@
-# Cloudflare Pages _redirects for wieviel.ch + calcule.ch
-# These redirects are processed BEFORE static files
+# Cloudflare Pages _redirects
+# Cross-domain redirects are handled by _worker.js
+# This file only contains legacy path redirects
 
-# =================================================================
-# wieviel.ch: /fr/* redirects to calcule.ch
-# =================================================================
-https://wieviel.ch/fr/  https://calcule.ch/  301
-https://wieviel.ch/fr/*  https://calcule.ch/:splat  301
-https://www.wieviel.ch/fr/  https://www.calcule.ch/  301
-https://www.wieviel.ch/fr/*  https://www.calcule.ch/:splat  301
-
-# =================================================================
-# calcule.ch: /de/* redirects to wieviel.ch
-# =================================================================
-https://calcule.ch/de/  https://wieviel.ch/  301
-https://calcule.ch/de/*  https://wieviel.ch/:splat  301
-https://www.calcule.ch/de/  https://www.wieviel.ch/  301
-https://www.calcule.ch/de/*  https://www.wieviel.ch/:splat  301
-
-# =================================================================
 # Legacy redirects: Old /tool/de/* URLs → new structure
-# =================================================================
 /promille/de/*  /promille/:splat  301
 /lohn/de/*  /lohn/:splat  301
 /trinkgeld/de/*  /trinkgeld/:splat  301
