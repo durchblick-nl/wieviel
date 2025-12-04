@@ -1,0 +1,169 @@
+---
+title: "Calculateur d'alcoolémie"
+subtitle: "Taux d'alcool selon la formule de Watson"
+icon: "🍺"
+description: "Calcule ton taux d'alcoolémie avec le calculateur suisse. Découvre quand tu seras à nouveau apte à conduire."
+keywords: "calculateur alcoolémie, taux alcool, alcool, Suisse, aptitude conduite, Widmark"
+ogTitle: "Calculateur d'alcoolémie Suisse - Taux d'alcool"
+ogDescription: "Calcule ton taux d'alcoolémie et découvre quand tu seras à nouveau apte à conduire."
+ogImage: "https://calcule.ch/og/alcoolemie.png"
+translationKey: "bac-calculator"
+type: "bac"
+---
+
+<div class="info-cards-container">
+    <div class="info-step-card highlight">
+        <div class="step-icon"><i class="fas fa-gavel"></i></div>
+        <div class="step-content">
+            <h3>Limites d'alcoolémie en Suisse</h3>
+            <div class="legal-limit-card standard">
+                <div class="legal-limit-value">0.5‰</div>
+                <div><strong>Conducteurs normaux</strong><br><small>Avec permis définitif</small></div>
+            </div>
+            <div class="legal-limit-card strict">
+                <div class="legal-limit-value">0.1‰</div>
+                <div><strong>Nouveaux conducteurs & chauffeurs professionnels</strong><br><small>Tolérance zéro pratique</small></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-hourglass-half"></i></div>
+        <div class="step-content">
+            <h3>Élimination de l'alcool</h3>
+            <p>Le corps élimine l'alcool à raison d'environ <strong>0.1 – 0.15‰ par heure</strong>.</p>
+            <p>Cette élimination est constante et ne peut pas être accélérée – ni par le café, ni par la douche, ni par l'air frais.</p>
+        </div>
+    </div>
+
+    <div class="info-step-card" style="grid-column: 1 / -1;">
+        <div class="step-icon"><i class="fas fa-globe-europe"></i></div>
+        <div class="step-content">
+            <h3>Limites d'alcoolémie dans les pays voisins</h3>
+            <p style="margin-bottom: 1rem;">D'autres limites s'appliquent à l'étranger:</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 400px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                            <th style="padding: 0.5rem;">Pays</th>
+                            <th style="padding: 0.5rem; text-align: center;">Normal</th>
+                            <th style="padding: 0.5rem; text-align: center;">Nouveaux cond.</th>
+                            <th style="padding: 0.5rem; text-align: center;">Professionnels</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇨🇭 Suisse</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇩🇪 Allemagne</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇦🇹 Autriche</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇫🇷 France</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.2‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.2‰</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇮🇹 Italie</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td></tr>
+                        <tr><td style="padding: 0.5rem;">🇱🇮 Liechtenstein</td><td style="padding: 0.5rem; text-align: center; font-weight: 600; color: #28a745;">0.8‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-calculator"></i></div>
+        <div class="step-content">
+            <h3>Formule de Watson</h3>
+            <p>Le calcul se base sur la <strong>formule de Watson</strong> (1981), qui calcule l'eau corporelle totale:</p>
+            <p><strong>TAC = A ÷ (0.8 × ECT)</strong></p>
+            <p><small>ECT (Eau Corporelle Totale) est calculée à partir du sexe, du poids, de la taille et de l'âge.</small></p>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-exclamation-circle"></i></div>
+        <div class="step-content">
+            <h3>Facteurs d'influence</h3>
+            <p>Le taux d'alcoolémie réel varie selon:</p>
+            <ul>
+                <li>Contenu de l'estomac (à jeun = absorption plus rapide)</li>
+                <li>Vitesse de consommation</li>
+                <li>Composition corporelle</li>
+                <li>État de santé</li>
+                <li>Prise de médicaments</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-step-card" style="border-left: 4px solid #dc3545;">
+        <div class="step-icon"><i class="fas fa-bicycle"></i></div>
+        <div class="step-content">
+            <h3>Attention: Aussi à vélo!</h3>
+            <p>Il n'y a pas de limite légale d'alcoolémie pour le vélo – mais: <strong>Celui qui conduit un vélo en état d'ébriété peut perdre son permis de conduire auto!</strong></p>
+        </div>
+    </div>
+
+    <div class="info-step-card" style="grid-column: 1 / -1;">
+        <div class="step-icon"><i class="fas fa-hands-helping"></i></div>
+        <div class="step-content">
+            <h3>Rentrer en sécurité</h3>
+            <p style="margin-bottom: 1rem;">Ces organisations t'aident à rentrer en sécurité:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <a href="https://www.nezrouge.ch/fr/" target="_blank" rel="noopener" style="flex: 1; min-width: 200px; padding: 1rem; background: var(--light-bg); border-radius: 8px; text-decoration: none; color: inherit; border: 1px solid var(--border-color);">
+                    <strong style="color: #dc3545;">Nez Rouge</strong><br>
+                    <small>Service de raccompagnement gratuit pendant les fêtes.</small>
+                </a>
+                <a href="https://www.amsteuernie.ch/fr/" target="_blank" rel="noopener" style="flex: 1; min-width: 200px; padding: 1rem; background: var(--light-bg); border-radius: 8px; text-decoration: none; color: inherit; border: 1px solid var(--border-color);">
+                    <strong style="color: var(--primary-color);">Am Steuer Nie</strong><br>
+                    <small>Organisation de prévention avec matériel d'information.</small>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="law-section">
+    <h2>Sanctions en cas d'alcool au volant</h2>
+    <p class="law-subtitle">Suisse – <a href="https://www.fedlex.admin.ch/eli/cc/1958/1503_1528_1552/fr#art_91" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Art. 91 LCR</a></p>
+
+    <div class="law-card">
+        <div class="law-header"><h3>0.5 – 0.79‰</h3></div>
+        <div class="law-content">
+            <p><strong>Avertissement</strong> et amende (dès CHF 600)</p>
+            <p>Première infraction avec comportement autrement irréprochable.</p>
+        </div>
+    </div>
+
+    <div class="law-card">
+        <div class="law-header"><h3>0.8‰ et plus</h3></div>
+        <div class="law-content">
+            <p><strong>Retrait du permis</strong> minimum 3 mois</p>
+            <p>Peine pécuniaire ou privation de liberté jusqu'à 3 ans</p>
+        </div>
+    </div>
+
+    <div class="law-card">
+        <div class="law-header"><h3>1.6‰ et plus</h3></div>
+        <div class="law-content">
+            <p><strong>Retrait du permis</strong> minimum 2 ans</p>
+            <p>Examen de médecine du trafic obligatoire</p>
+            <p>Inscription au casier judiciaire</p>
+        </div>
+    </div>
+</div>
+
+<section class="seo-content">
+    <h3>Questions fréquentes sur le calculateur d'alcoolémie</h3>
+    <div class="faq-section">
+        <details class="faq-item">
+            <summary>Combien de promilles après une bière?</summary>
+            <p>Une bière standard (300ml, 5%) contient environ 12g d'alcool. Chez un homme de 80kg, cela donne environ <strong>0.2‰</strong>, chez une femme de 60kg environ <strong>0.35‰</strong>.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Quelle est la limite d'alcoolémie en Suisse?</summary>
+            <p>En Suisse, la limite est de <strong>0.5‰</strong> pour les conducteurs normaux. Pour les nouveaux conducteurs (3 premières années) et les chauffeurs professionnels, c'est pratiquement zéro (<strong>0.1‰</strong>).</p>
+        </details>
+        <details class="faq-item">
+            <summary>À quelle vitesse le corps élimine-t-il l'alcool?</summary>
+            <p>Le corps élimine l'alcool à raison d'environ <strong>0.1-0.15‰ par heure</strong>. Cette élimination est constante et ne peut pas être accélérée.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Que se passe-t-il en cas d'alcool au volant?</summary>
+            <p>À <strong>0.5-0.79‰</strong>: Avertissement et amende (dès CHF 600). À <strong>0.8‰+</strong>: Retrait du permis (min. 3 mois). À <strong>1.6‰+</strong>: Retrait du permis (min. 2 ans) et examen médical.</p>
+        </details>
+    </div>
+</section>

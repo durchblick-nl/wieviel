@@ -1,0 +1,563 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div class="container">
+    {{ partial "page-header.html" . }}
+
+    <div class="steps-container">
+        <div class="step-card">
+            <div class="step-icon">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="step-number">1</div>
+            </div>
+            <div class="step-content">
+                <h3>{{ i18n "electricity.step1Title" }}</h3>
+                <p>{{ i18n "electricity.step1Desc" }}</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-icon">
+                <i class="fas fa-plug"></i>
+                <div class="step-number">2</div>
+            </div>
+            <div class="step-content">
+                <h3>{{ i18n "electricity.step2Title" }}</h3>
+                <p>{{ i18n "electricity.step2Desc" }}</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-icon">
+                <i class="fas fa-calculator"></i>
+                <div class="step-number">3</div>
+            </div>
+            <div class="step-content">
+                <h3>{{ i18n "electricity.step3Title" }}</h3>
+                <p>{{ i18n "electricity.step3Desc" }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-bottom: 1rem;"><i class="fas fa-map-marker-alt"></i> {{ i18n "electricity.yourMunicipality" }}</h3>
+
+        <div class="municipality-search" id="searchContainer">
+            <input type="text" id="municipalityInput" placeholder="{{ i18n "electricity.searchPlaceholder" }}" autocomplete="off">
+            <i class="fas fa-search search-icon"></i>
+            <div class="municipality-results" id="municipalityResults"></div>
+        </div>
+
+        <div id="selectedMunicipality" class="selected-municipality" style="display: none;">
+            <h4 id="selectedName">Zürich</h4>
+            <div class="price-info">
+                <div>
+                    <span class="tariff" id="selectedTariff">27.5</span> <span>{{ i18n "electricity.rpPerKwh" }}</span>
+                    <span class="comparison-badge" id="comparisonBadge">{{ i18n "electricity.average" }}</span>
+                    <div class="details" id="selectedDetails">{{ i18n "electricity.profileH4" }} · {{ i18n "electricity.standardProduct2025" }}</div>
+                </div>
+                <span class="change-btn" onclick="resetSearch()">{{ i18n "electricity.change" }}</span>
+            </div>
+        </div>
+
+        <div id="manualPriceSection" style="display: none; margin-top: 1rem;">
+            <div class="input-with-slider">
+                <label for="priceSlider"><i class="fas fa-tags"></i> {{ i18n "electricity.manualEntry" }}</label>
+                <div class="slider-value">
+                    <span class="value"><span id="priceValue">29</span> {{ i18n "electricity.rpPerKwh" }}</span>
+                </div>
+                <input type="range" id="priceSlider" min="9" max="50" value="29" step="0.1">
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-color); opacity: 0.6;">
+                    <span>9 {{ i18n "electricity.rp" }}</span>
+                    <span>50 {{ i18n "electricity.rp" }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <i class="fas fa-database"></i> {{ i18n "electricity.dataSourceText" }} <a href="https://www.strompreis.elcom.admin.ch/" target="_blank" rel="noopener">{{ i18n "electricity.elcom" }}</a> ({{ i18n "electricity.elcomFull" }}). {{ i18n "electricity.orManual" }} <a href="#" onclick="showManualPrice(); return false;">{{ i18n "electricity.enterManually" }}</a>.
+        </div>
+    </div>
+
+    <div class="device-section">
+        <h3><i class="fas fa-home"></i> {{ i18n "electricity.household" }}</h3>
+        <div class="device-grid" id="householdDevices">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
+    <div class="device-section">
+        <h3><i class="fas fa-fire"></i> {{ i18n "electricity.heatingWater" }}</h3>
+        <div class="device-grid" id="heatingDevices">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
+    <div class="device-section">
+        <h3><i class="fas fa-car"></i> {{ i18n "electricity.emobility" }}</h3>
+        <div class="device-grid" id="mobilityDevices">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
+    <div class="device-section">
+        <h3><i class="fas fa-wifi"></i> {{ i18n "electricity.smarthome" }}</h3>
+        <div class="device-grid" id="smarthomeDevices">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
+    <div class="custom-device">
+        <h4><i class="fas fa-plus-circle"></i> {{ i18n "electricity.addCustomDevice" }}</h4>
+        <div class="custom-inputs">
+            <input type="number" id="customWatts" placeholder="{{ i18n "electricity.watts" }}">
+            <input type="number" id="customHours" placeholder="{{ i18n "electricity.hoursPerYear" }}">
+        </div>
+        <div id="customResult" style="margin-top: 0.75rem; font-weight: 600; color: var(--primary-color);"></div>
+    </div>
+
+    <div class="result-box">
+        <div class="label">{{ i18n "electricity.estimatedYearlyCost" }}</div>
+        <div class="total" id="totalCost">CHF 0</div>
+        <div class="sub" id="totalKwh">0 {{ i18n "electricity.kwhPerYear" }}</div>
+    </div>
+
+    <div class="breakdown-card">
+        <h3><i class="fas fa-chart-pie"></i> {{ i18n "electricity.costBreakdown" }}</h3>
+        <div id="breakdownList">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
+    <div class="standby-section">
+        <h3><i class="fas fa-plug"></i> {{ i18n "electricity.hiddenStandbyCosts" }}</h3>
+        <p>{{ i18n "electricity.standbyText" }}</p>
+        <div class="standby-cost" id="standbyCost">CHF 0/{{ i18n "perYear" }}</div>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.8;">{{ i18n "electricity.standbyTip" }}</p>
+    </div>
+
+    <div class="tip-box">
+        <h4><i class="fas fa-lightbulb"></i> {{ i18n "electricity.saveTips" }}</h4>
+        <ul>
+            <li><strong>{{ i18n "electricity.tip1Title" }}:</strong> {{ i18n "electricity.tip1Text" }}</li>
+            <li><strong>{{ i18n "electricity.tip2Title" }}:</strong> {{ i18n "electricity.tip2Text" }}</li>
+            <li><strong>{{ i18n "electricity.tip3Title" }}:</strong> {{ i18n "electricity.tip3Text" }}</li>
+            <li><strong>{{ i18n "electricity.tip4Title" }}:</strong> {{ i18n "electricity.tip4Text" }}</li>
+            <li><strong>{{ i18n "electricity.tip5Title" }}:</strong> {{ i18n "electricity.tip5Text" }}</li>
+        </ul>
+    </div>
+
+    <div class="share-buttons">
+        <button class="share-btn whatsapp" onclick="shareWhatsApp()">
+            <i class="fab fa-whatsapp"></i> {{ i18n "share" }}
+        </button>
+        <button class="share-btn copy" onclick="copyResult()">
+            <i class="fas fa-copy"></i> <span class="copy-text">{{ i18n "copy" }}</span>
+        </button>
+    </div>
+
+    <div class="source-link">
+        {{ i18n "electricity.dataSource" }}: <a href="https://www.strompreis.elcom.admin.ch/" target="_blank" rel="noopener">{{ i18n "electricity.elcomPrice" }}</a> ·
+        <a href="https://opendata.swiss/{{ if eq .Language.Lang "de" }}de{{ else }}fr{{ end }}/dataset/strompreis-per-stromnetzbetreiber" target="_blank" rel="noopener">opendata.swiss</a>
+    </div>
+
+    {{ .Content }}
+
+    <div class="info-cards-container" style="margin-top: 2rem;">
+        <div class="info-step-card" style="grid-column: 1 / -1;">
+            <div class="step-icon"><i class="fas fa-link"></i></div>
+            <div class="step-content">
+                <h3>{{ i18n "electricity.usefulLinks" }}</h3>
+                <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.5rem;"><a href="https://www.strompreis.elcom.admin.ch/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "electricity.link1" }}</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="https://opendata.swiss/{{ if eq .Language.Lang "de" }}de{{ else }}fr{{ end }}/dataset/strompreis-per-stromnetzbetreiber" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "electricity.link2" }}</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="https://www.bfe.admin.ch/bfe/{{ if eq .Language.Lang "de" }}de{{ else }}fr{{ end }}/home/versorgung/stromversorgung.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "electricity.link3" }}</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="https://www.energieschweiz.ch/{{ if eq .Language.Lang "de" }}haushalte/tipps/strom-sparen{{ else }}menages/conseils/economiser-electricite{{ end }}/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "electricity.link4" }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ partial "footer.html" . }}
+
+<style>
+    .steps-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+    .step-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .step-icon { position: relative; display: inline-block; margin-bottom: 1rem; }
+    .step-icon i { font-size: 2rem; color: var(--primary-color); }
+    .step-number { position: absolute; top: -5px; right: -10px; width: 24px; height: 24px; background: var(--accent-color); color: white; border-radius: 50%; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .step-content h3 { color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .step-content p { font-size: 0.9rem; color: var(--text-color); opacity: 0.8; margin: 0; }
+    @media (max-width: 600px) { .steps-container { grid-template-columns: 1fr; } }
+
+    .price-display { display: flex; align-items: baseline; gap: 0.5rem; justify-content: center; margin: 0.5rem 0; }
+    .price-display .amount { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; color: var(--primary-color); }
+    .price-display .unit { font-size: 1rem; color: var(--text-color); opacity: 0.7; }
+
+    .municipality-search { position: relative; margin-bottom: 1rem; }
+    .municipality-search input { width: 100%; padding: 1rem; border: 2px solid var(--border-color); border-radius: 10px; font-size: 1rem; background: var(--card-bg); color: var(--text-color); }
+    .municipality-search input:focus { outline: none; border-color: var(--primary-color); }
+    .municipality-search .search-icon { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.5; }
+    .municipality-results { position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; max-height: 250px; overflow-y: auto; z-index: 100; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .municipality-results.show { display: block; }
+    .municipality-item { padding: 0.75rem 1rem; cursor: pointer; border-bottom: 1px solid var(--border-color); }
+    .municipality-item:last-child { border-bottom: none; }
+    .municipality-item:hover { background: var(--light-bg); }
+    .municipality-item .name { font-weight: 600; }
+    .municipality-item .price { color: var(--primary-color); font-size: 0.9rem; }
+    .municipality-item .operator { font-size: 0.8rem; opacity: 0.7; }
+
+    .selected-municipality { background: linear-gradient(135deg, rgba(63, 96, 111, 0.1), rgba(90, 138, 157, 0.1)); border: 2px solid var(--primary-color); border-radius: 12px; padding: 1rem; margin: 1rem 0; }
+    .selected-municipality h4 { margin: 0 0 0.5rem 0; color: var(--primary-color); }
+    .selected-municipality .price-info { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .selected-municipality .tariff { font-size: 2rem; font-weight: bold; font-family: 'Economica', sans-serif; color: var(--primary-color); }
+    .selected-municipality .details { font-size: 0.85rem; opacity: 0.8; }
+    .selected-municipality .change-btn { font-size: 0.85rem; color: var(--primary-color); cursor: pointer; text-decoration: underline; }
+
+    .loading-indicator { text-align: center; padding: 2rem; color: var(--text-color); opacity: 0.7; }
+    .loading-indicator i { font-size: 1.5rem; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .device-section { margin-top: 2rem; }
+    .device-section h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+    .device-grid { display: grid; gap: 0.75rem; }
+    .device-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; display: grid; grid-template-columns: auto 1fr auto; gap: 0.75rem; align-items: center; }
+    .device-item.active { border-color: var(--primary-color); background: rgba(63, 96, 111, 0.05); }
+    .device-icon { font-size: 1.5rem; width: 40px; text-align: center; }
+    .device-info { min-width: 0; }
+    .device-name { font-weight: 600; color: var(--text-color); font-size: 0.95rem; }
+    .device-details { font-size: 0.8rem; color: var(--text-color); opacity: 0.7; margin-top: 0.25rem; }
+    .device-cost { text-align: right; white-space: nowrap; }
+    .device-cost .yearly { font-weight: 700; color: var(--primary-color); font-size: 1.1rem; }
+    .device-cost .monthly { font-size: 0.75rem; color: var(--text-color); opacity: 0.7; }
+
+    .device-toggle { display: flex; align-items: center; }
+    .device-toggle input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary-color); }
+
+    .custom-device { margin-top: 1rem; padding: 1rem; background: var(--light-bg); border-radius: 10px; }
+    .custom-device h4 { font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text-color); }
+    .custom-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .custom-inputs input { padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; background: var(--card-bg); color: var(--text-color); }
+
+    .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+    .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+    .result-box .total { font-size: 3rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+    .result-box .sub { font-size: 1.1rem; opacity: 0.9; margin-top: 0.5rem; }
+
+    .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+    .breakdown-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-row .label { color: var(--text-color); display: flex; align-items: center; gap: 0.5rem; }
+    .breakdown-row .value { font-weight: 600; }
+
+    .tip-box { background: rgba(90, 138, 157, 0.1); border-left: 4px solid var(--secondary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+    .tip-box h4 { color: var(--secondary-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .tip-box ul { margin: 0; padding-left: 1.25rem; }
+    .tip-box li { margin: 0.5rem 0; font-size: 0.9rem; }
+
+    .standby-section { margin-top: 2rem; padding: 1.5rem; background: rgba(204, 92, 83, 0.08); border-radius: 12px; border: 1px solid rgba(204, 92, 83, 0.2); }
+    .standby-section h3 { color: var(--accent-color); margin-bottom: 1rem; }
+    .standby-cost { font-size: 1.5rem; font-weight: bold; color: var(--accent-color); }
+
+    .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+    .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+    .share-btn.whatsapp { background: #25D366; color: white; }
+    .share-btn.copy { background: var(--secondary-color); color: white; }
+    .share-btn:hover { transform: translateY(-2px); }
+
+    .source-link { font-size: 0.85rem; color: var(--text-color); opacity: 0.7; margin-top: 1rem; text-align: center; }
+    .source-link a { color: var(--primary-color); }
+
+    .input-with-slider { margin: 1rem 0; }
+    .input-with-slider label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    .slider-value { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .slider-value .value { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); font-family: 'Economica', sans-serif; }
+    input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: var(--border-color); outline: none; -webkit-appearance: none; }
+    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; }
+
+    .info-box { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+
+    .comparison-badge { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 0.5rem; }
+    .comparison-badge.cheap { background: #27ae60; color: white; }
+    .comparison-badge.average { background: #f39c12; color: white; }
+    .comparison-badge.expensive { background: #e74c3c; color: white; }
+</style>
+
+<script>
+    const TEXTS = {
+        noMunicipalityFound: {{ i18n "electricity.noMunicipalityFound" | safeJS }},
+        tariffs: {{ i18n "electricity.tariffs" | safeJS }},
+        cheap: {{ i18n "electricity.cheap" | safeJS }},
+        average: {{ i18n "electricity.average" | safeJS }},
+        expensive: {{ i18n "electricity.expensive" | safeJS }},
+        selectDevices: {{ i18n "electricity.selectDevices" | safeJS }},
+        kwhPerYear: {{ i18n "electricity.kwhPerYear" | safeJS }},
+        perMonth: {{ i18n "perMonth" | safeJS }},
+        shareText: {{ i18n "electricity.shareText" | safeJS }},
+        shareUrl: {{ i18n "electricity.shareUrl" | safeJS }},
+        copied: {{ i18n "copied" | safeJS }}
+    };
+
+    // Device definitions with annual kWh consumption
+    const devices = {
+        household: {{ i18n "electricity.devicesHousehold" | safeJS }},
+        heating: {{ i18n "electricity.devicesHeating" | safeJS }},
+        mobility: {{ i18n "electricity.devicesMobility" | safeJS }},
+        smarthome: {{ i18n "electricity.devicesSmarthome" | safeJS }}
+    };
+
+    let pricePerKwh = 0.29; // CHF per kWh (default)
+    let selectedMunicipalityName = null;
+    let municipalityCache = [];
+    let searchTimeout = null;
+
+    // SPARQL endpoint
+    const SPARQL_ENDPOINT = 'https://lindas.admin.ch/query';
+
+    async function searchMunicipalities(query) {
+        if (query.length < 2) {
+            hideMunicipalityResults();
+            return;
+        }
+
+        const sparqlQuery = `
+            PREFIX schema: <http://schema.org/>
+            PREFIX elcom: <https://energy.ld.admin.ch/elcom/electricityprice/dimension/>
+            PREFIX cube: <https://cube.link/>
+            SELECT ?municipalityName (AVG(?total) as ?avgPrice) (MIN(?total) as ?minPrice) (COUNT(?total) as ?count) WHERE {
+              GRAPH <https://lindas.admin.ch/elcom/electricityprice> {
+                ?obs a cube:Observation .
+                ?obs elcom:municipality ?municipality .
+                ?obs elcom:total ?total .
+                ?obs elcom:period "2025"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+                ?obs elcom:category <https://energy.ld.admin.ch/elcom/electricityprice/category/H4> .
+                ?obs elcom:product <https://energy.ld.admin.ch/elcom/electricityprice/product/standard> .
+              }
+              ?municipality schema:name ?municipalityName .
+              FILTER(REGEX(?municipalityName, "^${query}", "i"))
+            } GROUP BY ?municipalityName ORDER BY ?municipalityName LIMIT 15
+        `;
+
+        try {
+            const response = await fetch(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(sparqlQuery), {
+                headers: { 'Accept': 'application/sparql-results+json' }
+            });
+            const data = await response.json();
+
+            const results = data.results.bindings.map(b => ({
+                name: b.municipalityName.value,
+                price: parseFloat(b.avgPrice.value).toFixed(2),
+                minPrice: parseFloat(b.minPrice.value).toFixed(2),
+                count: parseInt(b.count.value)
+            }));
+
+            showMunicipalityResults(results);
+        } catch (error) {
+            console.error('SPARQL query error:', error);
+        }
+    }
+
+    function showMunicipalityResults(results) {
+        const container = document.getElementById('municipalityResults');
+        if (results.length === 0) {
+            container.innerHTML = `<div class="municipality-item"><div class="name">${TEXTS.noMunicipalityFound}</div></div>`;
+        } else {
+            container.innerHTML = results.map(r => `
+                <div class="municipality-item" onclick="selectMunicipality('${r.name}', ${r.price})">
+                    <div class="name">${r.name}</div>
+                    <div class="price">${r.price} Rp./kWh ${r.count > 1 ? `(${r.count} ${TEXTS.tariffs})` : ''}</div>
+                </div>
+            `).join('');
+        }
+        container.classList.add('show');
+    }
+
+    function hideMunicipalityResults() {
+        document.getElementById('municipalityResults').classList.remove('show');
+    }
+
+    function selectMunicipality(name, price) {
+        selectedMunicipalityName = name;
+        pricePerKwh = price / 100;
+
+        document.getElementById('searchContainer').style.display = 'none';
+        document.getElementById('selectedMunicipality').style.display = 'block';
+        document.getElementById('selectedName').textContent = name;
+        document.getElementById('selectedTariff').textContent = price;
+
+        // Set comparison badge
+        const badge = document.getElementById('comparisonBadge');
+        if (price < 25) {
+            badge.textContent = TEXTS.cheap;
+            badge.className = 'comparison-badge cheap';
+        } else if (price > 35) {
+            badge.textContent = TEXTS.expensive;
+            badge.className = 'comparison-badge expensive';
+        } else {
+            badge.textContent = TEXTS.average;
+            badge.className = 'comparison-badge average';
+        }
+
+        hideMunicipalityResults();
+        calculate();
+    }
+
+    function resetSearch() {
+        selectedMunicipalityName = null;
+        document.getElementById('searchContainer').style.display = 'block';
+        document.getElementById('selectedMunicipality').style.display = 'none';
+        document.getElementById('municipalityInput').value = '';
+        document.getElementById('municipalityInput').focus();
+    }
+
+    function showManualPrice() {
+        document.getElementById('searchContainer').style.display = 'none';
+        document.getElementById('selectedMunicipality').style.display = 'none';
+        document.getElementById('manualPriceSection').style.display = 'block';
+    }
+
+    function init() {
+        renderDevices('householdDevices', devices.household);
+        renderDevices('heatingDevices', devices.heating);
+        renderDevices('mobilityDevices', devices.mobility);
+        renderDevices('smarthomeDevices', devices.smarthome);
+
+        // Municipality search
+        const input = document.getElementById('municipalityInput');
+        input.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => searchMunicipalities(this.value.trim()), 300);
+        });
+        input.addEventListener('focus', function() {
+            if (this.value.length >= 2) searchMunicipalities(this.value.trim());
+        });
+
+        // Click outside to close
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.municipality-search')) {
+                hideMunicipalityResults();
+            }
+        });
+
+        // Manual price slider
+        document.getElementById('priceSlider').addEventListener('input', function() {
+            pricePerKwh = this.value / 100;
+            document.getElementById('priceValue').textContent = this.value;
+            calculate();
+        });
+
+        document.getElementById('customWatts').addEventListener('input', calculateCustom);
+        document.getElementById('customHours').addEventListener('input', calculateCustom);
+
+        calculate();
+    }
+
+    function renderDevices(containerId, deviceList) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = deviceList.map(device => `
+            <div class="device-item ${device.checked ? 'active' : ''}" id="item-${device.id}">
+                <div class="device-toggle">
+                    <input type="checkbox" id="${device.id}" ${device.checked ? 'checked' : ''} onchange="toggleDevice('${device.id}')">
+                </div>
+                <div class="device-info">
+                    <div class="device-name">${device.icon} ${device.name}</div>
+                    <div class="device-details">${device.details} · ${device.kwh.toLocaleString('de-CH')} ${TEXTS.kwhPerYear}</div>
+                </div>
+                <div class="device-cost">
+                    <div class="yearly" id="cost-${device.id}">CHF ${Math.round(device.kwh * pricePerKwh)}</div>
+                    <div class="monthly">CHF ${Math.round(device.kwh * pricePerKwh / 12)}/${TEXTS.perMonth}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function toggleDevice(id) {
+        const item = document.getElementById('item-' + id);
+        const checkbox = document.getElementById(id);
+        item.classList.toggle('active', checkbox.checked);
+        calculate();
+    }
+
+    function calculate() {
+        let totalKwh = 0;
+        const breakdown = [];
+
+        // Update all device costs and sum selected
+        Object.values(devices).flat().forEach(device => {
+            const cost = Math.round(device.kwh * pricePerKwh);
+            const costElement = document.getElementById('cost-' + device.id);
+            if (costElement) {
+                costElement.textContent = 'CHF ' + cost;
+                costElement.nextElementSibling.textContent = 'CHF ' + Math.round(cost / 12) + '/' + TEXTS.perMonth;
+            }
+
+            const checkbox = document.getElementById(device.id);
+            if (checkbox && checkbox.checked) {
+                totalKwh += device.kwh;
+                breakdown.push({ name: device.icon + ' ' + device.name, kwh: device.kwh, cost: cost });
+            }
+        });
+
+        const totalCost = Math.round(totalKwh * pricePerKwh);
+
+        document.getElementById('totalCost').textContent = 'CHF ' + totalCost.toLocaleString('de-CH');
+        document.getElementById('totalKwh').textContent = totalKwh.toLocaleString('de-CH') + ' ' + TEXTS.kwhPerYear;
+
+        // Breakdown
+        const breakdownHtml = breakdown
+            .sort((a, b) => b.cost - a.cost)
+            .map(item => `
+                <div class="breakdown-row">
+                    <span class="label">${item.name}</span>
+                    <span class="value">CHF ${item.cost} (${item.kwh.toLocaleString('de-CH')} kWh)</span>
+                </div>
+            `).join('');
+        document.getElementById('breakdownList').innerHTML = breakdownHtml || `<p style="opacity: 0.7;">${TEXTS.selectDevices}</p>`;
+
+        // Standby costs (10 devices × 8W average × 24h × 365 days)
+        const standbyKwh = 10 * 8 * 24 * 365 / 1000; // ~700 kWh
+        const standbyCost = Math.round(standbyKwh * pricePerKwh);
+        document.getElementById('standbyCost').textContent = 'CHF ' + standbyCost + '/' + TEXTS.perMonth.replace('pro ', '');
+    }
+
+    function calculateCustom() {
+        const watts = parseFloat(document.getElementById('customWatts').value) || 0;
+        const hours = parseFloat(document.getElementById('customHours').value) || 0;
+
+        if (watts > 0 && hours > 0) {
+            const kwh = (watts * hours) / 1000;
+            const cost = kwh * pricePerKwh;
+            document.getElementById('customResult').textContent =
+                `= ${Math.round(kwh).toLocaleString('de-CH')} ${TEXTS.kwhPerYear} · CHF ${Math.round(cost).toLocaleString('de-CH')}/${TEXTS.perMonth.replace('pro ', '')}`;
+        } else {
+            document.getElementById('customResult').textContent = '';
+        }
+    }
+
+    function getShareText() {
+        const total = document.getElementById('totalCost').textContent;
+        const kwh = document.getElementById('totalKwh').textContent;
+        const location = selectedMunicipalityName ? ` ${TEXTS.shareText.replace('{location}', selectedMunicipalityName)}` : '';
+        return `${TEXTS.shareText.replace('{total}', total).replace('{kwh}', kwh).replace('{location}', location)}\n\n${TEXTS.shareUrl}`;
+    }
+
+    function shareWhatsApp() {
+        window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+    }
+
+    function copyResult() {
+        navigator.clipboard.writeText(getShareText()).then(() => {
+            const btn = document.querySelector('.share-btn.copy .copy-text');
+            const originalText = btn.textContent;
+            btn.textContent = TEXTS.copied;
+            setTimeout(() => btn.textContent = originalText, 2000);
+        });
+    }
+
+    {{ partial "darkmode.html" . }}
+
+    init();
+</script>

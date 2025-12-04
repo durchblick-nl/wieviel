@@ -35,34 +35,6 @@
             color: white;
             text-decoration: underline;
         }
-        .direction-toggle {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .direction-btn {
-            flex: 1;
-            padding: 0.875rem 1rem;
-            border: 2px solid var(--primary-color);
-            background: var(--card-bg);
-            color: var(--primary-color);
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        .direction-btn:hover {
-            background: var(--light-bg);
-        }
-        .direction-btn.active {
-            background: var(--primary-color);
-            color: white;
-        }
         .rate-select-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -92,6 +64,7 @@
             border-style: dashed;
             opacity: 0.6;
         }
+
         /* Result Box */
         .result-box {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -101,29 +74,12 @@
             text-align: center;
             margin: 1.5rem 0;
         }
-        .result-box .label {
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-        .result-box .total {
-            font-size: 2.5rem;
-            font-weight: bold;
-            font-family: 'Economica', sans-serif;
-        }
-        .result-box .sub {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-top: 0.5rem;
-        }
-        .result-box.decrease {
-            background: linear-gradient(135deg, #2e7d32, #4caf50);
-        }
-        .result-box.increase {
-            background: linear-gradient(135deg, #c62828, #ef5350);
-        }
-        .result-box.neutral {
-            background: linear-gradient(135deg, #757575, #9e9e9e);
-        }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .result-box.decrease { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+        .result-box.increase { background: linear-gradient(135deg, #c62828, #ef5350); }
+        .result-box.neutral { background: linear-gradient(135deg, #757575, #9e9e9e); }
 
         /* Breakdown Card */
         .breakdown-card {
@@ -133,28 +89,16 @@
             margin-top: 1rem;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .breakdown-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
         .breakdown-row {
             display: flex;
             justify-content: space-between;
             padding: 0.75rem 0;
             border-bottom: 1px solid var(--border-color);
         }
-        .breakdown-row:last-child {
-            border-bottom: none;
-        }
-        .breakdown-row .label {
-            color: var(--text-color);
-        }
-        .breakdown-row .value {
-            font-weight: 600;
-            font-family: 'Economica', sans-serif;
-            font-size: 1.1rem;
-        }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
         .breakdown-row.total {
             font-weight: bold;
             background: var(--light-bg);
@@ -162,18 +106,10 @@
             padding: 1rem 1.5rem;
             border-radius: 0 0 12px 12px;
         }
-        .breakdown-row.total .value {
-            color: var(--primary-color);
-        }
+        .breakdown-row.total .value { color: var(--primary-color); }
 
         /* Share Buttons */
-        .share-buttons {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
         .share-btn {
             padding: 0.75rem 1.25rem;
             border-radius: 8px;
@@ -185,17 +121,9 @@
             gap: 0.5rem;
             transition: all 0.2s;
         }
-        .share-btn.primary {
-            background: var(--primary-color);
-            color: white;
-        }
-        .share-btn.copy {
-            background: var(--secondary-color);
-            color: white;
-        }
-        .share-btn:hover {
-            transform: translateY(-2px);
-        }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
 
         /* Info Box */
         .info-box {
@@ -205,48 +133,19 @@
             border-radius: 0 8px 8px 0;
             margin: 1rem 0;
         }
-        .info-box h4 {
-            margin: 0 0 0.5rem 0;
-            color: var(--primary-color);
-            font-size: 0.95rem;
-        }
-        .info-box p {
-            margin: 0;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        .rate-chart {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            overflow-x: auto;
-        }
-        .chart-svg {
-            width: 100%;
-            min-width: 500px;
-            height: auto;
-        }
-        .chart-label {
-            font-size: 12px;
-            fill: var(--text-color);
-            opacity: 0.7;
-        }
-        .chart-label-small {
-            font-size: 10px;
-            fill: var(--text-color);
-            opacity: 0.6;
-        }
-        .chart-current {
-            font-size: 14px;
-            font-weight: bold;
-            fill: var(--accent-color);
-        }
-        @media (max-width: 480px) {
-            .rate-select-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+        .info-box h4 { margin: 0 0 0.5rem 0; color: var(--primary-color); font-size: 0.95rem; }
+        .info-box p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
+        .info-box.warning { border-left-color: var(--accent-color); background: rgba(204, 92, 83, 0.1); }
+        .info-box.warning h4 { color: var(--accent-color); }
+
+        /* Chart */
+        .rate-chart { background: var(--card-bg); border-radius: 12px; padding: 1rem; margin: 1.5rem 0; overflow-x: auto; }
+        .chart-svg { width: 100%; min-width: 500px; height: auto; }
+        .chart-label { font-size: 12px; fill: var(--text-color); opacity: 0.7; }
+        .chart-label-small { font-size: 10px; fill: var(--text-color); opacity: 0.6; }
+        .chart-current { font-size: 14px; font-weight: bold; fill: var(--accent-color); }
+
+        /* JUSTIS Card */
         .justis-card {
             background: linear-gradient(135deg, var(--card-bg), var(--light-bg));
             border: 2px solid var(--primary-color);
@@ -255,15 +154,8 @@
             margin-top: 2rem;
             text-align: center;
         }
-        .justis-card h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.75rem;
-        }
-        .justis-card p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
+        .justis-card h4 { color: var(--primary-color); margin-bottom: 0.75rem; }
+        .justis-card p { font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-color); }
         .justis-btn {
             display: inline-flex;
             align-items: center;
@@ -276,10 +168,7 @@
             font-weight: 600;
             transition: all 0.2s;
         }
-        .justis-btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
+        .justis-btn:hover { background: var(--secondary-color); transform: translateY(-2px); }
 
         /* SEO Content */
         .seo-content { margin-top: 3rem; }
@@ -301,10 +190,7 @@
         .faq-item a { color: var(--primary-color); }
 
         /* Info Cards Container */
-        .info-cards-container {
-            display: grid;
-            gap: 1rem;
-        }
+        .info-cards-container { display: grid; gap: 1rem; }
         .info-step-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -314,36 +200,14 @@
             gap: 1rem;
             align-items: flex-start;
         }
-        .info-step-card.highlight {
-            border-color: var(--primary-color);
-            background: linear-gradient(135deg, var(--card-bg), var(--light-bg));
-        }
-        .info-step-card .step-icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            flex-shrink: 0;
-        }
-        .info-step-card .step-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        .info-step-card .step-content p,
-        .info-step-card .step-content ol {
-            font-size: 0.95rem;
-            color: var(--text-color);
-        }
-        .info-step-card a {
-            color: var(--primary-color);
-        }
+        .info-step-card.highlight { border-color: var(--primary-color); background: linear-gradient(135deg, var(--card-bg), var(--light-bg)); }
+        .info-step-card .step-icon { font-size: 1.5rem; color: var(--primary-color); flex-shrink: 0; }
+        .info-step-card .step-content h3 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .info-step-card .step-content p, .info-step-card .step-content ol { font-size: 0.95rem; color: var(--text-color); }
+        .info-step-card a { color: var(--primary-color); }
 
-        /* Info Box Warning */
-        .info-box.warning {
-            border-left-color: var(--accent-color);
-            background: rgba(204, 92, 83, 0.1);
-        }
-        .info-box.warning h4 {
-            color: var(--accent-color);
+        @media (max-width: 480px) {
+            .rate-select-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -353,10 +217,10 @@
         {{- partial "page-header.html" . }}
 
         <div class="rate-display">
-            <div class="rate-label">Aktueller Referenzzinssatz</div>
+            <div class="rate-label">Taux de référence actuel</div>
             <div class="rate-value">{{ site.Data.site.referenceRate }}%</div>
-            <div class="rate-date">Gültig seit {{ site.Data.site.referenceRateDate }}</div>
-            <div class="rate-source">Quelle: <a href="{{ site.Data.site.referenceRateSource }}" target="_blank" rel="noopener">BWO</a></div>
+            <div class="rate-date">Valable depuis le {{ site.Data.site.referenceRateDateFr }}</div>
+            <div class="rate-source">Source: <a href="{{ site.Data.site.referenceRateSource }}" target="_blank" rel="noopener">OFL</a></div>
         </div>
 
         {{ .Content }}
@@ -366,14 +230,10 @@
     {{- partial "darkmode.html" . }}
 
     <script>
-        // Current reference rate from central data
         const CURRENT_RATE = {{ site.Data.site.referenceRate }};
-        const RATE_DATE = '{{ site.Data.site.referenceRateDate }}';
-
-        // State
+        const RATE_DATE = '{{ site.Data.site.referenceRateDateFr }}';
         let oldRate = 1.50;
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.rate-option').forEach(option => {
                 option.addEventListener('click', function() {
@@ -383,6 +243,13 @@
                     calculate();
                 });
             });
+
+            // Update dynamic elements
+            const chartRate = document.getElementById('chartCurrentRate');
+            if (chartRate) chartRate.textContent = CURRENT_RATE + '%';
+            const tableNote = document.getElementById('reductionTableNote');
+            if (tableNote) tableNote.textContent = 'Réduction avec le taux de référence actuel de ' + CURRENT_RATE + '%:';
+
             calculate();
         });
 
@@ -392,11 +259,8 @@
             const quarterSteps = Math.round(rateDiff / 0.25);
 
             let percentChange = 0;
-            if (quarterSteps < 0) {
-                percentChange = quarterSteps * 2.91;
-            } else if (quarterSteps > 0) {
-                percentChange = quarterSteps * 3.00;
-            }
+            if (quarterSteps < 0) percentChange = quarterSteps * 2.91;
+            else if (quarterSteps > 0) percentChange = quarterSteps * 3.00;
 
             const rentChange = currentRent * (percentChange / 100);
             const newRent = currentRent + rentChange;
@@ -411,23 +275,23 @@
 
             if (percentChange < 0) {
                 resultBox.classList.add('decrease');
-                resultLabel.textContent = 'Mögliche Mietsenkung';
+                resultLabel.textContent = 'Baisse de loyer possible';
                 mainResult.textContent = '- ' + formatCHF(Math.abs(rentChange));
-                resultSub.textContent = `pro Monat (${Math.abs(percentChange).toFixed(2)}% Senkung)`;
+                resultSub.textContent = `par mois (baisse de ${Math.abs(percentChange).toFixed(2)}%)`;
                 warningBox.style.display = 'block';
                 document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'block';
             } else if (percentChange > 0) {
                 resultBox.classList.add('increase');
-                resultLabel.textContent = 'Mögliche Mieterhöhung';
+                resultLabel.textContent = 'Hausse de loyer possible';
                 mainResult.textContent = '+ ' + formatCHF(rentChange);
-                resultSub.textContent = `pro Monat (${percentChange.toFixed(2)}% Erhöhung)`;
+                resultSub.textContent = `par mois (hausse de ${percentChange.toFixed(2)}%)`;
                 warningBox.style.display = 'none';
                 document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'none';
             } else {
                 resultBox.classList.add('neutral');
-                resultLabel.textContent = 'Keine Anpassung';
+                resultLabel.textContent = 'Pas d\'adaptation';
                 mainResult.textContent = 'CHF 0.00';
-                resultSub.textContent = 'Der Referenzzinssatz hat sich nicht verändert';
+                resultSub.textContent = 'Le taux de référence n\'a pas changé';
                 warningBox.style.display = 'none';
                 document.querySelector('.breakdown-card:nth-of-type(2)').style.display = 'none';
             }
@@ -449,7 +313,7 @@
             const currentRent = document.getElementById('currentRent').value;
             const newRent = document.getElementById('newRent').textContent;
             const change = document.getElementById('percentChange').textContent;
-            return `Mietzinsrechner: Bei CHF ${currentRent} Miete und Referenzzinssatz ${oldRate}% → ${CURRENT_RATE}% ergibt sich eine Anpassung von ${change}.\nNeue Miete: ${newRent}\n\nBerechne selbst: https://wieviel.ch/miete/`;
+            return `Calculateur de loyer: Avec un loyer de CHF ${currentRent} et un taux de référence de ${oldRate}% → ${CURRENT_RATE}%, l'adaptation est de ${change}.\nNouveau loyer: ${newRent}\n\nCalcule toi-même: https://calcule.ch/loyer/`;
         }
 
         function shareResult() {
@@ -465,21 +329,10 @@
             navigator.clipboard.writeText(getShareText()).then(() => {
                 const btn = document.querySelector('.share-btn.copy');
                 const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Kopiert!';
+                btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
                 setTimeout(() => btn.innerHTML = originalText, 2000);
             });
         }
-
-        // Update dynamic rate displays
-        document.addEventListener('DOMContentLoaded', function() {
-            // Update chart current rate
-            const chartRate = document.getElementById('chartCurrentRate');
-            if (chartRate) chartRate.textContent = CURRENT_RATE + '%';
-
-            // Update reduction table note
-            const tableNote = document.getElementById('reductionTableNote');
-            if (tableNote) tableNote.textContent = 'Senkung bei aktuellem Referenzzinssatz von ' + CURRENT_RATE + '%:';
-        });
     </script>
 </body>
 </html>

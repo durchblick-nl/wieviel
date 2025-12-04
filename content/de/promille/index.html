@@ -1,0 +1,169 @@
+---
+title: "Promillerechner"
+subtitle: "Blutalkohol nach Watson-Formel"
+icon: "🍺"
+description: "Berechne deinen Blutalkoholwert (BAK) mit dem Schweizer Promillerechner. Erfahre, wann du wieder fahrtüchtig bist."
+keywords: "Promillerechner, Blutalkohol, BAK, Alkohol, Schweiz, Fahrtüchtigkeit, Widmark"
+ogTitle: "Promillerechner Schweiz - Blutalkohol berechnen"
+ogDescription: "Berechne deinen Blutalkoholwert und erfahre, wann du wieder fahrtüchtig bist."
+ogImage: "https://wieviel.ch/og/promille.png"
+translationKey: "bac-calculator"
+type: "bac"
+---
+
+<div class="info-cards-container">
+    <div class="info-step-card highlight">
+        <div class="step-icon"><i class="fas fa-gavel"></i></div>
+        <div class="step-content">
+            <h3>Promillegrenzen Schweiz</h3>
+            <div class="legal-limit-card standard">
+                <div class="legal-limit-value">0.5‰</div>
+                <div><strong>Normale Fahrer</strong><br><small>Mit unbefristetem Führerschein</small></div>
+            </div>
+            <div class="legal-limit-card strict">
+                <div class="legal-limit-value">0.1‰</div>
+                <div><strong>Neulenker & Berufschauffeure</strong><br><small>Praktisch Null-Toleranz</small></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-hourglass-half"></i></div>
+        <div class="step-content">
+            <h3>Alkoholabbau</h3>
+            <p>Der Körper baut Alkohol mit etwa <strong>0.1 – 0.15‰ pro Stunde</strong> ab.</p>
+            <p>Dieser Abbau ist konstant und kann nicht beschleunigt werden – weder durch Kaffee, Duschen noch frische Luft.</p>
+        </div>
+    </div>
+
+    <div class="info-step-card" style="grid-column: 1 / -1;">
+        <div class="step-icon"><i class="fas fa-globe-europe"></i></div>
+        <div class="step-content">
+            <h3>Promillegrenzen in Nachbarländern</h3>
+            <p style="margin-bottom: 1rem;">Beim Autofahren im Ausland gelten andere Grenzen:</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 400px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                            <th style="padding: 0.5rem;">Land</th>
+                            <th style="padding: 0.5rem; text-align: center;">Normal</th>
+                            <th style="padding: 0.5rem; text-align: center;">Neulenker</th>
+                            <th style="padding: 0.5rem; text-align: center;">Berufsfahrer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇨🇭 Schweiz</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇩🇪 Deutschland</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇦🇹 Österreich</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇫🇷 Frankreich</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.2‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.2‰</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">🇮🇹 Italien</td><td style="padding: 0.5rem; text-align: center; font-weight: 600;">0.5‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.0‰</td></tr>
+                        <tr><td style="padding: 0.5rem;">🇱🇮 Liechtenstein</td><td style="padding: 0.5rem; text-align: center; font-weight: 600; color: #28a745;">0.8‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td><td style="padding: 0.5rem; text-align: center; color: #dc3545;">0.1‰</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-calculator"></i></div>
+        <div class="step-content">
+            <h3>Watson-Formel</h3>
+            <p>Die Berechnung basiert auf der <strong>Watson-Formel</strong> (1981), die das Gesamtkörperwasser berechnet:</p>
+            <p><strong>BAK = A ÷ (0.8 × TBW)</strong></p>
+            <p><small>TBW (Total Body Water) wird aus Geschlecht, Gewicht, Grösse und Alter berechnet.</small></p>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-exclamation-circle"></i></div>
+        <div class="step-content">
+            <h3>Einflussfaktoren</h3>
+            <p>Der tatsächliche Blutalkoholwert variiert je nach:</p>
+            <ul>
+                <li>Mageninhalt (nüchtern = schnellere Aufnahme)</li>
+                <li>Trinkgeschwindigkeit</li>
+                <li>Körperzusammensetzung</li>
+                <li>Gesundheitszustand</li>
+                <li>Medikamenteneinnahme</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-step-card" style="border-left: 4px solid #dc3545;">
+        <div class="step-icon"><i class="fas fa-bicycle"></i></div>
+        <div class="step-content">
+            <h3>Achtung: Auch auf dem Velo!</h3>
+            <p>Es gibt zwar keine gesetzliche Promillegrenze fürs Velofahren – aber: <strong>Wer betrunken Velo fährt, kann den Auto-Führerschein verlieren!</strong></p>
+        </div>
+    </div>
+
+    <div class="info-step-card" style="grid-column: 1 / -1;">
+        <div class="step-icon"><i class="fas fa-hands-helping"></i></div>
+        <div class="step-content">
+            <h3>Sicher nach Hause</h3>
+            <p style="margin-bottom: 1rem;">Diese Organisationen helfen dir, sicher nach Hause zu kommen:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <a href="https://www.nezrouge.ch/de/" target="_blank" rel="noopener" style="flex: 1; min-width: 200px; padding: 1rem; background: var(--light-bg); border-radius: 8px; text-decoration: none; color: inherit; border: 1px solid var(--border-color);">
+                    <strong style="color: #dc3545;">Nez Rouge</strong><br>
+                    <small>Gratis Heimfahrservice während der Festtage.</small>
+                </a>
+                <a href="https://www.amsteuernie.ch/de/" target="_blank" rel="noopener" style="flex: 1; min-width: 200px; padding: 1rem; background: var(--light-bg); border-radius: 8px; text-decoration: none; color: inherit; border: 1px solid var(--border-color);">
+                    <strong style="color: var(--primary-color);">Am Steuer Nie</strong><br>
+                    <small>Präventionsorganisation mit Info-Material.</small>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="law-section">
+    <h2>Strafen bei Alkohol am Steuer</h2>
+    <p class="law-subtitle">Schweiz – <a href="https://www.fedlex.admin.ch/eli/cc/1958/1503_1528_1552/de#art_91" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Art. 91 SVG</a></p>
+
+    <div class="law-card">
+        <div class="law-header"><h3>0.5 – 0.79‰</h3></div>
+        <div class="law-content">
+            <p><strong>Verwarnung</strong> und Busse (ab CHF 600)</p>
+            <p>Erstmaliges Vergehen bei sonst einwandfreiem Verhalten.</p>
+        </div>
+    </div>
+
+    <div class="law-card">
+        <div class="law-header"><h3>0.8‰ und mehr</h3></div>
+        <div class="law-content">
+            <p><strong>Führerausweisentzug</strong> mindestens 3 Monate</p>
+            <p>Geldstrafe oder Freiheitsstrafe bis 3 Jahre</p>
+        </div>
+    </div>
+
+    <div class="law-card">
+        <div class="law-header"><h3>1.6‰ und mehr</h3></div>
+        <div class="law-content">
+            <p><strong>Führerausweisentzug</strong> mindestens 2 Jahre</p>
+            <p>Obligatorische verkehrsmedizinische Untersuchung</p>
+            <p>Eintrag im Strafregister</p>
+        </div>
+    </div>
+</div>
+
+<section class="seo-content">
+    <h3>Häufige Fragen zum Promillerechner</h3>
+    <div class="faq-section">
+        <details class="faq-item">
+            <summary>Wie viel Promille hat man nach einem Bier?</summary>
+            <p>Ein Standardbier (300ml, 5%) enthält etwa 12g Alkohol. Bei einem 80kg schweren Mann ergibt das ca. <strong>0.2‰</strong>, bei einer 60kg schweren Frau ca. <strong>0.35‰</strong>.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Was ist die Promillegrenze in der Schweiz?</summary>
+            <p>In der Schweiz gilt für normale Fahrer eine Promillegrenze von <strong>0.5‰</strong>. Für Neulenker (erste 3 Jahre) und Berufschauffeure gilt praktisch Null-Toleranz (<strong>0.1‰</strong>).</p>
+        </details>
+        <details class="faq-item">
+            <summary>Wie schnell baut der Körper Alkohol ab?</summary>
+            <p>Der Körper baut Alkohol mit etwa <strong>0.1-0.15‰ pro Stunde</strong> ab. Dieser Abbau ist konstant und kann nicht beschleunigt werden.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Was passiert bei Alkohol am Steuer?</summary>
+            <p>Bei <strong>0.5-0.79‰</strong>: Verwarnung und Busse (ab CHF 600). Bei <strong>0.8‰+</strong>: Führerausweisentzug (mind. 3 Monate). Bei <strong>1.6‰+</strong>: Führerausweisentzug (mind. 2 Jahre) und verkehrsmedizinische Untersuchung.</p>
+        </details>
+    </div>
+</section>

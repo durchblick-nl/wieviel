@@ -1,57 +1,190 @@
-# Zentrale Daten für alle Rechner
-# Bei Änderungen: nur hier anpassen, Hugo baut alles neu
+# =============================================================================
+# ZENTRALE DATEN FÜR ALLE RECHNER - wieviel.ch / calcule.ch
+# =============================================================================
+# Bei Änderungen: nur hier anpassen, Hugo baut alle Seiten neu.
+# Letzte Aktualisierung: Dezember 2024
+# =============================================================================
 
-# Referenzzinssatz (Mietzinsrechner)
+# -----------------------------------------------------------------------------
+# ALLGEMEIN
+# -----------------------------------------------------------------------------
+currentYear: 2025
+
+# -----------------------------------------------------------------------------
+# REFERENZZINSSATZ (Mietzinsrechner)
+# Quelle: BWO - vierteljährlich publiziert
+# https://www.bwo.admin.ch/de/referenzzinssatz
+# -----------------------------------------------------------------------------
 referenceRate: 1.25
 referenceRateDate: "3. September 2025"
 referenceRateDateFr: "3 septembre 2025"
 referenceRateSource: "https://www.bwo.admin.ch/de/referenzzinssatz"
 
-# MWST-Sätze 2025
-vatNormal: 8.1
-vatReduced: 2.6
-vatSpecial: 3.8
+# -----------------------------------------------------------------------------
+# MWST-SÄTZE 2025
+# Quelle: ESTV
+# -----------------------------------------------------------------------------
+vat:
+  normal: 8.1
+  reduced: 2.6
+  accommodation: 3.8
+  registrationLimit: 100000  # CHF Jahresumsatz
 
-# Strompreise (Median Schweiz 2025)
-electricityMedianPrice: 29
-electricityMinPrice: 9
-electricityMaxPrice: 46
+# -----------------------------------------------------------------------------
+# SOZIALVERSICHERUNGEN 2025
+# Quellen: AHV/IV, SUVA, BSV
+# -----------------------------------------------------------------------------
+socialInsurance:
+  # AHV/IV/EO (Arbeitnehmeranteil)
+  ahvRate: 5.3
 
-# AHV/Sozialversicherungen 2025
-ahvRate: 5.3
-alvRate: 1.1
-alvMaxSalary: 148200
-bvgCoordinationDeduction: 26460
-bvgEntryThreshold: 22680
+  # Arbeitslosenversicherung
+  alvRate: 1.1
+  alvMaxSalary: 148200  # CHF/Jahr
 
-# BVG-Beitragssätze (Arbeitnehmer + Arbeitgeber)
-bvgRates:
-  - ageFrom: 25
-    ageTo: 34
-    rate: 7
-  - ageFrom: 35
-    ageTo: 44
-    rate: 10
-  - ageFrom: 45
-    ageTo: 54
-    rate: 15
-  - ageFrom: 55
-    ageTo: 65
-    rate: 18
+  # Nichtberufsunfall (ca.)
+  nbuRate: 0.5
 
-# Elternzeit
-maternityDays: 98
-maternityWeeks: 14
-paternityDays: 14
-paternityWeeks: 2
-parentalMaxDailyRate: 220
+# -----------------------------------------------------------------------------
+# BVG (Berufliche Vorsorge) 2025
+# Quelle: BSV
+# -----------------------------------------------------------------------------
+bvg:
+  # Grenzwerte
+  coordinationDeduction: 26460   # Koordinationsabzug
+  entryThreshold: 22680          # Eintrittsschwelle (ab diesem Lohn BVG-pflichtig)
+  maxInsuredSalary: 90720        # Obere Grenze
+  minInsuredSalary: 3780         # Untere Grenze (mind. versicherter Lohn)
 
-# Säule 3a Maximum 2025
-pillar3aMax: 7056
-pillar3aMaxSelfEmployed: 35280
+  # Mindestzins
+  minimumInterestRate: 1.25
 
-# Zigarettenpreise (Durchschnitt)
-cigarettePackPrice: 9.00
+  # Beitragssätze TOTAL (Arbeitnehmer + Arbeitgeber)
+  rateAge25to34: 7
+  rateAge35to44: 10
+  rateAge45to54: 15
+  rateAge55to65: 18
 
-# Jahr für Copyright etc.
-currentYear: 2025
+  # Beitragssätze NUR Arbeitnehmer (Hälfte)
+  employeeRateAge25to34: 3.5
+  employeeRateAge35to44: 5.0
+  employeeRateAge45to54: 7.5
+  employeeRateAge55to65: 9.0
+
+# -----------------------------------------------------------------------------
+# AHV-RENTEN 2025
+# Quelle: BSV
+# -----------------------------------------------------------------------------
+ahvPension:
+  maxMonthly: 2520   # Maximale AHV-Rente pro Monat
+  minMonthly: 1260   # Minimale AHV-Rente pro Monat
+
+# -----------------------------------------------------------------------------
+# FAMILIENZULAGEN 2025
+# Quelle: BSV (Mindestansätze, kantonal unterschiedlich)
+# -----------------------------------------------------------------------------
+familyAllowances:
+  childPerMonth: 200       # Kinderzulage
+  educationPerMonth: 250   # Ausbildungszulage
+
+# -----------------------------------------------------------------------------
+# ELTERNZEIT / EOG 2025
+# Quelle: BSV
+# -----------------------------------------------------------------------------
+parentalLeave:
+  # Mutterschaftsurlaub
+  maternityDays: 98
+  maternityWeeks: 14
+
+  # Vaterschaftsurlaub
+  paternityDays: 14
+  paternityWeeks: 2
+
+  # Entschädigung
+  compensationRate: 80          # Prozent des Lohns
+  maxDailyRate: 220             # CHF Maximum pro Tag
+  maxMonthlyForMaxRate: 8250    # Ab diesem Monatslohn gilt Maximum
+
+# -----------------------------------------------------------------------------
+# HYPOTHEKEN 2025
+# Quelle: Bankenpraktiken, FINMA
+# -----------------------------------------------------------------------------
+mortgage:
+  # Tragbarkeitsberechnung
+  imputedInterestRate: 5.0      # Kalkulatorischer Zinssatz
+  maintenanceRate: 1.0          # Nebenkosten p.a.
+  affordabilityThreshold: 33    # Max. Anteil am Bruttoeinkommen
+
+  # Eigenkapital
+  minEquityPercent: 20
+  hardEquityPercent: 10         # Muss "hartes" Eigenkapital sein
+
+  # Hypothekenaufteilung
+  firstMortgageMaxPercent: 67
+  secondMortgageAmortizationYears: 15
+
+  # Geschätzter aktueller Marktzins (für Info)
+  estimatedCurrentRate: 2.0
+
+# -----------------------------------------------------------------------------
+# STROMPREISE 2025
+# Quelle: ElCom / LINDAS
+# -----------------------------------------------------------------------------
+electricity:
+  medianPrice: 29        # Rp./kWh (Median Schweiz)
+  minPrice: 9            # Rp./kWh (günstigste Gemeinde)
+  maxPrice: 46           # Rp./kWh (teuerste Gemeinde)
+
+  # Typische Verbräuche
+  householdH4: 4500      # kWh/Jahr (4-Personen-Haushalt)
+  singlePerson: 2000     # kWh/Jahr
+  heatPumpTypical: 5000  # kWh/Jahr
+
+  # E-Mobilität
+  ecarPer100km: 19       # kWh/100km
+
+# -----------------------------------------------------------------------------
+# ZIGARETTENPREISE 2025
+# Quelle: Marktbeobachtung
+# -----------------------------------------------------------------------------
+smoking:
+  avgPackPrice: 9.50     # CHF pro Packung (20 Stück)
+  swissAvgDaily: 13      # Durchschnittlicher Tageskonsum
+  taxPercentage: 55      # Steueranteil am Preis
+
+# -----------------------------------------------------------------------------
+# GESCHWINDIGKEITSBUSSEN
+# Quelle: OBV (Ordnungsbussenverordnung), SVG
+# -----------------------------------------------------------------------------
+speedingFines:
+  # Sicherheitsabzüge (Toleranz)
+  marginUpTo100: 5       # km/h bei <= 100 km/h
+  margin101to150: 6      # km/h bei 101-150 km/h
+  marginAbove150: 7      # km/h bei > 150 km/h
+
+  # Raserschwellen (Via Sicura)
+  raserThreshold30: 40   # Überschreitung in 30er-Zone
+  raserThreshold50: 50   # Überschreitung in 50er-Zone
+  raserThreshold80: 60   # Überschreitung ausserorts
+  raserThreshold120: 80  # Überschreitung auf Autobahn
+
+  # Raser-Folgen
+  raserLicenseWithdrawalYears: 2
+
+# -----------------------------------------------------------------------------
+# SÄULE 3a 2025
+# Quelle: BSV
+# -----------------------------------------------------------------------------
+pillar3a:
+  maxWithPensionFund: 7056      # Mit Pensionskasse
+  maxWithoutPensionFund: 35280  # Selbständige ohne PK (20% des Einkommens)
+
+# -----------------------------------------------------------------------------
+# WANDERN
+# Quelle: Schweiz Mobil
+# -----------------------------------------------------------------------------
+hiking:
+  # Geschwindigkeiten in m/h
+  flatSpeed: 4200        # Horizontale Geschwindigkeit
+  ascentSpeed: 400       # Aufstieg m/h
+  descentSpeed: 800      # Abstieg m/h

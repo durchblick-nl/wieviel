@@ -1,6 +1,25 @@
-{{- $icon := .Params.icon | default "🔢" -}}
-{{- $title := .Title -}}
-{{- $subtitle := .Params.subtitle -}}
+{{- /* Support both page context and dict context */ -}}
+{{- $icon := "" -}}
+{{- $title := "" -}}
+{{- $subtitle := "" -}}
+{{- $homePath := "" -}}
+{{- $allToolsText := "" -}}
+
+{{- if .Params -}}
+    {{- /* Page context */ -}}
+    {{- $icon = .Params.icon | default "🔢" -}}
+    {{- $title = .Title -}}
+    {{- $subtitle = .Params.subtitle -}}
+    {{- $homePath = .Site.Language.Params.homePath -}}
+    {{- $allToolsText = .Site.Language.Params.allToolsText -}}
+{{- else -}}
+    {{- /* Dict context (legacy) */ -}}
+    {{- $icon = .icon | default "🔢" -}}
+    {{- $title = .title -}}
+    {{- $subtitle = .subtitle -}}
+    {{- $homePath = "/" -}}
+    {{- $allToolsText = "Alle Tools" -}}
+{{- end -}}
 
 <div class="page-header">
     <h1><span class="title-icon">{{ $icon }}</span>{{ $title }}</h1>
@@ -10,5 +29,5 @@
 </div>
 
 <nav class="tool-nav">
-    <a href="{{ .Site.Language.Params.homePath }}">{{ .Site.Language.Params.allToolsText }}</a>
+    <a href="{{ $homePath }}">{{ $allToolsText }}</a>
 </nav>

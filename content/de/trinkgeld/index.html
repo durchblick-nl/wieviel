@@ -1,0 +1,87 @@
+---
+title: "Trinkgeld-Rechner"
+subtitle: "Trinkgeld berechnen und aufteilen"
+icon: "🧾"
+description: "Berechne das passende Trinkgeld und teile die Rechnung fair auf. Einfach, schnell und praktisch."
+keywords: "Trinkgeld Rechner, Trinkgeld berechnen, Rechnung teilen, Tip Calculator"
+ogTitle: "Trinkgeld-Rechner – Wieviel Trinkgeld geben?"
+ogDescription: "Berechne das passende Trinkgeld und teile die Rechnung fair auf."
+ogImage: "https://wieviel.ch/og/trinkgeld.png"
+translationKey: "tip-calculator"
+type: "tip"
+---
+
+<div class="info-cards-container">
+    <div class="info-step-card" style="grid-column: 1 / -1;">
+        <div class="step-icon"><i class="fas fa-globe"></i></div>
+        <div class="step-content">
+            <h3>Trinkgeld international <small style="font-weight: normal; opacity: 0.7;">(klicken zum Übernehmen)</small></h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem 2rem;">
+                <div>
+                    <h4 style="color: var(--primary-color); margin: 0.5rem 0; font-size: 0.95rem;">Europa</h4>
+                    <ul class="country-list" style="margin: 0;">
+                        <li onclick="setCountryTip(5, this)"><strong>Schweiz:</strong> 0-10% (Service inkl.)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Deutschland:</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Österreich:</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Italien:</strong> 5-10% (coperto beachten)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Frankreich:</strong> 5-10% (Service inkl.)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Spanien:</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Portugal:</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Griechenland:</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Kroatien:</strong> 10-15%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Türkei:</strong> 10-15%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Niederlande:</strong> 5-10% (Service inkl.)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>UK:</strong> 10-15%</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary-color); margin: 0.5rem 0; font-size: 0.95rem;">Fernreisen</h4>
+                    <ul class="country-list" style="margin: 0;">
+                        <li onclick="setCountryTip(20, this)"><strong>USA:</strong> 15-25% (erwartet!)</li>
+                        <li onclick="setCountryTip(15, this)"><strong>Kanada:</strong> 15-20%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Mexiko:</strong> 10-15%</li>
+                        <li onclick="setCountryTip(15, this)"><strong>Karibik:</strong> 15-20%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Thailand:</strong> 10% (freiwillig)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Bali:</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Malediven:</strong> 10% (oft inkl.)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>VAE/Dubai:</strong> 10-15%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Ägypten:</strong> 10-15%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Südafrika:</strong> 10-15%</li>
+                        <li onclick="setCountryTip(5, this)"><strong>Australien:</strong> 0-10%</li>
+                        <li onclick="setCountryTip(0, this)"><strong>Japan:</strong> 0% (unhöflich!)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+        <div class="step-content">
+            <h3>Tipps</h3>
+            <p>In der Schweiz ist der Service meist im Preis inbegriffen. Trinkgeld ist eine freiwillige Anerkennung für guten Service.</p>
+            <p>Üblich: Aufrunden oder 5-10% bei Zufriedenheit.</p>
+        </div>
+    </div>
+</div>
+
+<section class="seo-content">
+    <h3>Häufige Fragen zum Trinkgeld</h3>
+    <div class="faq-section">
+        <details class="faq-item">
+            <summary>Wie viel Trinkgeld gibt man in der Schweiz?</summary>
+            <p>In der Schweiz ist Trinkgeld <strong>nicht obligatorisch</strong>, da der Service im Preis inbegriffen ist. Üblich sind jedoch <strong>5-10%</strong> bei zufriedenem Service. Bei kleinen Beträgen rundet man oft auf den nächsten Franken auf.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Ist der Service in der Schweiz im Preis inbegriffen?</summary>
+            <p>Ja, seit 1974 ist der <strong>Service gesetzlich im Preis inbegriffen</strong>. Trinkgeld ist daher eine freiwillige Anerkennung für besonders guten Service – keine Pflicht wie in den USA.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Gibt man im Taxi auch Trinkgeld?</summary>
+            <p>Im <strong>Taxi</strong> ist Aufrunden üblich (z.B. von CHF 18.50 auf CHF 20). Bei längeren Fahrten oder wenn der Fahrer mit dem Gepäck hilft, sind <strong>5-10%</strong> angemessen.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Wie teilt man eine Rechnung fair auf?</summary>
+            <p>Am einfachsten teilt man den <strong>Gesamtbetrag inkl. Trinkgeld</strong> durch die Anzahl Personen. So zahlt jeder gleich viel – auch für das Trinkgeld. Dieser Rechner erledigt das automatisch.</p>
+        </details>
+    </div>
+</section>

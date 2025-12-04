@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .deduction-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .deduction-row:last-child { border-bottom: none; }
+        .deduction-row .label { color: var(--text-color); }
+        .deduction-row .value { font-weight: 600; }
+        .deduction-row .value.negative { color: var(--accent-color); }
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 3rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1.1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .deductions-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .deductions-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+        .info-box { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2, .seo-content h3 { color: var(--primary-color); }
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+        .table-container { overflow-x: auto; margin: 1rem 0; }
+        .info-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 8px; overflow: hidden; }
+        .info-table th, .info-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .info-table th { background: var(--primary-color); color: white; font-weight: 600; }
+        .info-cards-container { display: grid; gap: 1rem; margin-top: 1.5rem; }
+        @media (min-width: 768px) { .info-cards-container { grid-template-columns: repeat(2, 1fr); } }
+        .info-step-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+        .info-step-card .step-icon { font-size: 1.5rem; color: var(--primary-color); flex-shrink: 0; }
+        .info-step-card .step-content h3, .info-step-card .step-content h4 { color: var(--primary-color); margin-bottom: 0.5rem; }
+        .partner-hint { background: linear-gradient(135deg, rgba(63, 96, 111, 0.08), rgba(90, 138, 157, 0.08)); border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .partner-content { display: flex; gap: 1rem; align-items: flex-start; }
+        .partner-content > i { font-size: 1.5rem; color: var(--primary-color); margin-top: 0.25rem; flex-shrink: 0; }
+        .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-wallet"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "salary.step1Title" }}</h3><p>{{ i18n "salary.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-user"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "salary.step2Title" }}</h3><p>{{ i18n "salary.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-calculator"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "salary.step3Title" }}</h3><p>{{ i18n "salary.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <div class="salary-toggle">
+                    <button type="button" class="active" onclick="setMode('monthly')">{{ i18n "salary.monthly" }}</button>
+                    <button type="button" onclick="setMode('yearly')">{{ i18n "salary.yearly" }}</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">{{ i18n "salary.grossSalary" }} (CHF)</label>
+                <input type="number" id="grossSalary" placeholder="6000" min="0" oninput="calculate()">
+            </div>
+
+            <div class="form-group">
+                <label>{{ i18n "salary.age" }}</label>
+                <select id="age" onchange="calculate()">
+                    <option value="25-34">25-34 {{ i18n "salary.years" }}</option>
+                    <option value="35-44">35-44 {{ i18n "salary.years" }}</option>
+                    <option value="45-54">45-54 {{ i18n "salary.years" }}</option>
+                    <option value="55-65">55-65 {{ i18n "salary.years" }}</option>
+                </select>
+                <small class="form-hint">{{ i18n "salary.ageHint" }}</small>
+            </div>
+
+            <div class="form-group">
+                <label><input type="checkbox" id="hasKids" onchange="calculate()"> {{ i18n "salary.includeChildAllowance" }}</label>
+                <div id="kidsInput" style="display: none; margin-top: 0.5rem;">
+                    <label>{{ i18n "salary.numChildren" }}:</label>
+                    <input type="number" id="numKids" value="1" min="1" max="10" style="width: 80px;" onchange="calculate()">
+                </div>
+            </div>
+
+            <div id="result" style="display: none;">
+                <div class="result-box">
+                    <div class="label">{{ i18n "salary.yourNetSalary" }}</div>
+                    <div class="total" id="netSalary">CHF 0</div>
+                    <div class="sub" id="netPeriod">{{ i18n "perMonth" }}</div>
+                </div>
+
+                <div class="deductions-card">
+                    <h3><i class="fas fa-minus-circle"></i> {{ i18n "salary.deductions" }}</h3>
+                    <div class="deduction-row">
+                        <span class="label">AHV/IV/EO ({{ site.Data.site.socialInsurance.ahvRate }}%)</span>
+                        <span class="value negative" id="ahv">-CHF 0</span>
+                    </div>
+                    <div class="deduction-row">
+                        <span class="label">ALV ({{ site.Data.site.socialInsurance.alvRate }}%)</span>
+                        <span class="value negative" id="alv">-CHF 0</span>
+                    </div>
+                    <div class="deduction-row">
+                        <span class="label">NBU (~0.5%)</span>
+                        <span class="value negative" id="nbu">-CHF 0</span>
+                    </div>
+                    <div class="deduction-row">
+                        <span class="label">{{ i18n "salary.pensionFund" }} (BVG)</span>
+                        <span class="value negative" id="bvg">-CHF 0</span>
+                    </div>
+                    <div class="deduction-row" style="border-top: 2px solid var(--primary-color); margin-top: 0.5rem; padding-top: 1rem;">
+                        <span class="label"><strong>{{ i18n "salary.totalDeductions" }}</strong></span>
+                        <span class="value negative" id="totalDeductions"><strong>-CHF 0</strong></span>
+                    </div>
+                </div>
+
+                <div id="kidsBonus" class="deductions-card" style="display: none;">
+                    <h3><i class="fas fa-plus-circle" style="color: #28a745;"></i> {{ i18n "salary.allowances" }}</h3>
+                    <div class="deduction-row">
+                        <span class="label">{{ i18n "salary.childAllowance" }}</span>
+                        <span class="value" style="color: #28a745;" id="childAllowance">+CHF 0</span>
+                    </div>
+                </div>
+
+                <div class="share-buttons">
+                    <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> {{ i18n "share" }}</button>
+                    <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> {{ i18n "copy" }}</button>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                <strong>{{ i18n "salary.note" }}:</strong> {{ i18n "salary.noteText" }}
+            </div>
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const RATES = {
+            ahv: {{ site.Data.site.socialInsurance.ahvRate }} / 100,
+            alv: {{ site.Data.site.socialInsurance.alvRate }} / 100,
+            alvMax: {{ site.Data.site.socialInsurance.alvMaxSalary }},
+            nbu: 0.005
+        };
+        const BVG_RATES = { '25-34': 0.07, '35-44': 0.10, '45-54': 0.15, '55-65': 0.18 };
+        const TEXTS = {
+            perMonth: '{{ i18n "perMonth" }}',
+            perYear: '{{ i18n "perYear" }}',
+            copied: '{{ i18n "copied" }}',
+            copy: '{{ i18n "copy" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/lohn/' : 'https://calcule.ch/salaire/'
+        };
+        let mode = 'monthly';
+
+        function setMode(m) {
+            mode = m;
+            document.querySelectorAll('.salary-toggle button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.salary-toggle button:${m === 'monthly' ? 'first' : 'last'}-child`).classList.add('active');
+            calculate();
+        }
+
+        document.getElementById('hasKids').addEventListener('change', function() {
+            document.getElementById('kidsInput').style.display = this.checked ? 'block' : 'none';
+        });
+
+        function calculate() {
+            let gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+            if (gross <= 0) { document.getElementById('result').style.display = 'none'; return; }
+
+            const monthly = mode === 'yearly' ? gross / 12 : gross;
+            const ahv = monthly * RATES.ahv;
+            const alv = Math.min(monthly, RATES.alvMax/12) * RATES.alv;
+            const nbu = monthly * RATES.nbu;
+            const bvgRate = BVG_RATES[document.getElementById('age').value];
+            const bvg = monthly * bvgRate;
+            const totalDeductions = ahv + alv + nbu + bvg;
+
+            let childAllowance = 0;
+            if (document.getElementById('hasKids').checked) {
+                childAllowance = (parseInt(document.getElementById('numKids').value) || 1) * 200;
+            }
+
+            const net = monthly - totalDeductions + childAllowance;
+
+            document.getElementById('ahv').textContent = '-CHF ' + ahv.toFixed(2);
+            document.getElementById('alv').textContent = '-CHF ' + alv.toFixed(2);
+            document.getElementById('nbu').textContent = '-CHF ' + nbu.toFixed(2);
+            document.getElementById('bvg').textContent = '-CHF ' + bvg.toFixed(2);
+            document.getElementById('totalDeductions').innerHTML = '<strong>-CHF ' + totalDeductions.toFixed(2) + '</strong>';
+
+            if (childAllowance > 0) {
+                document.getElementById('childAllowance').textContent = '+CHF ' + childAllowance.toFixed(2);
+                document.getElementById('kidsBonus').style.display = 'block';
+            } else {
+                document.getElementById('kidsBonus').style.display = 'none';
+            }
+
+            document.getElementById('netSalary').textContent = 'CHF ' + net.toFixed(0);
+            document.getElementById('netPeriod').textContent = TEXTS.perMonth + (mode === 'yearly' ? ' (CHF ' + (net * 12).toFixed(0) + '/' + (LANG === 'de' ? 'Jahr' : 'an') + ')' : '');
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function getShareText() {
+            const gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+            const net = parseFloat(document.getElementById('netSalary').textContent.replace(/[^0-9.-]/g, '')) || 0;
+            const p = mode === 'yearly' ? (LANG === 'de' ? 'Jahr' : 'an') : (LANG === 'de' ? 'Monat' : 'mois');
+            return LANG === 'de'
+                ? `💰 Lohnrechnung\n\nBrutto: CHF ${gross.toFixed(0)}/${p}\nNetto: CHF ${net.toFixed(0)}/Monat\n\nBerechnet mit ${TEXTS.shareUrl}`
+                : `💰 Calcul salarial\n\nBrut: CHF ${gross.toFixed(0)}/${p}\nNet: CHF ${net.toFixed(0)}/mois\n\nCalculé avec ${TEXTS.shareUrl}`;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) navigator.share(shareData).catch(() => {});
+            else window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> ' + TEXTS.copied;
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> ' + TEXTS.copy, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

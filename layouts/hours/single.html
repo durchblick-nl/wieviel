@@ -1,0 +1,785 @@
+{{ define "main" }}
+<div class="steps-container">
+    <div class="step-card">
+        <div class="step-icon">
+            <i class="fas fa-user-clock"></i>
+            <div class="step-number">1</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "hours.step1Title" }}</h3>
+            <p>{{ i18n "hours.step1Text" }}</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-icon">
+            <i class="fas fa-calculator"></i>
+            <div class="step-number">2</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "hours.step2Title" }}</h3>
+            <p>{{ i18n "hours.step2Text" }}</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-icon">
+            <i class="fas fa-check-circle"></i>
+            <div class="step-number">3</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "hours.step3Title" }}</h3>
+            <p>{{ i18n "hours.step3Text" }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="calculator-card">
+    <form id="stundenForm">
+        <div class="form-group">
+            <label>{{ i18n "hours.employeeType" }}</label>
+            <div class="mode-selector">
+                <button type="button" class="mode-btn active" data-mode="normal" onclick="setMode('normal')">
+                    <i class="fas fa-user"></i> {{ i18n "hours.modeNormal" }}
+                </button>
+                <button type="button" class="mode-btn" data-mode="pregnant" onclick="setMode('pregnant')">
+                    <i class="fas fa-person-pregnant"></i> {{ i18n "hours.modePregnant" }}
+                </button>
+                <button type="button" class="mode-btn" data-mode="nursing" onclick="setMode('nursing')">
+                    <i class="fas fa-baby"></i> {{ i18n "hours.modeNursing" }}
+                </button>
+                <button type="button" class="mode-btn" data-mode="youth" onclick="setMode('youth')">
+                    <i class="fas fa-child"></i> {{ i18n "hours.modeYouth" }}
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{{ i18n "hours.maxHoursLabel" }}</label>
+            <div class="mode-selector">
+                <button type="button" class="mode-btn active" data-week="45" onclick="setWeekHours(45)">
+                    {{ i18n "hours.max45hours" }}
+                </button>
+                <button type="button" class="mode-btn" data-week="50" onclick="setWeekHours(50)">
+                    {{ i18n "hours.max50hours" }}
+                </button>
+            </div>
+            <small style="opacity: 0.7; margin-top: 0.25rem; display: block;">{{ i18n "hours.maxHoursHint" }}</small>
+        </div>
+
+        <div class="form-group">
+            <label class="required">{{ i18n "hours.startTime" }}</label>
+            <div class="time-input-group">
+                <div>
+                    <label for="startDate">{{ i18n "hours.date" }}</label>
+                    <input type="date" id="startDate" required>
+                </div>
+                <div>
+                    <label for="startTime">{{ i18n "hours.time" }}</label>
+                    <input type="time" id="startTime" value="08:00" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="required">{{ i18n "hours.endTime" }}</label>
+            <div class="time-input-group">
+                <div>
+                    <label for="endDate">{{ i18n "hours.date" }}</label>
+                    <input type="date" id="endDate" required>
+                </div>
+                <div>
+                    <label for="endTime">{{ i18n "hours.time" }}</label>
+                    <input type="time" id="endTime" value="17:00" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{{ i18n "hours.breakLabel" }}</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="autoBreak" checked onchange="toggleBreakInput()">
+                <label for="autoBreak">{{ i18n "hours.autoBreak" }}</label>
+            </div>
+            <div id="manualBreakInput" style="display: none; margin-top: 0.75rem;">
+                <div class="time-input-group">
+                    <div>
+                        <label for="breakMinutes">{{ i18n "hours.breakMinutes" }}</label>
+                        <input type="number" id="breakMinutes" min="0" max="180" value="30"
+                            style="padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--card-bg); color: var(--text-color);">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{{ i18n "hours.lastRestLabel" }}</label>
+            <div class="time-input-group">
+                <div>
+                    <label for="lastShiftEnd">{{ i18n "hours.lastShiftEnd" }}</label>
+                    <input type="time" id="lastShiftEnd" placeholder="{{ i18n "hours.optional" }}">
+                </div>
+            </div>
+            <small style="opacity: 0.7;">{{ i18n "hours.lastRestHint" }}</small>
+        </div>
+
+        <button type="submit">{{ i18n "hours.calculate" }}</button>
+    </form>
+
+    <div id="result" class="result" style="display: none;">
+        <h3>{{ i18n "hours.result" }}</h3>
+        <div class="result-grid" id="resultGrid"></div>
+        <div class="warnings-list" id="warningsList"></div>
+        <div class="share-buttons">
+            <button class="share-btn primary" onclick="shareResult()">
+                <i class="fas fa-share-alt"></i> {{ i18n "hours.share" }}
+            </button>
+            <button class="share-btn copy" onclick="copyResult()">
+                <i class="fas fa-copy"></i> {{ i18n "hours.copy" }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="info-cards-container">
+    <div class="info-step-card highlight">
+        <div class="step-icon">
+            <i class="fas fa-gavel"></i>
+            <div class="step-number">1</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "hours.legalBreaks" }}</h3>
+            <table class="surcharge-table">
+                <tr><th>{{ i18n "hours.workingTime" }}</th><th>{{ i18n "hours.minBreak" }}</th></tr>
+                <tr><td>> 5.5 {{ i18n "hours.hours" }}</td><td>15 {{ i18n "hours.minutes" }}</td></tr>
+                <tr><td>> 7 {{ i18n "hours.hours" }}</td><td>30 {{ i18n "hours.minutes" }}</td></tr>
+                <tr><td>> 9 {{ i18n "hours.hours" }}</td><td>60 {{ i18n "hours.minutes" }}</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon">
+            <i class="fas fa-moon"></i>
+            <div class="step-number">2</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "hours.surcharges" }}</h3>
+            <table class="surcharge-table">
+                <tr><th>{{ i18n "hours.type" }}</th><th>{{ i18n "hours.surcharge" }}</th></tr>
+                <tr><td>{{ i18n "hours.nightWork" }}</td><td>{{ i18n "hours.nightSurcharge" }}</td></tr>
+                <tr><td>{{ i18n "hours.sundayWork" }}</td><td>{{ i18n "hours.sundaySurcharge" }}</td></tr>
+                <tr><td>{{ i18n "hours.overtime" }}</td><td>{{ i18n "hours.overtimeSurcharge" }}</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon">
+            <i class="fas fa-bed"></i>
+            <div class="step-number">3</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "hours.restTimes" }}</h3>
+            <p><strong>{{ i18n "hours.daily" }}:</strong> {{ i18n "hours.dailyRest" }}<br><small>{{ i18n "hours.dailyRestNote" }}</small></p>
+            <p><strong>{{ i18n "hours.weekend" }}:</strong> {{ i18n "hours.weekendRest" }}</p>
+            <p><strong>{{ i18n "hours.workFrame" }}:</strong> {{ i18n "hours.workFrameMax" }}</p>
+        </div>
+    </div>
+
+    <div class="info-step-card">
+        <div class="step-icon">
+            <i class="fas fa-person-pregnant"></i>
+            <div class="step-number">4</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "hours.specialRules" }}</h3>
+            <p><strong>{{ i18n "hours.pregnantNursing" }}:</strong><br>{{ i18n "hours.pregnantRules" }}</p>
+            <p><strong>{{ i18n "hours.youthUnder18" }}:</strong><br>{{ i18n "hours.youthRules" }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="info-step-card" style="margin-top: 1rem;">
+    <div class="step-icon">
+        <i class="fas fa-info-circle"></i>
+    </div>
+    <div class="step-content">
+        <h3>{{ i18n "hours.whoIsWhatTitle" }}</h3>
+        <p><strong>{{ i18n "hours.hours45Week" }}:</strong> {{ i18n "hours.hours45Description" }}</p>
+        <p><strong>{{ i18n "hours.hours50Week" }}:</strong> {{ i18n "hours.hours50Description" }}</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;"><i class="fas fa-external-link-alt"></i> {{ i18n "hours.source" }}: <a href="https://www.seco.admin.ch/seco/{{ .Site.Language.Lang }}/home/Arbeit/Personenfreizugigkeit_Arbeitsbeziehungen/Arbeitsrecht.html" target="_blank" rel="noopener">{{ i18n "hours.secoLink" }}</a></p>
+    </div>
+</div>
+
+<div class="info-step-card" style="margin-top: 1rem; grid-column: 1 / -1;">
+    <div class="step-icon"><i class="fas fa-link"></i></div>
+    <div class="step-content">
+        <h3>{{ i18n "hours.legalBasis" }}</h3>
+        <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.5rem;"><a href="https://www.fedlex.admin.ch/eli/cc/1966/57_57_57/{{ .Site.Language.Lang }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "hours.laborLaw" }}</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="https://www.fedlex.admin.ch/eli/cc/1966/57_57_57/{{ .Site.Language.Lang }}#art_9" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "hours.article9" }}</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="https://www.fedlex.admin.ch/eli/cc/1966/57_57_57/{{ .Site.Language.Lang }}#art_15" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "hours.article15" }}</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="https://www.seco.admin.ch/seco/{{ .Site.Language.Lang }}/home/Arbeit/Personenfreizugigkeit_Arbeitsbeziehungen/Arbeitsrecht.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "hours.secoLaborLaw" }}</a></li>
+        </ul>
+    </div>
+</div>
+
+{{ .Content }}
+
+<style>
+    .time-input-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    .time-input-group > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .time-input-group input[type="time"],
+    .time-input-group input[type="date"] {
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        background: var(--card-bg);
+        color: var(--text-color);
+    }
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .checkbox-group input[type="checkbox"] {
+        width: 1.2rem;
+        height: 1.2rem;
+        accent-color: var(--primary-color);
+    }
+    .result-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .result-item {
+        background: var(--light-bg);
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .result-item .value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+    .result-item .label {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        margin-top: 0.25rem;
+    }
+    .result-item.warning .value {
+        color: #dc3545;
+    }
+    .result-item.success .value {
+        color: #28a745;
+    }
+    .warnings-list {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .warning-item {
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+    }
+    .warning-item.error {
+        background: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+    }
+    .warning-item.info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border-left: 4px solid #17a2b8;
+    }
+    .warning-item.success {
+        background: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+    }
+    [data-theme="dark"] .warning-item.error {
+        background: rgba(220, 53, 69, 0.15);
+        color: #f8d7da;
+    }
+    [data-theme="dark"] .warning-item.info {
+        background: rgba(23, 162, 184, 0.15);
+        color: #d1ecf1;
+    }
+    [data-theme="dark"] .warning-item.success {
+        background: rgba(40, 167, 69, 0.15);
+        color: #d4edda;
+    }
+    .mode-selector {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .mode-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        background: var(--card-bg);
+        color: var(--text-color);
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+    }
+    .mode-btn:hover {
+        border-color: var(--primary-color);
+    }
+    .mode-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+    .surcharge-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+    }
+    .surcharge-table th, .surcharge-table td {
+        padding: 0.5rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .surcharge-table th {
+        font-weight: 600;
+    }
+    @media (max-width: 480px) {
+        .time-input-group {
+            grid-template-columns: 1fr;
+        }
+    }
+    .info-step-card .step-icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .info-step-card .step-number {
+        background: var(--accent-color);
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+    [data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
+    input[type="date"], input[type="time"] {
+        color-scheme: light;
+    }
+    [data-theme="dark"] input[type="date"],
+    [data-theme="dark"] input[type="time"] {
+        color-scheme: dark;
+    }
+
+    .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+    .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; font-family: inherit; }
+    .share-btn.primary { background: var(--primary-color); color: white; }
+    .share-btn.copy { background: var(--secondary-color); color: white; }
+    .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+</style>
+
+<script>
+    // State
+    let state = {
+        mode: 'normal',      // normal, pregnant, nursing, youth
+        weekHours: 45        // 45 or 50
+    };
+
+    // Mode limits
+    const modeLimits = {
+        normal: { maxDaily: 12.5, maxDailyWarning: 9, restTime: 11 },
+        pregnant: { maxDaily: 9, maxDailyWarning: 9, restTime: 12 },
+        nursing: { maxDaily: 9, maxDailyWarning: 9, restTime: 11 },
+        youth: { maxDaily: 9, maxDailyWarning: 9, restTime: 12, noNight: true, noSunday: true }
+    };
+
+    // Localized strings
+    const i18n = {
+        netWorkTime: "{{ i18n "hours.netWorkTime" }}",
+        decimalHours: "{{ i18n "hours.decimalHours" }}",
+        breakTime: "{{ i18n "hours.breakTime" }}",
+        grossTime: "{{ i18n "hours.grossTime" }}",
+        nightWork: "{{ i18n "hours.nightWorkTime" }}",
+        nightSurcharge: "{{ i18n "hours.nightSurchargeTime" }}",
+        sundayWork: "{{ i18n "hours.sundayWorkTime" }}",
+        sundaySurcharge: "{{ i18n "hours.sundaySurchargeTime" }}",
+        dailyLimitExceeded: "{{ i18n "hours.dailyLimitExceeded" }}",
+        normal: "{{ i18n "hours.modeNormal" }}",
+        youth: "{{ i18n "hours.modeYouth" }}",
+        pregnantNursing: "{{ i18n "hours.pregnantNursing" }}",
+        workTimeOver9: "{{ i18n "hours.workTimeOver9" }}",
+        frameExceeded: "{{ i18n "hours.frameExceeded" }}",
+        restTimeTooShort: "{{ i18n "hours.restTimeTooShort" }}",
+        restTimeOk: "{{ i18n "hours.restTimeOk" }}",
+        nightWorkForbidden: "{{ i18n "hours.nightWorkForbidden" }}",
+        sundayWorkForbidden: "{{ i18n "hours.sundayWorkForbidden" }}",
+        breakTooShort: "{{ i18n "hours.breakTooShort" }}",
+        allOk: "{{ i18n "hours.allOk" }}",
+        endBeforeStart: "{{ i18n "hours.endBeforeStart" }}",
+        hours: "{{ i18n "hours.hours" }}",
+        minutes: "{{ i18n "hours.minutes" }}"
+    };
+
+    // Set today's date as default
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('startDate').value = today;
+        document.getElementById('endDate').value = today;
+    });
+
+    function setMode(mode) {
+        state.mode = mode;
+        document.querySelectorAll('.mode-btn[data-mode]').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.mode === mode);
+        });
+    }
+
+    function setWeekHours(hours) {
+        state.weekHours = hours;
+        document.querySelectorAll('.mode-btn[data-week]').forEach(btn => {
+            btn.classList.toggle('active', parseInt(btn.dataset.week) === hours);
+        });
+    }
+
+    function toggleBreakInput() {
+        const auto = document.getElementById('autoBreak').checked;
+        document.getElementById('manualBreakInput').style.display = auto ? 'none' : 'block';
+    }
+
+    function calculateLegalBreak(grossMinutes) {
+        // Swiss law: Art. 15 ArG
+        if (grossMinutes > 9 * 60) return 60;
+        if (grossMinutes > 7 * 60) return 30;
+        if (grossMinutes > 5.5 * 60) return 15;
+        return 0;
+    }
+
+    function calculateNightMinutes(start, end) {
+        // Night work: 22:00 - 06:00
+        let nightMinutes = 0;
+        const nightStart = 22 * 60; // 22:00 in minutes
+        const nightEnd = 6 * 60;    // 06:00 in minutes
+
+        // Normalize to minutes since midnight
+        let current = new Date(start);
+        const endTime = new Date(end);
+
+        while (current < endTime) {
+            const minuteOfDay = current.getHours() * 60 + current.getMinutes();
+
+            // Check if current minute is in night period (22:00-24:00 or 00:00-06:00)
+            if (minuteOfDay >= nightStart || minuteOfDay < nightEnd) {
+                nightMinutes++;
+            }
+
+            current = new Date(current.getTime() + 60000); // Add 1 minute
+        }
+
+        return nightMinutes;
+    }
+
+    function isSunday(date) {
+        return date.getDay() === 0;
+    }
+
+    function calculateSundayMinutes(start, end) {
+        let sundayMinutes = 0;
+        let current = new Date(start);
+        const endTime = new Date(end);
+
+        while (current < endTime) {
+            if (isSunday(current)) {
+                sundayMinutes++;
+            }
+            current = new Date(current.getTime() + 60000);
+        }
+
+        return sundayMinutes;
+    }
+
+    function formatDuration(minutes) {
+        const h = Math.floor(minutes / 60);
+        const m = Math.round(minutes % 60);
+        return `${h}:${m.toString().padStart(2, '0')}`;
+    }
+
+    function formatDecimal(minutes) {
+        return (minutes / 60).toFixed(2);
+    }
+
+    function calculate() {
+        const startDate = document.getElementById('startDate').value;
+        const startTime = document.getElementById('startTime').value;
+        const endDate = document.getElementById('endDate').value;
+        const endTime = document.getElementById('endTime').value;
+        const autoBreak = document.getElementById('autoBreak').checked;
+        const lastShiftEnd = document.getElementById('lastShiftEnd').value;
+
+        const start = new Date(`${startDate}T${startTime}`);
+        const end = new Date(`${endDate}T${endTime}`);
+
+        if (end <= start) {
+            alert(i18n.endBeforeStart);
+            return null;
+        }
+
+        // Gross working time in minutes
+        const grossMinutes = (end - start) / (1000 * 60);
+
+        // Break time
+        let breakMinutes;
+        if (autoBreak) {
+            breakMinutes = calculateLegalBreak(grossMinutes);
+        } else {
+            breakMinutes = parseInt(document.getElementById('breakMinutes').value) || 0;
+        }
+
+        // Net working time
+        const netMinutes = grossMinutes - breakMinutes;
+
+        // Night and Sunday work
+        const nightMinutes = calculateNightMinutes(start, end);
+        const sundayMinutes = calculateSundayMinutes(start, end);
+
+        // Rest time check
+        let restMinutes = null;
+        if (lastShiftEnd) {
+            const lastEnd = new Date(`${startDate}T${lastShiftEnd}`);
+            if (lastEnd > start) {
+                // Previous day
+                lastEnd.setDate(lastEnd.getDate() - 1);
+            }
+            restMinutes = (start - lastEnd) / (1000 * 60);
+        }
+
+        // Surcharges
+        const nightSurchargeMinutes = Math.round(nightMinutes * 0.10);
+        const sundaySurchargePercent = sundayMinutes > 0 ? 50 : 0;
+
+        return {
+            grossMinutes,
+            breakMinutes,
+            netMinutes,
+            nightMinutes,
+            sundayMinutes,
+            nightSurchargeMinutes,
+            sundaySurchargePercent,
+            restMinutes,
+            start,
+            end
+        };
+    }
+
+    function displayResult(result) {
+        const limits = modeLimits[state.mode];
+        const warnings = [];
+
+        // Build result grid
+        let gridHTML = `
+            <div class="result-item">
+                <div class="value">${formatDuration(result.netMinutes)}</div>
+                <div class="label">${i18n.netWorkTime}</div>
+            </div>
+            <div class="result-item">
+                <div class="value">${formatDecimal(result.netMinutes)}</div>
+                <div class="label">${i18n.decimalHours}</div>
+            </div>
+            <div class="result-item">
+                <div class="value">${formatDuration(result.breakMinutes)}</div>
+                <div class="label">${i18n.breakTime}</div>
+            </div>
+            <div class="result-item">
+                <div class="value">${formatDuration(result.grossMinutes)}</div>
+                <div class="label">${i18n.grossTime}</div>
+            </div>
+        `;
+
+        // Night work
+        if (result.nightMinutes > 0) {
+            gridHTML += `
+                <div class="result-item${limits.noNight ? ' warning' : ''}">
+                    <div class="value">${formatDuration(result.nightMinutes)}</div>
+                    <div class="label">${i18n.nightWork}</div>
+                </div>
+                <div class="result-item success">
+                    <div class="value">+${formatDuration(result.nightSurchargeMinutes)}</div>
+                    <div class="label">${i18n.nightSurcharge}</div>
+                </div>
+            `;
+        }
+
+        // Sunday work
+        if (result.sundayMinutes > 0) {
+            gridHTML += `
+                <div class="result-item${limits.noSunday ? ' warning' : ''}">
+                    <div class="value">${formatDuration(result.sundayMinutes)}</div>
+                    <div class="label">${i18n.sundayWork}</div>
+                </div>
+                <div class="result-item success">
+                    <div class="value">+50%</div>
+                    <div class="label">${i18n.sundaySurcharge}</div>
+                </div>
+            `;
+        }
+
+        document.getElementById('resultGrid').innerHTML = gridHTML;
+
+        // Warnings
+        const netHours = result.netMinutes / 60;
+        const grossHours = result.grossMinutes / 60;
+
+        // Daily limit exceeded
+        if (netHours > limits.maxDaily) {
+            const modeText = state.mode === 'normal' ? i18n.normal : state.mode === 'youth' ? i18n.youth : i18n.pregnantNursing;
+            warnings.push({
+                type: 'error',
+                icon: 'fas fa-exclamation-triangle',
+                text: i18n.dailyLimitExceeded.replace('{max}', limits.maxDaily).replace('{mode}', modeText)
+            });
+        } else if (netHours > limits.maxDailyWarning && state.mode === 'normal') {
+            warnings.push({
+                type: 'info',
+                icon: 'fas fa-info-circle',
+                text: i18n.workTimeOver9.replace('{max}', limits.maxDaily)
+            });
+        }
+
+        // 14h frame exceeded
+        if (grossHours > 14) {
+            warnings.push({
+                type: 'error',
+                icon: 'fas fa-exclamation-triangle',
+                text: i18n.frameExceeded
+            });
+        }
+
+        // Rest time check
+        if (result.restMinutes !== null) {
+            const restHours = result.restMinutes / 60;
+            if (restHours < limits.restTime) {
+                warnings.push({
+                    type: 'error',
+                    icon: 'fas fa-bed',
+                    text: i18n.restTimeTooShort.replace('{rest}', restHours.toFixed(1)).replace('{min}', limits.restTime)
+                });
+            } else {
+                warnings.push({
+                    type: 'success',
+                    icon: 'fas fa-check-circle',
+                    text: i18n.restTimeOk.replace('{rest}', restHours.toFixed(1)).replace('{min}', limits.restTime)
+                });
+            }
+        }
+
+        // Night/Sunday work for youth
+        if (limits.noNight && result.nightMinutes > 0) {
+            warnings.push({
+                type: 'error',
+                icon: 'fas fa-moon',
+                text: i18n.nightWorkForbidden
+            });
+        }
+        if (limits.noSunday && result.sundayMinutes > 0) {
+            warnings.push({
+                type: 'error',
+                icon: 'fas fa-calendar-times',
+                text: i18n.sundayWorkForbidden
+            });
+        }
+
+        // Break warning
+        const requiredBreak = calculateLegalBreak(result.grossMinutes);
+        if (result.breakMinutes < requiredBreak) {
+            warnings.push({
+                type: 'error',
+                icon: 'fas fa-coffee',
+                text: i18n.breakTooShort.replace('{gross}', formatDuration(result.grossMinutes)).replace('{min}', requiredBreak)
+            });
+        }
+
+        // All OK
+        if (warnings.length === 0) {
+            warnings.push({
+                type: 'success',
+                icon: 'fas fa-check-circle',
+                text: i18n.allOk
+            });
+        }
+
+        // Render warnings
+        let warningsHTML = '';
+        for (const w of warnings) {
+            warningsHTML += `
+                <div class="warning-item ${w.type}">
+                    <i class="${w.icon}"></i>
+                    <span>${w.text}</span>
+                </div>
+            `;
+        }
+        document.getElementById('warningsList').innerHTML = warningsHTML;
+
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('stundenForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const result = calculate();
+        if (result) {
+            displayResult(result);
+        }
+    });
+
+    // Share functions
+    function getShareText() {
+        const result = document.getElementById('resultGrid');
+        return '{{ .Title }}: ' + (result ? result.innerText.substring(0, 100) : '') + '...\n' + window.location.href;
+    }
+
+    function shareResult() {
+        const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+            navigator.share(shareData).catch(() => {});
+        } else {
+            window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+    }
+
+    function copyResult() {
+        navigator.clipboard.writeText(getShareText()).then(() => {
+            const btn = document.querySelector('.share-btn.copy');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> {{ i18n "hours.copied" }}';
+            setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+        });
+    }
+</script>
+{{ end }}

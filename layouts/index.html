@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="description" content="{{ .Params.description }}">
+    <meta name="keywords" content="{{ .Params.keywords }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+
+    {{- /* Hreflang alternates */ -}}
+    {{- if .Translations }}
+    <link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="{{ .Permalink }}">
+    {{- range .Translations }}
+    <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+    {{- end }}
+    {{- end }}
+
+    <meta property="og:title" content="{{ .Params.ogTitle | default .Title }}">
+    <meta property="og:description" content="{{ .Params.ogDescription | default .Params.description }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="{{ .Site.Language.LanguageCode }}">
+    <meta property="og:site_name" content="{{ .Site.Language.Params.domain }}">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Economica:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <style>
+        /* Homepage-specific styles */
+        .homepage-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+        .homepage-header {
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo img { height: 2.25rem; width: 2.25rem; }
+
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+
+        .hero { padding: 3rem 0 2rem; text-align: center; }
+        .hero h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .badges { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 0.875rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        .badge i { color: var(--primary-color); }
+
+        .tools-section { padding: 2rem 0; }
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-color);
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+        }
+        .category-title:first-of-type { margin-top: 0; }
+        .category-icon { font-size: 1.25rem; }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .tool-content { flex: 1; min-width: 0; }
+        .tool-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
+        }
+        .tool-desc { font-size: 0.875rem; color: var(--text-color); opacity: 0.7; line-height: 1.5; }
+
+        .tool-arrow {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--border-color);
+            transition: all 0.2s;
+        }
+        .tool-card:hover .tool-arrow { color: var(--primary-color); right: 0.75rem; }
+
+        .trust-section { padding: 2rem 0 3rem; }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+        .trust-item {
+            text-align: center;
+            padding: 1.25rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+        .trust-item i { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .trust-item h3 { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-color); }
+        .trust-item p { font-size: 0.75rem; color: var(--text-color); opacity: 0.7; }
+
+        @media (max-width: 640px) {
+            .hero { padding: 2rem 0 1.5rem; }
+            .hero h1 { font-size: 1.5rem; }
+            .tools-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+            .trust-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <header class="homepage-header">
+        <div class="homepage-container">
+            <div class="header-inner">
+                <a href="{{ .Site.Language.Params.homePath }}" class="logo">
+                    <img src="/favicon.svg" alt="{{ .Site.Language.Params.domain }} Logo">
+                    {{ .Site.Language.Params.domain }}
+                </a>
+                <div class="header-actions">
+                    <button type="button" class="dark-mode-toggle" aria-label="Dunkelmodus" onclick="DarkMode.toggle()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="language-switcher">
+                        {{ if eq .Site.Language.Lang "de" }}
+                        <span class="lang-btn active">DE</span>
+                        <a href="https://calcule.ch/" class="lang-btn">FR</a>
+                        {{ else }}
+                        <a href="https://wieviel.ch/" class="lang-btn">DE</a>
+                        <span class="lang-btn active">FR</span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="homepage-container">
+            {{ .Content }}
+        </div>
+    </main>
+
+    {{ partial "footer.html" . }}
+
+    {{ partial "darkmode.html" . }}
+</body>
+</html>

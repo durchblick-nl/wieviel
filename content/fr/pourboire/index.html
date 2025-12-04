@@ -1,0 +1,87 @@
+---
+title: "Calculateur de pourboire"
+subtitle: "Calculer et partager le pourboire"
+icon: "🧾"
+description: "Calcule le pourboire approprié et partage l'addition équitablement. Simple, rapide et pratique."
+keywords: "Calculateur pourboire, calculer pourboire, partager addition, Tip Calculator"
+ogTitle: "Calculateur de pourboire – Combien donner ?"
+ogDescription: "Calcule le pourboire approprié et partage l'addition équitablement."
+ogImage: "https://calcule.ch/og/pourboire.png"
+translationKey: "tip-calculator"
+type: "tip"
+---
+
+<div class="info-cards-container">
+    <div class="info-step-card" style="grid-column: 1 / -1;">
+        <div class="step-icon"><i class="fas fa-globe"></i></div>
+        <div class="step-content">
+            <h3>Pourboire international <small style="font-weight: normal; opacity: 0.7;">(cliquer pour appliquer)</small></h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem 2rem;">
+                <div>
+                    <h4 style="color: var(--primary-color); margin: 0.5rem 0; font-size: 0.95rem;">Europe</h4>
+                    <ul class="country-list" style="margin: 0;">
+                        <li onclick="setCountryTip(5, this)"><strong>Suisse :</strong> 0-10% (service incl.)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Allemagne :</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Autriche :</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Italie :</strong> 5-10% (coperto à noter)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>France :</strong> 5-10% (service incl.)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Espagne :</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Portugal :</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Grèce :</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Croatie :</strong> 10-15%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Turquie :</strong> 10-15%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Pays-Bas :</strong> 5-10% (service incl.)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>UK :</strong> 10-15%</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary-color); margin: 0.5rem 0; font-size: 0.95rem;">Voyages lointains</h4>
+                    <ul class="country-list" style="margin: 0;">
+                        <li onclick="setCountryTip(20, this)"><strong>USA :</strong> 15-25% (attendu !)</li>
+                        <li onclick="setCountryTip(15, this)"><strong>Canada :</strong> 15-20%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Mexique :</strong> 10-15%</li>
+                        <li onclick="setCountryTip(15, this)"><strong>Caraïbes :</strong> 15-20%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Thaïlande :</strong> 10% (facultatif)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Bali :</strong> 5-10%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Maldives :</strong> 10% (souvent incl.)</li>
+                        <li onclick="setCountryTip(10, this)"><strong>EAU/Dubaï :</strong> 10-15%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Égypte :</strong> 10-15%</li>
+                        <li onclick="setCountryTip(10, this)"><strong>Afrique du Sud :</strong> 10-15%</li>
+                        <li onclick="setCountryTip(5, this)"><strong>Australie :</strong> 0-10%</li>
+                        <li onclick="setCountryTip(0, this)"><strong>Japon :</strong> 0% (impoli !)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+        <div class="step-content">
+            <h3>Conseils</h3>
+            <p>En Suisse, le service est généralement inclus dans le prix. Le pourboire est une reconnaissance volontaire pour un bon service.</p>
+            <p>Habituel : arrondir ou 5-10% si satisfait.</p>
+        </div>
+    </div>
+</div>
+
+<section class="seo-content">
+    <h3>Questions fréquentes sur le pourboire</h3>
+    <div class="faq-section">
+        <details class="faq-item">
+            <summary>Combien de pourboire donne-t-on en Suisse ?</summary>
+            <p>En Suisse, le pourboire <strong>n'est pas obligatoire</strong> car le service est inclus dans le prix. Cependant, <strong>5-10%</strong> sont habituels pour un service satisfaisant. Pour de petits montants, on arrondit souvent au franc supérieur.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Le service est-il inclus dans le prix en Suisse ?</summary>
+            <p>Oui, depuis 1974, le <strong>service est légalement inclus dans le prix</strong>. Le pourboire est donc une reconnaissance volontaire pour un service particulièrement bon – pas une obligation comme aux USA.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Donne-t-on aussi un pourboire dans les taxis ?</summary>
+            <p>Dans les <strong>taxis</strong>, il est courant d'arrondir (par ex. de CHF 18.50 à CHF 20). Pour les trajets plus longs ou si le chauffeur aide avec les bagages, <strong>5-10%</strong> sont appropriés.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Comment partager équitablement une addition ?</summary>
+            <p>Le plus simple est de diviser le <strong>montant total avec pourboire</strong> par le nombre de personnes. Ainsi, chacun paie la même chose – pourboire compris. Ce calculateur le fait automatiquement.</p>
+        </details>
+    </div>
+</section>

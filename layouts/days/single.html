@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .mode-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .mode-tab { flex: 1; min-width: 120px; padding: 1rem; border: 2px solid var(--border-color); border-radius: 12px; background: var(--card-bg); cursor: pointer; text-align: center; transition: all 0.2s; color: var(--text-color); }
+        .mode-tab:hover { border-color: var(--primary-color); }
+        .mode-tab.active { border-color: var(--primary-color); background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; }
+        .mode-tab i { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; }
+        .mode-tab.active i { color: white; }
+        .mode-tab:not(.active) i { color: var(--primary-color); }
+        .mode-tab span { font-size: 0.85rem; font-weight: 600; }
+        .calc-section { display: none; }
+        .calc-section.active { display: block; }
+        .date-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .date-input { display: flex; flex-direction: column; gap: 0.5rem; }
+        .date-input label { font-weight: 600; color: var(--text-color); }
+        .date-input input { padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--input-bg); color: var(--text-color); }
+        .date-input input:focus { border-color: var(--primary-color); outline: none; }
+        .single-date { max-width: 300px; }
+        .number-input { display: flex; align-items: center; gap: 1rem; margin: 1rem 0; }
+        .number-input input { width: 120px; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1.25rem; text-align: center; background: var(--input-bg); color: var(--text-color); }
+        .number-input select { padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--input-bg); color: var(--text-color); }
+        .result-box { padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; }
+        .result-box .main-result { font-size: 3.5rem; font-weight: bold; font-family: 'Economica', sans-serif; line-height: 1; }
+        .result-box .main-result small { font-size: 1.5rem; }
+        .result-box .sub-result { font-size: 1.1rem; margin-top: 0.5rem; opacity: 0.9; }
+        .breakdown-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .breakdown-card { background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1rem; text-align: center; }
+        .breakdown-card .value { font-size: 2rem; font-weight: bold; color: var(--primary-color); font-family: 'Economica', sans-serif; }
+        .breakdown-card .label { font-size: 0.85rem; color: var(--text-color); margin-top: 0.25rem; }
+        .weekday-result { padding: 1.5rem; border-radius: 12px; text-align: center; margin: 1rem 0; }
+        .weekday-result.montag, .weekday-result.lundi { background: linear-gradient(135deg, #3498db, #2980b9); color: white; }
+        .weekday-result.dienstag, .weekday-result.mardi { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; }
+        .weekday-result.mittwoch, .weekday-result.mercredi { background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; }
+        .weekday-result.donnerstag, .weekday-result.jeudi { background: linear-gradient(135deg, #e67e22, #d35400); color: white; }
+        .weekday-result.freitag, .weekday-result.vendredi { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
+        .weekday-result.samstag, .weekday-result.samedi { background: linear-gradient(135deg, #1abc9c, #16a085); color: white; }
+        .weekday-result.sonntag, .weekday-result.dimanche { background: linear-gradient(135deg, #f39c12, #f1c40f); color: white; }
+        .weekday-result .day-name { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .weekday-result .date-formatted { font-size: 1.1rem; margin-top: 0.5rem; opacity: 0.9; }
+        .weekday-result .kw { font-size: 0.95rem; margin-top: 0.5rem; opacity: 0.8; }
+        .option-toggle { display: flex; align-items: center; gap: 0.75rem; margin: 1rem 0; }
+        .option-toggle input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; }
+        .option-toggle label { cursor: pointer; color: var(--text-color); }
+        .today-btn { background: var(--secondary-color); color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; margin-left: 0.5rem; }
+        .today-btn:hover { background: var(--primary-color); }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+        @media (max-width: 600px) {
+            .date-inputs { grid-template-columns: 1fr; }
+            .mode-tabs { gap: 0.25rem; }
+            .mode-tab { min-width: 70px; padding: 0.75rem 0.5rem; }
+            .mode-tab i { font-size: 1.2rem; }
+            .mode-tab span { font-size: 0.75rem; }
+            .result-box .main-result { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-calendar-alt"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "days.step1Title" }}</h3><p>{{ i18n "days.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-calendar-day"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "days.step2Title" }}</h3><p>{{ i18n "days.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-calculator"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "days.step3Title" }}</h3><p>{{ i18n "days.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="mode-tabs">
+                <button type="button" class="mode-tab active" data-mode="difference" onclick="setMode('difference')">
+                    <i class="fas fa-arrows-left-right"></i>
+                    <span>{{ i18n "days.countDays" }}</span>
+                </button>
+                <button type="button" class="mode-tab" data-mode="add" onclick="setMode('add')">
+                    <i class="fas fa-plus-minus"></i>
+                    <span>{{ i18n "days.dateAddSub" }}</span>
+                </button>
+                <button type="button" class="mode-tab" data-mode="weekday" onclick="setMode('weekday')">
+                    <i class="fas fa-calendar-week"></i>
+                    <span>{{ i18n "days.weekday" }}</span>
+                </button>
+                <button type="button" class="mode-tab" data-mode="workdays" onclick="setMode('workdays')">
+                    <i class="fas fa-briefcase"></i>
+                    <span>{{ i18n "days.workdays" }}</span>
+                </button>
+            </div>
+
+            <!-- Mode 1: Difference between dates -->
+            <div id="section-difference" class="calc-section active">
+                <h3><i class="fas fa-arrows-left-right"></i> {{ i18n "days.daysBetween" }}</h3>
+                <p style="color: var(--text-color); margin-bottom: 1rem;">{{ i18n "days.daysBetweenDesc" }}</p>
+
+                <div class="date-inputs">
+                    <div class="date-input">
+                        <label>{{ i18n "days.startDate" }}</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="date" id="diffStart" onchange="calculateDifference()">
+                            <button type="button" class="today-btn" onclick="setToday('diffStart')">{{ i18n "days.today" }}</button>
+                        </div>
+                    </div>
+                    <div class="date-input">
+                        <label>{{ i18n "days.endDate" }}</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="date" id="diffEnd" onchange="calculateDifference()">
+                            <button type="button" class="today-btn" onclick="setToday('diffEnd')">{{ i18n "days.today" }}</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="option-toggle">
+                    <input type="checkbox" id="includeEndDate" onchange="calculateDifference()">
+                    <label for="includeEndDate">{{ i18n "days.includeEndDate" }}</label>
+                </div>
+
+                <div id="diffResult" class="result-box" style="display: none;">
+                    <div class="main-result"><span id="diffDays">0</span> <small>{{ i18n "days.daysLabel" }}</small></div>
+                    <div class="sub-result" id="diffWeeks"></div>
+                </div>
+
+                <div id="diffBreakdown" class="breakdown-grid" style="display: none;">
+                    <div class="breakdown-card">
+                        <div class="value" id="diffYears">0</div>
+                        <div class="label">{{ i18n "days.years" }}</div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="value" id="diffMonths">0</div>
+                        <div class="label">{{ i18n "days.months" }}</div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="value" id="diffWeeksOnly">0</div>
+                        <div class="label">{{ i18n "days.weeks" }}</div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="value" id="diffDaysOnly">0</div>
+                        <div class="label">{{ i18n "days.daysLabel" }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mode 2: Add/Subtract days -->
+            <div id="section-add" class="calc-section">
+                <h3><i class="fas fa-plus-minus"></i> {{ i18n "days.addSubTitle" }}</h3>
+                <p style="color: var(--text-color); margin-bottom: 1rem;">{{ i18n "days.addSubDesc" }}</p>
+
+                <div class="date-input single-date">
+                    <label>{{ i18n "days.baseDate" }}</label>
+                    <div style="display: flex; align-items: center;">
+                        <input type="date" id="addStart" onchange="calculateAdd()">
+                        <button type="button" class="today-btn" onclick="setToday('addStart')">{{ i18n "days.today" }}</button>
+                    </div>
+                </div>
+
+                <div class="number-input">
+                    <select id="addOperation" onchange="calculateAdd()">
+                        <option value="add">+</option>
+                        <option value="subtract">−</option>
+                    </select>
+                    <input type="number" id="addDays" value="30" min="0" max="99999" onchange="calculateAdd()">
+                    <select id="addUnit" onchange="calculateAdd()">
+                        <option value="days">{{ i18n "days.daysLabel" }}</option>
+                        <option value="weeks">{{ i18n "days.weeks" }}</option>
+                        <option value="months">{{ i18n "days.months" }}</option>
+                        <option value="years">{{ i18n "days.years" }}</option>
+                    </select>
+                </div>
+
+                <div id="addResult" class="result-box" style="display: none;">
+                    <div class="main-result" id="addResultDate"></div>
+                    <div class="sub-result" id="addResultWeekday"></div>
+                </div>
+            </div>
+
+            <!-- Mode 3: Weekday -->
+            <div id="section-weekday" class="calc-section">
+                <h3><i class="fas fa-calendar-week"></i> {{ i18n "days.findWeekday" }}</h3>
+                <p style="color: var(--text-color); margin-bottom: 1rem;">{{ i18n "days.findWeekdayDesc" }}</p>
+
+                <div class="date-input single-date">
+                    <label>{{ i18n "days.date" }}</label>
+                    <div style="display: flex; align-items: center;">
+                        <input type="date" id="weekdayDate" onchange="calculateWeekday()">
+                        <button type="button" class="today-btn" onclick="setToday('weekdayDate')">{{ i18n "days.today" }}</button>
+                    </div>
+                </div>
+
+                <div id="weekdayResult" class="weekday-result" style="display: none;">
+                    <div class="day-name" id="weekdayName"></div>
+                    <div class="date-formatted" id="weekdayFormatted"></div>
+                    <div class="kw" id="weekdayKW"></div>
+                </div>
+            </div>
+
+            <!-- Mode 4: Working days -->
+            <div id="section-workdays" class="calc-section">
+                <h3><i class="fas fa-briefcase"></i> {{ i18n "days.calcWorkdays" }}</h3>
+                <p style="color: var(--text-color); margin-bottom: 1rem;">{{ i18n "days.calcWorkdaysDesc" }}</p>
+
+                <div class="date-inputs">
+                    <div class="date-input">
+                        <label>{{ i18n "days.startDate" }}</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="date" id="workStart" onchange="calculateWorkdays()">
+                            <button type="button" class="today-btn" onclick="setToday('workStart')">{{ i18n "days.today" }}</button>
+                        </div>
+                    </div>
+                    <div class="date-input">
+                        <label>{{ i18n "days.endDate" }}</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="date" id="workEnd" onchange="calculateWorkdays()">
+                            <button type="button" class="today-btn" onclick="setToday('workEnd')">{{ i18n "days.today" }}</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="option-toggle">
+                    <input type="checkbox" id="includeWorkEndDate" onchange="calculateWorkdays()">
+                    <label for="includeWorkEndDate">{{ i18n "days.includeEndDate" }}</label>
+                </div>
+
+                <div id="workResult" class="result-box" style="display: none;">
+                    <div class="main-result"><span id="workDays">0</span> <small>{{ i18n "days.workdaysLabel" }}</small></div>
+                    <div class="sub-result" id="workWeeks"></div>
+                </div>
+
+                <div id="workBreakdown" class="breakdown-grid" style="display: none;">
+                    <div class="breakdown-card">
+                        <div class="value" id="workTotal">0</div>
+                        <div class="label">{{ i18n "days.calendarDays" }}</div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="value" id="workWeekends">0</div>
+                        <div class="label">{{ i18n "days.weekendDays" }}</div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="value" id="workWorkdays">0</div>
+                        <div class="label">{{ i18n "days.workdaysLabel" }}</div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="value" id="workWeeksCount">0</div>
+                        <div class="label">{{ i18n "days.workWeeks" }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> {{ i18n "share" }}</button>
+                <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> {{ i18n "copy" }}</button>
+            </div>
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXTS = {
+            copied: '{{ i18n "copied" }}',
+            copy: '{{ i18n "copy" }}',
+            days: '{{ i18n "days.daysLabel" }}',
+            workdays: '{{ i18n "days.workdaysLabel" }}',
+            weeks: '{{ i18n "days.weeks" }}',
+            workWeeks: '{{ i18n "days.workWeeks" }}',
+            calendarWeek: '{{ i18n "days.calendarWeek" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/tage/' : 'https://calcule.ch/jours/'
+        };
+
+        const WEEKDAYS = LANG === 'de'
+            ? ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+            : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+        const MONTHS = LANG === 'de'
+            ? ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+            : ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+        let currentMode = 'difference';
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.mode === mode);
+            });
+            document.querySelectorAll('.calc-section').forEach(section => {
+                section.classList.toggle('active', section.id === 'section-' + mode);
+            });
+        }
+
+        function setToday(inputId) {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById(inputId).value = today;
+            if (inputId.startsWith('diff')) calculateDifference();
+            else if (inputId.startsWith('add')) calculateAdd();
+            else if (inputId.startsWith('weekday')) calculateWeekday();
+            else if (inputId.startsWith('work')) calculateWorkdays();
+        }
+
+        function formatDate(date) {
+            return LANG === 'de'
+                ? date.getDate() + '. ' + MONTHS[date.getMonth()] + ' ' + date.getFullYear()
+                : date.getDate() + ' ' + MONTHS[date.getMonth()] + ' ' + date.getFullYear();
+        }
+
+        function getISOWeek(date) {
+            const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+            const dayNum = d.getUTCDay() || 7;
+            d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+            const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+            return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        }
+
+        function calculateDifference() {
+            const startInput = document.getElementById('diffStart').value;
+            const endInput = document.getElementById('diffEnd').value;
+            const inclusive = document.getElementById('includeEndDate').checked;
+
+            if (!startInput || !endInput) {
+                document.getElementById('diffResult').style.display = 'none';
+                document.getElementById('diffBreakdown').style.display = 'none';
+                return;
+            }
+
+            const start = new Date(startInput);
+            const end = new Date(endInput);
+
+            let diffTime = Math.abs(end - start);
+            let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            if (inclusive) diffDays += 1;
+
+            const weeks = Math.floor(diffDays / 7);
+            const remainingDays = diffDays % 7;
+
+            let years = 0, months = 0, days = 0;
+            let tempDate = new Date(Math.min(start, end));
+            const endDate = new Date(Math.max(start, end));
+
+            while (tempDate.getFullYear() < endDate.getFullYear() ||
+                   (tempDate.getFullYear() === endDate.getFullYear() && tempDate.getMonth() < endDate.getMonth())) {
+                tempDate.setMonth(tempDate.getMonth() + 1);
+                months++;
+            }
+            years = Math.floor(months / 12);
+            months = months % 12;
+            days = Math.floor((endDate - tempDate) / (1000 * 60 * 60 * 24));
+            if (inclusive) days += 1;
+
+            document.getElementById('diffDays').textContent = diffDays.toLocaleString(LANG === 'de' ? 'de-CH' : 'fr-CH');
+            document.getElementById('diffWeeks').textContent = `= ${weeks} ${TEXTS.weeks} ${LANG === 'de' ? 'und' : 'et'} ${remainingDays} ${TEXTS.days}`;
+            document.getElementById('diffYears').textContent = years;
+            document.getElementById('diffMonths').textContent = months;
+            document.getElementById('diffWeeksOnly').textContent = weeks;
+            document.getElementById('diffDaysOnly').textContent = remainingDays;
+            document.getElementById('diffResult').style.display = 'block';
+            document.getElementById('diffBreakdown').style.display = 'grid';
+        }
+
+        function calculateAdd() {
+            const startInput = document.getElementById('addStart').value;
+            const operation = document.getElementById('addOperation').value;
+            const amount = parseInt(document.getElementById('addDays').value) || 0;
+            const unit = document.getElementById('addUnit').value;
+
+            if (!startInput) {
+                document.getElementById('addResult').style.display = 'none';
+                return;
+            }
+
+            const date = new Date(startInput);
+            const multiplier = operation === 'subtract' ? -1 : 1;
+
+            switch (unit) {
+                case 'days': date.setDate(date.getDate() + (amount * multiplier)); break;
+                case 'weeks': date.setDate(date.getDate() + (amount * 7 * multiplier)); break;
+                case 'months': date.setMonth(date.getMonth() + (amount * multiplier)); break;
+                case 'years': date.setFullYear(date.getFullYear() + (amount * multiplier)); break;
+            }
+
+            document.getElementById('addResultDate').textContent = formatDate(date);
+            document.getElementById('addResultWeekday').textContent = WEEKDAYS[date.getDay()] + ' (' + TEXTS.calendarWeek + ' ' + getISOWeek(date) + ')';
+            document.getElementById('addResult').style.display = 'block';
+        }
+
+        function calculateWeekday() {
+            const dateInput = document.getElementById('weekdayDate').value;
+
+            if (!dateInput) {
+                document.getElementById('weekdayResult').style.display = 'none';
+                return;
+            }
+
+            const date = new Date(dateInput);
+            const weekday = WEEKDAYS[date.getDay()];
+            const weekdayClass = weekday.toLowerCase();
+            const kw = getISOWeek(date);
+
+            const resultBox = document.getElementById('weekdayResult');
+            resultBox.className = 'weekday-result ' + weekdayClass;
+
+            document.getElementById('weekdayName').textContent = weekday;
+            document.getElementById('weekdayFormatted').textContent = formatDate(date);
+            document.getElementById('weekdayKW').textContent = TEXTS.calendarWeek + ' ' + kw + ' / ' + date.getFullYear();
+            resultBox.style.display = 'block';
+        }
+
+        function calculateWorkdays() {
+            const startInput = document.getElementById('workStart').value;
+            const endInput = document.getElementById('workEnd').value;
+            const inclusive = document.getElementById('includeWorkEndDate').checked;
+
+            if (!startInput || !endInput) {
+                document.getElementById('workResult').style.display = 'none';
+                document.getElementById('workBreakdown').style.display = 'none';
+                return;
+            }
+
+            const start = new Date(startInput);
+            const end = new Date(endInput);
+
+            let current = new Date(Math.min(start, end));
+            const endDate = new Date(Math.max(start, end));
+
+            let workdays = 0, weekends = 0, totalDays = 0;
+
+            while (current <= endDate) {
+                totalDays++;
+                const dayOfWeek = current.getDay();
+                if (dayOfWeek !== 0 && dayOfWeek !== 6) workdays++;
+                else weekends++;
+                current.setDate(current.getDate() + 1);
+            }
+
+            if (!inclusive && totalDays > 0) {
+                totalDays--;
+                const lastDay = new Date(endDate).getDay();
+                if (lastDay !== 0 && lastDay !== 6) workdays--;
+                else weekends--;
+            }
+
+            const workWeeksCount = (workdays / 5).toFixed(1);
+
+            document.getElementById('workDays').textContent = workdays.toLocaleString(LANG === 'de' ? 'de-CH' : 'fr-CH');
+            document.getElementById('workWeeks').textContent = `= ${workWeeksCount} ${TEXTS.workWeeks}`;
+            document.getElementById('workTotal').textContent = totalDays;
+            document.getElementById('workWeekends').textContent = weekends;
+            document.getElementById('workWorkdays').textContent = workdays;
+            document.getElementById('workWeeksCount').textContent = workWeeksCount;
+            document.getElementById('workResult').style.display = 'block';
+            document.getElementById('workBreakdown').style.display = 'grid';
+        }
+
+        function getShareText() {
+            let text = LANG === 'de' ? '📅 Tagerechner\n\n' : '📅 Calculateur de jours\n\n';
+
+            if (currentMode === 'difference') {
+                const days = document.getElementById('diffDays').textContent;
+                const weeks = document.getElementById('diffWeeks').textContent;
+                text += `📊 ${days} ${TEXTS.days}\n${weeks}\n`;
+            } else if (currentMode === 'add') {
+                const result = document.getElementById('addResultDate').textContent;
+                const weekday = document.getElementById('addResultWeekday').textContent;
+                text += `📆 ${result}\n${weekday}\n`;
+            } else if (currentMode === 'weekday') {
+                const day = document.getElementById('weekdayName').textContent;
+                const date = document.getElementById('weekdayFormatted').textContent;
+                text += `📆 ${date}\n= ${day}\n`;
+            } else if (currentMode === 'workdays') {
+                const days = document.getElementById('workDays').textContent;
+                text += `💼 ${days} ${TEXTS.workdays}\n`;
+            }
+
+            text += '\n' + TEXTS.shareUrl;
+            return text;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) navigator.share(shareData).catch(() => {});
+            else window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> ' + TEXTS.copied;
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> ' + TEXTS.copy, 2000);
+            });
+        }
+
+        // Initialize
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('diffStart').value = today;
+        document.getElementById('addStart').value = today;
+        document.getElementById('weekdayDate').value = today;
+        document.getElementById('workStart').value = today;
+
+        const future = new Date();
+        future.setDate(future.getDate() + 30);
+        document.getElementById('diffEnd').value = future.toISOString().split('T')[0];
+        document.getElementById('workEnd').value = future.toISOString().split('T')[0];
+
+        calculateDifference();
+        calculateAdd();
+        calculateWeekday();
+        calculateWorkdays();
+    </script>
+</body>
+</html>

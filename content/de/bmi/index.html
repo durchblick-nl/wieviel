@@ -1,0 +1,175 @@
+---
+title: "BMI-Rechner"
+subtitle: "Body Mass Index berechnen"
+icon: "📊"
+description: "Berechne deinen BMI (Body Mass Index) und erfahre, ob dein Gewicht im gesunden Bereich liegt. Einfach, schnell und anonym."
+keywords: "BMI Rechner, Body Mass Index, BMI berechnen, Idealgewicht, Übergewicht"
+ogTitle: "BMI-Rechner – Body Mass Index berechnen"
+ogDescription: "Berechne deinen BMI und erfahre, ob dein Gewicht im gesunden Bereich liegt."
+ogImage: "https://wieviel.ch/og/bmi.png"
+translationKey: "bmi-calculator"
+type: "bmi"
+---
+
+<div class="info-section">
+    <h2><i class="fas fa-table"></i> WHO-Klassifikation</h2>
+    <p>Die Weltgesundheitsorganisation (WHO) teilt den BMI seit 1995 in folgende Kategorien ein:</p>
+    <div class="bmi-table-container">
+        <table class="bmi-classification-table">
+            <thead>
+                <tr>
+                    <th>Kategorie</th>
+                    <th>BMI (kg/m²)</th>
+                    <th>Gesundheits­risiko</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="cat-underweight-severe">
+                    <td>Starkes Untergewicht</td>
+                    <td>&lt; 16.0</td>
+                    <td>Hoch</td>
+                </tr>
+                <tr class="cat-underweight-moderate">
+                    <td>Mässiges Untergewicht</td>
+                    <td>16.0 – 16.9</td>
+                    <td>Mässig erhöht</td>
+                </tr>
+                <tr class="cat-underweight-mild">
+                    <td>Leichtes Untergewicht</td>
+                    <td>17.0 – 18.4</td>
+                    <td>Leicht erhöht</td>
+                </tr>
+                <tr class="cat-normal">
+                    <td><strong>Normalgewicht</strong></td>
+                    <td><strong>18.5 – 24.9</strong></td>
+                    <td><strong>Niedrig</strong></td>
+                </tr>
+                <tr class="cat-overweight">
+                    <td>Präadipositas (Übergewicht)</td>
+                    <td>25.0 – 29.9</td>
+                    <td>Leicht erhöht</td>
+                </tr>
+                <tr class="cat-obese1">
+                    <td>Adipositas Grad I</td>
+                    <td>30.0 – 34.9</td>
+                    <td>Erhöht</td>
+                </tr>
+                <tr class="cat-obese2">
+                    <td>Adipositas Grad II</td>
+                    <td>35.0 – 39.9</td>
+                    <td>Hoch</td>
+                </tr>
+                <tr class="cat-obese3">
+                    <td>Adipositas Grad III</td>
+                    <td>≥ 40.0</td>
+                    <td>Sehr hoch</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="info-cards-container">
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-history"></i></div>
+        <div class="step-content">
+            <h3>Geschichte des BMI</h3>
+            <p>Der BMI wurde <strong>1832</strong> vom belgischen Mathematiker und Statistiker <strong>Adolphe Quetelet</strong> entwickelt – ursprünglich als «Quetelet-Index» für Bevölkerungsstudien, nicht für medizinische Einzelbewertungen.</p>
+            <p>Erst <strong>1972</strong> machte der Physiologe <strong>Ancel Keys</strong> den Index unter dem Namen «Body Mass Index» bekannt und empfahl ihn für epidemiologische Studien.</p>
+        </div>
+    </div>
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-calculator"></i></div>
+        <div class="step-content">
+            <h3>Berechnung</h3>
+            <p>Der BMI ist der Quotient aus Körpergewicht und Körpergrösse zum Quadrat:</p>
+            <p class="formula-box"><strong>BMI = Gewicht (kg) ÷ Grösse² (m)</strong></p>
+            <p><em>Beispiel:</em> 75 kg bei 1.75 m → 75 ÷ 1.75² = 75 ÷ 3.0625 = <strong>24.5</strong></p>
+        </div>
+    </div>
+</div>
+
+<div class="info-cards-container">
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div class="step-content">
+            <h3>Einschränkungen & Kritik</h3>
+            <p>Der BMI ist als <strong>alleinige Masszahl wenig aussagekräftig</strong>, da er wichtige Faktoren nicht berücksichtigt:</p>
+            <ul>
+                <li><strong>Körper­zusammen­setzung:</strong> Unterscheidet nicht zwischen Muskel- und Fettmasse (Sportler können «übergewichtig» erscheinen)</li>
+                <li><strong>Fettverteilung:</strong> Bauchfett (Apfeltyp) ist gefährlicher als Hüftfett (Birnentyp)</li>
+                <li><strong>Alter & Geschlecht:</strong> Werden nicht einbezogen</li>
+                <li><strong>Körperbau:</strong> Sehr grosse oder kleine Menschen werden verzerrt dargestellt</li>
+            </ul>
+            <p><em>Quetelet selbst entwickelte den Index für Bevölkerungsstudien – nicht für individuelle Diagnosen.</em></p>
+        </div>
+    </div>
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-ruler-horizontal"></i></div>
+        <div class="step-content">
+            <h3>Bessere Alternative: Taillenumfang</h3>
+            <p>Der <strong>Taillenumfang</strong> ist ein besserer Indikator für gesundheitliche Risiken, da er das gefährliche Bauchfett misst:</p>
+            <table class="waist-table">
+                <tr>
+                    <th></th>
+                    <th>Erhöhtes Risiko</th>
+                    <th>Stark erhöht</th>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-female"></i> Frauen</td>
+                    <td>≥ 80 cm</td>
+                    <td>≥ 88 cm</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-male"></i> Männer</td>
+                    <td>≥ 94 cm</td>
+                    <td>≥ 102 cm</td>
+                </tr>
+            </table>
+            <p><em>Miss auf Höhe des Bauchnabels, entspannt ausatmen.</em></p>
+        </div>
+    </div>
+</div>
+
+<div class="info-cards-container">
+    <div class="info-step-card full-width">
+        <div class="step-icon"><i class="fas fa-child"></i></div>
+        <div class="step-content">
+            <h3>BMI bei Kindern und Jugendlichen</h3>
+            <p>Die obigen Grenzwerte gelten <strong>nur für Erwachsene ab 18 Jahren</strong>. Bei Kindern und Jugendlichen müssen alters- und geschlechtsspezifische Veränderungen berücksichtigt werden.</p>
+            <p>Für Kinder werden <strong>BMI-Perzentilenkurven</strong> verwendet. Dabei gilt:</p>
+            <ul>
+                <li><strong>Übergewicht:</strong> BMI über der 90. Perzentile</li>
+                <li><strong>Adipositas:</strong> BMI über der 97. Perzentile</li>
+                <li><strong>Extreme Adipositas:</strong> BMI über der 99.5. Perzentile</li>
+            </ul>
+            <p><em>Konsultiere bei Kindern einen Kinderarzt für eine korrekte Einschätzung.</em></p>
+        </div>
+    </div>
+</div>
+
+<section class="seo-content">
+    <h3>Häufige Fragen zum BMI</h3>
+    <div class="faq-section">
+        <details class="faq-item">
+            <summary>Was ist ein gesunder BMI?</summary>
+            <p>Nach der WHO gilt ein BMI zwischen <strong>18.5 und 24.9</strong> als Normalgewicht. Dieser Bereich ist statistisch mit dem geringsten Gesundheitsrisiko verbunden. Allerdings berücksichtigt der BMI keine individuellen Faktoren wie Muskelmasse, Alter oder Körperbau.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Warum ist der BMI umstritten?</summary>
+            <p>Der BMI unterscheidet nicht zwischen <strong>Muskelmasse und Fettmasse</strong>. Ein Bodybuilder kann denselben BMI haben wie jemand mit viel Bauchfett. Ausserdem berücksichtigt er nicht die Fettverteilung – Bauchfett ist gefährlicher als Hüftfett.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Gibt es bessere Alternativen zum BMI?</summary>
+            <p>Der <strong>Taillenumfang</strong> ist ein besserer Indikator für gesundheitliche Risiken. Erhöhtes Risiko: Frauen ab 80cm, Männer ab 94cm. Stark erhöht: Frauen ab 88cm, Männer ab 102cm. Auch das <strong>Taille-Hüft-Verhältnis</strong> ist aussagekräftiger.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Wie berechnet man den BMI bei Kindern?</summary>
+            <p>Bei Kindern wird der BMI mit <strong>alters- und geschlechts­spezifischen Perzentilen</strong> verglichen. Ein Kind ist übergewichtig, wenn sein BMI über der 90. Perzentile liegt, adipös ab der 97. Perzentile. Normale BMI-Grenzwerte gelten erst ab etwa 18 Jahren.</p>
+        </details>
+    </div>
+</section>
+
+<div class="info-section disclaimer-section">
+    <p><i class="fas fa-info-circle"></i> <strong>Hinweis:</strong> Gesund sein bedeutet mehr als einen «normalen» BMI-Wert zu haben. Der BMI ist ein Richtwert und ersetzt keine ärztliche Beratung. Bei Fragen zu deinem Gewicht wende dich an deinen Arzt.</p>
+</div>

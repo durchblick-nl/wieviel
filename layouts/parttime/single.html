@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .result-box.warning { background: linear-gradient(135deg, #cc5c53, #e07a6e); }
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; }
+        .breakdown-row .value.negative { color: var(--accent-color); }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+        .comparison-box { background: var(--card-bg); border-radius: 12px; padding: 1.25rem; text-align: center; border: 2px solid var(--border-color); }
+        .comparison-box.highlight { border-color: var(--primary-color); background: rgba(63, 96, 111, 0.05); }
+        .comparison-box .box-label { font-size: 0.85rem; color: var(--text-color); opacity: 0.8; margin-bottom: 0.5rem; }
+        .comparison-box .box-value { font-size: 1.5rem; font-weight: bold; font-family: 'Economica', sans-serif; color: var(--primary-color); }
+        .comparison-box .box-sub { font-size: 0.8rem; color: var(--text-color); opacity: 0.7; margin-top: 0.25rem; }
+        @media (max-width: 500px) { .comparison-grid { grid-template-columns: 1fr; } }
+        .slider-container { margin: 1.5rem 0; }
+        .slider-label { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: 600; }
+        .slider-value { color: var(--primary-color); font-family: 'Economica', sans-serif; font-size: 1.2rem; }
+        input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: var(--border-color); outline: none; -webkit-appearance: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--primary-color); cursor: pointer; border: none; }
+        .info-box { background: rgba(63, 96, 111, 0.1); border-left: 4px solid var(--primary-color); padding: 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.9rem; }
+        .info-box.warning { background: rgba(204, 92, 83, 0.1); border-left-color: var(--accent-color); }
+        .info-box strong { color: var(--primary-color); }
+        .info-box.warning strong { color: var(--accent-color); }
+        .visual-bar { margin: 1.5rem 0; }
+        .bar-label { font-size: 0.85rem; margin-bottom: 0.5rem; color: var(--text-color); }
+        .bar-container { height: 32px; background: var(--border-color); border-radius: 8px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; border-radius: 8px; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.75rem; color: white; font-weight: bold; font-size: 0.85rem; }
+        .bar-fill.full { background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); }
+        .bar-fill.reduced { background: linear-gradient(90deg, var(--accent-color), #e07a6e); }
+        .equivalent-box { background: var(--card-bg); border: 2px dashed var(--border-color); border-radius: 12px; padding: 1.25rem; text-align: center; margin: 1.5rem 0; }
+        .equivalent-box .eq-label { font-size: 0.9rem; color: var(--text-color); opacity: 0.8; }
+        .equivalent-box .eq-value { font-size: 1.8rem; font-weight: bold; color: var(--accent-color); font-family: 'Economica', sans-serif; margin: 0.5rem 0; }
+        .equivalent-box .eq-sub { font-size: 0.85rem; color: var(--text-color); }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-wallet"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "parttime.step1Title" }}</h3><p>{{ i18n "parttime.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-chart-line"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "parttime.step2Title" }}</h3><p>{{ i18n "parttime.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-piggy-bank"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "parttime.step3Title" }}</h3><p>{{ i18n "parttime.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label for="salary">{{ i18n "parttime.salary100" }}</label>
+                <div style="position: relative;">
+                    <input type="number" id="salary" value="85000" min="0" step="1000" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF/{{ i18n "parttime.year" }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="age">{{ i18n "parttime.age" }}</label>
+                <select id="age" onchange="calculate()">
+                    <option value="25">25-34 {{ i18n "parttime.years" }}</option>
+                    <option value="35">35-44 {{ i18n "parttime.years" }}</option>
+                    <option value="45" selected>45-54 {{ i18n "parttime.years" }}</option>
+                    <option value="55">55-65 {{ i18n "parttime.years" }}</option>
+                </select>
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>{{ i18n "parttime.currentPensum" }}</span>
+                    <span class="slider-value" id="currentPensumDisplay">100%</span>
+                </div>
+                <input type="range" id="currentPensum" min="20" max="100" step="10" value="100" oninput="calculate()">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>{{ i18n "parttime.newPensum" }}</span>
+                    <span class="slider-value" id="newPensumDisplay">60%</span>
+                </div>
+                <input type="range" id="newPensum" min="20" max="100" step="10" value="60" oninput="calculate()">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>{{ i18n "parttime.duration" }}</span>
+                    <span class="slider-value" id="durationDisplay">10 {{ i18n "parttime.years" }}</span>
+                </div>
+                <input type="range" id="duration" min="1" max="30" step="1" value="10" oninput="calculate()">
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box warning">
+                <div class="label">{{ i18n "parttime.totalLifetimeLoss" }}</div>
+                <div class="total" id="totalLoss">CHF 0</div>
+                <div class="sub" id="equivalentMonths">= 0 {{ i18n "parttime.monthsSalary" }}</div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-box highlight">
+                    <div class="box-label">{{ i18n "parttime.currentIncome" }}</div>
+                    <div class="box-value" id="currentIncome">CHF 85'000</div>
+                    <div class="box-sub">{{ i18n "parttime.at" }} <span id="currentPensumText">100%</span></div>
+                </div>
+                <div class="comparison-box">
+                    <div class="box-label">{{ i18n "parttime.newIncome" }}</div>
+                    <div class="box-value" id="newIncome">CHF 51'000</div>
+                    <div class="box-sub">{{ i18n "parttime.at" }} <span id="newPensumText">60%</span></div>
+                </div>
+            </div>
+
+            <div class="visual-bar">
+                <div class="bar-label">{{ i18n "parttime.bvgInsuredSalary" }}</div>
+                <div class="bar-container">
+                    <div class="bar-fill full" id="bvgBarFull" style="width: 100%;">100%</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 0.25rem; color: var(--text-color); opacity: 0.7;">
+                    <span>{{ i18n "parttime.current" }}: <strong id="bvgCurrentLabel">CHF 59'275</strong></span>
+                    <span>{{ i18n "parttime.new" }}: <strong id="bvgNewLabel">CHF 24'540</strong></span>
+                </div>
+                <div class="bar-container" style="margin-top: 0.5rem;">
+                    <div class="bar-fill reduced" id="bvgBarReduced" style="width: 41%;">41%</div>
+                </div>
+            </div>
+
+            <div class="info-box warning">
+                <strong>{{ i18n "parttime.problem" }}:</strong> {{ i18n "parttime.problemText" }}
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-list"></i> {{ i18n "parttime.breakdown" }}</h3>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "parttime.directIncomeLoss" }}</span>
+                    <span class="value negative" id="incomeLoss">- CHF 340'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "parttime.bvgCapitalLoss" }}</span>
+                    <span class="value negative" id="bvgLoss">- CHF 85'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "parttime.ahvPensionLoss" }}</span>
+                    <span class="value negative" id="ahvLoss">- CHF 24'000</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">{{ i18n "parttime.totalLoss" }}</span>
+                    <span class="value negative" id="totalLossBreakdown">- CHF 449'000</span>
+                </div>
+            </div>
+
+            <div class="equivalent-box">
+                <div class="eq-label">{{ i18n "parttime.equivalent" }}</div>
+                <div class="eq-value" id="equivalentValue">5.3 {{ i18n "parttime.years" }}</div>
+                <div class="eq-sub">{{ i18n "parttime.equivalentSub" }}</div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> {{ i18n "share" }}</button>
+                <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> {{ i18n "copy" }}</button>
+            </div>
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXTS = {
+            copied: '{{ i18n "copied" }}',
+            copy: '{{ i18n "copy" }}',
+            year: '{{ i18n "parttime.yearSingular" }}',
+            years: '{{ i18n "parttime.years" }}',
+            monthsSalary: '{{ i18n "parttime.monthsSalary" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/teilzeit/' : 'https://calcule.ch/temps-partiel/'
+        };
+
+        const COORDINATION_DEDUCTION = 26460;
+        const MAX_INSURED_SALARY = 90720;
+        const BVG_INTEREST_RATE = 0.0125;
+        const MAX_AHV_MONTHLY = 2520;
+        const RETIREMENT_YEARS = 20;
+
+        const BVG_RATES = { 25: 0.035, 35: 0.05, 45: 0.075, 55: 0.09 };
+
+        function calculate() {
+            const salary100 = parseFloat(document.getElementById('salary').value) || 0;
+            const currentPensum = parseInt(document.getElementById('currentPensum').value);
+            const newPensum = parseInt(document.getElementById('newPensum').value);
+            const duration = parseInt(document.getElementById('duration').value);
+            const ageGroup = parseInt(document.getElementById('age').value);
+
+            document.getElementById('currentPensumDisplay').textContent = currentPensum + '%';
+            document.getElementById('newPensumDisplay').textContent = newPensum + '%';
+            document.getElementById('durationDisplay').textContent = duration + ' ' + (duration === 1 ? TEXTS.year : TEXTS.years);
+            document.getElementById('currentPensumText').textContent = currentPensum + '%';
+            document.getElementById('newPensumText').textContent = newPensum + '%';
+
+            const currentSalary = salary100 * (currentPensum / 100);
+            const newSalary = salary100 * (newPensum / 100);
+
+            document.getElementById('currentIncome').textContent = formatCHF(currentSalary);
+            document.getElementById('newIncome').textContent = formatCHF(newSalary);
+
+            const yearlyIncomeLoss = currentSalary - newSalary;
+            const totalIncomeLoss = yearlyIncomeLoss * duration;
+
+            const currentBvgSalary = Math.max(0, Math.min(currentSalary - COORDINATION_DEDUCTION, MAX_INSURED_SALARY - COORDINATION_DEDUCTION));
+            const newBvgSalary = Math.max(0, Math.min(newSalary - COORDINATION_DEDUCTION, MAX_INSURED_SALARY - COORDINATION_DEDUCTION));
+
+            document.getElementById('bvgCurrentLabel').textContent = formatCHF(currentBvgSalary);
+            document.getElementById('bvgNewLabel').textContent = formatCHF(newBvgSalary);
+
+            const bvgPercentage = currentBvgSalary > 0 ? Math.round((newBvgSalary / currentBvgSalary) * 100) : 0;
+            document.getElementById('bvgBarReduced').style.width = bvgPercentage + '%';
+            document.getElementById('bvgBarReduced').textContent = bvgPercentage + '%';
+
+            const bvgRate = BVG_RATES[ageGroup] * 2;
+            const yearlyBvgLoss = (currentBvgSalary * bvgRate) - (newBvgSalary * bvgRate);
+
+            const currentAge = ageGroup + 5;
+            const yearsToRetirement = Math.max(0, 65 - currentAge);
+
+            let totalBvgLoss = 0;
+            for (let i = 0; i < duration && i < yearsToRetirement; i++) {
+                const yearsToCompound = yearsToRetirement - i;
+                totalBvgLoss += yearlyBvgLoss * Math.pow(1 + BVG_INTEREST_RATE, yearsToCompound);
+            }
+
+            const avgIncomeReduction = (yearlyIncomeLoss * duration) / (44 * salary100);
+            const estimatedAhvMonthlyLoss = MAX_AHV_MONTHLY * avgIncomeReduction * 0.5;
+            const totalAhvLoss = Math.max(0, estimatedAhvMonthlyLoss * 12 * RETIREMENT_YEARS);
+
+            const totalLoss = totalIncomeLoss + totalBvgLoss + totalAhvLoss;
+
+            document.getElementById('totalLoss').textContent = formatCHF(totalLoss);
+            document.getElementById('incomeLoss').textContent = '- ' + formatCHF(totalIncomeLoss);
+            document.getElementById('bvgLoss').textContent = '- ' + formatCHF(totalBvgLoss);
+            document.getElementById('ahvLoss').textContent = '- ' + formatCHF(totalAhvLoss);
+            document.getElementById('totalLossBreakdown').textContent = '- ' + formatCHF(totalLoss);
+
+            const monthsEquivalent = Math.round(totalLoss / (currentSalary / 12));
+            document.getElementById('equivalentMonths').textContent = '= ' + monthsEquivalent + ' ' + TEXTS.monthsSalary;
+
+            const yearsEquivalent = (totalLoss / salary100).toFixed(1);
+            document.getElementById('equivalentValue').textContent = yearsEquivalent + ' ' + TEXTS.years;
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + Math.round(amount).toLocaleString('de-CH');
+        }
+
+        function getShareText() {
+            const totalLoss = document.getElementById('totalLoss').textContent;
+            const currentPensum = document.getElementById('currentPensum').value;
+            const newPensum = document.getElementById('newPensum').value;
+            const duration = document.getElementById('duration').value;
+            return LANG === 'de'
+                ? `Teilzeit-Rechner: Eine Reduktion von ${currentPensum}% auf ${newPensum}% für ${duration} Jahre kostet mich ${totalLoss} über mein Leben!\n\n${TEXTS.shareUrl}`
+                : `Calculateur temps partiel: Une réduction de ${currentPensum}% à ${newPensum}% pendant ${duration} ans me coûte ${totalLoss} sur ma vie!\n\n${TEXTS.shareUrl}`;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) navigator.share(shareData).catch(() => {});
+            else window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> ' + TEXTS.copied;
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> ' + TEXTS.copy, 2000);
+            });
+        }
+
+        calculate();
+    </script>
+</body>
+</html>

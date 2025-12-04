@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .bmi-result { text-align: center; padding: 2rem; margin: 1.5rem 0; border-radius: 16px; }
+        .bmi-result .value { font-size: 4rem; font-weight: bold; font-family: 'Economica', sans-serif; line-height: 1; }
+        .bmi-result .category { font-size: 1.5rem; font-weight: 600; margin-top: 0.5rem; }
+        .bmi-result.underweight { background: linear-gradient(135deg, #3498db, #5dade2); color: white; }
+        .bmi-result.normal { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; }
+        .bmi-result.overweight { background: linear-gradient(135deg, #f39c12, #f1c40f); color: white; }
+        .bmi-result.obese { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
+        .bmi-scale-container { margin: 1.5rem 0; }
+        .bmi-bar { height: 24px; border-radius: 12px; background: linear-gradient(to right, #3498db 0%, #3498db 18.5%, #2ecc71 18.5%, #2ecc71 25%, #f1c40f 25%, #f1c40f 30%, #e67e22 30%, #e67e22 35%, #e74c3c 35%, #e74c3c 100%); position: relative; margin-bottom: 0.5rem; }
+        .bmi-marker { position: absolute; top: -4px; width: 6px; height: 32px; background: var(--text-color); border-radius: 3px; transform: translateX(-50%); box-shadow: 0 2px 4px rgba(0,0,0,0.3); transition: left 0.3s ease; }
+        .bmi-labels { display: flex; font-size: 0.8rem; color: var(--text-color); }
+        .bmi-labels span { text-align: center; }
+        .bmi-labels span:nth-child(1) { width: 18.5%; }
+        .bmi-labels span:nth-child(2) { width: 6.5%; }
+        .bmi-labels span:nth-child(3) { width: 5%; }
+        .bmi-labels span:nth-child(4) { width: 5%; }
+        .bmi-labels span:nth-child(5) { width: 65%; }
+        .slider-group { margin: 1.5rem 0; }
+        .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .slider-header label { font-weight: 600; }
+        .slider-value { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); font-family: 'Economica', sans-serif; }
+        input[type="range"] { width: 100%; height: 8px; border-radius: 4px; background: var(--border-color); outline: none; -webkit-appearance: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--primary-color); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .slider-marks { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-color); opacity: 0.7; margin-top: 0.25rem; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .bmi-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+        .bmi-info-item { padding: 0.75rem; border-radius: 8px; text-align: center; font-size: 0.85rem; }
+        .bmi-info-item.underweight { background: rgba(52, 152, 219, 0.15); color: #2980b9; }
+        .bmi-info-item.normal { background: rgba(46, 204, 113, 0.15); color: #27ae60; }
+        .bmi-info-item.overweight { background: rgba(241, 196, 15, 0.15); color: #d68910; }
+        .bmi-info-item.obese { background: rgba(231, 76, 60, 0.15); color: #c0392b; }
+        .bmi-info-item .range { font-weight: 700; font-size: 1rem; }
+        .info-section { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border-color); }
+        .info-section h2 { margin: 0 0 1rem 0; font-size: 1.3rem; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem; }
+        .bmi-table-container { overflow-x: auto; margin-top: 1rem; }
+        .bmi-classification-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .bmi-classification-table th, .bmi-classification-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .bmi-classification-table th { background: var(--primary-color); color: white; font-weight: 600; }
+        .cat-normal { background: rgba(46, 204, 113, 0.1); }
+        .formula-box { background: var(--primary-color); color: white; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; font-size: 1.1rem; margin: 0.75rem 0; }
+        .waist-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
+        .waist-table th, .waist-table td { padding: 0.5rem; text-align: center; border: 1px solid var(--border-color); }
+        .waist-table th { background: rgba(63, 96, 111, 0.1); font-weight: 600; }
+        .info-cards-container { display: grid; gap: 1rem; margin-top: 1.5rem; }
+        @media (min-width: 768px) { .info-cards-container { grid-template-columns: repeat(2, 1fr); } }
+        .info-step-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+        .info-step-card .step-icon { font-size: 1.5rem; color: var(--primary-color); flex-shrink: 0; }
+        .info-step-card .step-content h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
+        .info-step-card.full-width { grid-column: 1 / -1; }
+        .disclaimer-section { background: rgba(52, 152, 219, 0.1); border-left: 4px solid #3498db; }
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+        .seo-content h3 { color: var(--primary-color); margin: 2rem 0 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-ruler-vertical"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "bmi.step1Title" }}</h3><p>{{ i18n "bmi.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-weight"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "bmi.step2Title" }}</h3><p>{{ i18n "bmi.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-chart-bar"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "bmi.step3Title" }}</h3><p>{{ i18n "bmi.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="slider-group">
+                <div class="slider-header">
+                    <label>{{ i18n "bmi.height" }}</label>
+                    <span class="slider-value" id="heightValue">170 cm</span>
+                </div>
+                <input type="range" id="height" min="120" max="220" value="170" oninput="updateHeight()">
+                <div class="slider-marks"><span>120 cm</span><span>170 cm</span><span>220 cm</span></div>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <label>{{ i18n "bmi.weight" }}</label>
+                    <span class="slider-value" id="weightValue">70 kg</span>
+                </div>
+                <input type="range" id="weight" min="30" max="200" value="70" oninput="updateWeight()">
+                <div class="slider-marks"><span>30 kg</span><span>115 kg</span><span>200 kg</span></div>
+            </div>
+
+            <div id="result" class="bmi-result normal">
+                <div class="value" id="bmiValue">24.2</div>
+                <div class="category" id="bmiCategory">{{ i18n "bmi.normalWeight" }}</div>
+            </div>
+
+            <div class="bmi-scale-container">
+                <div class="bmi-bar"><div class="bmi-marker" id="bmiMarker" style="left: 50%;"></div></div>
+                <div class="bmi-labels">
+                    <span>{{ i18n "bmi.underweight" }}</span>
+                    <span>{{ i18n "bmi.normal" }}</span>
+                    <span>{{ i18n "bmi.over" }}</span>
+                    <span>{{ i18n "bmi.obeseI" }}</span>
+                    <span>{{ i18n "bmi.obeseII" }}</span>
+                </div>
+            </div>
+
+            <div class="bmi-info-grid">
+                <div class="bmi-info-item underweight"><div class="range">&lt; 18.5</div><div>{{ i18n "bmi.underweight" }}</div></div>
+                <div class="bmi-info-item normal"><div class="range">18.5 - 24.9</div><div>{{ i18n "bmi.normalWeight" }}</div></div>
+                <div class="bmi-info-item overweight"><div class="range">25 - 29.9</div><div>{{ i18n "bmi.overweight" }}</div></div>
+                <div class="bmi-info-item obese"><div class="range">&ge; 30</div><div>{{ i18n "bmi.obesity" }}</div></div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> {{ i18n "share" }}</button>
+                <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> {{ i18n "copy" }}</button>
+            </div>
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXTS = {
+            underweight: '{{ i18n "bmi.underweight" }}',
+            normalWeight: '{{ i18n "bmi.normalWeight" }}',
+            overweight: '{{ i18n "bmi.overweight" }}',
+            obesity: '{{ i18n "bmi.obesity" }}',
+            copied: '{{ i18n "copied" }}',
+            copy: '{{ i18n "copy" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/bmi/' : 'https://calcule.ch/imc/'
+        };
+
+        function updateHeight() {
+            document.getElementById('heightValue').textContent = document.getElementById('height').value + ' cm';
+            calculate();
+        }
+
+        function updateWeight() {
+            document.getElementById('weightValue').textContent = document.getElementById('weight').value + ' kg';
+            calculate();
+        }
+
+        function calculate() {
+            const height = parseFloat(document.getElementById('height').value) / 100;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const bmi = weight / (height * height);
+
+            document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+
+            let category, className;
+            if (bmi < 18.5) { category = TEXTS.underweight; className = 'underweight'; }
+            else if (bmi < 25) { category = TEXTS.normalWeight; className = 'normal'; }
+            else if (bmi < 30) { category = TEXTS.overweight; className = 'overweight'; }
+            else { category = TEXTS.obesity; className = 'obese'; }
+
+            document.getElementById('bmiCategory').textContent = category;
+            document.getElementById('result').className = 'bmi-result ' + className;
+            document.getElementById('bmiMarker').style.left = Math.min(100, Math.max(0, bmi)) + '%';
+        }
+
+        function getShareText() {
+            const height = document.getElementById('height').value;
+            const weight = document.getElementById('weight').value;
+            const bmi = document.getElementById('bmiValue').textContent;
+            const category = document.getElementById('bmiCategory').textContent;
+            return LANG === 'de'
+                ? `📊 Mein BMI-Ergebnis\n\nGrösse: ${height} cm\nGewicht: ${weight} kg\nBMI: ${bmi}\nKategorie: ${category}\n\nBerechnet mit ${TEXTS.shareUrl}`
+                : `📊 Mon résultat IMC\n\nTaille: ${height} cm\nPoids: ${weight} kg\nIMC: ${bmi}\nCatégorie: ${category}\n\nCalculé avec ${TEXTS.shareUrl}`;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) navigator.share(shareData).catch(() => {});
+            else window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> ' + TEXTS.copied;
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> ' + TEXTS.copy, 2000);
+            });
+        }
+
+        calculate();
+    </script>
+</body>
+</html>

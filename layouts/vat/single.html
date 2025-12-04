@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .direction-toggle { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .direction-btn { flex: 1; padding: 0.875rem 1rem; border: 2px solid var(--primary-color); background: var(--card-bg); color: var(--primary-color); border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.2s; }
+        .direction-btn:hover { background: var(--light-bg); }
+        .direction-btn.active { background: var(--primary-color); color: white; }
+        .rate-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+        @media (max-width: 500px) { .rate-cards { grid-template-columns: 1fr; } }
+        .rate-card { border: 2px solid var(--border-color); border-radius: 12px; padding: 1rem; cursor: pointer; text-align: center; background: var(--card-bg); transition: all 0.2s; }
+        .rate-card:hover { border-color: var(--primary-color); }
+        .rate-card.active { border-color: var(--primary-color); background: var(--primary-color); color: white; }
+        .rate-card .rate-value { font-family: 'Economica', sans-serif; font-size: 2rem; font-weight: 700; }
+        .rate-card .rate-label { font-size: 0.85rem; margin-top: 0.25rem; opacity: 0.8; }
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .breakdown-row.total .value { color: var(--primary-color); }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-exchange-alt"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "vat.step1Title" }}</h3><p>{{ i18n "vat.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-percent"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "vat.step2Title" }}</h3><p>{{ i18n "vat.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-calculator"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "vat.step3Title" }}</h3><p>{{ i18n "vat.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="direction-toggle">
+                <button type="button" class="direction-btn active" data-direction="gross-to-net">
+                    <i class="fas fa-arrow-down"></i> {{ i18n "vat.grossToNet" }}
+                </button>
+                <button type="button" class="direction-btn" data-direction="net-to-gross">
+                    <i class="fas fa-arrow-up"></i> {{ i18n "vat.netToGross" }}
+                </button>
+            </div>
+
+            <div class="rate-cards">
+                <div class="rate-card active" data-rate="8.1">
+                    <div class="rate-value">8.1%</div>
+                    <div class="rate-label">{{ i18n "vat.normalRate" }}</div>
+                </div>
+                <div class="rate-card" data-rate="2.6">
+                    <div class="rate-value">2.6%</div>
+                    <div class="rate-label">{{ i18n "vat.reducedRate" }}</div>
+                </div>
+                <div class="rate-card" data-rate="3.8">
+                    <div class="rate-value">3.8%</div>
+                    <div class="rate-label">{{ i18n "vat.accommodationRate" }}</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount" id="amountLabel">{{ i18n "vat.grossAmount" }}</label>
+                <div style="position: relative;">
+                    <input type="number" id="amount" value="1000" min="0" step="0.01" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                </div>
+                <small class="form-hint" id="amountHint">{{ i18n "vat.grossHint" }}</small>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box">
+                <div class="label" id="resultLabel">{{ i18n "vat.netAmount" }}</div>
+                <div class="total" id="mainResult">CHF 925.07</div>
+                <div class="sub">{{ i18n "vat.at" }} <span id="rateDisplay">8.1%</span> {{ i18n "vat.vatLabel" }}</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-list"></i> {{ i18n "vat.breakdown" }}</h3>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "vat.net" }}</span>
+                    <span class="value" id="netAmount">CHF 925.07</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "vat.vatLabel" }} (<span id="rateDisplayBreakdown">8.1%</span>)</span>
+                    <span class="value" id="vatAmount">CHF 74.93</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">{{ i18n "vat.gross" }}</span>
+                    <span class="value" id="grossAmount">CHF 1'000.00</span>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> {{ i18n "share" }}</button>
+                <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> {{ i18n "copy" }}</button>
+            </div>
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXTS = {
+            copied: '{{ i18n "copied" }}',
+            copy: '{{ i18n "copy" }}',
+            grossAmount: '{{ i18n "vat.grossAmount" }}',
+            netAmount: '{{ i18n "vat.netAmount" }}',
+            grossHint: '{{ i18n "vat.grossHint" }}',
+            netHint: '{{ i18n "vat.netHint" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/mwst/' : 'https://calcule.ch/tva/'
+        };
+
+        let direction = 'gross-to-net';
+        let rate = 8.1;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.direction-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.direction-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    direction = this.dataset.direction;
+                    updateLabels();
+                    calculate();
+                });
+            });
+
+            document.querySelectorAll('.rate-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.rate-card').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    rate = parseFloat(this.dataset.rate);
+                    calculate();
+                });
+            });
+
+            calculate();
+        });
+
+        function updateLabels() {
+            document.getElementById('amountLabel').textContent = direction === 'gross-to-net' ? TEXTS.grossAmount : TEXTS.netAmount;
+            document.getElementById('amountHint').textContent = direction === 'gross-to-net' ? TEXTS.grossHint : TEXTS.netHint;
+            document.getElementById('resultLabel').textContent = direction === 'gross-to-net' ? TEXTS.netAmount : TEXTS.grossAmount;
+        }
+
+        function calculate() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            let netAmount, vatAmount, grossAmount;
+
+            if (direction === 'gross-to-net') {
+                grossAmount = amount;
+                netAmount = amount / (1 + rate / 100);
+                vatAmount = grossAmount - netAmount;
+                document.getElementById('mainResult').textContent = formatCHF(netAmount);
+            } else {
+                netAmount = amount;
+                vatAmount = amount * rate / 100;
+                grossAmount = netAmount + vatAmount;
+                document.getElementById('mainResult').textContent = formatCHF(grossAmount);
+            }
+
+            document.getElementById('netAmount').textContent = formatCHF(netAmount);
+            document.getElementById('vatAmount').textContent = formatCHF(vatAmount);
+            document.getElementById('grossAmount').textContent = formatCHF(grossAmount);
+            document.getElementById('rateDisplay').textContent = rate + '%';
+            document.getElementById('rateDisplayBreakdown').textContent = rate + '%';
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        }
+
+        function getShareText() {
+            const net = document.getElementById('netAmount').textContent;
+            const vat = document.getElementById('vatAmount').textContent;
+            const gross = document.getElementById('grossAmount').textContent;
+            const vatLabel = LANG === 'de' ? 'MWST' : 'TVA';
+            return `${vatLabel} (${rate}%):\nNetto: ${net}\n${vatLabel}: ${vat}\nBrutto: ${gross}\n\n${TEXTS.shareUrl}`;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) navigator.share(shareData).catch(() => {});
+            else window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> ' + TEXTS.copied;
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> ' + TEXTS.copy, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

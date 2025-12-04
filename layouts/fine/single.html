@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .zone-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+        .zone-btn { padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); background: var(--card-bg); cursor: pointer; text-align: center; transition: all 0.2s; color: var(--text-color); }
+        .zone-btn:hover { border-color: var(--primary-color); }
+        .zone-btn.active { border-color: var(--primary-color); background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; }
+        .zone-btn .speed { font-size: 1.5rem; font-weight: bold; font-family: 'Economica', sans-serif; color: var(--primary-color); }
+        .zone-btn.active .speed { color: white; }
+        .zone-btn .label { font-size: 0.85rem; opacity: 0.8; }
+        .speed-input { display: flex; align-items: center; gap: 1rem; justify-content: center; margin: 1.5rem 0; flex-wrap: wrap; }
+        .speed-input label { font-weight: 600; }
+        .speed-input input { width: 120px; font-size: 2rem; text-align: center; padding: 0.5rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: 'Economica', sans-serif; }
+        .speed-input input:focus { border-color: var(--primary-color); outline: none; }
+        .speed-input span { font-size: 1.25rem; color: var(--text-color); }
+        .result-box { padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box.green { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; }
+        .result-box.yellow { background: linear-gradient(135deg, #f39c12, #f1c40f); color: white; }
+        .result-box.orange { background: linear-gradient(135deg, #e67e22, #d35400); color: white; }
+        .result-box.red { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
+        .result-box.black { background: linear-gradient(135deg, #2c3e50, #1a252f); color: white; }
+        .result-box .fine { font-size: 4rem; font-weight: bold; font-family: 'Economica', sans-serif; line-height: 1; }
+        .result-box .fine small { font-size: 1.5rem; }
+        .result-box .status { font-size: 1.25rem; margin-top: 0.5rem; font-weight: 600; }
+        .result-box .detail { font-size: 0.95rem; margin-top: 0.5rem; opacity: 0.9; }
+        .calculation-details { background: var(--light-bg); border-radius: 12px; padding: 1.25rem; margin: 1rem 0; border: 1px solid var(--border-color); }
+        .calculation-details h4 { margin: 0 0 0.75rem 0; color: var(--primary-color); }
+        .calc-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); }
+        .calc-row:last-child { border-bottom: none; font-weight: bold; }
+        .calc-row .label { color: var(--text-color); }
+        .calc-row .value { font-weight: 600; color: var(--text-color); }
+        .consequence-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .consequence-card { background: var(--light-bg); border-radius: 12px; padding: 1rem; border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); }
+        .consequence-card.warning { border-left-color: #f39c12; }
+        .consequence-card.danger { border-left-color: #e74c3c; }
+        .consequence-card.severe { border-left-color: #2c3e50; }
+        .consequence-card h4 { margin: 0 0 0.5rem 0; color: var(--text-color); font-size: 0.9rem; }
+        .consequence-card .value { font-size: 1.25rem; font-weight: bold; color: var(--primary-color); }
+        .consequence-card.warning .value { color: #f39c12; }
+        .consequence-card.danger .value { color: #e74c3c; }
+        .consequence-card.severe .value { color: #2c3e50; }
+        .fine-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        .fine-table th, .fine-table td { padding: 0.5rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .fine-table th { background: var(--primary-color); color: white; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+        .disclaimer { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
+        [data-theme="dark"] .disclaimer { background: rgba(255, 193, 7, 0.15); border-color: rgba(255, 193, 7, 0.4); color: #ffc107; }
+        .partner-hint { background: linear-gradient(135deg, rgba(63, 96, 111, 0.08), rgba(90, 138, 157, 0.08)); border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .partner-content { display: flex; gap: 1rem; align-items: flex-start; }
+        .partner-content > i { font-size: 1.5rem; color: var(--primary-color); margin-top: 0.25rem; flex-shrink: 0; }
+        .partner-content strong { color: var(--text-color); font-size: 1rem; }
+        .partner-content p { margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-color); opacity: 0.85; line-height: 1.5; }
+        .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+        @media (max-width: 480px) { .speed-input input { width: 100px; font-size: 1.5rem; } .result-box .fine { font-size: 3rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-road"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "fine.step1Title" }}</h3><p>{{ i18n "fine.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-tachometer-alt"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "fine.step2Title" }}</h3><p>{{ i18n "fine.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-receipt"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "fine.step3Title" }}</h3><p>{{ i18n "fine.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <h3 style="margin-top: 0;"><i class="fas fa-road"></i> {{ i18n "fine.whereWereYou" }}</h3>
+
+            <div class="zone-selector">
+                <button type="button" class="zone-btn" data-zone="30" onclick="setZone(30)">
+                    <div class="speed">30</div>
+                    <div class="label">{{ i18n "fine.zone30" }}</div>
+                </button>
+                <button type="button" class="zone-btn active" data-zone="50" onclick="setZone(50)">
+                    <div class="speed">50</div>
+                    <div class="label">{{ i18n "fine.zone50" }}</div>
+                </button>
+                <button type="button" class="zone-btn" data-zone="80" onclick="setZone(80)">
+                    <div class="speed">80</div>
+                    <div class="label">{{ i18n "fine.zone80" }}</div>
+                </button>
+                <button type="button" class="zone-btn" data-zone="100" onclick="setZone(100)">
+                    <div class="speed">100</div>
+                    <div class="label">{{ i18n "fine.zone100" }}</div>
+                </button>
+                <button type="button" class="zone-btn" data-zone="120" onclick="setZone(120)">
+                    <div class="speed">120</div>
+                    <div class="label">{{ i18n "fine.zone120" }}</div>
+                </button>
+            </div>
+
+            <h3><i class="fas fa-tachometer-alt"></i> {{ i18n "fine.measuredSpeed" }}</h3>
+
+            <div class="speed-input">
+                <label>{{ i18n "fine.youWereCaughtAt" }}:</label>
+                <input type="number" id="measuredSpeed" value="65" min="0" max="300" oninput="calculate()">
+                <span>km/h</span>
+            </div>
+
+            <div class="calculation-details">
+                <h4><i class="fas fa-calculator"></i> {{ i18n "fine.calculation" }}</h4>
+                <div class="calc-row">
+                    <span class="label">{{ i18n "fine.measuredSpeedLabel" }}</span>
+                    <span class="value" id="calcMeasured">65 km/h</span>
+                </div>
+                <div class="calc-row">
+                    <span class="label">{{ i18n "fine.safetyMargin" }}</span>
+                    <span class="value" id="calcMargin">- 5 km/h</span>
+                </div>
+                <div class="calc-row">
+                    <span class="label">{{ i18n "fine.effectiveSpeed" }}</span>
+                    <span class="value" id="calcEffective">60 km/h</span>
+                </div>
+                <div class="calc-row">
+                    <span class="label">{{ i18n "fine.allowedSpeed" }}</span>
+                    <span class="value" id="calcAllowed">50 km/h</span>
+                </div>
+                <div class="calc-row" style="color: var(--secondary-color);">
+                    <span class="label">{{ i18n "fine.excess" }}</span>
+                    <span class="value" id="calcExcess">10 km/h</span>
+                </div>
+            </div>
+
+            <div id="resultBox" class="result-box yellow">
+                <div class="fine" id="fineAmount">CHF <span>120</span></div>
+                <div class="status" id="fineStatus">{{ i18n "fine.fixedFine" }}</div>
+                <div class="detail" id="fineDetail">{{ i18n "fine.payWithin30Days" }}</div>
+            </div>
+
+            <div class="consequence-grid" id="consequences">
+                <div class="consequence-card">
+                    <h4><i class="fas fa-file-invoice-dollar"></i> {{ i18n "fine.fineLabel" }}</h4>
+                    <div class="value" id="consqFine">CHF 120</div>
+                </div>
+                <div class="consequence-card">
+                    <h4><i class="fas fa-id-card"></i> {{ i18n "fine.license" }}</h4>
+                    <div class="value" id="consqLicense">{{ i18n "fine.noWithdrawal" }}</div>
+                </div>
+                <div class="consequence-card">
+                    <h4><i class="fas fa-gavel"></i> {{ i18n "fine.procedure" }}</h4>
+                    <div class="value" id="consqProcedure">{{ i18n "fine.fixedFine" }}</div>
+                </div>
+                <div class="consequence-card">
+                    <h4><i class="fas fa-file-alt"></i> {{ i18n "fine.record" }}</h4>
+                    <div class="value" id="consqRecord">{{ i18n "fine.noRecord" }}</div>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> {{ i18n "share" }}</button>
+                <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> {{ i18n "copy" }}</button>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>{{ i18n "fine.note" }}:</strong> {{ i18n "fine.disclaimer" }}
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXTS = {
+            copied: '{{ i18n "copied" }}',
+            copy: '{{ i18n "copy" }}',
+            noExcess: '{{ i18n "fine.noExcess" }}',
+            withinLimit: '{{ i18n "fine.withinLimit" }}',
+            fixedFine: '{{ i18n "fine.fixedFine" }}',
+            payWithin30Days: '{{ i18n "fine.payWithin30Days" }}',
+            reportWarning: '{{ i18n "fine.reportWarning" }}',
+            report1Month: '{{ i18n "fine.report1Month" }}',
+            report3Months: '{{ i18n "fine.report3Months" }}',
+            raserOffense: '{{ i18n "fine.raserOffense" }}',
+            raserPenalty: '{{ i18n "fine.raserPenalty" }}',
+            warning: '{{ i18n "fine.warning" }}',
+            month1: '{{ i18n "fine.month1" }}',
+            months3: '{{ i18n "fine.months3" }}',
+            years2: '{{ i18n "fine.years2" }}',
+            noWithdrawal: '{{ i18n "fine.noWithdrawal" }}',
+            noRecord: '{{ i18n "fine.noRecord" }}',
+            criminalRecord: '{{ i18n "fine.criminalRecord" }}',
+            criminalCourt: '{{ i18n "fine.criminalCourt" }}',
+            criminalProceedings: '{{ i18n "fine.criminalProceedings" }}',
+            prisonSentence: '{{ i18n "fine.prisonSentence" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/busse/' : 'https://calcule.ch/amende/'
+        };
+
+        let currentZone = 50;
+
+        const FINES = {
+            30: [
+                { max: 5, fine: 40, procedure: 'ordnungsbusse' },
+                { max: 10, fine: 120, procedure: 'ordnungsbusse' },
+                { max: 15, fine: 250, procedure: 'ordnungsbusse' },
+                { max: 19, fine: null, procedure: 'anzeige', license: 'verwarnung' },
+                { max: 24, fine: null, procedure: 'anzeige', license: '1monat' },
+                { max: 39, fine: null, procedure: 'anzeige', license: '3monate' },
+                { max: Infinity, fine: null, procedure: 'raser', license: '2jahre' }
+            ],
+            50: [
+                { max: 5, fine: 40, procedure: 'ordnungsbusse' },
+                { max: 10, fine: 120, procedure: 'ordnungsbusse' },
+                { max: 15, fine: 250, procedure: 'ordnungsbusse' },
+                { max: 20, fine: null, procedure: 'anzeige', license: 'verwarnung' },
+                { max: 24, fine: null, procedure: 'anzeige', license: '1monat' },
+                { max: 49, fine: null, procedure: 'anzeige', license: '3monate' },
+                { max: Infinity, fine: null, procedure: 'raser', license: '2jahre' }
+            ],
+            80: [
+                { max: 5, fine: 40, procedure: 'ordnungsbusse' },
+                { max: 10, fine: 100, procedure: 'ordnungsbusse' },
+                { max: 15, fine: 160, procedure: 'ordnungsbusse' },
+                { max: 20, fine: 240, procedure: 'ordnungsbusse' },
+                { max: 25, fine: null, procedure: 'anzeige', license: 'verwarnung' },
+                { max: 29, fine: null, procedure: 'anzeige', license: '1monat' },
+                { max: 59, fine: null, procedure: 'anzeige', license: '3monate' },
+                { max: Infinity, fine: null, procedure: 'raser', license: '2jahre' }
+            ],
+            100: [
+                { max: 5, fine: 40, procedure: 'ordnungsbusse' },
+                { max: 10, fine: 100, procedure: 'ordnungsbusse' },
+                { max: 15, fine: 160, procedure: 'ordnungsbusse' },
+                { max: 20, fine: 240, procedure: 'ordnungsbusse' },
+                { max: 25, fine: null, procedure: 'anzeige', license: 'verwarnung' },
+                { max: 29, fine: null, procedure: 'anzeige', license: '1monat' },
+                { max: 59, fine: null, procedure: 'anzeige', license: '3monate' },
+                { max: Infinity, fine: null, procedure: 'raser', license: '2jahre' }
+            ],
+            120: [
+                { max: 5, fine: 20, procedure: 'ordnungsbusse' },
+                { max: 10, fine: 60, procedure: 'ordnungsbusse' },
+                { max: 15, fine: 120, procedure: 'ordnungsbusse' },
+                { max: 20, fine: 180, procedure: 'ordnungsbusse' },
+                { max: 25, fine: 260, procedure: 'ordnungsbusse' },
+                { max: 30, fine: null, procedure: 'anzeige', license: 'verwarnung' },
+                { max: 34, fine: null, procedure: 'anzeige', license: '1monat' },
+                { max: 79, fine: null, procedure: 'anzeige', license: '3monate' },
+                { max: Infinity, fine: null, procedure: 'raser', license: '2jahre' }
+            ]
+        };
+
+        const RASER = { 30: 40, 50: 50, 80: 60, 100: 60, 120: 80 };
+
+        function getSafetyMargin(speed) {
+            if (speed <= 100) return 5;
+            if (speed <= 150) return 6;
+            return 7;
+        }
+
+        function setZone(zone) {
+            currentZone = zone;
+            document.querySelectorAll('.zone-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.zone) === zone);
+            });
+            calculate();
+        }
+
+        function calculate() {
+            const measured = parseInt(document.getElementById('measuredSpeed').value) || 0;
+            const margin = getSafetyMargin(measured);
+            const effective = Math.max(0, measured - margin);
+            const excess = Math.max(0, effective - currentZone);
+
+            document.getElementById('calcMeasured').textContent = measured + ' km/h';
+            document.getElementById('calcMargin').textContent = '- ' + margin + ' km/h';
+            document.getElementById('calcEffective').textContent = effective + ' km/h';
+            document.getElementById('calcAllowed').textContent = currentZone + ' km/h';
+            document.getElementById('calcExcess').textContent = excess + ' km/h';
+
+            const fineTable = FINES[currentZone] || FINES[50];
+            let result = fineTable[0];
+            for (const entry of fineTable) {
+                if (excess <= entry.max) { result = entry; break; }
+            }
+
+            const isRaser = excess >= RASER[currentZone];
+            if (isRaser) result = { fine: null, procedure: 'raser', license: '2jahre' };
+
+            const resultBox = document.getElementById('resultBox');
+            const fineAmount = document.getElementById('fineAmount');
+            const fineStatus = document.getElementById('fineStatus');
+            const fineDetail = document.getElementById('fineDetail');
+
+            if (excess === 0) {
+                resultBox.className = 'result-box green';
+                fineAmount.innerHTML = '<i class="fas fa-check-circle"></i>';
+                fineStatus.textContent = TEXTS.noExcess;
+                fineDetail.textContent = TEXTS.withinLimit;
+            } else if (result.procedure === 'ordnungsbusse') {
+                resultBox.className = 'result-box yellow';
+                fineAmount.innerHTML = 'CHF <span>' + result.fine + '</span>';
+                fineStatus.textContent = TEXTS.fixedFine;
+                fineDetail.textContent = TEXTS.payWithin30Days;
+            } else if (result.procedure === 'anzeige') {
+                if (result.license === 'verwarnung') {
+                    resultBox.className = 'result-box orange';
+                    fineAmount.innerHTML = 'CHF <span>400+</span>';
+                    fineStatus.textContent = TEXTS.reportWarning;
+                    fineDetail.textContent = '';
+                } else if (result.license === '1monat') {
+                    resultBox.className = 'result-box red';
+                    fineAmount.innerHTML = 'CHF <span>600+</span>';
+                    fineStatus.textContent = TEXTS.report1Month;
+                    fineDetail.textContent = '';
+                } else {
+                    resultBox.className = 'result-box red';
+                    fineAmount.innerHTML = 'CHF <span>800+</span>';
+                    fineStatus.textContent = TEXTS.report3Months;
+                    fineDetail.textContent = '';
+                }
+            } else if (result.procedure === 'raser') {
+                resultBox.className = 'result-box black';
+                fineAmount.innerHTML = '<i class="fas fa-skull"></i>';
+                fineStatus.textContent = TEXTS.raserOffense;
+                fineDetail.textContent = TEXTS.raserPenalty;
+            }
+
+            updateConsequences(result, excess);
+        }
+
+        function updateConsequences(result, excess) {
+            const consqFine = document.getElementById('consqFine');
+            const consqLicense = document.getElementById('consqLicense');
+            const consqProcedure = document.getElementById('consqProcedure');
+            const consqRecord = document.getElementById('consqRecord');
+
+            document.querySelectorAll('.consequence-card').forEach(card => card.className = 'consequence-card');
+
+            if (excess === 0) {
+                consqFine.textContent = 'CHF 0';
+                consqLicense.textContent = TEXTS.noWithdrawal;
+                consqProcedure.textContent = '-';
+                consqRecord.textContent = TEXTS.noRecord;
+            } else if (result.procedure === 'ordnungsbusse') {
+                consqFine.textContent = 'CHF ' + result.fine;
+                consqLicense.textContent = TEXTS.noWithdrawal;
+                consqProcedure.textContent = TEXTS.fixedFine;
+                consqRecord.textContent = TEXTS.noRecord;
+            } else if (result.procedure === 'anzeige') {
+                consqProcedure.textContent = TEXTS.criminalProceedings;
+                consqProcedure.parentElement.classList.add('warning');
+
+                if (result.license === 'verwarnung') {
+                    consqFine.textContent = 'CHF 400+';
+                    consqFine.parentElement.classList.add('warning');
+                    consqLicense.textContent = TEXTS.warning;
+                    consqRecord.textContent = TEXTS.noRecord;
+                } else if (result.license === '1monat') {
+                    consqFine.textContent = 'CHF 600+';
+                    consqFine.parentElement.classList.add('danger');
+                    consqLicense.textContent = TEXTS.month1;
+                    consqLicense.parentElement.classList.add('danger');
+                    consqRecord.textContent = TEXTS.criminalRecord;
+                    consqRecord.parentElement.classList.add('warning');
+                } else {
+                    consqFine.textContent = 'CHF 800+';
+                    consqFine.parentElement.classList.add('danger');
+                    consqLicense.textContent = TEXTS.months3;
+                    consqLicense.parentElement.classList.add('danger');
+                    consqRecord.textContent = TEXTS.criminalRecord;
+                    consqRecord.parentElement.classList.add('danger');
+                }
+            } else if (result.procedure === 'raser') {
+                consqFine.textContent = TEXTS.prisonSentence;
+                consqFine.parentElement.classList.add('severe');
+                consqLicense.textContent = TEXTS.years2;
+                consqLicense.parentElement.classList.add('severe');
+                consqProcedure.textContent = TEXTS.criminalCourt;
+                consqProcedure.parentElement.classList.add('severe');
+                consqRecord.textContent = TEXTS.criminalRecord;
+                consqRecord.parentElement.classList.add('severe');
+            }
+        }
+
+        function getShareText() {
+            const zone = currentZone;
+            const measured = document.getElementById('measuredSpeed').value;
+            const excess = document.getElementById('calcExcess').textContent;
+            const status = document.getElementById('fineStatus').textContent;
+            return LANG === 'de'
+                ? `🚗 Bussenrechner Schweiz\n\n📍 Zone: ${zone} km/h\n🚨 Gemessen: ${measured} km/h\n⚡ Überschreitung: ${excess}\n💰 ${status}\n\n${TEXTS.shareUrl}`
+                : `🚗 Calculateur d'amendes Suisse\n\n📍 Zone: ${zone} km/h\n🚨 Mesuré: ${measured} km/h\n⚡ Excès: ${excess}\n💰 ${status}\n\n${TEXTS.shareUrl}`;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) navigator.share(shareData).catch(() => {});
+            else window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> ' + TEXTS.copied;
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> ' + TEXTS.copy, 2000);
+            });
+        }
+
+        calculate();
+    </script>
+</body>
+</html>

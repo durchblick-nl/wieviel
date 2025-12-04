@@ -1,0 +1,175 @@
+---
+title: "Calculateur IMC"
+subtitle: "Calculer l'indice de masse corporelle"
+icon: "📊"
+description: "Calcule ton IMC (indice de masse corporelle) et découvre si ton poids est dans la plage saine. Simple, rapide et anonyme."
+keywords: "Calculateur IMC, indice de masse corporelle, calculer IMC, poids idéal, surpoids"
+ogTitle: "Calculateur IMC – Indice de masse corporelle"
+ogDescription: "Calcule ton IMC et découvre si ton poids est dans la plage saine."
+ogImage: "https://calcule.ch/og/imc.png"
+translationKey: "bmi-calculator"
+type: "bmi"
+---
+
+<div class="info-section">
+    <h2><i class="fas fa-table"></i> Classification OMS</h2>
+    <p>L'Organisation mondiale de la santé (OMS) classe l'IMC depuis 1995 dans les catégories suivantes :</p>
+    <div class="bmi-table-container">
+        <table class="bmi-classification-table">
+            <thead>
+                <tr>
+                    <th>Catégorie</th>
+                    <th>IMC (kg/m²)</th>
+                    <th>Risque pour la santé</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="cat-underweight-severe">
+                    <td>Insuffisance pondérale sévère</td>
+                    <td>&lt; 16.0</td>
+                    <td>Élevé</td>
+                </tr>
+                <tr class="cat-underweight-moderate">
+                    <td>Insuffisance pondérale modérée</td>
+                    <td>16.0 – 16.9</td>
+                    <td>Modérément élevé</td>
+                </tr>
+                <tr class="cat-underweight-mild">
+                    <td>Insuffisance pondérale légère</td>
+                    <td>17.0 – 18.4</td>
+                    <td>Légèrement élevé</td>
+                </tr>
+                <tr class="cat-normal">
+                    <td><strong>Poids normal</strong></td>
+                    <td><strong>18.5 – 24.9</strong></td>
+                    <td><strong>Faible</strong></td>
+                </tr>
+                <tr class="cat-overweight">
+                    <td>Surpoids (pré-obésité)</td>
+                    <td>25.0 – 29.9</td>
+                    <td>Légèrement élevé</td>
+                </tr>
+                <tr class="cat-obese1">
+                    <td>Obésité classe I</td>
+                    <td>30.0 – 34.9</td>
+                    <td>Élevé</td>
+                </tr>
+                <tr class="cat-obese2">
+                    <td>Obésité classe II</td>
+                    <td>35.0 – 39.9</td>
+                    <td>Très élevé</td>
+                </tr>
+                <tr class="cat-obese3">
+                    <td>Obésité classe III</td>
+                    <td>≥ 40.0</td>
+                    <td>Extrêmement élevé</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="info-cards-container">
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-history"></i></div>
+        <div class="step-content">
+            <h3>Histoire de l'IMC</h3>
+            <p>L'IMC a été développé en <strong>1832</strong> par le mathématicien et statisticien belge <strong>Adolphe Quetelet</strong> – à l'origine comme « indice de Quetelet » pour les études de population, pas pour les évaluations médicales individuelles.</p>
+            <p>Ce n'est qu'en <strong>1972</strong> que le physiologiste <strong>Ancel Keys</strong> a popularisé l'indice sous le nom « Body Mass Index » et l'a recommandé pour les études épidémiologiques.</p>
+        </div>
+    </div>
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-calculator"></i></div>
+        <div class="step-content">
+            <h3>Calcul</h3>
+            <p>L'IMC est le rapport entre le poids corporel et le carré de la taille :</p>
+            <p class="formula-box"><strong>IMC = Poids (kg) ÷ Taille² (m)</strong></p>
+            <p><em>Exemple :</em> 75 kg pour 1.75 m → 75 ÷ 1.75² = 75 ÷ 3.0625 = <strong>24.5</strong></p>
+        </div>
+    </div>
+</div>
+
+<div class="info-cards-container">
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div class="step-content">
+            <h3>Limites et critiques</h3>
+            <p>L'IMC comme <strong>seul indicateur a peu de valeur informative</strong> car il ne prend pas en compte des facteurs importants :</p>
+            <ul>
+                <li><strong>Composition corporelle :</strong> Ne distingue pas la masse musculaire de la masse grasse (les sportifs peuvent paraître « en surpoids »)</li>
+                <li><strong>Répartition des graisses :</strong> La graisse abdominale (type pomme) est plus dangereuse que la graisse des hanches (type poire)</li>
+                <li><strong>Âge et sexe :</strong> Ne sont pas pris en compte</li>
+                <li><strong>Morphologie :</strong> Les personnes très grandes ou très petites sont mal représentées</li>
+            </ul>
+            <p><em>Quetelet lui-même a développé l'indice pour des études de population – pas pour des diagnostics individuels.</em></p>
+        </div>
+    </div>
+    <div class="info-step-card">
+        <div class="step-icon"><i class="fas fa-ruler-horizontal"></i></div>
+        <div class="step-content">
+            <h3>Meilleure alternative : tour de taille</h3>
+            <p>Le <strong>tour de taille</strong> est un meilleur indicateur des risques pour la santé car il mesure la graisse abdominale dangereuse :</p>
+            <table class="waist-table">
+                <tr>
+                    <th></th>
+                    <th>Risque accru</th>
+                    <th>Fortement accru</th>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-female"></i> Femmes</td>
+                    <td>≥ 80 cm</td>
+                    <td>≥ 88 cm</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-male"></i> Hommes</td>
+                    <td>≥ 94 cm</td>
+                    <td>≥ 102 cm</td>
+                </tr>
+            </table>
+            <p><em>Mesurer au niveau du nombril, expirer doucement.</em></p>
+        </div>
+    </div>
+</div>
+
+<div class="info-cards-container">
+    <div class="info-step-card full-width">
+        <div class="step-icon"><i class="fas fa-child"></i></div>
+        <div class="step-content">
+            <h3>IMC chez les enfants et adolescents</h3>
+            <p>Les valeurs seuils ci-dessus ne s'appliquent <strong>qu'aux adultes de 18 ans et plus</strong>. Chez les enfants et adolescents, les variations liées à l'âge et au sexe doivent être prises en compte.</p>
+            <p>Pour les enfants, on utilise des <strong>courbes de percentiles IMC</strong>. On considère :</p>
+            <ul>
+                <li><strong>Surpoids :</strong> IMC au-dessus du 90e percentile</li>
+                <li><strong>Obésité :</strong> IMC au-dessus du 97e percentile</li>
+                <li><strong>Obésité extrême :</strong> IMC au-dessus du 99.5e percentile</li>
+            </ul>
+            <p><em>Consultez un pédiatre pour une évaluation correcte chez les enfants.</em></p>
+        </div>
+    </div>
+</div>
+
+<section class="seo-content">
+    <h3>Questions fréquentes sur l'IMC</h3>
+    <div class="faq-section">
+        <details class="faq-item">
+            <summary>Qu'est-ce qu'un IMC sain ?</summary>
+            <p>Selon l'OMS, un IMC entre <strong>18.5 et 24.9</strong> correspond à un poids normal. Cette plage est statistiquement associée au plus faible risque pour la santé. Cependant, l'IMC ne tient pas compte des facteurs individuels comme la masse musculaire, l'âge ou la morphologie.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Pourquoi l'IMC est-il controversé ?</summary>
+            <p>L'IMC ne distingue pas la <strong>masse musculaire de la masse grasse</strong>. Un bodybuilder peut avoir le même IMC qu'une personne avec beaucoup de graisse abdominale. De plus, il ne tient pas compte de la répartition des graisses – la graisse abdominale est plus dangereuse que la graisse des hanches.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Existe-t-il de meilleures alternatives à l'IMC ?</summary>
+            <p>Le <strong>tour de taille</strong> est un meilleur indicateur des risques pour la santé. Risque accru : femmes dès 80 cm, hommes dès 94 cm. Fortement accru : femmes dès 88 cm, hommes dès 102 cm. Le <strong>rapport taille-hanches</strong> est également plus significatif.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Comment calculer l'IMC chez les enfants ?</summary>
+            <p>Chez les enfants, l'IMC est comparé à des <strong>percentiles selon l'âge et le sexe</strong>. Un enfant est en surpoids si son IMC dépasse le 90e percentile, obèse à partir du 97e percentile. Les seuils normaux de l'IMC ne s'appliquent qu'à partir de 18 ans environ.</p>
+        </details>
+    </div>
+</section>
+
+<div class="info-section disclaimer-section">
+    <p><i class="fas fa-info-circle"></i> <strong>Remarque :</strong> Être en bonne santé signifie plus qu'avoir un IMC « normal ». L'IMC est une valeur indicative et ne remplace pas un avis médical. En cas de questions sur ton poids, consulte ton médecin.</p>
+</div>

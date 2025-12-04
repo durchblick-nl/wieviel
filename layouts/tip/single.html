@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .tip-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+        .tip-btn { flex: 1; min-width: 60px; padding: 1rem; border-radius: 8px; text-align: center; }
+        .tip-btn .percent { font-size: 1.5rem; font-weight: bold; }
+        .tip-btn .label { font-size: 0.8rem; opacity: 0.8; }
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .total { font-size: 3rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .breakdown { display: flex; justify-content: space-around; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.3); }
+        .result-box .breakdown div { text-align: center; }
+        .result-box .breakdown .value { font-size: 1.25rem; font-weight: bold; }
+        .result-box .breakdown .label { font-size: 0.85rem; opacity: 0.9; }
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .input-with-icon { position: relative; }
+        .input-with-icon input { padding-left: 2.5rem; }
+        .input-with-icon .icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.5; }
+        .split-input { display: flex; align-items: center; gap: 1rem; }
+        .split-input button { width: 48px; height: 48px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border: none; font-weight: bold; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .split-input button:hover { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .split-input button:active { transform: scale(0.95); }
+        .split-input .count { font-size: 2rem; font-weight: bold; min-width: 3rem; text-align: center; color: var(--primary-color); font-family: 'Economica', sans-serif; }
+        .country-list li { cursor: pointer; padding: 0.25rem 0.5rem; margin: 0.1rem 0; border-radius: 4px; transition: all 0.2s; }
+        .country-list li:hover { background: var(--primary-color); color: white; }
+        .country-list li:hover strong { color: white; }
+        .country-list li.selected { background: var(--secondary-color); color: white; }
+        .country-list li.selected strong { color: white; }
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-receipt"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "tip.step1Title" }}</h3><p>{{ i18n "tip.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-percent"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "tip.step2Title" }}</h3><p>{{ i18n "tip.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-users"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "tip.step3Title" }}</h3><p>{{ i18n "tip.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label class="required">{{ i18n "tip.billAmount" }}</label>
+                <div class="input-with-icon">
+                    <span class="icon">CHF</span>
+                    <input type="number" id="billAmount" placeholder="0.00" step="0.05" min="0" style="padding-left: 3.5rem;" oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">{{ i18n "tip.tipAmount" }}</label>
+                <div class="tip-buttons">
+                    <button type="button" class="tip-btn" data-tip="5" onclick="setTip(5)">
+                        <div class="percent">5%</div>
+                        <div class="label">{{ i18n "tip.okay" }}</div>
+                    </button>
+                    <button type="button" class="tip-btn" data-tip="10" onclick="setTip(10)">
+                        <div class="percent">10%</div>
+                        <div class="label">{{ i18n "tip.good" }}</div>
+                    </button>
+                    <button type="button" class="tip-btn active" data-tip="15" onclick="setTip(15)">
+                        <div class="percent">15%</div>
+                        <div class="label">{{ i18n "tip.great" }}</div>
+                    </button>
+                    <button type="button" class="tip-btn" data-tip="20" onclick="setTip(20)">
+                        <div class="percent">20%</div>
+                        <div class="label">{{ i18n "tip.wow" }}</div>
+                    </button>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <label>{{ i18n "tip.customValue" }}: </label>
+                    <input type="number" id="customTip" placeholder="%" min="0" max="100" style="width: 80px;" oninput="setCustomTip()">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{ i18n "tip.numPeople" }}</label>
+                <div class="split-input">
+                    <button type="button" onclick="changePeople(-1)">−</button>
+                    <span class="count" id="peopleCount">1</span>
+                    <button type="button" onclick="changePeople(1)">+</button>
+                </div>
+            </div>
+
+            <div id="result" class="result-box" style="display: none;">
+                <div class="label">{{ i18n "tip.totalAmount" }}</div>
+                <div class="total" id="totalAmount">CHF 0.00</div>
+                <div class="breakdown">
+                    <div>
+                        <div class="value" id="tipAmount">CHF 0.00</div>
+                        <div class="label">{{ i18n "tip.tipAmount" }}</div>
+                    </div>
+                    <div>
+                        <div class="value" id="perPerson">CHF 0.00</div>
+                        <div class="label">{{ i18n "tip.perPerson" }}</div>
+                    </div>
+                </div>
+                <div class="share-buttons">
+                    <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> {{ i18n "share" }}</button>
+                    <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> {{ i18n "copy" }}</button>
+                </div>
+            </div>
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXTS = {
+            copied: '{{ i18n "copied" }}',
+            copy: '{{ i18n "copy" }}',
+            bill: '{{ i18n "tip.bill" }}',
+            tip: '{{ i18n "tip.tipAmount" }}',
+            total: '{{ i18n "tip.totalAmount" }}',
+            perPerson: '{{ i18n "tip.perPerson" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/trinkgeld/' : 'https://calcule.ch/pourboire/'
+        };
+
+        let state = { tip: 15, people: 1 };
+
+        function setTip(percent) {
+            state.tip = percent;
+            document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.toggle('active', parseInt(btn.dataset.tip) === percent));
+            document.getElementById('customTip').value = '';
+            calculate();
+        }
+
+        function setCustomTip() {
+            const custom = parseFloat(document.getElementById('customTip').value);
+            if (!isNaN(custom) && custom >= 0) {
+                state.tip = custom;
+                document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.remove('active'));
+                calculate();
+            }
+        }
+
+        function changePeople(delta) {
+            state.people = Math.max(1, state.people + delta);
+            document.getElementById('peopleCount').textContent = state.people;
+            calculate();
+        }
+
+        function setCountryTip(percent, element) {
+            document.querySelectorAll('.country-list li').forEach(li => li.classList.remove('selected'));
+            element.classList.add('selected');
+            state.tip = percent;
+            document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.toggle('active', parseInt(btn.dataset.tip) === percent));
+            document.getElementById('customTip').value = percent;
+            calculate();
+            document.querySelector('.calculator-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function calculate() {
+            const bill = parseFloat(document.getElementById('billAmount').value) || 0;
+            if (bill <= 0) {
+                document.getElementById('result').style.display = 'none';
+                return;
+            }
+            const tip = bill * (state.tip / 100);
+            const total = bill + tip;
+            const perPerson = total / state.people;
+
+            document.getElementById('tipAmount').textContent = 'CHF ' + tip.toFixed(2);
+            document.getElementById('totalAmount').textContent = 'CHF ' + total.toFixed(2);
+            document.getElementById('perPerson').textContent = 'CHF ' + perPerson.toFixed(2);
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function getShareText() {
+            const bill = parseFloat(document.getElementById('billAmount').value) || 0;
+            const tip = bill * (state.tip / 100);
+            const total = bill + tip;
+            const perPerson = total / state.people;
+            let text = LANG === 'de'
+                ? `🧾 Rechnung: CHF ${bill.toFixed(2)}\n💰 Trinkgeld (${state.tip}%): CHF ${tip.toFixed(2)}\n✨ Total: CHF ${total.toFixed(2)}`
+                : `🧾 Addition: CHF ${bill.toFixed(2)}\n💰 Pourboire (${state.tip}%): CHF ${tip.toFixed(2)}\n✨ Total: CHF ${total.toFixed(2)}`;
+            if (state.people > 1) {
+                text += LANG === 'de'
+                    ? `\n👥 Pro Person (${state.people}): CHF ${perPerson.toFixed(2)}`
+                    : `\n👥 Par personne (${state.people}): CHF ${perPerson.toFixed(2)}`;
+            }
+            text += `\n\n${TEXTS.shareUrl}`;
+            return text;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+            }
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                btn.innerHTML = '<i class="fas fa-check"></i> ' + TEXTS.copied;
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> ' + TEXTS.copy, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

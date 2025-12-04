@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; font-family: inherit; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.secondary { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .share-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .share-copied { background: #28a745 !important; }
+
+        .legal-limit-card { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--light-bg); border-radius: 8px; margin-bottom: 0.5rem; }
+        .legal-limit-card.standard { border-left: 4px solid #ffc107; }
+        .legal-limit-card.strict { border-left: 4px solid #dc3545; }
+        .legal-limit-value { font-size: 1.5rem; font-weight: bold; font-family: 'Economica', sans-serif; min-width: 60px; }
+
+        .law-section { margin-top: 2rem; }
+        .law-section h2 { color: var(--primary-color); margin-bottom: 0.5rem; }
+        .law-subtitle { margin-bottom: 1.5rem; opacity: 0.8; }
+        .law-card { background: var(--card-bg); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; border: 1px solid var(--border-color); }
+        .law-header { background: var(--light-bg); padding: 1rem; }
+        .law-header h3 { margin: 0; color: var(--primary-color); }
+        .law-content { padding: 1rem; }
+        .law-content p { margin: 0.5rem 0; }
+
+        .info-cards-container { display: grid; gap: 1rem; margin-top: 2rem; }
+        @media (min-width: 768px) { .info-cards-container { grid-template-columns: repeat(2, 1fr); } }
+        .info-step-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+        .info-step-card.highlight { border-color: var(--primary-color); background: linear-gradient(135deg, var(--card-bg), var(--light-bg)); }
+        .info-step-card .step-icon { font-size: 1.5rem; color: var(--primary-color); flex-shrink: 0; }
+        .info-step-card .step-content h3 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .info-step-card .step-content p, .info-step-card .step-content ul { font-size: 0.95rem; color: var(--text-color); }
+        .info-step-card a { color: var(--primary-color); }
+
+        .seo-content { margin-top: 3rem; }
+        .seo-content h3 { color: var(--primary-color); margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-user"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "bac.step1Title" }}</h3><p>{{ i18n "bac.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-beer-mug-empty"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "bac.step2Title" }}</h3><p>{{ i18n "bac.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-clock"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "bac.step3Title" }}</h3><p>{{ i18n "bac.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <form id="promilleForm">
+                <div class="form-group">
+                    <label class="required">{{ i18n "bac.gender" }}</label>
+                    <div class="gender-selection">
+                        <button type="button" class="gender-btn active" data-gender="male" onclick="selectGender('male')">
+                            <i class="fas fa-mars"></i><span>{{ i18n "bac.male" }}</span>
+                        </button>
+                        <button type="button" class="gender-btn" data-gender="female" onclick="selectGender('female')">
+                            <i class="fas fa-venus"></i><span>{{ i18n "bac.female" }}</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label class="required">{{ i18n "bac.weight" }}</label>
+                            <span class="slider-value" id="weightValue">75 kg</span>
+                        </div>
+                        <input type="range" id="weight" min="40" max="150" value="75" oninput="updateWeight(this.value)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label class="required">{{ i18n "bac.height" }}</label>
+                            <span class="slider-value" id="heightValue">175 cm</span>
+                        </div>
+                        <input type="range" id="height" min="140" max="210" value="175" oninput="updateHeight(this.value)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label class="required">{{ i18n "bac.age" }}</label>
+                            <span class="slider-value" id="ageValue">30 {{ i18n "bac.years" }}</span>
+                        </div>
+                        <input type="range" id="age" min="18" max="80" value="30" oninput="updateAge(this.value)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">{{ i18n "bac.whatDrunk" }}</label>
+                    <div class="drinks-grid">
+                        <div class="drink-card" id="drink-beer">
+                            <div class="drink-icon">🍺</div>
+                            <div class="drink-name">{{ i18n "bac.beer" }}</div>
+                            <div class="drink-info">3dl, 5%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('beer', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-beer">0</span>
+                                <button type="button" onclick="changeDrink('beer', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="drink-card" id="drink-beer-large">
+                            <div class="drink-icon">🍻</div>
+                            <div class="drink-name">{{ i18n "bac.beerLarge" }}</div>
+                            <div class="drink-info">5dl, 5%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('beer-large', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-beer-large">0</span>
+                                <button type="button" onclick="changeDrink('beer-large', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="drink-card" id="drink-wine">
+                            <div class="drink-icon">🍷</div>
+                            <div class="drink-name">{{ i18n "bac.wine" }}</div>
+                            <div class="drink-info">1dl, 12%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('wine', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-wine">0</span>
+                                <button type="button" onclick="changeDrink('wine', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="drink-card" id="drink-wine-glass">
+                            <div class="drink-icon">🥂</div>
+                            <div class="drink-name">{{ i18n "bac.wineGlass" }}</div>
+                            <div class="drink-info">1.5dl, 12%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('wine-glass', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-wine-glass">0</span>
+                                <button type="button" onclick="changeDrink('wine-glass', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="drink-card" id="drink-shot">
+                            <div class="drink-icon">🥃</div>
+                            <div class="drink-name">{{ i18n "bac.shot" }}</div>
+                            <div class="drink-info">4cl, 40%</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('shot', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-shot">0</span>
+                                <button type="button" onclick="changeDrink('shot', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="drink-card" id="drink-cocktail">
+                            <div class="drink-icon">🍸</div>
+                            <div class="drink-name">Cocktail</div>
+                            <div class="drink-info">~4cl Alk.</div>
+                            <div class="drink-counter">
+                                <button type="button" onclick="changeDrink('cocktail', -1)" disabled>−</button>
+                                <span class="drink-count" id="count-cocktail">0</span>
+                                <button type="button" onclick="changeDrink('cocktail', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>{{ i18n "bac.drinkingPeriod" }}</label>
+                    <div class="time-inputs">
+                        <div>
+                            <label for="startTime">{{ i18n "bac.start" }}</label>
+                            <input type="time" id="startTime" value="20:00">
+                        </div>
+                        <div>
+                            <label for="endTime">{{ i18n "bac.end" }}</label>
+                            <input type="time" id="endTime">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>{{ i18n "bac.important" }}:</strong> {{ i18n "bac.disclaimer" }}
+                </div>
+
+                <div class="warning" id="drinkWarning" style="display: none; background-color: #f8d7da; border-left-color: #dc3545; color: #721c24;">
+                    <i class="fas fa-ban" style="color: #dc3545;"></i>
+                    <strong>{{ i18n "bac.recommendation" }}:</strong> {{ i18n "bac.recommendationText" }}
+                </div>
+
+                <button type="submit">{{ i18n "bac.calculate" }}</button>
+            </form>
+
+            <div id="result" class="result" style="display: none;">
+                <div class="bac-display">
+                    <div class="bac-value" id="bacValue">0.00<span class="bac-unit">‰</span></div>
+                    <div class="bac-status" id="bacStatus">{{ i18n "bac.sober" }}</div>
+                </div>
+                <div class="result-summary" id="resultSummary"></div>
+                <div class="sobriety-timeline" id="sobrietyTimeline"></div>
+                <div class="share-buttons">
+                    <button class="share-btn primary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> <span id="shareButtonText">{{ i18n "share" }}</span>
+                    </button>
+                    <button class="share-btn secondary" onclick="copyResultLink()">
+                        <i class="fas fa-link"></i> <span id="copyButtonText">{{ i18n "bac.copyLink" }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXTS = {
+            years: '{{ i18n "bac.years" }}',
+            sober: '{{ i18n "bac.sober" }}',
+            probablyFit: '{{ i18n "bac.probablyFit" }}',
+            cautionNearLimit: '{{ i18n "bac.cautionNearLimit" }}',
+            notFitToDrive: '{{ i18n "bac.notFitToDrive" }}',
+            severelyIntoxicated: '{{ i18n "bac.severelyIntoxicated" }}',
+            summary: '{{ i18n "bac.summary" }}',
+            totalAlcohol: '{{ i18n "bac.totalAlcohol" }}',
+            estimatedBAC: '{{ i18n "bac.estimatedBAC" }}',
+            below05: '{{ i18n "bac.below05" }}',
+            fullySober: '{{ i18n "bac.fullySober" }}',
+            inHours: '{{ i18n "bac.inHours" }}',
+            degradationForecast: '{{ i18n "bac.degradationForecast" }}',
+            now: '{{ i18n "bac.now" }}',
+            copied: '{{ i18n "copied" }}',
+            copyLink: '{{ i18n "bac.copyLink" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/promille/' : 'https://calcule.ch/alcoolemie/'
+        };
+
+        let state = {
+            gender: 'male',
+            weight: 75,
+            height: 175,
+            age: 30,
+            drinks: { 'beer': 0, 'beer-large': 0, 'wine': 0, 'wine-glass': 0, 'shot': 0, 'cocktail': 0 }
+        };
+
+        const drinkAlcohol = {
+            'beer': 12, 'beer-large': 20, 'wine': 9.6, 'wine-glass': 14.4, 'shot': 12.8, 'cocktail': 12.8
+        };
+
+        function calculateTBW(gender, weight, height, age) {
+            if (gender === 'male') {
+                return 2.447 - 0.09516 * age + 0.1074 * height + 0.3362 * weight;
+            } else {
+                return -2.097 + 0.1069 * height + 0.2466 * weight;
+            }
+        }
+
+        function selectGender(gender) {
+            state.gender = gender;
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.gender === gender);
+            });
+            calculateBAC();
+        }
+
+        function updateWeight(value) {
+            state.weight = parseInt(value);
+            document.getElementById('weightValue').textContent = value + ' kg';
+            calculateBAC();
+        }
+
+        function updateHeight(value) {
+            state.height = parseInt(value);
+            document.getElementById('heightValue').textContent = value + ' cm';
+            calculateBAC();
+        }
+
+        function updateAge(value) {
+            state.age = parseInt(value);
+            document.getElementById('ageValue').textContent = value + ' ' + TEXTS.years;
+            calculateBAC();
+        }
+
+        function changeDrink(drink, delta) {
+            state.drinks[drink] = Math.max(0, state.drinks[drink] + delta);
+            document.getElementById('count-' + drink).textContent = state.drinks[drink];
+            const card = document.getElementById('drink-' + drink);
+            card.classList.toggle('has-drinks', state.drinks[drink] > 0);
+            const minusBtn = card.querySelector('button:first-of-type');
+            minusBtn.disabled = state.drinks[drink] === 0;
+            const totalDrinks = Object.values(state.drinks).reduce((a, b) => a + b, 0);
+            document.getElementById('drinkWarning').style.display = totalDrinks > 0 ? 'block' : 'none';
+            calculateBAC();
+        }
+
+        function calculateBAC() {
+            let totalAlcohol = 0;
+            for (const [drink, count] of Object.entries(state.drinks)) {
+                totalAlcohol += drinkAlcohol[drink] * count;
+            }
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            let hoursElapsed = 0;
+            if (startTime && endTime) {
+                const start = new Date(`2000-01-01T${startTime}`);
+                let end = new Date(`2000-01-01T${endTime}`);
+                if (end < start) end.setDate(end.getDate() + 1);
+                hoursElapsed = (end - start) / (1000 * 60 * 60);
+            }
+            const tbw = calculateTBW(state.gender, state.weight, state.height, state.age);
+            const eliminationRate = 0.15;
+            let bac = totalAlcohol / (tbw * 0.8);
+            bac = Math.max(0, bac - (hoursElapsed * eliminationRate));
+            return { bac, totalAlcohol, hoursElapsed };
+        }
+
+        function getStatusClass(bac) {
+            if (bac < 0.3) return { class: 'safe', text: TEXTS.probablyFit };
+            if (bac < 0.5) return { class: 'caution', text: TEXTS.cautionNearLimit };
+            if (bac < 0.8) return { class: 'danger', text: TEXTS.notFitToDrive };
+            return { class: 'critical', text: TEXTS.severelyIntoxicated };
+        }
+
+        function formatTime(date) {
+            return date.toLocaleTimeString(LANG === 'de' ? 'de-CH' : 'fr-CH', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function displayResult(result) {
+            const { bac, totalAlcohol, hoursElapsed } = result;
+            const status = getStatusClass(bac);
+            document.getElementById('bacValue').innerHTML = bac.toFixed(2) + '<span class="bac-unit">‰</span>';
+            document.getElementById('bacValue').className = 'bac-value bac-' + status.class;
+            const statusEl = document.getElementById('bacStatus');
+            statusEl.textContent = status.text;
+            statusEl.className = 'bac-status ' + status.class;
+
+            let summaryHTML = `<h3>${TEXTS.summary}</h3>
+                <p><strong>${TEXTS.totalAlcohol}:</strong> ${totalAlcohol.toFixed(1)}g</p>
+                <p><strong>${TEXTS.estimatedBAC}:</strong> ${bac.toFixed(2)}‰</p>`;
+
+            if (bac >= 0.5) {
+                const hoursTo05 = (bac - 0.5) / 0.15;
+                const hoursTo0 = bac / 0.15;
+                const now = new Date();
+                const timeTo05 = new Date(now.getTime() + hoursTo05 * 60 * 60 * 1000);
+                const timeTo0 = new Date(now.getTime() + hoursTo0 * 60 * 60 * 1000);
+                summaryHTML += `<p><strong>${TEXTS.below05}:</strong> ca. ${formatTime(timeTo05)} (${TEXTS.inHours.replace('{h}', hoursTo05.toFixed(1))})</p>
+                    <p><strong>${TEXTS.fullySober}:</strong> ca. ${formatTime(timeTo0)} (${TEXTS.inHours.replace('{h}', hoursTo0.toFixed(1))})</p>`;
+            } else if (bac > 0) {
+                const hoursTo0 = bac / 0.15;
+                const now = new Date();
+                const timeTo0 = new Date(now.getTime() + hoursTo0 * 60 * 60 * 1000);
+                summaryHTML += `<p><strong>${TEXTS.fullySober}:</strong> ca. ${formatTime(timeTo0)} (${TEXTS.inHours.replace('{h}', hoursTo0.toFixed(1))})</p>`;
+            }
+            document.getElementById('resultSummary').innerHTML = summaryHTML;
+
+            if (bac > 0) {
+                let timelineHTML = `<h4>${TEXTS.degradationForecast}</h4>`;
+                const now = new Date();
+                let currentBAC = bac;
+                for (let h = 0; currentBAC > 0 && h <= 12; h++) {
+                    const time = new Date(now.getTime() + h * 60 * 60 * 1000);
+                    const bacAtTime = Math.max(0, bac - (h * 0.15));
+                    const bacStatus = getStatusClass(bacAtTime);
+                    timelineHTML += `<div class="timeline-item">
+                        <span class="timeline-time">${formatTime(time)}</span>
+                        <span class="timeline-bac bac-${bacStatus.class}">${bacAtTime.toFixed(2)}‰</span>
+                        <span class="timeline-note">${h === 0 ? TEXTS.now : `+${h}h`}</span>
+                    </div>`;
+                    currentBAC = bacAtTime;
+                    if (bacAtTime === 0) break;
+                }
+                document.getElementById('sobrietyTimeline').innerHTML = timelineHTML;
+                document.getElementById('sobrietyTimeline').style.display = 'block';
+            } else {
+                document.getElementById('sobrietyTimeline').style.display = 'none';
+            }
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('promilleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            displayResult(calculateBAC());
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            document.getElementById('endTime').value = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+            loadFromUrl();
+        });
+
+        function getShareableUrl() {
+            const params = new URLSearchParams();
+            params.set('g', state.gender === 'male' ? 'm' : 'f');
+            params.set('w', state.weight);
+            params.set('h', state.height);
+            params.set('a', state.age);
+            const drinkCodes = ['beer', 'beer-large', 'wine', 'wine-glass', 'shot', 'cocktail'];
+            const drinkValues = drinkCodes.map(d => state.drinks[d]).join(',');
+            if (drinkValues !== '0,0,0,0,0,0') params.set('d', drinkValues);
+            return window.location.origin + window.location.pathname + '?' + params.toString();
+        }
+
+        function getShareText() {
+            const result = calculateBAC();
+            return `${result.bac.toFixed(2)}‰\n${getShareableUrl()}`;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: `${calculateBAC().bac.toFixed(2)}‰`, url: getShareableUrl() };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) navigator.share(shareData).catch(() => {});
+            else window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResultLink() {
+            navigator.clipboard.writeText(getShareableUrl()).then(() => {
+                const btn = document.querySelector('.share-btn.secondary');
+                const text = document.getElementById('copyButtonText');
+                btn.classList.add('share-copied');
+                text.textContent = TEXTS.copied;
+                setTimeout(() => { btn.classList.remove('share-copied'); text.textContent = TEXTS.copyLink; }, 2000);
+            });
+        }
+
+        function loadFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('g')) selectGender(params.get('g') === 'm' ? 'male' : 'female');
+            if (params.has('w')) { const w = parseInt(params.get('w')); if (w >= 40 && w <= 150) { document.getElementById('weight').value = w; updateWeight(w); } }
+            if (params.has('h')) { const h = parseInt(params.get('h')); if (h >= 140 && h <= 210) { document.getElementById('height').value = h; updateHeight(h); } }
+            if (params.has('a')) { const a = parseInt(params.get('a')); if (a >= 18 && a <= 80) { document.getElementById('age').value = a; updateAge(a); } }
+            if (params.has('d')) {
+                const drinkCodes = ['beer', 'beer-large', 'wine', 'wine-glass', 'shot', 'cocktail'];
+                const values = params.get('d').split(',').map(v => parseInt(v) || 0);
+                drinkCodes.forEach((code, i) => { if (values[i] > 0) for (let j = 0; j < values[i]; j++) changeDrink(code, 1); });
+            }
+            if (params.toString()) { const result = calculateBAC(); if (result.bac > 0) displayResult(result); }
+        }
+    </script>
+</body>
+</html>

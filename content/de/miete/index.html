@@ -8,127 +8,105 @@ ogTitle: "Mietzinsrechner Schweiz 2025 – Referenzzinssatz"
 ogDescription: "Berechne deine Mietzinsanpassung basierend auf dem aktuellen Referenzzinssatz. Mietsenkung oder Mieterhöhung?"
 ogImage: "https://wieviel.ch/og/miete.png"
 translationKey: "rent-calculator"
-type: "miete"
+type: "rent"
 ---
 
-<div class="steps-container">
-    <div class="step-card">
-        <div class="step-icon">
-            <i class="fas fa-file-contract"></i>
-            <div class="step-number">1</div>
-        </div>
+<!-- Anleitung Mietsenkung -->
+<div class="info-cards-container" style="margin-top: 2rem;">
+    <div class="info-step-card highlight" style="grid-column: 1 / -1;">
+        <div class="step-icon"><i class="fas fa-clipboard-list"></i></div>
         <div class="step-content">
-            <h3>Mietvertrag</h3>
-            <p>Gib deine aktuelle Miete und den Referenzzinssatz bei Vertragsabschluss ein.</p>
-        </div>
-    </div>
-    <div class="step-card">
-        <div class="step-icon">
-            <i class="fas fa-percentage"></i>
-            <div class="step-number">2</div>
-        </div>
-        <div class="step-content">
-            <h3>Zinssatz</h3>
-            <p>Wähle den Referenzzinssatz bei der letzten Mietzinsfestsetzung.</p>
-        </div>
-    </div>
-    <div class="step-card">
-        <div class="step-icon">
-            <i class="fas fa-calculator"></i>
-            <div class="step-number">3</div>
-        </div>
-        <div class="step-content">
-            <h3>Anpassung</h3>
-            <p>Sieh, ob du eine Mietsenkung verlangen kannst.</p>
+            <h3>So verlangst du eine Mietsenkung</h3>
+            <p style="margin-bottom: 1rem;">4 Schritte nach <a href="https://www.mieterverband.ch/mietrecht/waehrend-der-miete/mietzinssenkung/" target="_blank" rel="noopener">Mieterverband</a>:</p>
+            <ol style="margin: 0; padding-left: 1.25rem; line-height: 1.8;">
+                <li><strong>Anspruch prüfen</strong> – Liegt dein Referenzzinssatz über dem aktuellen? Dann hast du Anspruch.</li>
+                <li><strong>Herabsetzungsbegehren stellen</strong> – Schriftlich per Einschreiben an den Vermieter, <em>vor</em> Ablauf der Kündigungsfrist.</li>
+                <li><strong>30 Tage warten</strong> – Der Vermieter muss innerhalb von 30 Tagen antworten.</li>
+                <li><strong>Schlichtungsbehörde</strong> – Bei Ablehnung oder Nicht-Antwort: Innert 30 Tagen (max. 60 Tage nach Begehren) zur Schlichtungsbehörde.</li>
+            </ol>
         </div>
     </div>
 </div>
 
-<div class="calculator-card">
-    <div class="form-group">
-        <label for="currentRent">Aktuelle Nettomiete (monatlich)</label>
-        <div style="position: relative;">
-            <input type="number" id="currentRent" value="1500" min="0" step="10" oninput="calculate()">
-            <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
-        </div>
-        <small class="form-hint">Mietzins ohne Nebenkosten (Heizung, etc.)</small>
-    </div>
-
-    <div class="form-group">
-        <label>Referenzzinssatz bei letzter Mietzinsfestsetzung</label>
-        <div class="rate-select-grid">
-            <div class="rate-option" data-rate="3.00">3.00%</div>
-            <div class="rate-option" data-rate="2.75">2.75%</div>
-            <div class="rate-option" data-rate="2.50">2.50%</div>
-            <div class="rate-option" data-rate="2.25">2.25%</div>
-            <div class="rate-option" data-rate="2.00">2.00%</div>
-            <div class="rate-option" data-rate="1.75">1.75%</div>
-            <div class="rate-option active" data-rate="1.50">1.50%</div>
-            <div class="rate-option current" data-rate="1.25">1.25%</div>
-        </div>
-        <small class="form-hint">Steht im Mietvertrag oder auf der letzten Mietzinsanpassung</small>
-    </div>
-
-    <div class="info-box">
-        <h4><i class="fas fa-info-circle"></i> Nicht sicher?</h4>
-        <p>Der Referenzzinssatz steht auf dem Mietvertrag (seit 2008) oder auf der letzten Mitteilung zur Mietzinsanpassung. Falls nicht vorhanden, gilt der Satz bei Mietbeginn.</p>
-    </div>
+<!-- Senkungstabelle -->
+<div class="breakdown-card" style="margin-top: 1.5rem;">
+    <h3><i class="fas fa-table"></i> Senkungssätze nach Referenzzinssatz</h3>
+    <p style="font-size: 0.9rem; color: var(--text-color); opacity: 0.8; margin-bottom: 1rem;" id="reductionTableNote">Senkung bei aktuellem Referenzzinssatz von 1.25%:</p>
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+        <thead>
+            <tr style="border-bottom: 2px solid var(--border-color);">
+                <th style="text-align: left; padding: 0.5rem 0;">Bisheriger Zinssatz</th>
+                <th style="text-align: right; padding: 0.5rem 0;">Senkung</th>
+                <th style="text-align: right; padding: 0.5rem 0;">Bei CHF 1'500</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">1.50%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−2.91%</td><td style="text-align: right;">−CHF 43.65</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">1.75%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−5.82%</td><td style="text-align: right;">−CHF 87.30</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">2.00%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−8.73%</td><td style="text-align: right;">−CHF 130.95</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">2.25%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−11.64%</td><td style="text-align: right;">−CHF 174.60</td></tr>
+            <tr><td style="padding: 0.5rem 0;">2.50%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−14.55%</td><td style="text-align: right;">−CHF 218.25</td></tr>
+        </tbody>
+    </table>
+    <p style="font-size: 0.8rem; color: var(--text-color); opacity: 0.7; margin-top: 0.75rem;"><i class="fas fa-info-circle"></i> Formel: 2.91% Senkung pro 0.25% Zinsdifferenz. Der Vermieter kann Teuerung (40%) und Kostensteigerungen gegenrechnen.</p>
 </div>
 
-<div id="results">
-    <div class="result-box decrease" id="resultBox">
-        <div class="label" id="resultLabel">Mögliche Mietsenkung</div>
-        <div class="total" id="mainResult">- CHF 43.65</div>
-        <div class="sub" id="resultSub">pro Monat (2.91% Senkung)</div>
-    </div>
+<!-- JUSTIS Karte -->
+<div class="justis-card">
+    <h4><i class="fas fa-balance-scale"></i> Rechtliche Beratung nötig?</h4>
+    <p>Bei Fragen zur Mietzinsanpassung oder wenn der Vermieter nicht reagiert: Bei JUSTIS erhältst du auch bei noch nicht versicherten Fällen eine kostenlose Ersteinschätzung.</p>
+    <a href="https://www.justis.ch" target="_blank" rel="noopener" class="justis-btn"><i class="fas fa-external-link-alt"></i> Zu JUSTIS</a>
+</div>
 
-    <div class="breakdown-card">
-        <h3><i class="fas fa-list"></i> Berechnung</h3>
-        <div class="breakdown-row">
-            <span class="label">Referenzzinssatz bei Festsetzung</span>
-            <span class="value" id="oldRate">1.50%</span>
-        </div>
-        <div class="breakdown-row">
-            <span class="label">Aktueller Referenzzinssatz</span>
-            <span class="value" id="newRate">1.25%</span>
-        </div>
-        <div class="breakdown-row">
-            <span class="label">Differenz</span>
-            <span class="value" id="rateDiff">-0.25%</span>
-        </div>
-        <div class="breakdown-row">
-            <span class="label">Mietzinsanpassung</span>
-            <span class="value" id="percentChange">-2.91%</span>
-        </div>
-        <div class="breakdown-row total">
-            <span class="label">Neuer Mietzins</span>
-            <span class="value" id="newRent">CHF 1'456.35</span>
-        </div>
-    </div>
+<!-- SEO Content -->
+<section class="seo-content">
+    <h2>So funktioniert der Mietzinsrechner</h2>
+    <p>Der hypothekarische Referenzzinssatz ist die Grundlage für Mietzinsanpassungen in der Schweiz. Er wird vom <strong>Bundesamt für Wohnungswesen (BWO)</strong> vierteljährlich publiziert und basiert auf dem Durchschnittszinssatz für Hypotheken.</p>
 
-    <div class="breakdown-card">
-        <h3><i class="fas fa-piggy-bank"></i> Ersparnis</h3>
-        <div class="breakdown-row">
-            <span class="label">Pro Monat</span>
-            <span class="value" id="savingsMonth">CHF 43.65</span>
-        </div>
-        <div class="breakdown-row">
-            <span class="label">Pro Jahr</span>
-            <span class="value" id="savingsYear">CHF 523.80</span>
-        </div>
-    </div>
+    <h3>Die Formel zur Mietzinsanpassung</h3>
+    <p>Die Berechnung basiert auf der sogenannten «relativen Methode»:</p>
+    <ul>
+        <li><strong>Senkung:</strong> Pro 0.25% Senkung des Referenzzinssatzes = <strong>2.91% Mietsenkung</strong></li>
+        <li><strong>Erhöhung:</strong> Pro 0.25% Erhöhung des Referenzzinssatzes = <strong>3.00% Mieterhöhung</strong></li>
+    </ul>
+    <p>Diese unterschiedlichen Sätze ergeben sich mathematisch: Eine Erhöhung um 3% und anschliessende Senkung um 2.91% führt wieder zum ursprünglichen Betrag.</p>
 
-    <div class="info-box warning" id="warningBox">
-        <h4><i class="fas fa-exclamation-triangle"></i> Wichtig</h4>
-        <p>Der Vermieter kann Kostensteigerungen gegenrechnen: 40% Teuerung seit letzter Festsetzung plus allgemeine Kostensteigerungen (ca. 0.5% pro Jahr). Die effektive Senkung kann daher geringer ausfallen.</p>
+    <h3>Häufige Fragen</h3>
+    <div class="faq-section">
+        <details class="faq-item">
+            <summary>Wie verlange ich eine Mietsenkung?</summary>
+            <p>Schreibe deinem Vermieter einen <strong>eingeschriebenen Brief</strong> mit Verweis auf den gesunkenen Referenzzinssatz. Verlange die Anpassung per nächstmöglichem Kündigungstermin. Der Vermieter muss innerhalb von 30 Tagen antworten. Musterbriefe findest du beim <a href="https://www.mieterverband.ch" target="_blank" rel="noopener">Mieterverband</a>.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Was kann der Vermieter gegenrechnen?</summary>
+            <p>Der Vermieter kann <strong>40% der Teuerung</strong> (Landesindex der Konsumentenpreise) seit der letzten Festsetzung geltend machen. Zusätzlich werden oft <strong>allgemeine Kostensteigerungen</strong> von 0.5% pro Jahr akzeptiert. Wertvermehrende Investitionen können ebenfalls angerechnet werden.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Gilt die Berechnung auch für Altbauwohnungen?</summary>
+            <p>Ja, der Referenzzinssatz gilt für alle Mietverhältnisse in der Schweiz – Neubau wie Altbau. Bei Altbauten vor 2008 gilt der Zinssatz bei Einführung (3.50%) oder der Satz bei der letzten dokumentierten Mietzinsanpassung.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Was ist, wenn mein Vermieter nicht reagiert?</summary>
+            <p>Wenn der Vermieter nicht innerhalb von 30 Tagen antwortet oder die Senkung ablehnt, kannst du zur <strong>Schlichtungsbehörde</strong> deines Kantons gehen. Das Verfahren ist kostenlos und einfach. Die Behörde vermittelt zwischen den Parteien.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Kann ich rückwirkend eine Senkung verlangen?</summary>
+            <p>Nein, eine Mietsenkung wirkt immer erst ab dem nächstmöglichen Kündigungstermin (meist 3 Monate). Es gibt keinen Anspruch auf Rückerstattung für die Vergangenheit. Deshalb lohnt es sich, schnell zu handeln.</p>
+        </details>
     </div>
+</section>
 
-    <div class="share-buttons">
-        <button class="share-btn primary" onclick="shareResult()">
-            <i class="fas fa-share-alt"></i> Teilen
-        </button>
-        <button class="share-btn copy" onclick="copyResult()">
-            <i class="fas fa-copy"></i> Kopieren
-        </button>
+<!-- Offizielle Quellen -->
+<div class="info-cards-container" style="margin-top: 2rem;">
+    <div class="info-step-card" style="grid-column: 1 / -1;">
+        <div class="step-icon"><i class="fas fa-link"></i></div>
+        <div class="step-content">
+            <h3>Offizielle Quellen</h3>
+            <ul style="margin: 0.5rem 0; list-style: none; padding: 0;">
+                <li style="margin-bottom: 0.5rem;"><a href="https://www.bwo.admin.ch/de/referenzzinssatz" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Aktueller Referenzzinssatz – BWO</a></li>
+                <li style="margin-bottom: 0.5rem;"><a href="https://www.mieterverband.ch/mv/mietrecht-beratung/ratgeber-mietrecht/top-themen/mietzinssenkung.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Mietzinssenkung – Mieterverband</a></li>
+                <li style="margin-bottom: 0.5rem;"><a href="https://www.hev-schweiz.ch/vermieten/mietverhaeltnis/referenzzinssatz" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Referenzzinssatz – HEV Schweiz</a></li>
+            </ul>
+        </div>
     </div>
 </div>

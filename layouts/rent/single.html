@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .rate-display {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .rate-display .rate-label { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.25rem; }
+        .rate-display .rate-value { font-size: 3rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .rate-display .rate-date { font-size: 0.85rem; opacity: 0.8; margin-top: 0.5rem; }
+        .rate-display .rate-source { font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem; }
+        .rate-display .rate-source a { color: white; text-decoration: underline; }
+
+        .rate-select-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
+        .rate-option {
+            padding: 0.75rem;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            background: var(--card-bg);
+        }
+        .rate-option:hover { border-color: var(--primary-color); background: var(--light-bg); }
+        .rate-option.active { border-color: var(--primary-color); background: var(--primary-color); color: white; }
+        .rate-option.current { border-style: dashed; opacity: 0.6; }
+
+        .result-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0;
+        }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+        .result-box.decrease { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+        .result-box.increase { background: linear-gradient(135deg, #c62828, #ef5350); }
+        .result-box.neutral { background: linear-gradient(135deg, #757575, #9e9e9e); }
+
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .breakdown-row.total .value { color: var(--primary-color); }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        .info-box { background: var(--light-bg); border-left: 4px solid var(--primary-color); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+        .info-box h4 { margin: 0 0 0.5rem 0; color: var(--primary-color); font-size: 0.95rem; }
+        .info-box p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
+        .info-box.warning { border-left-color: var(--accent-color); background: rgba(204, 92, 83, 0.1); }
+        .info-box.warning h4 { color: var(--accent-color); }
+
+        .rate-chart { background: var(--card-bg); border-radius: 12px; padding: 1rem; margin: 1.5rem 0; overflow-x: auto; }
+        .chart-svg { width: 100%; min-width: 500px; height: auto; }
+        .chart-label { font-size: 12px; fill: var(--text-color); opacity: 0.7; }
+        .chart-label-small { font-size: 10px; fill: var(--text-color); opacity: 0.6; }
+        .chart-current { font-size: 14px; font-weight: bold; fill: var(--accent-color); }
+
+        .justis-card { background: linear-gradient(135deg, var(--card-bg), var(--light-bg)); border: 2px solid var(--primary-color); border-radius: 16px; padding: 1.5rem; margin-top: 2rem; text-align: center; }
+        .justis-card h4 { color: var(--primary-color); margin-bottom: 0.75rem; }
+        .justis-card p { font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-color); }
+        .justis-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--primary-color); color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+        .justis-btn:hover { background: var(--secondary-color); transform: translateY(-2px); }
+
+        .seo-content { margin-top: 3rem; }
+        .seo-content h2 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .seo-content h3 { color: var(--primary-color); font-size: 1.2rem; margin: 2rem 0 1rem; }
+        .seo-content p { line-height: 1.7; margin-bottom: 1rem; color: var(--text-color); }
+        .seo-content ul { margin: 1rem 0; padding-left: 1.5rem; }
+        .seo-content li { margin-bottom: 0.5rem; line-height: 1.6; }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; line-height: 1.6; }
+        .faq-item a { color: var(--primary-color); }
+
+        .info-cards-container { display: grid; gap: 1rem; }
+        .info-step-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+        .info-step-card.highlight { border-color: var(--primary-color); background: linear-gradient(135deg, var(--card-bg), var(--light-bg)); }
+        .info-step-card .step-icon { font-size: 1.5rem; color: var(--primary-color); flex-shrink: 0; }
+        .info-step-card .step-content h3 { color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .info-step-card .step-content p, .info-step-card .step-content ol { font-size: 0.95rem; color: var(--text-color); }
+        .info-step-card a { color: var(--primary-color); }
+
+        @media (max-width: 480px) { .rate-select-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        {{- $rateDate := site.Data.site.referenceRateDate -}}
+        {{- if eq .Site.Language.Lang "fr" -}}
+            {{- $rateDate = site.Data.site.referenceRateDateFr -}}
+        {{- end -}}
+
+        <div class="rate-display">
+            <div class="rate-label">{{ i18n "rent.currentRate" }}</div>
+            <div class="rate-value">{{ site.Data.site.referenceRate }}%</div>
+            <div class="rate-date">{{ i18n "rent.validSince" }} {{ $rateDate }}</div>
+            <div class="rate-source">{{ i18n "rent.source" }}: <a href="{{ site.Data.site.referenceRateSource }}" target="_blank" rel="noopener">{{ i18n "rent.sourceShort" }}</a></div>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-file-contract"></i><div class="step-number">1</div></div>
+                <div class="step-content"><h3>{{ i18n "rent.step1Title" }}</h3><p>{{ i18n "rent.step1Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-percentage"></i><div class="step-number">2</div></div>
+                <div class="step-content"><h3>{{ i18n "rent.step2Title" }}</h3><p>{{ i18n "rent.step2Desc" }}</p></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-calculator"></i><div class="step-number">3</div></div>
+                <div class="step-content"><h3>{{ i18n "rent.step3Title" }}</h3><p>{{ i18n "rent.step3Desc" }}</p></div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label for="currentRent">{{ i18n "rent.currentRent" }}</label>
+                <div style="position: relative;">
+                    <input type="number" id="currentRent" value="1500" min="0" step="10" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">CHF</span>
+                </div>
+                <small class="form-hint">{{ i18n "rent.rentHint" }}</small>
+            </div>
+
+            <div class="form-group">
+                <label>{{ i18n "rent.rateAtSetting" }}</label>
+                <div class="rate-select-grid">
+                    <div class="rate-option" data-rate="3.00">3.00%</div>
+                    <div class="rate-option" data-rate="2.75">2.75%</div>
+                    <div class="rate-option" data-rate="2.50">2.50%</div>
+                    <div class="rate-option" data-rate="2.25">2.25%</div>
+                    <div class="rate-option" data-rate="2.00">2.00%</div>
+                    <div class="rate-option" data-rate="1.75">1.75%</div>
+                    <div class="rate-option active" data-rate="1.50">1.50%</div>
+                    <div class="rate-option current" data-rate="1.25">1.25%</div>
+                </div>
+                <small class="form-hint">{{ i18n "rent.rateHint" }}</small>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fas fa-info-circle"></i> {{ i18n "rent.notSure" }}</h4>
+                <p>{{ i18n "rent.notSureText" }}</p>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box decrease" id="resultBox">
+                <div class="label" id="resultLabel">{{ i18n "rent.possibleReduction" }}</div>
+                <div class="total" id="mainResult">- CHF 43.65</div>
+                <div class="sub" id="resultSub">{{ i18n "perMonth" }} (2.91% {{ i18n "rent.reduction" }})</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-list"></i> {{ i18n "rent.calculation" }}</h3>
+                <div class="breakdown-row"><span class="label">{{ i18n "rent.rateAtSettingLabel" }}</span><span class="value" id="oldRate">1.50%</span></div>
+                <div class="breakdown-row"><span class="label">{{ i18n "rent.currentRateLabel" }}</span><span class="value" id="newRate">1.25%</span></div>
+                <div class="breakdown-row"><span class="label">{{ i18n "rent.difference" }}</span><span class="value" id="rateDiff">-0.25%</span></div>
+                <div class="breakdown-row"><span class="label">{{ i18n "rent.rentAdjustment" }}</span><span class="value" id="percentChange">-2.91%</span></div>
+                <div class="breakdown-row total"><span class="label">{{ i18n "rent.newRent" }}</span><span class="value" id="newRent">CHF 1'456.35</span></div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-piggy-bank"></i> {{ i18n "rent.savings" }}</h3>
+                <div class="breakdown-row"><span class="label">{{ i18n "perMonth" | title }}</span><span class="value" id="savingsMonth">CHF 43.65</span></div>
+                <div class="breakdown-row"><span class="label">{{ i18n "perYear" | title }}</span><span class="value" id="savingsYear">CHF 523.80</span></div>
+            </div>
+
+            <div class="info-box warning" id="warningBox">
+                <h4><i class="fas fa-exclamation-triangle"></i> {{ i18n "rent.important" }}</h4>
+                <p>{{ i18n "rent.importantText" }}</p>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn primary" onclick="shareResult()"><i class="fas fa-share-alt"></i> {{ i18n "share" }}</button>
+                <button class="share-btn copy" onclick="copyResult()"><i class="fas fa-copy"></i> {{ i18n "copy" }}</button>
+            </div>
+        </div>
+
+        {{ .Content }}
+    </div>
+
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+
+    <script>
+        const CURRENT_RATE = {{ site.Data.site.referenceRate }};
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXTS = {
+            possibleReduction: '{{ i18n "rent.possibleReduction" }}',
+            possibleIncrease: '{{ i18n "rent.possibleIncrease" }}',
+            noChange: '{{ i18n "rent.noChange" }}',
+            noChangeText: '{{ i18n "rent.noChangeText" }}',
+            reduction: '{{ i18n "rent.reduction" }}',
+            increase: '{{ i18n "rent.increase" }}',
+            perMonth: '{{ i18n "perMonth" }}',
+            copied: '{{ i18n "copied" }}',
+            shareUrl: LANG === 'de' ? 'https://wieviel.ch/miete/' : 'https://calcule.ch/loyer/'
+        };
+        let oldRate = 1.50;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.rate-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.rate-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    oldRate = parseFloat(this.dataset.rate);
+                    calculate();
+                });
+            });
+            calculate();
+        });
+
+        function calculate() {
+            const currentRent = parseFloat(document.getElementById('currentRent').value) || 0;
+            const rateDiff = CURRENT_RATE - oldRate;
+            const quarterSteps = Math.round(rateDiff / 0.25);
+            let percentChange = quarterSteps < 0 ? quarterSteps * 2.91 : (quarterSteps > 0 ? quarterSteps * 3.00 : 0);
+            const rentChange = currentRent * (percentChange / 100);
+            const newRent = currentRent + rentChange;
+
+            const resultBox = document.getElementById('resultBox');
+            resultBox.classList.remove('increase', 'decrease', 'neutral');
+
+            if (percentChange < 0) {
+                resultBox.classList.add('decrease');
+                document.getElementById('resultLabel').textContent = TEXTS.possibleReduction;
+                document.getElementById('mainResult').textContent = '- ' + formatCHF(Math.abs(rentChange));
+                document.getElementById('resultSub').textContent = `${TEXTS.perMonth} (${Math.abs(percentChange).toFixed(2)}% ${TEXTS.reduction})`;
+                document.getElementById('warningBox').style.display = 'block';
+            } else if (percentChange > 0) {
+                resultBox.classList.add('increase');
+                document.getElementById('resultLabel').textContent = TEXTS.possibleIncrease;
+                document.getElementById('mainResult').textContent = '+ ' + formatCHF(rentChange);
+                document.getElementById('resultSub').textContent = `${TEXTS.perMonth} (${percentChange.toFixed(2)}% ${TEXTS.increase})`;
+                document.getElementById('warningBox').style.display = 'none';
+            } else {
+                resultBox.classList.add('neutral');
+                document.getElementById('resultLabel').textContent = TEXTS.noChange;
+                document.getElementById('mainResult').textContent = 'CHF 0.00';
+                document.getElementById('resultSub').textContent = TEXTS.noChangeText;
+                document.getElementById('warningBox').style.display = 'none';
+            }
+
+            document.getElementById('oldRate').textContent = oldRate.toFixed(2) + '%';
+            document.getElementById('newRate').textContent = CURRENT_RATE.toFixed(2) + '%';
+            document.getElementById('rateDiff').textContent = (rateDiff >= 0 ? '+' : '') + rateDiff.toFixed(2) + '%';
+            document.getElementById('percentChange').textContent = (percentChange >= 0 ? '+' : '') + percentChange.toFixed(2) + '%';
+            document.getElementById('newRent').textContent = formatCHF(newRent);
+            document.getElementById('savingsMonth').textContent = formatCHF(Math.abs(rentChange));
+            document.getElementById('savingsYear').textContent = formatCHF(Math.abs(rentChange) * 12);
+        }
+
+        function formatCHF(amount) { return 'CHF ' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, "'"); }
+
+        function getShareText() {
+            const currentRent = document.getElementById('currentRent').value;
+            const newRent = document.getElementById('newRent').textContent;
+            const change = document.getElementById('percentChange').textContent;
+            return LANG === 'de'
+                ? `Mietzinsrechner: Bei CHF ${currentRent} Miete und Referenzzinssatz ${oldRate}% → ${CURRENT_RATE}% ergibt sich eine Anpassung von ${change}.\nNeue Miete: ${newRent}\n\nBerechne selbst: ${TEXTS.shareUrl}`
+                : `Calculateur de loyer: Avec un loyer de CHF ${currentRent} et un taux de référence de ${oldRate}% → ${CURRENT_RATE}%, l'adaptation est de ${change}.\nNouveau loyer: ${newRent}\n\nCalcule toi-même: ${TEXTS.shareUrl}`;
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) navigator.share(shareData).catch(() => {});
+            else window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.querySelector('.share-btn.copy');
+                const orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> ' + TEXTS.copied;
+                setTimeout(() => btn.innerHTML = orig, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

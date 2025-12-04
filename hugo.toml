@@ -6,8 +6,13 @@ languageCode = "de-CH"
 defaultContentLanguage = "de"
 defaultContentLanguageInSubdir = true
 
-# Disable Hugo's default sitemap (we use custom)
+# Disable unused kinds
 disableKinds = ["taxonomy", "term", "RSS"]
+
+# Enable sitemaps per language
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.8
 
 [languages]
   [languages.de]
