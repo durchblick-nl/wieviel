@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Seite nicht gefunden</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-container {
+            max-width: 500px;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .error-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .error-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        .error-message {
+            font-size: 1rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .error-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .error-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .error-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .error-link.secondary {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+        .error-link.secondary:hover {
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-emoji">🔍</div>
+        <div class="error-code">404</div>
+        <h1 class="error-title" id="title">Seite nicht gefunden</h1>
+        <p class="error-message" id="message">
+            Die gesuchte Seite existiert leider nicht oder wurde verschoben.
+        </p>
+        <div class="error-links">
+            <a href="/" class="error-link" id="home-link">
+                Zur Startseite
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Detect language from hostname
+        const isFrench = window.location.hostname.includes('calcule');
+
+        if (isFrench) {
+            document.documentElement.lang = 'fr';
+            document.getElementById('title').textContent = 'Page non trouvée';
+            document.getElementById('message').textContent =
+                'La page que vous recherchez n\'existe pas ou a été déplacée.';
+            document.getElementById('home-link').textContent = 'Retour à l\'accueil';
+        }
+    </script>
+
+    <script>
+        // Dark mode
+        const DarkMode = {
+            STORAGE_KEY: 'darkMode',
+            init() {
+                const stored = localStorage.getItem(this.STORAGE_KEY);
+                if (stored === 'true' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            }
+        };
+        DarkMode.init();
+    </script>
+</body>
+</html>

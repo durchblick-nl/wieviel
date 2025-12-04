@@ -22,7 +22,7 @@ disableAliases = true
     weight = 1
     [languages.de.params]
       domain = "wieviel.ch"
-      homePath = "/de/"
+      homePath = "/"
       allToolsText = "Alle Tools"
       disclaimerText = "Alle Angaben ohne Gewähr."
       privacyText = "Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert."
@@ -33,7 +33,7 @@ disableAliases = true
     weight = 2
     [languages.fr.params]
       domain = "calcule.ch"
-      homePath = "/fr/"
+      homePath = "/"
       allToolsText = "Tous les outils"
       disclaimerText = "Toutes les informations sans garantie."
       privacyText = "Tous les calculs sont effectués localement. Aucune donnée n'est stockée."

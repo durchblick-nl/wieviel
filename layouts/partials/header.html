@@ -8,13 +8,17 @@
         {{- if eq $currentLang "de" -}}
         <span class="lang-btn active">DE</span>
         {{- if $translations -}}
-        <a href="{{ (index $translations 0).Permalink }}" class="lang-btn">FR</a>
+        {{- $frPage := index $translations 0 -}}
+        {{- $frPath := replace $frPage.RelPermalink "/fr" "" -}}
+        <a href="https://calcule.ch{{ $frPath }}" class="lang-btn">FR</a>
         {{- else -}}
         <a href="https://calcule.ch/" class="lang-btn">FR</a>
         {{- end -}}
         {{- else -}}
         {{- if $translations -}}
-        <a href="{{ (index $translations 0).Permalink }}" class="lang-btn">DE</a>
+        {{- $dePage := index $translations 0 -}}
+        {{- $dePath := replace $dePage.RelPermalink "/de" "" -}}
+        <a href="https://wieviel.ch{{ $dePath }}" class="lang-btn">DE</a>
         {{- else -}}
         <a href="https://wieviel.ch/" class="lang-btn">DE</a>
         {{- end -}}
