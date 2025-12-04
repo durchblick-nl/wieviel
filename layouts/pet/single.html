@@ -1,5 +1,8 @@
-{{ partial "head.html" . }}
-
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+</head>
 <body>
     <div class="container">
         {{ partial "header.html" . }}
@@ -508,9 +511,10 @@
             });
         }
 
-        {{ partial "darkmode.html" . }}
-
         calculate();
     </script>
+
+    {{- partial "darkmode.html" . }}
 </body>
 </html>
+
