@@ -13,4 +13,7 @@ cp public/de/favicon.svg public/favicon.svg 2>/dev/null || true
 # The _worker.js handles homepage routing based on domain
 rm -f public/index.html
 
+# Copy _worker.js to public directory for Cloudflare Pages
+cp _worker.js public/_worker.js
+
 echo "Build complete!"
