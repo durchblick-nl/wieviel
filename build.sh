@@ -9,20 +9,8 @@ cp -r public/de/css public/css 2>/dev/null || true
 cp -r public/de/og public/og 2>/dev/null || true
 cp public/de/favicon.svg public/favicon.svg 2>/dev/null || true
 
-# Create root redirect to /de/ for wieviel.ch
-cat > public/index.html << 'EOF'
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=/de/">
-    <link rel="canonical" href="https://wieviel.ch/de/">
-    <title>Redirecting...</title>
-</head>
-<body>
-    <p>Redirecting to <a href="/de/">wieviel.ch</a>...</p>
-</body>
-</html>
-EOF
+# Remove Hugo's auto-generated root index.html redirect
+# The _worker.js handles homepage routing based on domain
+rm -f public/index.html
 
 echo "Build complete!"

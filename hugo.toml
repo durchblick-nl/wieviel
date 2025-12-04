@@ -6,8 +6,9 @@ languageCode = "de-CH"
 defaultContentLanguage = "de"
 defaultContentLanguageInSubdir = true
 
-# Disable unused kinds
+# Disable unused kinds and root redirect alias
 disableKinds = ["taxonomy", "term", "RSS"]
+disableAliases = true
 
 # Enable sitemaps per language
 [sitemap]
