@@ -2594,3 +2594,16 @@
                 max-width: 200px;
             }
         }
+
+        /* Dark Mode: Tooltip colors */
+        [data-theme="dark"] .badge::after,
+        [data-theme="dark"] .trust-item::after {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .badge::before,
+        [data-theme="dark"] .trust-item::before {
+            border-top-color: #1a1a2e;
+        }
