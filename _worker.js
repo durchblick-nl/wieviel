@@ -1,20 +1,20 @@
 /**
  * Cloudflare Pages Worker for wieviel.ch + calcule.ch dual-domain setup
  *
- * Handles:
- * - Homepage routing based on domain
- * - Cross-domain redirects (German content on calcule.ch → wieviel.ch, vice versa)
- * - Sitemap routing for calcule.ch
- * - Legacy /de/ and /fr/ subfolder redirects
+ * Hugo generates files under /de/ and /fr/ prefixes.
+ * This worker:
+ * - Routes requests based on domain (wieviel.ch → /de/, calcule.ch → /fr/)
+ * - Handles cross-domain redirects
+ * - Serves static assets directly
  */
 
 // German tool paths (served on wieviel.ch)
-const GERMAN_PATHS = ['/promille', '/lohn', '/trinkgeld', '/schlaf', '/bmi', '/fleisch', '/busse', '/tage', '/ferienkuerzung', '/teilzeit', '/mwst', '/miete', '/hypothek', '/zinseszins', '/wandern', '/stunden'];
+const GERMAN_PATHS = ['/promille', '/lohn', '/trinkgeld', '/schlaf', '/bmi', '/fleisch', '/busse', '/tage', '/ferienkuerzung', '/teilzeit', '/mwst', '/miete', '/hypothek', '/zinseszins', '/wandern', '/stunden', '/elternzeit', '/haustier', '/rauchen', '/strom'];
 
 // French tool paths (served on calcule.ch)
-const FRENCH_PATHS = ['/viande', '/amende', '/jours', '/tva', '/salaire', '/alcoolemie', '/pourboire', '/sommeil', '/imc', '/reduction-vacances', '/temps-partiel', '/loyer', '/hypotheque', '/interets-composes', '/randonnee', '/heures'];
+const FRENCH_PATHS = ['/viande', '/amende', '/jours', '/tva', '/salaire', '/alcoolemie', '/pourboire', '/sommeil', '/imc', '/reduction-vacances', '/temps-partiel', '/loyer', '/hypotheque', '/interets-composes', '/randonnee', '/heures', '/conge-parental', '/animal', '/tabac', '/electricite'];
 
-// Path mapping for legacy /fr/ redirects (German path → French path)
+// Path mapping (German path → French path)
 const DE_TO_FR_PATH = {
     '/promille': '/alcoolemie',
     '/lohn': '/salaire',
@@ -31,7 +31,11 @@ const DE_TO_FR_PATH = {
     '/hypothek': '/hypotheque',
     '/zinseszins': '/interets-composes',
     '/wandern': '/randonnee',
-    '/stunden': '/heures'
+    '/stunden': '/heures',
+    '/elternzeit': '/conge-parental',
+    '/haustier': '/animal',
+    '/rauchen': '/tabac',
+    '/strom': '/electricite'
 };
 
 export default {
@@ -47,20 +51,12 @@ export default {
         const getFrenchHost = () => hasWww ? 'www.calcule.ch' : 'calcule.ch';
 
         // =================================================================
-        // Homepage: serve correct language version
+        // Static assets: pass through directly (no prefix needed)
         // =================================================================
-        if (path === '/') {
-            const assetPath = isFrenchDomain ? '/fr/index.html' : '/de/index.html';
-            const assetUrl = new URL(assetPath, url.origin);
-            return env.ASSETS.fetch(new Request(assetUrl, request));
-        }
-
-        // =================================================================
-        // Sitemap: serve French sitemap on calcule.ch
-        // =================================================================
-        if (path === '/sitemap.xml' && isFrenchDomain) {
-            const assetUrl = new URL('/sitemap-fr.xml', url.origin);
-            return env.ASSETS.fetch(new Request(assetUrl, request));
+        if (path.startsWith('/css/') || path.startsWith('/og/') ||
+            path === '/favicon.svg' || path === '/sitemap.xml' ||
+            path === '/sitemap-fr.xml' || path === '/_redirects') {
+            return env.ASSETS.fetch(request);
         }
 
         // =================================================================
@@ -78,37 +74,30 @@ export default {
         }
 
         // =================================================================
-        // /fr/ folder on wieviel.ch → calcule.ch
+        // /fr/ URLs on wieviel.ch → redirect to calcule.ch (strip /fr/)
         // =================================================================
-        if (!isFrenchDomain && path.startsWith('/fr/')) {
-            const newPath = path.replace('/fr/', '/') || '/';
+        if (!isFrenchDomain && path.startsWith('/fr')) {
+            const newPath = path.replace(/^\/fr\/?/, '/') || '/';
             return Response.redirect(`https://${getFrenchHost()}${newPath}`, 301);
         }
-        if (!isFrenchDomain && path === '/fr') {
-            return Response.redirect(`https://${getFrenchHost()}/`, 301);
-        }
 
         // =================================================================
-        // /de/ folder on calcule.ch → wieviel.ch
+        // /de/ URLs on calcule.ch → redirect to wieviel.ch (strip /de/)
         // =================================================================
-        if (isFrenchDomain && path.startsWith('/de/')) {
-            const newPath = path.replace('/de/', '/') || '/';
+        if (isFrenchDomain && path.startsWith('/de')) {
+            const newPath = path.replace(/^\/de\/?/, '/') || '/';
             return Response.redirect(`https://${getGermanHost()}${newPath}`, 301);
         }
-        if (isFrenchDomain && path === '/de') {
-            return Response.redirect(`https://${getGermanHost()}/`, 301);
-        }
 
         // =================================================================
-        // Legacy redirects: /tool/de/* → /tool/*
+        // Legacy redirects: /tool/de/* → /tool/* on wieviel.ch
         // =================================================================
         const legacyDeMatch = path.match(/^(\/[^/]+)\/de(\/.*)?$/);
         if (legacyDeMatch) {
             const basePath = legacyDeMatch[1];
             const rest = legacyDeMatch[2] || '/';
             if (GERMAN_PATHS.includes(basePath)) {
-                const newPath = basePath + rest;
-                return Response.redirect(`https://${getGermanHost()}${newPath}`, 301);
+                return Response.redirect(`https://${getGermanHost()}${basePath}${rest}`, 301);
             }
         }
 
@@ -121,14 +110,32 @@ export default {
             const rest = legacyFrMatch[2] || '/';
             const frenchPath = DE_TO_FR_PATH[basePath];
             if (frenchPath) {
-                const newPath = frenchPath + rest;
-                return Response.redirect(`https://${getFrenchHost()}${newPath}`, 301);
+                return Response.redirect(`https://${getFrenchHost()}${frenchPath}${rest}`, 301);
             }
         }
 
         // =================================================================
-        // Default: pass through to static assets
+        // Sitemap: serve French sitemap on calcule.ch
         // =================================================================
-        return env.ASSETS.fetch(request);
+        if (path === '/sitemap.xml' && isFrenchDomain) {
+            const assetUrl = new URL('/sitemap-fr.xml', url.origin);
+            return env.ASSETS.fetch(new Request(assetUrl, request));
+        }
+
+        // =================================================================
+        // Main routing: prefix path with language folder
+        // calcule.ch/salaire/ → serve /fr/salaire/index.html
+        // wieviel.ch/lohn/ → serve /de/lohn/index.html
+        // =================================================================
+        const langPrefix = isFrenchDomain ? '/fr' : '/de';
+        let assetPath = langPrefix + path;
+
+        // If path doesn't end with / or a file extension, add /
+        if (!path.endsWith('/') && !path.match(/\.[a-z]+$/i)) {
+            assetPath += '/';
+        }
+
+        const assetUrl = new URL(assetPath, url.origin);
+        return env.ASSETS.fetch(new Request(assetUrl, request));
     }
 };
