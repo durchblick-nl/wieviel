@@ -1,0 +1,42 @@
+# Cloudflare Pages _redirects for wieviel.ch + calcule.ch
+# These redirects are processed BEFORE static files
+
+# =================================================================
+# wieviel.ch: /fr/* redirects to calcule.ch
+# =================================================================
+https://wieviel.ch/fr/  https://calcule.ch/  301
+https://wieviel.ch/fr/*  https://calcule.ch/:splat  301
+https://www.wieviel.ch/fr/  https://www.calcule.ch/  301
+https://www.wieviel.ch/fr/*  https://www.calcule.ch/:splat  301
+
+# =================================================================
+# calcule.ch: /de/* redirects to wieviel.ch
+# =================================================================
+https://calcule.ch/de/  https://wieviel.ch/  301
+https://calcule.ch/de/*  https://wieviel.ch/:splat  301
+https://www.calcule.ch/de/  https://www.wieviel.ch/  301
+https://www.calcule.ch/de/*  https://www.wieviel.ch/:splat  301
+
+# =================================================================
+# Legacy redirects: Old /tool/de/* URLs → new structure
+# =================================================================
+/promille/de/*  /promille/:splat  301
+/lohn/de/*  /lohn/:splat  301
+/trinkgeld/de/*  /trinkgeld/:splat  301
+/schlaf/de/*  /schlaf/:splat  301
+/bmi/de/*  /bmi/:splat  301
+/fleisch/de/*  /fleisch/:splat  301
+/busse/de/*  /busse/:splat  301
+/tage/de/*  /tage/:splat  301
+/ferienkuerzung/de/*  /ferienkuerzung/:splat  301
+/teilzeit/de/*  /teilzeit/:splat  301
+/mwst/de/*  /mwst/:splat  301
+/miete/de/*  /miete/:splat  301
+/hypothek/de/*  /hypothek/:splat  301
+/zinseszins/de/*  /zinseszins/:splat  301
+/wandern/de/*  /wandern/:splat  301
+/stunden/de/*  /stunden/:splat  301
+/elternzeit/de/*  /elternzeit/:splat  301
+/haustier/de/*  /haustier/:splat  301
+/rauchen/de/*  /rauchen/:splat  301
+/strom/de/*  /strom/:splat  301
