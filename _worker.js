@@ -54,8 +54,8 @@ export default {
         // Static assets: pass through directly (no prefix needed)
         // =================================================================
         if (path.startsWith('/css/') || path.startsWith('/og/') ||
-            path === '/favicon.svg' || path === '/sitemap.xml' ||
-            path === '/sitemap-fr.xml' || path === '/_redirects') {
+            path === '/favicon.svg' || path === '/_redirects' ||
+            path === '/404.html') {
             return env.ASSETS.fetch(request);
         }
 
@@ -115,10 +115,13 @@ export default {
         }
 
         // =================================================================
-        // Sitemap: serve French sitemap on calcule.ch
+        // Sitemap routing for dual-domain setup
         // =================================================================
-        if (path === '/sitemap.xml' && isFrenchDomain) {
-            const assetUrl = new URL('/sitemap-fr.xml', url.origin);
+        // wieviel.ch/sitemap.xml → /de/sitemap.xml (German sitemap)
+        // calcule.ch/sitemap.xml → /fr/sitemap.xml (French sitemap)
+        if (path === '/sitemap.xml') {
+            const sitemapPath = isFrenchDomain ? '/fr/sitemap.xml' : '/de/sitemap.xml';
+            const assetUrl = new URL(sitemapPath, url.origin);
             return env.ASSETS.fetch(new Request(assetUrl, request));
         }
 

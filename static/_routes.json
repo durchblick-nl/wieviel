@@ -5,8 +5,7 @@
     "/css/*",
     "/og/*",
     "/favicon.svg",
-    "/sitemap.xml",
-    "/sitemap-fr.xml",
+    "/404.html",
     "/_redirects"
   ]
 }
