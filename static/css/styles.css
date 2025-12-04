@@ -2386,3 +2386,211 @@
             margin-bottom: 0.5rem;
             line-height: 1.6;
         }
+
+        /* ========================================
+           HOMEPAGE BADGES & TRUST ITEMS WITH TOOLTIPS
+           ======================================== */
+
+        /* Hero Badges */
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            cursor: help;
+            transition: all 0.2s;
+        }
+
+        .badge:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge i {
+            color: var(--primary-color);
+        }
+
+        /* Tooltip for badges */
+        .badge::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-color);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .badge::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--text-color);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+
+        .badge:hover::after,
+        .badge:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            margin: 3rem 0;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .trust-item {
+            position: relative;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            cursor: help;
+            transition: all 0.2s;
+        }
+
+        .trust-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .trust-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .trust-item h3 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .trust-item p {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* Tooltip for trust items */
+        .trust-item::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-color);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            width: max-content;
+            max-width: 250px;
+            text-align: left;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+            z-index: 100;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .trust-item::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: var(--text-color);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+
+        .trust-item:hover::after,
+        .trust-item:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .badges {
+                gap: 0.5rem;
+            }
+
+            .badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .trust-item {
+                padding: 1rem 0.75rem;
+            }
+
+            .trust-item i {
+                font-size: 1.5rem;
+            }
+
+            .trust-item h3 {
+                font-size: 0.9rem;
+            }
+
+            .trust-item p {
+                font-size: 0.8rem;
+            }
+
+            /* Mobile: Position tooltips differently to prevent off-screen */
+            .badge::after,
+            .trust-item::after {
+                white-space: normal;
+                max-width: 200px;
+            }
+        }
