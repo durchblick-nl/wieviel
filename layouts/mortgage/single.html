@@ -1,8 +1,8 @@
-{{ partial "head.html" . }}
-{{ partial "header.html" . }}
-{{ partial "page-header.html" . }}
-
-<style>
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
     .mode-toggle {
         display: flex;
         gap: 0.5rem;
@@ -143,9 +143,14 @@
     .legend-dot.equity { background: #2e7d32; }
     .legend-dot.mortgage1 { background: var(--primary-color); }
     .legend-dot.mortgage2 { background: var(--secondary-color); }
-</style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
 
-<nav class="tool-nav">
+        <nav class="tool-nav">
     <a href="{{ "/" | relLangURL }}">{{ i18n "allTools" }}</a>
 </nav>
 
@@ -348,12 +353,12 @@
     </div>
 </div>
 
-{{ .Content }}
+        {{ .Content }}
+    </div>
 
-{{ partial "footer.html" . }}
-{{ partial "darkmode.html" . }}
+    {{ partial "footer.html" . }}
 
-<script>
+    <script>
     // Constants
     const CALC_INTEREST_RATE = 0.05; // 5% kalkulatorischer Zinssatz
     const ACTUAL_INTEREST_RATE = 0.02; // ~2% aktueller Zinssatz
@@ -368,25 +373,25 @@
 
     // i18n strings
     const i18n = {
-        maxPriceLabel: {{ i18n "mortgage.maxPriceLabel" | safeJS }},
-        affordable: {{ i18n "mortgage.affordable" | safeJS }},
-        withYourIncomeEquity: {{ i18n "mortgage.withYourIncomeEquity" | safeJS }},
-        pleaseEnterIncomeEquity: {{ i18n "mortgage.pleaseEnterIncomeEquity" | safeJS }},
-        affordabilityCheck: {{ i18n "mortgage.affordabilityCheck" | safeJS }},
-        notEnoughEquity: {{ i18n "mortgage.notEnoughEquity" | safeJS }},
-        minimum: {{ i18n "mortgage.minimum" | safeJS }},
-        needed: {{ i18n "mortgage.needed" | safeJS }},
-        notAffordable: {{ i18n "mortgage.notAffordable" | safeJS }},
-        ofIncome: {{ i18n "mortgage.ofIncome" | safeJS }},
-        affordableLabel: {{ i18n "mortgage.affordableLabel" | safeJS }},
-        perYear: {{ i18n "perYear" | safeJS }},
-        purchasePrice: {{ i18n "mortgage.purchasePrice" | safeJS }},
-        affordabilityPercent: {{ i18n "mortgage.affordabilityPercent" | safeJS }},
-        monthlyTotal: {{ i18n "mortgage.monthlyTotal" | safeJS }},
-        shareText: {{ i18n "mortgage.shareText" | safeJS }},
-        shareUrl: {{ .Permalink | safeJS }},
-        copied: {{ i18n "copied" | safeJS }},
-        copy: {{ i18n "copy" | safeJS }}
+        maxPriceLabel: {{ i18n "mortgage.maxPriceLabel" | jsonify }},
+        affordable: {{ i18n "mortgage.affordable" | jsonify }},
+        withYourIncomeEquity: {{ i18n "mortgage.withYourIncomeEquity" | jsonify }},
+        pleaseEnterIncomeEquity: {{ i18n "mortgage.pleaseEnterIncomeEquity" | jsonify }},
+        affordabilityCheck: {{ i18n "mortgage.affordabilityCheck" | jsonify }},
+        notEnoughEquity: {{ i18n "mortgage.notEnoughEquity" | jsonify }},
+        minimum: {{ i18n "mortgage.minimum" | jsonify }},
+        needed: {{ i18n "mortgage.needed" | jsonify }},
+        notAffordable: {{ i18n "mortgage.notAffordable" | jsonify }},
+        ofIncome: {{ i18n "mortgage.ofIncome" | jsonify }},
+        affordableLabel: {{ i18n "mortgage.affordableLabel" | jsonify }},
+        perYear: {{ i18n "perYear" | jsonify }},
+        purchasePrice: {{ i18n "mortgage.purchasePrice" | jsonify }},
+        affordabilityPercent: {{ i18n "mortgage.affordabilityPercent" | jsonify }},
+        monthlyTotal: {{ i18n "mortgage.monthlyTotal" | jsonify }},
+        shareText: {{ i18n "mortgage.shareText" | jsonify }},
+        shareUrl: {{ .Permalink | jsonify }},
+        copied: {{ i18n "copied" | jsonify }},
+        copy: {{ i18n "copy" | jsonify }}
     };
 
     // Initialize
@@ -613,7 +618,8 @@
             setTimeout(() => btn.innerHTML = originalText, 2000);
         });
     }
-</script>
+    </script>
 
+    {{ partial "darkmode.html" . }}
 </body>
 </html>

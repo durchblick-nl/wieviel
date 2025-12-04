@@ -295,16 +295,16 @@
     <script>
         // Localized texts from Hugo i18n
         const TEXTS = {
-            dog: {{ i18n "pet.dog" | safeJS }},
-            cat: {{ i18n "pet.cat" | safeJS }},
-            forYears: {{ i18n "pet.forYearsOwnership" | safeJS }},
-            dogOwnership: {{ i18n "pet.dogOwnership" | safeJS }},
-            catOwnership: {{ i18n "pet.catOwnership" | safeJS }},
-            grooming: {{ i18n "pet.grooming" | safeJS }},
-            training: {{ i18n "pet.training" | safeJS }},
-            catGrooming: {{ i18n "pet.catGrooming" | safeJS }},
-            catTraining: {{ i18n "pet.catTraining" | safeJS }},
-            shareText: {{ i18n "pet.shareText" | safeJS }}
+            dog: {{ i18n "pet.dog" | jsonify }},
+            cat: {{ i18n "pet.cat" | jsonify }},
+            forYears: {{ i18n "pet.forYearsOwnership" | jsonify }},
+            dogOwnership: {{ i18n "pet.dogOwnership" | jsonify }},
+            catOwnership: {{ i18n "pet.catOwnership" | jsonify }},
+            grooming: {{ i18n "pet.grooming" | jsonify }},
+            training: {{ i18n "pet.training" | jsonify }},
+            catGrooming: {{ i18n "pet.catGrooming" | jsonify }},
+            catTraining: {{ i18n "pet.catTraining" | jsonify }},
+            shareText: {{ i18n "pet.shareText" | jsonify }}
         };
 
         // Pet cost data (CHF per year, Swiss averages)
