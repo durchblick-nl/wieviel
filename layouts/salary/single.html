@@ -35,6 +35,15 @@
         .partner-content { display: flex; gap: 1rem; align-items: flex-start; }
         .partner-content > i { font-size: 1.5rem; color: var(--primary-color); margin-top: 0.25rem; flex-shrink: 0; }
         .partner-content a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
