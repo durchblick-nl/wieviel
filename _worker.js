@@ -9,10 +9,10 @@
  */
 
 // German tool paths (served on wieviel.ch)
-const GERMAN_PATHS = ['/promille', '/lohn', '/trinkgeld', '/schlaf', '/bmi', '/fleisch', '/busse', '/tage', '/ferienkuerzung', '/teilzeit', '/mwst', '/miete', '/hypothek', '/zinseszins', '/wandern', '/stunden', '/elternzeit', '/haustier', '/rauchen', '/strom'];
+const GERMAN_PATHS = ['/promille', '/lohn', '/trinkgeld', '/schlaf', '/bmi', '/fleisch', '/busse', '/tage', '/ferienkuerzung', '/teilzeit', '/mwst', '/miete', '/hypothek', '/zinseszins', '/wandern', '/stunden', '/elternzeit', '/haustier', '/rauchen', '/strom', '/iban'];
 
 // French tool paths (served on calcule.ch)
-const FRENCH_PATHS = ['/viande', '/amende', '/jours', '/tva', '/salaire', '/alcoolemie', '/pourboire', '/sommeil', '/imc', '/reduction-vacances', '/temps-partiel', '/loyer', '/hypotheque', '/interets-composes', '/randonnee', '/heures', '/conge-parental', '/animal', '/tabac', '/electricite'];
+const FRENCH_PATHS = ['/viande', '/amende', '/jours', '/tva', '/salaire', '/alcoolemie', '/pourboire', '/sommeil', '/imc', '/reduction-vacances', '/temps-partiel', '/loyer', '/hypotheque', '/interets-composes', '/randonnee', '/heures', '/conge-parental', '/animal', '/tabac', '/electricite', '/iban'];
 
 // Path mapping (German path → French path)
 const DE_TO_FR_PATH = {
@@ -35,7 +35,8 @@ const DE_TO_FR_PATH = {
     '/elternzeit': '/conge-parental',
     '/haustier': '/animal',
     '/rauchen': '/tabac',
-    '/strom': '/electricite'
+    '/strom': '/electricite',
+    '/iban': '/iban'
 };
 
 export default {
@@ -61,15 +62,17 @@ export default {
 
         // =================================================================
         // Cross-domain redirects: French paths on wieviel.ch → calcule.ch
+        // Only redirect if it is NOT a valid German path (avoids conflict for shared paths like /iban)
         // =================================================================
-        if (!isFrenchDomain && FRENCH_PATHS.some(p => path.startsWith(p))) {
+        if (!isFrenchDomain && FRENCH_PATHS.some(p => path.startsWith(p)) && !GERMAN_PATHS.some(p => path.startsWith(p))) {
             return Response.redirect(`https://${getFrenchHost()}${path}`, 301);
         }
 
         // =================================================================
         // Cross-domain redirects: German paths on calcule.ch → wieviel.ch
+        // Only redirect if it is NOT a valid French path
         // =================================================================
-        if (isFrenchDomain && GERMAN_PATHS.some(p => path.startsWith(p))) {
+        if (isFrenchDomain && GERMAN_PATHS.some(p => path.startsWith(p)) && !FRENCH_PATHS.some(p => path.startsWith(p))) {
             return Response.redirect(`https://${getGermanHost()}${path}`, 301);
         }
 

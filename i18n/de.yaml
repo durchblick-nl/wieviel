@@ -879,3 +879,14 @@ officialSources: "Offizielle Quellen"
     { "id": "tvbox", "name": "TV-Box / Apple TV", "icon": "📺", "kwh": 44, "details": "5W, 24h Standby", "checked": false },
     { "id": "gaming", "name": "Spielkonsole (Standby)", "icon": "🎮", "kwh": 88, "details": "10W, 24h (PS5/Xbox)", "checked": false }
   ]
+
+# IBAN-Prüfer
+"iban.enterIBAN": "Schweizer IBAN eingeben (beginnt mit CH oder LI)"
+"iban.step1Title": "IBAN eingeben"
+"iban.step1Desc": "Tippe deine IBAN ein."
+"iban.step2Title": "Prüfung"
+"iban.step2Desc": "Format und Prüfsumme."
+"iban.step3Title": "Bank-Infos"
+"iban.step3Desc": "Finde Bank und Ort."
+"iban.clearing": "Clearing-Nr."
+"iban.bic": "BIC"

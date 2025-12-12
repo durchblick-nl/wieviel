@@ -2397,3 +2397,99 @@
             margin-bottom: 0.5rem;
             line-height: 1.6;
         }
+
+        /* Tip Section */
+        .tip-section {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tip-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: linear-gradient(135deg, var(--card-bg), var(--light-bg));
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .tip-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 2px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .tip-content {
+            flex: 1;
+        }
+
+        .tip-content strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .tip-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .tip-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .tip-link:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .tip-link i {
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .tip-box {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 1.5rem;
+            }
+
+            .tip-label {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .tip-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }

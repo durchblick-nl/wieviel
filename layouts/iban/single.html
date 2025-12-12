@@ -1,0 +1,237 @@
+{{ define "main" }}
+<style>
+    .bmi-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .bmi-info-item {
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 0.9rem;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .bmi-info-item.result-box {
+        background: rgba(52, 152, 219, 0.05);
+        border-color: rgba(52, 152, 219, 0.2);
+        color: var(--text-color);
+    }
+
+    .bmi-info-item .range {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
+        display: block;
+        color: var(--primary-color);
+    }
+
+    .info-section {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border: 1px solid var(--border-color);
+    }
+
+    .info-section h2 {
+        margin: 0 0 1rem 0;
+        font-size: 1.3rem;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+</style>
+
+<div class="steps-container">
+    <div class="step-card">
+        <div class="step-icon"><i class="fas fa-keyboard"></i>
+            <div class="step-number">1</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "iban.step1Title" }}</h3>
+            <p>{{ i18n "iban.step1Desc" }}</p>
+        </div>
+    </div>
+    <div class="step-card">
+        <div class="step-icon"><i class="fas fa-check-double"></i>
+            <div class="step-number">2</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "iban.step2Title" }}</h3>
+            <p>{{ i18n "iban.step2Desc" }}</p>
+        </div>
+    </div>
+    <div class="step-card">
+        <div class="step-icon"><i class="fas fa-university"></i>
+            <div class="step-number">3</div>
+        </div>
+        <div class="step-content">
+            <h3>{{ i18n "iban.step3Title" }}</h3>
+            <p>{{ i18n "iban.step3Desc" }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="calculator-card">
+    <label for="iban-input" style="font-weight: 600; margin-bottom: 0.5rem; display: block;">{{ i18n
+        "iban.enterIBAN" | default "IBAN eingeben" }}</label>
+    <div class="input-group" style="margin-bottom: 1.5rem;">
+        <input type="text" id="iban-input" placeholder="CH..."
+            style="width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); font-size: 1.2rem; font-family: monospace;"
+            oninput="formatIBAN(this)">
+    </div>
+
+    <div id="result-container" style="display: none; text-align: center;">
+        <div id="check-icon" style="font-size: 3rem; margin-bottom: 1rem;"><i class="fas fa-check-circle"
+                style="color: #2ecc71;"></i></div>
+        <h3 id="bank-name" style="margin-bottom: 0.5rem; color: var(--primary-color); font-size: 1.5rem;"></h3>
+        <p id="bank-address" style="color: var(--text-color); opacity: 0.8; margin-bottom: 1.5rem;"></p>
+
+        <div class="bmi-info-grid">
+            <div class="bmi-info-item result-box">
+                <span class="range" id="clearing-num"></span>
+                <span>{{ i18n "iban.clearing" | default "Clearing-Nr." }}</span>
+            </div>
+            <div class="bmi-info-item result-box">
+                <span class="range" id="bic-code"></span>
+                <span>{{ i18n "iban.bic" | default "BIC" }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="error-container" style="display: none; text-align: center; color: #e74c3c;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;"><i class="fas fa-times-circle"></i></div>
+        <p id="error-msg"></p>
+    </div>
+</div>
+
+{{ .Content }}
+
+
+<script>
+    let bankData = {};
+
+    // Load Bank Data
+    fetch('/data/bank_master.json')
+        .then(response => response.json())
+        .then(data => {
+            bankData = data;
+        })
+        .catch(error => console.error('Error loading bank data:', error));
+
+    function formatIBAN(input) {
+        let value = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+
+        // Add spaces every 4 characters for readability
+        let formatted = '';
+        for (let i = 0; i < value.length; i++) {
+            if (i > 0 && i % 4 === 0) formatted += ' ';
+            formatted += value[i];
+        }
+        input.value = formatted;
+
+        validateIBAN(value);
+    }
+
+    function validateIBAN(iban) {
+        const resultContainer = document.getElementById('result-container');
+        const errorContainer = document.getElementById('error-container');
+        const errorMsg = document.getElementById('error-msg');
+
+        // Basic Length Check for CH/LI (21 chars)
+        if (iban.length < 21) {
+            resultContainer.style.display = 'none';
+            errorContainer.style.display = 'none';
+            return;
+        }
+
+        if (!iban.startsWith('CH') && !iban.startsWith('LI')) {
+            showError("Nur Schweizer (CH) oder Liechtensteiner (LI) IBANs werden unterstützt.");
+            return;
+        }
+
+        if (iban.length > 21) {
+            showError("IBAN ist zu lang.");
+            return;
+        }
+
+        // Modulo 97 Check
+        if (!isValidIBAN(iban)) {
+            showError("Ungültige IBAN (Prüfsumme falsch).");
+            return;
+        }
+
+        // Identify Bank (Positions 5-9 in CH IBAN)
+        // CHkk IIDD CCCC CCCC CCC
+        // IID is index 4 to 9 (5 chars)
+        const iid = iban.substring(4, 9);
+        const bank = bankData[iid]; // Try direct lookup
+
+        // Note: Sometimes IID is just 4 or 3 digits? Swiss IID is usually 5 digits.
+        // The CSV IID/QR-IID field seems to be the key.
+        // Let's try to find it.
+
+        if (bank) {
+            showResult(bank);
+        } else {
+            // Fallback: Check if we can find it by prefix if 5 digits fail (unlikely for CH)
+            showError(`Gültige IBAN, aber Bank mit IID '${iid}' nicht in der Datenbank gefunden.`);
+        }
+    }
+
+    function isValidIBAN(iban) {
+        // Move first 4 chars to end
+        const rearranged = iban.substring(4) + iban.substring(0, 4);
+        // Replace letters with numbers (A=10, B=11, ..., Z=35)
+        let numeric = '';
+        for (let i = 0; i < rearranged.length; i++) {
+            const char = rearranged[i];
+            if (/[A-Z]/.test(char)) {
+                numeric += (char.charCodeAt(0) - 55);
+            } else {
+                numeric += char;
+            }
+        }
+
+        // BigInt Modulo
+        // Since we target modern browsers, BigInt is usually fine.
+        // Fallback for older browsers: piecewise modulo
+        try {
+            return BigInt(numeric) % 97n === 1n;
+        } catch (e) {
+            return pieceWiseModulo(numeric, 97) === 1;
+        }
+    }
+
+    function pieceWiseModulo(str, divisor) {
+        let remainder = 0;
+        for (let i = 0; i < str.length; i++) {
+            remainder = (remainder * 10 + parseInt(str[i])) % divisor;
+        }
+        return remainder;
+    }
+
+    function showResult(bank) {
+        document.getElementById('result-container').style.display = 'block';
+        document.getElementById('error-container').style.display = 'none';
+
+        document.getElementById('bank-name').textContent = bank.name;
+        document.getElementById('bank-address').textContent = `${bank.address}, ${bank.zip} ${bank.city}`;
+        document.getElementById('clearing-num').textContent = bank.clearing;
+        document.getElementById('bic-code').textContent = bank.bic || '-';
+    }
+
+    function showError(msg) {
+        document.getElementById('result-container').style.display = 'none';
+        document.getElementById('error-container').style.display = 'block';
+        document.getElementById('error-msg').textContent = msg;
+    }
+</script>
+{{ end }}
