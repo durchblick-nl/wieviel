@@ -171,6 +171,7 @@ print(json.dumps(result, ensure_ascii=False, indent=2))
 - [ ] `data/site.yaml`: `currentYear` aktualisieren
 - [ ] `data/site.yaml`: Alle Jahreskommentare aktualisieren
 - [ ] `data/site.yaml`: Neue Sozialversicherungswerte eintragen
+- [ ] `data/site.yaml`: `dataStatus` Abschnitt aktualisieren (lastVerified, nextCheck)
 - [ ] `layouts/electricity/single.html`: SPARQL-Query Jahr aktualisieren
 - [ ] `i18n/*.yaml`: Jahresreferenzen aktualisieren
 - [ ] Content-Dateien: Titel und Beschreibungen auf neues Jahr

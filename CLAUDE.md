@@ -12,7 +12,7 @@ A collection of useful calculators for the general public in Switzerland, built 
 - https://wieviel.ch (German)
 - https://calcule.ch (French)
 
-### Current Tools (20 calculators, bilingual DE/FR):
+### Current Tools (21 calculators, bilingual DE/FR):
 
 | DE (wieviel.ch) | FR (calcule.ch) | Description |
 |-----------------|-----------------|-------------|
@@ -36,6 +36,7 @@ A collection of useful calculators for the general public in Switzerland, built 
 | `/de/haustier/` | `/fr/animal/` | Pet cost calculator |
 | `/de/rauchen/` | `/fr/tabac/` | Smoking cost calculator |
 | `/de/strom/` | `/fr/electricite/` | Electricity cost calculator (ElCom) |
+| `/de/iban/` | `/fr/iban/` | IBAN checker with bank lookup (SIX) |
 
 ## Tech Stack
 
@@ -71,11 +72,12 @@ wieviel.ch/
 │   ├── _default/
 │   │   └── sitemap.xml       # Dynamic sitemap (domain per language)
 │   ├── partials/
-│   │   ├── head.html         # <head> with SEO, fonts, CSS
+│   │   ├── head.html         # <head> with SEO, fonts, CSS, JSON-LD
 │   │   ├── header.html       # Dark mode + language switcher
 │   │   ├── footer.html       # Footer with disclaimers
 │   │   ├── page-header.html  # Calculator header (icon, title, nav)
-│   │   └── darkmode.html     # Dark mode JavaScript
+│   │   ├── darkmode.html     # Dark mode JavaScript
+│   │   └── data-status.html  # Data verification date display
 │   │
 │   └── [type]/single.html    # Calculator layouts by type:
 │       ├── bac/              # Promillerechner / Alcoolémie
@@ -99,7 +101,8 @@ wieviel.ch/
 │       ├── parental/         # Elternzeit / Congé parental
 │       ├── pet/              # Haustier / Animal
 │       ├── smoking/          # Rauchen / Tabac
-│       └── electricity/      # Strom / Électricité
+│       ├── electricity/      # Strom / Électricité
+│       └── iban/             # IBAN-Prüfer
 │
 ├── i18n/
 │   ├── de.yaml               # German translations (FLAT format)
@@ -116,6 +119,7 @@ wieviel.ch/
 │   └── [tool].png            # Per-calculator OG images
 │
 ├── favicon.svg               # Site icon
+├── MAINTENANCE.md            # Data update schedule and sources
 └── public/                   # Hugo build output (gitignored)
 ```
 
@@ -179,7 +183,7 @@ Access in templates:
 Centralized data for all calculators:
 
 ```yaml
-currentYear: 2025
+currentYear: 2026
 referenceRate: 1.25              # Mietzins
 vat:
   normal: 8.1
@@ -191,6 +195,10 @@ socialInsurance:
 bvg:
   coordinationDeduction: 26460
   # ... more
+dataStatus:                      # For data-status.html partial
+  socialInsurance:
+    lastVerifiedDe: "Dezember 2025"
+    nextCheckDe: "November 2026"
 ```
 
 Access in templates:
@@ -288,7 +296,7 @@ All calculators use the same FAQ styling from `css/styles.css`:
 - **Compound Interest**: `A = P × (1 + r)ⁿ + M × [(1 + r)ⁿ - 1] / r`
 - **Rent Adjustment**: 2.91% reduction per 0.25% rate decrease
 
-### Swiss-Specific Values (2025)
+### Swiss-Specific Values (2026)
 
 | Parameter | Value |
 |-----------|-------|
@@ -297,7 +305,8 @@ All calculators use the same FAQ styling from `css/styles.css`:
 | BVG coordination deduction | CHF 26'460 |
 | VAT normal | 8.1% |
 | Reference rate (rent) | 1.25% |
-| Pillar 3a max (employed) | CHF 7'056 |
+| Pillar 3a max (employed) | CHF 7'258 |
+| Pillar 3a max (self-employed) | CHF 36'288 |
 
 ## Related Projects
 
