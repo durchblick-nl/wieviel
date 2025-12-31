@@ -69,7 +69,7 @@
                 </button>
             </div>
 
-            <div id="result" style="display: none;">
+            <div id="result" style="display: none;" aria-live="polite">
                 <p class="info-text" id="resultDescription">{{ i18n "sleep.optimalBedtimes" }}</p>
                 <div class="results-grid" id="resultsGrid"></div>
 
@@ -188,14 +188,37 @@
             }
 
             const grid = document.getElementById('resultsGrid');
-            grid.innerHTML = results.map(r => `
-                <div class="time-card ${r.recommended ? 'recommended' : ''}" onclick="selectTime('${r.time}', ${r.cycles})">
-                    <div class="time">${r.time}</div>
-                    <div class="cycles">${r.cycles} ${TEXTS.cycles}</div>
-                    <div class="duration">${formatDuration(r.duration)} ${TEXTS.sleep}</div>
-                    ${r.recommended ? `<div class="badge">${TEXTS.recommended}</div>` : ''}
-                </div>
-            `).join('');
+            grid.innerHTML = '';
+
+            results.forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'time-card' + (r.recommended ? ' recommended' : '');
+                card.addEventListener('click', () => selectTime(r.time, r.cycles));
+
+                const timeDiv = document.createElement('div');
+                timeDiv.className = 'time';
+                timeDiv.textContent = r.time;
+                card.appendChild(timeDiv);
+
+                const cyclesDiv = document.createElement('div');
+                cyclesDiv.className = 'cycles';
+                cyclesDiv.textContent = `${r.cycles} ${TEXTS.cycles}`;
+                card.appendChild(cyclesDiv);
+
+                const durationDiv = document.createElement('div');
+                durationDiv.className = 'duration';
+                durationDiv.textContent = `${formatDuration(r.duration)} ${TEXTS.sleep}`;
+                card.appendChild(durationDiv);
+
+                if (r.recommended) {
+                    const badge = document.createElement('div');
+                    badge.className = 'badge';
+                    badge.textContent = TEXTS.recommended;
+                    card.appendChild(badge);
+                }
+
+                grid.appendChild(card);
+            });
 
             document.getElementById('result').style.display = 'block';
         }

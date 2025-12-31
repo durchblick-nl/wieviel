@@ -2,13 +2,13 @@
 # ZENTRALE DATEN FÜR ALLE RECHNER - wieviel.ch / calcule.ch
 # =============================================================================
 # Bei Änderungen: nur hier anpassen, Hugo baut alle Seiten neu.
-# Letzte Aktualisierung: Dezember 2024
+# Letzte Aktualisierung: Dezember 2025
 # =============================================================================
 
 # -----------------------------------------------------------------------------
 # ALLGEMEIN
 # -----------------------------------------------------------------------------
-currentYear: 2025
+currentYear: 2026
 
 # -----------------------------------------------------------------------------
 # REFERENZZINSSATZ (Mietzinsrechner)
@@ -21,7 +21,7 @@ referenceRateDateFr: "3 septembre 2025"
 referenceRateSource: "https://www.bwo.admin.ch/de/referenzzinssatz"
 
 # -----------------------------------------------------------------------------
-# MWST-SÄTZE 2025
+# MWST-SÄTZE 2026
 # Quelle: ESTV
 # -----------------------------------------------------------------------------
 vat:
@@ -31,7 +31,7 @@ vat:
   registrationLimit: 100000  # CHF Jahresumsatz
 
 # -----------------------------------------------------------------------------
-# SOZIALVERSICHERUNGEN 2025
+# SOZIALVERSICHERUNGEN 2026
 # Quellen: AHV/IV, SUVA, BSV
 # -----------------------------------------------------------------------------
 socialInsurance:
@@ -46,7 +46,7 @@ socialInsurance:
   nbuRate: 0.5
 
 # -----------------------------------------------------------------------------
-# BVG (Berufliche Vorsorge) 2025
+# BVG (Berufliche Vorsorge) 2026
 # Quelle: BSV
 # -----------------------------------------------------------------------------
 bvg:
@@ -72,7 +72,7 @@ bvg:
   employeeRateAge55to65: 9.0
 
 # -----------------------------------------------------------------------------
-# AHV-RENTEN 2025
+# AHV-RENTEN 2026
 # Quelle: BSV
 # -----------------------------------------------------------------------------
 ahvPension:
@@ -80,7 +80,7 @@ ahvPension:
   minMonthly: 1260   # Minimale AHV-Rente pro Monat
 
 # -----------------------------------------------------------------------------
-# FAMILIENZULAGEN 2025
+# FAMILIENZULAGEN 2026
 # Quelle: BSV (Mindestansätze, kantonal unterschiedlich)
 # -----------------------------------------------------------------------------
 familyAllowances:
@@ -88,7 +88,7 @@ familyAllowances:
   educationPerMonth: 250   # Ausbildungszulage
 
 # -----------------------------------------------------------------------------
-# ELTERNZEIT / EOG 2025
+# ELTERNZEIT / EOG 2026
 # Quelle: BSV
 # -----------------------------------------------------------------------------
 parentalLeave:
@@ -106,7 +106,7 @@ parentalLeave:
   maxMonthlyForMaxRate: 8250    # Ab diesem Monatslohn gilt Maximum
 
 # -----------------------------------------------------------------------------
-# HYPOTHEKEN 2025
+# HYPOTHEKEN 2026
 # Quelle: Bankenpraktiken, FINMA
 # -----------------------------------------------------------------------------
 mortgage:
@@ -127,13 +127,13 @@ mortgage:
   estimatedCurrentRate: 2.0
 
 # -----------------------------------------------------------------------------
-# STROMPREISE 2025
+# STROMPREISE 2026
 # Quelle: ElCom / LINDAS
 # -----------------------------------------------------------------------------
 electricity:
-  medianPrice: 29        # Rp./kWh (Median Schweiz)
-  minPrice: 9            # Rp./kWh (günstigste Gemeinde)
-  maxPrice: 46           # Rp./kWh (teuerste Gemeinde)
+  medianPrice: 28        # Rp./kWh (Median Schweiz)
+  minPrice: 10           # Rp./kWh (günstigste Gemeinde)
+  maxPrice: 44           # Rp./kWh (teuerste Gemeinde)
 
   # Typische Verbräuche
   householdH4: 4500      # kWh/Jahr (4-Personen-Haushalt)
@@ -144,7 +144,7 @@ electricity:
   ecarPer100km: 19       # kWh/100km
 
 # -----------------------------------------------------------------------------
-# ZIGARETTENPREISE 2025
+# ZIGARETTENPREISE 2026
 # Quelle: Marktbeobachtung
 # -----------------------------------------------------------------------------
 smoking:
@@ -172,12 +172,12 @@ speedingFines:
   raserLicenseWithdrawalYears: 2
 
 # -----------------------------------------------------------------------------
-# SÄULE 3a 2025
+# SÄULE 3a 2026
 # Quelle: BSV
 # -----------------------------------------------------------------------------
 pillar3a:
-  maxWithPensionFund: 7056      # Mit Pensionskasse
-  maxWithoutPensionFund: 35280  # Selbständige ohne PK (20% des Einkommens)
+  maxWithPensionFund: 7258      # Mit Pensionskasse
+  maxWithoutPensionFund: 36288  # Selbständige ohne PK (20% des Einkommens)
 
 # -----------------------------------------------------------------------------
 # WANDERN
@@ -188,3 +188,29 @@ hiking:
   flatSpeed: 4200        # Horizontale Geschwindigkeit
   ascentSpeed: 400       # Aufstieg m/h
   descentSpeed: 800      # Abstieg m/h
+
+# -----------------------------------------------------------------------------
+# DATENSTAND & NÄCHSTE ÜBERPRÜFUNG
+# Für den Footer-Hinweis auf den Rechner-Seiten
+# -----------------------------------------------------------------------------
+dataStatus:
+  # Sozialversicherungen (AHV, BVG, 3a) - jährlich im November
+  socialInsurance:
+    lastVerifiedDe: "Dezember 2025"
+    lastVerifiedFr: "décembre 2025"
+    nextCheckDe: "November 2026"
+    nextCheckFr: "novembre 2026"
+
+  # Referenzzinssatz - quartalsweise
+  referenceRate:
+    lastVerifiedDe: "Dezember 2025"
+    lastVerifiedFr: "décembre 2025"
+    nextCheckDe: "März 2026"
+    nextCheckFr: "mars 2026"
+
+  # Strompreise - jährlich im September
+  electricity:
+    lastVerifiedDe: "Dezember 2025"
+    lastVerifiedFr: "décembre 2025"
+    nextCheckDe: "September 2026"
+    nextCheckFr: "septembre 2026"

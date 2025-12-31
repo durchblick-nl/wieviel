@@ -186,6 +186,7 @@
         {{ .Content }}
     </div>
 
+    {{- partial "data-status.html" (dict "statusType" "socialInsurance") -}}
     {{- partial "footer.html" . }}
     {{- partial "darkmode.html" . }}
 

@@ -7,14 +7,6 @@
     "bic": "SNBZCHZZXXX",
     "clearing": "00100"
   },
-  "01007": {
-    "name": "Schweizerische Nationalbank Transit wCBDC",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Börsenstrasse 15",
-    "bic": "SNBZCHZZDX2",
-    "clearing": "01007"
-  },
   "00110": {
     "name": "Schweizerische Nationalbank",
     "city": "Bern",
@@ -734,6 +726,2718 @@
     "address": "Bahnhofstrasse 45",
     "bic": "UBSWCHZH80A",
     "clearing": "00298"
+  },
+  "00303": {
+    "name": "UBS Switzerland AG",
+    "city": "Zürich",
+    "zip": "8098",
+    "address": "Bahnhofstrasse 45",
+    "bic": "UBSWCHZHW03",
+    "clearing": "00303"
+  },
+  "00304": {
+    "name": "UBS Switzerland AG",
+    "city": "Zürich",
+    "zip": "8098",
+    "address": "Bahnhofstrasse 45",
+    "bic": "UBSWCHZHW04",
+    "clearing": "00304"
+  },
+  "00305": {
+    "name": "UBS Switzerland AG",
+    "city": "Zürich",
+    "zip": "8098",
+    "address": "Bahnhofstrasse 45",
+    "bic": "UBSWCHZHW05",
+    "clearing": "00305"
+  },
+  "00306": {
+    "name": "UBS Switzerland AG",
+    "city": "Zürich",
+    "zip": "8098",
+    "address": "Bahnhofstrasse 45",
+    "bic": "UBSWCHZHW06",
+    "clearing": "00306"
+  },
+  "00308": {
+    "name": "UBS Switzerland AG",
+    "city": "Zürich",
+    "zip": "8098",
+    "address": "Bahnhofstrasse 45",
+    "bic": "UBSWCHZHW08",
+    "clearing": "00308"
+  },
+  "00315": {
+    "name": "UBS AG",
+    "city": "Zürich",
+    "zip": "8098",
+    "address": "Bahnhofstrasse 45",
+    "bic": "UBSBCHZZXXX",
+    "clearing": "00315"
+  },
+  "00700": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8010",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00700"
+  },
+  "00702": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8036",
+    "address": "Wiedikon (ex. Enge)",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00702"
+  },
+  "00703": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8010",
+    "address": "(Limmatquai)",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00703"
+  },
+  "00704": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Stäfa",
+    "zip": "8712",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00704"
+  },
+  "00705": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Volketswil",
+    "zip": "8604",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00705"
+  },
+  "00706": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Dietikon 1",
+    "zip": "8953",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00706"
+  },
+  "00708": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8046",
+    "address": "Affoltern",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00708"
+  },
+  "00709": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Urdorf",
+    "zip": "8902",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00709"
+  },
+  "00710": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zumikon",
+    "zip": "8126",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00710"
+  },
+  "00711": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8048",
+    "address": "Altstetten",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00711"
+  },
+  "00712": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8036",
+    "address": "(Aussersihl)",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00712"
+  },
+  "00713": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8032",
+    "address": "Neumünster",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00713"
+  },
+  "00714": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8042",
+    "address": "Unterstrass",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00714"
+  },
+  "00715": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8036",
+    "address": "Wiedikon",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00715"
+  },
+  "00716": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8005",
+    "address": "Prime Tower, Hardstrasse 201",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00716"
+  },
+  "00717": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8038",
+    "address": "Wollishofen",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00717"
+  },
+  "00718": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8051",
+    "address": "Schwamendingen",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00718"
+  },
+  "00719": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8052",
+    "address": "Seebach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00719"
+  },
+  "00720": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8047",
+    "address": "Albisrieden",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00720"
+  },
+  "00721": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Affoltern am Albis",
+    "zip": "8910",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00721"
+  },
+  "00722": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Andelfingen",
+    "zip": "8450",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00722"
+  },
+  "00723": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Bauma",
+    "zip": "8494",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00723"
+  },
+  "00724": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Bülach",
+    "zip": "8180",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00724"
+  },
+  "00725": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Dielsdorf",
+    "zip": "8157",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00725"
+  },
+  "00726": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Horgen 1",
+    "zip": "8810",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00726"
+  },
+  "00727": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Meilen",
+    "zip": "8706",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00727"
+  },
+  "00728": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8050",
+    "address": "Oerlikon",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00728"
+  },
+  "00729": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Rüti ZH",
+    "zip": "8630",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00729"
+  },
+  "00730": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Uster 1",
+    "zip": "8610",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00730"
+  },
+  "00731": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Wald ZH",
+    "zip": "8636",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00731"
+  },
+  "00732": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Winterthur",
+    "zip": "8401",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00732"
+  },
+  "00733": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Effretikon",
+    "zip": "8307",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00733"
+  },
+  "00734": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8053",
+    "address": "Witikon",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00734"
+  },
+  "00735": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Egg b. Zürich",
+    "zip": "8132",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00735"
+  },
+  "00736": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8049",
+    "address": "Höngg",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00736"
+  },
+  "00737": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Zürich",
+    "zip": "8032",
+    "address": "Klusplatz",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00737"
+  },
+  "00738": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Glattbrugg",
+    "zip": "8152",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00738"
+  },
+  "00739": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Hombrechtikon",
+    "zip": "8634",
+    "address": "Postfach 17",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00739"
+  },
+  "00740": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Dübendorf 1",
+    "zip": "8600",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00740"
+  },
+  "00741": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Eglisau",
+    "zip": "8193",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00741"
+  },
+  "00742": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Fehraltorf",
+    "zip": "8320",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00742"
+  },
+  "00743": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Feuerthalen",
+    "zip": "8245",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00743"
+  },
+  "00744": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Kloten",
+    "zip": "8302",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00744"
+  },
+  "00745": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Küsnacht ZH",
+    "zip": "8700",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00745"
+  },
+  "00746": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Männedorf",
+    "zip": "8708",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00746"
+  },
+  "00747": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Richterswil",
+    "zip": "8805",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00747"
+  },
+  "00748": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Schlieren",
+    "zip": "8952",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00748"
+  },
+  "00749": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Thalwil",
+    "zip": "8800",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00749"
+  },
+  "00750": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Turbenthal",
+    "zip": "8488",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00750"
+  },
+  "00751": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Wallisellen",
+    "zip": "8304",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00751"
+  },
+  "00752": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Pfäffikon ZH",
+    "zip": "8330",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00752"
+  },
+  "00753": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Winterthur",
+    "zip": "8404",
+    "address": "Oberwinterthur",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00753"
+  },
+  "00754": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Hinwil",
+    "zip": "8340",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00754"
+  },
+  "00755": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Wetzikon ZH 2",
+    "zip": "8622",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00755"
+  },
+  "00756": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Regensdorf 1",
+    "zip": "8105",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00756"
+  },
+  "00757": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Wädenswil",
+    "zip": "8820",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00757"
+  },
+  "00758": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Adliswil 1",
+    "zip": "8134",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00758"
+  },
+  "00759": {
+    "name": "Zürcher Kantonalbank",
+    "city": "Bassersdorf",
+    "zip": "8303",
+    "address": "Postfach",
+    "bic": "ZKBKCHZZ80A",
+    "clearing": "00759"
+  },
+  "00761": {
+    "name": "Aargauische Kantonalbank",
+    "city": "Aarau",
+    "zip": "5001",
+    "address": "Bahnhofplatz 1",
+    "bic": "KBAGCH22XXX",
+    "clearing": "00761"
+  },
+  "00763": {
+    "name": "Appenzeller Kantonalbank",
+    "city": "Appenzell",
+    "zip": "9050",
+    "address": "Postfach",
+    "bic": "AIKACH22XXX",
+    "clearing": "00763"
+  },
+  "00764": {
+    "name": "Banca dello Stato del Cantone Ticino",
+    "city": "Bellinzona",
+    "zip": "6501",
+    "address": "Viale H. Guisan 5",
+    "bic": "BSCTCH22XXX",
+    "clearing": "00764"
+  },
+  "00765": {
+    "name": "Banque Cantonale du Valais",
+    "city": "Sion/Sitten",
+    "zip": "1951",
+    "address": "Place des Cèdres 8",
+    "bic": "BCVSCH2LXXX",
+    "clearing": "00765"
+  },
+  "00766": {
+    "name": "Banque Cantonale Neuchâteloise",
+    "city": "Neuchâtel",
+    "zip": "2001",
+    "address": "Case postale 275",
+    "bic": "BCNNCH22XXX",
+    "clearing": "00766"
+  },
+  "00767": {
+    "name": "Banque Cantonale Vaudoise",
+    "city": "Lausanne",
+    "zip": "1001",
+    "address": "St-François",
+    "bic": "BCVLCH2LXXX",
+    "clearing": "00767"
+  },
+  "00768": {
+    "name": "Banque Cantonale de Fribourg",
+    "city": "Fribourg",
+    "zip": "1701",
+    "address": "Bd de Pérolles 1",
+    "bic": "BEFRCH22XXX",
+    "clearing": "00768"
+  },
+  "00769": {
+    "name": "Basellandschaftliche Kantonalbank",
+    "city": "Liestal",
+    "zip": "4410",
+    "address": "Postfach",
+    "bic": "BLKBCH22XXX",
+    "clearing": "00769"
+  },
+  "00770": {
+    "name": "Basler Kantonalbank",
+    "city": "Basel",
+    "zip": "4051",
+    "address": "Aeschenvorstadt 41",
+    "bic": "BKBBCHBBXXX",
+    "clearing": "00770"
+  },
+  "00773": {
+    "name": "Glarner Kantonalbank",
+    "city": "Glarus",
+    "zip": "8750",
+    "address": "Postfach 365",
+    "bic": "GLKBCH22XXX",
+    "clearing": "00773"
+  },
+  "00774": {
+    "name": "Graubündner Kantonalbank",
+    "city": "Chur",
+    "zip": "7001",
+    "address": "Postfach",
+    "bic": "GRKBCH2270A",
+    "clearing": "00774"
+  },
+  "00777": {
+    "name": "Schwyzer Kantonalbank",
+    "city": "Schwyz",
+    "zip": "6431",
+    "address": "Bahnhofstrasse 3",
+    "bic": "KBSZCH22XXX",
+    "clearing": "00777"
+  },
+  "00778": {
+    "name": "Luzerner Kantonalbank AG",
+    "city": "Luzern",
+    "zip": "6002",
+    "address": "Pilatusstrasse 12",
+    "bic": "LUKBCH2260A",
+    "clearing": "00778"
+  },
+  "00779": {
+    "name": "Nidwaldner Kantonalbank",
+    "city": "Stans",
+    "zip": "6371",
+    "address": "Stansstaderstrasse 54",
+    "bic": "NIKACH22XXX",
+    "clearing": "00779"
+  },
+  "00780": {
+    "name": "Obwaldner Kantonalbank",
+    "city": "Sarnen",
+    "zip": "6060",
+    "address": "Im Feld 2",
+    "bic": "OBWKCH22XXX",
+    "clearing": "00780"
+  },
+  "00781": {
+    "name": "St. Galler Kantonalbank AG",
+    "city": "St. Gallen",
+    "zip": "9001",
+    "address": "Postfach",
+    "bic": "KBSGCH22XXX",
+    "clearing": "00781"
+  },
+  "00782": {
+    "name": "Schaffhauser Kantonalbank",
+    "city": "Schaffhausen",
+    "zip": "8201",
+    "address": "Vorstadt 53",
+    "bic": "SHKBCH2SXXX",
+    "clearing": "00782"
+  },
+  "00784": {
+    "name": "Thurgauer Kantonalbank",
+    "city": "Weinfelden",
+    "zip": "8570",
+    "address": "Postfach",
+    "bic": "KBTGCH22XXX",
+    "clearing": "00784"
+  },
+  "00785": {
+    "name": "Urner Kantonalbank",
+    "city": "Altdorf",
+    "zip": "6460",
+    "address": "Bahnhofplatz 1",
+    "bic": "URKNCH22XXX",
+    "clearing": "00785"
+  },
+  "00787": {
+    "name": "Zuger Kantonalbank",
+    "city": "Zug",
+    "zip": "6301",
+    "address": "Postfach",
+    "bic": "KBZGCH22XXX",
+    "clearing": "00787"
+  },
+  "00788": {
+    "name": "Banque Cantonale de Genève",
+    "city": "Genève 2",
+    "zip": "1211",
+    "address": "Case postale 2251",
+    "bic": "BCGECHGGXXX",
+    "clearing": "00788"
+  },
+  "00789": {
+    "name": "Banque Cantonale du Jura SA",
+    "city": "Porrentruy 2",
+    "zip": "2900",
+    "address": "Case postale 278",
+    "bic": "BCJUCH22XXX",
+    "clearing": "00789"
+  },
+  "00790": {
+    "name": "Berner Kantonalbank AG",
+    "city": "Bern",
+    "zip": "3001",
+    "address": "Bundesplatz 8",
+    "bic": "KBBECH22XXX",
+    "clearing": "00790"
+  },
+  "01007": {
+    "name": "Schweizerische Nationalbank Transit wCBDC",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Börsenstrasse 15",
+    "bic": "SNBZCHZZDX2",
+    "clearing": "01007"
+  },
+  "04835": {
+    "name": "UBS Switzerland AG (formerly Credit Suisse)",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Bahnhofstrasse 45",
+    "bic": "CRESCHZZ80A",
+    "clearing": "04835"
+  },
+  "04866": {
+    "name": "UBS AG (formerly Credit Suisse)",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Bahnhofstrasse 45",
+    "bic": "CRESCHZHXXX",
+    "clearing": "04866"
+  },
+  "05881": {
+    "name": "",
+    "city": "",
+    "zip": "",
+    "address": "",
+    "bic": "",
+    "clearing": "05881"
+  },
+  "06180": {
+    "name": "Crédit Mutuel de la Vallée SA",
+    "city": "Sentier, Le",
+    "zip": "1347",
+    "address": "Grande Rue 22",
+    "bic": "RBABCH22180",
+    "clearing": "06180"
+  },
+  "06182": {
+    "name": "Caisse d'Epargne de Cossonay société coopérative",
+    "city": "Cossonay-Ville",
+    "zip": "1304",
+    "address": "Rue du Temple 2",
+    "bic": "RBABCH22182",
+    "clearing": "06182"
+  },
+  "06186": {
+    "name": "Sparkasse Sense",
+    "city": "Tafers/Tavel",
+    "zip": "1712",
+    "address": "Mariahilfstrasse 4",
+    "bic": "RBABCH22186",
+    "clearing": "06186"
+  },
+  "06240": {
+    "name": "Caisse d'Epargne Courtelary SA",
+    "city": "Courtelary",
+    "zip": "2608",
+    "address": "Grand-Rue 45",
+    "bic": "RBABCH22240",
+    "clearing": "06240"
+  },
+  "06300": {
+    "name": "Valiant Bank AG",
+    "city": "Bern",
+    "zip": "3001",
+    "address": "Bundesplatz 4",
+    "bic": "VABECH22XXX",
+    "clearing": "06300"
+  },
+  "06305": {
+    "name": "",
+    "city": "",
+    "zip": "",
+    "address": "",
+    "bic": "",
+    "clearing": "06305"
+  },
+  "06313": {
+    "name": "Bernerland Bank AG",
+    "city": "Sumiswald",
+    "zip": "3454",
+    "address": "Kirchgasse 2",
+    "bic": "RBABCH22313",
+    "clearing": "06313"
+  },
+  "06336": {
+    "name": "Clientis AG",
+    "city": "Bern 7",
+    "zip": "3000",
+    "address": "Gurtengasse 6",
+    "bic": "RBABCH22CLI",
+    "clearing": "06336"
+  },
+  "06342": {
+    "name": "SB Saanen Bank AG",
+    "city": "Saanen",
+    "zip": "3792",
+    "address": "Bahnhofstrasse 2",
+    "bic": "RBABCH22342",
+    "clearing": "06342"
+  },
+  "06363": {
+    "name": "Bank SLM AG",
+    "city": "Münsingen",
+    "zip": "3110",
+    "address": "Dorfplatz 5",
+    "bic": "RBABCH22363",
+    "clearing": "06363"
+  },
+  "06374": {
+    "name": "Spar+Leihkasse Riggisberg AG",
+    "city": "Riggisberg",
+    "zip": "3132",
+    "address": "Grabenstrasse 7",
+    "bic": "RBABCH22374",
+    "clearing": "06374"
+  },
+  "06382": {
+    "name": "Burgerliche Ersparniskasse Bern Genossenschaft",
+    "city": "Bern",
+    "zip": "3001",
+    "address": "Bärenplatz 8",
+    "bic": "RBABCH22382",
+    "clearing": "06382"
+  },
+  "06387": {
+    "name": "Ersparniskasse Affoltern i. E. AG",
+    "city": "Weier im Emmental",
+    "zip": "3462",
+    "address": "Postfach",
+    "bic": "RBABCH22387",
+    "clearing": "06387"
+  },
+  "06395": {
+    "name": "Entris Banking AG",
+    "city": "Gümligen",
+    "zip": "3073",
+    "address": "Mattenstrasse 8",
+    "bic": "RBABCH22XXX",
+    "clearing": "06395"
+  },
+  "06428": {
+    "name": "Clientis Sparkasse Oftringen Genossenschaft",
+    "city": "Oftringen",
+    "zip": "4665",
+    "address": "Baslerstrasse 1",
+    "bic": "RBABCH22428",
+    "clearing": "06428"
+  },
+  "06434": {
+    "name": "Clientis Bank im Thal AG",
+    "city": "Balsthal",
+    "zip": "4710",
+    "address": "Goldgasse 11",
+    "bic": "RBABCH22434",
+    "clearing": "06434"
+  },
+  "06450": {
+    "name": "Bank Oberaargau AG",
+    "city": "Huttwil",
+    "zip": "4950",
+    "address": "Stadthausstrasse 1",
+    "bic": "RBABCH22450",
+    "clearing": "06450"
+  },
+  "06575": {
+    "name": "Clientis Bank Aareland AG",
+    "city": "Küttigen",
+    "zip": "5024",
+    "address": "Hauptstrasse 10",
+    "bic": "RBABCH22575",
+    "clearing": "06575"
+  },
+  "06588": {
+    "name": "Bank Leerau Genossenschaft",
+    "city": "Kirchleerau",
+    "zip": "5054",
+    "address": "Dorfstrasse 476",
+    "bic": "RBABCH22588",
+    "clearing": "06588"
+  },
+  "06633": {
+    "name": "Sparkasse Schwyz AG",
+    "city": "Schwyz",
+    "zip": "6431",
+    "address": "Herrengasse 23",
+    "bic": "RBABCH22633",
+    "clearing": "06633"
+  },
+  "06670": {
+    "name": "Clientis Entlebucher Bank AG",
+    "city": "Schüpfheim",
+    "zip": "6170",
+    "address": "Hauptstrasse 32",
+    "bic": "RBABCH22670",
+    "clearing": "06670"
+  },
+  "06807": {
+    "name": "GRB Glarner Regionalbank Genossenschaft",
+    "city": "Schwanden",
+    "zip": "8762",
+    "address": "Bahnhofstrasse 25",
+    "bic": "RBABCH22807",
+    "clearing": "06807"
+  },
+  "06808": {
+    "name": "Sparhafen Bank AG",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Fraumünsterstrasse 21",
+    "bic": "BSZHCHZZXXX",
+    "clearing": "06808"
+  },
+  "06814": {
+    "name": "Sparcassa 1816 Genossenschaft",
+    "city": "Wädenswil",
+    "zip": "8820",
+    "address": "Zugerstrasse 18",
+    "bic": "RBABCH22814",
+    "clearing": "06814"
+  },
+  "06824": {
+    "name": "BANK ZIMMERBERG AG",
+    "city": "Horgen 1",
+    "zip": "8810",
+    "address": "Dorfplatz 1",
+    "bic": "RBABCH22824",
+    "clearing": "06824"
+  },
+  "06828": {
+    "name": "Regiobank Männedorf AG",
+    "city": "Männedorf",
+    "zip": "8708",
+    "address": "Bahnhofstrasse 14",
+    "bic": "RBABCH22828",
+    "clearing": "06828"
+  },
+  "06830": {
+    "name": "Lienhardt & Partner Privatbank Zürich AG",
+    "city": "Zürich",
+    "zip": "8024",
+    "address": "Rämistrasse 23",
+    "bic": "RBABCH22830",
+    "clearing": "06830"
+  },
+  "06835": {
+    "name": "Ersparniskasse Schaffhausen AG",
+    "city": "Schaffhausen",
+    "zip": "8201",
+    "address": "Münsterplatz 34",
+    "bic": "RBABCH22835",
+    "clearing": "06835"
+  },
+  "06850": {
+    "name": "Bank Avera Genossenschaft",
+    "city": "Wetzikon ZH",
+    "zip": "8620",
+    "address": "Spitalstrasse 2",
+    "bic": "RBABCH22850",
+    "clearing": "06850"
+  },
+  "06858": {
+    "name": "BS Bank Schaffhausen AG",
+    "city": "Neunkirch",
+    "zip": "8213",
+    "address": "Klettgauerplatz 3",
+    "bic": "RBABCH22858",
+    "clearing": "06858"
+  },
+  "06866": {
+    "name": "Spar- und Leihkasse Thayngen AG",
+    "city": "Thayngen",
+    "zip": "8240",
+    "address": "Bahnhofstrasse 32",
+    "bic": "RBABCH22866",
+    "clearing": "06866"
+  },
+  "06875": {
+    "name": "Leihkasse Stammheim AG",
+    "city": "Oberstammheim",
+    "zip": "8477",
+    "address": "Hauptstrasse 6",
+    "bic": "RBABCH22875",
+    "clearing": "06875"
+  },
+  "06877": {
+    "name": "Zürcher Landbank AG",
+    "city": "Elgg",
+    "zip": "8353",
+    "address": "Lindenplatz 3",
+    "bic": "RBABCH22877",
+    "clearing": "06877"
+  },
+  "06888": {
+    "name": "Bank BSU Genossenschaft",
+    "city": "Uster 1",
+    "zip": "8610",
+    "address": "Bankstrasse 21",
+    "bic": "RBABCH22888",
+    "clearing": "06888"
+  },
+  "06900": {
+    "name": "acrevis Bank AG",
+    "city": "St. Gallen",
+    "zip": "9004",
+    "address": "Marktplatz 1",
+    "bic": "ACRGCH22XXX",
+    "clearing": "06900"
+  },
+  "06920": {
+    "name": "Alpha RHEINTAL Bank AG",
+    "city": "Heerbrugg",
+    "zip": "9435",
+    "address": "Bahnhofstrasse 2",
+    "bic": "ARBHCH22XXX",
+    "clearing": "06920"
+  },
+  "06935": {
+    "name": "Clientis Bank Oberuzwil AG",
+    "city": "Oberuzwil",
+    "zip": "9242",
+    "address": "Wiesentalstrasse 7",
+    "bic": "RBABCH22935",
+    "clearing": "06935"
+  },
+  "06955": {
+    "name": "Clientis Bank Toggenburg AG",
+    "city": "Kirchberg SG",
+    "zip": "9533",
+    "address": "Harfengrund 2",
+    "bic": "RBABCH22955",
+    "clearing": "06955"
+  },
+  "06964": {
+    "name": "Bank in Zuzwil",
+    "city": "Zuzwil SG",
+    "zip": "9524",
+    "address": "Mitteldorfstrasse 48",
+    "bic": "RBABCH22964",
+    "clearing": "06964"
+  },
+  "06977": {
+    "name": "Clientis Bank Thur Genossenschaft",
+    "city": "Ebnat-Kappel",
+    "zip": "9642",
+    "address": "Kappler Strasse 21",
+    "bic": "RBABCH22977",
+    "clearing": "06977"
+  },
+  "06980": {
+    "name": "Biene Bank im Rheintal Genossenschaft",
+    "city": "Altstätten SG",
+    "zip": "9450",
+    "address": "Rorschacherstrasse 9",
+    "bic": "RBABCH22980",
+    "clearing": "06980"
+  },
+  "08235": {
+    "name": "Banco Santander International SA",
+    "city": "Genève 1",
+    "zip": "1211",
+    "address": "Case postale 1256",
+    "bic": "BSCHCHGGXXX",
+    "clearing": "08235"
+  },
+  "08236": {
+    "name": "Nexent Bank (Suisse) SA",
+    "city": "Genève",
+    "zip": "1204",
+    "address": "Rue du Rhône 80",
+    "bic": "FSUICHGGXXX",
+    "clearing": "08236"
+  },
+  "08238": {
+    "name": "Investec Bank (Switzerland) AG",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Löwenstrasse 29",
+    "bic": "IVESCHZZXXX",
+    "clearing": "08238"
+  },
+  "08243": {
+    "name": "Crédit Agricole next Bank (Suisse) SA",
+    "city": "Grand-Lancy",
+    "zip": "1212",
+    "address": "Esplanade de Pont-Rouge 4-6",
+    "bic": "AGRICHGXXXX",
+    "clearing": "08243"
+  },
+  "08245": {
+    "name": "Banque Richelieu (Schweiz) AG",
+    "city": "Zürich",
+    "zip": "8008",
+    "address": "Bellerivestrasse 17",
+    "bic": "ANPRCH22XXX",
+    "clearing": "08245"
+  },
+  "08246": {
+    "name": "Gonet & Cie SA (ex. ONE swiss bank SA)",
+    "city": "Genève",
+    "zip": "1202",
+    "address": "Rue de Lausanne 78",
+    "bic": "BQBHCHGGXXX",
+    "clearing": "08246"
+  },
+  "08248": {
+    "name": "Van Lanschot Kempen (Schweiz) AG",
+    "city": "Zürich",
+    "zip": "8034",
+    "address": "Mittelstrasse 10",
+    "bic": "FVLBCHZZXXX",
+    "clearing": "08248"
+  },
+  "08252": {
+    "name": "Banca Popolare di Sondrio (Suisse) SA",
+    "city": "Lugano 1",
+    "zip": "6901",
+    "address": "Casella postale 5832",
+    "bic": "POSOCH22XXX",
+    "clearing": "08252"
+  },
+  "08268": {
+    "name": "Banque Internationale à Luxembourg (Suisse) SA",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Bahnhofstrasse 20",
+    "bic": "BILSCHZZXXX",
+    "clearing": "08268"
+  },
+  "08270": {
+    "name": "BBVA SA",
+    "city": "Zürich",
+    "zip": "8021",
+    "address": "Selnaustrasse 32/36",
+    "bic": "BBVACHZZXXX",
+    "clearing": "08270"
+  },
+  "08278": {
+    "name": "Goldman Sachs Bank AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Claridenstrasse 22",
+    "bic": "GOLDCHZZXXX",
+    "clearing": "08278"
+  },
+  "08288": {
+    "name": "Frankfurter Bankgesellschaft (Schweiz) AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Börsenstrasse 16",
+    "bic": "FBGSCHZZXXX",
+    "clearing": "08288"
+  },
+  "08289": {
+    "name": "ODDO BHF (Schweiz) AG",
+    "city": "Zürich",
+    "zip": "8002",
+    "address": "Gartenstrasse 14",
+    "bic": "BHFBCHZZXXX",
+    "clearing": "08289"
+  },
+  "08296": {
+    "name": "Cembra Money Bank AG",
+    "city": "Zürich",
+    "zip": "8048",
+    "address": "Bändliweg 20",
+    "bic": "CMBNCHZHXXX",
+    "clearing": "08296"
+  },
+  "08300": {
+    "name": "Spar- und Leihkasse Wynigen AG",
+    "city": "Wynigen",
+    "zip": "3472",
+    "address": "Postfach 180",
+    "bic": "SLWYCH21XXX",
+    "clearing": "08300"
+  },
+  "08307": {
+    "name": "Hypothekarbank Lenzburg AG",
+    "city": "Lenzburg 1",
+    "zip": "5600",
+    "address": "Bahnhofstrasse 2",
+    "bic": "HYPLCH22XXX",
+    "clearing": "08307"
+  },
+  "08309": {
+    "name": "Banque SYZ SA",
+    "city": "Geneva",
+    "zip": "1201",
+    "address": "Quai des Bergues 1",
+    "bic": "SYCOCHGGXXX",
+    "clearing": "08309"
+  },
+  "08326": {
+    "name": "Caisse d'Epargne de Nyon société coopérative",
+    "city": "Nyon",
+    "zip": "1260",
+    "address": "Rue St-Jean 11",
+    "bic": "CAGYCH21XXX",
+    "clearing": "08326"
+  },
+  "08327": {
+    "name": "Caisse d'Epargne d'Aubonne Sociéte coopérative",
+    "city": "Aubonne",
+    "zip": "1170",
+    "address": "Rue de l'Hôtel-de-Ville 21",
+    "bic": "RBABCH22CEA",
+    "clearing": "08327"
+  },
+  "08329": {
+    "name": "Ersparniskasse Speicher",
+    "city": "Speicher",
+    "zip": "9042",
+    "address": "Hauptstrasse 21",
+    "bic": "ERSCCH21XXX",
+    "clearing": "08329"
+  },
+  "08334": {
+    "name": "Baloise Bank AG",
+    "city": "Solothurn",
+    "zip": "4500",
+    "address": "Amthausplatz 4",
+    "bic": "KBSOCH22XXX",
+    "clearing": "08334"
+  },
+  "08335": {
+    "name": "LGT Bank (Schweiz) AG",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "Lange Gasse 15",
+    "bic": "BLFLCHBBXXX",
+    "clearing": "08335"
+  },
+  "08346": {
+    "name": "Banque Algérienne du Commerce Extérieur SA",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Talacker 35",
+    "bic": "AEXTCHZZXXX",
+    "clearing": "08346"
+  },
+  "08348": {
+    "name": "Caisse d'Epargne et de Crédit Mutuel de Chermignon",
+    "city": "Chermignon",
+    "zip": "3971",
+    "address": "Case postale 14",
+    "bic": "CDEMCH21XXX",
+    "clearing": "08348"
+  },
+  "08349": {
+    "name": "Caisse d'Epargne Riviera, société coopérative",
+    "city": "Vevey 1",
+    "zip": "1800",
+    "address": "Avenue Paul-Ceresole 3",
+    "bic": "CDDVCH21XXX",
+    "clearing": "08349"
+  },
+  "08350": {
+    "name": "Loomis Schweiz AG",
+    "city": "Oensingen",
+    "zip": "4702",
+    "address": "Nordringstrasse 22",
+    "bic": "SEPOCH22XXX",
+    "clearing": "08350"
+  },
+  "08351": {
+    "name": "SOS Cash & Value SA",
+    "city": "Vernayaz",
+    "zip": "1904",
+    "address": "Route de Tabary 1",
+    "bic": "",
+    "clearing": "08351"
+  },
+  "08352": {
+    "name": "Loomis Schweiz SA",
+    "city": "Basel",
+    "zip": "4052",
+    "address": "Peter Merian-Strasse 50",
+    "bic": "VIMMCHZZXXX",
+    "clearing": "08352"
+  },
+  "08373": {
+    "name": "China Construction Bank Corporation, Beijing, Swiss Branch",
+    "city": "Zürich",
+    "zip": "8002",
+    "address": "Beethovenstrasse 33",
+    "bic": "PCBCCHZZXXX",
+    "clearing": "08373"
+  },
+  "08374": {
+    "name": "CACEIS Bank, Montrouge, succursale de Nyon / Suisse",
+    "city": "Nyon",
+    "zip": "1260",
+    "address": "Route de Signy 35",
+    "bic": "ISAECH2NXXX",
+    "clearing": "08374"
+  },
+  "08376": {
+    "name": "",
+    "city": "",
+    "zip": "",
+    "address": "",
+    "bic": "",
+    "clearing": "08376"
+  },
+  "08377": {
+    "name": "Vontobel Swiss Financial Advisers AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Gotthardstrasse 43",
+    "bic": "VSFACHZZXXX",
+    "clearing": "08377"
+  },
+  "08378": {
+    "name": "NPB Neue Privat Bank AG",
+    "city": "Zürich",
+    "zip": "8024",
+    "address": "Limmatquai 1 / am Bellevue",
+    "bic": "NEPICHZZXXX",
+    "clearing": "08378"
+  },
+  "08379": {
+    "name": "QNB (Suisse) SA",
+    "city": "Genève",
+    "zip": "1201",
+    "address": "Quai du Mont-Blanc 1",
+    "bic": "QNBACHGGXXX",
+    "clearing": "08379"
+  },
+  "08380": {
+    "name": "J.P. Morgan (Suisse) SA",
+    "city": "Genève",
+    "zip": "1204",
+    "address": "Rue de la Confédération 8",
+    "bic": "MGTCCHGGXXX",
+    "clearing": "08380"
+  },
+  "08384": {
+    "name": "Reyl & Cie S.A.",
+    "city": "Genève",
+    "zip": "1204",
+    "address": "Rue du Rhône 4",
+    "bic": "REYLCHGGXXX",
+    "clearing": "08384"
+  },
+  "08385": {
+    "name": "NBK Banque Privée (Suisse) SA",
+    "city": "Genève",
+    "zip": "1204",
+    "address": "Rue de la Corraterie 5",
+    "bic": "NBOKCHGGXXX",
+    "clearing": "08385"
+  },
+  "08387": {
+    "name": "ING Bank N.V., Amsterdam, succursale de Lancy/Genève",
+    "city": "Petit-Lancy",
+    "zip": "1213",
+    "address": "Avenue de Morgines 10",
+    "bic": "BBRUCHGTXXX",
+    "clearing": "08387"
+  },
+  "08388": {
+    "name": "Banque Eric Sturdza SA",
+    "city": "Genève 3",
+    "zip": "1211",
+    "address": "Rue du Rhône 112",
+    "bic": "BABRCHGGXXX",
+    "clearing": "08388"
+  },
+  "08389": {
+    "name": "Bezirks-Sparkasse Dielsdorf Genossenschaft",
+    "city": "Dielsdorf",
+    "zip": "8157",
+    "address": "Bahnhofstrasse 29",
+    "bic": "BZSDCH22XXX",
+    "clearing": "08389"
+  },
+  "08390": {
+    "name": "Alternative Bank Schweiz AG",
+    "city": "Olten",
+    "zip": "4600",
+    "address": "Amthausquai 21",
+    "bic": "ABSOCH22XXX",
+    "clearing": "08390"
+  },
+  "08391": {
+    "name": "WIR Bank Genossenschaft",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "Auberg 1",
+    "bic": "WIRBCHBBXXX",
+    "clearing": "08391"
+  },
+  "08392": {
+    "name": "Freie Gemeinschaftsbank Genossenschaft",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "Meret Oppenheim-Strasse 10",
+    "bic": "FRGGCHB1XXX",
+    "clearing": "08392"
+  },
+  "08393": {
+    "name": "Bank EKI Genossenschaft",
+    "city": "Interlaken",
+    "zip": "3800",
+    "address": "Rosenstrasse 1",
+    "bic": "EKIICH22XXX",
+    "clearing": "08393"
+  },
+  "08394": {
+    "name": "Bank EEK AG",
+    "city": "Bern",
+    "zip": "3001",
+    "address": "Amthausgasse 14 / Marktgasse 19",
+    "bic": "EEKBCH22XXX",
+    "clearing": "08394"
+  },
+  "08395": {
+    "name": "Spar- und Leihkasse Bucheggberg",
+    "city": "Lüterswil",
+    "zip": "4584",
+    "address": "Hauptstrasse 4",
+    "bic": "SLBUCH22XXX",
+    "clearing": "08395"
+  },
+  "08396": {
+    "name": "Spar + Leihkasse Gürbetal AG",
+    "city": "Mühlethurnen",
+    "zip": "3127",
+    "address": "Dorfstrasse 19",
+    "bic": "SLGUCH2MXXX",
+    "clearing": "08396"
+  },
+  "08397": {
+    "name": "DC Bank Deposito-Cassa der Stadt Bern",
+    "city": "Bern",
+    "zip": "3001",
+    "address": "Schauplatzgasse 21",
+    "bic": "RBABCH22DCB",
+    "clearing": "08397"
+  },
+  "08398": {
+    "name": "VZ Depotbank AG",
+    "city": "Zug",
+    "zip": "6300",
+    "address": "Innere Güterstrasse 2",
+    "bic": "VZDBCHZZXXX",
+    "clearing": "08398"
+  },
+  "08401": {
+    "name": "Migros Bank AG",
+    "city": "Zürich",
+    "zip": "8010",
+    "address": "Postfach",
+    "bic": "MIGRCHZZXXX",
+    "clearing": "08401"
+  },
+  "08440": {
+    "name": "Bank Cler AG",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "Postfach",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08440"
+  },
+  "08441": {
+    "name": "Bank Cler AG",
+    "city": "Basel",
+    "zip": "4018",
+    "address": "Gundeldingen",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08441"
+  },
+  "08442": {
+    "name": "Bank Cler AG",
+    "city": "Basel",
+    "zip": "4005",
+    "address": "Kleinbasel",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08442"
+  },
+  "08443": {
+    "name": "Bank Cler AG",
+    "city": "Bern",
+    "zip": "3001",
+    "address": "Postfach",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08443"
+  },
+  "08444": {
+    "name": "Bank Cler AG",
+    "city": "Biel/Bienne",
+    "zip": "2501",
+    "address": "Postfach",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08444"
+  },
+  "08445": {
+    "name": "Bank Cler AG",
+    "city": "Brugg AG",
+    "zip": "5201",
+    "address": "Neumarkt 2",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08445"
+  },
+  "08446": {
+    "name": "Bank Cler AG",
+    "city": "Neuchâtel",
+    "zip": "2001",
+    "address": "Case postale",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08446"
+  },
+  "08447": {
+    "name": "Bank Cler AG",
+    "city": "Genève 3",
+    "zip": "1204",
+    "address": "Case postale",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08447"
+  },
+  "08448": {
+    "name": "Bank Cler AG",
+    "city": "Lausanne",
+    "zip": "1002",
+    "address": "Case postale 5783",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08448"
+  },
+  "08449": {
+    "name": "Bank Cler AG",
+    "city": "Lugano",
+    "zip": "6901",
+    "address": "Casella postale",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08449"
+  },
+  "08450": {
+    "name": "Bank Cler AG",
+    "city": "Luzern",
+    "zip": "6002",
+    "address": "Postfach",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08450"
+  },
+  "08451": {
+    "name": "Bank Cler AG",
+    "city": "Olten",
+    "zip": "4600",
+    "address": "Postfach",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08451"
+  },
+  "08452": {
+    "name": "Bank Cler AG",
+    "city": "Schaffhausen",
+    "zip": "8201",
+    "address": "Postfach",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08452"
+  },
+  "08453": {
+    "name": "Bank Cler AG",
+    "city": "Zürich",
+    "zip": "8021",
+    "address": "Uraniastrasse 6",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08453"
+  },
+  "08454": {
+    "name": "Bank Cler AG",
+    "city": "Zürich",
+    "zip": "8050",
+    "address": "Oerlikon",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08454"
+  },
+  "08455": {
+    "name": "Bank Cler AG",
+    "city": "Bellinzona",
+    "zip": "6501",
+    "address": "Casella postale",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08455"
+  },
+  "08456": {
+    "name": "Bank Cler AG",
+    "city": "St. Gallen",
+    "zip": "9001",
+    "address": "Postfach",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08456"
+  },
+  "08457": {
+    "name": "Bank Cler AG",
+    "city": "Fribourg",
+    "zip": "1701",
+    "address": "Rue de Romont 35",
+    "bic": "BCLRCHBBXXX",
+    "clearing": "08457"
+  },
+  "08490": {
+    "name": "Cornèr Banca SA",
+    "city": "Lugano",
+    "zip": "6901",
+    "address": "Via Canova 16",
+    "bic": "CBLUCH22XXX",
+    "clearing": "08490"
+  },
+  "08495": {
+    "name": "Banca Credinvest SA",
+    "city": "Lugano",
+    "zip": "6902",
+    "address": "Via G. Cattori 14",
+    "bic": "BCRECH22XXX",
+    "clearing": "08495"
+  },
+  "08496": {
+    "name": "Banca Aletti & C. (Suisse) SA",
+    "city": "Lugano",
+    "zip": "6900",
+    "address": "Via Massimiliano Magatti 6",
+    "bic": "VRBPCH22XXX",
+    "clearing": "08496"
+  },
+  "08497": {
+    "name": "SAXO BANK (SCHWEIZ) AG",
+    "city": "Kloten",
+    "zip": "8302",
+    "address": "The Circle 38",
+    "bic": "SAXOCHZHXXX",
+    "clearing": "08497"
+  },
+  "08498": {
+    "name": "Axion SWISS Bank SA",
+    "city": "Lugano",
+    "zip": "6900",
+    "address": "Viale Stefano Franscini 22",
+    "bic": "UNCECH22XXX",
+    "clearing": "08498"
+  },
+  "08499": {
+    "name": "FAB Private Bank (Suisse) SA",
+    "city": "Genève 11",
+    "zip": "1211",
+    "address": "Quai de l'Ile 5",
+    "bic": "NBPSCHGGXXX",
+    "clearing": "08499"
+  },
+  "08509": {
+    "name": "Mercantil Bank (Schweiz) AG",
+    "city": "Zürich",
+    "zip": "8036",
+    "address": "Kasernenstrasse 1",
+    "bic": "BAMRCHZZXXX",
+    "clearing": "08509"
+  },
+  "08515": {
+    "name": "Bank Julius Bär & Co AG",
+    "city": "Zürich",
+    "zip": "8010",
+    "address": "Bahnhofstrasse 36",
+    "bic": "BAERCHZZXXX",
+    "clearing": "08515"
+  },
+  "08518": {
+    "name": "Bank Gantrisch Genossenschaft",
+    "city": "Schwarzenburg",
+    "zip": "3150",
+    "address": "Bahnhofstrasse 2",
+    "bic": "BGAGCH22XXX",
+    "clearing": "08518"
+  },
+  "08519": {
+    "name": "Ersparniskasse Rüeggisberg Genossenschaft",
+    "city": "Rüeggisberg",
+    "zip": "3088",
+    "address": "Dorfstrasse 19",
+    "bic": "EKRUCH21XXX",
+    "clearing": "08519"
+  },
+  "08521": {
+    "name": "BBO Bank Brienz Oberhasli AG",
+    "city": "Brienz",
+    "zip": "3855",
+    "address": "Hauptstrasse 115",
+    "bic": "BBOBCH22XXX",
+    "clearing": "08521"
+  },
+  "08522": {
+    "name": "Società Bancaria Ticinese",
+    "city": "Bellinzona",
+    "zip": "6501",
+    "address": "Casella postale 2062",
+    "bic": "SBTICH22XXX",
+    "clearing": "08522"
+  },
+  "08525": {
+    "name": "BTV Vier Länder Bank AG Innsbruck, Zweigniederlassung Staad",
+    "city": "Staad SG",
+    "zip": "9422",
+    "address": "Hauptstrasse 19",
+    "bic": "BTVACH22XXX",
+    "clearing": "08525"
+  },
+  "08533": {
+    "name": "SELVI & Cie SA",
+    "city": "Genève 11",
+    "zip": "1211",
+    "address": "Rue du Grütli 4",
+    "bic": "SELVCHGGXXX",
+    "clearing": "08533"
+  },
+  "08534": {
+    "name": "VP Bank (Schweiz) AG",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Talstrasse 59",
+    "bic": "VPBVCHZHXXX",
+    "clearing": "08534"
+  },
+  "08537": {
+    "name": "Banque Internationale de Commerce-BRED (Suisse) SA",
+    "city": "Genève",
+    "zip": "1204",
+    "address": "Boulevard du Théatre 8",
+    "bic": "BICFCHGGXXX",
+    "clearing": "08537"
+  },
+  "08539": {
+    "name": "Bergos AG",
+    "city": "Zürich",
+    "zip": "8034",
+    "address": "Postfach 186",
+    "bic": "BEGOCHZZXXX",
+    "clearing": "08539"
+  },
+  "08540": {
+    "name": "BANQUE BANORIENT (SUISSE) SA",
+    "city": "Genève",
+    "zip": "1206",
+    "address": "Rue Rodolphe Toepffer 1",
+    "bic": "BLOMCHGGXXX",
+    "clearing": "08540"
+  },
+  "08543": {
+    "name": "Scobag Privatbank AG",
+    "city": "Basel",
+    "zip": "4010",
+    "address": "Postfach",
+    "bic": "SCOPCHBBXXX",
+    "clearing": "08543"
+  },
+  "08548": {
+    "name": "Hyposwiss Private Bank Genève SA",
+    "city": "Genève 1",
+    "zip": "1211",
+    "address": "Rue du Général-Dufour 3",
+    "bic": "CCIECHGGXXX",
+    "clearing": "08548"
+  },
+  "08553": {
+    "name": "BZ Bank Aktiengesellschaft",
+    "city": "Wilen b. Wollerau",
+    "zip": "8832",
+    "address": "Egglirain 15",
+    "bic": "BZBKCH2WXXX",
+    "clearing": "08553"
+  },
+  "08564": {
+    "name": "Privatbank Von Graffenried AG",
+    "city": "Bern",
+    "zip": "3011",
+    "address": "Spitalgasse 3",
+    "bic": "GRAFCH22XXX",
+    "clearing": "08564"
+  },
+  "08565": {
+    "name": "Dreyfus Söhne & Cie AG, Banquiers",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "Aeschenvorstadt 16",
+    "bic": "DREYCHBBXXX",
+    "clearing": "08565"
+  },
+  "08570": {
+    "name": "Banque Bonhôte & Cie SA",
+    "city": "Neuchâtel",
+    "zip": "2001",
+    "address": "Quai Ostervald 2",
+    "bic": "BONHCH22XXX",
+    "clearing": "08570"
+  },
+  "08571": {
+    "name": "Edmond de Rothschild (Suisse) S.A",
+    "city": "Genève 11",
+    "zip": "1211",
+    "address": "Case postale 5478",
+    "bic": "PRIBCHGGXXX",
+    "clearing": "08571"
+  },
+  "08572": {
+    "name": "Trafina Privatbank AG",
+    "city": "Basel",
+    "zip": "4020",
+    "address": "Rennweg 50",
+    "bic": "TRAPCHBBXXX",
+    "clearing": "08572"
+  },
+  "08573": {
+    "name": "Maerki, Baumann & Co. AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Dreikönigstrasse 6",
+    "bic": "MAEBCHZZXXX",
+    "clearing": "08573"
+  },
+  "08574": {
+    "name": "Banque Des Monts Blancs SA",
+    "city": "Genève",
+    "zip": "1211",
+    "address": "Rue du Mont Blanc 3",
+    "bic": "MEDSCHGGXXX",
+    "clearing": "08574"
+  },
+  "08582": {
+    "name": "",
+    "city": "",
+    "zip": "",
+    "address": "",
+    "bic": "",
+    "clearing": "08582"
+  },
+  "08584": {
+    "name": "Banca del Ceresio SA",
+    "city": "Lugano",
+    "zip": "6901",
+    "address": "Casella postale 2860",
+    "bic": "BACECH22XXX",
+    "clearing": "08584"
+  },
+  "08609": {
+    "name": "Banca Zarattini & Co. SA",
+    "city": "Lugano",
+    "zip": "6900",
+    "address": "Via Sarafino Balestra 17",
+    "bic": "EUBACH22XXX",
+    "clearing": "08609"
+  },
+  "08615": {
+    "name": "DZ PRIVATBANK (Schweiz) AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Münsterhof 12",
+    "bic": "GENOCHZZXXX",
+    "clearing": "08615"
+  },
+  "08616": {
+    "name": "EFG Bank European Financial Group SA",
+    "city": "Genève 2",
+    "zip": "1211",
+    "address": "Quai du Seujet 24",
+    "bic": "EFGBCHGGXXX",
+    "clearing": "08616"
+  },
+  "08619": {
+    "name": "Nomura Bank (Switzerland) Ltd",
+    "city": "Zürich",
+    "zip": "8021",
+    "address": "Postfach",
+    "bic": "NBSZCHZZXXX",
+    "clearing": "08619"
+  },
+  "08624": {
+    "name": "Banque Audi (Suisse) SA",
+    "city": "Genève 12",
+    "zip": "1211",
+    "address": "Case postale 384",
+    "bic": "AUDSCHGGXXX",
+    "clearing": "08624"
+  },
+  "08629": {
+    "name": "Banque de Commerce et de Placements SA",
+    "city": "Genève 3",
+    "zip": "1211",
+    "address": "Rue de la Fontaine 1",
+    "bic": "BPCPCHGGXXX",
+    "clearing": "08629"
+  },
+  "08634": {
+    "name": "Schroder & Co Bank AG",
+    "city": "Zürich",
+    "zip": "8021",
+    "address": "Central 2",
+    "bic": "BJHSCHZZXXX",
+    "clearing": "08634"
+  },
+  "08635": {
+    "name": "JPMorgan Chase Bank, National Association, Columbus",
+    "city": "Zürich",
+    "zip": "8027",
+    "address": "Dreikönigstrasse 37",
+    "bic": "CHASCHGXXXX",
+    "clearing": "08635"
+  },
+  "08638": {
+    "name": "Citibank (Switzerland) AG",
+    "city": "Zürich",
+    "zip": "8010",
+    "address": "Prime Tower / Hardstrasse 201",
+    "bic": "CBSWCHZZXXX",
+    "clearing": "08638"
+  },
+  "08657": {
+    "name": "Union Bancaire Privée, UBP SA",
+    "city": "Genève 1",
+    "zip": "1211",
+    "address": "Case postale 1320",
+    "bic": "UBPGCHGGXXX",
+    "clearing": "08657"
+  },
+  "08659": {
+    "name": "Deutsche Bank (Suisse) S.A.",
+    "city": "Genève 1",
+    "zip": "1211",
+    "address": "Place des Bergues 3",
+    "bic": "DEUTCHGGXXX",
+    "clearing": "08659"
+  },
+  "08660": {
+    "name": "GPB (Schweiz) AG",
+    "city": "Zürich",
+    "zip": "8032",
+    "address": "Zollikerstrasse 183",
+    "bic": "RKBZCHZZXXX",
+    "clearing": "08660"
+  },
+  "08661": {
+    "name": "Rothschild & Co Bank AG",
+    "city": "Zürich",
+    "zip": "8034",
+    "address": "Postfach",
+    "bic": "ROTACHZZXXX",
+    "clearing": "08661"
+  },
+  "08663": {
+    "name": "PKB PRIVATE BANK SA",
+    "city": "Lugano",
+    "zip": "6900",
+    "address": "Via Serafina Balestra 1",
+    "bic": "PKBSCH22XXX",
+    "clearing": "08663"
+  },
+  "08664": {
+    "name": "PKB PRIVATBANK AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Tödistrasse 47",
+    "bic": "PKBSCH2269A",
+    "clearing": "08664"
+  },
+  "08665": {
+    "name": "PKB PRIVATBANK SA",
+    "city": "Genève",
+    "zip": "1206",
+    "address": "Charles Galland 12",
+    "bic": "PKBSCH2212A",
+    "clearing": "08665"
+  },
+  "08666": {
+    "name": "Banca del Sempione SA",
+    "city": "Lugano 1",
+    "zip": "6901",
+    "address": "Via Peri 5",
+    "bic": "BASECH22XXX",
+    "clearing": "08666"
+  },
+  "08667": {
+    "name": "EFG Bank AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Bleicherweg 8",
+    "bic": "EFGBCHZZXXX",
+    "clearing": "08667"
+  },
+  "08686": {
+    "name": "BNP PARIBAS, Paris, succursale de Lancy/Genève",
+    "city": "Grand-Lancy",
+    "zip": "1212",
+    "address": "Esplanade de Pont-Rouge 9a",
+    "bic": "BPPBCHGGXXX",
+    "clearing": "08686"
+  },
+  "08689": {
+    "name": "HSBC Private Bank (Suisse) SA",
+    "city": "Genève 1",
+    "zip": "1211",
+    "address": "Quai Général-Guisan 2",
+    "bic": "BLICCHGGXXX",
+    "clearing": "08689"
+  },
+  "08700": {
+    "name": "Citibank N.A., Sioux Falls",
+    "city": "Zürich",
+    "zip": "8010",
+    "address": "Bleicherweg 10",
+    "bic": "CITICHZZXXX",
+    "clearing": "08700"
+  },
+  "08701": {
+    "name": "HSBC Bank plc, London, Zweigniederlassung Zürich",
+    "city": "Zürich",
+    "zip": "8002",
+    "address": "Bederstrasse 49",
+    "bic": "HSBCCHZZXXX",
+    "clearing": "08701"
+  },
+  "08702": {
+    "name": "Leonteq Securities AG",
+    "city": "Zürich",
+    "zip": "8004",
+    "address": "Europaallee 39",
+    "bic": "EFGFCHZZXXX",
+    "clearing": "08702"
+  },
+  "08703": {
+    "name": "bank zweiplus ag",
+    "city": "Zürich",
+    "zip": "8048",
+    "address": "Buckhauserstrasse 22",
+    "bic": "BZPLCHZZXXX",
+    "clearing": "08703"
+  },
+  "08704": {
+    "name": "AEK BANK 1826 Genossenschaft",
+    "city": "Thun",
+    "zip": "3601",
+    "address": "Hofstettenstrasse 2",
+    "bic": "AEKTCH22XXX",
+    "clearing": "08704"
+  },
+  "08705": {
+    "name": "Société Générale",
+    "city": "Zürich",
+    "zip": "8021",
+    "address": "Talacker 50",
+    "bic": "SGABCHZZXXX",
+    "clearing": "08705"
+  },
+  "08710": {
+    "name": "Bank CIC (SCHWEIZ) AG",
+    "city": "Basel",
+    "zip": "4001",
+    "address": "Marktplatz 13",
+    "bic": "CIALCHBBXXX",
+    "clearing": "08710"
+  },
+  "08719": {
+    "name": "Arab Bank (Switzerland) Ltd.",
+    "city": "Genève",
+    "zip": "1204",
+    "address": "Place de Longemalle 10-12",
+    "bic": "ARBSCHZZXXX",
+    "clearing": "08719"
+  },
+  "08721": {
+    "name": "Gonet & Cie SA",
+    "city": "Genève 11",
+    "zip": "1211",
+    "address": "Boulevard du Théâtre 6",
+    "bic": "GONECHGGXXX",
+    "clearing": "08721"
+  },
+  "08726": {
+    "name": "Bank of America Europe DAC, Dublin, Zurich Branch",
+    "city": "Zürich",
+    "zip": "8002",
+    "address": "Stockerhof, Stockerstrasse 23",
+    "bic": "BOFACH2XXXX",
+    "clearing": "08726"
+  },
+  "08727": {
+    "name": "Banque Cramer & Cie SA",
+    "city": "Genève 12",
+    "zip": "1211",
+    "address": "Avenue de Miremont 22",
+    "bic": "CRAMCHGGXXX",
+    "clearing": "08727"
+  },
+  "08731": {
+    "name": "LLB (Schweiz) AG",
+    "city": "Uznach",
+    "zip": "8730",
+    "address": "Zürcherstrasse 3",
+    "bic": "LINSCH23XXX",
+    "clearing": "08731"
+  },
+  "08733": {
+    "name": "Bank Thalwil Genossenschaft",
+    "city": "Thalwil",
+    "zip": "8800",
+    "address": "Gotthardstrasse 14",
+    "bic": "BKTHCH22XXX",
+    "clearing": "08733"
+  },
+  "08735": {
+    "name": "Barclays Bank (Suisse) SA",
+    "city": "Genève 3",
+    "zip": "1211",
+    "address": "Chemin de Grange-Canal 18-20",
+    "bic": "BARCCHGGXXX",
+    "clearing": "08735"
+  },
+  "08737": {
+    "name": "CA Indosuez (Switzerland) SA (ex Banque Thaler SA)",
+    "city": "Genève 3",
+    "zip": "1211",
+    "address": "Case postale 3335",
+    "bic": "THALCHGGXXX",
+    "clearing": "08737"
+  },
+  "08740": {
+    "name": "CA Indosuez (Switzerland) SA",
+    "city": "Lausanne",
+    "zip": "1010",
+    "address": "Chemin de Bérée 46-48",
+    "bic": "AGRICHGGXXX",
+    "clearing": "08740"
+  },
+  "08741": {
+    "name": "CA Indosuez (Switzerland) SA",
+    "city": "Genève 11",
+    "zip": "1211",
+    "address": "Quai Général Guisan 4",
+    "bic": "AGRICHGGXXX",
+    "clearing": "08741"
+  },
+  "08742": {
+    "name": "CA Indosuez (Switzerland) SA",
+    "city": "Lugano",
+    "zip": "6901",
+    "address": "Via F. Pelli 3",
+    "bic": "AGRICHGGXXX",
+    "clearing": "08742"
+  },
+  "08743": {
+    "name": "CA Indosuez (Switzerland) SA",
+    "city": "Zürich",
+    "zip": "8021",
+    "address": "Lintheschergasse 15",
+    "bic": "AGRICHGGXXX",
+    "clearing": "08743"
+  },
+  "08750": {
+    "name": "Bank J. Safra Sarasin AG",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "Elisabethenstrasse 62",
+    "bic": "SARACHBBXXX",
+    "clearing": "08750"
+  },
+  "08751": {
+    "name": "Bank J. Safra Sarasin AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Bleicherweg 1 / Paradeplatz",
+    "bic": "SARACHBBXXX",
+    "clearing": "08751"
+  },
+  "08752": {
+    "name": "Bank J. Safra Sarasin AG",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "(ex Direkt Anlage Bank)",
+    "bic": "SARACHBBXXX",
+    "clearing": "08752"
+  },
+  "08755": {
+    "name": "Banque Pictet & Cie SA",
+    "city": "Genève 73",
+    "zip": "1211",
+    "address": "Route des Acacias 60",
+    "bic": "PICTCHGGXXX",
+    "clearing": "08755"
+  },
+  "08756": {
+    "name": "Baumann & Cie KmG",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "St. Jakobs-Strasse 46",
+    "bic": "BAUMCHBBXXX",
+    "clearing": "08756"
+  },
+  "08757": {
+    "name": "Bank Vontobel AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Gotthardstrasse 43",
+    "bic": "VONTCHZZXXX",
+    "clearing": "08757"
+  },
+  "08760": {
+    "name": "Banque Lombard Odier & Cie SA",
+    "city": "Bellevue",
+    "zip": "1293",
+    "address": "Chemin Messidor 1",
+    "bic": "LOCYCHGGXXX",
+    "clearing": "08760"
+  },
+  "08761": {
+    "name": "Reichmuth & Co.",
+    "city": "Luzern 7",
+    "zip": "6000",
+    "address": "Rütligasse 1",
+    "bic": "REICCH22XXX",
+    "clearing": "08761"
+  },
+  "08762": {
+    "name": "CBH - Compagnie Bancaire Helvétique SA",
+    "city": "Genève 3",
+    "zip": "1211",
+    "address": "Boulevard Emile-Jaques-Dalcroze 7",
+    "bic": "BSSACHGGXXX",
+    "clearing": "08762"
+  },
+  "08767": {
+    "name": "Bordier & Cie SCmA",
+    "city": "Genève 11",
+    "zip": "1211",
+    "address": "Case postale 5515",
+    "bic": "BORDCHGGXXX",
+    "clearing": "08767"
+  },
+  "08770": {
+    "name": "Mirabaud & Cie SA",
+    "city": "Genève 11",
+    "zip": "1211",
+    "address": "Boulevard Georges-Favon 29",
+    "bic": "MIRACHGGXXX",
+    "clearing": "08770"
+  },
+  "08775": {
+    "name": "E. Gutzwiller & Cie Banquiers",
+    "city": "Basel",
+    "zip": "4001",
+    "address": "Postfach 1216",
+    "bic": "GUTZCHBBXXX",
+    "clearing": "08775"
+  },
+  "08777": {
+    "name": "Piguet Galland & Cie SA",
+    "city": "Yverdon-les-Bains",
+    "zip": "1401",
+    "address": "Rue de la Plaine 14",
+    "bic": "PIGUCH22XXX",
+    "clearing": "08777"
+  },
+  "08779": {
+    "name": "Rahn+Bodmer Co.",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Münstergasse 2",
+    "bic": "RAHNCHZZXXX",
+    "clearing": "08779"
+  },
+  "08780": {
+    "name": "Deutsche Bank AG Zürich Branch",
+    "city": "Zürich",
+    "zip": "8021",
+    "address": "Postfach 3604 / Uraniastrasse 9",
+    "bic": "DEUTCHZZXXX",
+    "clearing": "08780"
+  },
+  "08781": {
+    "name": "Swissquote Bank SA",
+    "city": "Gland",
+    "zip": "1196",
+    "address": "Chemin de la Crétaux 33",
+    "bic": "SWQBCHZZXXX",
+    "clearing": "08781"
+  },
+  "08784": {
+    "name": "Spar- und Leihkasse Frutigen AG",
+    "city": "Frutigen",
+    "zip": "3714",
+    "address": "Dorfstrasse 15",
+    "bic": "SLFFCH22XXX",
+    "clearing": "08784"
+  },
+  "08785": {
+    "name": "Regiobank Solothurn AG",
+    "city": "Solothurn",
+    "zip": "4502",
+    "address": "Westbahnhofstrasse 11",
+    "bic": "RSOSCH22XXX",
+    "clearing": "08785"
+  },
+  "08787": {
+    "name": "Pfandbriefbank schweizerischer Hypothekarinstitute AG",
+    "city": "Zürich",
+    "zip": "8050",
+    "address": "Nansenstrasse 16",
+    "bic": "",
+    "clearing": "08787"
+  },
+  "08788": {
+    "name": "BANQUE HERITAGE SA",
+    "city": "Genève 6",
+    "zip": "1211",
+    "address": "Route de Chêne 61",
+    "bic": "HFTCCHGGXXX",
+    "clearing": "08788"
+  },
+  "08789": {
+    "name": "Habib Bank AG Zürich",
+    "city": "Zürich",
+    "zip": "8042",
+    "address": "Weinbergstrasse 59",
+    "bic": "HBZUCHZZXXX",
+    "clearing": "08789"
+  },
+  "08792": {
+    "name": "",
+    "city": "",
+    "zip": "",
+    "address": "",
+    "bic": "",
+    "clearing": "08792"
+  },
+  "08797": {
+    "name": "IBKR Financial Services AG",
+    "city": "Zug",
+    "zip": "6300",
+    "address": "Gubelstrasse 28",
+    "bic": "TMBECH22XXX",
+    "clearing": "08797"
+  },
+  "08799": {
+    "name": "InCore Bank AG",
+    "city": "Schlieren",
+    "zip": "8952",
+    "address": "Wiesenstrasse 17",
+    "bic": "INCOCHZZXXX",
+    "clearing": "08799"
+  },
+  "08800": {
+    "name": "Liechtensteinische Landesbank Aktiengesellschaft",
+    "city": "Vaduz",
+    "zip": "9490",
+    "address": "Städtle 44",
+    "bic": "LILALI2XXXX",
+    "clearing": "08800"
+  },
+  "08802": {
+    "name": "Neue Bank AG",
+    "city": "Vaduz",
+    "zip": "9490",
+    "address": "Marktgass 20",
+    "bic": "NBANLI22XXX",
+    "clearing": "08802"
+  },
+  "08803": {
+    "name": "BENDURA BANK AG",
+    "city": "Gamprin-Bendern",
+    "zip": "9487",
+    "address": "Schaaner Strasse 27",
+    "bic": "HYIBLI22XXX",
+    "clearing": "08803"
+  },
+  "08805": {
+    "name": "VP Bank AG",
+    "city": "Vaduz",
+    "zip": "9490",
+    "address": "Aeulestrasse 6",
+    "bic": "VPBVLI2XXXX",
+    "clearing": "08805"
+  },
+  "08806": {
+    "name": "Kaiser Partner Privatbank AG",
+    "city": "Vaduz",
+    "zip": "9490",
+    "address": "Herrengasse 23",
+    "bic": "SERBLI22XXX",
+    "clearing": "08806"
+  },
+  "08810": {
+    "name": "LGT Bank AG",
+    "city": "Vaduz",
+    "zip": "9490",
+    "address": "Postfach 85",
+    "bic": "BLFLLI2XXXX",
+    "clearing": "08810"
+  },
+  "08811": {
+    "name": "Bank Frick AG",
+    "city": "Balzers",
+    "zip": "9496",
+    "address": "Landstrasse 14",
+    "bic": "BFRILI22XXX",
+    "clearing": "08811"
+  },
+  "08812": {
+    "name": "SIGMA Bank AG",
+    "city": "Schaan",
+    "zip": "9494",
+    "address": "Feldkircher Strasse 2",
+    "bic": "VOAGLI22XXX",
+    "clearing": "08812"
+  },
+  "08820": {
+    "name": "Tellco Bank AG",
+    "city": "Schwyz",
+    "zip": "6430",
+    "address": "Bahnhofstrasse 4",
+    "bic": "DOMICHZZXXX",
+    "clearing": "08820"
+  },
+  "08821": {
+    "name": "Hypo Vorarlberg Bank AG, Bregenz, Zweigniederl., St. Gallen",
+    "city": "St. Gallen",
+    "zip": "9004",
+    "address": "Bankgasse 1",
+    "bic": "RBABCH22VLH",
+    "clearing": "08821"
+  },
+  "08822": {
+    "name": "CIM Banque SA",
+    "city": "Genève 6",
+    "zip": "1211",
+    "address": "Rue Merle d'Aubigné 16",
+    "bic": "CIMMCHGGXXX",
+    "clearing": "08822"
+  },
+  "08825": {
+    "name": "TradeXBank AG",
+    "city": "Zürich",
+    "zip": "8002",
+    "address": "Gartenstrasse 24",
+    "bic": "TXBZCHZZXXX",
+    "clearing": "08825"
+  },
+  "08827": {
+    "name": "S.P. Hinduja Banque Privée SA",
+    "city": "Genève 1",
+    "zip": "1211",
+    "address": "Place de la Fusterie 3 bis",
+    "bic": "ABSGCHGGXXX",
+    "clearing": "08827"
+  },
+  "08830": {
+    "name": "",
+    "city": "",
+    "zip": "",
+    "address": "",
+    "bic": "",
+    "clearing": "08830"
+  },
+  "08831": {
+    "name": "ABANCA CORPORACION BANCARIA S.A., BETANZOS",
+    "city": "Genève 1",
+    "zip": "1211",
+    "address": "Quai des Bergues 27",
+    "bic": "CAGLCHGGXXX",
+    "clearing": "08831"
+  },
+  "08836": {
+    "name": "COMMERZBANK AG FF, Zweigniederlassung Zürich",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Pelikanplatz 15",
+    "bic": "COBACHZHXXX",
+    "clearing": "08836"
+  },
+  "08838": {
+    "name": "Banque du Léman SA",
+    "city": "Genève",
+    "zip": "1201",
+    "address": "Rue François-Bonivard 12",
+    "bic": "BLEMCHGGXXX",
+    "clearing": "08838"
+  },
+  "08839": {
+    "name": "Quilvest (Switzerland) Ltd.",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Füsslistrasse 6",
+    "bic": "QVCHCHZHXXX",
+    "clearing": "08839"
+  },
+  "08841": {
+    "name": "Banco Itaú (Suisse) SA",
+    "city": "Zürich",
+    "zip": "8002",
+    "address": "Bleicherweg 30",
+    "bic": "ITAUCHZZXXX",
+    "clearing": "08841"
+  },
+  "08842": {
+    "name": "Globalance Bank AG",
+    "city": "Zürich",
+    "zip": "8002",
+    "address": "Gartenstrasse 16",
+    "bic": "GLBNCHZZXXX",
+    "clearing": "08842"
+  },
+  "08843": {
+    "name": "Dukascopy Bank SA",
+    "city": "Genève 15",
+    "zip": "1215",
+    "address": "Route de Pré-Bois 20",
+    "bic": "DUBACHGGXXX",
+    "clearing": "08843"
+  },
+  "08845": {
+    "name": "Helvetische Bank AG",
+    "city": "Zürich",
+    "zip": "8008",
+    "address": "Seefeldstrasse 215",
+    "bic": "SFBFCH22XXX",
+    "clearing": "08845"
+  },
+  "08846": {
+    "name": "Aquila AG",
+    "city": "Zürich",
+    "zip": "8001",
+    "address": "Bahnhofstrasse 43",
+    "bic": "AQULCHZZXXX",
+    "clearing": "08846"
+  },
+  "08848": {
+    "name": "IG Bank S.A.",
+    "city": "Genève",
+    "zip": "1204",
+    "address": "Rue du Rhône 42",
+    "bic": "IGBKCHGGXXX",
+    "clearing": "08848"
+  },
+  "08850": {
+    "name": "compenswiss (Fonds de compensation AVS/AI/APG)",
+    "city": "Genève",
+    "zip": "1204",
+    "address": "Bd. Georges Favon 6",
+    "bic": "FAVSCHGAXXX",
+    "clearing": "08850"
+  },
+  "08851": {
+    "name": "SUVA",
+    "city": "Luzern",
+    "zip": "6002",
+    "address": "Fluhmattstrasse 1",
+    "bic": "SUAACH22XXX",
+    "clearing": "08851"
+  },
+  "08852": {
+    "name": "Swiss Life AG (KV, geb. Vermögen)",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "General-Guisan-Quai 40",
+    "bic": "SLAMCHZZKV0",
+    "clearing": "08852"
+  },
+  "08853": {
+    "name": "Schweizerische Rückversicherungs-Gesellschaft AG",
+    "city": "Zürich",
+    "zip": "8022",
+    "address": "Mythenquai 50/60",
+    "bic": "SWRECHZHXXX",
+    "clearing": "08853"
+  },
+  "08854": {
+    "name": "AXA Leben AG",
+    "city": "Winterthur",
+    "zip": "8401",
+    "address": "General Guisan-Strasse 40",
+    "bic": "AXIPCHZZXXX",
+    "clearing": "08854"
+  },
+  "08855": {
+    "name": "Zurich Insurance Company Ltd",
+    "city": "Zurich",
+    "zip": "8002",
+    "address": "Mythenquai 2",
+    "bic": "ZURICHZFXXX",
+    "clearing": "08855"
+  },
+  "08856": {
+    "name": "Baloise Leben AG",
+    "city": "Basel",
+    "zip": "4051",
+    "address": "Aeschengraben 21",
+    "bic": "BAAMCHBBXXX",
+    "clearing": "08856"
+  },
+  "08858": {
+    "name": "Baloise Versicherung AG",
+    "city": "Basel",
+    "zip": "4051",
+    "address": "Aeschengraben 21",
+    "bic": "BAAMCHBBBVG",
+    "clearing": "08858"
+  },
+  "08859": {
+    "name": "Schweizerische Mobiliar Versicherungsgesellschaft AG",
+    "city": "Bern",
+    "zip": "3001",
+    "address": "Bundesgasse 35",
+    "bic": "",
+    "clearing": "08859"
+  },
+  "08865": {
+    "name": "Remaco Asset Management AG",
+    "city": "Basel",
+    "zip": "4020",
+    "address": "Postfach 2282",
+    "bic": "RMCOCHBBXXX",
+    "clearing": "08865"
+  },
+  "08866": {
+    "name": "LF Finance (Suisse) SA",
+    "city": "Genève 3",
+    "zip": "1211",
+    "address": "Case postale 3667",
+    "bic": "LFFSCHGGXXX",
+    "clearing": "08866"
+  },
+  "08867": {
+    "name": "State Street Bank International GmbH, München, ZN Zürich",
+    "city": "Zürich",
+    "zip": "8045",
+    "address": "Kalanderplatz 5",
+    "bic": "SSBECHZZXXX",
+    "clearing": "08867"
+  },
+  "08868": {
+    "name": "Delen (Suisse) SA",
+    "city": "Genève",
+    "zip": "1207",
+    "address": "Boulevard Helvétique 31",
+    "bic": "DELECHG2XXX",
+    "clearing": "08868"
+  },
+  "08871": {
+    "name": "Zähringer Privatbank AG",
+    "city": "Bern",
+    "zip": "3011",
+    "address": "Schmiedenplatz 3",
+    "bic": "ZAPRCH22XXX",
+    "clearing": "08871"
+  },
+  "08880": {
+    "name": "SIX SIS AG",
+    "city": "Zürich",
+    "zip": "8005",
+    "address": "Pfingstweidstrasse 110",
+    "bic": "INSECHZZXXX",
+    "clearing": "08880"
+  },
+  "08881": {
+    "name": "SIX SIS AG",
+    "city": "Zürich",
+    "zip": "8005",
+    "address": "Pfingstweidstrasse 110",
+    "bic": "INSECHZZXXX",
+    "clearing": "08881"
+  },
+  "08883": {
+    "name": "EUREX Clearing AG",
+    "city": "Eschborn",
+    "zip": "65760",
+    "address": "Mergenthalerallee 61",
+    "bic": "EUXCDEFZXXX",
+    "clearing": "08883"
+  },
+  "08887": {
+    "name": "SIX SIS AG",
+    "city": "Zürich",
+    "zip": "8005",
+    "address": "Pfingstweidstrasse 110",
+    "bic": "INSECHZZXXX",
+    "clearing": "08887"
+  },
+  "08890": {
+    "name": "Sparkasse Bundespersonal",
+    "city": "Bern",
+    "zip": "3003",
+    "address": "Monbijoustrasse 118",
+    "bic": "SKBPCH22XXX",
+    "clearing": "08890"
+  },
+  "08899": {
+    "name": "BIZ Bank für Internationalen Zahlungsausgleich",
+    "city": "Basel",
+    "zip": "4002",
+    "address": "Postfach",
+    "bic": "BISBCHBBXXX",
+    "clearing": "08899"
+  },
+  "08910": {
+    "name": "CLS Bank International",
+    "city": "New York, NY 1006-3053",
+    "zip": "10006",
+    "address": "Broadway, 29th Floor 39",
+    "bic": "CLSBUS33XXX",
+    "clearing": "08910"
+  },
+  "09000": {
+    "name": "PostFinance AG",
+    "city": "Bern",
+    "zip": "3030",
+    "address": "Mingerstrasse 20",
+    "bic": "POFICHBEXXX",
+    "clearing": "09000"
   },
   "30000": {
     "name": "PostFinance AG",
@@ -1936,7 +4640,7 @@
     "clearing": "30246"
   },
   "30248": {
-    "name": "UNION BANCAIRE PRIVEE, UBP SA",
+    "name": "Union Bancaire Privée, UBP SA",
     "city": "Genève 1",
     "zip": "1211",
     "address": "Case postale 1320",
@@ -2191,14 +4895,6 @@
     "bic": "ABSGCHGGXXX",
     "clearing": "30299"
   },
-  "00303": {
-    "name": "UBS Switzerland AG",
-    "city": "Zürich",
-    "zip": "8098",
-    "address": "Bahnhofstrasse 45",
-    "bic": "UBSWCHZHW03",
-    "clearing": "00303"
-  },
   "30308": {
     "name": "UBS Switzerland AG",
     "city": "Zürich",
@@ -2375,22 +5071,6 @@
     "bic": "",
     "clearing": "30334"
   },
-  "00304": {
-    "name": "UBS Switzerland AG",
-    "city": "Zürich",
-    "zip": "8098",
-    "address": "Bahnhofstrasse 45",
-    "bic": "UBSWCHZHW04",
-    "clearing": "00304"
-  },
-  "00305": {
-    "name": "UBS Switzerland AG",
-    "city": "Zürich",
-    "zip": "8098",
-    "address": "Bahnhofstrasse 45",
-    "bic": "UBSWCHZHW05",
-    "clearing": "00305"
-  },
   "30520": {
     "name": "Citibank N.A.",
     "city": "London",
@@ -2398,14 +5078,6 @@
     "address": "Canada Square / Canary Wharf",
     "bic": "CITIGB2LXXX",
     "clearing": "30520"
-  },
-  "00306": {
-    "name": "UBS Switzerland AG",
-    "city": "Zürich",
-    "zip": "8098",
-    "address": "Bahnhofstrasse 45",
-    "bic": "UBSWCHZHW06",
-    "clearing": "00306"
   },
   "30700": {
     "name": "Zürcher Kantonalbank",
@@ -2599,14 +5271,6 @@
     "bic": "KBBECH22XXX",
     "clearing": "30790"
   },
-  "00308": {
-    "name": "UBS Switzerland AG",
-    "city": "Zürich",
-    "zip": "8098",
-    "address": "Bahnhofstrasse 45",
-    "bic": "UBSWCHZHW08",
-    "clearing": "00308"
-  },
   "30808": {
     "name": "Raiffeisen",
     "city": "St. Gallen",
@@ -2639,14 +5303,6 @@
     "bic": "KLARCH22XXX",
     "clearing": "31101"
   },
-  "00315": {
-    "name": "UBS AG",
-    "city": "Zürich",
-    "zip": "8098",
-    "address": "Bahnhofstrasse 45",
-    "bic": "UBSBCHZZXXX",
-    "clearing": "00315"
-  },
   "31866": {
     "name": "UBS AG (formerly Credit Suisse)",
     "city": "Zürich",
@@ -2663,54 +5319,6 @@
     "bic": "",
     "clearing": "31881"
   },
-  "04835": {
-    "name": "UBS Switzerland AG (formerly Credit Suisse)",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Bahnhofstrasse 45",
-    "bic": "CRESCHZZ80A",
-    "clearing": "04835"
-  },
-  "04866": {
-    "name": "UBS AG (formerly Credit Suisse)",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Bahnhofstrasse 45",
-    "bic": "CRESCHZHXXX",
-    "clearing": "04866"
-  },
-  "05881": {
-    "name": "",
-    "city": "",
-    "zip": "",
-    "address": "",
-    "bic": "",
-    "clearing": "05881"
-  },
-  "06180": {
-    "name": "Crédit Mutuel de la Vallée SA",
-    "city": "Sentier, Le",
-    "zip": "1347",
-    "address": "Grande Rue 22",
-    "bic": "RBABCH22180",
-    "clearing": "06180"
-  },
-  "06182": {
-    "name": "Caisse d'Epargne de Cossonay société coopérative",
-    "city": "Cossonay-Ville",
-    "zip": "1304",
-    "address": "Rue du Temple 2",
-    "bic": "RBABCH22182",
-    "clearing": "06182"
-  },
-  "06186": {
-    "name": "Sparkasse Sense",
-    "city": "Tafers/Tavel",
-    "zip": "1712",
-    "address": "Mariahilfstrasse 4",
-    "bic": "RBABCH22186",
-    "clearing": "06186"
-  },
   "61861": {
     "name": "Sparkasse Sense",
     "city": "Schmitten FR",
@@ -2718,14 +5326,6 @@
     "address": "F.X. Müllerstrasse 17",
     "bic": "RBABCH22186",
     "clearing": "61861"
-  },
-  "06240": {
-    "name": "Caisse d'Epargne Courtelary SA",
-    "city": "Courtelary",
-    "zip": "2608",
-    "address": "Grand-Rue 45",
-    "bic": "RBABCH22240",
-    "clearing": "06240"
   },
   "62401": {
     "name": "Caisse d'Epargne Courtelary SA",
@@ -2751,142 +5351,6 @@
     "bic": "RBABCH22240",
     "clearing": "62403"
   },
-  "06300": {
-    "name": "Valiant Bank AG",
-    "city": "Bern",
-    "zip": "3001",
-    "address": "Bundesplatz 4",
-    "bic": "VABECH22XXX",
-    "clearing": "06300"
-  },
-  "06305": {
-    "name": "",
-    "city": "",
-    "zip": "",
-    "address": "",
-    "bic": "",
-    "clearing": "06305"
-  },
-  "06313": {
-    "name": "Bernerland Bank AG",
-    "city": "Sumiswald",
-    "zip": "3454",
-    "address": "Kirchgasse 2",
-    "bic": "RBABCH22313",
-    "clearing": "06313"
-  },
-  "06336": {
-    "name": "Clientis AG",
-    "city": "Bern 7",
-    "zip": "3000",
-    "address": "Gurtengasse 6",
-    "bic": "RBABCH22CLI",
-    "clearing": "06336"
-  },
-  "06342": {
-    "name": "SB Saanen Bank AG",
-    "city": "Saanen",
-    "zip": "3792",
-    "address": "Bahnhofstrasse 2",
-    "bic": "RBABCH22342",
-    "clearing": "06342"
-  },
-  "06363": {
-    "name": "Bank SLM AG",
-    "city": "Münsingen",
-    "zip": "3110",
-    "address": "Dorfplatz 5",
-    "bic": "RBABCH22363",
-    "clearing": "06363"
-  },
-  "06374": {
-    "name": "Spar+Leihkasse Riggisberg AG",
-    "city": "Riggisberg",
-    "zip": "3132",
-    "address": "Grabenstrasse 7",
-    "bic": "RBABCH22374",
-    "clearing": "06374"
-  },
-  "06382": {
-    "name": "Burgerliche Ersparniskasse Bern Genossenschaft",
-    "city": "Bern",
-    "zip": "3001",
-    "address": "Bärenplatz 8",
-    "bic": "RBABCH22382",
-    "clearing": "06382"
-  },
-  "06387": {
-    "name": "Ersparniskasse Affoltern i. E. AG",
-    "city": "Weier im Emmental",
-    "zip": "3462",
-    "address": "Postfach",
-    "bic": "RBABCH22387",
-    "clearing": "06387"
-  },
-  "06395": {
-    "name": "Entris Banking AG",
-    "city": "Gümligen",
-    "zip": "3073",
-    "address": "Mattenstrasse 8",
-    "bic": "RBABCH22XXX",
-    "clearing": "06395"
-  },
-  "06428": {
-    "name": "Clientis Sparkasse Oftringen Genossenschaft",
-    "city": "Oftringen",
-    "zip": "4665",
-    "address": "Baslerstrasse 1",
-    "bic": "RBABCH22428",
-    "clearing": "06428"
-  },
-  "06434": {
-    "name": "Clientis Bank im Thal AG",
-    "city": "Balsthal",
-    "zip": "4710",
-    "address": "Goldgasse 11",
-    "bic": "RBABCH22434",
-    "clearing": "06434"
-  },
-  "06450": {
-    "name": "Bank Oberaargau AG",
-    "city": "Huttwil",
-    "zip": "4950",
-    "address": "Stadthausstrasse 1",
-    "bic": "RBABCH22450",
-    "clearing": "06450"
-  },
-  "06575": {
-    "name": "Clientis Bank Aareland AG",
-    "city": "Küttigen",
-    "zip": "5024",
-    "address": "Hauptstrasse 10",
-    "bic": "RBABCH22575",
-    "clearing": "06575"
-  },
-  "06588": {
-    "name": "Bank Leerau Genossenschaft",
-    "city": "Kirchleerau",
-    "zip": "5054",
-    "address": "Dorfstrasse 476",
-    "bic": "RBABCH22588",
-    "clearing": "06588"
-  },
-  "06633": {
-    "name": "Sparkasse Schwyz AG",
-    "city": "Schwyz",
-    "zip": "6431",
-    "address": "Herrengasse 23",
-    "bic": "RBABCH22633",
-    "clearing": "06633"
-  },
-  "06670": {
-    "name": "Clientis Entlebucher Bank AG",
-    "city": "Schüpfheim",
-    "zip": "6170",
-    "address": "Hauptstrasse 32",
-    "bic": "RBABCH22670",
-    "clearing": "06670"
-  },
   "66701": {
     "name": "Clientis Entlebucher Bank AG",
     "city": "Entlebuch",
@@ -2902,30 +5366,6 @@
     "address": "Bahnhofstrasse 2",
     "bic": "RBABCH22670",
     "clearing": "66702"
-  },
-  "06807": {
-    "name": "GRB Glarner Regionalbank Genossenschaft",
-    "city": "Schwanden",
-    "zip": "8762",
-    "address": "Bahnhofstrasse 25",
-    "bic": "RBABCH22807",
-    "clearing": "06807"
-  },
-  "06808": {
-    "name": "Sparhafen Bank AG",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Fraumünsterstrasse 21",
-    "bic": "BSZHCHZZXXX",
-    "clearing": "06808"
-  },
-  "06814": {
-    "name": "Sparcassa 1816 Genossenschaft",
-    "city": "Wädenswil",
-    "zip": "8820",
-    "address": "Zugerstrasse 18",
-    "bic": "RBABCH22814",
-    "clearing": "06814"
   },
   "68141": {
     "name": "Sparcassa 1816 Genossenschaft",
@@ -2959,14 +5399,6 @@
     "bic": "RBABCH22814",
     "clearing": "68144"
   },
-  "06824": {
-    "name": "BANK ZIMMERBERG AG",
-    "city": "Horgen 1",
-    "zip": "8810",
-    "address": "Dorfplatz 1",
-    "bic": "RBABCH22824",
-    "clearing": "06824"
-  },
   "68241": {
     "name": "BANK ZIMMERBERG AG",
     "city": "Oberrieden",
@@ -2982,622 +5414,6 @@
     "address": "Vorderi Siten 1",
     "bic": "RBABCH22824",
     "clearing": "68242"
-  },
-  "06828": {
-    "name": "Regiobank Männedorf AG",
-    "city": "Männedorf",
-    "zip": "8708",
-    "address": "Bahnhofstrasse 14",
-    "bic": "RBABCH22828",
-    "clearing": "06828"
-  },
-  "06830": {
-    "name": "Lienhardt & Partner Privatbank Zürich AG",
-    "city": "Zürich",
-    "zip": "8024",
-    "address": "Rämistrasse 23",
-    "bic": "RBABCH22830",
-    "clearing": "06830"
-  },
-  "06835": {
-    "name": "Ersparniskasse Schaffhausen AG",
-    "city": "Schaffhausen",
-    "zip": "8201",
-    "address": "Münsterplatz 34",
-    "bic": "RBABCH22835",
-    "clearing": "06835"
-  },
-  "06850": {
-    "name": "Bank Avera Genossenschaft",
-    "city": "Wetzikon ZH",
-    "zip": "8620",
-    "address": "Spitalstrasse 2",
-    "bic": "RBABCH22850",
-    "clearing": "06850"
-  },
-  "06858": {
-    "name": "BS Bank Schaffhausen AG",
-    "city": "Neunkirch",
-    "zip": "8213",
-    "address": "Klettgauerplatz 3",
-    "bic": "RBABCH22858",
-    "clearing": "06858"
-  },
-  "06866": {
-    "name": "Spar- und Leihkasse Thayngen AG",
-    "city": "Thayngen",
-    "zip": "8240",
-    "address": "Bahnhofstrasse 32",
-    "bic": "RBABCH22866",
-    "clearing": "06866"
-  },
-  "06875": {
-    "name": "Leihkasse Stammheim AG",
-    "city": "Oberstammheim",
-    "zip": "8477",
-    "address": "Hauptstrasse 6",
-    "bic": "RBABCH22875",
-    "clearing": "06875"
-  },
-  "06877": {
-    "name": "Zürcher Landbank AG",
-    "city": "Elgg",
-    "zip": "8353",
-    "address": "Lindenplatz 3",
-    "bic": "RBABCH22877",
-    "clearing": "06877"
-  },
-  "06888": {
-    "name": "Bank BSU Genossenschaft",
-    "city": "Uster 1",
-    "zip": "8610",
-    "address": "Bankstrasse 21",
-    "bic": "RBABCH22888",
-    "clearing": "06888"
-  },
-  "06900": {
-    "name": "acrevis Bank AG",
-    "city": "St. Gallen",
-    "zip": "9004",
-    "address": "Marktplatz 1",
-    "bic": "ACRGCH22XXX",
-    "clearing": "06900"
-  },
-  "06920": {
-    "name": "Alpha RHEINTAL Bank AG",
-    "city": "Heerbrugg",
-    "zip": "9435",
-    "address": "Bahnhofstrasse 2",
-    "bic": "ARBHCH22XXX",
-    "clearing": "06920"
-  },
-  "06935": {
-    "name": "Clientis Bank Oberuzwil AG",
-    "city": "Oberuzwil",
-    "zip": "9242",
-    "address": "Wiesentalstrasse 7",
-    "bic": "RBABCH22935",
-    "clearing": "06935"
-  },
-  "06955": {
-    "name": "Clientis Bank Toggenburg AG",
-    "city": "Kirchberg SG",
-    "zip": "9533",
-    "address": "Harfengrund 2",
-    "bic": "RBABCH22955",
-    "clearing": "06955"
-  },
-  "06964": {
-    "name": "Bank in Zuzwil",
-    "city": "Zuzwil SG",
-    "zip": "9524",
-    "address": "Mitteldorfstrasse 48",
-    "bic": "RBABCH22964",
-    "clearing": "06964"
-  },
-  "06977": {
-    "name": "Clientis Bank Thur Genossenschaft",
-    "city": "Ebnat-Kappel",
-    "zip": "9642",
-    "address": "Kappler Strasse 21",
-    "bic": "RBABCH22977",
-    "clearing": "06977"
-  },
-  "06980": {
-    "name": "Biene Bank im Rheintal Genossenschaft",
-    "city": "Altstätten SG",
-    "zip": "9450",
-    "address": "Rorschacherstrasse 9",
-    "bic": "RBABCH22980",
-    "clearing": "06980"
-  },
-  "00700": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8010",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00700"
-  },
-  "00702": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8036",
-    "address": "Wiedikon (ex. Enge)",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00702"
-  },
-  "00703": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8010",
-    "address": "(Limmatquai)",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00703"
-  },
-  "00704": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Stäfa",
-    "zip": "8712",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00704"
-  },
-  "00705": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Volketswil",
-    "zip": "8604",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00705"
-  },
-  "00706": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Dietikon 1",
-    "zip": "8953",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00706"
-  },
-  "00708": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8046",
-    "address": "Affoltern",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00708"
-  },
-  "00709": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Urdorf",
-    "zip": "8902",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00709"
-  },
-  "00710": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zumikon",
-    "zip": "8126",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00710"
-  },
-  "00711": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8048",
-    "address": "Altstetten",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00711"
-  },
-  "00712": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8036",
-    "address": "(Aussersihl)",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00712"
-  },
-  "00713": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8032",
-    "address": "Neumünster",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00713"
-  },
-  "00714": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8042",
-    "address": "Unterstrass",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00714"
-  },
-  "00715": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8036",
-    "address": "Wiedikon",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00715"
-  },
-  "00716": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8005",
-    "address": "Prime Tower, Hardstrasse 201",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00716"
-  },
-  "00717": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8038",
-    "address": "Wollishofen",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00717"
-  },
-  "00718": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8051",
-    "address": "Schwamendingen",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00718"
-  },
-  "00719": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8052",
-    "address": "Seebach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00719"
-  },
-  "00720": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8047",
-    "address": "Albisrieden",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00720"
-  },
-  "00721": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Affoltern am Albis",
-    "zip": "8910",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00721"
-  },
-  "00722": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Andelfingen",
-    "zip": "8450",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00722"
-  },
-  "00723": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Bauma",
-    "zip": "8494",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00723"
-  },
-  "00724": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Bülach",
-    "zip": "8180",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00724"
-  },
-  "00725": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Dielsdorf",
-    "zip": "8157",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00725"
-  },
-  "00726": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Horgen 1",
-    "zip": "8810",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00726"
-  },
-  "00727": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Meilen",
-    "zip": "8706",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00727"
-  },
-  "00728": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8050",
-    "address": "Oerlikon",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00728"
-  },
-  "00729": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Rüti ZH",
-    "zip": "8630",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00729"
-  },
-  "00730": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Uster 1",
-    "zip": "8610",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00730"
-  },
-  "00731": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Wald ZH",
-    "zip": "8636",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00731"
-  },
-  "00732": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Winterthur",
-    "zip": "8401",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00732"
-  },
-  "00733": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Effretikon",
-    "zip": "8307",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00733"
-  },
-  "00734": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8053",
-    "address": "Witikon",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00734"
-  },
-  "00735": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Egg b. Zürich",
-    "zip": "8132",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00735"
-  },
-  "00736": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8049",
-    "address": "Höngg",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00736"
-  },
-  "00737": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Zürich",
-    "zip": "8032",
-    "address": "Klusplatz",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00737"
-  },
-  "00738": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Glattbrugg",
-    "zip": "8152",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00738"
-  },
-  "00739": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Hombrechtikon",
-    "zip": "8634",
-    "address": "Postfach 17",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00739"
-  },
-  "00740": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Dübendorf 1",
-    "zip": "8600",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00740"
-  },
-  "00741": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Eglisau",
-    "zip": "8193",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00741"
-  },
-  "00742": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Fehraltorf",
-    "zip": "8320",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00742"
-  },
-  "00743": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Feuerthalen",
-    "zip": "8245",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00743"
-  },
-  "00744": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Kloten",
-    "zip": "8302",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00744"
-  },
-  "00745": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Küsnacht ZH",
-    "zip": "8700",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00745"
-  },
-  "00746": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Männedorf",
-    "zip": "8708",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00746"
-  },
-  "00747": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Richterswil",
-    "zip": "8805",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00747"
-  },
-  "00748": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Schlieren",
-    "zip": "8952",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00748"
-  },
-  "00749": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Thalwil",
-    "zip": "8800",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00749"
-  },
-  "00750": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Turbenthal",
-    "zip": "8488",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00750"
-  },
-  "00751": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Wallisellen",
-    "zip": "8304",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00751"
-  },
-  "00752": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Pfäffikon ZH",
-    "zip": "8330",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00752"
-  },
-  "00753": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Winterthur",
-    "zip": "8404",
-    "address": "Oberwinterthur",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00753"
-  },
-  "00754": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Hinwil",
-    "zip": "8340",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00754"
-  },
-  "00755": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Wetzikon ZH 2",
-    "zip": "8622",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00755"
-  },
-  "00756": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Regensdorf 1",
-    "zip": "8105",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00756"
-  },
-  "00757": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Wädenswil",
-    "zip": "8820",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00757"
-  },
-  "00758": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Adliswil 1",
-    "zip": "8134",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00758"
-  },
-  "00759": {
-    "name": "Zürcher Kantonalbank",
-    "city": "Bassersdorf",
-    "zip": "8303",
-    "address": "Postfach",
-    "bic": "ZKBKCHZZ80A",
-    "clearing": "00759"
-  },
-  "00761": {
-    "name": "Aargauische Kantonalbank",
-    "city": "Aarau",
-    "zip": "5001",
-    "address": "Bahnhofplatz 1",
-    "bic": "KBAGCH22XXX",
-    "clearing": "00761"
-  },
-  "00763": {
-    "name": "Appenzeller Kantonalbank",
-    "city": "Appenzell",
-    "zip": "9050",
-    "address": "Postfach",
-    "bic": "AIKACH22XXX",
-    "clearing": "00763"
-  },
-  "00764": {
-    "name": "Banca dello Stato del Cantone Ticino",
-    "city": "Bellinzona",
-    "zip": "6501",
-    "address": "Viale H. Guisan 5",
-    "bic": "BSCTCH22XXX",
-    "clearing": "00764"
   },
   "76410": {
     "name": "Banca dello Stato del Cantone Ticino",
@@ -3670,30 +5486,6 @@
     "address": "Via Cantonale",
     "bic": "BSCTCH22XXX",
     "clearing": "76470"
-  },
-  "00765": {
-    "name": "Banque Cantonale du Valais",
-    "city": "Sion/Sitten",
-    "zip": "1951",
-    "address": "Place des Cèdres 8",
-    "bic": "BCVSCH2LXXX",
-    "clearing": "00765"
-  },
-  "00766": {
-    "name": "Banque Cantonale Neuchâteloise",
-    "city": "Neuchâtel",
-    "zip": "2001",
-    "address": "Case postale 275",
-    "bic": "BCNNCH22XXX",
-    "clearing": "00766"
-  },
-  "00767": {
-    "name": "Banque Cantonale Vaudoise",
-    "city": "Lausanne",
-    "zip": "1001",
-    "address": "St-François",
-    "bic": "BCVLCH2LXXX",
-    "clearing": "00767"
   },
   "76711": {
     "name": "Banque Cantonale Vaudoise",
@@ -4119,14 +5911,6 @@
     "bic": "BCVLCH2LXXX",
     "clearing": "76766"
   },
-  "00768": {
-    "name": "Banque Cantonale de Fribourg",
-    "city": "Fribourg",
-    "zip": "1701",
-    "address": "Bd de Pérolles 1",
-    "bic": "BEFRCH22XXX",
-    "clearing": "00768"
-  },
   "76822": {
     "name": "Banque Cantonale de Fribourg",
     "city": "Fribourg",
@@ -4302,46 +6086,6 @@
     "address": "Case postale",
     "bic": "BEFRCH22XXX",
     "clearing": "76843"
-  },
-  "00769": {
-    "name": "Basellandschaftliche Kantonalbank",
-    "city": "Liestal",
-    "zip": "4410",
-    "address": "Postfach",
-    "bic": "BLKBCH22XXX",
-    "clearing": "00769"
-  },
-  "00770": {
-    "name": "Basler Kantonalbank",
-    "city": "Basel",
-    "zip": "4051",
-    "address": "Aeschenvorstadt 41",
-    "bic": "BKBBCHBBXXX",
-    "clearing": "00770"
-  },
-  "00773": {
-    "name": "Glarner Kantonalbank",
-    "city": "Glarus",
-    "zip": "8750",
-    "address": "Postfach 365",
-    "bic": "GLKBCH22XXX",
-    "clearing": "00773"
-  },
-  "00774": {
-    "name": "Graubündner Kantonalbank",
-    "city": "Chur",
-    "zip": "7001",
-    "address": "Postfach",
-    "bic": "GRKBCH2270A",
-    "clearing": "00774"
-  },
-  "00777": {
-    "name": "Schwyzer Kantonalbank",
-    "city": "Schwyz",
-    "zip": "6431",
-    "address": "Bahnhofstrasse 3",
-    "bic": "KBSZCH22XXX",
-    "clearing": "00777"
   },
   "77711": {
     "name": "Schwyzer Kantonalbank",
@@ -4535,14 +6279,6 @@
     "bic": "KBSZCH22XXX",
     "clearing": "77734"
   },
-  "00778": {
-    "name": "Luzerner Kantonalbank AG",
-    "city": "Luzern",
-    "zip": "6002",
-    "address": "Pilatusstrasse 12",
-    "bic": "LUKBCH2260A",
-    "clearing": "00778"
-  },
   "77811": {
     "name": "Luzerner Kantonalbank AG",
     "city": "Willisau",
@@ -4678,30 +6414,6 @@
     "address": "Hellbühlerstrasse 10",
     "bic": "LUKBCH2260A",
     "clearing": "77860"
-  },
-  "00779": {
-    "name": "Nidwaldner Kantonalbank",
-    "city": "Stans",
-    "zip": "6371",
-    "address": "Stansstaderstrasse 54",
-    "bic": "NIKACH22XXX",
-    "clearing": "00779"
-  },
-  "00780": {
-    "name": "Obwaldner Kantonalbank",
-    "city": "Sarnen",
-    "zip": "6060",
-    "address": "Im Feld 2",
-    "bic": "OBWKCH22XXX",
-    "clearing": "00780"
-  },
-  "00781": {
-    "name": "St. Galler Kantonalbank AG",
-    "city": "St. Gallen",
-    "zip": "9001",
-    "address": "Postfach",
-    "bic": "KBSGCH22XXX",
-    "clearing": "00781"
   },
   "78102": {
     "name": "St. Galler Kantonalbank AG",
@@ -4903,14 +6615,6 @@
     "bic": "KBSGCH22XXX",
     "clearing": "78158"
   },
-  "00782": {
-    "name": "Schaffhauser Kantonalbank",
-    "city": "Schaffhausen",
-    "zip": "8201",
-    "address": "Vorstadt 53",
-    "bic": "SHKBCH2SXXX",
-    "clearing": "00782"
-  },
   "78213": {
     "name": "Schaffhauser Kantonalbank",
     "city": "Stein am Rhein",
@@ -4918,14 +6622,6 @@
     "address": "Rathausplatz 4",
     "bic": "SHKBCH2SXXX",
     "clearing": "78213"
-  },
-  "00784": {
-    "name": "Thurgauer Kantonalbank",
-    "city": "Weinfelden",
-    "zip": "8570",
-    "address": "Postfach",
-    "bic": "KBTGCH22XXX",
-    "clearing": "00784"
   },
   "78411": {
     "name": "",
@@ -5039,38 +6735,6 @@
     "bic": "",
     "clearing": "78424"
   },
-  "00785": {
-    "name": "Urner Kantonalbank",
-    "city": "Altdorf",
-    "zip": "6460",
-    "address": "Bahnhofplatz 1",
-    "bic": "URKNCH22XXX",
-    "clearing": "00785"
-  },
-  "00787": {
-    "name": "Zuger Kantonalbank",
-    "city": "Zug",
-    "zip": "6301",
-    "address": "Postfach",
-    "bic": "KBZGCH22XXX",
-    "clearing": "00787"
-  },
-  "00788": {
-    "name": "Banque Cantonale de Genève",
-    "city": "Genève 2",
-    "zip": "1211",
-    "address": "Case postale 2251",
-    "bic": "BCGECHGGXXX",
-    "clearing": "00788"
-  },
-  "00789": {
-    "name": "Banque Cantonale du Jura SA",
-    "city": "Porrentruy 2",
-    "zip": "2900",
-    "address": "Case postale 278",
-    "bic": "BCJUCH22XXX",
-    "clearing": "00789"
-  },
   "78910": {
     "name": "Banque Cantonale du Jura SA",
     "city": "Delémont 1",
@@ -5086,14 +6750,6 @@
     "address": "Case postale",
     "bic": "BCJUCH22XXX",
     "clearing": "78920"
-  },
-  "00790": {
-    "name": "Berner Kantonalbank AG",
-    "city": "Bern",
-    "zip": "3001",
-    "address": "Bundesplatz 8",
-    "bic": "KBBECH22XXX",
-    "clearing": "00790"
   },
   "80000": {
     "name": "Raiffeisen Schweiz",
@@ -6951,118 +8607,6 @@
     "bic": "SRLGGB3LXXX",
     "clearing": "82018"
   },
-  "08235": {
-    "name": "Banco Santander International SA",
-    "city": "Genève 1",
-    "zip": "1211",
-    "address": "Case postale 1256",
-    "bic": "BSCHCHGGXXX",
-    "clearing": "08235"
-  },
-  "08236": {
-    "name": "Nexent Bank (Suisse) SA",
-    "city": "Genève",
-    "zip": "1204",
-    "address": "Rue du Rhône 80",
-    "bic": "FSUICHGGXXX",
-    "clearing": "08236"
-  },
-  "08238": {
-    "name": "Investec Bank (Switzerland) AG",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Löwenstrasse 29",
-    "bic": "IVESCHZZXXX",
-    "clearing": "08238"
-  },
-  "08243": {
-    "name": "Crédit Agricole next Bank (Suisse) SA",
-    "city": "Grand-Lancy",
-    "zip": "1212",
-    "address": "Esplanade de Pont-Rouge 4-6",
-    "bic": "AGRICHGXXXX",
-    "clearing": "08243"
-  },
-  "08245": {
-    "name": "Banque Richelieu (Schweiz) AG",
-    "city": "Zürich",
-    "zip": "8008",
-    "address": "Bellerivestrasse 17",
-    "bic": "ANPRCH22XXX",
-    "clearing": "08245"
-  },
-  "08246": {
-    "name": "Gonet & Cie SA (ex. ONE swiss bank SA)",
-    "city": "Genève",
-    "zip": "1202",
-    "address": "Rue de Lausanne 78",
-    "bic": "BQBHCHGGXXX",
-    "clearing": "08246"
-  },
-  "08248": {
-    "name": "Van Lanschot Kempen (Schweiz) AG",
-    "city": "Zürich",
-    "zip": "8034",
-    "address": "Mittelstrasse 10",
-    "bic": "FVLBCHZZXXX",
-    "clearing": "08248"
-  },
-  "08252": {
-    "name": "Banca Popolare di Sondrio (Suisse) SA",
-    "city": "Lugano 1",
-    "zip": "6901",
-    "address": "Casella postale 5832",
-    "bic": "POSOCH22XXX",
-    "clearing": "08252"
-  },
-  "08268": {
-    "name": "Banque Internationale à Luxembourg (Suisse) SA",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Bahnhofstrasse 20",
-    "bic": "BILSCHZZXXX",
-    "clearing": "08268"
-  },
-  "08270": {
-    "name": "BBVA SA",
-    "city": "Zürich",
-    "zip": "8021",
-    "address": "Selnaustrasse 32/36",
-    "bic": "BBVACHZZXXX",
-    "clearing": "08270"
-  },
-  "08278": {
-    "name": "Goldman Sachs Bank AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Claridenstrasse 22",
-    "bic": "GOLDCHZZXXX",
-    "clearing": "08278"
-  },
-  "08288": {
-    "name": "Frankfurter Bankgesellschaft (Schweiz) AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Börsenstrasse 16",
-    "bic": "FBGSCHZZXXX",
-    "clearing": "08288"
-  },
-  "08289": {
-    "name": "ODDO BHF (Schweiz) AG",
-    "city": "Zürich",
-    "zip": "8002",
-    "address": "Gartenstrasse 14",
-    "bic": "BHFBCHZZXXX",
-    "clearing": "08289"
-  },
-  "08296": {
-    "name": "Cembra Money Bank AG",
-    "city": "Zürich",
-    "zip": "8048",
-    "address": "Bändliweg 20",
-    "bic": "CMBNCHZHXXX",
-    "clearing": "08296"
-  },
   "82961": {
     "name": "Cembra Money Bank SA",
     "city": "Fribourg",
@@ -7230,14 +8774,6 @@
     "address": "Bändliweg 20",
     "bic": "CMBNCHZHXXX",
     "clearing": "82998"
-  },
-  "08300": {
-    "name": "Spar- und Leihkasse Wynigen AG",
-    "city": "Wynigen",
-    "zip": "3472",
-    "address": "Postfach 180",
-    "bic": "SLWYCH21XXX",
-    "clearing": "08300"
   },
   "83002": {
     "name": "Bank von Roll AG",
@@ -7642,890 +9178,10 @@
   "83059": {
     "name": "finpension AG",
     "city": "Luzern",
-    "zip": "6003",
-    "address": "Hirschmattstrasse 36",
+    "zip": "6005",
+    "address": "Inseliquai 12B",
     "bic": "FNPICH22XXX",
     "clearing": "83059"
-  },
-  "08307": {
-    "name": "Hypothekarbank Lenzburg AG",
-    "city": "Lenzburg 1",
-    "zip": "5600",
-    "address": "Bahnhofstrasse 2",
-    "bic": "HYPLCH22XXX",
-    "clearing": "08307"
-  },
-  "08309": {
-    "name": "Banque SYZ SA",
-    "city": "Geneva",
-    "zip": "1201",
-    "address": "Quai des Bergues 1",
-    "bic": "SYCOCHGGXXX",
-    "clearing": "08309"
-  },
-  "08326": {
-    "name": "Caisse d'Epargne de Nyon société coopérative",
-    "city": "Nyon",
-    "zip": "1260",
-    "address": "Rue St-Jean 11",
-    "bic": "CAGYCH21XXX",
-    "clearing": "08326"
-  },
-  "08327": {
-    "name": "Caisse d'Epargne d'Aubonne Sociéte coopérative",
-    "city": "Aubonne",
-    "zip": "1170",
-    "address": "Rue de l'Hôtel-de-Ville 21",
-    "bic": "RBABCH22CEA",
-    "clearing": "08327"
-  },
-  "08329": {
-    "name": "Ersparniskasse Speicher",
-    "city": "Speicher",
-    "zip": "9042",
-    "address": "Hauptstrasse 21",
-    "bic": "ERSCCH21XXX",
-    "clearing": "08329"
-  },
-  "08334": {
-    "name": "Baloise Bank AG",
-    "city": "Solothurn",
-    "zip": "4500",
-    "address": "Amthausplatz 4",
-    "bic": "KBSOCH22XXX",
-    "clearing": "08334"
-  },
-  "08335": {
-    "name": "LGT Bank (Schweiz) AG",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "Lange Gasse 15",
-    "bic": "BLFLCHBBXXX",
-    "clearing": "08335"
-  },
-  "08346": {
-    "name": "Banque Algérienne du Commerce Extérieur SA",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Talacker 35",
-    "bic": "AEXTCHZZXXX",
-    "clearing": "08346"
-  },
-  "08348": {
-    "name": "Caisse d'Epargne et de Crédit Mutuel de Chermignon",
-    "city": "Chermignon",
-    "zip": "3971",
-    "address": "Case postale 14",
-    "bic": "CDEMCH21XXX",
-    "clearing": "08348"
-  },
-  "08349": {
-    "name": "Caisse d'Epargne Riviera, société coopérative",
-    "city": "Vevey 1",
-    "zip": "1800",
-    "address": "Avenue Paul-Ceresole 3",
-    "bic": "CDDVCH21XXX",
-    "clearing": "08349"
-  },
-  "08350": {
-    "name": "Loomis Schweiz AG",
-    "city": "Oensingen",
-    "zip": "4702",
-    "address": "Nordringstrasse 22",
-    "bic": "SEPOCH22XXX",
-    "clearing": "08350"
-  },
-  "08351": {
-    "name": "SOS Cash & Value SA",
-    "city": "Vernayaz",
-    "zip": "1904",
-    "address": "Route de Tabary 1",
-    "bic": "",
-    "clearing": "08351"
-  },
-  "08352": {
-    "name": "Loomis Schweiz SA",
-    "city": "Basel",
-    "zip": "4052",
-    "address": "Peter Merian-Strasse 50",
-    "bic": "VIMMCHZZXXX",
-    "clearing": "08352"
-  },
-  "08373": {
-    "name": "China Construction Bank Corporation, Beijing, Swiss Branch",
-    "city": "Zürich",
-    "zip": "8002",
-    "address": "Beethovenstrasse 33",
-    "bic": "PCBCCHZZXXX",
-    "clearing": "08373"
-  },
-  "08374": {
-    "name": "CACEIS Bank, Montrouge, succursale de Nyon / Suisse",
-    "city": "Nyon",
-    "zip": "1260",
-    "address": "Route de Signy 35",
-    "bic": "ISAECH2NXXX",
-    "clearing": "08374"
-  },
-  "08376": {
-    "name": "",
-    "city": "",
-    "zip": "",
-    "address": "",
-    "bic": "",
-    "clearing": "08376"
-  },
-  "08377": {
-    "name": "Vontobel Swiss Financial Advisers AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Gotthardstrasse 43",
-    "bic": "VSFACHZZXXX",
-    "clearing": "08377"
-  },
-  "08378": {
-    "name": "NPB Neue Privat Bank AG",
-    "city": "Zürich",
-    "zip": "8024",
-    "address": "Limmatquai 1 / am Bellevue",
-    "bic": "NEPICHZZXXX",
-    "clearing": "08378"
-  },
-  "08379": {
-    "name": "QNB (Suisse) SA",
-    "city": "Genève",
-    "zip": "1201",
-    "address": "Quai du Mont-Blanc 1",
-    "bic": "QNBACHGGXXX",
-    "clearing": "08379"
-  },
-  "08380": {
-    "name": "J.P. Morgan (Suisse) SA",
-    "city": "Genève",
-    "zip": "1204",
-    "address": "Rue de la Confédération 8",
-    "bic": "MGTCCHGGXXX",
-    "clearing": "08380"
-  },
-  "08384": {
-    "name": "Reyl & Cie S.A.",
-    "city": "Genève",
-    "zip": "1204",
-    "address": "Rue du Rhône 4",
-    "bic": "REYLCHGGXXX",
-    "clearing": "08384"
-  },
-  "08385": {
-    "name": "NBK Banque Privée (Suisse) SA",
-    "city": "Genève",
-    "zip": "1204",
-    "address": "Rue de la Corraterie 5",
-    "bic": "NBOKCHGGXXX",
-    "clearing": "08385"
-  },
-  "08387": {
-    "name": "ING Bank N.V., Amsterdam, succursale de Lancy/Genève",
-    "city": "Petit-Lancy",
-    "zip": "1213",
-    "address": "Avenue de Morgines 10",
-    "bic": "BBRUCHGTXXX",
-    "clearing": "08387"
-  },
-  "08388": {
-    "name": "Banque Eric Sturdza SA",
-    "city": "Genève 3",
-    "zip": "1211",
-    "address": "Rue du Rhône 112",
-    "bic": "BABRCHGGXXX",
-    "clearing": "08388"
-  },
-  "08389": {
-    "name": "Bezirks-Sparkasse Dielsdorf Genossenschaft",
-    "city": "Dielsdorf",
-    "zip": "8157",
-    "address": "Bahnhofstrasse 29",
-    "bic": "BZSDCH22XXX",
-    "clearing": "08389"
-  },
-  "08390": {
-    "name": "Alternative Bank Schweiz AG",
-    "city": "Olten",
-    "zip": "4600",
-    "address": "Amthausquai 21",
-    "bic": "ABSOCH22XXX",
-    "clearing": "08390"
-  },
-  "08391": {
-    "name": "WIR Bank Genossenschaft",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "Auberg 1",
-    "bic": "WIRBCHBBXXX",
-    "clearing": "08391"
-  },
-  "08392": {
-    "name": "Freie Gemeinschaftsbank Genossenschaft",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "Meret Oppenheim-Strasse 10",
-    "bic": "FRGGCHB1XXX",
-    "clearing": "08392"
-  },
-  "08393": {
-    "name": "Bank EKI Genossenschaft",
-    "city": "Interlaken",
-    "zip": "3800",
-    "address": "Rosenstrasse 1",
-    "bic": "EKIICH22XXX",
-    "clearing": "08393"
-  },
-  "08394": {
-    "name": "Bank EEK AG",
-    "city": "Bern",
-    "zip": "3001",
-    "address": "Amthausgasse 14 / Marktgasse 19",
-    "bic": "EEKBCH22XXX",
-    "clearing": "08394"
-  },
-  "08395": {
-    "name": "Spar- und Leihkasse Bucheggberg",
-    "city": "Lüterswil",
-    "zip": "4584",
-    "address": "Hauptstrasse 4",
-    "bic": "SLBUCH22XXX",
-    "clearing": "08395"
-  },
-  "08396": {
-    "name": "Spar + Leihkasse Gürbetal AG",
-    "city": "Mühlethurnen",
-    "zip": "3127",
-    "address": "Dorfstrasse 19",
-    "bic": "SLGUCH2MXXX",
-    "clearing": "08396"
-  },
-  "08397": {
-    "name": "DC Bank Deposito-Cassa der Stadt Bern",
-    "city": "Bern",
-    "zip": "3001",
-    "address": "Schauplatzgasse 21",
-    "bic": "RBABCH22DCB",
-    "clearing": "08397"
-  },
-  "08398": {
-    "name": "VZ Depotbank AG",
-    "city": "Zug",
-    "zip": "6300",
-    "address": "Innere Güterstrasse 2",
-    "bic": "VZDBCHZZXXX",
-    "clearing": "08398"
-  },
-  "08401": {
-    "name": "Migros Bank AG",
-    "city": "Zürich",
-    "zip": "8010",
-    "address": "Postfach",
-    "bic": "MIGRCHZZXXX",
-    "clearing": "08401"
-  },
-  "08440": {
-    "name": "Bank Cler AG",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "Postfach",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08440"
-  },
-  "08441": {
-    "name": "Bank Cler AG",
-    "city": "Basel",
-    "zip": "4018",
-    "address": "Gundeldingen",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08441"
-  },
-  "08442": {
-    "name": "Bank Cler AG",
-    "city": "Basel",
-    "zip": "4005",
-    "address": "Kleinbasel",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08442"
-  },
-  "08443": {
-    "name": "Bank Cler AG",
-    "city": "Bern",
-    "zip": "3001",
-    "address": "Postfach",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08443"
-  },
-  "08444": {
-    "name": "Bank Cler AG",
-    "city": "Biel/Bienne",
-    "zip": "2501",
-    "address": "Postfach",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08444"
-  },
-  "08445": {
-    "name": "Bank Cler AG",
-    "city": "Brugg AG",
-    "zip": "5201",
-    "address": "Neumarkt 2",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08445"
-  },
-  "08446": {
-    "name": "Bank Cler AG",
-    "city": "Neuchâtel",
-    "zip": "2001",
-    "address": "Case postale",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08446"
-  },
-  "08447": {
-    "name": "Bank Cler AG",
-    "city": "Genève 3",
-    "zip": "1204",
-    "address": "Case postale",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08447"
-  },
-  "08448": {
-    "name": "Bank Cler AG",
-    "city": "Lausanne",
-    "zip": "1002",
-    "address": "Case postale 5783",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08448"
-  },
-  "08449": {
-    "name": "Bank Cler AG",
-    "city": "Lugano",
-    "zip": "6901",
-    "address": "Casella postale",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08449"
-  },
-  "08450": {
-    "name": "Bank Cler AG",
-    "city": "Luzern",
-    "zip": "6002",
-    "address": "Postfach",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08450"
-  },
-  "08451": {
-    "name": "Bank Cler AG",
-    "city": "Olten",
-    "zip": "4600",
-    "address": "Postfach",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08451"
-  },
-  "08452": {
-    "name": "Bank Cler AG",
-    "city": "Schaffhausen",
-    "zip": "8201",
-    "address": "Postfach",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08452"
-  },
-  "08453": {
-    "name": "Bank Cler AG",
-    "city": "Zürich",
-    "zip": "8021",
-    "address": "Uraniastrasse 6",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08453"
-  },
-  "08454": {
-    "name": "Bank Cler AG",
-    "city": "Zürich",
-    "zip": "8050",
-    "address": "Oerlikon",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08454"
-  },
-  "08455": {
-    "name": "Bank Cler AG",
-    "city": "Bellinzona",
-    "zip": "6501",
-    "address": "Casella postale",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08455"
-  },
-  "08456": {
-    "name": "Bank Cler AG",
-    "city": "St. Gallen",
-    "zip": "9001",
-    "address": "Postfach",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08456"
-  },
-  "08457": {
-    "name": "Bank Cler AG",
-    "city": "Fribourg",
-    "zip": "1701",
-    "address": "Rue de Romont 35",
-    "bic": "BCLRCHBBXXX",
-    "clearing": "08457"
-  },
-  "08490": {
-    "name": "Cornèr Banca SA",
-    "city": "Lugano",
-    "zip": "6901",
-    "address": "Via Canova 16",
-    "bic": "CBLUCH22XXX",
-    "clearing": "08490"
-  },
-  "08495": {
-    "name": "Banca Credinvest SA",
-    "city": "Lugano",
-    "zip": "6902",
-    "address": "Via G. Cattori 14",
-    "bic": "BCRECH22XXX",
-    "clearing": "08495"
-  },
-  "08496": {
-    "name": "Banca Aletti & C. (Suisse) SA",
-    "city": "Lugano",
-    "zip": "6900",
-    "address": "Via Massimiliano Magatti 6",
-    "bic": "VRBPCH22XXX",
-    "clearing": "08496"
-  },
-  "08497": {
-    "name": "SAXO BANK (SCHWEIZ) AG",
-    "city": "Kloten",
-    "zip": "8302",
-    "address": "The Circle 38",
-    "bic": "SAXOCHZHXXX",
-    "clearing": "08497"
-  },
-  "08498": {
-    "name": "Axion SWISS Bank SA",
-    "city": "Lugano",
-    "zip": "6900",
-    "address": "Viale Stefano Franscini 22",
-    "bic": "UNCECH22XXX",
-    "clearing": "08498"
-  },
-  "08499": {
-    "name": "FAB Private Bank (Suisse) SA",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Quai de l'Ile 5",
-    "bic": "NBPSCHGGXXX",
-    "clearing": "08499"
-  },
-  "08509": {
-    "name": "Mercantil Bank (Schweiz) AG",
-    "city": "Zürich",
-    "zip": "8036",
-    "address": "Kasernenstrasse 1",
-    "bic": "BAMRCHZZXXX",
-    "clearing": "08509"
-  },
-  "08515": {
-    "name": "Bank Julius Bär & Co AG",
-    "city": "Zürich",
-    "zip": "8010",
-    "address": "Bahnhofstrasse 36",
-    "bic": "BAERCHZZXXX",
-    "clearing": "08515"
-  },
-  "08518": {
-    "name": "Bank Gantrisch Genossenschaft",
-    "city": "Schwarzenburg",
-    "zip": "3150",
-    "address": "Bahnhofstrasse 2",
-    "bic": "BGAGCH22XXX",
-    "clearing": "08518"
-  },
-  "08519": {
-    "name": "Ersparniskasse Rüeggisberg Genossenschaft",
-    "city": "Rüeggisberg",
-    "zip": "3088",
-    "address": "Dorfstrasse 19",
-    "bic": "EKRUCH21XXX",
-    "clearing": "08519"
-  },
-  "08521": {
-    "name": "BBO Bank Brienz Oberhasli AG",
-    "city": "Brienz",
-    "zip": "3855",
-    "address": "Hauptstrasse 115",
-    "bic": "BBOBCH22XXX",
-    "clearing": "08521"
-  },
-  "08522": {
-    "name": "Società Bancaria Ticinese",
-    "city": "Bellinzona",
-    "zip": "6501",
-    "address": "Casella postale 2062",
-    "bic": "SBTICH22XXX",
-    "clearing": "08522"
-  },
-  "08525": {
-    "name": "BTV Vier Länder Bank AG Innsbruck, Zweigniederlassung Staad",
-    "city": "Staad SG",
-    "zip": "9422",
-    "address": "Hauptstrasse 19",
-    "bic": "BTVACH22XXX",
-    "clearing": "08525"
-  },
-  "08533": {
-    "name": "SELVI & Cie SA",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Rue du Grütli 4",
-    "bic": "SELVCHGGXXX",
-    "clearing": "08533"
-  },
-  "08534": {
-    "name": "VP Bank (Schweiz) AG",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Talstrasse 59",
-    "bic": "VPBVCHZHXXX",
-    "clearing": "08534"
-  },
-  "08537": {
-    "name": "Banque Internationale de Commerce-BRED (Suisse) SA",
-    "city": "Genève",
-    "zip": "1204",
-    "address": "Boulevard du Théatre 8",
-    "bic": "BICFCHGGXXX",
-    "clearing": "08537"
-  },
-  "08539": {
-    "name": "Bergos AG",
-    "city": "Zürich",
-    "zip": "8034",
-    "address": "Postfach 186",
-    "bic": "BEGOCHZZXXX",
-    "clearing": "08539"
-  },
-  "08540": {
-    "name": "BANQUE BANORIENT (SUISSE) SA",
-    "city": "Genève",
-    "zip": "1206",
-    "address": "Rue Rodolphe Toepffer 1",
-    "bic": "BLOMCHGGXXX",
-    "clearing": "08540"
-  },
-  "08543": {
-    "name": "Scobag Privatbank AG",
-    "city": "Basel",
-    "zip": "4010",
-    "address": "Postfach",
-    "bic": "SCOPCHBBXXX",
-    "clearing": "08543"
-  },
-  "08548": {
-    "name": "Hyposwiss Private Bank Genève SA",
-    "city": "Genève 1",
-    "zip": "1211",
-    "address": "Rue du Général-Dufour 3",
-    "bic": "CCIECHGGXXX",
-    "clearing": "08548"
-  },
-  "08553": {
-    "name": "BZ Bank Aktiengesellschaft",
-    "city": "Wilen b. Wollerau",
-    "zip": "8832",
-    "address": "Egglirain 15",
-    "bic": "BZBKCH2WXXX",
-    "clearing": "08553"
-  },
-  "08564": {
-    "name": "Privatbank Von Graffenried AG",
-    "city": "Bern",
-    "zip": "3011",
-    "address": "Spitalgasse 3",
-    "bic": "GRAFCH22XXX",
-    "clearing": "08564"
-  },
-  "08565": {
-    "name": "Dreyfus Söhne & Cie AG, Banquiers",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "Aeschenvorstadt 16",
-    "bic": "DREYCHBBXXX",
-    "clearing": "08565"
-  },
-  "08570": {
-    "name": "Banque Bonhôte & Cie SA",
-    "city": "Neuchâtel",
-    "zip": "2001",
-    "address": "Quai Ostervald 2",
-    "bic": "BONHCH22XXX",
-    "clearing": "08570"
-  },
-  "08571": {
-    "name": "Edmond de Rothschild (Suisse) S.A",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Case postale 5478",
-    "bic": "PRIBCHGGXXX",
-    "clearing": "08571"
-  },
-  "08572": {
-    "name": "Trafina Privatbank AG",
-    "city": "Basel",
-    "zip": "4020",
-    "address": "Rennweg 50",
-    "bic": "TRAPCHBBXXX",
-    "clearing": "08572"
-  },
-  "08573": {
-    "name": "Maerki, Baumann & Co. AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Dreikönigstrasse 6",
-    "bic": "MAEBCHZZXXX",
-    "clearing": "08573"
-  },
-  "08574": {
-    "name": "Banque Des Monts Blancs SA",
-    "city": "Genève",
-    "zip": "1211",
-    "address": "Rue du Mont Blanc 3",
-    "bic": "MEDSCHGGXXX",
-    "clearing": "08574"
-  },
-  "08582": {
-    "name": "",
-    "city": "",
-    "zip": "",
-    "address": "",
-    "bic": "",
-    "clearing": "08582"
-  },
-  "08584": {
-    "name": "Banca del Ceresio SA",
-    "city": "Lugano",
-    "zip": "6901",
-    "address": "Casella postale 2860",
-    "bic": "BACECH22XXX",
-    "clearing": "08584"
-  },
-  "08609": {
-    "name": "Banca Zarattini & Co. SA",
-    "city": "Lugano",
-    "zip": "6900",
-    "address": "Via Sarafino Balestra 17",
-    "bic": "EUBACH22XXX",
-    "clearing": "08609"
-  },
-  "08615": {
-    "name": "DZ PRIVATBANK (Schweiz) AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Münsterhof 12",
-    "bic": "GENOCHZZXXX",
-    "clearing": "08615"
-  },
-  "08616": {
-    "name": "EFG Bank European Financial Group SA",
-    "city": "Genève 2",
-    "zip": "1211",
-    "address": "Quai du Seujet 24",
-    "bic": "EFGBCHGGXXX",
-    "clearing": "08616"
-  },
-  "08619": {
-    "name": "Nomura Bank (Switzerland) Ltd",
-    "city": "Zürich",
-    "zip": "8021",
-    "address": "Postfach",
-    "bic": "NBSZCHZZXXX",
-    "clearing": "08619"
-  },
-  "08624": {
-    "name": "Banque Audi (Suisse) SA",
-    "city": "Genève 12",
-    "zip": "1211",
-    "address": "Case postale 384",
-    "bic": "AUDSCHGGXXX",
-    "clearing": "08624"
-  },
-  "08629": {
-    "name": "Banque de Commerce et de Placements SA",
-    "city": "Genève 3",
-    "zip": "1211",
-    "address": "Rue de la Fontaine 1",
-    "bic": "BPCPCHGGXXX",
-    "clearing": "08629"
-  },
-  "08634": {
-    "name": "Schroder & Co Bank AG",
-    "city": "Zürich",
-    "zip": "8021",
-    "address": "Central 2",
-    "bic": "BJHSCHZZXXX",
-    "clearing": "08634"
-  },
-  "08635": {
-    "name": "JPMorgan Chase Bank, National Association, Columbus",
-    "city": "Zürich",
-    "zip": "8027",
-    "address": "Dreikönigstrasse 37",
-    "bic": "CHASCHGXXXX",
-    "clearing": "08635"
-  },
-  "08638": {
-    "name": "Citibank (Switzerland) AG",
-    "city": "Zürich",
-    "zip": "8010",
-    "address": "Prime Tower / Hardstrasse 201",
-    "bic": "CBSWCHZZXXX",
-    "clearing": "08638"
-  },
-  "08657": {
-    "name": "Union Bancaire Privée, UBP SA",
-    "city": "Genève 1",
-    "zip": "1211",
-    "address": "Case postale 1320",
-    "bic": "UBPGCHGGXXX",
-    "clearing": "08657"
-  },
-  "08659": {
-    "name": "Deutsche Bank (Suisse) S.A.",
-    "city": "Genève 1",
-    "zip": "1211",
-    "address": "Place des Bergues 3",
-    "bic": "DEUTCHGGXXX",
-    "clearing": "08659"
-  },
-  "08660": {
-    "name": "GPB (Schweiz) AG",
-    "city": "Zürich",
-    "zip": "8032",
-    "address": "Zollikerstrasse 183",
-    "bic": "RKBZCHZZXXX",
-    "clearing": "08660"
-  },
-  "08661": {
-    "name": "Rothschild & Co Bank AG",
-    "city": "Zürich",
-    "zip": "8034",
-    "address": "Postfach",
-    "bic": "ROTACHZZXXX",
-    "clearing": "08661"
-  },
-  "08663": {
-    "name": "PKB PRIVATE BANK SA",
-    "city": "Lugano",
-    "zip": "6900",
-    "address": "Via Serafina Balestra 1",
-    "bic": "PKBSCH22XXX",
-    "clearing": "08663"
-  },
-  "08664": {
-    "name": "PKB PRIVATBANK AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Tödistrasse 47",
-    "bic": "PKBSCH2269A",
-    "clearing": "08664"
-  },
-  "08665": {
-    "name": "PKB PRIVATBANK SA",
-    "city": "Genève",
-    "zip": "1206",
-    "address": "Charles Galland 12",
-    "bic": "PKBSCH2212A",
-    "clearing": "08665"
-  },
-  "08666": {
-    "name": "Banca del Sempione SA",
-    "city": "Lugano 1",
-    "zip": "6901",
-    "address": "Via Peri 5",
-    "bic": "BASECH22XXX",
-    "clearing": "08666"
-  },
-  "08667": {
-    "name": "EFG Bank AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Bleicherweg 8",
-    "bic": "EFGBCHZZXXX",
-    "clearing": "08667"
-  },
-  "08686": {
-    "name": "BNP PARIBAS, Paris, succursale de Lancy/Genève",
-    "city": "Grand-Lancy",
-    "zip": "1212",
-    "address": "Esplanade de Pont-Rouge 9a",
-    "bic": "BPPBCHGGXXX",
-    "clearing": "08686"
-  },
-  "08689": {
-    "name": "HSBC Private Bank (Suisse) SA",
-    "city": "Genève 1",
-    "zip": "1211",
-    "address": "Quai Général-Guisan 2",
-    "bic": "BLICCHGGXXX",
-    "clearing": "08689"
-  },
-  "08700": {
-    "name": "Citibank N.A., Sioux Falls",
-    "city": "Zürich",
-    "zip": "8010",
-    "address": "Bleicherweg 10",
-    "bic": "CITICHZZXXX",
-    "clearing": "08700"
-  },
-  "08701": {
-    "name": "HSBC Bank plc, London, Zweigniederlassung Zürich",
-    "city": "Zürich",
-    "zip": "8002",
-    "address": "Bederstrasse 49",
-    "bic": "HSBCCHZZXXX",
-    "clearing": "08701"
-  },
-  "08702": {
-    "name": "Leonteq Securities AG",
-    "city": "Zürich",
-    "zip": "8004",
-    "address": "Europaallee 39",
-    "bic": "EFGFCHZZXXX",
-    "clearing": "08702"
-  },
-  "08703": {
-    "name": "bank zweiplus ag",
-    "city": "Zürich",
-    "zip": "8048",
-    "address": "Buckhauserstrasse 22",
-    "bic": "BZPLCHZZXXX",
-    "clearing": "08703"
-  },
-  "08704": {
-    "name": "AEK BANK 1826 Genossenschaft",
-    "city": "Thun",
-    "zip": "3601",
-    "address": "Hofstettenstrasse 2",
-    "bic": "AEKTCH22XXX",
-    "clearing": "08704"
-  },
-  "08705": {
-    "name": "Société Générale",
-    "city": "Zürich",
-    "zip": "8021",
-    "address": "Talacker 50",
-    "bic": "SGABCHZZXXX",
-    "clearing": "08705"
-  },
-  "08710": {
-    "name": "Bank CIC (SCHWEIZ) AG",
-    "city": "Basel",
-    "zip": "4001",
-    "address": "Marktplatz 13",
-    "bic": "CIALCHBBXXX",
-    "clearing": "08710"
   },
   "87105": {
     "name": "Bank CIC (SCHWEIZ) AG",
@@ -8534,222 +9190,6 @@
     "address": "CIC-Group",
     "bic": "CIALCHBBXXX",
     "clearing": "87105"
-  },
-  "08719": {
-    "name": "Arab Bank (Switzerland) Ltd.",
-    "city": "Genève",
-    "zip": "1204",
-    "address": "Place de Longemalle 10-12",
-    "bic": "ARBSCHZZXXX",
-    "clearing": "08719"
-  },
-  "08721": {
-    "name": "Gonet & Cie SA",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Boulevard du Théâtre 6",
-    "bic": "GONECHGGXXX",
-    "clearing": "08721"
-  },
-  "08726": {
-    "name": "Bank of America Europe DAC, Dublin, Zurich Branch",
-    "city": "Zürich",
-    "zip": "8002",
-    "address": "Stockerhof, Stockerstrasse 23",
-    "bic": "BOFACH2XXXX",
-    "clearing": "08726"
-  },
-  "08727": {
-    "name": "Banque Cramer & Cie SA",
-    "city": "Genève 12",
-    "zip": "1211",
-    "address": "Avenue de Miremont 22",
-    "bic": "CRAMCHGGXXX",
-    "clearing": "08727"
-  },
-  "08731": {
-    "name": "LLB (Schweiz) AG",
-    "city": "Uznach",
-    "zip": "8730",
-    "address": "Zürcherstrasse 3",
-    "bic": "LINSCH23XXX",
-    "clearing": "08731"
-  },
-  "08733": {
-    "name": "Bank Thalwil Genossenschaft",
-    "city": "Thalwil",
-    "zip": "8800",
-    "address": "Gotthardstrasse 14",
-    "bic": "BKTHCH22XXX",
-    "clearing": "08733"
-  },
-  "08735": {
-    "name": "Barclays Bank (Suisse) SA",
-    "city": "Genève 3",
-    "zip": "1211",
-    "address": "Chemin de Grange-Canal 18-20",
-    "bic": "BARCCHGGXXX",
-    "clearing": "08735"
-  },
-  "08737": {
-    "name": "Banque Thaler SA",
-    "city": "Genève 3",
-    "zip": "1211",
-    "address": "Rue Pierre-Fatio 3",
-    "bic": "THALCHGGXXX",
-    "clearing": "08737"
-  },
-  "08740": {
-    "name": "CA Indosuez (Switzerland) SA",
-    "city": "Lausanne",
-    "zip": "1010",
-    "address": "Chemin de Bérée 46-48",
-    "bic": "AGRICHGGXXX",
-    "clearing": "08740"
-  },
-  "08741": {
-    "name": "CA Indosuez (Switzerland) SA",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Quai Général Guisan 4",
-    "bic": "AGRICHGGXXX",
-    "clearing": "08741"
-  },
-  "08742": {
-    "name": "CA Indosuez (Switzerland) SA",
-    "city": "Lugano",
-    "zip": "6901",
-    "address": "Via F. Pelli 3",
-    "bic": "AGRICHGGXXX",
-    "clearing": "08742"
-  },
-  "08743": {
-    "name": "CA Indosuez (Switzerland) SA",
-    "city": "Zürich",
-    "zip": "8021",
-    "address": "Lintheschergasse 15",
-    "bic": "AGRICHGGXXX",
-    "clearing": "08743"
-  },
-  "08750": {
-    "name": "Bank J. Safra Sarasin AG",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "Elisabethenstrasse 62",
-    "bic": "SARACHBBXXX",
-    "clearing": "08750"
-  },
-  "08751": {
-    "name": "Bank J. Safra Sarasin AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Bleicherweg 1 / Paradeplatz",
-    "bic": "SARACHBBXXX",
-    "clearing": "08751"
-  },
-  "08752": {
-    "name": "Bank J. Safra Sarasin AG",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "(ex Direkt Anlage Bank)",
-    "bic": "SARACHBBXXX",
-    "clearing": "08752"
-  },
-  "08755": {
-    "name": "Banque Pictet & Cie SA",
-    "city": "Genève 73",
-    "zip": "1211",
-    "address": "Route des Acacias 60",
-    "bic": "PICTCHGGXXX",
-    "clearing": "08755"
-  },
-  "08756": {
-    "name": "Baumann & Cie KmG",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "St. Jakobs-Strasse 46",
-    "bic": "BAUMCHBBXXX",
-    "clearing": "08756"
-  },
-  "08757": {
-    "name": "Bank Vontobel AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Gotthardstrasse 43",
-    "bic": "VONTCHZZXXX",
-    "clearing": "08757"
-  },
-  "08760": {
-    "name": "Banque Lombard Odier & Cie SA",
-    "city": "Bellevue",
-    "zip": "1293",
-    "address": "Chemin Messidor 1",
-    "bic": "LOCYCHGGXXX",
-    "clearing": "08760"
-  },
-  "08761": {
-    "name": "Reichmuth & Co.",
-    "city": "Luzern 7",
-    "zip": "6000",
-    "address": "Rütligasse 1",
-    "bic": "REICCH22XXX",
-    "clearing": "08761"
-  },
-  "08762": {
-    "name": "CBH - Compagnie Bancaire Helvétique SA",
-    "city": "Genève 3",
-    "zip": "1211",
-    "address": "Boulevard Emile-Jaques-Dalcroze 7",
-    "bic": "BSSACHGGXXX",
-    "clearing": "08762"
-  },
-  "08767": {
-    "name": "Bordier & Cie SCmA",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Case postale 5515",
-    "bic": "BORDCHGGXXX",
-    "clearing": "08767"
-  },
-  "08770": {
-    "name": "Mirabaud & Cie SA",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Boulevard Georges-Favon 29",
-    "bic": "MIRACHGGXXX",
-    "clearing": "08770"
-  },
-  "08775": {
-    "name": "E. Gutzwiller & Cie Banquiers",
-    "city": "Basel",
-    "zip": "4001",
-    "address": "Postfach 1216",
-    "bic": "GUTZCHBBXXX",
-    "clearing": "08775"
-  },
-  "08777": {
-    "name": "Piguet Galland & Cie SA",
-    "city": "Yverdon-les-Bains",
-    "zip": "1401",
-    "address": "Rue de la Plaine 14",
-    "bic": "PIGUCH22XXX",
-    "clearing": "08777"
-  },
-  "08779": {
-    "name": "Rahn+Bodmer Co.",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Münstergasse 2",
-    "bic": "RAHNCHZZXXX",
-    "clearing": "08779"
-  },
-  "08780": {
-    "name": "Deutsche Bank AG Zürich Branch",
-    "city": "Zürich",
-    "zip": "8021",
-    "address": "Postfach 3604 / Uraniastrasse 9",
-    "bic": "DEUTCHZZXXX",
-    "clearing": "08780"
   },
   "87801": {
     "name": "Deutsche Bank AG Zürich Branch",
@@ -8766,430 +9206,6 @@
     "address": "Postfach 3604 / Uraniastrasse 9",
     "bic": "DEUTCHZZXXX",
     "clearing": "87802"
-  },
-  "08781": {
-    "name": "Swissquote Bank SA",
-    "city": "Gland",
-    "zip": "1196",
-    "address": "Chemin de la Crétaux 33",
-    "bic": "SWQBCHZZXXX",
-    "clearing": "08781"
-  },
-  "08784": {
-    "name": "Spar- und Leihkasse Frutigen AG",
-    "city": "Frutigen",
-    "zip": "3714",
-    "address": "Dorfstrasse 15",
-    "bic": "SLFFCH22XXX",
-    "clearing": "08784"
-  },
-  "08785": {
-    "name": "Regiobank Solothurn AG",
-    "city": "Solothurn",
-    "zip": "4502",
-    "address": "Westbahnhofstrasse 11",
-    "bic": "RSOSCH22XXX",
-    "clearing": "08785"
-  },
-  "08787": {
-    "name": "Pfandbriefbank schweizerischer Hypothekarinstitute AG",
-    "city": "Zürich",
-    "zip": "8050",
-    "address": "Nansenstrasse 16",
-    "bic": "",
-    "clearing": "08787"
-  },
-  "08788": {
-    "name": "BANQUE HERITAGE SA",
-    "city": "Genève 6",
-    "zip": "1211",
-    "address": "Route de Chêne 61",
-    "bic": "HFTCCHGGXXX",
-    "clearing": "08788"
-  },
-  "08789": {
-    "name": "Habib Bank AG Zürich",
-    "city": "Zürich",
-    "zip": "8042",
-    "address": "Weinbergstrasse 59",
-    "bic": "HBZUCHZZXXX",
-    "clearing": "08789"
-  },
-  "08792": {
-    "name": "",
-    "city": "",
-    "zip": "",
-    "address": "",
-    "bic": "",
-    "clearing": "08792"
-  },
-  "08797": {
-    "name": "IBKR Financial Services AG",
-    "city": "Zug",
-    "zip": "6300",
-    "address": "Gubelstrasse 28",
-    "bic": "TMBECH22XXX",
-    "clearing": "08797"
-  },
-  "08799": {
-    "name": "InCore Bank AG",
-    "city": "Schlieren",
-    "zip": "8952",
-    "address": "Wiesenstrasse 17",
-    "bic": "INCOCHZZXXX",
-    "clearing": "08799"
-  },
-  "08800": {
-    "name": "Liechtensteinische Landesbank Aktiengesellschaft",
-    "city": "Vaduz",
-    "zip": "9490",
-    "address": "Städtle 44",
-    "bic": "LILALI2XXXX",
-    "clearing": "08800"
-  },
-  "08802": {
-    "name": "Neue Bank AG",
-    "city": "Vaduz",
-    "zip": "9490",
-    "address": "Marktgass 20",
-    "bic": "NBANLI22XXX",
-    "clearing": "08802"
-  },
-  "08803": {
-    "name": "BENDURA BANK AG",
-    "city": "Gamprin-Bendern",
-    "zip": "9487",
-    "address": "Schaaner Strasse 27",
-    "bic": "HYIBLI22XXX",
-    "clearing": "08803"
-  },
-  "08805": {
-    "name": "VP Bank AG",
-    "city": "Vaduz",
-    "zip": "9490",
-    "address": "Aeulestrasse 6",
-    "bic": "VPBVLI2XXXX",
-    "clearing": "08805"
-  },
-  "08806": {
-    "name": "Kaiser Partner Privatbank AG",
-    "city": "Vaduz",
-    "zip": "9490",
-    "address": "Herrengasse 23",
-    "bic": "SERBLI22XXX",
-    "clearing": "08806"
-  },
-  "08810": {
-    "name": "LGT Bank AG",
-    "city": "Vaduz",
-    "zip": "9490",
-    "address": "Postfach 85",
-    "bic": "BLFLLI2XXXX",
-    "clearing": "08810"
-  },
-  "08811": {
-    "name": "Bank Frick AG",
-    "city": "Balzers",
-    "zip": "9496",
-    "address": "Landstrasse 14",
-    "bic": "BFRILI22XXX",
-    "clearing": "08811"
-  },
-  "08812": {
-    "name": "SIGMA Bank AG",
-    "city": "Schaan",
-    "zip": "9494",
-    "address": "Feldkircher Strasse 2",
-    "bic": "VOAGLI22XXX",
-    "clearing": "08812"
-  },
-  "08820": {
-    "name": "Tellco Bank AG",
-    "city": "Schwyz",
-    "zip": "6430",
-    "address": "Bahnhofstrasse 4",
-    "bic": "DOMICHZZXXX",
-    "clearing": "08820"
-  },
-  "08821": {
-    "name": "Hypo Vorarlberg Bank AG, Bregenz, Zweigniederl., St. Gallen",
-    "city": "St. Gallen",
-    "zip": "9004",
-    "address": "Bankgasse 1",
-    "bic": "RBABCH22VLH",
-    "clearing": "08821"
-  },
-  "08822": {
-    "name": "CIM Banque SA",
-    "city": "Genève 6",
-    "zip": "1211",
-    "address": "Rue Merle d'Aubigné 16",
-    "bic": "CIMMCHGGXXX",
-    "clearing": "08822"
-  },
-  "08825": {
-    "name": "TradeXBank AG",
-    "city": "Zürich",
-    "zip": "8002",
-    "address": "Gartenstrasse 24",
-    "bic": "TXBZCHZZXXX",
-    "clearing": "08825"
-  },
-  "08827": {
-    "name": "S.P. Hinduja Banque Privée SA",
-    "city": "Genève 1",
-    "zip": "1211",
-    "address": "Place de la Fusterie 3 bis",
-    "bic": "ABSGCHGGXXX",
-    "clearing": "08827"
-  },
-  "08830": {
-    "name": "",
-    "city": "",
-    "zip": "",
-    "address": "",
-    "bic": "",
-    "clearing": "08830"
-  },
-  "08831": {
-    "name": "ABANCA CORPORACION BANCARIA S.A., BETANZOS",
-    "city": "Genève 1",
-    "zip": "1211",
-    "address": "Quai des Bergues 27",
-    "bic": "CAGLCHGGXXX",
-    "clearing": "08831"
-  },
-  "08836": {
-    "name": "COMMERZBANK AG FF, Zweigniederlassung Zürich",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Pelikanplatz 15",
-    "bic": "COBACHZHXXX",
-    "clearing": "08836"
-  },
-  "08838": {
-    "name": "Banque du Léman SA",
-    "city": "Genève",
-    "zip": "1201",
-    "address": "Rue François-Bonivard 12",
-    "bic": "BLEMCHGGXXX",
-    "clearing": "08838"
-  },
-  "08839": {
-    "name": "Quilvest (Switzerland) Ltd.",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Füsslistrasse 6",
-    "bic": "QVCHCHZHXXX",
-    "clearing": "08839"
-  },
-  "08841": {
-    "name": "Banco Itaú (Suisse) SA",
-    "city": "Zürich",
-    "zip": "8002",
-    "address": "Bleicherweg 30",
-    "bic": "ITAUCHZZXXX",
-    "clearing": "08841"
-  },
-  "08842": {
-    "name": "Globalance Bank AG",
-    "city": "Zürich",
-    "zip": "8002",
-    "address": "Gartenstrasse 16",
-    "bic": "GLBNCHZZXXX",
-    "clearing": "08842"
-  },
-  "08843": {
-    "name": "Dukascopy Bank SA",
-    "city": "Genève 15",
-    "zip": "1215",
-    "address": "Route de Pré-Bois 20",
-    "bic": "DUBACHGGXXX",
-    "clearing": "08843"
-  },
-  "08845": {
-    "name": "Helvetische Bank AG",
-    "city": "Zürich",
-    "zip": "8008",
-    "address": "Seefeldstrasse 215",
-    "bic": "SFBFCH22XXX",
-    "clearing": "08845"
-  },
-  "08846": {
-    "name": "Aquila AG",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Bahnhofstrasse 43",
-    "bic": "AQULCHZZXXX",
-    "clearing": "08846"
-  },
-  "08848": {
-    "name": "IG Bank S.A.",
-    "city": "Genève",
-    "zip": "1204",
-    "address": "Rue du Rhône 42",
-    "bic": "IGBKCHGGXXX",
-    "clearing": "08848"
-  },
-  "08850": {
-    "name": "compenswiss (Fonds de compensation AVS/AI/APG)",
-    "city": "Genève",
-    "zip": "1204",
-    "address": "Bd. Georges Favon 6",
-    "bic": "FAVSCHGAXXX",
-    "clearing": "08850"
-  },
-  "08851": {
-    "name": "SUVA",
-    "city": "Luzern",
-    "zip": "6002",
-    "address": "Fluhmattstrasse 1",
-    "bic": "SUAACH22XXX",
-    "clearing": "08851"
-  },
-  "08852": {
-    "name": "Swiss Life AG (KV, geb. Vermögen)",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "General-Guisan-Quai 40",
-    "bic": "SLAMCHZZKV0",
-    "clearing": "08852"
-  },
-  "08853": {
-    "name": "Schweizerische Rückversicherungs-Gesellschaft AG",
-    "city": "Zürich",
-    "zip": "8022",
-    "address": "Mythenquai 50/60",
-    "bic": "SWRECHZHXXX",
-    "clearing": "08853"
-  },
-  "08854": {
-    "name": "AXA Leben AG",
-    "city": "Winterthur",
-    "zip": "8401",
-    "address": "General Guisan-Strasse 40",
-    "bic": "AXIPCHZZXXX",
-    "clearing": "08854"
-  },
-  "08855": {
-    "name": "Zurich Insurance Company Ltd",
-    "city": "Zurich",
-    "zip": "8002",
-    "address": "Mythenquai 2",
-    "bic": "ZURICHZFXXX",
-    "clearing": "08855"
-  },
-  "08856": {
-    "name": "Baloise Leben AG",
-    "city": "Basel",
-    "zip": "4051",
-    "address": "Aeschengraben 21",
-    "bic": "BAAMCHBBXXX",
-    "clearing": "08856"
-  },
-  "08858": {
-    "name": "Baloise Versicherung AG",
-    "city": "Basel",
-    "zip": "4051",
-    "address": "Aeschengraben 21",
-    "bic": "BAAMCHBBBVG",
-    "clearing": "08858"
-  },
-  "08859": {
-    "name": "Schweizerische Mobiliar Versicherungsgesellschaft AG",
-    "city": "Bern",
-    "zip": "3001",
-    "address": "Bundesgasse 35",
-    "bic": "",
-    "clearing": "08859"
-  },
-  "08865": {
-    "name": "Remaco Asset Management AG",
-    "city": "Basel",
-    "zip": "4020",
-    "address": "Postfach 2282",
-    "bic": "RMCOCHBBXXX",
-    "clearing": "08865"
-  },
-  "08866": {
-    "name": "LF Finance (Suisse) SA",
-    "city": "Genève 3",
-    "zip": "1211",
-    "address": "Case postale 3667",
-    "bic": "LFFSCHGGXXX",
-    "clearing": "08866"
-  },
-  "08867": {
-    "name": "State Street Bank International GmbH, München, ZN Zürich",
-    "city": "Zürich",
-    "zip": "8045",
-    "address": "Kalanderplatz 5",
-    "bic": "SSBECHZZXXX",
-    "clearing": "08867"
-  },
-  "08868": {
-    "name": "Delen (Suisse) SA",
-    "city": "Genève",
-    "zip": "1207",
-    "address": "Boulevard Helvétique 31",
-    "bic": "DELECHG2XXX",
-    "clearing": "08868"
-  },
-  "08871": {
-    "name": "Zähringer Privatbank AG",
-    "city": "Bern",
-    "zip": "3011",
-    "address": "Schmiedenplatz 3",
-    "bic": "ZAPRCH22XXX",
-    "clearing": "08871"
-  },
-  "08880": {
-    "name": "SIX SIS AG",
-    "city": "Zürich",
-    "zip": "8005",
-    "address": "Pfingstweidstrasse 110",
-    "bic": "INSECHZZXXX",
-    "clearing": "08880"
-  },
-  "08881": {
-    "name": "SIX SIS AG",
-    "city": "Zürich",
-    "zip": "8005",
-    "address": "Pfingstweidstrasse 110",
-    "bic": "INSECHZZXXX",
-    "clearing": "08881"
-  },
-  "08883": {
-    "name": "EUREX Clearing AG",
-    "city": "Eschborn",
-    "zip": "65760",
-    "address": "Mergenthalerallee 61",
-    "bic": "EUXCDEFZXXX",
-    "clearing": "08883"
-  },
-  "08887": {
-    "name": "SIX SIS AG",
-    "city": "Zürich",
-    "zip": "8005",
-    "address": "Pfingstweidstrasse 110",
-    "bic": "INSECHZZXXX",
-    "clearing": "08887"
-  },
-  "08890": {
-    "name": "Sparkasse Bundespersonal",
-    "city": "Bern",
-    "zip": "3003",
-    "address": "Monbijoustrasse 118",
-    "bic": "SKBPCH22XXX",
-    "clearing": "08890"
-  },
-  "08899": {
-    "name": "BIZ Bank für Internationalen Zahlungsausgleich",
-    "city": "Basel",
-    "zip": "4002",
-    "address": "Postfach",
-    "bic": "BISBCHBBXXX",
-    "clearing": "08899"
   },
   "89002": {
     "name": "B. Metzler seel. Sohn & Co. AG",
@@ -9326,14 +9342,6 @@
     "address": "Am Belvedere 1",
     "bic": "GIBAATWGXXX",
     "clearing": "89099"
-  },
-  "08910": {
-    "name": "CLS Bank International",
-    "city": "New York, NY 1006-3053",
-    "zip": "10006",
-    "address": "Broadway, 29th Floor 39",
-    "bic": "CLSBUS33XXX",
-    "clearing": "08910"
   },
   "89102": {
     "name": "Coöperatieve Rabobank U.A.",
@@ -9512,7 +9520,7 @@
     "clearing": "89207"
   },
   "89208": {
-    "name": "Volksbank eG-Die Gestalterbank",
+    "name": "Volksbank eG - Die Gestalterbank",
     "city": "Bad Säckingen",
     "zip": "79713",
     "address": "Schützenstrasse 7-11",
@@ -9550,13 +9558,5 @@
     "address": "Gustav Mahlerlaan 10",
     "bic": "ABNCNL2AXXX",
     "clearing": "89216"
-  },
-  "09000": {
-    "name": "PostFinance AG",
-    "city": "Bern",
-    "zip": "3030",
-    "address": "Mingerstrasse 20",
-    "bic": "POFICHBEXXX",
-    "clearing": "09000"
   }
 }

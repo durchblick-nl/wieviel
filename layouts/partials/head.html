@@ -43,9 +43,32 @@
 {{- end }}
 
 {{- /* JSON-LD structured data */ -}}
-{{- with .Params.jsonLd }}
+{{- if .Params.jsonLd }}
 <script type="application/ld+json">
-{{ . | safeJS }}
+{{ .Params.jsonLd | safeJS }}
+</script>
+{{- else if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "{{ .Title }}",
+  "description": "{{ .Params.description }}",
+  "url": "{{ .Permalink }}",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "CHF"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Durchblick Consultancy BV",
+    "url": "https://durchblick.nl"
+  },
+  "inLanguage": "{{ .Site.Language.Lang }}"
+}
 </script>
 {{- end }}
 

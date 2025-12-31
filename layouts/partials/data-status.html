@@ -1,0 +1,12 @@
+{{- $statusType := .statusType | default "socialInsurance" -}}
+{{- $status := index site.Data.site.dataStatus $statusType -}}
+{{- if $status -}}
+<div class="data-status">
+    <i class="fas fa-sync-alt"></i>
+    {{ if eq site.Language.Lang "de" -}}
+        Stand: {{ $status.lastVerifiedDe }} · Nächste Prüfung: {{ $status.nextCheckDe }}
+    {{- else -}}
+        État: {{ $status.lastVerifiedFr }} · Prochaine vérification: {{ $status.nextCheckFr }}
+    {{- end }}
+</div>
+{{- end -}}

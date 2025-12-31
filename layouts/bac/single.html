@@ -70,13 +70,13 @@
         <div class="calculator-card">
             <form id="promilleForm">
                 <div class="form-group">
-                    <label class="required">{{ i18n "bac.gender" }}</label>
-                    <div class="gender-selection">
-                        <button type="button" class="gender-btn active" data-gender="male" onclick="selectGender('male')">
-                            <i class="fas fa-mars"></i><span>{{ i18n "bac.male" }}</span>
+                    <label class="required" id="genderLabel">{{ i18n "bac.gender" }}</label>
+                    <div class="gender-selection" role="group" aria-labelledby="genderLabel">
+                        <button type="button" class="gender-btn active" data-gender="male" onclick="selectGender('male')" aria-pressed="true">
+                            <i class="fas fa-mars" aria-hidden="true"></i><span>{{ i18n "bac.male" }}</span>
                         </button>
-                        <button type="button" class="gender-btn" data-gender="female" onclick="selectGender('female')">
-                            <i class="fas fa-venus"></i><span>{{ i18n "bac.female" }}</span>
+                        <button type="button" class="gender-btn" data-gender="female" onclick="selectGender('female')" aria-pressed="false">
+                            <i class="fas fa-venus" aria-hidden="true"></i><span>{{ i18n "bac.female" }}</span>
                         </button>
                     </div>
                 </div>
@@ -196,15 +196,15 @@
                     <strong>{{ i18n "bac.important" }}:</strong> {{ i18n "bac.disclaimer" }}
                 </div>
 
-                <div class="warning" id="drinkWarning" style="display: none; background-color: #f8d7da; border-left-color: #dc3545; color: #721c24;">
-                    <i class="fas fa-ban" style="color: #dc3545;"></i>
+                <div class="warning warning-danger" id="drinkWarning" style="display: none;">
+                    <i class="fas fa-ban"></i>
                     <strong>{{ i18n "bac.recommendation" }}:</strong> {{ i18n "bac.recommendationText" }}
                 </div>
 
                 <button type="submit">{{ i18n "bac.calculate" }}</button>
             </form>
 
-            <div id="result" class="result" style="display: none;">
+            <div id="result" class="result" style="display: none;" aria-live="polite" aria-atomic="true">
                 <div class="bac-display">
                     <div class="bac-value" id="bacValue">0.00<span class="bac-unit">‰</span></div>
                     <div class="bac-status" id="bacStatus">{{ i18n "bac.sober" }}</div>
@@ -273,7 +273,9 @@
         function selectGender(gender) {
             state.gender = gender;
             document.querySelectorAll('.gender-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.gender === gender);
+                const isActive = btn.dataset.gender === gender;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive);
             });
             calculateBAC();
         }

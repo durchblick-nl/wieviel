@@ -58,7 +58,7 @@
                 <div>
                     <span class="tariff" id="selectedTariff">27.5</span> <span>{{ i18n "electricity.rpPerKwh" }}</span>
                     <span class="comparison-badge" id="comparisonBadge">{{ i18n "electricity.average" }}</span>
-                    <div class="details" id="selectedDetails">{{ i18n "electricity.profileH4" }} · {{ i18n "electricity.standardProduct2025" }}</div>
+                    <div class="details" id="selectedDetails">{{ i18n "electricity.profileH4" }} · {{ i18n "electricity.standardProduct2026" }}</div>
                 </div>
                 <span class="change-btn" onclick="resetSearch()">{{ i18n "electricity.change" }}</span>
             </div>
@@ -68,9 +68,9 @@
             <div class="input-with-slider">
                 <label for="priceSlider"><i class="fas fa-tags"></i> {{ i18n "electricity.manualEntry" }}</label>
                 <div class="slider-value">
-                    <span class="value"><span id="priceValue">29</span> {{ i18n "electricity.rpPerKwh" }}</span>
+                    <span class="value"><span id="priceValue">28</span> {{ i18n "electricity.rpPerKwh" }}</span>
                 </div>
-                <input type="range" id="priceSlider" min="9" max="50" value="29" step="0.1">
+                <input type="range" id="priceSlider" min="10" max="50" value="28" step="0.1">
                 <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-color); opacity: 0.6;">
                     <span>9 {{ i18n "electricity.rp" }}</span>
                     <span>50 {{ i18n "electricity.rp" }}</span>
@@ -183,6 +183,7 @@
     </div>
 </div>
 
+{{- partial "data-status.html" (dict "statusType" "electricity") -}}
 {{ partial "footer.html" . }}
 
 <style>
@@ -345,11 +346,19 @@
     // SPARQL endpoint
     const SPARQL_ENDPOINT = 'https://lindas.admin.ch/query';
 
+    // Escape special regex characters to prevent SPARQL injection
+    function escapeRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
     async function searchMunicipalities(query) {
         if (query.length < 2) {
             hideMunicipalityResults();
             return;
         }
+
+        // Sanitize input for SPARQL regex
+        const sanitizedQuery = escapeRegex(query);
 
         const sparqlQuery = `
             PREFIX schema: <http://schema.org/>
@@ -360,12 +369,12 @@
                 ?obs a cube:Observation .
                 ?obs elcom:municipality ?municipality .
                 ?obs elcom:total ?total .
-                ?obs elcom:period "2025"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+                ?obs elcom:period "2026"^^<http://www.w3.org/2001/XMLSchema#gYear> .
                 ?obs elcom:category <https://energy.ld.admin.ch/elcom/electricityprice/category/H4> .
                 ?obs elcom:product <https://energy.ld.admin.ch/elcom/electricityprice/product/standard> .
               }
               ?municipality schema:name ?municipalityName .
-              FILTER(REGEX(?municipalityName, "^${query}", "i"))
+              FILTER(REGEX(?municipalityName, "^${sanitizedQuery}", "i"))
             } GROUP BY ?municipalityName ORDER BY ?municipalityName LIMIT 15
         `;
 
@@ -390,15 +399,34 @@
 
     function showMunicipalityResults(results) {
         const container = document.getElementById('municipalityResults');
+        container.innerHTML = '';
+
         if (results.length === 0) {
-            container.innerHTML = `<div class="municipality-item"><div class="name">${TEXTS.noMunicipalityFound}</div></div>`;
+            const item = document.createElement('div');
+            item.className = 'municipality-item';
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'name';
+            nameDiv.textContent = TEXTS.noMunicipalityFound;
+            item.appendChild(nameDiv);
+            container.appendChild(item);
         } else {
-            container.innerHTML = results.map(r => `
-                <div class="municipality-item" onclick="selectMunicipality('${r.name}', ${r.price})">
-                    <div class="name">${r.name}</div>
-                    <div class="price">${r.price} Rp./kWh ${r.count > 1 ? `(${r.count} ${TEXTS.tariffs})` : ''}</div>
-                </div>
-            `).join('');
+            results.forEach(r => {
+                const item = document.createElement('div');
+                item.className = 'municipality-item';
+                item.addEventListener('click', () => selectMunicipality(r.name, r.price));
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = r.name;
+                item.appendChild(nameDiv);
+
+                const priceDiv = document.createElement('div');
+                priceDiv.className = 'price';
+                priceDiv.textContent = `${r.price} Rp./kWh` + (r.count > 1 ? ` (${r.count} ${TEXTS.tariffs})` : '');
+                item.appendChild(priceDiv);
+
+                container.appendChild(item);
+            });
         }
         container.classList.add('show');
     }

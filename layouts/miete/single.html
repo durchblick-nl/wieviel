@@ -351,6 +351,7 @@
         {{ .Content }}
     </div>
 
+    {{- partial "data-status.html" (dict "statusType" "referenceRate") -}}
     {{- partial "footer.html" . }}
     {{- partial "darkmode.html" . }}
 

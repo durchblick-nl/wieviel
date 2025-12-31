@@ -193,11 +193,12 @@
         {{ .Content }}
     </div>
 
+    {{- partial "data-status.html" (dict "statusType" "socialInsurance") -}}
     {{- partial "footer.html" . }}
     {{- partial "darkmode.html" . }}
 
     <script>
-        // Constants 2025
+        // Constants 2026
         const MAX_DAILY_RATE = 220; // Maximum daily compensation
         const COMPENSATION_RATE = 0.80; // 80% of salary
         const MATERNITY_DAYS = 98; // 14 weeks
