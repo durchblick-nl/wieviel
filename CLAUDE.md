@@ -111,8 +111,12 @@ wieviel.ch/
 ├── data/
 │   └── site.yaml             # Shared data (rates, limits, etc.)
 │
-├── css/
-│   └── styles.css            # Global styles (includes FAQ accordion)
+├── static/
+│   ├── css/
+│   │   └── styles.css        # Global styles (dark mode, FAQ, etc.)
+│   ├── data/
+│   │   └── bank_master.json  # SIX bank data for IBAN checker
+│   └── robots.txt            # Search engine directives
 │
 ├── og/                       # Open Graph images (1200x630)
 │   ├── emoji/                # Twemoji PNGs (100x100)
@@ -252,7 +256,7 @@ Sitemaps are generated per language with correct domains.
 
 ## CSS Variables
 
-Defined in `css/styles.css`:
+Defined in `static/css/styles.css`:
 
 ```css
 :root {

@@ -86,6 +86,65 @@
             color: var(--text-color);
         }
 
+        [data-theme="dark"] #startDate {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] #startDate::placeholder {
+            color: #888;
+        }
+
+        [data-theme="dark"] .timeline,
+        [data-theme="dark"] .date-item {
+            background: var(--input-bg);
+        }
+
+        [data-theme="dark"] .bac-status.safe {
+            background: rgba(40, 167, 69, 0.2);
+            color: #6fdc8c;
+        }
+
+        [data-theme="dark"] .bac-status.caution {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffd54f;
+        }
+
+        [data-theme="dark"] .bac-status.danger {
+            background: rgba(220, 53, 69, 0.2);
+            color: #ff8a80;
+        }
+
+        [data-theme="dark"] .bac-status.critical {
+            background: rgba(114, 28, 36, 0.4);
+            color: #ff6b6b;
+        }
+
+        [data-theme="dark"] .form-hint {
+            color: #999;
+        }
+
+        /* Danger warning variant */
+        .warning.warning-danger {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+
+        .warning.warning-danger i {
+            color: #dc3545;
+        }
+
+        [data-theme="dark"] .warning.warning-danger {
+            background-color: rgba(220, 53, 69, 0.15);
+            border-left-color: #dc3545;
+            color: #ff8a80;
+        }
+
+        [data-theme="dark"] .warning.warning-danger i {
+            color: #ff8a80;
+        }
+
         /* Dark mode toggle button */
         .dark-mode-toggle {
             background: transparent;
@@ -101,6 +160,17 @@
             transition: all 0.3s;
             padding: 0;
         }
+
+        /* FAQ Accordion Styles */
+        .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border-color); background: var(--light-bg); }
+        .faq-item p { padding: 1rem; margin: 0; font-size: 0.95rem; line-height: 1.6; }
+        .faq-item a { color: var(--primary-color); }
 
         .dark-mode-toggle:hover {
             background: var(--primary-color);
@@ -277,6 +347,21 @@
             background-color: var(--primary-dark);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(19, 117, 188, 0.3);
+        }
+
+        button:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+
+        /* Global focus-visible styles for accessibility */
+        a:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
         }
 
         /* Primary submit button - larger and more prominent */
@@ -723,7 +808,11 @@
         }
 
         .canton-selector select {
-            max-width: 300px;
+            max-width: min(300px, 100%);
+        }
+
+        .kids-input {
+            width: min(80px, 100%);
         }
 
         .holiday-grid {
@@ -2387,329 +2476,6 @@
             line-height: 1.6;
         }
 
-        /* ========================================
-           FAQ SECTION STYLES
-           ======================================== */
-
-        .faq-section {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .faq-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .faq-item summary {
-            padding: 1rem;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-color);
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .faq-item summary::after {
-            content: '+';
-            font-size: 1.25rem;
-            color: var(--primary-color);
-        }
-
-        .faq-item[open] summary::after {
-            content: '−';
-        }
-
-        .faq-item[open] summary {
-            border-bottom: 1px solid var(--border-color);
-            background: var(--light-bg);
-        }
-
-        .faq-item p {
-            padding: 1rem;
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* ========================================
-           INFO TABLE STYLES
-           ======================================== */
-
-        .table-container {
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .info-table th,
-        .info-table td {
-            padding: 1rem 1.25rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .info-table th {
-            background: var(--primary-color);
-            color: white;
-            font-weight: 600;
-        }
-
-        .info-table tbody tr:hover {
-            background: var(--light-bg);
-        }
-
-        .info-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .table-note {
-            font-size: 0.85rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
-        /* ========================================
-           HOMEPAGE BADGES & TRUST ITEMS WITH TOOLTIPS
-           ======================================== */
-
-        /* Hero Badges */
-        .badges {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .badge {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--text-color);
-            cursor: help;
-            transition: all 0.2s;
-        }
-
-        .badge:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .badge i {
-            color: var(--primary-color);
-        }
-
-        /* Tooltip for badges */
-        .badge::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--text-color);
-            color: white;
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s;
-            z-index: 100;
-            pointer-events: none;
-        }
-
-        .badge::before {
-            content: '';
-            position: absolute;
-            bottom: calc(100% + 2px);
-            left: 50%;
-            transform: translateX(-50%);
-            border: 6px solid transparent;
-            border-top-color: var(--text-color);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s;
-            z-index: 100;
-        }
-
-        .badge:hover::after,
-        .badge:hover::before {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Trust Section */
-        .trust-section {
-            margin: 3rem 0;
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .trust-item {
-            position: relative;
-            text-align: center;
-            padding: 1.5rem 1rem;
-            background: var(--card-bg);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            cursor: help;
-            transition: all 0.2s;
-        }
-
-        .trust-item:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .trust-item i {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.75rem;
-        }
-
-        .trust-item h3 {
-            font-size: 1rem;
-            color: var(--primary-color);
-            margin-bottom: 0.25rem;
-        }
-
-        .trust-item p {
-            font-size: 0.85rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin: 0;
-        }
-
-        /* Tooltip for trust items */
-        .trust-item::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--text-color);
-            color: white;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            width: max-content;
-            max-width: 250px;
-            text-align: left;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s;
-            z-index: 100;
-            pointer-events: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .trust-item::before {
-            content: '';
-            position: absolute;
-            bottom: calc(100% + 2px);
-            left: 50%;
-            transform: translateX(-50%);
-            border: 8px solid transparent;
-            border-top-color: var(--text-color);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s;
-            z-index: 100;
-        }
-
-        .trust-item:hover::after,
-        .trust-item:hover::before {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        @media (max-width: 768px) {
-            .badges {
-                gap: 0.5rem;
-            }
-
-            .badge {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .trust-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .trust-item {
-                padding: 1rem 0.75rem;
-            }
-
-            .trust-item i {
-                font-size: 1.5rem;
-            }
-
-            .trust-item h3 {
-                font-size: 0.9rem;
-            }
-
-            .trust-item p {
-                font-size: 0.8rem;
-            }
-
-            /* Mobile: Position tooltips differently to prevent off-screen */
-            .badge::after,
-            .trust-item::after {
-                white-space: normal;
-                max-width: 200px;
-            }
-        }
-
-        /* Dark Mode: Tooltip colors */
-        [data-theme="dark"] .badge::after,
-        [data-theme="dark"] .trust-item::after {
-            background: #1a1a2e;
-            color: #e0e0e0;
-            border: 1px solid var(--border-color);
-        }
-
-        [data-theme="dark"] .badge::before,
-        [data-theme="dark"] .trust-item::before {
-            border-top-color: #1a1a2e;
-        }
-
         /* Tip Section */
         .tip-section {
             max-width: 800px;
@@ -2764,8 +2530,7 @@
             color: var(--text-color);
         }
 
-        .tip-link,
-        .tip-link:visited {
+        .tip-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -2789,17 +2554,6 @@
             font-size: 0.75rem;
         }
 
-        [data-theme="dark"] .tip-link,
-        [data-theme="dark"] .tip-link:visited {
-            background: var(--secondary-color);
-            color: #1a1a2e;
-        }
-
-        [data-theme="dark"] .tip-link:hover {
-            background: #8fc0d3;
-            color: #1a1a2e;
-        }
-
         @media (max-width: 768px) {
             .tip-box {
                 flex-direction: column;
@@ -2816,4 +2570,23 @@
                 width: 100%;
                 justify-content: center;
             }
+        }
+
+        /* Data Status Hint */
+        .data-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            padding: 0.75rem 1rem;
+            margin: 1.5rem auto 0;
+            max-width: 800px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .data-status i {
+            font-size: 0.7rem;
         }
