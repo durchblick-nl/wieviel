@@ -2476,6 +2476,51 @@
             line-height: 1.6;
         }
 
+        /* Info Table (SEO content) */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-table th,
+        .info-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-table th {
+            background: var(--light-bg);
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-table tbody tr:hover {
+            background: var(--light-bg);
+        }
+
+        .info-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .info-table td:first-child {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .info-table td:last-child {
+            font-weight: 500;
+        }
+
         /* Tip Section */
         .tip-section {
             max-width: 800px;

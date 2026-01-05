@@ -1,0 +1,465 @@
+{{ partial "head.html" . }}
+<body>
+    <div class="container">
+        {{ partial "header.html" . }}
+        {{ partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-coins"></i>
+                    <div class="step-number">1</div>
+                </div>
+                <div class="step-content">
+                    <h3>{{ i18n "purchasing.step1Title" }}</h3>
+                    <p>{{ i18n "purchasing.step1Desc" }}</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="step-number">2</div>
+                </div>
+                <div class="step-content">
+                    <h3>{{ i18n "purchasing.step2Title" }}</h3>
+                    <p>{{ i18n "purchasing.step2Desc" }}</p>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="step-number">3</div>
+                </div>
+                <div class="step-content">
+                    <h3>{{ i18n "purchasing.step3Title" }}</h3>
+                    <p>{{ i18n "purchasing.step3Desc" }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="form-group">
+                <label for="amount">{{ i18n "purchasing.amount" }}</label>
+                <div style="position: relative;">
+                    <input type="number" id="amount" value="1000" min="0" step="100" oninput="calculate()">
+                    <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-color); opacity: 0.6;">{{ i18n "chf" }}</span>
+                </div>
+                <small class="form-hint">{{ i18n "purchasing.amountHint" }}</small>
+            </div>
+
+            <div class="date-section">
+                <label>{{ i18n "purchasing.startDate" }}</label>
+                <div class="date-row">
+                    <div class="form-group" style="flex: 1;">
+                        <select id="startMonth" onchange="calculate()"></select>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <select id="startYear" onchange="calculate()"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="date-section">
+                <label>{{ i18n "purchasing.endDate" }}</label>
+                <div class="date-row">
+                    <div class="form-group" style="flex: 1;">
+                        <select id="endMonth" onchange="calculate()"></select>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <select id="endYear" onchange="calculate()"></select>
+                    </div>
+                    <button type="button" class="today-btn" onclick="setToday()">
+                        <i class="fas fa-calendar-check"></i> {{ i18n "purchasing.today" }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4><i class="fas fa-info-circle"></i> {{ i18n "purchasing.infoTitle" }}</h4>
+                <p>{{ i18n "purchasing.infoText" }}</p>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="result-box">
+                <div class="label">{{ i18n "purchasing.result" }}</div>
+                <div class="total" id="mainResult">CHF 1'000</div>
+                <div class="sub" id="resultSub">{{ i18n "purchasing.resultToday" }}</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-calculator"></i> {{ i18n "purchasing.calculation" }}</h3>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.originalAmount" }}</span>
+                    <span class="value" id="originalDisplay">CHF 1'000</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.startDateLabel" }}</span>
+                    <span class="value" id="startDateDisplay">Januar 1990</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.indexStart" }}</span>
+                    <span class="value" id="indexStartDisplay">58.4</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.endDateLabel" }}</span>
+                    <span class="value" id="endDateDisplay">November 2025</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.indexEnd" }}</span>
+                    <span class="value" id="indexEndDisplay">107.0</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.change" }}</span>
+                    <span class="value highlight" id="changeDisplay">+83.2%</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span class="label">{{ i18n "purchasing.equivalentAmount" }}</span>
+                    <span class="value" id="equivalentDisplay">CHF 1'832</span>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3><i class="fas fa-chart-bar"></i> {{ i18n "purchasing.inflationDetails" }}</h3>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.totalInflation" }}</span>
+                    <span class="value highlight" id="totalInflationDisplay">+83.2%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.annualInflation" }}</span>
+                    <span class="value" id="annualInflationDisplay">~1.8%</span>
+                </div>
+                <div class="breakdown-row">
+                    <span class="label">{{ i18n "purchasing.timePeriod" }}</span>
+                    <span class="value" id="timePeriodDisplay">35 {{ i18n "purchasing.years" }}</span>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <button class="share-btn primary" onclick="shareResult()">
+                    <i class="fas fa-share-alt"></i> {{ i18n "share" }}
+                </button>
+                <button class="share-btn copy" onclick="copyResult()" id="copyBtn">
+                    <i class="fas fa-copy"></i> <span id="copyBtnText">{{ i18n "copy" }}</span>
+                </button>
+            </div>
+        </div>
+
+        {{ .Content }}
+
+        <div class="info-cards-container" style="margin-top: 2rem;">
+            <div class="info-step-card" style="grid-column: 1 / -1;">
+                <div class="step-icon"><i class="fas fa-database"></i></div>
+                <div class="step-content">
+                    <h3>{{ i18n "purchasing.dataSource" }}</h3>
+                    <p><a href="https://www.bfs.admin.ch/bfs/{{ .Language.Lang }}/home/statistiken/preise/landesindex-konsumentenpreise.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ i18n "purchasing.bfsLik" }}</a></p>
+                    <p style="font-size: 0.85rem; opacity: 0.8;">{{ i18n "purchasing.basePeriod" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{- partial "data-status.html" (dict "statusType" "lik") -}}
+    {{ partial "footer.html" . }}
+
+    <style>
+        .date-section {
+            margin-bottom: 1.5rem;
+        }
+        .date-section > label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .date-row {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .date-row .form-group {
+            margin-bottom: 0;
+        }
+        .date-row select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+        .date-row select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        .today-btn {
+            padding: 0.75rem 1rem;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .today-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .result-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 16px; text-align: center; margin: 1.5rem 0; }
+        .result-box .label { opacity: 0.9; margin-bottom: 0.5rem; }
+        .result-box .total { font-size: 2.5rem; font-weight: bold; font-family: 'Economica', sans-serif; }
+        .result-box .sub { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+
+        .breakdown-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .breakdown-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; }
+        .breakdown-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+        .breakdown-row:last-child { border-bottom: none; }
+        .breakdown-row .label { color: var(--text-color); }
+        .breakdown-row .value { font-weight: 600; font-family: 'Economica', sans-serif; font-size: 1.1rem; }
+        .breakdown-row.total { font-weight: bold; background: var(--light-bg); margin: 0.5rem -1.5rem -1.5rem; padding: 1rem 1.5rem; border-radius: 0 0 12px 12px; }
+        .breakdown-row.total .value { color: var(--primary-color); }
+        .breakdown-row .value.highlight { color: #2e7d32; }
+        .breakdown-row .value.negative { color: var(--accent-color); }
+
+        .info-box {
+            background: var(--light-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        .info-box h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+        .info-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .share-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .share-btn { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .share-btn.primary { background: var(--primary-color); color: white; }
+        .share-btn.copy { background: var(--secondary-color); color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+
+        @media (max-width: 500px) {
+            .date-row {
+                flex-wrap: wrap;
+            }
+            .date-row .form-group {
+                flex: 1 1 45%;
+            }
+            .today-btn {
+                flex: 1 1 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <script>
+        // Month names for display
+        const monthNames = {
+            '01': '{{ i18n "purchasing.month01" }}',
+            '02': '{{ i18n "purchasing.month02" }}',
+            '03': '{{ i18n "purchasing.month03" }}',
+            '04': '{{ i18n "purchasing.month04" }}',
+            '05': '{{ i18n "purchasing.month05" }}',
+            '06': '{{ i18n "purchasing.month06" }}',
+            '07': '{{ i18n "purchasing.month07" }}',
+            '08': '{{ i18n "purchasing.month08" }}',
+            '09': '{{ i18n "purchasing.month09" }}',
+            '10': '{{ i18n "purchasing.month10" }}',
+            '11': '{{ i18n "purchasing.month11" }}',
+            '12': '{{ i18n "purchasing.month12" }}'
+        };
+
+        const copyText = '{{ i18n "copy" }}';
+        const copiedText = '{{ i18n "copied" }}';
+
+        let likData = null;
+
+        // Load LIK data
+        async function loadLikData() {
+            try {
+                const response = await fetch('/data/lik_index.json');
+                likData = await response.json();
+                initializeSelects();
+                calculate();
+            } catch (error) {
+                console.error('Error loading LIK data:', error);
+            }
+        }
+
+        function initializeSelects() {
+            const startMonthSelect = document.getElementById('startMonth');
+            const endMonthSelect = document.getElementById('endMonth');
+            const startYearSelect = document.getElementById('startYear');
+            const endYearSelect = document.getElementById('endYear');
+
+            // Populate month selects
+            for (let m = 1; m <= 12; m++) {
+                const mm = m.toString().padStart(2, '0');
+                const optionStart = document.createElement('option');
+                optionStart.value = mm;
+                optionStart.textContent = monthNames[mm];
+                startMonthSelect.appendChild(optionStart);
+
+                const optionEnd = document.createElement('option');
+                optionEnd.value = mm;
+                optionEnd.textContent = monthNames[mm];
+                endMonthSelect.appendChild(optionEnd);
+            }
+
+            // Get available years from data
+            const years = Object.keys(likData.monthly).sort();
+            const minYear = parseInt(years[0]);
+            const maxYear = parseInt(years[years.length - 1]);
+
+            // Populate year selects
+            for (let y = maxYear; y >= minYear; y--) {
+                const optionStart = document.createElement('option');
+                optionStart.value = y;
+                optionStart.textContent = y;
+                startYearSelect.appendChild(optionStart);
+
+                const optionEnd = document.createElement('option');
+                optionEnd.value = y;
+                optionEnd.textContent = y;
+                endYearSelect.appendChild(optionEnd);
+            }
+
+            // Set default values: start = 30 years ago, end = latest available
+            const parts = likData.lastUpdated.split('-');
+            const lastYear = parts[0];
+            const lastMonth = parts[1];
+            startYearSelect.value = Math.max(minYear, parseInt(lastYear) - 30);
+            startMonthSelect.value = '01';
+            endYearSelect.value = lastYear;
+            endMonthSelect.value = lastMonth;
+        }
+
+        function setToday() {
+            const parts = likData.lastUpdated.split('-');
+            document.getElementById('endYear').value = parts[0];
+            document.getElementById('endMonth').value = parts[1];
+            calculate();
+        }
+
+        function getIndexValue(year, month) {
+            const yearData = likData.monthly[year];
+            if (!yearData) return null;
+            return yearData[month] || null;
+        }
+
+        function calculate() {
+            if (!likData) return;
+
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const startMonth = document.getElementById('startMonth').value;
+            const startYear = document.getElementById('startYear').value;
+            const endMonth = document.getElementById('endMonth').value;
+            const endYear = document.getElementById('endYear').value;
+
+            const indexStart = getIndexValue(startYear, startMonth);
+            const indexEnd = getIndexValue(endYear, endMonth);
+
+            if (!indexStart || !indexEnd) {
+                document.getElementById('mainResult').textContent = '—';
+                return;
+            }
+
+            // Calculate purchasing power equivalent
+            const equivalent = amount * (indexEnd / indexStart);
+            const changePercent = ((indexEnd - indexStart) / indexStart) * 100;
+
+            // Calculate time period
+            const startDate = new Date(parseInt(startYear), parseInt(startMonth) - 1);
+            const endDate = new Date(parseInt(endYear), parseInt(endMonth) - 1);
+            const monthsDiff = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+            const yearsDiff = monthsDiff / 12;
+
+            // Annual inflation rate (CAGR)
+            const annualInflation = yearsDiff > 0
+                ? (Math.pow(indexEnd / indexStart, 1 / yearsDiff) - 1) * 100
+                : 0;
+
+            // Update display
+            document.getElementById('mainResult').textContent = formatCHF(equivalent);
+            document.getElementById('resultSub').textContent = '{{ i18n "purchasing.resultToday" }}';
+
+            document.getElementById('originalDisplay').textContent = formatCHF(amount);
+            document.getElementById('startDateDisplay').textContent = monthNames[startMonth] + ' ' + startYear;
+            document.getElementById('indexStartDisplay').textContent = indexStart.toFixed(1);
+            document.getElementById('endDateDisplay').textContent = monthNames[endMonth] + ' ' + endYear;
+            document.getElementById('indexEndDisplay').textContent = indexEnd.toFixed(1);
+
+            const changeEl = document.getElementById('changeDisplay');
+            const sign = changePercent >= 0 ? '+' : '';
+            changeEl.textContent = sign + changePercent.toFixed(1) + '%';
+            changeEl.className = changePercent >= 0 ? 'value highlight' : 'value negative';
+
+            document.getElementById('equivalentDisplay').textContent = formatCHF(equivalent);
+
+            const totalInflationEl = document.getElementById('totalInflationDisplay');
+            totalInflationEl.textContent = sign + changePercent.toFixed(1) + '%';
+            totalInflationEl.className = changePercent >= 0 ? 'value highlight' : 'value negative';
+
+            document.getElementById('annualInflationDisplay').textContent = '~' + annualInflation.toFixed(1) + '%';
+
+            const yearsText = '{{ i18n "purchasing.years" }}';
+            const monthsText = '{{ i18n "purchasing.months" }}';
+            if (yearsDiff >= 1) {
+                document.getElementById('timePeriodDisplay').textContent = yearsDiff.toFixed(1) + ' ' + yearsText;
+            } else {
+                document.getElementById('timePeriodDisplay').textContent = monthsDiff + ' ' + monthsText;
+            }
+        }
+
+        function formatCHF(amount) {
+            return 'CHF ' + Math.round(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        }
+
+        function getShareText() {
+            const amount = document.getElementById('amount').value;
+            const startMonth = document.getElementById('startMonth').value;
+            const startYear = document.getElementById('startYear').value;
+            const equivalent = document.getElementById('mainResult').textContent;
+            const change = document.getElementById('changeDisplay').textContent;
+
+            return '{{ i18n "purchasing.shareText" }}'
+                .replace('{original}', amount)
+                .replace('{startDate}', monthNames[startMonth] + ' ' + startYear)
+                .replace('{equivalent}', equivalent.replace('CHF ', ''))
+                .replace('{inflation}', change);
+        }
+
+        function shareResult() {
+            const shareData = { title: document.title, text: getShareText(), url: window.location.href };
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData).catch(function() {});
+            } else {
+                window.open('https://wa.me/?text=' + encodeURIComponent(getShareText()), '_blank');
+            }
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(getShareText()).then(function() {
+                var btnText = document.getElementById('copyBtnText');
+                btnText.textContent = copiedText;
+                setTimeout(function() { btnText.textContent = copyText; }, 2000);
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', loadLikData);
+    </script>
+
+    {{ partial "darkmode.html" . }}
+</body>
+</html>

@@ -214,3 +214,10 @@ dataStatus:
     lastVerifiedFr: "décembre 2025"
     nextCheckDe: "September 2026"
     nextCheckFr: "septembre 2026"
+
+  # LIK (Kaufkraftrechner) - monatlich
+  lik:
+    lastVerifiedDe: "Januar 2026"
+    lastVerifiedFr: "janvier 2026"
+    nextCheckDe: "Februar 2026"
+    nextCheckFr: "février 2026"
