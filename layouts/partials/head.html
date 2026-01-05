@@ -12,22 +12,23 @@
 {{- end }}
 
 {{- $siteDomain := .Site.Language.Params.domain | default "wieviel.ch" }}
-<link rel="canonical" href="https://{{ $siteDomain }}{{ .RelPermalink }}">
+{{- $cleanPath := .RelPermalink | strings.TrimPrefix (printf "/%s" .Site.Language.Lang) }}
+<link rel="canonical" href="https://{{ $siteDomain }}{{ $cleanPath }}">
 
-{{- /* Hreflang alternates with correct domains */ -}}
+{{- /* Hreflang alternates with correct domains (without language prefix) */ -}}
 {{- if .Translations }}
-{{- $currentDomain := .Site.Language.Params.domain | default "wieviel.ch" }}
-<link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="https://{{ $currentDomain }}{{ .RelPermalink }}">
+<link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="https://{{ $siteDomain }}{{ $cleanPath }}">
 {{- range .Translations }}
 {{- $transDomain := .Language.Params.domain | default "wieviel.ch" }}
-<link rel="alternate" hreflang="{{ .Language.Lang }}" href="https://{{ $transDomain }}{{ .RelPermalink }}">
+{{- $transPath := .RelPermalink | strings.TrimPrefix (printf "/%s" .Language.Lang) }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="https://{{ $transDomain }}{{ $transPath }}">
 {{- end }}
 {{- end }}
 
 {{- /* Open Graph */ -}}
 <meta property="og:title" content="{{ .Params.ogTitle | default .Title }}">
 <meta property="og:description" content="{{ .Params.ogDescription | default .Params.description }}">
-<meta property="og:url" content="https://{{ $siteDomain }}{{ .RelPermalink }}">
+<meta property="og:url" content="https://{{ $siteDomain }}{{ $cleanPath }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{{ .Site.Language.LanguageCode | default "de_CH" }}">
 <meta property="og:site_name" content="{{ .Site.Language.Params.domain }}">
@@ -57,7 +58,7 @@
   "@type": "WebApplication",
   "name": "{{ .Title }}",
   "description": "{{ .Params.description }}",
-  "url": "https://{{ $siteDomain }}{{ .RelPermalink }}",
+  "url": "https://{{ $siteDomain }}{{ $cleanPath }}",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "offers": {
