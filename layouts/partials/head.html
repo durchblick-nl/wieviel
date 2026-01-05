@@ -11,20 +11,23 @@
 <meta name="keywords" content="{{ . }}">
 {{- end }}
 
-<link rel="canonical" href="{{ .Permalink }}">
+{{- $siteDomain := .Site.Language.Params.domain | default "wieviel.ch" }}
+<link rel="canonical" href="https://{{ $siteDomain }}{{ .RelPermalink }}">
 
-{{- /* Hreflang alternates */ -}}
+{{- /* Hreflang alternates with correct domains */ -}}
 {{- if .Translations }}
-<link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="{{ .Permalink }}">
+{{- $currentDomain := .Site.Language.Params.domain | default "wieviel.ch" }}
+<link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="https://{{ $currentDomain }}{{ .RelPermalink }}">
 {{- range .Translations }}
-<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- $transDomain := .Language.Params.domain | default "wieviel.ch" }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="https://{{ $transDomain }}{{ .RelPermalink }}">
 {{- end }}
 {{- end }}
 
 {{- /* Open Graph */ -}}
 <meta property="og:title" content="{{ .Params.ogTitle | default .Title }}">
 <meta property="og:description" content="{{ .Params.ogDescription | default .Params.description }}">
-<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:url" content="https://{{ $siteDomain }}{{ .RelPermalink }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{{ .Site.Language.LanguageCode | default "de_CH" }}">
 <meta property="og:site_name" content="{{ .Site.Language.Params.domain }}">
@@ -54,7 +57,7 @@
   "@type": "WebApplication",
   "name": "{{ .Title }}",
   "description": "{{ .Params.description }}",
-  "url": "{{ .Permalink }}",
+  "url": "https://{{ $siteDomain }}{{ .RelPermalink }}",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "offers": {
