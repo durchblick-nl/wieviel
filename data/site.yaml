@@ -203,10 +203,10 @@ dataStatus:
 
   # Referenzzinssatz - quartalsweise
   referenceRate:
-    lastVerifiedDe: "Dezember 2025"
-    lastVerifiedFr: "décembre 2025"
-    nextCheckDe: "März 2026"
-    nextCheckFr: "mars 2026"
+    lastVerifiedDe: "März 2026"
+    lastVerifiedFr: "mars 2026"
+    nextCheckDe: "Juni 2026"
+    nextCheckFr: "juin 2026"
 
   # Strompreise - jährlich im September
   electricity:
