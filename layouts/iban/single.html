@@ -221,6 +221,7 @@
     function showResult(bank) {
         document.getElementById('result-container').style.display = 'block';
         document.getElementById('error-container').style.display = 'none';
+        document.getElementById('error-msg').textContent = '';
 
         document.getElementById('bank-name').textContent = bank.name;
         document.getElementById('bank-address').textContent = `${bank.address}, ${bank.zip} ${bank.city}`;
@@ -231,6 +232,10 @@
     function showError(msg) {
         document.getElementById('result-container').style.display = 'none';
         document.getElementById('error-container').style.display = 'block';
+        document.getElementById('bank-name').textContent = '';
+        document.getElementById('bank-address').textContent = '';
+        document.getElementById('clearing-num').textContent = '';
+        document.getElementById('bic-code').textContent = '';
         document.getElementById('error-msg').textContent = msg;
     }
 </script>

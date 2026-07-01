@@ -343,9 +343,9 @@
 
         <div class="rate-display">
             <div class="rate-label">Aktueller Referenzzinssatz</div>
-            <div class="rate-value">{{ site.Data.site.referenceRate }}%</div>
-            <div class="rate-date">Gültig seit {{ site.Data.site.referenceRateDate }}</div>
-            <div class="rate-source">Quelle: <a href="{{ site.Data.site.referenceRateSource }}" target="_blank" rel="noopener">BWO</a></div>
+            <div class="rate-value">{{ hugo.Data.site.referenceRate }}%</div>
+            <div class="rate-date">Gültig seit {{ hugo.Data.site.referenceRateDate }}</div>
+            <div class="rate-source">Quelle: <a href="{{ hugo.Data.site.referenceRateSource }}" target="_blank" rel="noopener">BWO</a></div>
         </div>
 
         {{ .Content }}
@@ -357,8 +357,8 @@
 
     <script>
         // Current reference rate from central data
-        const CURRENT_RATE = {{ site.Data.site.referenceRate }};
-        const RATE_DATE = '{{ site.Data.site.referenceRateDate }}';
+        const CURRENT_RATE = {{ hugo.Data.site.referenceRate }};
+        const RATE_DATE = '{{ hugo.Data.site.referenceRateDate }}';
 
         // State
         let oldRate = 1.50;

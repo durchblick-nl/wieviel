@@ -7,7 +7,7 @@ description: "Überprüfe eine Schweizer IBAN auf Gültigkeit und finde heraus, 
 keywords: "IBAN prüfen, IBAN Rechner, Bank finden, Konto validieren, Schweiz"
 ogTitle: "IBAN-Prüfer – Bank und Gültigkeit prüfen"
 ogDescription: "Überprüfe eine Schweizer IBAN auf Gültigkeit und finde heraus, zu welcher Bank sie gehört."
-ogImage: "https://wieviel.ch/og/default.png"
+ogImage: "/og/iban.png"
 translationKey: "iban-check"
 ---
 

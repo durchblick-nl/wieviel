@@ -6,7 +6,7 @@ Praktische Online-Rechner für den Alltag in der Schweiz.
 - 🇩🇪 https://wieviel.ch (Deutsch)
 - 🇫🇷 https://calcule.ch (Français)
 
-## Alle 20 Tools
+## Alle 22 Tools
 
 ### Arbeit & Ferien
 
@@ -29,6 +29,8 @@ Praktische Online-Rechner für den Alltag in der Schweiz.
 | Mietzinsrechner | `/miete/` | `/loyer/` | Referenzzinssatz-Anpassung (1.25%) |
 | Zinseszinsrechner | `/zinseszins/` | `/interets-composes/` | Vermögensaufbau & Säule 3a |
 | Stromkosten-Rechner | `/strom/` | `/electricite/` | Live ElCom-Tarife |
+| Kaufkraftrechner | `/kaufkraft/` | `/pouvoir-achat/` | Inflation & Teuerung nach LIK |
+| IBAN-Prüfer | `/iban/` | `/iban/` | IBAN validieren & Bank finden |
 
 ### Gesundheit & Lifestyle
 

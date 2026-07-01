@@ -1,7 +1,7 @@
 {
   "basePeriod": "Dezember 2020",
   "baseValue": 100,
-  "lastUpdated": "2026-01",
+  "lastUpdated": "2026-05",
   "source": "BFS - Bundesamt für Statistik",
   "sourceUrl": "https://www.bfs.admin.ch/asset/de/cc-d-05.02.08",
   "monthly": {
@@ -1476,7 +1476,11 @@
       "12": 106.9
     },
     "2026": {
-      "01": 106.9
+      "01": 106.9,
+      "02": 107.6,
+      "03": 107.8,
+      "04": 108.1,
+      "05": 108.3
     }
   }
 }

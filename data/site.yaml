@@ -2,7 +2,7 @@
 # ZENTRALE DATEN FÜR ALLE RECHNER - wieviel.ch / calcule.ch
 # =============================================================================
 # Bei Änderungen: nur hier anpassen, Hugo baut alle Seiten neu.
-# Letzte Aktualisierung: Dezember 2025
+# Letzte Aktualisierung: Juli 2026
 # =============================================================================
 
 # -----------------------------------------------------------------------------
@@ -16,8 +16,8 @@ currentYear: 2026
 # https://www.bwo.admin.ch/de/referenzzinssatz
 # -----------------------------------------------------------------------------
 referenceRate: 1.25
-referenceRateDate: "3. September 2025"
-referenceRateDateFr: "3 septembre 2025"
+referenceRateDate: "2. September 2025, unverändert ab 2. Juni 2026"
+referenceRateDateFr: "2 septembre 2025, inchangé à partir du 2 juin 2026"
 referenceRateSource: "https://www.bwo.admin.ch/de/referenzzinssatz"
 
 # -----------------------------------------------------------------------------
@@ -203,10 +203,10 @@ dataStatus:
 
   # Referenzzinssatz - quartalsweise
   referenceRate:
-    lastVerifiedDe: "März 2026"
-    lastVerifiedFr: "mars 2026"
-    nextCheckDe: "Juni 2026"
-    nextCheckFr: "juin 2026"
+    lastVerifiedDe: "Juni 2026"
+    lastVerifiedFr: "juin 2026"
+    nextCheckDe: "September 2026"
+    nextCheckFr: "septembre 2026"
 
   # Strompreise - jährlich im September
   electricity:
@@ -217,7 +217,7 @@ dataStatus:
 
   # LIK (Kaufkraftrechner) - monatlich
   lik:
-    lastVerifiedDe: "März 2026"
-    lastVerifiedFr: "mars 2026"
-    nextCheckDe: "April 2026"
-    nextCheckFr: "avril 2026"
+    lastVerifiedDe: "Juni 2026"
+    lastVerifiedFr: "juin 2026"
+    nextCheckDe: "Juli 2026"
+    nextCheckFr: "juillet 2026"

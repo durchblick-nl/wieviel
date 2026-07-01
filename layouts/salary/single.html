@@ -108,11 +108,11 @@
                 <div class="deductions-card">
                     <h3><i class="fas fa-minus-circle"></i> {{ i18n "salary.deductions" }}</h3>
                     <div class="deduction-row">
-                        <span class="label">AHV/IV/EO ({{ site.Data.site.socialInsurance.ahvRate }}%)</span>
+                        <span class="label">AHV/IV/EO ({{ hugo.Data.site.socialInsurance.ahvRate }}%)</span>
                         <span class="value negative" id="ahv">-CHF 0</span>
                     </div>
                     <div class="deduction-row">
-                        <span class="label">ALV ({{ site.Data.site.socialInsurance.alvRate }}%)</span>
+                        <span class="label">ALV ({{ hugo.Data.site.socialInsurance.alvRate }}%)</span>
                         <span class="value negative" id="alv">-CHF 0</span>
                     </div>
                     <div class="deduction-row">
@@ -159,9 +159,9 @@
     <script>
         const LANG = '{{ .Site.Language.Lang }}';
         const RATES = {
-            ahv: {{ site.Data.site.socialInsurance.ahvRate }} / 100,
-            alv: {{ site.Data.site.socialInsurance.alvRate }} / 100,
-            alvMax: {{ site.Data.site.socialInsurance.alvMaxSalary }},
+            ahv: {{ hugo.Data.site.socialInsurance.ahvRate }} / 100,
+            alv: {{ hugo.Data.site.socialInsurance.alvRate }} / 100,
+            alvMax: {{ hugo.Data.site.socialInsurance.alvMaxSalary }},
             nbu: 0.005
         };
         const BVG_RATES = { '25-34': 0.07, '35-44': 0.10, '45-54': 0.15, '55-65': 0.18 };

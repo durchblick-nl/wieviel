@@ -7,7 +7,7 @@ description: "Vérifiez la validité d'un IBAN suisse et découvrez à quelle ba
 keywords: "Vérifier IBAN, Calculateur IBAN, Trouver banque, Valider compte, Suisse"
 ogTitle: "Validateur IBAN – Vérifier la banque et la validité"
 ogDescription: "Vérifiez la validité d'un IBAN suisse et découvrez à quelle banque il appartient."
-ogImage: "https://wieviel.ch/og/default.png"
+ogImage: "/og/iban.png"
 translationKey: "iban-check"
 ---
 

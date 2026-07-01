@@ -207,9 +207,9 @@
 
         <div class="rate-display">
             <div class="rate-label">Taux de référence actuel</div>
-            <div class="rate-value">{{ site.Data.site.referenceRate }}%</div>
-            <div class="rate-date">Valable depuis le {{ site.Data.site.referenceRateDateFr }}</div>
-            <div class="rate-source">Source: <a href="{{ site.Data.site.referenceRateSource }}" target="_blank" rel="noopener">OFL</a></div>
+            <div class="rate-value">{{ hugo.Data.site.referenceRate }}%</div>
+            <div class="rate-date">Valable depuis le {{ hugo.Data.site.referenceRateDateFr }}</div>
+            <div class="rate-source">Source: <a href="{{ hugo.Data.site.referenceRateSource }}" target="_blank" rel="noopener">OFL</a></div>
         </div>
 
         {{ .Content }}
@@ -220,8 +220,8 @@
     {{- partial "darkmode.html" . }}
 
     <script>
-        const CURRENT_RATE = {{ site.Data.site.referenceRate }};
-        const RATE_DATE = '{{ site.Data.site.referenceRateDateFr }}';
+        const CURRENT_RATE = {{ hugo.Data.site.referenceRate }};
+        const RATE_DATE = '{{ hugo.Data.site.referenceRateDateFr }}';
         let oldRate = 1.50;
 
         document.addEventListener('DOMContentLoaded', function() {

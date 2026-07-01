@@ -99,16 +99,16 @@
         {{- partial "header.html" . }}
         {{- partial "page-header.html" . }}
 
-        {{- $rateDate := site.Data.site.referenceRateDate -}}
+        {{- $rateDate := hugo.Data.site.referenceRateDate -}}
         {{- if eq .Site.Language.Lang "fr" -}}
-            {{- $rateDate = site.Data.site.referenceRateDateFr -}}
+            {{- $rateDate = hugo.Data.site.referenceRateDateFr -}}
         {{- end -}}
 
         <div class="rate-display">
             <div class="rate-label">{{ i18n "rent.currentRate" }}</div>
-            <div class="rate-value">{{ site.Data.site.referenceRate }}%</div>
+            <div class="rate-value">{{ hugo.Data.site.referenceRate }}%</div>
             <div class="rate-date">{{ i18n "rent.validSince" }} {{ $rateDate }}</div>
-            <div class="rate-source">{{ i18n "rent.source" }}: <a href="{{ site.Data.site.referenceRateSource }}" target="_blank" rel="noopener">{{ i18n "rent.sourceShort" }}</a></div>
+            <div class="rate-source">{{ i18n "rent.source" }}: <a href="{{ hugo.Data.site.referenceRateSource }}" target="_blank" rel="noopener">{{ i18n "rent.sourceShort" }}</a></div>
         </div>
 
         <div class="steps-container">
@@ -198,7 +198,7 @@
     {{- partial "darkmode.html" . }}
 
     <script>
-        const CURRENT_RATE = {{ site.Data.site.referenceRate }};
+        const CURRENT_RATE = {{ hugo.Data.site.referenceRate }};
         const LANG = '{{ .Site.Language.Lang }}';
         const TEXTS = {
             possibleReduction: '{{ i18n "rent.possibleReduction" }}',

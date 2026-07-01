@@ -1,5 +1,5 @@
 {{- $statusType := .statusType | default "socialInsurance" -}}
-{{- $status := index site.Data.site.dataStatus $statusType -}}
+{{- $status := index hugo.Data.site.dataStatus $statusType -}}
 {{- if $status -}}
 <div class="data-status">
     <i class="fas fa-sync-alt"></i>

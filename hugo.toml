@@ -1,6 +1,6 @@
 baseURL = "https://wieviel.ch/"
 title = "wieviel.ch"
-languageCode = "de-CH"
+locale = "de-CH"
 
 # Multilingual configuration
 defaultContentLanguage = "de"
@@ -17,8 +17,8 @@ disableAliases = true
 
 [languages]
   [languages.de]
-    languageName = "Deutsch"
-    languageCode = "de-CH"
+    label = "Deutsch"
+    locale = "de-CH"
     weight = 1
     [languages.de.params]
       domain = "wieviel.ch"
@@ -28,8 +28,8 @@ disableAliases = true
       privacyText = "Alle Berechnungen erfolgen lokal. Keine Daten werden gespeichert."
 
   [languages.fr]
-    languageName = "Français"
-    languageCode = "fr-CH"
+    label = "Français"
+    locale = "fr-CH"
     weight = 2
     [languages.fr.params]
       domain = "calcule.ch"
@@ -57,11 +57,15 @@ disableAliases = true
   [[module.mounts]]
     source = "content/de"
     target = "content"
-    lang = "de"
+    [module.mounts.sites]
+      [module.mounts.sites.matrix]
+        languages = ["de"]
   [[module.mounts]]
     source = "content/fr"
     target = "content"
-    lang = "fr"
+    [module.mounts.sites]
+      [module.mounts.sites.matrix]
+        languages = ["fr"]
   [[module.mounts]]
     source = "static"
     target = "static"
@@ -76,3 +80,7 @@ disableAliases = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[security]
+  # The site intentionally stores trusted SEO/body content as .html/.md files.
+  allowContent = ['^text/html$', '^text/markdown$']
