@@ -1,5 +1,5 @@
 # Stage 1: Hugo Build
-FROM hugomods/hugo:exts-0.163.3 AS builder
+FROM hugomods/hugo:debian-0.163.3 AS builder
 WORKDIR /src
 COPY . .
 RUN hugo
