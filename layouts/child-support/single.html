@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <style>
+        .scope-switch, .relationship-switch { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+        .choice { border:2px solid var(--border-color); background:var(--card-bg); color:var(--text-color); border-radius:12px; padding:1rem; cursor:pointer; text-align:left; }
+        .choice.active { border-color:var(--primary-color); background:rgba(63,96,111,.09); }
+        .choice strong { display:block; color:var(--primary-color); margin-bottom:.2rem; }
+        .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+        .adult-card, .child-card { background:var(--light-bg); border:1px solid var(--border-color); border-radius:14px; padding:1.25rem; margin:1rem 0; }
+        .adult-card h3, .child-card h3 { color:var(--primary-color); margin:0 0 1rem; }
+        .field { margin-bottom:.85rem; }
+        .field label { font-size:.9rem; }
+        .field input, .field select { width:100%; padding:.75rem; border:1px solid var(--border-color); border-radius:7px; font-size:1rem; background:var(--card-bg); color:var(--text-color); }
+        .field small, .form-hint { display:block; opacity:.72; font-size:.8rem; margin-top:.3rem; }
+        .section-heading { display:flex; align-items:center; gap:.65rem; color:var(--primary-color); margin:2rem 0 .5rem; }
+        .section-heading span { background:var(--accent-color); color:white; border-radius:50%; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; font:bold .9rem Arial; }
+        .check-row { display:flex; align-items:flex-start; gap:.7rem; padding:1rem; background:rgba(63,96,111,.08); border-radius:10px; }
+        .check-row input { margin-top:.3rem; }
+        .warning-box, .legal-box { padding:1rem 1.1rem; border-radius:10px; margin:1rem 0; }
+        .warning-box { background:rgba(204,92,83,.1); border-left:4px solid var(--accent-color); }
+        .legal-box { background:rgba(63,96,111,.1); border-left:4px solid var(--primary-color); }
+        .custody-unavailable { text-align:center; padding:2.25rem 1.5rem 1.5rem; animation:custodyReveal .22s ease-out; }
+        .custody-unavailable .state-icon { width:64px; height:64px; margin:0 auto 1rem; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(63,96,111,.12); color:var(--primary-color); font-size:1.7rem; }
+        .custody-unavailable h3 { color:var(--primary-color); font-size:1.45rem; margin:0 0 .65rem; }
+        .custody-unavailable > p { max-width:590px; margin:0 auto 1.25rem; line-height:1.65; }
+        .custody-points { max-width:560px; margin:0 auto 1.5rem; padding:0; list-style:none; text-align:left; }
+        .custody-points li { display:flex; gap:.7rem; align-items:flex-start; padding:.45rem 0; }
+        .custody-points i { color:var(--primary-color); margin-top:.3rem; }
+        .custody-actions { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.75rem 1.25rem; }
+        .custody-back { border:0; border-radius:9px; padding:.85rem 1.1rem; background:var(--primary-color); color:white; font-weight:700; cursor:pointer; }
+        .custody-more { color:var(--primary-color); font-weight:600; text-decoration:none; }
+        .custody-more:hover { text-decoration:underline; }
+        @keyframes custodyReveal { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+        @media (prefers-reduced-motion:reduce) { .custody-unavailable { animation:none; } }
+        .result-hero { background:linear-gradient(135deg,var(--primary-color),var(--secondary-color)); color:white; border-radius:16px; padding:2rem; text-align:center; margin:2rem 0 1rem; }
+        .result-hero .amount { font:700 2.6rem 'Economica',sans-serif; }
+        .result-hero p { margin:.25rem 0 0; opacity:.9; }
+        .breakdown { background:var(--card-bg); border:1px solid var(--border-color); border-radius:12px; padding:1.25rem; }
+        .breakdown-row { display:flex; justify-content:space-between; gap:1rem; padding:.7rem 0; border-bottom:1px solid var(--border-color); }
+        .breakdown-row:last-child { border:0; }
+        .breakdown-row strong { color:var(--primary-color); text-align:right; }
+        .child-result { margin-top:1rem; padding-top:1rem; border-top:2px solid var(--border-color); }
+        .shortfall { color:var(--accent-color)!important; }
+        .seo-content { margin-top:3rem; }
+        .seo-content h2, .seo-content h3 { color:var(--primary-color); }
+        .seo-content p, .seo-content li { line-height:1.7; }
+        .source-list { list-style:none; padding:0; }
+        .source-list li { margin:.6rem 0; }
+        .source-list a { color:var(--primary-color); }
+        button.calculate { width:100%; padding:1rem; border:0; border-radius:9px; background:var(--accent-color); color:white; font-weight:700; font-size:1rem; cursor:pointer; margin-top:1rem; }
+        @media(max-width:620px){ .form-grid,.scope-switch,.relationship-switch{grid-template-columns:1fr}.calculator-card{padding:1.15rem}.result-hero .amount{font-size:2.15rem} }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{- partial "header.html" . }}
+        {{- partial "page-header.html" . }}
+
+        <div class="steps-container">
+            <div class="step-card"><div class="step-icon"><i class="fas fa-wallet"></i><div class="step-number">1</div></div><div class="step-content"><h3>{{ i18n "support.step1Title" }}</h3><p>{{ i18n "support.step1Desc" }}</p></div></div>
+            <div class="step-card"><div class="step-icon"><i class="fas fa-child"></i><div class="step-number">2</div></div><div class="step-content"><h3>{{ i18n "support.step2Title" }}</h3><p>{{ i18n "support.step2Desc" }}</p></div></div>
+            <div class="step-card"><div class="step-icon"><i class="fas fa-scale-balanced"></i><div class="step-number">3</div></div><div class="step-content"><h3>{{ i18n "support.step3Title" }}</h3><p>{{ i18n "support.step3Desc" }}</p></div></div>
+        </div>
+
+        <div class="legal-box"><strong>{{ i18n "support.scopeTitle" }}</strong> {{ i18n "support.scopeText" }}</div>
+
+        <div class="calculator-card" id="calculator">
+            <h2 class="section-heading"><span>1</span>{{ i18n "support.situation" }}</h2>
+            <div class="form-group">
+                <label>{{ i18n "support.custody" }}</label>
+                <div class="scope-switch">
+                    <button type="button" class="choice active" data-custody="sole" aria-pressed="true"><strong>{{ i18n "support.sole" }}</strong>{{ i18n "support.soleDesc" }}</button>
+                    <button type="button" class="choice" data-custody="alternating" aria-pressed="false"><strong>{{ i18n "support.alternating" }}</strong>{{ i18n "support.alternatingDesc" }}</button>
+                </div>
+            </div>
+
+            <div class="custody-unavailable" id="alternatingState" hidden aria-live="polite">
+                <div class="state-icon"><i class="fas fa-scale-balanced"></i></div>
+                <h3>{{ i18n "support.alternatingStateTitle" }}</h3>
+                <p>{{ i18n "support.alternatingStateText" }}</p>
+                <ul class="custody-points">
+                    <li><i class="fas fa-check"></i><span>{{ i18n "support.alternatingPoint1" }}</span></li>
+                    <li><i class="fas fa-check"></i><span>{{ i18n "support.alternatingPoint2" }}</span></li>
+                    <li><i class="fas fa-check"></i><span>{{ i18n "support.alternatingPoint3" }}</span></li>
+                </ul>
+                <div class="custody-actions">
+                    <button type="button" class="custody-back" id="switchToSole"><i class="fas fa-arrow-left"></i> {{ i18n "support.switchToSole" }}</button>
+                    <a class="custody-more" id="learnAlternating" href="#alternating-custody-info">{{ i18n "support.learnAlternating" }} <i class="fas fa-arrow-down"></i></a>
+                </div>
+            </div>
+
+            <div id="soleCustodyFields">
+            <div class="form-group">
+                <label for="maritalStatus">{{ i18n "support.relationship" }}</label>
+                <select id="maritalStatus">
+                    <option value="unmarried">{{ i18n "support.unmarried" }}</option>
+                    <option value="married">{{ i18n "support.married" }}</option>
+                </select>
+                <small class="form-hint">{{ i18n "support.relationshipHint" }}</small>
+            </div>
+
+            <h2 class="section-heading"><span>2</span>{{ i18n "support.adults" }}</h2>
+            <div class="adult-card" data-adult="payer">
+                <h3><i class="fas fa-money-bill-transfer"></i> {{ i18n "support.payer" }}</h3>
+                <div class="form-grid">
+                    <div class="field"><label>{{ i18n "support.netIncome" }}</label><input aria-label="{{ i18n "support.netIncome" }}" data-key="income" type="number" min="0" value="6500"></div>
+                    <div class="field"><label>{{ i18n "support.basic" }}</label><input aria-label="{{ i18n "support.basic" }}" data-key="basic" type="number" min="0" value="{{ hugo.Data.site.childSupport.adultBasicSingle }}"><small>{{ i18n "support.editablePreset" }}</small></div>
+                    <div class="field"><label>{{ i18n "support.housing" }}</label><input aria-label="{{ i18n "support.housing" }}" data-key="housing" type="number" min="0" value="1500"></div>
+                    <div class="field"><label>{{ i18n "support.health" }}</label><input aria-label="{{ i18n "support.health" }}" data-key="health" type="number" min="0" value="400"></div>
+                    <div class="field"><label>{{ i18n "support.workCosts" }}</label><input aria-label="{{ i18n "support.workCosts" }}" data-key="work" type="number" min="0" value="200"></div>
+                    <div class="field"><label>{{ i18n "support.otherCosts" }}</label><input aria-label="{{ i18n "support.otherCosts" }}" data-key="other" type="number" min="0" value="0"></div>
+                    <div class="field"><label>{{ i18n "support.taxes" }}</label><input aria-label="{{ i18n "support.taxes" }}" data-key="tax" type="number" min="0" value="0"><small>{{ i18n "support.taxHint" }}</small></div>
+                </div>
+            </div>
+            <div class="adult-card" data-adult="carer">
+                <h3><i class="fas fa-house-user"></i> {{ i18n "support.carer" }}</h3>
+                <div class="form-grid">
+                    <div class="field"><label>{{ i18n "support.netIncome" }}</label><input aria-label="{{ i18n "support.netIncome" }}" data-key="income" type="number" min="0" value="3500"></div>
+                    <div class="field"><label>{{ i18n "support.basic" }}</label><input aria-label="{{ i18n "support.basic" }}" data-key="basic" type="number" min="0" value="{{ hugo.Data.site.childSupport.adultBasicSoleParent }}"><small>{{ i18n "support.editablePreset" }}</small></div>
+                    <div class="field"><label>{{ i18n "support.housing" }}</label><input aria-label="{{ i18n "support.housing" }}" data-key="housing" type="number" min="0" value="1500"></div>
+                    <div class="field"><label>{{ i18n "support.health" }}</label><input aria-label="{{ i18n "support.health" }}" data-key="health" type="number" min="0" value="400"></div>
+                    <div class="field"><label>{{ i18n "support.workCosts" }}</label><input aria-label="{{ i18n "support.workCosts" }}" data-key="work" type="number" min="0" value="200"></div>
+                    <div class="field"><label>{{ i18n "support.otherCosts" }}</label><input aria-label="{{ i18n "support.otherCosts" }}" data-key="other" type="number" min="0" value="0"></div>
+                    <div class="field"><label>{{ i18n "support.taxes" }}</label><input aria-label="{{ i18n "support.taxes" }}" data-key="tax" type="number" min="0" value="0"><small>{{ i18n "support.taxHint" }}</small></div>
+                </div>
+            </div>
+
+            <h2 class="section-heading"><span>3</span>{{ i18n "support.children" }}</h2>
+            <div class="form-group"><label for="childCount">{{ i18n "support.childCount" }}</label><select id="childCount"><option>1</option><option>2</option><option>3</option></select></div>
+            <div id="children"></div>
+            <label class="check-row"><input id="includeCare" type="checkbox"><span><strong>{{ i18n "support.includeCare" }}</strong><br>{{ i18n "support.includeCareHint" }}</span></label>
+            <button type="button" class="calculate" id="calculateButton"><i class="fas fa-calculator"></i> {{ i18n "support.calculate" }}</button>
+            </div>
+        </div>
+
+        <div id="results" aria-live="polite">
+            <div class="result-hero"><div>{{ i18n "support.estimatedPayment" }}</div><div class="amount" id="paymentTotal">CHF 0</div><p>{{ i18n "support.perMonthAllowanceExtra" }}</p></div>
+            <div class="breakdown">
+                <div class="breakdown-row"><span>{{ i18n "support.payerMinimum" }}</span><strong id="payerNeed">–</strong></div>
+                <div class="breakdown-row"><span>{{ i18n "support.payerAvailable" }}</span><strong id="payerAvailable">–</strong></div>
+                <div class="breakdown-row"><span>{{ i18n "support.directNeed" }}</span><strong id="directNeed">–</strong></div>
+                <div class="breakdown-row"><span>{{ i18n "support.careSupport" }}</span><strong id="careSupport">–</strong></div>
+                <div class="breakdown-row"><span>{{ i18n "support.childSurplus" }}</span><strong id="childSurplus">–</strong></div>
+                <div class="breakdown-row"><span>{{ i18n "support.allowances" }}</span><strong id="allowances">–</strong></div>
+                <div class="breakdown-row" id="shortfallRow" hidden><span>{{ i18n "support.uncovered" }}</span><strong class="shortfall" id="shortfall">–</strong></div>
+                <div id="childResults"></div>
+            </div>
+            <div class="warning-box"><strong>{{ i18n "support.resultWarningTitle" }}</strong> {{ i18n "support.resultWarning" }}</div>
+        </div>
+
+        {{ .Content }}
+    </div>
+    {{- partial "data-status.html" (dict "statusType" "childSupport") -}}
+    {{- partial "footer.html" . }}
+    {{- partial "darkmode.html" . }}
+    <script src="/js/child-support-calculator.js"></script>
+    <script>
+        const LANG = '{{ .Site.Language.Lang }}';
+        const TEXT = {
+            child: '{{ i18n "support.child" }}', age: '{{ i18n "support.age" }}', ageYoung: '{{ i18n "support.ageYoung" }}',
+            ageOlder: '{{ i18n "support.ageOlder" }}', basic: '{{ i18n "support.childBasic" }}', housing: '{{ i18n "support.childHousing" }}',
+            health: '{{ i18n "support.childHealth" }}', care: '{{ i18n "support.childCare" }}', special: '{{ i18n "support.childSpecial" }}',
+            allowance: '{{ i18n "support.childAllowance" }}', income: '{{ i18n "support.childIncome" }}', payment: '{{ i18n "support.childPayment" }}',
+            direct: '{{ i18n "support.directNeed" }}', careSupport: '{{ i18n "support.careSupport" }}', surplus: '{{ i18n "support.childSurplus" }}'
+        };
+        const DEFAULTS = { young: {{ hugo.Data.site.childSupport.childBasicUpTo10 }}, older: {{ hugo.Data.site.childSupport.childBasicOver10 }}, allowance: {{ hugo.Data.site.childSupport.familyAllowanceDefault }} };
+        const elements = {
+            calculator: document.getElementById('calculator'), childCount: document.getElementById('childCount'),
+            calculateButton: document.getElementById('calculateButton'), alternatingState: document.getElementById('alternatingState'),
+            soleCustodyFields: document.getElementById('soleCustodyFields'), results: document.getElementById('results'),
+            switchToSole: document.getElementById('switchToSole'),
+            learnAlternating: document.getElementById('learnAlternating'),
+            paymentTotal: document.getElementById('paymentTotal'), payerNeed: document.getElementById('payerNeed'),
+            payerAvailable: document.getElementById('payerAvailable'), directNeed: document.getElementById('directNeed'),
+            careSupport: document.getElementById('careSupport'), childSurplus: document.getElementById('childSurplus'),
+            allowances: document.getElementById('allowances'), shortfallRow: document.getElementById('shortfallRow'),
+            shortfall: document.getElementById('shortfall'), childResults: document.getElementById('childResults')
+        };
+
+        const currency = value => new Intl.NumberFormat(LANG === 'fr' ? 'fr-CH' : 'de-CH', {style:'currency',currency:'CHF',maximumFractionDigits:0}).format(Math.round(value));
+        const value = input => Number(input.value) || 0;
+        function adult(name) {
+            const result = {};
+            document.querySelectorAll(`[data-adult="${name}"] [data-key]`).forEach(input => result[input.dataset.key] = value(input));
+            return result;
+        }
+        function renderChildren() {
+            const count = Number(elements.childCount.value);
+            const old = [...document.querySelectorAll('.child-card')].map(card => Object.fromEntries([...card.querySelectorAll('[data-key]')].map(input => [input.dataset.key, input.value])));
+            document.getElementById('children').innerHTML = Array.from({length:count}, (_, index) => {
+                const saved = old[index] || {};
+                const field = (key, label, fallback, hint='') => `<div class="field"><label>${label}</label><input aria-label="${label}" data-key="${key}" type="number" min="0" value="${saved[key] ?? fallback}">${hint ? `<small>${hint}</small>` : ''}</div>`;
+                return `<div class="child-card"><h3><i class="fas fa-child"></i> ${TEXT.child} ${index+1}</h3><div class="form-grid"><div class="field"><label>${TEXT.age}</label><select aria-label="${TEXT.age}" data-key="age"><option value="young" ${saved.age !== 'older' ? 'selected' : ''}>${TEXT.ageYoung}</option><option value="older" ${saved.age === 'older' ? 'selected' : ''}>${TEXT.ageOlder}</option></select></div>${field('basic',TEXT.basic,saved.age === 'older' ? DEFAULTS.older : DEFAULTS.young)}${field('housing',TEXT.housing,400)}${field('health',TEXT.health,120)}${field('care',TEXT.care,0)}${field('special',TEXT.special,0)}${field('allowance',TEXT.allowance,DEFAULTS.allowance)}${field('income',TEXT.income,0)}</div></div>`;
+            }).join('');
+            document.querySelectorAll('.child-card select[data-key="age"]').forEach(select => select.addEventListener('change', event => {
+                event.target.closest('.child-card').querySelector('[data-key="basic"]').value = event.target.value === 'older' ? DEFAULTS.older : DEFAULTS.young;
+                calculate();
+            }));
+        }
+        function calculate() {
+            if (document.querySelector('[data-custody="alternating"]').classList.contains('active')) return;
+            const children = [...document.querySelectorAll('.child-card')].map(card => Object.fromEntries([...card.querySelectorAll('input[data-key]')].map(input => [input.dataset.key, value(input)])));
+            const result = ChildSupportCalculator.calculate({ maritalStatus: document.getElementById('maritalStatus').value, includeCareSupport: document.getElementById('includeCare').checked, payer:adult('payer'), carer:adult('carer'), children });
+            elements.paymentTotal.textContent = currency(result.paymentTotal);
+            elements.payerNeed.textContent = currency(result.payerNeed); elements.payerAvailable.textContent = currency(result.payerAvailable);
+            elements.directNeed.textContent = currency(result.directTotal); elements.careSupport.textContent = currency(result.careFunded);
+            elements.childSurplus.textContent = currency(result.childSurplusTotal); elements.allowances.textContent = `${currency(result.allowanceTotal)} / ${LANG === 'fr' ? 'mois' : 'Monat'}`;
+            elements.shortfallRow.hidden = result.shortfall < .5; elements.shortfall.textContent = currency(result.shortfall);
+            elements.childResults.innerHTML = result.children.map((child,index) => `<div class="child-result"><div class="breakdown-row"><span><strong>${TEXT.child} ${index+1}</strong></span><strong>${currency(child.payment)}</strong></div><div class="breakdown-row"><span>${TEXT.direct}</span><span>${currency(child.directFunded)}</span></div><div class="breakdown-row"><span>${TEXT.careSupport}</span><span>${currency(child.careFunded)}</span></div><div class="breakdown-row"><span>${TEXT.surplus}</span><span>${currency(child.surplus)}</span></div></div>`).join('');
+        }
+        document.querySelectorAll('[data-custody]').forEach(button => button.addEventListener('click', () => {
+            document.querySelectorAll('[data-custody]').forEach(item => {
+                const selected = item === button;
+                item.classList.toggle('active', selected);
+                item.setAttribute('aria-pressed', String(selected));
+            });
+            const alternating = button.dataset.custody === 'alternating';
+            elements.alternatingState.hidden = !alternating;
+            elements.soleCustodyFields.hidden = alternating;
+            elements.results.hidden = alternating;
+            elements.calculateButton.disabled = alternating;
+        }));
+        elements.switchToSole.addEventListener('click', () => {
+            const soleButton = document.querySelector('[data-custody="sole"]');
+            soleButton.click();
+            soleButton.focus();
+        });
+        elements.learnAlternating.addEventListener('click', () => {
+            const details = document.getElementById('alternating-custody-info');
+            if (details) details.open = true;
+        });
+        elements.childCount.addEventListener('change', () => { renderChildren(); calculate(); });
+        elements.calculateButton.addEventListener('click', calculate);
+        elements.calculator.addEventListener('input', event => { if (event.target.matches('input,select') && event.target.id !== 'childCount') calculate(); });
+        renderChildren(); calculate();
+    </script>
+</body>
+</html>

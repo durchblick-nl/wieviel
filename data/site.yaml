@@ -190,6 +190,18 @@ hiking:
   descentSpeed: 800      # Abstieg m/h
 
 # -----------------------------------------------------------------------------
+# KINDERUNTERHALT (editierbare Richtwerte)
+# Quellen: kantonale Richtlinien zum betreibungsrechtlichen Existenzminimum
+# und BSV Familienzulagen. Die effektiven Werte koennen abweichen.
+# -----------------------------------------------------------------------------
+childSupport:
+  adultBasicSingle: 1200
+  adultBasicSoleParent: 1350
+  childBasicUpTo10: 400
+  childBasicOver10: 600
+  familyAllowanceDefault: 215
+
+# -----------------------------------------------------------------------------
 # DATENSTAND & NÄCHSTE ÜBERPRÜFUNG
 # Für den Footer-Hinweis auf den Rechner-Seiten
 # -----------------------------------------------------------------------------
@@ -221,3 +233,10 @@ dataStatus:
     lastVerifiedFr: "juillet 2026"
     nextCheckDe: "August 2026"
     nextCheckFr: "août 2026"
+
+  # Kinderunterhalt - bei Rechtsprechungs- oder Richtlinienaenderungen
+  childSupport:
+    lastVerifiedDe: "August 2026"
+    lastVerifiedFr: "août 2026"
+    nextCheckDe: "Januar 2027"
+    nextCheckFr: "janvier 2027"

@@ -16,6 +16,7 @@ Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müs
 | Strompreise | Live-API | ElCom SPARQL | Jährlich |
 | Bankdaten (IBAN) | Manuell | `static/data/bank_master.json` | Bei Bedarf |
 | LIK (Kaufkraft) | Manuell | `static/data/lik_index.json` | Monatlich |
+| Kinderunterhalt (Grundbeträge/Zulagen/Rechtsprechung) | Manuell | `data/site.yaml`, Rechnerlogik | Jährlich und bei Änderungen |
 
 ---
 
@@ -220,6 +221,21 @@ Falls Claude Code eine neue BFS-Excel-Datei erhält:
 Kaufkraft_neu = Betrag × (LIK_Ende / LIK_Start)
 Inflation_% = ((LIK_Ende - LIK_Start) / LIK_Start) × 100
 ```
+
+---
+
+## 7. Kinderunterhalt
+
+**Quellen:** [Bundesamt für Justiz](https://www.bj.admin.ch/de/unterhalt-des-kindes), [Bundesgericht](https://www.bger.ch), kantonale Richtlinien zum betreibungsrechtlichen Existenzminimum und [BSV Familienzulagen](https://www.bsv.admin.ch/de/familienzulagen-leistungen-und-voraussetzungen)
+
+Mindestens jährlich sowie bei neuer höchstrichterlicher Rechtsprechung prüfen:
+
+- zweistufig-konkrete Methode und Überschussverteilung in `static/js/child-support-calculator.js`
+- Grundbeträge und Familienzulage unter `childSupport` in `data/site.yaml`
+- Abgrenzung alleinige/alternierende Obhut und Hinweise in beiden Sprachversionen
+- laufende Gesetzgebungsarbeiten zum Kindesunterhalt
+
+Die Grundbeträge sind bewusst editierbare Richtwerte. Kantonale Abweichungen werden nicht zentral überschrieben.
 
 ---
 

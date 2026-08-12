@@ -12,7 +12,7 @@ A collection of useful calculators for the general public in Switzerland, built 
 - https://wieviel.ch (German)
 - https://calcule.ch (French)
 
-### Current Tools (22 calculators, bilingual DE/FR):
+### Current Tools (23 calculators, bilingual DE/FR):
 
 | DE (wieviel.ch) | FR (calcule.ch) | Description |
 |-----------------|-----------------|-------------|
@@ -38,6 +38,7 @@ A collection of useful calculators for the general public in Switzerland, built 
 | `/de/strom/` | `/fr/electricite/` | Electricity cost calculator (ElCom) |
 | `/de/kaufkraft/` | `/fr/pouvoir-achat/` | Purchasing power calculator (BFS CPI/LIK) |
 | `/de/iban/` | `/fr/iban/` | IBAN checker with bank lookup (SIX) |
+| `/de/alimente/` | `/fr/pension-alimentaire/` | Child support orientation (sole custody) |
 
 ## Tech Stack
 
@@ -61,12 +62,12 @@ wieviel.ch/
 │   │   ├── _index.html       # German homepage
 │   │   ├── promille/index.html
 │   │   ├── lohn/index.html
-│   │   └── ...               # 22 calculator content files
+│   │   └── ...               # 23 calculator content files
 │   └── fr/                   # French content
 │       ├── _index.html       # French homepage
 │       ├── alcoolemie/index.html
 │       ├── salaire/index.html
-│       └── ...               # 22 calculator content files
+│       └── ...               # 23 calculator content files
 │
 ├── layouts/
 │   ├── index.html            # Homepage layout
@@ -103,7 +104,8 @@ wieviel.ch/
 │       ├── pet/              # Haustier / Animal
 │       ├── smoking/          # Rauchen / Tabac
 │       ├── electricity/      # Strom / Électricité
-│       └── iban/             # IBAN-Prüfer
+│       ├── iban/             # IBAN-Prüfer
+│       └── child-support/    # Kinderalimente / Pension alimentaire
 │
 ├── i18n/
 │   ├── de.yaml               # German translations (FLAT format)

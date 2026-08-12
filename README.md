@@ -6,7 +6,7 @@ Praktische Online-Rechner für den Alltag in der Schweiz.
 - 🇩🇪 https://wieviel.ch (Deutsch)
 - 🇫🇷 https://calcule.ch (Français)
 
-## Alle 22 Tools
+## Alle 23 Tools
 
 ### Arbeit & Ferien
 
@@ -23,6 +23,7 @@ Praktische Online-Rechner für den Alltag in der Schweiz.
 
 | Tool | DE | FR | Beschreibung |
 |------|----|----|--------------|
+| Alimentenrechner | `/alimente/` | `/pension-alimentaire/` | Kinderunterhalt bei alleiniger Obhut schätzen |
 | MWST-Rechner | `/mwst/` | `/tva/` | Mehrwertsteuer (8.1%, 2.6%, 3.8%) |
 | Trinkgeld-Rechner | `/trinkgeld/` | `/pourboire/` | Trinkgeld & Rechnung aufteilen |
 | Hypothekenrechner | `/hypothek/` | `/hypotheque/` | Tragbarkeit & max. Kaufpreis |

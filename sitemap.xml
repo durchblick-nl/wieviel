@@ -164,6 +164,15 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Alimentenrechner -->
+  <url>
+    <loc>https://wieviel.ch/alimente/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wieviel.ch/alimente/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calcule.ch/pension-alimentaire/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Haustier-Kosten-Rechner -->
   <url>
     <loc>https://wieviel.ch/haustier/</loc>
