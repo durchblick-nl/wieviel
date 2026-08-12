@@ -108,14 +108,14 @@
 
                 <div class="date-inputs">
                     <div class="date-input">
-                        <label>{{ i18n "days.startDate" }}</label>
+                        <label for="diffStart">{{ i18n "days.startDate" }}</label>
                         <div style="display: flex; align-items: center;">
                             <input type="date" id="diffStart" onchange="calculateDifference()">
                             <button type="button" class="today-btn" onclick="setToday('diffStart')">{{ i18n "days.today" }}</button>
                         </div>
                     </div>
                     <div class="date-input">
-                        <label>{{ i18n "days.endDate" }}</label>
+                        <label for="diffEnd">{{ i18n "days.endDate" }}</label>
                         <div style="display: flex; align-items: center;">
                             <input type="date" id="diffEnd" onchange="calculateDifference()">
                             <button type="button" class="today-btn" onclick="setToday('diffEnd')">{{ i18n "days.today" }}</button>
@@ -159,7 +159,7 @@
                 <p style="color: var(--text-color); margin-bottom: 1rem;">{{ i18n "days.addSubDesc" }}</p>
 
                 <div class="date-input single-date">
-                    <label>{{ i18n "days.baseDate" }}</label>
+                    <label for="addStart">{{ i18n "days.baseDate" }}</label>
                     <div style="display: flex; align-items: center;">
                         <input type="date" id="addStart" onchange="calculateAdd()">
                         <button type="button" class="today-btn" onclick="setToday('addStart')">{{ i18n "days.today" }}</button>
@@ -167,12 +167,12 @@
                 </div>
 
                 <div class="number-input">
-                    <select id="addOperation" onchange="calculateAdd()">
+                    <select id="addOperation" aria-label="{{ i18n "days.dateAddSub" }}" onchange="calculateAdd()">
                         <option value="add">+</option>
                         <option value="subtract">−</option>
                     </select>
-                    <input type="number" id="addDays" value="30" min="0" max="99999" onchange="calculateAdd()">
-                    <select id="addUnit" onchange="calculateAdd()">
+                    <input type="number" id="addDays" aria-label="{{ i18n "days.daysLabel" }}" value="30" min="0" max="99999" onchange="calculateAdd()">
+                    <select id="addUnit" aria-label="{{ i18n "days.step2Title" }}" onchange="calculateAdd()">
                         <option value="days">{{ i18n "days.daysLabel" }}</option>
                         <option value="weeks">{{ i18n "days.weeks" }}</option>
                         <option value="months">{{ i18n "days.months" }}</option>
@@ -192,7 +192,7 @@
                 <p style="color: var(--text-color); margin-bottom: 1rem;">{{ i18n "days.findWeekdayDesc" }}</p>
 
                 <div class="date-input single-date">
-                    <label>{{ i18n "days.date" }}</label>
+                    <label for="weekdayDate">{{ i18n "days.date" }}</label>
                     <div style="display: flex; align-items: center;">
                         <input type="date" id="weekdayDate" onchange="calculateWeekday()">
                         <button type="button" class="today-btn" onclick="setToday('weekdayDate')">{{ i18n "days.today" }}</button>
@@ -213,14 +213,14 @@
 
                 <div class="date-inputs">
                     <div class="date-input">
-                        <label>{{ i18n "days.startDate" }}</label>
+                        <label for="workStart">{{ i18n "days.startDate" }}</label>
                         <div style="display: flex; align-items: center;">
                             <input type="date" id="workStart" onchange="calculateWorkdays()">
                             <button type="button" class="today-btn" onclick="setToday('workStart')">{{ i18n "days.today" }}</button>
                         </div>
                     </div>
                     <div class="date-input">
-                        <label>{{ i18n "days.endDate" }}</label>
+                        <label for="workEnd">{{ i18n "days.endDate" }}</label>
                         <div style="display: flex; align-items: center;">
                             <input type="date" id="workEnd" onchange="calculateWorkdays()">
                             <button type="button" class="today-btn" onclick="setToday('workEnd')">{{ i18n "days.today" }}</button>

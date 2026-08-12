@@ -47,7 +47,7 @@
             <div class="smoking-details">
                 <h4>{{ i18n "smoking.cigarettesPerDay" }}</h4>
                 <small>{{ i18n "smoking.avgConsumption" }}</small>
-                <input type="range" class="smoking-slider" id="cigarettesPerDay" min="1" max="60" value="20" oninput="calculate()">
+                <input type="range" class="smoking-slider" id="cigarettesPerDay" aria-label="{{ i18n "smoking.cigarettesPerDay" }}" min="1" max="60" value="20" oninput="calculate()">
             </div>
             <div class="smoking-value" id="cigarettesValue">20 {{ i18n "smoking.pieces" }}</div>
         </div>
@@ -57,7 +57,7 @@
             <div class="smoking-details">
                 <h4>{{ i18n "smoking.pricePerPack" }}</h4>
                 <small>{{ i18n "smoking.avgPrice" }}</small>
-                <input type="range" class="smoking-slider" id="pricePerPack" min="7" max="15" value="9.5" step="0.1" oninput="calculate()">
+                <input type="range" class="smoking-slider" id="pricePerPack" aria-label="{{ i18n "smoking.pricePerPack" }}" min="7" max="15" value="9.5" step="0.1" oninput="calculate()">
             </div>
             <div class="smoking-value" id="priceValue">CHF 9.50</div>
         </div>
@@ -67,7 +67,7 @@
             <div class="smoking-details">
                 <h4>{{ i18n "smoking.yearsSmoked" }}</h4>
                 <small>{{ i18n "smoking.yearsHint" }}</small>
-                <input type="range" class="smoking-slider" id="yearsSmoked" min="0" max="50" value="10" oninput="calculate()">
+                <input type="range" class="smoking-slider" id="yearsSmoked" aria-label="{{ i18n "smoking.yearsSmoked" }}" min="0" max="50" value="10" oninput="calculate()">
             </div>
             <div class="smoking-value" id="yearsValue">10 {{ i18n "smoking.years" }}</div>
         </div>

@@ -93,7 +93,7 @@
                     <span>{{ i18n "parttime.currentPensum" }}</span>
                     <span class="slider-value" id="currentPensumDisplay">100%</span>
                 </div>
-                <input type="range" id="currentPensum" min="20" max="100" step="10" value="100" oninput="calculate()">
+                <input type="range" id="currentPensum" aria-label="{{ i18n "parttime.currentPensum" }}" min="20" max="100" step="10" value="100" oninput="calculate()">
             </div>
 
             <div class="slider-container">
@@ -101,7 +101,7 @@
                     <span>{{ i18n "parttime.newPensum" }}</span>
                     <span class="slider-value" id="newPensumDisplay">60%</span>
                 </div>
-                <input type="range" id="newPensum" min="20" max="100" step="10" value="60" oninput="calculate()">
+                <input type="range" id="newPensum" aria-label="{{ i18n "parttime.newPensum" }}" min="20" max="100" step="10" value="60" oninput="calculate()">
             </div>
 
             <div class="slider-container">
@@ -109,7 +109,7 @@
                     <span>{{ i18n "parttime.duration" }}</span>
                     <span class="slider-value" id="durationDisplay">10 {{ i18n "parttime.years" }}</span>
                 </div>
-                <input type="range" id="duration" min="1" max="30" step="1" value="10" oninput="calculate()">
+                <input type="range" id="duration" aria-label="{{ i18n "parttime.duration" }}" min="1" max="30" step="1" value="10" oninput="calculate()">
             </div>
         </div>
 

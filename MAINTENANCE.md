@@ -2,7 +2,7 @@
 
 Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müssen.
 
-**Letzte Aktualisierung:** 31. Dezember 2025
+**Letzte Aktualisierung:** 12. August 2026
 
 ---
 
@@ -42,8 +42,7 @@ Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müs
 ### Hilfreiche Links
 
 - [Penso Änderungen](https://www.penso.ch/rubriken/sozialversicherungen/)
-- [Smolio Vorsorgekennzahlen](https://www.smolio.ch/wissen/)
-- [AHV/IV Merkblätter](https://www.ahv-iv.ch/de/Merkblaetter-Formulare)
+- [AHV/IV Merkblätter](https://www.ahv-iv.ch/de/Merkbl%C3%A4tter)
 
 ---
 
@@ -205,12 +204,12 @@ Falls Claude Code eine neue BFS-Excel-Datei erhält:
 {
   "basePeriod": "Dezember 2020",
   "baseValue": 100,
-  "lastUpdated": "2025-11",
+  "lastUpdated": "2026-07",
   "source": "BFS - Bundesamt für Statistik",
   "sourceUrl": "https://www.bfs.admin.ch/asset/de/cc-d-05.02.08",
   "monthly": {
     "1921": { "01": 20.9, "02": 20.7, ... },
-    "2025": { "01": 106.8, ..., "11": 107.0 }
+    "2026": { "01": 106.9, ..., "07": 108.2 }
   }
 }
 ```

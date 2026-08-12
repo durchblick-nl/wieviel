@@ -51,10 +51,10 @@
                 <label>{{ i18n "purchasing.startDate" }}</label>
                 <div class="date-row">
                     <div class="form-group" style="flex: 1;">
-                        <select id="startMonth" onchange="calculate()"></select>
+                        <select id="startMonth" aria-label="{{ i18n "purchasing.startDate" }}: {{ i18n "purchasing.month" }}" onchange="calculate()"></select>
                     </div>
                     <div class="form-group" style="flex: 1;">
-                        <select id="startYear" onchange="calculate()"></select>
+                        <select id="startYear" aria-label="{{ i18n "purchasing.startDate" }}: {{ i18n "purchasing.year" }}" onchange="calculate()"></select>
                     </div>
                 </div>
             </div>
@@ -63,10 +63,10 @@
                 <label>{{ i18n "purchasing.endDate" }}</label>
                 <div class="date-row">
                     <div class="form-group" style="flex: 1;">
-                        <select id="endMonth" onchange="calculate()"></select>
+                        <select id="endMonth" aria-label="{{ i18n "purchasing.endDate" }}: {{ i18n "purchasing.month" }}" onchange="calculate()"></select>
                     </div>
                     <div class="form-group" style="flex: 1;">
-                        <select id="endYear" onchange="calculate()"></select>
+                        <select id="endYear" aria-label="{{ i18n "purchasing.endDate" }}: {{ i18n "purchasing.year" }}" onchange="calculate()"></select>
                     </div>
                     <button type="button" class="today-btn" onclick="setToday()">
                         <i class="fas fa-calendar-check"></i> {{ i18n "purchasing.today" }}
@@ -103,11 +103,11 @@
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.endDateLabel" }}</span>
-                    <span class="value" id="endDateDisplay">November 2025</span>
+                    <span class="value" id="endDateDisplay">Juli 2026</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.indexEnd" }}</span>
-                    <span class="value" id="indexEndDisplay">107.0</span>
+                    <span class="value" id="indexEndDisplay">108.2</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.change" }}</span>

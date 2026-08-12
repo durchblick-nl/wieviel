@@ -63,7 +63,7 @@
             <p class="info-text" id="modeDescription">{{ i18n "sleep.whenShouldYouSleep" }}</p>
 
             <div class="time-input-group">
-                <input type="time" id="targetTime" value="07:00" onchange="calculate()">
+                <input type="time" id="targetTime" aria-label="{{ i18n "sleep.step2Title" }}" value="07:00" onchange="calculate()">
                 <button type="button" class="now-btn" onclick="setNow()" id="nowBtn" style="display: none;">
                     <i class="fas fa-clock"></i> {{ i18n "sleep.now" }}
                 </button>

@@ -84,7 +84,7 @@
                 <div class="form-group">
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label class="required">{{ i18n "bac.weight" }}</label>
+                            <label for="weight" class="required">{{ i18n "bac.weight" }}</label>
                             <span class="slider-value" id="weightValue">75 kg</span>
                         </div>
                         <input type="range" id="weight" min="40" max="150" value="75" oninput="updateWeight(this.value)">
@@ -94,7 +94,7 @@
                 <div class="form-group">
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label class="required">{{ i18n "bac.height" }}</label>
+                            <label for="height" class="required">{{ i18n "bac.height" }}</label>
                             <span class="slider-value" id="heightValue">175 cm</span>
                         </div>
                         <input type="range" id="height" min="140" max="210" value="175" oninput="updateHeight(this.value)">
@@ -104,7 +104,7 @@
                 <div class="form-group">
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label class="required">{{ i18n "bac.age" }}</label>
+                            <label for="age" class="required">{{ i18n "bac.age" }}</label>
                             <span class="slider-value" id="ageValue">30 {{ i18n "bac.years" }}</span>
                         </div>
                         <input type="range" id="age" min="18" max="80" value="30" oninput="updateAge(this.value)">

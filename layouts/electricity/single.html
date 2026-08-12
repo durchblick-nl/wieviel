@@ -47,7 +47,7 @@
         <h3 style="margin-bottom: 1rem;"><i class="fas fa-map-marker-alt"></i> {{ i18n "electricity.yourMunicipality" }}</h3>
 
         <div class="municipality-search" id="searchContainer">
-            <input type="text" id="municipalityInput" placeholder="{{ i18n "electricity.searchPlaceholder" }}" autocomplete="off">
+            <input type="text" id="municipalityInput" placeholder="{{ i18n "electricity.searchPlaceholder" }}" aria-label="{{ i18n "electricity.yourMunicipality" }}" autocomplete="off">
             <i class="fas fa-search search-icon"></i>
             <div class="municipality-results" id="municipalityResults"></div>
         </div>
@@ -68,11 +68,11 @@
             <div class="input-with-slider">
                 <label for="priceSlider"><i class="fas fa-tags"></i> {{ i18n "electricity.manualEntry" }}</label>
                 <div class="slider-value">
-                    <span class="value"><span id="priceValue">28</span> {{ i18n "electricity.rpPerKwh" }}</span>
+                    <span class="value"><span id="priceValue">{{ hugo.Data.site.electricity.medianPrice }}</span> {{ i18n "electricity.rpPerKwh" }}</span>
                 </div>
-                <input type="range" id="priceSlider" min="10" max="50" value="28" step="0.1">
+                <input type="range" id="priceSlider" min="10" max="50" value="{{ hugo.Data.site.electricity.medianPrice }}" step="0.1">
                 <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-color); opacity: 0.6;">
-                    <span>9 {{ i18n "electricity.rp" }}</span>
+                    <span>10 {{ i18n "electricity.rp" }}</span>
                     <span>50 {{ i18n "electricity.rp" }}</span>
                 </div>
             </div>
@@ -114,8 +114,8 @@
     <div class="custom-device">
         <h4><i class="fas fa-plus-circle"></i> {{ i18n "electricity.addCustomDevice" }}</h4>
         <div class="custom-inputs">
-            <input type="number" id="customWatts" placeholder="{{ i18n "electricity.watts" }}">
-            <input type="number" id="customHours" placeholder="{{ i18n "electricity.hoursPerYear" }}">
+            <input type="number" id="customWatts" placeholder="{{ i18n "electricity.watts" }}" aria-label="{{ i18n "electricity.watts" }}">
+            <input type="number" id="customHours" placeholder="{{ i18n "electricity.hoursPerYear" }}" aria-label="{{ i18n "electricity.hoursPerYear" }}">
         </div>
         <div id="customResult" style="margin-top: 0.75rem; font-weight: 600; color: var(--primary-color);"></div>
     </div>
@@ -338,7 +338,7 @@
         smarthome: {{ i18n "electricity.devicesSmarthome" | safeJS }}
     };
 
-    let pricePerKwh = 0.29; // CHF per kWh (default)
+    let pricePerKwh = {{ hugo.Data.site.electricity.medianPrice }} / 100; // CHF per kWh (default)
     let selectedMunicipalityName = null;
     let municipalityCache = [];
     let searchTimeout = null;
@@ -516,7 +516,7 @@
         container.innerHTML = deviceList.map(device => `
             <div class="device-item ${device.checked ? 'active' : ''}" id="item-${device.id}">
                 <div class="device-toggle">
-                    <input type="checkbox" id="${device.id}" ${device.checked ? 'checked' : ''} onchange="toggleDevice('${device.id}')">
+                    <input type="checkbox" id="${device.id}" aria-label="${device.name}" ${device.checked ? 'checked' : ''} onchange="toggleDevice('${device.id}')">
                 </div>
                 <div class="device-info">
                     <div class="device-name">${device.icon} ${device.name}</div>

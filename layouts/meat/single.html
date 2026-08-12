@@ -76,7 +76,7 @@
                 <div class="meat-details">
                     <h4>{{ i18n "meat.beef" }}</h4>
                     <small>{{ i18n "meat.beefExamples" }}</small>
-                    <input type="range" class="meat-slider" id="beef" min="0" max="1000" value="210" oninput="calculate()">
+                    <input type="range" class="meat-slider" id="beef" aria-label="{{ i18n "meat.beef" }}" min="0" max="1000" value="210" oninput="calculate()">
                     <div class="swiss-average">{{ i18n "meat.chAverage" }}: 210g/{{ i18n "meat.week" }}</div>
                 </div>
                 <div class="meat-value" id="beefValue">210g</div>
@@ -87,7 +87,7 @@
                 <div class="meat-details">
                     <h4>{{ i18n "meat.pork" }}</h4>
                     <small>{{ i18n "meat.porkExamples" }}</small>
-                    <input type="range" class="meat-slider" id="pork" min="0" max="1000" value="370" oninput="calculate()">
+                    <input type="range" class="meat-slider" id="pork" aria-label="{{ i18n "meat.pork" }}" min="0" max="1000" value="370" oninput="calculate()">
                     <div class="swiss-average">{{ i18n "meat.chAverage" }}: 370g/{{ i18n "meat.week" }}</div>
                 </div>
                 <div class="meat-value" id="porkValue">370g</div>
@@ -98,7 +98,7 @@
                 <div class="meat-details">
                     <h4>{{ i18n "meat.poultry" }}</h4>
                     <small>{{ i18n "meat.poultryExamples" }}</small>
-                    <input type="range" class="meat-slider" id="poultry" min="0" max="1000" value="305" oninput="calculate()">
+                    <input type="range" class="meat-slider" id="poultry" aria-label="{{ i18n "meat.poultry" }}" min="0" max="1000" value="305" oninput="calculate()">
                     <div class="swiss-average">{{ i18n "meat.chAverage" }}: 305g/{{ i18n "meat.week" }}</div>
                 </div>
                 <div class="meat-value" id="poultryValue">305g</div>

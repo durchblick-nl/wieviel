@@ -131,7 +131,7 @@ mortgage:
 # Quelle: ElCom / LINDAS
 # -----------------------------------------------------------------------------
 electricity:
-  medianPrice: 28        # Rp./kWh (Median Schweiz)
+  medianPrice: 27.7      # Rp./kWh (Median Schweiz)
   minPrice: 10           # Rp./kWh (günstigste Gemeinde)
   maxPrice: 44           # Rp./kWh (teuerste Gemeinde)
 
@@ -196,8 +196,8 @@ hiking:
 dataStatus:
   # Sozialversicherungen (AHV, BVG, 3a) - jährlich im November
   socialInsurance:
-    lastVerifiedDe: "Dezember 2025"
-    lastVerifiedFr: "décembre 2025"
+    lastVerifiedDe: "August 2026"
+    lastVerifiedFr: "août 2026"
     nextCheckDe: "November 2026"
     nextCheckFr: "novembre 2026"
 
@@ -210,14 +210,14 @@ dataStatus:
 
   # Strompreise - jährlich im September
   electricity:
-    lastVerifiedDe: "Dezember 2025"
-    lastVerifiedFr: "décembre 2025"
+    lastVerifiedDe: "August 2026"
+    lastVerifiedFr: "août 2026"
     nextCheckDe: "September 2026"
     nextCheckFr: "septembre 2026"
 
   # LIK (Kaufkraftrechner) - monatlich
   lik:
-    lastVerifiedDe: "Juni 2026"
-    lastVerifiedFr: "juin 2026"
-    nextCheckDe: "Juli 2026"
-    nextCheckFr: "juillet 2026"
+    lastVerifiedDe: "Juli 2026"
+    lastVerifiedFr: "juillet 2026"
+    nextCheckDe: "August 2026"
+    nextCheckFr: "août 2026"
