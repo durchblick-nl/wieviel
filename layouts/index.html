@@ -7,22 +7,28 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="description" content="{{ .Params.description }}">
     <meta name="keywords" content="{{ .Params.keywords }}">
-    <link rel="canonical" href="{{ .Permalink }}">
+    {{- $siteDomain := .Site.Language.Params.domain | default "wieviel.ch" }}
+    <link rel="canonical" href="https://{{ $siteDomain }}/">
 
     {{- /* Hreflang alternates */ -}}
     {{- if .Translations }}
-    <link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="{{ .Permalink }}">
+    <link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="https://{{ $siteDomain }}/">
     {{- range .Translations }}
-    <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+    {{- $transDomain := .Language.Params.domain | default "wieviel.ch" }}
+    <link rel="alternate" hreflang="{{ .Language.Lang }}" href="https://{{ $transDomain }}/">
     {{- end }}
+    <link rel="alternate" hreflang="x-default" href="https://wieviel.ch/">
     {{- end }}
 
     <meta property="og:title" content="{{ .Params.ogTitle | default .Title }}">
     <meta property="og:description" content="{{ .Params.ogDescription | default .Params.description }}">
-    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:url" content="https://{{ $siteDomain }}/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="{{ .Site.Language.Locale }}">
     <meta property="og:site_name" content="{{ .Site.Language.Params.domain }}">
+    {{- with .Params.lastmod }}
+    <meta property="og:updated_time" content="{{ . | time.Format "2006-01-02" }}">
+    {{- end }}
     <meta name="twitter:card" content="summary">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

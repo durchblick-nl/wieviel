@@ -13,6 +13,12 @@
 
 {{- $siteDomain := .Site.Language.Params.domain | default "wieviel.ch" }}
 {{- $cleanPath := .RelPermalink | strings.TrimPrefix (printf "/%s" .Site.Language.Lang) }}
+{{- $defaultPath := $cleanPath }}
+{{- range .Translations }}
+{{- if eq .Language.Lang "de" }}
+{{- $defaultPath = .RelPermalink | strings.TrimPrefix (printf "/%s" .Language.Lang) }}
+{{- end }}
+{{- end }}
 <link rel="canonical" href="https://{{ $siteDomain }}{{ $cleanPath }}">
 
 {{- /* Hreflang alternates with correct domains (without language prefix) */ -}}
@@ -23,6 +29,11 @@
 {{- $transPath := .RelPermalink | strings.TrimPrefix (printf "/%s" .Language.Lang) }}
 <link rel="alternate" hreflang="{{ .Language.Lang }}" href="https://{{ $transDomain }}{{ $transPath }}">
 {{- end }}
+<link rel="alternate" hreflang="x-default" href="https://wieviel.ch{{ $defaultPath }}">
+{{- end }}
+
+{{- with .Params.lastmod }}
+<meta property="og:updated_time" content="{{ . | time.Format "2006-01-02" }}">
 {{- end }}
 
 {{- /* Open Graph */ -}}
@@ -36,6 +47,7 @@
 <meta property="og:image" content="{{ . }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ $.Params.ogTitle | default $.Title }}">
 {{- end }}
 
 {{- /* Twitter Card */ -}}
@@ -44,6 +56,7 @@
 <meta name="twitter:description" content="{{ .Params.ogDescription | default .Params.description }}">
 {{- with .Params.ogImage }}
 <meta name="twitter:image" content="{{ . }}">
+<meta name="twitter:image:alt" content="{{ $.Params.ogTitle | default $.Title }}">
 {{- end }}
 
 {{- /* JSON-LD structured data */ -}}
@@ -71,7 +84,11 @@
     "name": "Durchblick Consultancy BV",
     "url": "https://durchblick.nl"
   },
-  "inLanguage": "{{ .Site.Language.Lang }}"
+  "inLanguage": "{{ .Site.Language.Lang }}"{{ with .Params.ogImage }},
+  "image": "{{ . }}"{{ end }}{{ with .Params.datePublished }},
+  "datePublished": "{{ . }}"{{ end }}{{ with .Params.lastmod }},
+  "dateModified": "{{ . | time.Format "2006-01-02" }}"{{ end }},
+  "isAccessibleForFree": true
 }
 </script>
 {{- end }}
