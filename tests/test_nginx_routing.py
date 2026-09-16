@@ -31,10 +31,18 @@ class NginxRoutingTest(unittest.TestCase):
         config = config.replace('listen 80', f'listen 127.0.0.1:{cls.port}')
         config = config.replace('/usr/share/nginx/html', str(public))
         config = config.replace('/etc/nginx/mime.types', os.environ.get('NGINX_MIME_TYPES', '/etc/nginx/mime.types'))
-        config = 'daemon off;\n' + config
+        # Distro packages use absolute /run and /var/lib defaults, unlike
+        # source builds. Keep every runtime file writable without root.
+        config = f'daemon off;\npid {directory}/nginx.pid;\nerror_log stderr;\n' + config
+        runtime_paths = '\n    access_log off;\n'
+        for kind in ['client_body', 'proxy', 'fastcgi', 'uwsgi', 'scgi']:
+            runtime_paths += f'    {kind}_temp_path {directory}/{kind}_temp;\n'
+        config = config.replace('http {', 'http {' + runtime_paths, 1)
         (directory / 'nginx.conf').write_text(config)
-        args = [os.environ['NGINX_BIN'], '-p', str(directory) + '/', '-c', str(directory / 'nginx.conf')]
-        subprocess.run(args + ['-t'], check=True, capture_output=True)
+        args = [os.environ['NGINX_BIN'], '-e', 'stderr', '-p', str(directory) + '/', '-c', str(directory / 'nginx.conf')]
+        validation = subprocess.run(args + ['-t'], capture_output=True, text=True)
+        if validation.returncode:
+            raise RuntimeError(validation.stderr)
         cls.process = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
         for _ in range(50):
             try:
@@ -82,12 +90,13 @@ class NginxRoutingTest(unittest.TestCase):
                     self.assertIn(home, body)
                     self.assertIn('class="not-found-home" href="/"', body)
                     self.assertIn('content="noindex, follow"', body)
+                    self.assertRegex(body, r'href="/css/styles.css\?v=[0-9a-f]{64}"')
                     self.assertNotIn('rel="canonical"', body)
                     self.assertNotIn('application/ld+json', body)
 
     def test_homepages_calculators_and_shared_assets_still_load(self):
         for host, calculator in [('wieviel.ch', '/strom/'), ('calcule.ch', '/electricite/')]:
-            for path in ['/', calculator, '/css/styles.css', '/js/rent-calculator.js']:
+            for path in ['/', calculator, '/css/styles.css', '/css/styles.css?v=cache-version', '/js/rent-calculator.js']:
                 with self.subTest(host=host, path=path):
                     self.assertEqual(self.request(host, path)[0], 200)
 
