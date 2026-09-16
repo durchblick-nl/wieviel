@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ .Title }}</title>
+<title>{{ if eq .Kind "404" }}404 · {{ i18n "notFound.title" }} | {{ .Site.Language.Params.domain }}{{ else }}{{ .Title }}{{ end }}</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 {{- with .Params.description }}
@@ -11,6 +11,9 @@
 <meta name="keywords" content="{{ . }}">
 {{- end }}
 
+{{- if eq .Kind "404" }}
+<meta name="robots" content="noindex, follow">
+{{- else }}
 {{- $siteDomain := .Site.Language.Params.domain | default "wieviel.ch" }}
 {{- $cleanPath := .RelPermalink | strings.TrimPrefix (printf "/%s" .Site.Language.Lang) }}
 {{- $defaultPath := $cleanPath }}
@@ -91,6 +94,8 @@
   "isAccessibleForFree": true
 }
 </script>
+{{- end }}
+
 {{- end }}
 
 {{- /* Fonts */ -}}

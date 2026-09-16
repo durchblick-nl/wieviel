@@ -46,6 +46,18 @@ export default {
         const path = url.pathname;
         const isFrenchDomain = host.includes('calcule');
         const hasWww = host.startsWith('www.');
+        const langPrefix = isFrenchDomain ? '/fr' : '/de';
+
+        // Use the same Hugo-rendered, localized error page as the nginx host.
+        const notFound = async () => {
+            const errorUrl = new URL(`${langPrefix}/404.html`, url.origin);
+            const response = await env.ASSETS.fetch(new Request(errorUrl, request));
+            return new Response(request.method === 'HEAD' ? null : response.body, {
+                status: 404,
+                headers: response.headers
+            });
+        };
+        if (path === '/404.html') return notFound();
 
         // Helper: get target host preserving www prefix
         const getGermanHost = () => hasWww ? 'www.wieviel.ch' : 'wieviel.ch';
@@ -55,9 +67,9 @@ export default {
         // Static assets: pass through directly (no prefix needed)
         // =================================================================
         if (path.startsWith('/css/') || path.startsWith('/og/') || path.startsWith('/data/') ||
-            path === '/favicon.svg' || path === '/_redirects' ||
-            path === '/404.html') {
-            return env.ASSETS.fetch(request);
+            path.startsWith('/js/') || path === '/favicon.svg' || path === '/_redirects') {
+            const response = await env.ASSETS.fetch(request);
+            return response.status === 404 ? notFound() : response;
         }
 
         // =================================================================
@@ -133,7 +145,6 @@ export default {
         // calcule.ch/salaire/ → serve /fr/salaire/index.html
         // wieviel.ch/lohn/ → serve /de/lohn/index.html
         // =================================================================
-        const langPrefix = isFrenchDomain ? '/fr' : '/de';
         let assetPath = langPrefix + path;
 
         // If path doesn't end with / or a file extension, add /
@@ -142,6 +153,7 @@ export default {
         }
 
         const assetUrl = new URL(assetPath, url.origin);
-        return env.ASSETS.fetch(new Request(assetUrl, request));
+        const response = await env.ASSETS.fetch(new Request(assetUrl, request));
+        return response.status === 404 ? notFound() : response;
     }
 };

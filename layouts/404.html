@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{ partial "head.html" . }}
+</head>
+<body class="not-found-page">
+    <div class="container not-found-container">
+        {{ partial "header.html" . }}
+        <main class="calculator-card not-found-card" aria-labelledby="not-found-title">
+            <a class="not-found-brand" href="/">{{ .Site.Language.Params.domain }}</a>
+            <p class="not-found-code" aria-hidden="true">404</p>
+            <h1 id="not-found-title">{{ i18n "notFound.title" }}</h1>
+            <p class="not-found-message">{{ i18n "notFound.message" }}</p>
+            <a class="not-found-home" href="/">
+                <i class="fas fa-house" aria-hidden="true"></i>
+                {{ i18n "notFound.home" }}
+            </a>
+        </main>
+    </div>
+    {{ partial "footer.html" . }}
+    {{ partial "darkmode.html" . }}
+</body>
+</html>

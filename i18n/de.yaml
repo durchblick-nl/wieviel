@@ -1030,6 +1030,9 @@ officialSources: "Offizielle Quellen"
 "electricity.published": "ElCom-Veröffentlichung"
 
 # Validation and dataset-derived status
+"notFound.title": "Seite nicht gefunden"
+"notFound.message": "Diese Seite gibt es nicht oder sie wurde verschoben. Auf der Startseite findest du alle Rechner."
+"notFound.home": "Zur Startseite"
 "iban.error.country": "Nur Schweizer (CH) oder Liechtensteiner (LI) IBANs werden unterstützt."
 "iban.error.length": "IBAN ist zu lang."
 "iban.error.checksum": "Ungültige IBAN (Prüfsumme falsch)."

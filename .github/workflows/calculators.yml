@@ -27,3 +27,8 @@ jobs:
       - run: python3 -m unittest discover -s tests -p 'test_*.py'
       - run: hugo --environment production
       - run: npm run test:browser
+      - name: Check production nginx routing and localized 404 responses
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nginx
+          NGINX_BIN=/usr/sbin/nginx python3 tests/test_nginx_routing.py

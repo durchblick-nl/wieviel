@@ -316,3 +316,11 @@ Die Browsertests starten selbst einen lokalen HTTP-Server für `public/`. Altern
 Abdeckung: Datenbox auf allen 46 Sprachseiten, Mietzins-Tabelle und Mehrschritt-Senkung in DE/FR, fehlende LIK-Monate und Wiederherstellung, HTTP-Ausfall, übersetzte IBAN-Fehler und Bankzuordnung, Stromtarifwechsel/manuelle Preise/veraltete Antworten/fehlender Tarif. Importtests sichern Nachfolgeverweise, Metadaten und Erhalt des alten Datenbestands bei fehlerhaften SIX-Antworten. GitHub Actions führt diese Prüfungen bei Push und Pull Request aus.
 
 Mietzins: Die gemeinsame Funktion `static/js/rent-calculator.js` verwendet für die angebotenen Zinssätze unter 5 % die umgekehrte Gesamterhöhung. Bei n Viertelprozent-Schritten lautet die Senkung `100 × 3n / (100 + 3n)`, nicht `n × 2,91`. Prozentsätze werden wie in der [Referenztabelle](https://www.mietrecht.ch/fileadmin/files/Hypothekarzins/ueberwaelzungssaetze.pdf) auf zwei Dezimalstellen gerundet; Geldbeträge verwenden denselben Prozentsatz wie die Anzeige. Beispiel: 1,75 → 1,25 % ergibt 5,66 %, bei CHF 1’500 somit CHF 84.90.
+
+## 404-Seiten
+
+`layouts/404.html` erzeugt `de/404.html` und `fr/404.html` mit gemeinsamem Design, Dunkelmodus und Homepage-Link. Die Sprache steht bereits im HTML und benötigt kein JavaScript. Die Fehlerseiten enthalten `noindex, follow` und keine Canonical-/WebApplication-Metadaten.
+
+nginx bindet diese Dateien je Domain über `error_page 404 /404.html` und eine interne Location ein. Die angefragte URL und der HTTP-Status 404 bleiben erhalten, auch für `/de/` auf wieviel.ch bzw. `/fr/` auf calcule.ch. Der frühere Cloudflare-Worker verwendet dieselben Dateien. Gemeinsame JavaScript-Dateien werden wie CSS direkt unter `/js/` ausgeliefert.
+
+Nach dem Hugo-Build prüft `NGINX_BIN=/pfad/zu/nginx python3 tests/test_nginx_routing.py` echte HTTP-Antworten, Sprachwahl, Homepage-/Asset-Routen und bestehende Weiterleitungen. `BUILD_DIR` und `NGINX_MIME_TYPES` erlauben abweichende lokale Pfade. Die CI führt diesen Test mit nginx aus; Worker-Tests laufen mit `npm test`.

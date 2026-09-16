@@ -2636,3 +2636,18 @@
         .data-status p { margin: 0.35rem 0; }
         .data-status-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.8rem; }
         .data-status a { color: var(--text-color); text-decoration: underline; }
+
+/* Shared 404 page: same header, card, typography and footer as the calculators. */
+.not-found-page { min-height: 100vh; display: flex; flex-direction: column; }
+.not-found-container { width: 100%; flex: 1; }
+.not-found-card { text-align: center; padding: clamp(2rem, 6vw, 4rem) 1.5rem; }
+.not-found-brand { color: var(--primary-color); font: 700 1.5rem 'Economica', Arial, sans-serif; text-decoration: none; }
+.not-found-code { color: var(--primary-color); font: 700 clamp(5rem, 15vw, 8rem)/1 'Economica', Arial, sans-serif; margin: 1.5rem 0 1rem; }
+.not-found-card h1 { margin-bottom: 1rem; }
+.not-found-message { max-width: 32rem; margin: 0 auto 1.75rem; }
+.not-found-home, .not-found-home:visited { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.85rem 1.5rem; border-radius: 8px; background: var(--primary-dark); color: white; font-weight: 600; text-decoration: none; opacity: 1; }
+.not-found-home:hover { background: var(--primary-color); color: white; }
+.not-found-home:focus-visible, .not-found-brand:focus-visible { outline: 3px solid var(--accent-color); outline-offset: 4px; }
+[data-theme="dark"] .not-found-home { background: #3f606f; }
+[data-theme="dark"] .not-found-home:hover { background: #2d4a56; }
+.not-found-page .site-footer { margin-top: 0; }

@@ -1030,6 +1030,9 @@ officialSources: "Sources officielles"
 "electricity.published": "Publication ElCom"
 
 # Validation and dataset-derived status
+"notFound.title": "Page introuvable"
+"notFound.message": "Cette page n’existe pas ou a été déplacée. Tu trouveras tous les calculateurs sur la page d’accueil."
+"notFound.home": "Retour à l’accueil"
 "iban.error.country": "Seuls les IBAN suisses (CH) ou liechtensteinois (LI) sont pris en charge."
 "iban.error.length": "L’IBAN est trop long."
 "iban.error.checksum": "IBAN invalide (clé de contrôle incorrecte)."
