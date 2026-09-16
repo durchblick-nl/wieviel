@@ -83,7 +83,7 @@
         <div id="results">
             <div class="result-box">
                 <div class="label">{{ i18n "purchasing.result" }}</div>
-                <div class="total" id="mainResult">CHF 1'000</div>
+                <div class="total" id="mainResult">—</div>
                 <div class="sub" id="resultSub">{{ i18n "purchasing.resultToday" }}</div>
             </div>
 
@@ -91,31 +91,31 @@
                 <h3><i class="fas fa-calculator"></i> {{ i18n "purchasing.calculation" }}</h3>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.originalAmount" }}</span>
-                    <span class="value" id="originalDisplay">CHF 1'000</span>
+                    <span class="value" id="originalDisplay">—</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.startDateLabel" }}</span>
-                    <span class="value" id="startDateDisplay">Januar 1990</span>
+                    <span class="value" id="startDateDisplay">—</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.indexStart" }}</span>
-                    <span class="value" id="indexStartDisplay">58.4</span>
+                    <span class="value" id="indexStartDisplay">—</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.endDateLabel" }}</span>
-                    <span class="value" id="endDateDisplay">Juli 2026</span>
+                    <span class="value" id="endDateDisplay">—</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.indexEnd" }}</span>
-                    <span class="value" id="indexEndDisplay">108.2</span>
+                    <span class="value" id="indexEndDisplay">—</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.change" }}</span>
-                    <span class="value highlight" id="changeDisplay">+83.2%</span>
+                    <span class="value highlight" id="changeDisplay">—</span>
                 </div>
                 <div class="breakdown-row total">
                     <span class="label">{{ i18n "purchasing.equivalentAmount" }}</span>
-                    <span class="value" id="equivalentDisplay">CHF 1'832</span>
+                    <span class="value" id="equivalentDisplay">—</span>
                 </div>
             </div>
 
@@ -123,23 +123,23 @@
                 <h3><i class="fas fa-chart-bar"></i> {{ i18n "purchasing.inflationDetails" }}</h3>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.totalInflation" }}</span>
-                    <span class="value highlight" id="totalInflationDisplay">+83.2%</span>
+                    <span class="value highlight" id="totalInflationDisplay">—</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.annualInflation" }}</span>
-                    <span class="value" id="annualInflationDisplay">~1.8%</span>
+                    <span class="value" id="annualInflationDisplay">—</span>
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "purchasing.timePeriod" }}</span>
-                    <span class="value" id="timePeriodDisplay">35 {{ i18n "purchasing.years" }}</span>
+                    <span class="value" id="timePeriodDisplay">—</span>
                 </div>
             </div>
 
             <div class="share-buttons">
-                <button class="share-btn primary" onclick="shareResult()">
+                <button disabled class="share-btn primary" onclick="shareResult()">
                     <i class="fas fa-share-alt"></i> {{ i18n "share" }}
                 </button>
-                <button class="share-btn copy" onclick="copyResult()" id="copyBtn">
+                <button disabled class="share-btn copy" onclick="copyResult()" id="copyBtn">
                     <i class="fas fa-copy"></i> <span id="copyBtnText">{{ i18n "copy" }}</span>
                 </button>
             </div>
@@ -158,8 +158,6 @@
             </div>
         </div>
     </div>
-
-    {{- partial "data-status.html" (dict "statusType" "lik") -}}
     {{ partial "footer.html" . }}
 
     <style>
@@ -287,11 +285,13 @@
         // Load LIK data
         async function loadLikData() {
             try {
-                const response = await fetch('/data/lik_index.json');
+                const response = await fetch('/data/lik_index.json?v={{ readFile "static/data/lik_index.json" | sha256 }}');
+                if (!response.ok) throw new Error(`LIK HTTP ${response.status}`);
                 likData = await response.json();
                 initializeSelects();
                 calculate();
             } catch (error) {
+                clearResult({{ i18n "purchasing.loadError" }});
                 console.error('Error loading LIK data:', error);
             }
         }
@@ -357,8 +357,27 @@
             return yearData[month] || null;
         }
 
+        let hasResult = false;
+
+        function clearResult(message) {
+            hasResult = false;
+            document.querySelectorAll('#results .value, #mainResult').forEach(el => { el.textContent = '—'; });
+            document.getElementById('resultSub').textContent = message;
+            document.querySelectorAll('.share-buttons button').forEach(button => { button.disabled = true; });
+        }
+
+        function updateMonthAvailability() {
+            for (const prefix of ['start', 'end']) {
+                const year = document.getElementById(prefix + 'Year').value;
+                for (const option of document.getElementById(prefix + 'Month').options) {
+                    option.disabled = !getIndexValue(year, option.value);
+                }
+            }
+        }
+
         function calculate() {
             if (!likData) return;
+            updateMonthAvailability();
 
             const amount = parseFloat(document.getElementById('amount').value) || 0;
             const startMonth = document.getElementById('startMonth').value;
@@ -370,9 +389,12 @@
             const indexEnd = getIndexValue(endYear, endMonth);
 
             if (!indexStart || !indexEnd) {
-                document.getElementById('mainResult').textContent = '—';
+                clearResult({{ i18n "purchasing.missingMonth" }});
                 return;
             }
+
+            hasResult = true;
+            document.querySelectorAll('.share-buttons button').forEach(button => { button.disabled = false; });
 
             // Calculate purchasing power equivalent
             const equivalent = amount * (indexEnd / indexStart);
@@ -440,6 +462,7 @@
         }
 
         function shareResult() {
+            if (!hasResult) return;
             const shareData = { title: document.title, text: getShareText(), url: window.location.href };
             if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
                 navigator.share(shareData).catch(function() {});
@@ -449,6 +472,7 @@
         }
 
         function copyResult() {
+            if (!hasResult) return;
             navigator.clipboard.writeText(getShareText()).then(function() {
                 var btnText = document.getElementById('copyBtnText');
                 btnText.textContent = copiedText;
@@ -457,7 +481,10 @@
         }
 
         // Initialize on load
-        document.addEventListener('DOMContentLoaded', loadLikData);
+        document.addEventListener('DOMContentLoaded', () => {
+            clearResult({{ i18n "purchasing.loading" }});
+            loadLikData();
+        });
     </script>
 
     {{ partial "darkmode.html" . }}

@@ -1,0 +1,2 @@
+{{- /* Cache parsed local data across language pages within each Hugo build. */ -}}
+{{- return (readFile (printf "static/data/%s.json" .) | transform.Unmarshal) -}}

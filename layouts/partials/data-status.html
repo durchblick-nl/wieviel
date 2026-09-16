@@ -1,12 +1,19 @@
-{{- $statusType := .statusType | default "socialInsurance" -}}
-{{- $status := index hugo.Data.site.dataStatus $statusType -}}
+{{- $status := partial "calculator-status.html" . -}}
 {{- if $status -}}
-<div class="data-status">
-    <i class="fas fa-sync-alt"></i>
-    {{ if eq site.Language.Lang "de" -}}
-        Stand: {{ $status.lastVerifiedDe }} · Nächste Prüfung: {{ $status.nextCheckDe }}
-    {{- else -}}
-        État: {{ $status.lastVerifiedFr }} · Prochaine vérification: {{ $status.nextCheckFr }}
-    {{- end }}
-</div>
+<aside class="data-status" aria-label="{{ i18n "dataStatus.title" }}">
+    <i class="fas fa-calendar-check" aria-hidden="true"></i>
+    <div>
+        <strong>{{ i18n "dataStatus.title" }}: {{ $status.period }}</strong>
+        <p>{{ $status.note }}</p>
+        <div class="data-status-meta">
+            <span>{{ i18n "dataStatus.reviewed" }}: <time datetime="{{ $status.reviewed }}">{{ time.Format "02.01.2006" $status.reviewed }}</time></span>
+            {{- with $status.next }}
+            <span>{{ i18n "dataStatus.next" }}: <time datetime="{{ . }}">{{ time.Format "02.01.2006" . }}</time></span>
+            {{- end }}
+            {{- range $status.sources }}
+            <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+            {{- end }}
+        </div>
+    </div>
+</aside>
 {{- end -}}

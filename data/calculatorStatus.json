@@ -1,0 +1,377 @@
+{
+  "salary": {
+    "period": {
+      "de": "Sozialversicherungen 2026",
+      "fr": "Assurances sociales 2026"
+    },
+    "note": {
+      "de": "AHV/IV/EO, ALV und BVG: Werte für 2026 am 16.09.2026 abgeglichen. Unfall- und Pensionskassenbeiträge sind Schätzwerte und können abweichen.",
+      "fr": "AVS/AI/APG, AC et LPP : valeurs 2026 vérifiées le 16.09.2026. Les cotisations accidents et de caisse de pension sont estimatives et peuvent varier."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2026-11-15",
+    "sources": [
+      {
+        "name": "BSV / OFAS",
+        "url": "https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf"
+      },
+      {
+        "name": "AHV / AVS",
+        "url": "https://www.ahv-iv.ch/p/2.01.d"
+      }
+    ]
+  },
+  "parttime": {
+    "use": "salary"
+  },
+  "compound": {
+    "period": {
+      "de": "Vorsorgewerte 2026",
+      "fr": "Prévoyance 2026"
+    },
+    "note": {
+      "de": "Säule-3a-Grenzbeträge für 2026 abgeglichen. Zinssatz und Rendite sind deine Annahmen; die Zinseszinsformel benötigt keine jährliche Aktualisierung.",
+      "fr": "Plafonds du pilier 3a vérifiés pour 2026. Le taux et le rendement sont tes hypothèses ; la formule des intérêts composés ne nécessite pas de mise à jour annuelle."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2026-11-15",
+    "sources": [
+      {
+        "name": "BSV / OFAS",
+        "url": "https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf"
+      }
+    ]
+  },
+  "parental": {
+    "period": {
+      "de": "EO-Leistungen 2026",
+      "fr": "Prestations APG 2026"
+    },
+    "note": {
+      "de": "80 % des Erwerbseinkommens, höchstens CHF 220 pro Tag. Quellen am 16.09.2026 abgeglichen; betriebliche Zusatzleistungen sind nicht enthalten.",
+      "fr": "80 % du revenu, au maximum CHF 220 par jour. Sources vérifiées le 16.09.2026 ; les prestations supplémentaires de l’employeur ne sont pas incluses."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2026-11-15",
+    "sources": [
+      {
+        "name": "AHV / AVS",
+        "url": "https://www.ahv-iv.ch/p/6.02.d"
+      },
+      {
+        "name": "AHV / AVS – anderer Elternteil / autre parent",
+        "url": "https://www.ahv-iv.ch/p/6.04.d"
+      }
+    ]
+  },
+  "rent": {
+    "period": {
+      "de": "Referenzzins ab 02.09.2026",
+      "fr": "Taux de référence dès le 02.09.2026"
+    },
+    "note": {
+      "de": "1,25 %, unverändert. BWO-Publikation vom 01.09.2026, abgeglichen am 16.09.2026.",
+      "fr": "1,25 %, inchangé. Publication de l’OFL du 01.09.2026, vérifiée le 16.09.2026."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2026-12-01",
+    "sources": [
+      {
+        "name": "BWO / OFL",
+        "url": "https://www.bwo.admin.ch/de/referenzzinssatz"
+      }
+    ]
+  },
+  "loyer": {
+    "use": "rent"
+  },
+  "miete": {
+    "use": "rent"
+  },
+  "electricity": {
+    "note": {
+      "de": "ElCom-Tarife für H4 (4’500 kWh/Jahr), Standardprodukt. Wähle unten das Tarifjahr und beachte dessen Gültigkeitszeitraum. Geräteverbräuche sind Richtwerte.",
+      "fr": "Tarifs ElCom H4 (4’500 kWh/an), produit standard. Choisis l’année ci-dessous et consulte sa période de validité. Les consommations des appareils sont indicatives."
+    },
+    "next": "2027-01-01",
+    "sources": [
+      {
+        "name": "ElCom",
+        "url": "https://www.elcom.admin.ch/de/tarifdaten-und-visualisierungen"
+      }
+    ],
+    "dataset": "electricity"
+  },
+  "purchasing": {
+    "note": {
+      "de": "Die Datenperiode und der letzte Index stammen direkt aus der verwendeten BFS-Datei.",
+      "fr": "La période et le dernier indice proviennent directement du fichier OFS utilisé."
+    },
+    "next": "2026-10-05",
+    "sources": [
+      {
+        "name": "BFS / OFS",
+        "url": "https://www.bfs.admin.ch/asset/de/cc-d-05.02.08"
+      }
+    ],
+    "dataset": "purchasing"
+  },
+  "iban": {
+    "note": {
+      "de": "Die Prüfziffer bestätigt das IBAN-Format, nicht die Existenz eines Kontos.",
+      "fr": "La clé de contrôle confirme le format IBAN, pas l’existence d’un compte."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2026-10-16",
+    "sources": [
+      {
+        "name": "SIX",
+        "url": "https://www.six-group.com/en/products-services/banking-services/interbank-clearing/online-services/download-bank-master.html"
+      }
+    ],
+    "dataset": "iban"
+  },
+  "vat": {
+    "period": {
+      "de": "MWST-Sätze seit 01.01.2024",
+      "fr": "Taux de TVA depuis le 01.01.2024"
+    },
+    "note": {
+      "de": "Am 16.09.2026 bestätigt: 8,1 % normal, 2,6 % reduziert und 3,8 % Beherbergung.",
+      "fr": "Confirmés le 16.09.2026 : 8,1 % normal, 2,6 % réduit et 3,8 % hébergement."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-01",
+    "sources": [
+      {
+        "name": "ESTV / AFC",
+        "url": "https://www.estv.admin.ch/estv/de/home/mehrwertsteuer.html"
+      }
+    ]
+  },
+  "child-support": {
+    "period": {
+      "de": "Richtwerte und Familienzulagen 2026",
+      "fr": "Repères et allocations familiales 2026"
+    },
+    "note": {
+      "de": "Familienzulage mindestens CHF 215 (BSV, abgeglichen am 16.09.2026). Grundbeträge sind kantonale Richtwerte; Methode: zweistufige Berechnung für alleinige Obhut.",
+      "fr": "Allocation pour enfant d’au moins CHF 215 (OFAS, vérifié le 16.09.2026). Les montants de base sont des repères cantonaux ; calcul en deux étapes pour la garde exclusive."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": [
+      {
+        "name": "BSV / OFAS",
+        "url": "https://www.bsv.admin.ch/de/familienzulagen-leistungen-und-voraussetzungen"
+      },
+      {
+        "name": "BJ / OFJ",
+        "url": "https://www.bj.admin.ch/de/unterhalt-des-kindes"
+      }
+    ]
+  },
+  "tip": {
+    "period": {
+      "de": "Zeitunabhängige Berechnung",
+      "fr": "Calcul indépendant de l’année"
+    },
+    "note": {
+      "de": "Die Berechnung verwendet deine Eingaben und feste Rechenregeln. Es werden keine aktuellen Marktpreise oder jährlich wechselnden Tarife verwendet.",
+      "fr": "Le calcul utilise tes saisies et des règles fixes, sans prix de marché ni tarifs annuels."
+    },
+    "reviewed": "2026-09-16",
+    "next": null,
+    "sources": []
+  },
+  "days": {
+    "use": "tip"
+  },
+  "mortgage": {
+    "period": {
+      "de": "Tragbarkeitsmodell, September 2026",
+      "fr": "Modèle de capacité financière, septembre 2026"
+    },
+    "note": {
+      "de": "Kalkulatorischer Zins und Unterhalt sind Modellannahmen, keine aktuellen Hypothekarangebote. Den effektiven Zinssatz kannst du anpassen.",
+      "fr": "Le taux théorique et l’entretien sont des hypothèses, pas des offres hypothécaires actuelles. Tu peux adapter le taux effectif."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": [
+      {
+        "name": "FINMA",
+        "url": "https://www.finma.ch/de/dokumentation/selbstregulierung/anerkannte-selbstregulierung/"
+      }
+    ]
+  },
+  "pet": {
+    "period": {
+      "de": "Editierbare Richtwerte, September 2026",
+      "fr": "Estimations modifiables, septembre 2026"
+    },
+    "note": {
+      "de": "Kosten sind Budgetannahmen und keine laufend erhobenen Marktpreise. Verwende für ein aktuelles Ergebnis deine tatsächlichen Ausgaben.",
+      "fr": "Les coûts sont des hypothèses budgétaires, pas des prix de marché relevés en continu. Saisis tes dépenses réelles pour un résultat actuel."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": []
+  },
+  "smoking": {
+    "period": {
+      "de": "Budgetannahmen; Gesundheitsbefragung 2022",
+      "fr": "Hypothèses budgétaires ; enquête santé 2022"
+    },
+    "note": {
+      "de": "Kosten sind Budgetannahmen und keine laufend erhobenen Marktpreise. Verwende für ein aktuelles Ergebnis deine tatsächlichen Ausgaben.",
+      "fr": "Les coûts sont des hypothèses budgétaires, pas des prix de marché relevés en continu. Saisis tes dépenses réelles pour un résultat actuel."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": [
+      {
+        "name": "BFS / OFS",
+        "url": "https://dam-api.bfs.admin.ch/hub/api/dam/assets/32028271/master"
+      }
+    ]
+  },
+  "hiking": {
+    "period": {
+      "de": "Wanderzeitmodell, September 2026",
+      "fr": "Modèle de randonnée, septembre 2026"
+    },
+    "note": {
+      "de": "Zeitberechnung mit festen Richtwerten für Strecke und Höhenmeter. Wetter, Wegzustand und persönliche Fitness werden nicht live erfasst.",
+      "fr": "Calcul basé sur des valeurs indicatives de distance et de dénivelé. La météo, l’état du chemin et la condition physique ne sont pas suivis en direct."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": []
+  },
+  "sleep": {
+    "period": {
+      "de": "Zyklusmodell, September 2026",
+      "fr": "Modèle de cycles, septembre 2026"
+    },
+    "note": {
+      "de": "Modell mit 90 Minuten pro Schlafzyklus und 14 Minuten Einschlafzeit. Individuelle Schlafzyklen variieren; dies ist keine medizinische Messung.",
+      "fr": "Modèle avec des cycles de 90 minutes et 14 minutes d’endormissement. Les cycles individuels varient ; il ne s’agit pas d’une mesure médicale."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": []
+  },
+  "bmi": {
+    "period": {
+      "de": "WHO-Klassifikation für Erwachsene",
+      "fr": "Classification OMS pour adultes"
+    },
+    "note": {
+      "de": "Grenzen am 16.09.2026 mit der WHO abgeglichen. Der BMI ist ein allgemeiner Orientierungswert für Erwachsene, keine individuelle Diagnose.",
+      "fr": "Seuils vérifiés auprès de l’OMS le 16.09.2026. L’IMC est un repère général pour adultes, pas un diagnostic individuel."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": [
+      {
+        "name": "WHO / OMS",
+        "url": "https://www.who.int/health-topics/obesity"
+      }
+    ]
+  },
+  "bac": {
+    "period": {
+      "de": "Watson-Modell und Schweizer Grenzwerte",
+      "fr": "Modèle de Watson et seuils suisses"
+    },
+    "note": {
+      "de": "Schätzung anhand von Körperdaten, Getränken und Abbauzeit. Kein Messwert und kein Nachweis der Fahrtüchtigkeit. Rechtliche Hinweise: September 2026.",
+      "fr": "Estimation selon les données corporelles, les boissons et le temps d’élimination. Ce n’est ni une mesure ni une preuve d’aptitude à conduire. Informations juridiques : septembre 2026."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": [
+      {
+        "name": "SVG / LCR",
+        "url": "https://www.fedlex.admin.ch/eli/cc/1959/679_705_685/de"
+      }
+    ]
+  },
+  "fine": {
+    "period": {
+      "de": "Schweizer Bussen und Grenzwerte 2026",
+      "fr": "Amendes et seuils suisses 2026"
+    },
+    "note": {
+      "de": "Ordnungsbussen nach OBV; weitergehende Strafen hängen vom Einzelfall ab. Sicherheitsabzüge gelten für die im Rechner angenommene Messmethode.",
+      "fr": "Amendes d’ordre selon l’OAO ; les autres sanctions dépendent du cas. Les marges de sécurité correspondent à la méthode de mesure supposée par le calculateur."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": [
+      {
+        "name": "OBV / OAO",
+        "url": "https://www.fedlex.admin.ch/eli/cc/2019/93/de"
+      }
+    ]
+  },
+  "hours": {
+    "period": {
+      "de": "Arbeitsgesetz, September 2026",
+      "fr": "Loi sur le travail, septembre 2026"
+    },
+    "note": {
+      "de": "Allgemeine Regeln zu Pausen und Höchstarbeitszeit. Sonderregeln, Gesamtarbeitsverträge und branchenspezifische Ausnahmen können abweichen.",
+      "fr": "Règles générales sur les pauses et la durée maximale du travail. Les régimes spéciaux, conventions collectives et exceptions sectorielles peuvent différer."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": [
+      {
+        "name": "ArG / LTr",
+        "url": "https://www.fedlex.admin.ch/eli/cc/1966/57_57_57/de"
+      }
+    ]
+  },
+  "vacation": {
+    "period": {
+      "de": "Art. 329b OR, September 2026",
+      "fr": "Art. 329b CO, septembre 2026"
+    },
+    "note": {
+      "de": "Schonfristen für unverschuldete Abwesenheit am 16.09.2026 mit SECO abgeglichen. Berechnung pro Dienstjahr; günstigere Vertragsregeln bleiben vorbehalten.",
+      "fr": "Délais de protection pour les absences non fautives vérifiés avec le SECO le 16.09.2026. Calcul par année de service ; les règles contractuelles plus favorables restent réservées."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-01-15",
+    "sources": [
+      {
+        "name": "SECO",
+        "url": "https://www.seco.admin.ch/de/faq-schutz-des-arbeitsverhaeltnisses-bei-militaerdienst"
+      },
+      {
+        "name": "OR / CO",
+        "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/de#art_329_b"
+      }
+    ]
+  },
+  "meat": {
+    "period": {
+      "de": "Fleischangebot 2025; CO₂-Modellwerte",
+      "fr": "Offre de viande 2025 ; estimations de CO₂"
+    },
+    "note": {
+      "de": "Jahresstatistik von Proviande, abgeglichen am 16.09.2026. Angebot ist nicht gleich tatsächlicher Verzehr. Klima-, Wasser- und Tierwerte sind vereinfachte Modellannahmen.",
+      "fr": "Statistique annuelle de Proviande vérifiée le 16.09.2026. L’offre ne correspond pas à la consommation effective. Climat, eau et nombres d’animaux : hypothèses simplifiées."
+    },
+    "reviewed": "2026-09-16",
+    "next": "2027-04-15",
+    "sources": [
+      {
+        "name": "Proviande",
+        "url": "https://www.proviande.ch/de/der-fleischmarkt-in-zahlen"
+      }
+    ]
+  }
+}

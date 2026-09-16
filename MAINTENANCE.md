@@ -2,9 +2,38 @@
 
 Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müssen.
 
-**Letzte Aktualisierung:** 12. August 2026
+**Letzte Aktualisierung:** 16. September 2026
 
 ---
+
+
+## Sichtbarer Datenstand auf allen Rechnern
+
+`data/calculatorStatus.json` enthält pro Hugo-Rechnertyp Hinweise, redaktionellen Stand, nächsten Prüftermin und Quellenlinks in DE/FR. Gemeinsame Angaben werden mit `use` referenziert (z.B. `parttime` → `salary`). `page-header.html` rendert die Datenbox vor den Eingaben. `calculator-status.html` leitet LIK-Monat, Index, Basis und Prüftag aus `lik_index.json`, den Bankdatenstand aus `bank_master.json._meta.validOn` und Tarifjahre/Prüftag aus `site.yaml.electricity` ab. Diese Angaben nicht zusätzlich als Freitext pflegen. Fehlende Statusangaben stoppen den Hugo-Build.
+
+- Ein neuer Build aktualisiert diese Daten nicht automatisch.
+- `reviewed` ist der redaktionelle Bearbeitungstag, keine Garantie für eine Vollprüfung sämtlicher Rechts- oder Gesundheitshinweise.
+- Nur ausdrücklich mit einer Quelle abgeglichene Zahlen als «abgeglichen» oder «bestätigt» kennzeichnen.
+- Tarifjahr, Datenmonat und Publikationsdatum nicht mit dem Prüftag verwechseln.
+- Bei Modellrechnern und Marktpreisannahmen ausdrücklich Richtwerte nennen; keine angeblich tagesaktuellen Marktpreise ausweisen.
+- Neue Rechner benötigen einen eigenen Eintrag. Beide Sprachseiten müssen genau eine sichtbare Datenbox erhalten.
+
+## Datenabgleich vom 16. September 2026
+
+| Bereich | Ergebnis und Quelle |
+|---|---|
+| Strom | ElCom-Median H4: 2026 **27,7**, 2027 **26,5 Rp./kWh**. Veröffentlichungen [2026](https://www.elcom.admin.ch/de/newnsb/8nuE_fvwnfqCu8OHNOwKu) / [2027](https://www.elcom.admin.ch/de/newnsb/1miE201yRzoA). LINDAS bestätigt beide Jahre: 2’294 / 2’268 Beobachtungen, Min/Max 9,643–43,613 / 10,559–45,883. Min/Max sind Einzelbeobachtungen, keine Gemeinde-Mediane. |
+| Miete | [BWO](https://www.bwo.admin.ch/de/referenzzinssatz): weiterhin 1,25 %, gültig ab 02.09.2026. |
+| LIK | [BFS-Originaltabelle](https://www.bfs.admin.ch/bfsstatic/dam/assets/orderNr:cc-d-05.02.08/master), Blatt `Index_m`, Basis Dezember 2020 (Spalte L): August 2026 **108,6**. Keine Mischung mit der neuen Basis Dezember 2025. |
+| Banken | SIX JSON, `validOn=2026-09-16`, 1’164 Einträge. Davon 26 IID-Nachfolgeverweise nach Fusionen; diese werden vor der Ausgabe auf die aktuelle Bank aufgelöst. |
+| Sozialversicherung | [AHV-Beiträge](https://www.ahv-iv.ch/p/2.01.d), [ALV](https://www.ahv-iv.ch/p/2.08.d), [BSV-Masszahlen 2026](https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf): bestehende AHV/ALV/BVG/3a-Werte bestätigt; keine Vorwegnahme von 2027. |
+| EO | [Mutterschaft](https://www.ahv-iv.ch/p/6.02.d), [anderer Elternteil](https://www.ahv-iv.ch/p/6.04.d): 80 %, maximal CHF 220/Tag bestätigt. |
+| Familienzulagen | [BSV](https://www.bsv.admin.ch/de/familienzulagen-leistungen-und-voraussetzungen): allgemeine Mindestwerte auf CHF 215/268 korrigiert; Alimenterechner hatte bereits CHF 215. |
+| MWST | [ESTV](https://www.estv.admin.ch/estv/de/home/mehrwertsteuer.html): 8,1 / 2,6 / 3,8 % bestätigt. |
+| Fleisch | [Proviande](https://www.proviande.ch/de/der-fleischmarkt-in-zahlen), Angebot pro Person 2025: Schwein 19,3731, Geflügel 16,5384, Rind 11,5469 kg/Jahr. Wochenvorgaben gerundet: 373 / 318 / 222 g. Angebot ausdrücklich vom Verzehr unterschieden. |
+| Rauchen | [BFS, SGB 2022](https://dam-api.bfs.admin.ch/hub/api/dam/assets/32028271/master): 24 % der Bevölkerung ab 15 Jahren, nicht 27 %. Preisbeispiele bleiben editierbare Budgetannahmen. |
+| Ferien | [SECO Militärdienst-Merkblatt](https://www.seco.admin.ch/dam/de/sd-web/TejaFZhsBOpW/Merkblatt_Arbeitsverhaeltnis_Militaer_SECO_2022_DE.pdf), Abschnitt 6: ein Schonmonat für obligatorischen Militär-/Zivil-/Schutzdienst; ab zwei vollen Monaten 1/12 Kürzung. Fehler in Logik und DE/FR-Texten behoben. |
+| Promille | Pauschale «mindestens zwei Jahre Entzug ab 1,6 ‰» entfernt: Schwelle für Fahreignungsabklärung, keine fixe Entzugsdauer. [ASTRA-Leitfaden](https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/mobilitaet/fuehrerausweis-fahren-lernen/ASTRA_Leitfaden_Fahreignung.pdf). |
 
 ## Übersicht Datenquellen
 
@@ -63,7 +92,7 @@ Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müs
 
 ### Hinweis
 
-Eine MWST-Erhöhung zur Finanzierung der 13. AHV-Rente ist geplant (voraussichtlich 2028 nach Volksabstimmung).
+Angekündigte Änderungen erst nach Bestätigung von Satz und Inkrafttreten übernehmen. Die geltenden Sätze sind bei der ESTV zu prüfen.
 
 ---
 
@@ -71,7 +100,7 @@ Eine MWST-Erhöhung zur Finanzierung der 13. AHV-Rente ist geplant (voraussichtl
 
 **Quelle:** [Bundesamt für Wohnungswesen](https://www.bwo.admin.ch/de/referenzzinssatz)
 
-**Publikation:** Quartalsweise (2. März, 2. Juni, 2. September, 2. Dezember)
+**Publikation:** Quartalsweise. 2026: 2. März, 1. Juni, 1. September, 1. Dezember. Wirksamkeit separat prüfen (zuletzt 2. September).
 
 ### Zu prüfende Werte
 
@@ -95,12 +124,13 @@ Eine MWST-Erhöhung zur Finanzierung der 13. AHV-Rente ist geplant (voraussichtl
 
 | Was | Datei | Zeile/Pfad |
 |-----|-------|------------|
-| Jahr in SPARQL-Query | `layouts/electricity/single.html` | `elcom:period "YYYY"` |
-| Median-Preis | `data/site.yaml` | `electricity.medianPrice` |
-| Min-Preis | `data/site.yaml` | `electricity.minPrice` |
-| Max-Preis | `data/site.yaml` | `electricity.maxPrice` |
-| i18n Key DE | `i18n/de.yaml` | `electricity.standardProduct20XX` |
-| i18n Key FR | `i18n/fr.yaml` | `electricity.standardProduct20XX` |
+| Verfügbare Tarifjahre | `data/site.yaml` | `electricity.tariffs` (Auswahl und Abfrage werden daraus erzeugt) |
+| Median-Preis | `data/site.yaml` | `electricity.tariffs.YYYY.medianPrice` |
+| Min-Preis | `data/site.yaml` | `electricity.tariffs.YYYY.minPrice` |
+| Max-Preis | `data/site.yaml` | `electricity.tariffs.YYYY.maxPrice` |
+| Publikation und Quelle | `data/site.yaml` | `electricity.tariffs.YYYY.publishedOn`, `.source` |
+| Datenstand DE/FR | `data/calculatorStatus.json` | `electricity` |
+| Standardjahr | `data/site.yaml` | `electricity.defaultYear` (laufendes Jahr) |
 
 ### API-Dokumentation
 
@@ -126,31 +156,10 @@ SELECT ?municipalityName ?total WHERE {
 ### Update-Befehl
 
 ```bash
-curl -s "https://api.six-group.com/api/epcd/bankmaster/v3/bankmaster.json" | python3 -c "
-import json
-import sys
-
-data = json.load(sys.stdin)
-result = {}
-
-for entry in data['entries']:
-    iid = str(entry['iid']).zfill(5)
-    address = entry.get('streetName', '')
-    if 'buildingNumber' in entry:
-        address += ' ' + entry['buildingNumber']
-
-    result[iid] = {
-        'name': entry.get('bankOrInstitutionName', ''),
-        'city': entry.get('townName', ''),
-        'zip': entry.get('postCode', ''),
-        'address': address,
-        'bic': entry.get('bic', ''),
-        'clearing': iid
-    }
-
-print(json.dumps(result, ensure_ascii=False, indent=2))
-" > static/data/bank_master.json
+python3 scripts/update_bank_data.py
 ```
+
+Der Import benötigt Python 3 und curl, keine zusätzlichen Python-Pakete. Er prüft Datum, Vollständigkeit, IID-Schlüssel und Nachfolgeverweise vor dem atomaren Schreiben. Die IID-Schlüssel bleiben erhalten; der reservierte Schlüssel `_meta` enthält `validOn`, `importedOn`, `sourceUrl` und `recordCount`. Der sichtbare Bankdatenstand folgt automatisch `validOn`. Eine Datenaktualisierung verändert nicht das Datum einer redaktionellen Prüfung. Browser-Abfragen von Bank- und LIK-Daten werden mit dem SHA-256-Inhaltshash versioniert, auch bei mehreren Updates am selben Tag.
 
 ---
 
@@ -160,7 +169,7 @@ print(json.dumps(result, ensure_ascii=False, indent=2))
 
 **Datei:** [cc-d-05.02.08.xlsx](https://www.bfs.admin.ch/asset/de/cc-d-05.02.08)
 
-**Publikation:** Monatlich (ca. Mitte des Folgemonats)
+**Publikation:** Monatlich, in der Regel Anfang des Folgemonats. Aktuelle BFS-Termine beachten.
 
 ### Zu aktualisierende Datei
 
@@ -187,7 +196,8 @@ print(json.dumps(result, ensure_ascii=False, indent=2))
 "lastUpdated": "2026-01"
 ```
 
-5. `data/site.yaml` → `dataStatus.lik` aktualisieren
+5. `verifiedOn` in `lik_index.json` nach dem Quellenabgleich setzen. Die Basis ist maschinenlesbar als `baseMonth: "2020-12"` und `baseValue: 100` hinterlegt; die historische Serie darf nicht mit einer anderen Basis vermischt werden.
+6. Nur den nächsten Prüftermin unter `data/calculatorStatus.json` → `purchasing` nachführen. Sichtbarer Monat, Index, Basis und Prüftag folgen automatisch der Datendatei.
 
 ### Option B: Excel-Import (bei grösseren Updates)
 
@@ -204,13 +214,15 @@ Falls Claude Code eine neue BFS-Excel-Datei erhält:
 ```json
 {
   "basePeriod": "Dezember 2020",
+  "baseMonth": "2020-12",
+  "verifiedOn": "2026-09-16",
   "baseValue": 100,
-  "lastUpdated": "2026-07",
+  "lastUpdated": "2026-08",
   "source": "BFS - Bundesamt für Statistik",
   "sourceUrl": "https://www.bfs.admin.ch/asset/de/cc-d-05.02.08",
   "monthly": {
     "1921": { "01": 20.9, "02": 20.7, ... },
-    "2026": { "01": 106.9, ..., "07": 108.2 }
+    "2026": { "01": 106.9, ..., "08": 108.6 }
   }
 }
 ```
@@ -248,10 +260,10 @@ Die Grundbeträge sind bewusst editierbare Richtwerte. Kantonale Abweichungen we
 | **März** | Referenzzinssatz prüfen (BWO-Publikation 2. März), LIK Februar |
 | **April** | LIK März |
 | **Mai** | LIK April |
-| **Juni** | Referenzzinssatz prüfen (BWO-Publikation 2. Juni), LIK Mai |
+| **Juni** | Referenzzinssatz prüfen (BWO-Publikation 1. Juni), LIK Mai |
 | **Juli** | LIK Juni |
 | **August** | LIK Juli |
-| **September** | Referenzzinssatz + ElCom Strompreise für Folgejahr, LIK August |
+| **September** | Referenzzinssatz + ElCom Strompreise für Folgejahr ergänzen (laufendes Jahr behalten), LIK August |
 | **Oktober** | LIK September |
 | **November** | BSV-Grenzwerte (AHV, BVG, 3a), BVG-Mindestzins, LIK Oktober |
 | **Dezember** | Jahreswechsel vorbereiten, alle Werte final prüfen, LIK November |
@@ -263,8 +275,8 @@ Die Grundbeträge sind bewusst editierbare Richtwerte. Kantonale Abweichungen we
 - [ ] `data/site.yaml`: `currentYear` aktualisieren
 - [ ] `data/site.yaml`: Alle Jahreskommentare aktualisieren
 - [ ] `data/site.yaml`: Neue Sozialversicherungswerte eintragen
-- [ ] `data/site.yaml`: `dataStatus` Abschnitt aktualisieren (lastVerified, nextCheck)
-- [ ] `layouts/electricity/single.html`: SPARQL-Query Jahr aktualisieren
+- [ ] `data/calculatorStatus.json`: Datenbasis, geprüfte Quellen, redaktioneller Stand und nächste Prüfung je Rechner aktualisieren
+- [ ] `data/site.yaml`: neues `electricity.tariffs`-Jahr ergänzen; `defaultYear` erst für das laufende Jahr ändern
 - [ ] `static/data/lik_index.json`: Dezember-Wert ergänzen, neues Jahr vorbereiten
 - [ ] `i18n/*.yaml`: Jahresreferenzen aktualisieren
 - [ ] Content-Dateien: Titel und Beschreibungen auf neues Jahr
@@ -284,3 +296,23 @@ Die Grundbeträge sind bewusst editierbare Richtwerte. Kantonale Abweichungen we
 | ElCom Strompreise | https://www.strompreis.elcom.admin.ch |
 | ESTV Mehrwertsteuer | https://www.estv.admin.ch |
 | SIX Bank Master | https://www.six-group.com |
+
+
+## Regressionstests
+
+Voraussetzungen: Node.js 24, npm, Python 3 und Hugo gemäss `.hugo-version`.
+
+```bash
+npm ci
+npx playwright install chromium
+npm test
+python3 -m unittest discover -s tests -p 'test_*.py'
+hugo --environment production
+npm run test:browser
+```
+
+Die Browsertests starten selbst einen lokalen HTTP-Server für `public/`. Alternativ kann `BASE_URL=http://127.0.0.1:1313` gegen einen laufenden Hugo-Server verwendet werden. `BUILD_DIR` erlaubt einen anderen Build-Ordner, `CHROMIUM_PATH` ein vorhandenes Chromium. ElCom-Antworten werden für reproduzierbare Fehler- und Konkurrenzfälle simuliert; die Tests sind keine Live-Verfügbarkeitsprüfung des Dienstes.
+
+Abdeckung: Datenbox auf allen 46 Sprachseiten, Mietzins-Tabelle und Mehrschritt-Senkung in DE/FR, fehlende LIK-Monate und Wiederherstellung, HTTP-Ausfall, übersetzte IBAN-Fehler und Bankzuordnung, Stromtarifwechsel/manuelle Preise/veraltete Antworten/fehlender Tarif. Importtests sichern Nachfolgeverweise, Metadaten und Erhalt des alten Datenbestands bei fehlerhaften SIX-Antworten. GitHub Actions führt diese Prüfungen bei Push und Pull Request aus.
+
+Mietzins: Die gemeinsame Funktion `static/js/rent-calculator.js` verwendet für die angebotenen Zinssätze unter 5 % die umgekehrte Gesamterhöhung. Bei n Viertelprozent-Schritten lautet die Senkung `100 × 3n / (100 + 3n)`, nicht `n × 2,91`. Prozentsätze werden wie in der [Referenztabelle](https://www.mietrecht.ch/fileadmin/files/Hypothekarzins/ueberwaelzungssaetze.pdf) auf zwei Dezimalstellen gerundet; Geldbeträge verwenden denselben Prozentsatz wie die Anzeige. Beispiel: 1,75 → 1,25 % ergibt 5,66 %, bei CHF 1’500 somit CHF 84.90.

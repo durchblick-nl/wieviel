@@ -202,11 +202,9 @@ socialInsurance:
 bvg:
   coordinationDeduction: 26460
   # ... more
-dataStatus:                      # For data-status.html partial
-  socialInsurance:
-    lastVerifiedDe: "Dezember 2025"
-    nextCheckDe: "November 2026"
 ```
+
+Freshness metadata lives in `data/calculatorStatus.json`; shared entries use `use`. LIK, bank and electricity periods are derived from the datasets by `layouts/partials/calculator-status.html`. See `MAINTENANCE.md` for updates and regression tests.
 
 Access in templates:
 ```html
@@ -301,7 +299,7 @@ All calculators use the same FAQ styling from `css/styles.css`:
 - **BAC (Watson)**: `BAC = A / (TBW × 0.8) - (t × β)`
 - **BMI**: `weight / height²`
 - **Compound Interest**: `A = P × (1 + r)ⁿ + M × [(1 + r)ⁿ - 1] / r`
-- **Rent Adjustment**: 2.91% reduction per 0.25% rate decrease
+- **Rent Adjustment**: for rates below 5%, a reduction over n quarter-point steps is 100 × (3n) / (100 + 3n) percent, rounded to two decimals; do not add 2.91% per step. Shared implementation: `static/js/rent-calculator.js`.
 
 ### Swiss-Specific Values (2026)
 

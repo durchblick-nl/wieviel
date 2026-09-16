@@ -6,6 +6,10 @@ public/
 .hugo_build.lock
 hugo_stats.json
 resources/_gen/
+node_modules/
 
 # Backup of old standalone files
 backup/
+
+# Python test/import caches
+__pycache__/

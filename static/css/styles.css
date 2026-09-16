@@ -2617,21 +2617,22 @@
             }
         }
 
-        /* Data Status Hint */
+        /* Prominent source period and editorial date, shared by all calculators. */
         .data-status {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
             color: var(--text-color);
-            opacity: 0.7;
-            padding: 0.75rem 1rem;
-            margin: 1.5rem auto 0;
-            max-width: 800px;
-            border-top: 1px solid var(--border-color);
+            background: var(--card-bg);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0 1.5rem;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            line-height: 1.5;
         }
-
-        .data-status i {
-            font-size: 0.7rem;
-        }
+        .data-status > i { margin-top: 0.25rem; color: var(--primary-color); }
+        .data-status p { margin: 0.35rem 0; }
+        .data-status-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.8rem; }
+        .data-status a { color: var(--text-color); text-decoration: underline; }

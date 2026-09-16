@@ -2,7 +2,7 @@
 # ZENTRALE DATEN FÜR ALLE RECHNER - wieviel.ch / calcule.ch
 # =============================================================================
 # Bei Änderungen: nur hier anpassen, Hugo baut alle Seiten neu.
-# Letzte Aktualisierung: Juli 2026
+# Letzte Aktualisierung: 16. September 2026
 # =============================================================================
 
 # -----------------------------------------------------------------------------
@@ -16,8 +16,8 @@ currentYear: 2026
 # https://www.bwo.admin.ch/de/referenzzinssatz
 # -----------------------------------------------------------------------------
 referenceRate: 1.25
-referenceRateDate: "2. September 2025, unverändert ab 2. Juni 2026"
-referenceRateDateFr: "2 septembre 2025, inchangé à partir du 2 juin 2026"
+referenceRateDate: "2. September 2025, unverändert ab 2. September 2026"
+referenceRateDateFr: "2 septembre 2025, inchangé à partir du 2 septembre 2026"
 referenceRateSource: "https://www.bwo.admin.ch/de/referenzzinssatz"
 
 # -----------------------------------------------------------------------------
@@ -84,8 +84,8 @@ ahvPension:
 # Quelle: BSV (Mindestansätze, kantonal unterschiedlich)
 # -----------------------------------------------------------------------------
 familyAllowances:
-  childPerMonth: 200       # Kinderzulage
-  educationPerMonth: 250   # Ausbildungszulage
+  childPerMonth: 215       # Kinderzulage
+  educationPerMonth: 268   # Ausbildungszulage
 
 # -----------------------------------------------------------------------------
 # ELTERNZEIT / EOG 2026
@@ -123,17 +123,29 @@ mortgage:
   firstMortgageMaxPercent: 67
   secondMortgageAmortizationYears: 15
 
-  # Geschätzter aktueller Marktzins (für Info)
+  # Beispielzins (keine aktuelle Marktofferte)
   estimatedCurrentRate: 2.0
 
 # -----------------------------------------------------------------------------
-# STROMPREISE 2026
+# STROMPREISE 2026 / 2027
 # Quelle: ElCom / LINDAS
 # -----------------------------------------------------------------------------
 electricity:
-  medianPrice: 27.7      # Rp./kWh (Median Schweiz)
-  minPrice: 10           # Rp./kWh (günstigste Gemeinde)
-  maxPrice: 44           # Rp./kWh (teuerste Gemeinde)
+  defaultYear: 2026
+  verifiedOn: "2026-09-16"
+  tariffs:
+    "2026":
+      medianPrice: 27.7
+      minPrice: 9.643
+      maxPrice: 43.613
+      publishedOn: "2025-09-09"
+      source: "https://www.elcom.admin.ch/de/newnsb/8nuE_fvwnfqCu8OHNOwKu"
+    "2027":
+      medianPrice: 26.5
+      minPrice: 10.559
+      maxPrice: 45.883
+      publishedOn: "2026-09-08"
+      source: "https://www.elcom.admin.ch/de/newnsb/1miE201yRzoA"
 
   # Typische Verbräuche
   householdH4: 4500      # kWh/Jahr (4-Personen-Haushalt)
@@ -145,12 +157,11 @@ electricity:
 
 # -----------------------------------------------------------------------------
 # ZIGARETTENPREISE 2026
-# Quelle: Marktbeobachtung
+# Editierbare Budgetannahmen (keine aktuelle Preiserhebung)
 # -----------------------------------------------------------------------------
 smoking:
   avgPackPrice: 9.50     # CHF pro Packung (20 Stück)
-  swissAvgDaily: 13      # Durchschnittlicher Tageskonsum
-  taxPercentage: 55      # Steueranteil am Preis
+  swissAvgDaily: 13      # Beispielkonsum (keine aktuelle Erhebung)
 
 # -----------------------------------------------------------------------------
 # GESCHWINDIGKEITSBUSSEN
@@ -200,43 +211,3 @@ childSupport:
   childBasicUpTo10: 400
   childBasicOver10: 600
   familyAllowanceDefault: 215
-
-# -----------------------------------------------------------------------------
-# DATENSTAND & NÄCHSTE ÜBERPRÜFUNG
-# Für den Footer-Hinweis auf den Rechner-Seiten
-# -----------------------------------------------------------------------------
-dataStatus:
-  # Sozialversicherungen (AHV, BVG, 3a) - jährlich im November
-  socialInsurance:
-    lastVerifiedDe: "August 2026"
-    lastVerifiedFr: "août 2026"
-    nextCheckDe: "November 2026"
-    nextCheckFr: "novembre 2026"
-
-  # Referenzzinssatz - quartalsweise
-  referenceRate:
-    lastVerifiedDe: "Juni 2026"
-    lastVerifiedFr: "juin 2026"
-    nextCheckDe: "September 2026"
-    nextCheckFr: "septembre 2026"
-
-  # Strompreise - jährlich im September
-  electricity:
-    lastVerifiedDe: "August 2026"
-    lastVerifiedFr: "août 2026"
-    nextCheckDe: "September 2026"
-    nextCheckFr: "septembre 2026"
-
-  # LIK (Kaufkraftrechner) - monatlich
-  lik:
-    lastVerifiedDe: "Juli 2026"
-    lastVerifiedFr: "juillet 2026"
-    nextCheckDe: "August 2026"
-    nextCheckFr: "août 2026"
-
-  # Kinderunterhalt - bei Rechtsprechungs- oder Richtlinienaenderungen
-  childSupport:
-    lastVerifiedDe: "August 2026"
-    lastVerifiedFr: "août 2026"
-    nextCheckDe: "Januar 2027"
-    nextCheckFr: "janvier 2027"

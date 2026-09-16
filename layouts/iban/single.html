@@ -117,14 +117,24 @@
 
 <script>
     let bankData = {};
+    let bankDataState = "loading";
 
     // Load Bank Data
-    fetch('/data/bank_master.json')
-        .then(response => response.json())
+    fetch('/data/bank_master.json?v={{ readFile "static/data/bank_master.json" | sha256 }}')
+        .then(response => {
+            if (!response.ok) throw new Error(`Bank master HTTP ${response.status}`);
+            return response.json();
+        })
         .then(data => {
             bankData = data;
+            bankDataState = "ready";
+            formatIBAN(document.getElementById('iban-input'));
         })
-        .catch(error => console.error('Error loading bank data:', error));
+        .catch(error => {
+            bankDataState = 'failed';
+            formatIBAN(document.getElementById('iban-input'));
+            console.error('Error loading bank data:', error);
+        });
 
     function formatIBAN(input) {
         let value = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
@@ -153,18 +163,18 @@
         }
 
         if (!iban.startsWith('CH') && !iban.startsWith('LI')) {
-            showError("Nur Schweizer (CH) oder Liechtensteiner (LI) IBANs werden unterstützt.");
+            showError({{ i18n "iban.error.country" }});
             return;
         }
 
         if (iban.length > 21) {
-            showError("IBAN ist zu lang.");
+            showError({{ i18n "iban.error.length" }});
             return;
         }
 
         // Modulo 97 Check
         if (!isValidIBAN(iban)) {
-            showError("Ungültige IBAN (Prüfsumme falsch).");
+            showError({{ i18n "iban.error.checksum" }});
             return;
         }
 
@@ -172,6 +182,10 @@
         // CHkk IIDD CCCC CCCC CCC
         // IID is index 4 to 9 (5 chars)
         const iid = iban.substring(4, 9);
+        if (bankDataState !== 'ready') {
+            showError(bankDataState === 'loading' ? {{ i18n "iban.error.loading" }} : {{ i18n "iban.error.unavailable" }});
+            return;
+        }
         const bank = bankData[iid]; // Try direct lookup
 
         // Note: Sometimes IID is just 4 or 3 digits? Swiss IID is usually 5 digits.
@@ -182,7 +196,7 @@
             showResult(bank);
         } else {
             // Fallback: Check if we can find it by prefix if 5 digits fail (unlikely for CH)
-            showError(`Gültige IBAN, aber Bank mit IID '${iid}' nicht in der Datenbank gefunden.`);
+            showError(({{ i18n "iban.error.bank" }}).replace("{iid}", iid));
         }
     }
 

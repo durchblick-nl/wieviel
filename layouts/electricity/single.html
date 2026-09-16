@@ -1,3 +1,5 @@
+{{- $electricity := hugo.Data.site.electricity -}}
+{{- $defaultTariff := index $electricity.tariffs (string $electricity.defaultYear) -}}
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang }}">
 <head>
@@ -46,6 +48,19 @@
     <div class="card">
         <h3 style="margin-bottom: 1rem;"><i class="fas fa-map-marker-alt"></i> {{ i18n "electricity.yourMunicipality" }}</h3>
 
+        <div class="tariff-year-control">
+            <label for="tariffYear">{{ i18n "electricity.tariffYear" }}</label>
+            <select id="tariffYear" aria-describedby="tariffYearHint">
+                {{- range $year, $tariff := $electricity.tariffs }}
+                <option value="{{ $year }}"{{ if eq $year (string $electricity.defaultYear) }} selected{{ end }}>{{ $year }}</option>
+                {{- end }}
+            </select>
+            <p id="tariffYearHint"></p>
+            <a id="tariffPublication" href="{{ $defaultTariff.source }}" target="_blank" rel="noopener"></a>
+        </div>
+        <p id="priceBasis" class="price-basis" aria-live="polite"></p>
+        <p id="tariffMessage" role="status"></p>
+
         <div class="municipality-search" id="searchContainer">
             <input type="text" id="municipalityInput" placeholder="{{ i18n "electricity.searchPlaceholder" }}" aria-label="{{ i18n "electricity.yourMunicipality" }}" autocomplete="off">
             <i class="fas fa-search search-icon"></i>
@@ -53,14 +68,14 @@
         </div>
 
         <div id="selectedMunicipality" class="selected-municipality" style="display: none;">
-            <h4 id="selectedName">Zürich</h4>
+            <h4 id="selectedName"></h4>
             <div class="price-info">
                 <div>
-                    <span class="tariff" id="selectedTariff">27.5</span> <span>{{ i18n "electricity.rpPerKwh" }}</span>
+                    <span class="tariff" id="selectedTariff"></span> <span>{{ i18n "electricity.rpPerKwh" }}</span>
                     <span class="comparison-badge" id="comparisonBadge">{{ i18n "electricity.average" }}</span>
-                    <div class="details" id="selectedDetails">{{ i18n "electricity.profileH4" }} · {{ i18n "electricity.standardProduct2026" }}</div>
+                    <div class="details" id="selectedDetails">{{ i18n "electricity.profileH4" }} · {{ i18n "electricity.standardProduct" }} {{ $electricity.defaultYear }}</div>
                 </div>
-                <span class="change-btn" onclick="resetSearch()">{{ i18n "electricity.change" }}</span>
+                <button type="button" class="change-btn" onclick="resetSearch()">{{ i18n "electricity.change" }}</button>
             </div>
         </div>
 
@@ -68,16 +83,17 @@
             <div class="input-with-slider">
                 <label for="priceSlider"><i class="fas fa-tags"></i> {{ i18n "electricity.manualEntry" }}</label>
                 <div class="slider-value">
-                    <span class="value"><span id="priceValue">{{ hugo.Data.site.electricity.medianPrice }}</span> {{ i18n "electricity.rpPerKwh" }}</span>
+                    <span class="value"><span id="priceValue">{{ $defaultTariff.medianPrice }}</span> {{ i18n "electricity.rpPerKwh" }}</span>
                 </div>
-                <input type="range" id="priceSlider" min="10" max="50" value="{{ hugo.Data.site.electricity.medianPrice }}" step="0.1">
+                <input type="range" id="priceSlider" min="0" max="50" value="{{ $defaultTariff.medianPrice }}" step="0.1">
                 <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-color); opacity: 0.6;">
-                    <span>10 {{ i18n "electricity.rp" }}</span>
-                    <span>50 {{ i18n "electricity.rp" }}</span>
+                    <span>0 {{ i18n "electricity.rp" }}</span>
+                    <span><span id="priceMax">50</span> {{ i18n "electricity.rp" }}</span>
                 </div>
             </div>
         </div>
 
+        <button type="button" id="municipalityMode" class="change-btn" hidden onclick="resetSearch()">{{ i18n "electricity.backToSearch" }}</button>
         <div class="info-box">
             <i class="fas fa-database"></i> {{ i18n "electricity.dataSourceText" }} <a href="https://www.strompreis.elcom.admin.ch/" target="_blank" rel="noopener">{{ i18n "electricity.elcom" }}</a> ({{ i18n "electricity.elcomFull" }}). {{ i18n "electricity.orManual" }} <a href="#" onclick="showManualPrice(); return false;">{{ i18n "electricity.enterManually" }}</a>.
         </div>
@@ -182,11 +198,16 @@
         </div>
     </div>
 </div>
-
-{{- partial "data-status.html" (dict "statusType" "electricity") -}}
 {{ partial "footer.html" . }}
 
 <style>
+    .tariff-year-control { margin-bottom: 1rem; }
+    .tariff-year-control label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+    .tariff-year-control select { font: inherit; padding: 0.6rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); background: var(--card-bg); }
+    .tariff-year-control p, .price-basis, #tariffMessage { font-size: 0.9rem; line-height: 1.5; margin: 0.75rem 0; }
+    .price-basis { font-weight: 600; }
+    #tariffMessage:empty { display: none; }
+    button.change-btn { font: inherit; background: transparent; border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; }
     .faq-section { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
     .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
     .faq-item summary { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
@@ -317,6 +338,19 @@
 
 <script>
     const TEXTS = {
+        tariffYear: {{ i18n "electricity.tariffYear" }},
+        yearHint: {{ i18n "electricity.yearHint" }},
+        published: {{ i18n "electricity.published" }},
+        medianBasis: {{ i18n "electricity.medianBasis" }},
+        municipalityBasis: {{ i18n "electricity.municipalityBasis" }},
+        manualBasis: {{ i18n "electricity.manualBasis" }},
+        loading: {{ i18n "electricity.loading" }},
+        loadError: {{ i18n "electricity.loadError" }},
+        noYearTariff: {{ i18n "electricity.noYearTariff" }},
+        standardProduct: {{ i18n "electricity.standardProduct" }},
+        profileH4: {{ i18n "electricity.profileH4" }},
+        rpPerKwh: {{ i18n "electricity.rpPerKwh" }},
+        perYear: {{ i18n "perYear" }},
         noMunicipalityFound: "{{ i18n "electricity.noMunicipalityFound" }}",
         tariffs: "{{ i18n "electricity.tariffs" }}",
         cheap: "{{ i18n "electricity.cheap" }}",
@@ -338,62 +372,116 @@
         smarthome: {{ i18n "electricity.devicesSmarthome" | safeJS }}
     };
 
-    let pricePerKwh = {{ hugo.Data.site.electricity.medianPrice }} / 100; // CHF per kWh (default)
+    const TARIFFS = {{ $electricity.tariffs | jsonify | safeJS }};
+    let tariffYear = String({{ $electricity.defaultYear }});
+    let pricePerKwh = TARIFFS[tariffYear].medianPrice / 100;
     let selectedMunicipalityName = null;
-    let municipalityCache = [];
+    let requestedMunicipalityName = null;
+    let priceMode = 'median';
     let searchTimeout = null;
-
-    // SPARQL endpoint
+    let requestVersion = 0;
+    let requestController = null;
     const SPARQL_ENDPOINT = 'https://lindas.admin.ch/query';
 
-    // Escape special regex characters to prevent SPARQL injection
-    function escapeRegex(str) {
-        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    function fillText(template, values) {
+        return template.replace(/\{(\w+)\}/g, (match, key) => values[key] ?? match);
     }
 
-    async function searchMunicipalities(query) {
-        if (query.length < 2) {
-            hideMunicipalityResults();
+    function invalidateSearch() {
+        clearTimeout(searchTimeout);
+        requestVersion++;
+        if (requestController) requestController.abort();
+        hideMunicipalityResults();
+        document.getElementById('tariffMessage').textContent = '';
+    }
+
+    function updatePriceBasis() {
+        const values = { year: tariffYear, price: (pricePerKwh * 100).toFixed(2), municipality: selectedMunicipalityName };
+        const template = priceMode === 'manual' ? TEXTS.manualBasis : priceMode === 'municipality' ? TEXTS.municipalityBasis : TEXTS.medianBasis;
+        document.getElementById('priceBasis').textContent = fillText(template, values);
+        document.getElementById('tariffYearHint').textContent = fillText(TEXTS.yearHint, { year: tariffYear });
+        const publication = document.getElementById('tariffPublication');
+        publication.href = TARIFFS[tariffYear].source;
+        const date = TARIFFS[tariffYear].publishedOn.split('-').reverse().join('.');
+        publication.textContent = `${TEXTS.published}: ${date}`;
+        document.getElementById('selectedDetails').textContent = `${TEXTS.profileH4} · ${TEXTS.standardProduct} ${tariffYear}`;
+    }
+
+    function useMedian() {
+        priceMode = 'median';
+        selectedMunicipalityName = null;
+        pricePerKwh = TARIFFS[tariffYear].medianPrice / 100;
+        document.getElementById('priceSlider').value = TARIFFS[tariffYear].medianPrice;
+        document.getElementById('priceValue').textContent = TARIFFS[tariffYear].medianPrice;
+        document.getElementById('selectedMunicipality').style.display = 'none';
+        document.getElementById('searchContainer').style.display = 'block';
+        calculate();
+    }
+
+    async function changeTariffYear() {
+        const municipality = selectedMunicipalityName || requestedMunicipalityName;
+        invalidateSearch();
+        tariffYear = document.getElementById('tariffYear').value;
+        if (priceMode === 'manual') {
+            calculate(); // An explicitly entered price remains the user's assumption.
             return;
         }
+        useMedian();
+        const query = municipality || document.getElementById('municipalityInput').value.trim();
+        if (query.length >= 2) await searchMunicipalities(query, Boolean(municipality));
+    }
 
-        // Sanitize input for SPARQL regex
-        const sanitizedQuery = escapeRegex(query);
-
+    async function searchMunicipalities(query, exact = false) {
+        invalidateSearch();
+        if (query.length < 2) return;
+        const version = requestVersion;
+        const controller = new AbortController();
+        requestController = controller;
+        const timeout = setTimeout(() => controller.abort(), 12000);
+        document.getElementById('tariffMessage').textContent = TEXTS.loading;
+        // A SPARQL string literal, not a user-provided regular expression.
+        const literal = JSON.stringify(query);
+        const filter = exact
+            ? `STR(?municipalityName) = ${literal}`
+            : `STRSTARTS(LCASE(STR(?municipalityName)), LCASE(${literal}))`;
         const sparqlQuery = `
             PREFIX schema: <http://schema.org/>
             PREFIX elcom: <https://energy.ld.admin.ch/elcom/electricityprice/dimension/>
             PREFIX cube: <https://cube.link/>
-            SELECT ?municipalityName (AVG(?total) as ?avgPrice) (MIN(?total) as ?minPrice) (COUNT(?total) as ?count) WHERE {
+            SELECT ?municipalityName (AVG(?total) as ?avgPrice) (COUNT(?total) as ?count) WHERE {
               GRAPH <https://lindas.admin.ch/elcom/electricityprice> {
                 ?obs a cube:Observation .
                 ?obs elcom:municipality ?municipality .
                 ?obs elcom:total ?total .
-                ?obs elcom:period "2026"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+                ?obs elcom:period "${tariffYear}"^^<http://www.w3.org/2001/XMLSchema#gYear> .
                 ?obs elcom:category <https://energy.ld.admin.ch/elcom/electricityprice/category/H4> .
                 ?obs elcom:product <https://energy.ld.admin.ch/elcom/electricityprice/product/standard> .
               }
               ?municipality schema:name ?municipalityName .
-              FILTER(REGEX(?municipalityName, "^${sanitizedQuery}", "i"))
+              FILTER(${filter})
             } GROUP BY ?municipalityName ORDER BY ?municipalityName LIMIT 15
         `;
-
         try {
             const response = await fetch(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(sparqlQuery), {
-                headers: { 'Accept': 'application/sparql-results+json' }
+                headers: { 'Accept': 'application/sparql-results+json' }, signal: controller.signal
             });
+            if (!response.ok) throw new Error(`ElCom HTTP ${response.status}`);
             const data = await response.json();
-
+            if (version !== requestVersion) return;
             const results = data.results.bindings.map(b => ({
                 name: b.municipalityName.value,
-                price: parseFloat(b.avgPrice.value).toFixed(2),
-                minPrice: parseFloat(b.minPrice.value).toFixed(2),
-                count: parseInt(b.count.value)
-            }));
-
-            showMunicipalityResults(results);
+                price: Number(b.avgPrice.value),
+                count: Number(b.count.value)
+            })).filter(r => Number.isFinite(r.price) && r.price >= 0);
+            document.getElementById('tariffMessage').textContent = '';
+            if (exact) {
+                if (results.length) selectMunicipality(results[0].name, results[0].price);
+                else document.getElementById('tariffMessage').textContent = fillText(TEXTS.noYearTariff, { municipality: query, year: tariffYear });
+            } else showMunicipalityResults(results);
         } catch (error) {
-            console.error('SPARQL query error:', error);
+            if (version === requestVersion) document.getElementById('tariffMessage').textContent = TEXTS.loadError;
+        } finally {
+            clearTimeout(timeout);
         }
     }
 
@@ -411,8 +499,14 @@
             container.appendChild(item);
         } else {
             results.forEach(r => {
-                const item = document.createElement('div');
+                const item = document.createElement('button');
+                item.type = 'button';
                 item.className = 'municipality-item';
+                item.style.width = '100%';
+                item.style.font = 'inherit';
+                item.style.color = 'inherit';
+                item.style.background = 'var(--card-bg)';
+                item.style.textAlign = 'left';
                 item.addEventListener('click', () => selectMunicipality(r.name, r.price));
 
                 const nameDiv = document.createElement('div');
@@ -422,7 +516,7 @@
 
                 const priceDiv = document.createElement('div');
                 priceDiv.className = 'price';
-                priceDiv.textContent = `${r.price} Rp./kWh` + (r.count > 1 ? ` (${r.count} ${TEXTS.tariffs})` : '');
+                priceDiv.textContent = `${r.price.toFixed(2)} ${TEXTS.rpPerKwh}` + (r.count > 1 ? ` (${r.count} ${TEXTS.tariffs})` : '');
                 item.appendChild(priceDiv);
 
                 container.appendChild(item);
@@ -436,20 +530,25 @@
     }
 
     function selectMunicipality(name, price) {
+        invalidateSearch();
+        priceMode = 'municipality';
         selectedMunicipalityName = name;
+        requestedMunicipalityName = name;
         pricePerKwh = price / 100;
+        document.getElementById('manualPriceSection').style.display = 'none';
+        document.getElementById('municipalityMode').hidden = true;
 
         document.getElementById('searchContainer').style.display = 'none';
         document.getElementById('selectedMunicipality').style.display = 'block';
         document.getElementById('selectedName').textContent = name;
-        document.getElementById('selectedTariff').textContent = price;
+        document.getElementById('selectedTariff').textContent = Number(price).toFixed(2);
 
         // Set comparison badge
         const badge = document.getElementById('comparisonBadge');
-        if (price < 25) {
+        if (price < TARIFFS[tariffYear].medianPrice * 0.9) {
             badge.textContent = TEXTS.cheap;
             badge.className = 'comparison-badge cheap';
-        } else if (price > 35) {
+        } else if (price > TARIFFS[tariffYear].medianPrice * 1.1) {
             badge.textContent = TEXTS.expensive;
             badge.className = 'comparison-badge expensive';
         } else {
@@ -462,17 +561,31 @@
     }
 
     function resetSearch() {
-        selectedMunicipalityName = null;
-        document.getElementById('searchContainer').style.display = 'block';
-        document.getElementById('selectedMunicipality').style.display = 'none';
+        invalidateSearch();
+        requestedMunicipalityName = null;
+        document.getElementById('manualPriceSection').style.display = 'none';
+        document.getElementById('municipalityMode').hidden = true;
         document.getElementById('municipalityInput').value = '';
+        useMedian();
         document.getElementById('municipalityInput').focus();
     }
 
     function showManualPrice() {
+        invalidateSearch();
+        requestedMunicipalityName = null;
+        selectedMunicipalityName = null;
+        priceMode = 'manual';
+        const slider = document.getElementById('priceSlider');
+        slider.max = Math.max(50, Math.ceil(pricePerKwh * 100));
+        document.getElementById('priceMax').textContent = slider.max;
+        slider.value = (pricePerKwh * 100).toFixed(1);
+        pricePerKwh = Number(slider.value) / 100;
+        document.getElementById('priceValue').textContent = slider.value;
         document.getElementById('searchContainer').style.display = 'none';
         document.getElementById('selectedMunicipality').style.display = 'none';
         document.getElementById('manualPriceSection').style.display = 'block';
+        document.getElementById('municipalityMode').hidden = false;
+        calculate();
     }
 
     function init() {
@@ -481,10 +594,13 @@
         renderDevices('mobilityDevices', devices.mobility);
         renderDevices('smarthomeDevices', devices.smarthome);
 
+        document.getElementById('tariffYear').addEventListener('change', changeTariffYear);
+
         // Municipality search
         const input = document.getElementById('municipalityInput');
         input.addEventListener('input', function() {
-            clearTimeout(searchTimeout);
+            requestedMunicipalityName = null;
+            invalidateSearch();
             searchTimeout = setTimeout(() => searchMunicipalities(this.value.trim()), 300);
         });
         input.addEventListener('focus', function() {
@@ -538,6 +654,8 @@
     }
 
     function calculate() {
+        updatePriceBasis();
+        calculateCustom();
         let totalKwh = 0;
         const breakdown = [];
 
@@ -576,7 +694,7 @@
         // Standby costs (10 devices × 8W average × 24h × 365 days)
         const standbyKwh = 10 * 8 * 24 * 365 / 1000; // ~700 kWh
         const standbyCost = Math.round(standbyKwh * pricePerKwh);
-        document.getElementById('standbyCost').textContent = 'CHF ' + standbyCost + '/' + TEXTS.perMonth.replace('pro ', '');
+        document.getElementById('standbyCost').textContent = 'CHF ' + standbyCost + '/' + TEXTS.perYear;
     }
 
     function calculateCustom() {
@@ -587,7 +705,7 @@
             const kwh = (watts * hours) / 1000;
             const cost = kwh * pricePerKwh;
             document.getElementById('customResult').textContent =
-                `= ${Math.round(kwh).toLocaleString('de-CH')} ${TEXTS.kwhPerYear} · CHF ${Math.round(cost).toLocaleString('de-CH')}/${TEXTS.perMonth.replace('pro ', '')}`;
+                `= ${Math.round(kwh).toLocaleString('de-CH')} ${TEXTS.kwhPerYear} · CHF ${Math.round(cost).toLocaleString('de-CH')}/${TEXTS.perYear}`;
         } else {
             document.getElementById('customResult').textContent = '';
         }
@@ -596,8 +714,9 @@
     function getShareText() {
         const total = document.getElementById('totalCost').textContent;
         const kwh = document.getElementById('totalKwh').textContent;
-        const location = selectedMunicipalityName ? ` ${TEXTS.shareText.replace('{location}', selectedMunicipalityName)}` : '';
-        return `${TEXTS.shareText.replace('{total}', total).replace('{kwh}', kwh).replace('{location}', location)}\n\n${TEXTS.shareUrl}`;
+        const location = selectedMunicipalityName ? ` (${selectedMunicipalityName})` : '';
+        const result = fillText(TEXTS.shareText, { total, kwh, location });
+        return `${result}\n${document.getElementById('priceBasis').textContent}\n\n${TEXTS.shareUrl}`;
     }
 
     function shareWhatsApp() {

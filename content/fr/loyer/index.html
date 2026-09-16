@@ -1,4 +1,5 @@
 ---
+lastmod: 2026-09-16
 title: "Calculateur de loyer"
 subtitle: "Adaptation du loyer selon le taux de référence"
 icon: "🏠"
@@ -42,13 +43,13 @@ type: "rent"
         </thead>
         <tbody>
             <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">1.50%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−2.91%</td><td style="text-align: right;">−CHF 43.65</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">1.75%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−5.82%</td><td style="text-align: right;">−CHF 87.30</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">2.00%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−8.73%</td><td style="text-align: right;">−CHF 130.95</td></tr>
-            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">2.25%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−11.64%</td><td style="text-align: right;">−CHF 174.60</td></tr>
-            <tr><td style="padding: 0.5rem 0;">2.50%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−14.55%</td><td style="text-align: right;">−CHF 218.25</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">1.75%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−5.66%</td><td style="text-align: right;">−CHF 84.90</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">2.00%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−8.26%</td><td style="text-align: right;">−CHF 123.90</td></tr>
+            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem 0;">2.25%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−10.71%</td><td style="text-align: right;">−CHF 160.65</td></tr>
+            <tr><td style="padding: 0.5rem 0;">2.50%</td><td style="text-align: right; color: #2e7d32; font-weight: 600;">−13.04%</td><td style="text-align: right;">−CHF 195.60</td></tr>
         </tbody>
     </table>
-    <p style="font-size: 0.8rem; color: var(--text-color); opacity: 0.7; margin-top: 0.75rem;"><i class="fas fa-info-circle"></i> Formule : 2.91% de réduction par 0.25% de différence de taux. Le bailleur peut compenser le renchérissement (40%) et les hausses de coûts.</p>
+    <p style="font-size: 0.8rem; color: var(--text-color); opacity: 0.7; margin-top: 0.75rem;"><i class="fas fa-info-circle"></i> Formule pour les taux inférieurs à 5% : réduction = 100 × (3 × n) / (100 + 3 × n), où n est le nombre de quarts de point. Le pourcentage est arrondi à deux décimales. Le bailleur peut compenser le renchérissement (40%) et les hausses de coûts.</p>
 </div>
 
 <!-- Carte JUSTIS -->
@@ -66,7 +67,7 @@ type: "rent"
     <h3>La formule d'adaptation du loyer</h3>
     <p>Le calcul se base sur la « méthode relative » :</p>
     <ul>
-        <li><strong>Réduction :</strong> Par baisse de 0.25% du taux de référence = <strong>2.91% de baisse de loyer</strong></li>
+        <li><strong>Réduction :</strong> Pour une seule baisse du taux de référence de 0.25 point = <strong>2.91% de baisse de loyer</strong></li>
         <li><strong>Augmentation :</strong> Par hausse de 0.25% du taux de référence = <strong>3.00% de hausse de loyer</strong></li>
     </ul>
     <p>Ces taux différents s'expliquent mathématiquement : une hausse de 3% suivie d'une baisse de 2.91% ramène au montant initial.</p>

@@ -350,11 +350,10 @@
 
         {{ .Content }}
     </div>
-
-    {{- partial "data-status.html" (dict "statusType" "referenceRate") -}}
     {{- partial "footer.html" . }}
     {{- partial "darkmode.html" . }}
 
+    <script src="/js/rent-calculator.js?v={{ readFile "static/js/rent-calculator.js" | sha256 }}"></script>
     <script>
         // Current reference rate from central data
         const CURRENT_RATE = {{ hugo.Data.site.referenceRate }};
@@ -379,15 +378,7 @@
         function calculate() {
             const currentRent = parseFloat(document.getElementById('currentRent').value) || 0;
             const rateDiff = CURRENT_RATE - oldRate;
-            const quarterSteps = Math.round(rateDiff / 0.25);
-
-            let percentChange = 0;
-            if (quarterSteps < 0) {
-                percentChange = quarterSteps * 2.91;
-            } else if (quarterSteps > 0) {
-                percentChange = quarterSteps * 3.00;
-            }
-
+            const percentChange = RentCalculator.percentChange(oldRate, CURRENT_RATE);
             const rentChange = currentRent * (percentChange / 100);
             const newRent = currentRent + rentChange;
 

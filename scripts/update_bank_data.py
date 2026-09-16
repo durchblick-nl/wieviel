@@ -1,68 +1,64 @@
-import requests
-import csv
+import subprocess
 import json
-import io
-import os
+from datetime import date
+from pathlib import Path
 
-# URL for the Swiss Bank Master CSV
-CSV_URL = "https://api.six-group.com/api/epcd/bankmaster/v3/bankmaster_V3.csv"
-# Output relative to this script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_FILE = os.path.join(script_dir, "../static/data/bank_master.json")
+# Preserve the browser's IID-keyed JSON contract while using SIX's structured API.
+SOURCE_URL = "https://api.six-group.com/api/epcd/bankmaster/v3/bankmaster.json"
+OUTPUT_FILE = Path(__file__).resolve().parent.parent / "static/data/bank_master.json"
 
 def download_and_convert():
-    print(f"Downloading CSV from {CSV_URL}...")
+    print(f"Downloading bank master from {SOURCE_URL}...")
     try:
-        response = requests.get(CSV_URL)
-        response.raise_for_status()
-        
-        # The CSV is semicolon separated and UTF-8 encoded
-        csv_content = response.content.decode('utf-8')
-        
-        # Parse CSV
-        csv_reader = csv.DictReader(io.StringIO(csv_content), delimiter=';')
-        
-        # Headers: ['IID/QR-IID', 'Valid on', 'Concatenation', 'New IID/QR-IID', 'SIC IID', 'Headquarters', 'IID type', 'QR-IID allocation', 'Name of bank/institution', 'Street Name', 'Building Number', 'Post Code', 'Town Name', 'Country', 'BIC', 'SIC participation', 'RTGS customer payments, CHF', 'IP customer payments, CHF', 'euroSIC participation', 'LSV+/BDD, CHF', 'LSV+/BDD, EUR', '...']
-        
+        response = subprocess.run(
+            ['curl', '--fail', '--silent', '--show-error', '--location', '--max-time', '30', SOURCE_URL],
+            check=True, capture_output=True, text=True
+        )
+        data = json.loads(response.stdout)
+        valid_on = date.fromisoformat(data['validOn'])
+        entries = data['entries']
+        if len(entries) < 500 or len(entries) != data['totalSize']:
+            raise ValueError("Incomplete SIX bank master; existing file is unchanged")
+        records = {}
+        for row in entries:
+            iid = str(row['iid']).zfill(5)
+            if not iid.isdigit() or len(iid) != 5 or iid in records:
+                raise ValueError(f"Invalid or duplicate IID: {iid}")
+            records[iid] = row
         banks = {}
-        
-        print("Processing data...")
-        count = 0
-        for row in csv_reader:
-            iid = row.get('IID/QR-IID')
-            if not iid:
-                continue
-            
-            # Pack IID to 5 digits (Swiss IBAN standard)
-            iid = iid.zfill(5)
-            
-            # Extract relevant fields
-            bank_data = {
-                'name': row.get('Name of bank/institution'),
-                'city': row.get('Town Name'),
-                'zip': row.get('Post Code'),
-                'address': f"{row.get('Street Name', '')} {row.get('Building Number', '')}".strip(),
-                'bic': row.get('BIC'),
+        for iid, row in records.items():
+            # SIX includes redirects after bank mergers. Resolve these before
+            # mapping the old IID so a valid IBAN never displays an empty bank.
+            visited = {iid}
+            while row.get('entryType') == 'BankMasterConcatenated':
+                successor = str(row['newIid']).zfill(5)
+                if successor in visited or successor not in records:
+                    raise ValueError(f"Invalid SIX successor chain for IID: {iid}")
+                visited.add(successor)
+                row = records[successor]
+            if not row.get('bankOrInstitutionName'):
+                raise ValueError(f"Missing bank name for IID: {iid}")
+            banks[iid] = {
+                'name': row['bankOrInstitutionName'],
+                'city': row.get('townName', ''),
+                'zip': row.get('postCode', ''),
+                'address': f"{row.get('streetName', '')} {row.get('buildingNumber', '')}".strip(),
+                'bic': row.get('bic', ''),
                 'clearing': iid
             }
-            
-            # Store in dictionary
-            banks[iid] = bank_data
-            count += 1
-            
-        print(f"Found {count} bank entries.")
-            
-        # Ensure output directory exists
-        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-        
-        # Write to JSON
-        with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-            json.dump(banks, f, ensure_ascii=False, indent=2)
-            
-        print(f"Successfully saved JSON to {OUTPUT_FILE}")
+        banks['_meta'] = {
+            'validOn': valid_on.isoformat(),
+            'importedOn': date.today().isoformat(),
+            'sourceUrl': SOURCE_URL,
+            'recordCount': len(banks)
+        }
+        temporary = OUTPUT_FILE.with_suffix('.json.tmp')
+        temporary.write_text(json.dumps(banks, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        temporary.replace(OUTPUT_FILE)
+        print(f"Saved {len(records)} banks, valid on {valid_on}. Data status and cache version are derived automatically.")
         
     except Exception as e:
-        print(f"Error: {e}")
+        raise SystemExit(f"Bank update failed: {e}") from e
 
 if __name__ == "__main__":
     download_and_convert()

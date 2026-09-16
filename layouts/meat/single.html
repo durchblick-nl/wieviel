@@ -76,10 +76,10 @@
                 <div class="meat-details">
                     <h4>{{ i18n "meat.beef" }}</h4>
                     <small>{{ i18n "meat.beefExamples" }}</small>
-                    <input type="range" class="meat-slider" id="beef" aria-label="{{ i18n "meat.beef" }}" min="0" max="1000" value="210" oninput="calculate()">
-                    <div class="swiss-average">{{ i18n "meat.chAverage" }}: 210g/{{ i18n "meat.week" }}</div>
+                    <input type="range" class="meat-slider" id="beef" aria-label="{{ i18n "meat.beef" }}" min="0" max="1000" value="222" oninput="calculate()">
+                    <div class="swiss-average">{{ i18n "meat.chAverage" }}: 222g/{{ i18n "meat.week" }}</div>
                 </div>
-                <div class="meat-value" id="beefValue">210g</div>
+                <div class="meat-value" id="beefValue">222g</div>
             </div>
 
             <div class="meat-input">
@@ -87,10 +87,10 @@
                 <div class="meat-details">
                     <h4>{{ i18n "meat.pork" }}</h4>
                     <small>{{ i18n "meat.porkExamples" }}</small>
-                    <input type="range" class="meat-slider" id="pork" aria-label="{{ i18n "meat.pork" }}" min="0" max="1000" value="370" oninput="calculate()">
-                    <div class="swiss-average">{{ i18n "meat.chAverage" }}: 370g/{{ i18n "meat.week" }}</div>
+                    <input type="range" class="meat-slider" id="pork" aria-label="{{ i18n "meat.pork" }}" min="0" max="1000" value="373" oninput="calculate()">
+                    <div class="swiss-average">{{ i18n "meat.chAverage" }}: 373g/{{ i18n "meat.week" }}</div>
                 </div>
-                <div class="meat-value" id="porkValue">370g</div>
+                <div class="meat-value" id="porkValue">373g</div>
             </div>
 
             <div class="meat-input">
@@ -98,15 +98,15 @@
                 <div class="meat-details">
                     <h4>{{ i18n "meat.poultry" }}</h4>
                     <small>{{ i18n "meat.poultryExamples" }}</small>
-                    <input type="range" class="meat-slider" id="poultry" aria-label="{{ i18n "meat.poultry" }}" min="0" max="1000" value="305" oninput="calculate()">
-                    <div class="swiss-average">{{ i18n "meat.chAverage" }}: 305g/{{ i18n "meat.week" }}</div>
+                    <input type="range" class="meat-slider" id="poultry" aria-label="{{ i18n "meat.poultry" }}" min="0" max="1000" value="318" oninput="calculate()">
+                    <div class="swiss-average">{{ i18n "meat.chAverage" }}: 318g/{{ i18n "meat.week" }}</div>
                 </div>
-                <div class="meat-value" id="poultryValue">305g</div>
+                <div class="meat-value" id="poultryValue">318g</div>
             </div>
 
             <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--border-color);">
                 <span style="font-size: 0.9rem; color: var(--text-color);">{{ i18n "meat.totalPerWeek" }}:</span>
-                <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); font-family: 'Economica', sans-serif;" id="totalWeekly">885g</div>
+                <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); font-family: 'Economica', sans-serif;" id="totalWeekly">913g</div>
             </div>
         </div>
 
@@ -151,7 +151,7 @@
                 <div class="comparison-labels">
                     <span>0g</span>
                     <span>{{ i18n "meat.sgeMax" }} (360g)</span>
-                    <span>CH ⌀ (885g)</span>
+                    <span>CH ⌀ (913g)</span>
                 </div>
 
                 <div class="recommendation" id="recommendation">
@@ -240,7 +240,7 @@
         const WATER_PER_KG = { beef: 15400, pork: 6000, poultry: 4300 };
         const MEAT_PER_ANIMAL = { beef: 250, pork: 80, poultry: 1.5 };
         const SGE_MAX_WEEKLY = 360;
-        const SWISS_AVG_WEEKLY = 885;
+        const SWISS_AVG_WEEKLY = 913;
         const CO2_PER_FLIGHT_ZH_MALLORCA = 340;
         const CO2_PER_CAR_KM = 0.14;
         const CO2_PER_TREE_YEAR = 22;

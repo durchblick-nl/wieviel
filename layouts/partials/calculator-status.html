@@ -1,0 +1,34 @@
+{{- $status := index hugo.Data.calculatorStatus .Type -}}
+{{- with $status.use -}}
+    {{- $status = index hugo.Data.calculatorStatus . -}}
+{{- end -}}
+{{- if not $status -}}
+    {{- errorf "Missing calculator status for %s (%s)" .RelPermalink .Type -}}
+{{- end -}}
+{{- $lang := site.Language.Lang -}}
+{{- $period := index $status.period $lang | default "" -}}
+{{- $note := index $status.note $lang | default "" -}}
+{{- $reviewed := $status.reviewed -}}
+{{- if eq $status.dataset "purchasing" -}}
+    {{- $data := partialCached "calculator-dataset.html" "lik_index" "lik_index" -}}
+    {{- $parts := split $data.lastUpdated "-" -}}
+    {{- $value := index $data.monthly (index $parts 0) (index $parts 1) -}}
+    {{- if not $value }}{{ errorf "LIK lastUpdated has no index: %s" $data.lastUpdated }}{{ end -}}
+    {{- $period = i18n "dataStatus.likPeriod" (dict "month" (time.Format "January 2006" (printf "%s-01" $data.lastUpdated))) -}}
+    {{- $note = printf "%s %s" (i18n "dataStatus.likNote" (dict "index" (lang.FormatNumber 1 $value) "base" (time.Format "January 2006" (printf "%s-01" $data.baseMonth)) "baseValue" $data.baseValue)) $note -}}
+    {{- $reviewed = $data.verifiedOn -}}
+{{- else if eq $status.dataset "iban" -}}
+    {{- $data := partialCached "calculator-dataset.html" "bank_master" "bank_master" -}}
+    {{- $period = i18n "dataStatus.bankPeriod" (dict "date" (time.Format "02.01.2006" $data._meta.validOn)) -}}
+{{- else if eq $status.dataset "electricity" -}}
+    {{- $years := slice -}}
+    {{- range $year, $tariff := hugo.Data.site.electricity.tariffs -}}
+        {{- $years = $years | append $year -}}
+    {{- end -}}
+    {{- $period = i18n "dataStatus.electricityPeriod" (dict "years" (delimit (sort $years) " / ")) -}}
+    {{- $reviewed = hugo.Data.site.electricity.verifiedOn -}}
+{{- end -}}
+{{- if or (not $period) (not $note) (not $reviewed) -}}
+    {{- errorf "Incomplete calculator status for %s" .RelPermalink -}}
+{{- end -}}
+{{- return (dict "period" $period "note" $note "reviewed" $reviewed "next" $status.next "sources" $status.sources) -}}

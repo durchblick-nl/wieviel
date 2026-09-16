@@ -1,0 +1,11 @@
+{
+  "name": "wieviel-calculators",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:browser": "node --test tests/browser.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

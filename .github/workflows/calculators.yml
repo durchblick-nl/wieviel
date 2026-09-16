@@ -1,0 +1,29 @@
+name: Calculator regression checks
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  calculators:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Install repository Hugo version
+        run: |
+          version=$(tr -d '\r\n' < .hugo-version)
+          curl --fail --location --retry 3 "https://github.com/gohugoio/hugo/releases/download/v${version}/hugo_${version}_linux-amd64.tar.gz" -o /tmp/hugo.tar.gz
+          mkdir -p /tmp/hugo-bin
+          tar -xzf /tmp/hugo.tar.gz -C /tmp/hugo-bin hugo
+          echo /tmp/hugo-bin >> "$GITHUB_PATH"
+      - run: npm test
+      - run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - run: hugo --environment production
+      - run: npm run test:browser
