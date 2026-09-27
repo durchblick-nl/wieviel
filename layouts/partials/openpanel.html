@@ -1,0 +1,24 @@
+{{- if hugo.IsProduction }}
+<script>
+  // Keep local development and preview domains out of production analytics.
+  if (['wieviel.ch', 'calcule.ch'].includes(window.location.hostname)) {
+    window.op=window.op||function(){var n=[];return new Proxy(function(){arguments.length&&n.push([].slice.call(arguments))},{get:function(t,r){return"q"===r?n:function(){n.push([r].concat([].slice.call(arguments)))}} ,has:function(t,r){return"q"===r}}) }();
+    window.op('init', {
+      apiUrl: 'https://opapi.treehouse.ch',
+      clientId: 'b14755da-723c-47f6-aea4-43ad4b1d0567',
+      trackScreenViews: true,
+      trackOutgoingLinks: true,
+      trackAttributes: true
+    });
+    window.op('setGlobalProperties', {
+      language: {{ .Site.Language.Lang }},
+      calculator: {{ .Params.translationKey | default .Kind }}
+    });
+    var openpanelScript = document.createElement('script');
+    openpanelScript.src = 'https://openpanel.dev/op1.js';
+    openpanelScript.defer = true;
+    openpanelScript.async = true;
+    document.head.appendChild(openpanelScript);
+  }
+</script>
+{{- end }}

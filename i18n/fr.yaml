@@ -15,7 +15,7 @@ chf: "CHF"
 
 # Footer
 disclaimer: "Toutes les informations sont fournies sans garantie."
-privacyNote: "Tous les calculs sont effectués localement. Aucune donnée n'est enregistrée."
+privacyNote: "Tous les calculs sont effectués localement. Statistiques d’utilisation avec OpenPanel."
 officialSources: "Sources officielles"
 
 # Calculateur de loyer (Mietzinsrechner)
