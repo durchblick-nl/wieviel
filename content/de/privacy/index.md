@@ -25,6 +25,6 @@ Nur wenn du zustimmst, laden wir OpenPanel von `openpanel.dev`. Damit erfassen w
 
 ## Betrieb der Website
 
-Die Website wird über Cloudflare Pages ausgeliefert. Beim Aufruf werden technische Verbindungsdaten verarbeitet, darunter IP-Adresse und Zugriffszeitpunkt, um Inhalte auszuliefern und den Dienst zu schützen. Das ist unabhängig von der optionalen OpenPanel-Analyse.
+Die Website wird auf einem Server bei Hetzner in Deutschland betrieben. Cloudflare ist als vorgeschalteter Proxy eingebunden. Beim Aufruf werden technische Verbindungsdaten, darunter IP-Adresse und Zugriffszeitpunkt, für die Auslieferung und den Schutz der Website verarbeitet. Das ist unabhängig von der optionalen OpenPanel-Analyse.
 
 *Stand: 8. Oktober 2026*

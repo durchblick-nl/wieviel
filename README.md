@@ -67,7 +67,7 @@ Praktische Online-Rechner für den Alltag in der Schweiz.
 - **Vanilla HTML5/CSS3/JavaScript** - Keine Frameworks
 - **CSS Variables** - Dark Mode & Theming
 - **Font Awesome** - Icons
-- **Cloudflare Pages** - Hosting mit Worker-basiertem Routing
+- **Hetzner (Deutschland)** - Eigenes Hosting mit nginx; Cloudflare als vorgeschalteter Proxy
 
 ## Projektstruktur
 
@@ -90,9 +90,10 @@ wieviel.ch/
 │   ├── css/styles.css
 │   ├── 404.html
 │   └── og/           # Open Graph Bilder
-├── _worker.js        # Cloudflare Worker (Routing)
+├── nginx.conf        # Aktives Domain-Routing
+├── _worker.js        # Früheres Cloudflare-Pages-Routing
 ├── hugo.toml         # Hugo Konfiguration
-└── build.sh          # Build Script
+└── build.sh          # Manueller/Legacy-Build für Pages-Kompatibilität
 ```
 
 ## Lokale Entwicklung
@@ -107,10 +108,10 @@ hugo server
 
 ## Deployment
 
-Automatisches Deployment via [Cloudflare Pages](https://pages.cloudflare.com/) bei Push auf `main`.
+Automatisches Deployment der Hugo/nginx-Anwendung via Coolify auf einem Hetzner-Server in Deutschland bei Push auf `coolify`. Cloudflare ist als vorgeschalteter Proxy eingebunden, nicht als Pages-Hoster.
 
-- **Build command**: `./build.sh`
-- **Output directory**: `public`
+- **Container-Build**: `Dockerfile` (Hugo-Build, danach nginx)
+- **Domain-Routing**: `nginx.conf`
 
 ## Verwandte Projekte
 

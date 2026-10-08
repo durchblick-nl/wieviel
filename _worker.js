@@ -1,5 +1,6 @@
 /**
- * Cloudflare Pages Worker for wieviel.ch + calcule.ch dual-domain setup
+ * Legacy Cloudflare Pages Worker for wieviel.ch + calcule.ch dual-domain setup.
+ * Production currently uses the nginx configuration in this repository.
  *
  * Hugo generates files under /de/ and /fr/ prefixes.
  * This worker:

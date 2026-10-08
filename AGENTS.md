@@ -43,7 +43,7 @@ A collection of useful calculators for the general public in Switzerland, built 
 ## Tech Stack
 
 - **Static Site Generator**: Hugo (v0.152.2+)
-- **Hosting**: Cloudflare Pages (auto-deploy on push to main)
+- **Hosting**: Self-hosted on Hetzner in Germany via Coolify and nginx (auto-deploy on push to `coolify`; Cloudflare is a reverse proxy)
 - **Frontend**: Vanilla HTML5/CSS3/JavaScript
 - **Styling**: CSS Variables, Font Awesome icons
 - **i18n**: Hugo's built-in multilingual support
@@ -234,15 +234,14 @@ Access in templates:
 
 ## Deployment
 
-- **Auto-deploy**: Push to `main` branch triggers Cloudflare Pages build
-- **Preview**: Push to any other branch creates preview URL
-- **Build command**: `hugo`
-- **Output directory**: `public`
+- **Auto-deploy**: Push to `coolify` branch triggers the Coolify deployment
+- **Container build**: `Dockerfile` builds Hugo output and serves it with nginx
+- **Active routing**: `nginx.conf`; `_worker.js` is retained for the former Cloudflare Pages setup
 - **Hugo version**: Set via `.hugo-version` file or `HUGO_VERSION` env var
 
 ### Domain Routing
 
-Hugo builds to `/de/` and `/fr/` prefixes. Cloudflare Pages serves:
+Hugo builds to `/de/` and `/fr/` prefixes. The nginx configuration serves:
 - `wieviel.ch/*` → German content (`/de/*`)
 - `calcule.ch/*` → French content (`/fr/*`)
 

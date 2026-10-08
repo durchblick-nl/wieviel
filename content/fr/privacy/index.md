@@ -25,6 +25,6 @@ Nous ne chargeons OpenPanel depuis `openpanel.dev` qu’avec votre accord. Il me
 
 ## Fonctionnement du site
 
-Le site est distribué par Cloudflare Pages. Lors d’une visite, des données techniques de connexion, notamment l’adresse IP et l’heure d’accès, sont traitées pour fournir et protéger le service. Ce traitement est distinct de l’analyse facultative avec OpenPanel.
+Le site est hébergé sur un serveur Hetzner en Allemagne. Cloudflare est utilisé comme proxy en amont. Lors d’une visite, des données techniques de connexion, notamment l’adresse IP et l’heure d’accès, sont traitées pour fournir et protéger le site. Ce traitement est distinct de l’analyse facultative avec OpenPanel.
 
 *Mise à jour : 8 octobre 2026*

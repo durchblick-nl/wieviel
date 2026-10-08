@@ -1,5 +1,5 @@
-# Cloudflare Pages _redirects
-# Cross-domain redirects are handled by _worker.js
+# Legacy Cloudflare Pages _redirects (not the active nginx routing)
+# In the former Pages setup, cross-domain redirects were handled by _worker.js
 # This file only contains legacy path redirects
 
 # Legacy redirects: Old /tool/de/* URLs → new structure
