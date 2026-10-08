@@ -1,7 +1,7 @@
 /* Self-hosted fonts: no third-party font request before consent. */
 @font-face {
   font-family: Inter;
-  src: url('/fonts/Inter-latin-ext.woff2') format('woff2');
+  src: url('/css/fonts/Inter-latin-ext.woff2') format('woff2');
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
@@ -9,7 +9,7 @@
 }
 @font-face {
   font-family: Inter;
-  src: url('/fonts/Inter-latin.woff2') format('woff2');
+  src: url('/css/fonts/Inter-latin.woff2') format('woff2');
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
@@ -17,7 +17,7 @@
 }
 @font-face {
   font-family: Economica;
-  src: url('/fonts/Economica-latin-ext-400.woff2') format('woff2');
+  src: url('/css/fonts/Economica-latin-ext-400.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -25,7 +25,7 @@
 }
 @font-face {
   font-family: Economica;
-  src: url('/fonts/Economica-latin-400.woff2') format('woff2');
+  src: url('/css/fonts/Economica-latin-400.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -33,7 +33,7 @@
 }
 @font-face {
   font-family: Economica;
-  src: url('/fonts/Economica-latin-ext-700.woff2') format('woff2');
+  src: url('/css/fonts/Economica-latin-ext-700.woff2') format('woff2');
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -41,7 +41,7 @@
 }
 @font-face {
   font-family: Economica;
-  src: url('/fonts/Economica-latin-700.woff2') format('woff2');
+  src: url('/css/fonts/Economica-latin-700.woff2') format('woff2');
   font-style: normal;
   font-weight: 700;
   font-display: swap;

@@ -7,7 +7,6 @@ hugo
 # Copy static files to root of public (shared between languages)
 cp -r public/de/css public/css 2>/dev/null || true
 cp -r public/de/js public/js 2>/dev/null || true
-cp -r public/de/fonts public/fonts 2>/dev/null || true
 cp -r public/de/og public/og 2>/dev/null || true
 cp public/de/favicon.svg public/favicon.svg 2>/dev/null || true
 
