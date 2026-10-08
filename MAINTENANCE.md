@@ -2,7 +2,7 @@
 
 Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müssen.
 
-**Letzte Aktualisierung:** 16. September 2026
+**Letzte Aktualisierung:** 8. Oktober 2026
 
 ---
 
@@ -18,15 +18,15 @@ Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müs
 - Bei Modellrechnern und Marktpreisannahmen ausdrücklich Richtwerte nennen; keine angeblich tagesaktuellen Marktpreise ausweisen.
 - Neue Rechner benötigen einen eigenen Eintrag. Beide Sprachseiten müssen genau eine sichtbare Datenbox erhalten.
 
-## Datenabgleich vom 16. September 2026
+## Datenabgleich vom 16. September 2026, aktualisiert am 8. Oktober 2026
 
 | Bereich | Ergebnis und Quelle |
 |---|---|
 | Strom | ElCom-Median H4: 2026 **27,7**, 2027 **26,5 Rp./kWh**. Veröffentlichungen [2026](https://www.elcom.admin.ch/de/newnsb/8nuE_fvwnfqCu8OHNOwKu) / [2027](https://www.elcom.admin.ch/de/newnsb/1miE201yRzoA). LINDAS bestätigt beide Jahre: 2’294 / 2’268 Beobachtungen, Min/Max 9,643–43,613 / 10,559–45,883. Min/Max sind Einzelbeobachtungen, keine Gemeinde-Mediane. |
 | Miete | [BWO](https://www.bwo.admin.ch/de/referenzzinssatz): weiterhin 1,25 %, gültig ab 02.09.2026. |
-| LIK | [BFS-Originaltabelle](https://www.bfs.admin.ch/bfsstatic/dam/assets/orderNr:cc-d-05.02.08/master), Blatt `Index_m`, Basis Dezember 2020 (Spalte L): August 2026 **108,6**. Keine Mischung mit der neuen Basis Dezember 2025. |
-| Banken | SIX JSON, `validOn=2026-09-16`, 1’164 Einträge. Davon 26 IID-Nachfolgeverweise nach Fusionen; diese werden vor der Ausgabe auf die aktuelle Bank aufgelöst. |
-| Sozialversicherung | [AHV-Beiträge](https://www.ahv-iv.ch/p/2.01.d), [ALV](https://www.ahv-iv.ch/p/2.08.d), [BSV-Masszahlen 2026](https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf): bestehende AHV/ALV/BVG/3a-Werte bestätigt; keine Vorwegnahme von 2027. |
+| LIK | [BFS-Originaltabelle](https://www.bfs.admin.ch/bfsstatic/dam/assets/orderNr:cc-d-05.02.08/master), Blatt `Index_m`, Basis Dezember 2020 (Spalte L): September 2026 **108,5**. Keine Mischung mit der neuen Basis Dezember 2025. Nächste Publikation: 03.11.2026. |
+| Banken | SIX JSON, `validOn=2026-10-08`, 1’164 Einträge; gegenüber 16.09.2026 genau vier geänderte IIDs (08571, 30231, 08827, 30299). IID-Nachfolgeverweise nach Fusionen werden vor der Ausgabe auf die aktuelle Bank aufgelöst. |
+| Sozialversicherung | [AHV-Beiträge](https://www.ahv-iv.ch/p/2.01.d), [ALV](https://www.ahv-iv.ch/p/2.08.d), [BSV-Masszahlen 2026](https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf): 2026er AHV/ALV/BVG/3a-Rechenwerte bleiben aktiv. [13. AHV-Altersrente](https://www.bsv.admin.ch/de/umsetzung-13-ahv-rente) gilt bereits ab 2026; [beschlossene Grenzwerte 2027](https://www.admin.ch/de/newnsb/BqB41FVYi5FB) werden vorab nur erläutert. Der Teilzeitrechner berechnet keine individuelle AHV-Renteneinbusse, weil die nötigen Angaben fehlen. |
 | EO | [Mutterschaft](https://www.ahv-iv.ch/p/6.02.d), [anderer Elternteil](https://www.ahv-iv.ch/p/6.04.d): 80 %, maximal CHF 220/Tag bestätigt. |
 | Familienzulagen | [BSV](https://www.bsv.admin.ch/de/familienzulagen-leistungen-und-voraussetzungen): allgemeine Mindestwerte auf CHF 215/268 korrigiert; Alimenterechner hatte bereits CHF 215. |
 | MWST | [ESTV](https://www.estv.admin.ch/estv/de/home/mehrwertsteuer.html): 8,1 / 2,6 / 3,8 % bestätigt. |

@@ -54,6 +54,13 @@
         {{- partial "header.html" . }}
         {{- partial "page-header.html" . }}
 
+        <div class="info-box" role="note">
+            <strong>{{ i18n "parttime.ahvUpdateTitle" }}</strong>
+            {{ i18n "parttime.ahvUpdateText" }}
+            <a href="{{ if eq .Site.Language.Lang "de" }}https://www.bsv.admin.ch/de/umsetzung-13-ahv-rente{{ else }}https://www.bsv.admin.ch/fr/misenoeuvre-13-rente-avs{{ end }}" target="_blank" rel="noopener">{{ i18n "parttime.ahvUpdateSource" }}</a>
+            · <a href="{{ if eq .Site.Language.Lang "de" }}https://www.admin.ch/de/newnsb/BqB41FVYi5FB{{ else }}https://www.edi.admin.ch/fr/newnsb/BqB41FVYi5FB{{ end }}" target="_blank" rel="noopener">{{ i18n "parttime.ahv2027Source" }}</a>
+        </div>
+
         <div class="steps-container">
             <div class="step-card">
                 <div class="step-icon"><i class="fas fa-wallet"></i><div class="step-number">1</div></div>
@@ -119,6 +126,10 @@
                 <div class="total" id="totalLoss">CHF 0</div>
                 <div class="sub" id="equivalentMonths">= 0 {{ i18n "parttime.monthsSalary" }}</div>
             </div>
+            <div class="info-box" role="note">
+                {{ i18n "parttime.ahvNotCalculatedText" }}
+                <a href="{{ if eq .Site.Language.Lang "de" }}https://www.ahv-iv.ch/de/Formulare/Online-Rentensch%C3%A4tzung-ESCAL{{ else }}https://www.ahv-iv.ch/fr/Formulaires/Estimation-dune-rente-ESCAL{{ end }}" target="_blank" rel="noopener">{{ i18n "parttime.ahvEstimateLink" }}</a>
+            </div>
 
             <div class="comparison-grid">
                 <div class="comparison-box highlight">
@@ -163,7 +174,7 @@
                 </div>
                 <div class="breakdown-row">
                     <span class="label">{{ i18n "parttime.ahvPensionLoss" }}</span>
-                    <span class="value negative" id="ahvLoss">- CHF 24'000</span>
+                    <span class="value" id="ahvLoss">{{ i18n "parttime.notCalculated" }}</span>
                 </div>
                 <div class="breakdown-row total">
                     <span class="label">{{ i18n "parttime.totalLoss" }}</span>
@@ -202,8 +213,6 @@
         const COORDINATION_DEDUCTION = 26460;
         const MAX_INSURED_SALARY = 90720;
         const BVG_INTEREST_RATE = 0.0125;
-        const MAX_AHV_MONTHLY = 2520;
-        const RETIREMENT_YEARS = 20;
 
         const BVG_RATES = { 25: 0.035, 35: 0.05, 45: 0.075, 55: 0.09 };
 
@@ -251,22 +260,18 @@
                 totalBvgLoss += yearlyBvgLoss * Math.pow(1 + BVG_INTEREST_RATE, yearsToCompound);
             }
 
-            const avgIncomeReduction = (yearlyIncomeLoss * duration) / (44 * salary100);
-            const estimatedAhvMonthlyLoss = MAX_AHV_MONTHLY * avgIncomeReduction * 0.5;
-            const totalAhvLoss = Math.max(0, estimatedAhvMonthlyLoss * 12 * RETIREMENT_YEARS);
-
-            const totalLoss = totalIncomeLoss + totalBvgLoss + totalAhvLoss;
+            // An AHV pension cannot be inferred from salary and workload alone.
+            const totalLoss = totalIncomeLoss + totalBvgLoss;
 
             document.getElementById('totalLoss').textContent = formatCHF(totalLoss);
             document.getElementById('incomeLoss').textContent = '- ' + formatCHF(totalIncomeLoss);
             document.getElementById('bvgLoss').textContent = '- ' + formatCHF(totalBvgLoss);
-            document.getElementById('ahvLoss').textContent = '- ' + formatCHF(totalAhvLoss);
             document.getElementById('totalLossBreakdown').textContent = '- ' + formatCHF(totalLoss);
 
-            const monthsEquivalent = Math.round(totalLoss / (currentSalary / 12));
+            const monthsEquivalent = currentSalary > 0 ? Math.round(totalLoss / (currentSalary / 12)) : 0;
             document.getElementById('equivalentMonths').textContent = '= ' + monthsEquivalent + ' ' + TEXTS.monthsSalary;
 
-            const yearsEquivalent = (totalLoss / salary100).toFixed(1);
+            const yearsEquivalent = salary100 > 0 ? (totalLoss / salary100).toFixed(1) : '0.0';
             document.getElementById('equivalentValue').textContent = yearsEquivalent + ' ' + TEXTS.years;
         }
 
@@ -280,8 +285,8 @@
             const newPensum = document.getElementById('newPensum').value;
             const duration = document.getElementById('duration').value;
             return LANG === 'de'
-                ? `Teilzeit-Rechner: Eine Reduktion von ${currentPensum}% auf ${newPensum}% für ${duration} Jahre kostet mich ${totalLoss} über mein Leben!\n\n${TEXTS.shareUrl}`
-                : `Calculateur temps partiel: Une réduction de ${currentPensum}% à ${newPensum}% pendant ${duration} ans me coûte ${totalLoss} sur ma vie!\n\n${TEXTS.shareUrl}`;
+                ? `Teilzeit-Rechner: ${currentPensum}% auf ${newPensum}% für ${duration} Jahre – geschätzte Einbusse aus Bruttolohn und BVG-Kapital: ${totalLoss}. AHV-Rente nicht berechnet.\n\n${TEXTS.shareUrl}`
+                : `Calculateur temps partiel : de ${currentPensum}% à ${newPensum}% pendant ${duration} ans – perte estimée de salaire brut et de capital LPP : ${totalLoss}. Rente AVS non calculée.\n\n${TEXTS.shareUrl}`;
         }
 
         function shareResult() {

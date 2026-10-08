@@ -107,7 +107,7 @@
       "de": "Die Datenperiode und der letzte Index stammen direkt aus der verwendeten BFS-Datei.",
       "fr": "La période et le dernier indice proviennent directement du fichier OFS utilisé."
     },
-    "next": "2026-10-05",
+    "next": "2026-11-03",
     "sources": [
       {
         "name": "BFS / OFS",

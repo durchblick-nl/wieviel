@@ -1809,9 +1809,9 @@
   },
   "30231": {
     "name": "Edmond de Rothschild (Suisse) S.A",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Case postale 5478",
+    "city": "Châtelaine",
+    "zip": "1219",
+    "address": "Avenue de I'Etang 62b",
     "bic": "PRIBCHGGXXX",
     "clearing": "30231"
   },
@@ -2168,7 +2168,7 @@
     "clearing": "30297"
   },
   "30299": {
-    "name": "S.P. Hinduja Banque Privée SA",
+    "name": "Arya Banque Privée SA",
     "city": "Genève 1",
     "zip": "1211",
     "address": "Place de la Fusterie 3 bis",
@@ -8065,9 +8065,9 @@
   },
   "08571": {
     "name": "Edmond de Rothschild (Suisse) S.A",
-    "city": "Genève 11",
-    "zip": "1211",
-    "address": "Case postale 5478",
+    "city": "Châtelaine",
+    "zip": "1219",
+    "address": "Avenue de I'Etang 62b",
     "bic": "PRIBCHGGXXX",
     "clearing": "08571"
   },
@@ -8736,7 +8736,7 @@
     "clearing": "08825"
   },
   "08827": {
-    "name": "S.P. Hinduja Banque Privée SA",
+    "name": "Arya Banque Privée SA",
     "city": "Genève 1",
     "zip": "1211",
     "address": "Place de la Fusterie 3 bis",
@@ -9312,8 +9312,8 @@
     "clearing": "09000"
   },
   "_meta": {
-    "validOn": "2026-09-16",
-    "importedOn": "2026-09-16",
+    "validOn": "2026-10-08",
+    "importedOn": "2026-10-08",
     "sourceUrl": "https://api.six-group.com/api/epcd/bankmaster/v3/bankmaster.json",
     "recordCount": 1164
   }
