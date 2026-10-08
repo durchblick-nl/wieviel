@@ -66,7 +66,8 @@ export default {
         // =================================================================
         // Static assets: pass through directly (no prefix needed)
         // =================================================================
-        if (path.startsWith('/css/') || path.startsWith('/og/') || path.startsWith('/data/') ||
+        if (path.startsWith('/css/') || path.startsWith('/js/') || path.startsWith('/fonts/') ||
+            path.startsWith('/og/') || path.startsWith('/data/') ||
             path.startsWith('/js/') || path === '/favicon.svg' || path === '/_redirects') {
             const response = await env.ASSETS.fetch(request);
             return response.status === 404 ? notFound() : response;

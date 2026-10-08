@@ -32,6 +32,6 @@
     <a href="{{ $homePath }}">{{ $allToolsText }}</a>
 </nav>
 
-{{- if .Params }}
+{{- if and .Params (ne .Type "privacy") }}
     {{- partial "data-status.html" . }}
 {{- end }}

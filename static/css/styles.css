@@ -1751,6 +1751,27 @@
             margin-top: 1rem !important;
         }
 
+        .footer-privacy-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem 1.25rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-privacy-actions button {
+            border: 0;
+            padding: 0;
+            background: transparent;
+            color: white;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .footer-privacy-actions button:hover { text-decoration: underline; opacity: .8; }
+        .footer-privacy-actions :focus-visible { outline: 2px solid white; outline-offset: 4px; }
+
         @media print {
             .site-footer {
                 display: none !important;

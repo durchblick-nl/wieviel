@@ -56,7 +56,7 @@ Praktische Online-Rechner für den Alltag in der Schweiz.
 - 🌐 **Bilingual**: Deutsch (wieviel.ch) + Französisch (calcule.ch)
 - 🌙 **Dark Mode**: System-Erkennung + manueller Toggle
 - 📱 **Responsive**: Optimiert für Mobile
-- 🔒 **Datenschutz**: 100% client-side, keine Cookies, kein Tracking
+- 🔒 **Datenschutz**: Berechnungen im Browser; OpenPanel nur nach Einwilligung, getrennt je Domain
 - 📤 **Teilen**: WhatsApp & Kopieren
 - 🔍 **SEO**: Open Graph & Twitter Cards
 - 💡 **Tooltips**: Erklärungen für alle Features

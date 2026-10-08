@@ -25,7 +25,7 @@ disableAliases = true
       homePath = "/"
       allToolsText = "Alle Tools"
       disclaimerText = "Alle Angaben ohne Gewähr."
-      privacyText = "Alle Berechnungen erfolgen lokal. Nutzungsstatistik mit OpenPanel."
+      privacyText = "Berechnungen erfolgen lokal. Nutzungsanalyse nur mit Zustimmung."
 
   [languages.fr]
     label = "Français"
@@ -36,7 +36,7 @@ disableAliases = true
       homePath = "/"
       allToolsText = "Tous les outils"
       disclaimerText = "Toutes les informations sans garantie."
-      privacyText = "Tous les calculs sont effectués localement. Statistiques d’utilisation avec OpenPanel."
+      privacyText = "Calculs effectués localement. Analyse d’utilisation uniquement avec votre accord."
 
 [params]
   # Brand colors

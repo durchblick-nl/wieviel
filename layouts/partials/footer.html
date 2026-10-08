@@ -3,5 +3,9 @@
         <p><a href="{{ .Site.Params.companyURL }}" target="_blank" rel="noopener">{{ .Site.Params.companyName }}</a></p>
         <p class="footer-disclaimer">{{ .Site.Language.Params.disclaimerText }}</p>
         <p class="footer-privacy">{{ .Site.Language.Params.privacyText }}</p>
+        <nav class="footer-privacy-actions" aria-label="{{ if eq .Site.Language.Lang "fr" }}Confidentialité{{ else }}Datenschutz{{ end }}">
+            <a href="/privacy/">{{ if eq .Site.Language.Lang "fr" }}Confidentialité et cookies{{ else }}Datenschutz und Cookies{{ end }}</a>
+            <button type="button" data-cc="show-preferencesModal">{{ if eq .Site.Language.Lang "fr" }}Choix de confidentialité{{ else }}Cookie-Einstellungen{{ end }}</button>
+        </nav>
     </div>
 </footer>

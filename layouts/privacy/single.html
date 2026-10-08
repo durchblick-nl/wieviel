@@ -1,0 +1,12 @@
+{{ define "head" }}
+<link rel="stylesheet" href="/css/privacy-page.css?v={{ readFile "static/css/privacy-page.css" | sha256 }}">
+{{ end }}
+
+{{ define "main" }}
+<main class="privacy-card">
+    {{ .Content }}
+    <button type="button" class="privacy-choice" data-cc="show-preferencesModal">
+        {{ if eq .Site.Language.Lang "fr" }}Modifier mon choix{{ else }}Auswahl ändern{{ end }}
+    </button>
+</main>
+{{ end }}
