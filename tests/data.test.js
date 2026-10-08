@@ -10,6 +10,7 @@ test('every calculator type has complete bilingual status or a valid shared stat
     for (const lang of ['de', 'fr']) {
         for (const entry of fs.readdirSync(path.join(root, 'content', lang), { withFileTypes: true })) {
             if (!entry.isDirectory()) continue;
+            if (entry.name === 'privacy') continue; // Editorial page, not a calculator.
             const directory = path.join(root, 'content', lang, entry.name);
             const file = fs.readdirSync(directory).find(name => /^index\.(html|md)$/.test(name));
             const content = fs.readFileSync(path.join(directory, file), 'utf8');

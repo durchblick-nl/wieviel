@@ -49,6 +49,7 @@ test('all 46 language pages render one complete freshness box', async () => {
     for (const lang of ['de', 'fr']) {
         for (const dir of fs.readdirSync(path.join(root, 'content', lang), { withFileTypes: true })) {
             if (!dir.isDirectory()) continue;
+            if (dir.name === 'privacy') continue; // No calculator freshness box on legal content.
             const response = await page.goto(`${baseURL}/${lang}/${dir.name}/`);
             assert.equal(response.status(), 200);
             assert.ok((await page.title()).length > 0);
