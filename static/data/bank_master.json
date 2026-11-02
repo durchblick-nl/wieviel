@@ -1188,7 +1188,7 @@
     "city": "Dielsdorf",
     "zip": "8157",
     "address": "Bahnhofstrasse 29",
-    "bic": "BZSDCH22XXX",
+    "bic": "RBABCH22BSD",
     "clearing": "30122"
   },
   "30123": {
@@ -1220,7 +1220,7 @@
     "city": "Interlaken",
     "zip": "3800",
     "address": "Rosenstrasse 1",
-    "bic": "EKIICH22XXX",
+    "bic": "RBABCH22EKI",
     "clearing": "30126"
   },
   "30127": {
@@ -1228,7 +1228,7 @@
     "city": "Bern",
     "zip": "3001",
     "address": "Amthausgasse 14 / Marktgasse 19",
-    "bic": "EEKBCH22XXX",
+    "bic": "RBABCH22EEK",
     "clearing": "30127"
   },
   "30128": {
@@ -1236,7 +1236,7 @@
     "city": "Lüterswil",
     "zip": "4584",
     "address": "Hauptstrasse 4",
-    "bic": "SLBUCH22XXX",
+    "bic": "RBABCH22SLB",
     "clearing": "30128"
   },
   "30129": {
@@ -1292,7 +1292,7 @@
     "city": "Schwarzenburg",
     "zip": "3150",
     "address": "Bahnhofstrasse 2",
-    "bic": "BGAGCH22XXX",
+    "bic": "RBABCH22BGA",
     "clearing": "30143"
   },
   "30144": {
@@ -1300,7 +1300,7 @@
     "city": "Rüeggisberg",
     "zip": "3088",
     "address": "Dorfstrasse 19",
-    "bic": "EKRUCH21XXX",
+    "bic": "RBABCH22EKR",
     "clearing": "30144"
   },
   "30145": {
@@ -1308,7 +1308,7 @@
     "city": "Brienz",
     "zip": "3855",
     "address": "Hauptstrasse 115",
-    "bic": "BBOBCH22XXX",
+    "bic": "RBABCH22BBO",
     "clearing": "30145"
   },
   "30146": {
@@ -1396,7 +1396,7 @@
     "city": "Thalwil",
     "zip": "8800",
     "address": "Gotthardstrasse 14",
-    "bic": "BKTHCH22XXX",
+    "bic": "RBABCH22BKT",
     "clearing": "30163"
   },
   "30164": {
@@ -1444,7 +1444,7 @@
     "city": "Frutigen",
     "zip": "3714",
     "address": "Dorfstrasse 15",
-    "bic": "SLFFCH22XXX",
+    "bic": "RBABCH22SLF",
     "clearing": "30169"
   },
   "30170": {
@@ -7335,14 +7335,6 @@
     "bic": "",
     "clearing": "83042"
   },
-  "83043": {
-    "name": "Private Client Bank AG",
-    "city": "Zürich",
-    "zip": "8001",
-    "address": "Bleicherweg 5",
-    "bic": "PICLCHZ2XXX",
-    "clearing": "83043"
-  },
   "83045": {
     "name": "Bank of China Limited, GenevaBranch",
     "city": "Geneva",
@@ -7446,6 +7438,14 @@
     "address": "Austrasse 77",
     "bic": "CLNCLI22XXX",
     "clearing": "83061"
+  },
+  "83064": {
+    "name": "Audax Solutions AG",
+    "city": "Zürich",
+    "zip": "8002",
+    "address": "Bleicherweg 7",
+    "bic": "AUDUCHZ2XXX",
+    "clearing": "83064"
   },
   "83066": {
     "name": "BIVIAL AG",
@@ -7644,7 +7644,7 @@
     "city": "Dielsdorf",
     "zip": "8157",
     "address": "Bahnhofstrasse 29",
-    "bic": "BZSDCH22XXX",
+    "bic": "RBABCH22BSD",
     "clearing": "08389"
   },
   "08390": {
@@ -7676,7 +7676,7 @@
     "city": "Interlaken",
     "zip": "3800",
     "address": "Rosenstrasse 1",
-    "bic": "EKIICH22XXX",
+    "bic": "RBABCH22EKI",
     "clearing": "08393"
   },
   "08394": {
@@ -7684,7 +7684,7 @@
     "city": "Bern",
     "zip": "3001",
     "address": "Amthausgasse 14 / Marktgasse 19",
-    "bic": "EEKBCH22XXX",
+    "bic": "RBABCH22EEK",
     "clearing": "08394"
   },
   "08395": {
@@ -7692,7 +7692,7 @@
     "city": "Lüterswil",
     "zip": "4584",
     "address": "Hauptstrasse 4",
-    "bic": "SLBUCH22XXX",
+    "bic": "RBABCH22SLB",
     "clearing": "08395"
   },
   "08396": {
@@ -7940,7 +7940,7 @@
     "city": "Schwarzenburg",
     "zip": "3150",
     "address": "Bahnhofstrasse 2",
-    "bic": "BGAGCH22XXX",
+    "bic": "RBABCH22BGA",
     "clearing": "08518"
   },
   "08519": {
@@ -7948,7 +7948,7 @@
     "city": "Rüeggisberg",
     "zip": "3088",
     "address": "Dorfstrasse 19",
-    "bic": "EKRUCH21XXX",
+    "bic": "RBABCH22EKR",
     "clearing": "08519"
   },
   "08521": {
@@ -7956,7 +7956,7 @@
     "city": "Brienz",
     "zip": "3855",
     "address": "Hauptstrasse 115",
-    "bic": "BBOBCH22XXX",
+    "bic": "RBABCH22BBO",
     "clearing": "08521"
   },
   "08522": {
@@ -8380,7 +8380,7 @@
     "city": "Thalwil",
     "zip": "8800",
     "address": "Gotthardstrasse 14",
-    "bic": "BKTHCH22XXX",
+    "bic": "RBABCH22BKT",
     "clearing": "08733"
   },
   "08735": {
@@ -8580,7 +8580,7 @@
     "city": "Frutigen",
     "zip": "3714",
     "address": "Dorfstrasse 15",
-    "bic": "SLFFCH22XXX",
+    "bic": "RBABCH22SLF",
     "clearing": "08784"
   },
   "08785": {
@@ -9312,8 +9312,8 @@
     "clearing": "09000"
   },
   "_meta": {
-    "validOn": "2026-10-12",
-    "importedOn": "2026-10-12",
+    "validOn": "2026-11-02",
+    "importedOn": "2026-11-02",
     "sourceUrl": "https://api.six-group.com/api/epcd/bankmaster/v3/bankmaster.json",
     "recordCount": 1164
   }
