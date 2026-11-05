@@ -76,6 +76,9 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and or
         assert.equal(await page.locator('.steps-container .step-card').count(), 3);
         assert.equal(await page.locator('.longevity-links .info-step-card #longevity-sources').count(), 1);
         assert.equal(await page.locator('.data-status').count(), 1);
+        assert.equal(await page.locator('#longevity-result-title').innerText(), route.startsWith('de/') ? 'Dein Szenario' : 'Ton scénario');
+        assert.equal(await page.locator('.longevity-original').count(), 0);
+        assert.equal(await page.evaluate(() => document.querySelector('.longevity-links').previousElementSibling.classList.contains('data-status')), true);
         await page.locator('.page-header-cta').click();
         assert.equal(await page.locator('#longevity-profile-dialog').isVisible(), true);
         await page.locator('#longevity-age').fill('60');
@@ -96,14 +99,14 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and or
         await page.locator('#longevity-next-step').click();
         assert.equal(await page.locator('#longevity-profile-dialog').isVisible(), false);
         assert.match(await page.locator('#longevity-years').innerText(), /^23[.,]4$/);
-        const original = await page.locator('#longevity-original-years').innerText();
+        const original = await page.locator('#longevity-original-plot-value').innerText();
         const populationCurve = await page.locator('#longevity-line').getAttribute('points');
         await page.locator('[data-scenario="activity"]').click();
         assert.match(await page.locator('#longevity-years').innerText(), /^24[.,]2$/);
         await page.locator('[data-scenario="fruit"]').click();
         await page.locator('[data-scenario="smoking"]').click();
         assert.match(await page.locator('#longevity-years').innerText(), /^29[.,]0$/);
-        assert.equal(await page.locator('#longevity-original-years').innerText(), original);
+        assert.equal(await page.locator('#longevity-original-plot-value').innerText(), original);
         await page.locator('[data-scenario="weight"]').click();
         await page.locator('#longevity-weight-slider').fill('110');
         assert.match(await page.locator('#longevity-editor-estimate').innerText(), /26[.,]6/);

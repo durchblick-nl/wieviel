@@ -169,7 +169,6 @@
         byId('scenario-difference').classList.toggle('longevity-unchanged', Math.abs(delta) < 0.05);
         const originalText = text('contributionValue', {years: number(original.remainingYears)});
         const scenarioText = text('contributionValue', {years: number(scenario.remainingYears)});
-        byId('original-years').textContent = originalText;
         byId('original-plot-value').textContent = originalText;
         byId('scenario-plot-value').textContent = scenarioText;
         const endY = 21 - Math.max(-15, Math.min(15, delta * 4));

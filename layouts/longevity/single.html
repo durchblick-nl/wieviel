@@ -20,9 +20,10 @@
 <div id="longevity-output">
 <h2 id="longevity-baseline-title" class="longevity-sr" tabindex="-1">{{ i18n "longevity.baselineTitle" }}</h2>
 <div class="longevity-estimate" aria-live="polite" aria-atomic="true">
-<span id="longevity-context" class="longevity-result-label"></span>
+<span id="longevity-result-title" class="longevity-result-label">{{ i18n "longevity.appScenarioTitle" }}</span>
+<span id="longevity-context" class="longevity-estimate-kind"></span>
 <div class="longevity-result-row"><div class="longevity-result-number"><strong id="longevity-years"></strong><span>{{ i18n "longevity.appYearsRemaining" }}</span></div>
-<div class="longevity-original"><span>{{ i18n "longevity.appOriginal" }}</span><strong id="longevity-original-years"></strong><span id="longevity-scenario-difference" class="longevity-difference"></span></div></div>
+<span id="longevity-scenario-difference" class="longevity-difference"></span></div>
 <div class="longevity-slope-labels"><span>{{ i18n "longevity.appOriginal" }}<strong id="longevity-original-plot-value"></strong></span><span>{{ i18n "longevity.appScenario" }}<strong id="longevity-scenario-plot-value"></strong></span></div>
 <svg id="longevity-scenario-chart" viewBox="0 0 300 42" role="img" aria-labelledby="longevity-scenario-chart-title"><title id="longevity-scenario-chart-title"></title><line id="longevity-scenario-connector" x1="18" x2="282" y1="21" y2="21"/><circle cx="18" cy="21" r="4"/><circle id="longevity-scenario-dot" cx="282" cy="21" r="4"/></svg>
 <p id="longevity-expected"></p>

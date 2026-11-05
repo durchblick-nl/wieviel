@@ -185,10 +185,10 @@ keine sofortige Wirkung eines heutigen Rauchstopps berechnet wird.
 Beim Gewicht öffnet sich derselbe Körper-Editor mit zusätzlichem Regler und Live-Jahreszahl.
 Abbrechen stellt die vorherigen Szenariowerte wieder her; Übernehmen verändert nur das Szenario.
 «Szenario zurücksetzen» entfernt sämtliche Überschreibungen und stellt das Ausgangsergebnis
-exakt wieder her. Zwei beschriftete Punkte visualisieren den Zahlenvergleich; sie sind keine
+exakt wieder her. Die grosse Zahl ist als «Dein Szenario» beschriftet; das Ausgangsprofil wird nur einmal bei der Grafik angezeigt. Zwei beschriftete Punkte visualisieren den Zahlenvergleich; sie sind keine
 Überlebenskurve. Die amtliche Überlebenskurve mit Regler steht direkt unter den Szenarien. Quellen und FAQ-Fragen sowie der Datenstand sind ohne Aufklappen sichtbar. Einzelbeiträge und weitere Vergleiche stehen unter «Statistik & Modell».
 
-Rahmen: gemeinsamer Header mit Seitentitel, Sprachwahl, Theme-Schalter, Tool-Navigation und Datenstand; drei nummerierte Schritte wie bei den übrigen Rechnern. Quellen stehen in der gemeinsamen Link-Karte.
+Rahmen: gemeinsamer Header mit Seitentitel, Sprachwahl, Theme-Schalter und Tool-Navigation; drei nummerierte Schritte wie bei den übrigen Rechnern. Der Datenstand steht unmittelbar vor der gemeinsamen Link-Karte mit den Quellen.
 
 Rechnerdesign: Slate-Teal #3f606f, Akzent #cc5c53, Systemschrift für Bedienelemente,
 Economica für Ergebniszahlen, 20-px-Ergebniskarte, 10-px-Formelemente und 54-px-Navigation.

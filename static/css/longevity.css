@@ -8,12 +8,11 @@
 .longevity-app-intro { font-size: 17px; line-height: 1.45; margin: 0 0 18px; }
 .longevity-profile-button { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--primary-color); border-radius: 8px; background: var(--card-bg); color: var(--primary-color); padding: 10px 14px; min-height: 44px; font: 600 16px Arial,sans-serif; cursor: pointer; margin-bottom: 20px; }
 .longevity-estimate { border-radius: 20px; background: #3f606f; color: white; padding: 22px; }
-.longevity-result-label { display: block; font-size: 15px; line-height: 1.35; font-weight: 600; margin-bottom: 16px; }
-.longevity-result-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center; }
+.longevity-result-label { display: block; font-size: 19px; line-height: 1.35; font-weight: 600; margin-bottom: 4px; }
+.longevity-estimate-kind { display: block; font-size: 12px; line-height: 1.4; margin-bottom: 18px; }
+.longevity-result-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
 .longevity-result-number strong { font: 700 84px/.95 'Economica',sans-serif; letter-spacing: -.04em; display: block; }
 .longevity-result-number > span { display: block; font-size: 14px; line-height: 1.4; margin-top: 6px; }
-.longevity-original { border-left: 1px solid rgb(255 255 255 / .5); padding-left: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; font-size: 13px; }
-.longevity-original > strong { font-size: 17px; }
 .longevity-difference { background: var(--accent-color); padding: 6px 9px; border-radius: 20px; font-size: 12px; line-height: 1.4; margin-top: 7px; font-weight: 600; }
 .longevity-difference.longevity-unchanged { background: rgb(255 255 255 / .13); }
 .longevity-slope-labels { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; margin-top: 22px; }
