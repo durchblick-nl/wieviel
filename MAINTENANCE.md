@@ -19,6 +19,10 @@ Der Rechner `longevity` verwendet zwei getrennt bezeichnete Datenperioden:
   und auf DE/FR im Methodentext nachführen. Das Modell ist experimentell und nicht validiert.
 - Studienrecherche: `data/longevity-study.json`, Tabelle 2 von Martin-Diener et al. (2014).
   Relative Studienwerte werden nicht in die persönliche Heuristik hineingemischt.
+- Smart BMI: `data/longevity-smart-bmi.json` enthält die ursprünglichen Erwachsenen-Tabellen,
+  `static/js/longevity-smart-bmi.js` den numerischen Ausschnitt. Bei Änderungen gegen die
+  PHP-Referenzfälle in `tests/fixtures/longevity-smart-bmi.json` prüfen. SBMI-Punkte sind
+  keine Mortalitätsgewichte; die Einordnung verändert die Jahresheuristik nicht zusätzlich.
 
 Der sichtbare Datenzeitraum folgt den Datendateien. Redaktionellen Prüfstand und nächsten
 Termin separat unter `data/calculatorStatus.json` → `longevity` pflegen. Nach einem Daten- oder

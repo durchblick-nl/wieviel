@@ -232,6 +232,14 @@
             height: optionalNumber('height'), weight: optionalNumber('weight')
         });
         byId('bmi-value').textContent = body.bmi === null ? text('bmiHelp') : text('bmiValue', {bmi: number(body.bmi)});
+        const smartBmi = window.LongevitySmartBmi.calculate(config.smartBmi, {
+            age: validAge(), sex: byId('sex').value,
+            height: optionalNumber('height'), weight: optionalNumber('weight')
+        });
+        byId('smart-bmi').hidden = smartBmi === null;
+        byId('sbmi-value').textContent = smartBmi ? text('sbmiValue', {score: number(smartBmi.sbmi, 0)}) : '';
+        byId('sbmi-interpretation').textContent = smartBmi ? text(`sbmi.${smartBmi.category}`)
+            + (smartBmi.ageClamped ? ` ${text('sbmiAgeClamped')}` : '') : '';
     }
     function setStep(next) {
         step = Math.max(0, Math.min(4, next));

@@ -1,0 +1,2417 @@
+[
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 7,
+      "band": 0.69,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 28,
+      "band": 2.83,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 37,
+      "band": 3.73,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 41,
+      "band": 4.12,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 56,
+      "band": 5.57,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 63,
+      "band": 6.33,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 70,
+      "band": 7,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "18",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 70,
+      "band": 7,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 1,
+      "band": 0.11,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 9,
+      "band": 0.94,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 31,
+      "band": 3.1,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 38,
+      "band": 3.77,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 41,
+      "band": 4.11,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 55,
+      "band": 5.5,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 63,
+      "band": 6.3,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 70,
+      "band": 6.97,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "18",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 70,
+      "band": 7,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 6,
+      "band": 0.56,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 21,
+      "band": 2.09,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 36,
+      "band": 3.55,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 39,
+      "band": 3.85,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 48,
+      "band": 4.83,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 59,
+      "band": 5.85,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 65,
+      "band": 6.54,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "25",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 70,
+      "band": 7,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0.03,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 8,
+      "band": 0.77,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 29,
+      "band": 2.92,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 36,
+      "band": 3.57,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 38,
+      "band": 3.82,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 47,
+      "band": 4.71,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 57,
+      "band": 5.65,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 64,
+      "band": 6.44,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "25",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 70,
+      "band": 7,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 5,
+      "band": 0.53,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 19,
+      "band": 1.92,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 35,
+      "band": 3.46,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 38,
+      "band": 3.75,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 45,
+      "band": 4.46,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 52,
+      "band": 5.16,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 61,
+      "band": 6.09,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "40",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 67,
+      "band": 6.68,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0.02,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 7,
+      "band": 0.73,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 27,
+      "band": 2.69,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 35,
+      "band": 3.48,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 37,
+      "band": 3.71,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 43,
+      "band": 4.3,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 49,
+      "band": 4.9,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 58,
+      "band": 5.77,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "40",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 64,
+      "band": 6.42,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 5,
+      "band": 0.49,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 15,
+      "band": 1.53,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 33,
+      "band": 3.31,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 36,
+      "band": 3.56,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 42,
+      "band": 4.19,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 48,
+      "band": 4.79,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 57,
+      "band": 5.67,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "65",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 64,
+      "band": 6.36,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 6,
+      "band": 0.64,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 22,
+      "band": 2.21,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 34,
+      "band": 3.35,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 36,
+      "band": 3.55,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 41,
+      "band": 4.05,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 45,
+      "band": 4.53,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 52,
+      "band": 5.23,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "65",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 60,
+      "band": 6.01,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 4,
+      "band": 0.43,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 12,
+      "band": 1.2,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 32,
+      "band": 3.22,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 35,
+      "band": 3.45,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 40,
+      "band": 4.03,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 46,
+      "band": 4.6,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 54,
+      "band": 5.41,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "80",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 62,
+      "band": 6.19,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 6,
+      "band": 0.56,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 19,
+      "band": 1.87,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 33,
+      "band": 3.26,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 35,
+      "band": 3.45,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 39,
+      "band": 3.9,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 43,
+      "band": 4.34,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 50,
+      "band": 4.97,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "80",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 57,
+      "band": 5.69,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 4,
+      "band": 0.36,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 10,
+      "band": 0.95,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 31,
+      "band": 3.12,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 33,
+      "band": 3.33,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 39,
+      "band": 3.87,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 44,
+      "band": 4.4,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 52,
+      "band": 5.16,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "95",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 60,
+      "band": 6.01,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 5,
+      "band": 0.46,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 14,
+      "band": 1.37,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 32,
+      "band": 3.17,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 33,
+      "band": 3.34,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 38,
+      "band": 3.76,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 42,
+      "band": 4.16,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 48,
+      "band": 4.75,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "95",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 54,
+      "band": 5.4,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 4,
+      "band": 0.36,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 10,
+      "band": 0.95,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 31,
+      "band": 3.12,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 33,
+      "band": 3.33,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 39,
+      "band": 3.87,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 44,
+      "band": 4.4,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 52,
+      "band": 5.16,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "96",
+      "us": "0",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 60,
+      "band": 6.01,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "36.8",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 12.1,
+      "sbmi": 0,
+      "band": 0,
+      "adjustedBmi": 12.1,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "45.9",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 15,
+      "sbmi": 5,
+      "band": 0.46,
+      "adjustedBmi": 15,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "56.7",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 18.4,
+      "sbmi": 14,
+      "band": 1.37,
+      "adjustedBmi": 18.4,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "70.4",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 23,
+      "sbmi": 32,
+      "band": 3.17,
+      "adjustedBmi": 23,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "76.6",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25,
+      "sbmi": 33,
+      "band": 3.34,
+      "adjustedBmi": 25,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "91.9",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 30,
+      "sbmi": 38,
+      "band": 3.76,
+      "adjustedBmi": 30,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "107.2",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 34.9,
+      "sbmi": 42,
+      "band": 4.16,
+      "adjustedBmi": 34.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "128.6",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 42,
+      "sbmi": 48,
+      "band": 4.75,
+      "adjustedBmi": 42,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "hc": "175",
+      "wk": "153.1",
+      "ua": "96",
+      "us": "1",
+      "ue": "0"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 50,
+      "sbmi": 54,
+      "band": 5.4,
+      "adjustedBmi": 50,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "ua": "35",
+      "us": "1",
+      "ue": "0",
+      "di": "3",
+      "dt": "1",
+      "hc": "173",
+      "wk": "77.5",
+      "gk": "72"
+    },
+    "lang": "en",
+    "expected": {
+      "bmi": 25.9,
+      "sbmi": 39,
+      "band": 3.85,
+      "adjustedBmi": 25.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "ua": "35",
+      "us": "1",
+      "ue": "0",
+      "di": "3",
+      "dt": "1",
+      "hc": "173",
+      "wk": "77.5",
+      "gk": "72"
+    },
+    "lang": "de",
+    "expected": {
+      "bmi": 25.9,
+      "sbmi": 39,
+      "band": 3.85,
+      "adjustedBmi": 25.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "ua": "35",
+      "us": "1",
+      "ue": "0",
+      "di": "3",
+      "dt": "1",
+      "hc": "173",
+      "wk": "77.5",
+      "gk": "72"
+    },
+    "lang": "fr",
+    "expected": {
+      "bmi": 25.9,
+      "sbmi": 39,
+      "band": 3.85,
+      "adjustedBmi": 25.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "ua": "35",
+      "us": "1",
+      "ue": "0",
+      "di": "3",
+      "dt": "1",
+      "hc": "173",
+      "wk": "77.5",
+      "gk": "72"
+    },
+    "lang": "it",
+    "expected": {
+      "bmi": 25.9,
+      "sbmi": 39,
+      "band": 3.85,
+      "adjustedBmi": 25.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "ua": "35",
+      "us": "1",
+      "ue": "0",
+      "di": "3",
+      "dt": "1",
+      "hc": "173",
+      "wk": "77.5",
+      "gk": "72"
+    },
+    "lang": "es",
+    "expected": {
+      "bmi": 25.9,
+      "sbmi": 39,
+      "band": 3.85,
+      "adjustedBmi": 25.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "ua": "35",
+      "us": "1",
+      "ue": "0",
+      "di": "3",
+      "dt": "1",
+      "hc": "173",
+      "wk": "77.5",
+      "gk": "72"
+    },
+    "lang": "pt",
+    "expected": {
+      "bmi": 25.9,
+      "sbmi": 39,
+      "band": 3.85,
+      "adjustedBmi": 25.9,
+      "rejection": 0
+    }
+  },
+  {
+    "input": {
+      "unit": "0",
+      "ua": "35",
+      "us": "1",
+      "ue": "0",
+      "di": "3",
+      "dt": "1",
+      "hc": "173",
+      "wk": "77.5",
+      "gk": "72"
+    },
+    "lang": "br",
+    "expected": {
+      "bmi": 25.9,
+      "sbmi": 39,
+      "band": 3.85,
+      "adjustedBmi": 25.9,
+      "rejection": 0
+    }
+  }
+]

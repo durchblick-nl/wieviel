@@ -129,6 +129,11 @@
 <div class="longevity-number-row"><label for="longevity-weight">{{ i18n "longevity.appWeight" }}</label><input id="longevity-weight" type="number" enterkeyhint="next" inputmode="decimal" min="30" max="300" step="0.1" placeholder="—"><span>kg</span></div>
 <div id="longevity-weight-slider-field" class="longevity-weight-slider" hidden><label for="longevity-weight-slider">{{ i18n "longevity.appWeightSlider" }}</label><input type="range" id="longevity-weight-slider" min="30" max="200" step="0.5" value="80"><p id="longevity-editor-estimate" class="longevity-editor-estimate" aria-live="polite"></p><p>{{ i18n "longevity.appSmallChanges" }}</p></div>
 <div class="longevity-bmi-strip"><span>{{ i18n "longevity.appBmiLabel" }}</span><strong id="longevity-bmi-value" aria-live="polite"></strong></div><small>{{ i18n "longevity.appBmiNote" }}</small>
+<div class="longevity-smart-bmi" id="longevity-smart-bmi" hidden>
+    <div class="longevity-bmi-strip"><span>Smart BMI</span><strong id="longevity-sbmi-value" aria-live="polite"></strong></div>
+    <p id="longevity-sbmi-interpretation"></p>
+    <small>{{ i18n "longevity.sbmiNote" }} <a href="{{ if eq .Site.Language.Lang "fr" }}https://fr.smartbmicalculator.com/{{ else }}https://de.smartbmicalculator.com/{{ end }}" target="_blank" rel="noopener">{{ i18n "longevity.sbmiMore" }}</a></small>
+</div>
 </section>
 <section data-profile-step="2" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.2" }}</h2><p>{{ i18n "longevity.appStepIntro.2" }}</p>
 {{ partial "longevity-choice.html" (dict "id" "smoking" "label" "smoking" "default" "" "choices" (slice (dict "value" "no" "key" "smokingNo") (dict "value" "former" "key" "smokingFormer") (dict "value" "yes" "key" "smokingYes"))) }}
@@ -154,8 +159,12 @@
     {{- $texts = merge $texts (dict . (i18n (printf "longevity.%s" .))) }}
 {{- end }}
 {{- $data := partialCached "calculator-dataset.html" "life-tables" "life-tables" }}
-<script type="application/json" id="longevity-config">{{ dict "lang" .Site.Language.Lang "texts" $texts "data" $data "heuristic" (index hugo.Data "longevity-heuristic") "marital" $marital | jsonify | safeJS }}</script>
+{{- range slice "sbmiValue" "sbmi.below" "sbmi.central" "sbmi.above" "sbmiAgeClamped" }}
+{{- $texts = merge $texts (dict . (i18n (printf "longevity.%s" .))) }}
+{{- end }}
+<script type="application/json" id="longevity-config">{{ dict "lang" .Site.Language.Lang "texts" $texts "data" $data "heuristic" (index hugo.Data "longevity-heuristic") "smartBmi" (index hugo.Data "longevity-smart-bmi") "marital" $marital | jsonify | safeJS }}</script>
 <script defer src="/js/longevity-core.js?v={{ readFile "static/js/longevity-core.js" | sha256 | truncate 12 "" }}"></script>
+<script defer src="/js/longevity-smart-bmi.js?v={{ readFile "static/js/longevity-smart-bmi.js" | sha256 | truncate 12 "" }}"></script>
 <script defer src="/js/longevity.js?v={{ readFile "static/js/longevity.js" | sha256 | truncate 12 "" }}"></script>
 </body>
 </html>

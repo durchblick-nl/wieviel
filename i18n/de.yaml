@@ -1298,3 +1298,12 @@ officialSources: "Offizielle Quellen"
 "longevity.guide3Desc": "Modellzahl, Kurven und Quellen einordnen."
 
 "longevity.appComparisonNote": "Referenz: BFS-Durchschnitt für dein Alter ({age}) und die gewählte Geschlechtsgruppe. Die Abweichung durch deine Angaben und Szenarien ist kein nachgewiesener Lebenszeitgewinn."
+
+# Original Smart BMI integration in the life calculator
+"longevity.sbmiValue": "{score} / 70"
+"longevity.sbmi.below": "Unterhalb des mittleren Bereichs im Smart-BMI-Modell für dein Alter und Geschlecht."
+"longevity.sbmi.central": "Im mittleren Bereich des Smart-BMI-Modells für dein Alter und Geschlecht."
+"longevity.sbmi.above": "Oberhalb des mittleren Bereichs im Smart-BMI-Modell für dein Alter und Geschlecht."
+"longevity.sbmiAgeClamped": "Ab 96 wird die Referenz für 95-Jährige verwendet."
+"longevity.sbmiNote": "SBMI-Punkte ordnen dein Gewicht ein. Sie sind keine Lebensjahre."
+"longevity.sbmiMore": "Mehr zu Smart BMI"

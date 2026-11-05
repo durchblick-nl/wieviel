@@ -1298,3 +1298,12 @@ officialSources: "Sources officielles"
 "longevity.guide3Desc": "Situe l’estimation, les courbes et les sources."
 
 "longevity.appComparisonNote": "Référence : moyenne OFS pour ton âge ({age}) et le sexe choisi. L’écart lié à tes réponses et aux scénarios ne représente pas un gain de durée de vie démontré."
+
+# Original Smart BMI integration in the life calculator
+"longevity.sbmiValue": "{score} / 70"
+"longevity.sbmi.below": "En dessous de la zone centrale du modèle Smart BMI pour ton âge et ton sexe."
+"longevity.sbmi.central": "Dans la zone centrale du modèle Smart BMI pour ton âge et ton sexe."
+"longevity.sbmi.above": "Au-dessus de la zone centrale du modèle Smart BMI pour ton âge et ton sexe."
+"longevity.sbmiAgeClamped": "Dès 96 ans, la référence pour 95 ans est utilisée."
+"longevity.sbmiNote": "Les points SBMI situent ton poids. Ce ne sont pas des années de vie."
+"longevity.sbmiMore": "En savoir plus sur Smart BMI"

@@ -1,6 +1,6 @@
 # Lebenserwartungsrechner: Modell- und Umsetzungsspezifikation
 
-Stand: 5. November 2026. Lokale Rechnerseiten implementiert; Veröffentlichung noch ausstehend.
+Stand: 5. November 2026. Rechnerseiten veröffentlicht; die persönliche Jahreszahl ist weiterhin eine experimentelle Heuristik.
 
 ## Ziel und Ton
 

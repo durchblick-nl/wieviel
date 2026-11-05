@@ -88,6 +88,9 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and po
         assert.equal(await page.evaluate(() => document.activeElement.id), 'longevity-weight');
         await page.locator('#longevity-weight').fill('81');
         assert.match(await page.locator('#longevity-bmi-value').innerText(), /25[.,]0/);
+        assert.equal(await page.locator('#longevity-sbmi-value').innerText(), '36 / 70');
+        assert.equal(await page.locator('#longevity-smart-bmi a').getAttribute('href'), route.startsWith('de/')
+            ? 'https://de.smartbmicalculator.com/' : 'https://fr.smartbmicalculator.com/');
         await page.locator('#longevity-next-step').click();
         await page.locator('[data-control="smoking"][data-value="yes"]').click();
         await page.locator('#longevity-cigarettes').fill('20');
@@ -114,6 +117,7 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and po
         assert.equal(await page.locator('#longevity-average-plot-value').innerText(), original);
         await page.locator('[data-scenario="weight"]').click();
         await page.locator('#longevity-weight-slider').fill('110');
+        assert.equal(await page.locator('#longevity-sbmi-value').innerText(), '48 / 70');
         assert.match(await page.locator('#longevity-editor-estimate').innerText(), /26[.,]6/);
         await page.locator('#longevity-next-step').click();
         assert.match(await page.locator('#longevity-years').innerText(), /^26[.,]6$/);
