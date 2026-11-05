@@ -42,7 +42,7 @@ async function pageFor(route) {
     return page;
 }
 
-test('all 48 language pages render one complete freshness box', async () => {
+test('all 50 language pages render one complete freshness box', async () => {
     const page = await browser.newPage();
     page.on('pageerror', error => pageErrors.push(error.message));
     let checked = 0;
@@ -56,12 +56,104 @@ test('all 48 language pages render one complete freshness box', async () => {
             assert.ok((await page.locator('h1').innerText()).length > 3);
             assert.equal(await page.locator('.data-status').count(), 1);
             assert.match(await page.locator('.data-status time').first().getAttribute('datetime'), /^\d{4}-\d{2}-\d{2}$/);
-            assert.ok((await page.locator('.data-status strong').innerText()).length > 10);
+            assert.ok((await page.locator('.data-status strong').innerText()).length > 10, `${lang}/${dir.name}: visible data period`);
             checked++;
         }
     }
-    assert.equal(checked, 48);
+    assert.equal(checked, 50);
     await page.close();
+});
+
+test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and original comparison', async () => {
+    for (const route of ['de/leben', 'fr/esperance-de-vie']) {
+        const page = await pageFor(route);
+        await page.setViewportSize({width: 390, height: 844});
+        await page.evaluate(() => CookieConsent.acceptCategory('necessary'));
+        assert.match(await page.locator('#longevity-years').innerText(), /^25[.,]0$/);
+        await page.locator('#longevity-edit-profile').click();
+        await page.locator('#longevity-age').fill('60');
+        await page.locator('#longevity-next-step').click();
+        await page.locator('#longevity-height').fill('180');
+        await page.locator('#longevity-height').press('Enter');
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'longevity-weight');
+        await page.locator('#longevity-weight').fill('81');
+        assert.match(await page.locator('#longevity-bmi-value').innerText(), /25[.,]0/);
+        await page.locator('#longevity-next-step').click();
+        await page.locator('[data-control="smoking"][data-value="yes"]').click();
+        await page.locator('#longevity-cigarettes').fill('20');
+        await page.locator('#longevity-next-step').click();
+        await page.locator('[data-control="activity"][data-value="medium"]').click();
+        await page.locator('#longevity-next-step').click();
+        await page.locator('[data-control="fruit"][data-value="no"]').click();
+        await page.selectOption('#longevity-alcohol', 'none');
+        await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('#longevity-profile-dialog').isVisible(), false);
+        assert.match(await page.locator('#longevity-years').innerText(), /^23[.,]4$/);
+        const original = await page.locator('#longevity-original-years').innerText();
+        const populationCurve = await page.locator('#longevity-line').getAttribute('points');
+        await page.locator('[data-scenario="activity"]').click();
+        assert.match(await page.locator('#longevity-years').innerText(), /^24[.,]2$/);
+        await page.locator('[data-scenario="fruit"]').click();
+        await page.locator('[data-scenario="smoking"]').click();
+        assert.match(await page.locator('#longevity-years').innerText(), /^29[.,]0$/);
+        assert.equal(await page.locator('#longevity-original-years').innerText(), original);
+        await page.locator('[data-scenario="weight"]').click();
+        await page.locator('#longevity-weight-slider').fill('110');
+        assert.match(await page.locator('#longevity-editor-estimate').innerText(), /26[.,]6/);
+        await page.locator('#longevity-next-step').click();
+        assert.match(await page.locator('#longevity-years').innerText(), /^26[.,]6$/);
+        assert.equal(await page.locator('[data-scenario="weight"]').getAttribute('aria-pressed'), 'true');
+        assert.equal(await page.locator('#longevity-line').getAttribute('points'), populationCurve);
+        await page.locator('#longevity-reset-scenario').click();
+        assert.match(await page.locator('#longevity-years').innerText(), /^23[.,]4$/);
+        assert.equal(await page.locator('#longevity-reset-scenario').isDisabled(), true);
+        await page.locator('[data-scenario="weight"]').click();
+        await page.locator('#longevity-weight').fill('110');
+        await page.locator('#longevity-close-editor').click();
+        assert.match(await page.locator('#longevity-years').innerText(), /^23[.,]4$/);
+        await page.locator('#longevity-edit-profile').click();
+        await page.locator('#longevity-next-step').click();
+        await page.locator('#longevity-next-step').click();
+        await page.locator('[data-control="smoking"][data-value="no"]').click();
+        await page.locator('#longevity-close-editor').click();
+        const neverSmoked = await page.locator('#longevity-years').innerText();
+        assert.equal(await page.locator('[data-scenario="smoking"]').isVisible(), false);
+        assert.equal(await page.locator('#longevity-years').innerText(), neverSmoked);
+        await page.locator('#longevity-edit-profile').click();
+        await page.locator('#longevity-next-step').click();
+        await page.locator('#longevity-next-step').click();
+        await page.locator('[data-control="smoking"][data-value="yes"]').click();
+        await page.locator('#longevity-next-step').click();
+        await page.locator('[data-control="activity"][data-value="high"]').click();
+        await page.locator('#longevity-next-step').click();
+        await page.locator('[data-control="fruit"][data-value="yes"]').click();
+        await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('[data-scenario="smoking"]').isVisible(), true);
+        assert.equal(await page.locator('[data-scenario="activity"]').isVisible(), false);
+        assert.equal(await page.locator('[data-scenario="fruit"]').isVisible(), false);
+        assert.equal(await page.locator('[data-scenario="weight"]').isVisible(), true);
+        await page.locator('[data-scenario="smoking"]').click();
+        await page.locator('#longevity-reset-scenario').click();
+        await page.locator('#longevity-edit-profile').click();
+        await page.locator('#longevity-age').fill('60.5');
+        await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('#longevity-error').isVisible(), true);
+        await page.locator('#longevity-age').fill('60');
+        assert.equal(await page.locator('#longevity-error').isVisible(), false);
+        await page.locator('#longevity-close-editor').click();
+        assert.equal(await page.locator('#longevity-curve').isVisible(), true);
+        assert.equal(await page.locator('#longevity-sources').isVisible(), true);
+        assert.equal(await page.locator('#longevity-faq').isVisible(), true);
+        assert.equal(await page.locator('.faq-item summary').first().isVisible(), true);
+        await page.locator('#longevity-explanations > summary').click();
+        assert.match(await page.locator('.data-status strong').innerText(), /2025.*2018\/2023/);
+        assert.equal(await page.locator('#longevity-marital-plot circle').count(), 10);
+        await page.locator('.dark-mode-toggle').click();
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+        assert.ok((await page.locator('main').innerText()).includes('Christian Bachmann'));
+        assert.equal(new URL(page.url()).search + new URL(page.url()).hash, '');
+        await page.close();
+    }
 });
 
 test('DE/FR birthdays: ranking, valid dates, calendar, duel, sharing and mobile dark mode', async () => {

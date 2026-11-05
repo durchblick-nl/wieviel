@@ -109,6 +109,21 @@ class NginxRoutingTest(unittest.TestCase):
         self.assertEqual(status, 301)
         self.assertEqual(headers['Location'], 'https://calcule.ch/electricite/')
 
+    def test_longevity_language_routes(self):
+        for host, slug, title in [('wieviel.ch', 'leben', 'Lebenserwartungsrechner'),
+                                  ('calcule.ch', 'esperance-de-vie', 'espérance de vie')]:
+            status, _, body = self.request(host, f'/{slug}/')
+            self.assertEqual(status, 200)
+            self.assertIn(title, body)
+        for host, slug, target in [('wieviel.ch', 'esperance-de-vie', 'calcule.ch'),
+                                   ('calcule.ch', 'leben', 'wieviel.ch')]:
+            status, headers, _ = self.request(host, f'/{slug}/?from=test')
+            self.assertEqual(status, 301)
+            self.assertEqual(headers['Location'], f'https://{target}/{slug}/?from=test')
+        status, headers, _ = self.request('wieviel.ch', '/leben?from=test')
+        self.assertEqual(status, 301)
+        self.assertTrue(headers['Location'].endswith('/leben/?from=test'))
+
 
 if __name__ == '__main__':
     unittest.main()

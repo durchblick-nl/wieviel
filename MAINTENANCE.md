@@ -2,6 +2,31 @@
 
 Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müssen.
 
+## Lebenserwartung: amtliche Daten und experimentelles persönliches Modell
+
+Der Rechner `longevity` verwendet zwei getrennt bezeichnete Datenperioden:
+
+- BFS-Periodensterbetafeln 2025: `static/data/life-tables.json`. Jährlich nach Veröffentlichung
+  prüfen. Import: `python3 scripts/update_life_tables.py --year 2025`. Neue BFS-Asset-IDs können
+  mit `--male-asset` und `--female-asset` angegeben werden. Der Import validiert beide Tabellen
+  vor dem Ersetzen; Datenjahr, Originalquellen und SHA-256-Prüfsummen sind hinterlegt.
+- BFS-Zivilstandsvergleich ab 65, Periode 2018/2023: `static/data/life-marital-comparison.json`.
+  Bei neuer amtlicher Publikation Quelle/Periode und Importer prüfen, danach
+  `python3 scripts/update_marital_life_data.py`. Keine automatische Übertragung auf das neueste
+  Jahresdatenjahr oder andere Ausgangsalter.
+- Persönliche Jahreszahl: `data/longevity-heuristic.json`, angepasste historische Regeln.
+  Änderungen an Gewichten, BMI-Grenzen, Rauchdosis, Altersdämpfung und Begrenzungen versionieren
+  und auf DE/FR im Methodentext nachführen. Das Modell ist experimentell und nicht validiert.
+- Studienrecherche: `data/longevity-study.json`, Tabelle 2 von Martin-Diener et al. (2014).
+  Relative Studienwerte werden nicht in die persönliche Heuristik hineingemischt.
+
+Der sichtbare Datenzeitraum folgt den Datendateien. Redaktionellen Prüfstand und nächsten
+Termin separat unter `data/calculatorStatus.json` → `longevity` pflegen. Nach einem Daten- oder
+Modellwechsel beide Sprachfassungen und Quellenhinweise abgleichen sowie
+`node scripts/compare_longevity.cjs`, `node --test tests/longevity.test.js`,
+`python3 -m unittest discover -s tests -p test_life_table_import.py` und die Browserchecks ausführen.
+Hintergrund und Vergleich: `docs/longevity/model-spec.md` und `docs/longevity/comparison.md`.
+
 **Letzte Aktualisierung:** 8. Oktober 2026
 
 ---

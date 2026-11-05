@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "age": 65,
+    "period": "2018/2023",
+    "sourceUrl": "https://statistik.admin.ch/de/asset/36854184",
+    "downloadUrl": "https://datawrapper.dwcdn.net/f538c2a666f6905e9f79b71d2a4dc630/4/dataset.csv",
+    "license": "OPEN-BY",
+    "attribution": "Bundesamt für Statistik / Office fédéral de la statistique",
+    "publishedOn": "2026-10-13",
+    "importedOn": "2026-11-05",
+    "csvSha256": "f730287c0fab86e09b5c03f0fecadd4c31c66720cad1ca7c9fe11536b803b3c8",
+    "meaning": "Published group comparison at age 65; not a causal marriage bonus."
+  },
+  "periods": {
+    "2008/2013": {
+      "total": {
+        "male": 18.9,
+        "female": 22.0
+      },
+      "single": {
+        "male": 15.8,
+        "female": 20.7
+      },
+      "married": {
+        "male": 19.8,
+        "female": 23.6
+      },
+      "widowed": {
+        "male": 17.1,
+        "female": 21.4
+      },
+      "divorced": {
+        "male": 17.1,
+        "female": 20.8
+      }
+    },
+    "2018/2023": {
+      "total": {
+        "male": 19.8,
+        "female": 22.6
+      },
+      "single": {
+        "male": 16.4,
+        "female": 20.4
+      },
+      "married": {
+        "male": 20.8,
+        "female": 24.1
+      },
+      "widowed": {
+        "male": 18.4,
+        "female": 22.0
+      },
+      "divorced": {
+        "male": 18.2,
+        "female": 21.6
+      }
+    }
+  }
+}

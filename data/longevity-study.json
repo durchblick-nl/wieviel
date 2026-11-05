@@ -1,0 +1,26 @@
+{
+  "id": "martin-diener-2014",
+  "title": "The combined effect on survival of four main behavioural risk factors for non-communicable diseases",
+  "doi": "10.1016/j.ypmed.2014.05.023",
+  "url": "https://doi.org/10.1016/j.ypmed.2014.05.023",
+  "fullTextUrl": "https://www.stat.berkeley.edu/~aldous/157/Papers/martin_diener.pdf",
+  "parameterLocation": "Table 2, total mortality, sex-specific columns",
+  "parameterType": "mutually adjusted Cox hazard ratios, not Weibull absolute-risk coefficients",
+  "reviewedOn": "2026-11-05",
+  "sexSpecific": {
+    "male": {"smoking": 1.63, "lowActivity": 1.12, "noFruitYesterday": 1.18, "moderateAlcohol": 1.02, "highAlcohol": 1.13},
+    "female": {"smoking": 1.52, "lowActivity": 1.22, "noFruitYesterday": 1.09, "moderateAlcohol": 0.99, "highAlcohol": 1.21}
+  },
+  "publishedAllFourVersusNone": {
+    "male": {"hazardRatio": 2.41, "lower95": 1.99, "upper95": 2.93},
+    "female": {"hazardRatio": 2.46, "lower95": 1.88, "upper95": 3.22}
+  },
+  "limitations": [
+    "Historic Swiss cohorts; not a current Swiss calibration.",
+    "Study exposure categories are coarse and must not be relabelled as current guideline thresholds.",
+    "Do not append BMI, blood pressure or newer smoking coefficients from other studies.",
+    "Main-effect products and the separately reported all-four contrast are different estimates.",
+    "No coefficient covariance, current joint exposure distribution or absolute Weibull equation implemented.",
+    "The 0.99 female moderate-alcohol estimate is retained for faithful research comparison, not a health recommendation or calculator bonus."
+  ]
+}

@@ -1,0 +1,1432 @@
+{
+  "_meta": {
+    "schemaVersion": 1,
+    "year": 2025,
+    "type": "period",
+    "country": "CH",
+    "license": "OPEN-BY",
+    "attribution": "Bundesamt für Statistik / Office fédéral de la statistique",
+    "importedOn": "2026-11-05",
+    "minAge": 0,
+    "maxAge": 99,
+    "sources": {
+      "male": {
+        "url": "https://dam-api.bfs.admin.ch/hub/api/dam/assets/36837789/master",
+        "pageUrl": "https://statistik.admin.ch/fr/asset/36837789",
+        "csvSha256": "22dec1e19243ac7a00abfc8abe8b777b997c4c249979f9bd09c36645b1a2ab5d"
+      },
+      "female": {
+        "url": "https://dam-api.bfs.admin.ch/hub/api/dam/assets/36837788/master",
+        "pageUrl": "https://statistik.admin.ch/fr/asset/36837788",
+        "csvSha256": "ec91bf38c4491c02156d14763eead2b4f4b8c7fcb2a788f207e30d78c9adcc6e"
+      }
+    },
+    "tail": "Not extrapolated. remainingYears uses the published E(X), including its tail."
+  },
+  "tables": {
+    "male": [
+      {
+        "age": 0,
+        "deathProbability": 0.004002,
+        "survivors": 100000,
+        "deaths": 400,
+        "remainingYears": 82.7
+      },
+      {
+        "age": 1,
+        "deathProbability": 0.000261,
+        "survivors": 99600,
+        "deaths": 26,
+        "remainingYears": 82.0
+      },
+      {
+        "age": 2,
+        "deathProbability": 0.000122,
+        "survivors": 99574,
+        "deaths": 12,
+        "remainingYears": 81.0
+      },
+      {
+        "age": 3,
+        "deathProbability": 8.3e-05,
+        "survivors": 99562,
+        "deaths": 9,
+        "remainingYears": 80.0
+      },
+      {
+        "age": 4,
+        "deathProbability": 6.1e-05,
+        "survivors": 99553,
+        "deaths": 6,
+        "remainingYears": 79.1
+      },
+      {
+        "age": 5,
+        "deathProbability": 4.8e-05,
+        "survivors": 99547,
+        "deaths": 4,
+        "remainingYears": 78.1
+      },
+      {
+        "age": 6,
+        "deathProbability": 4e-05,
+        "survivors": 99543,
+        "deaths": 4,
+        "remainingYears": 77.1
+      },
+      {
+        "age": 7,
+        "deathProbability": 3.6e-05,
+        "survivors": 99539,
+        "deaths": 4,
+        "remainingYears": 76.1
+      },
+      {
+        "age": 8,
+        "deathProbability": 3.5e-05,
+        "survivors": 99535,
+        "deaths": 3,
+        "remainingYears": 75.1
+      },
+      {
+        "age": 9,
+        "deathProbability": 3.6e-05,
+        "survivors": 99532,
+        "deaths": 4,
+        "remainingYears": 74.1
+      },
+      {
+        "age": 10,
+        "deathProbability": 4e-05,
+        "survivors": 99528,
+        "deaths": 4,
+        "remainingYears": 73.1
+      },
+      {
+        "age": 11,
+        "deathProbability": 4.9e-05,
+        "survivors": 99524,
+        "deaths": 5,
+        "remainingYears": 72.1
+      },
+      {
+        "age": 12,
+        "deathProbability": 6.4e-05,
+        "survivors": 99519,
+        "deaths": 6,
+        "remainingYears": 71.1
+      },
+      {
+        "age": 13,
+        "deathProbability": 9e-05,
+        "survivors": 99513,
+        "deaths": 9,
+        "remainingYears": 70.1
+      },
+      {
+        "age": 14,
+        "deathProbability": 0.00013,
+        "survivors": 99504,
+        "deaths": 13,
+        "remainingYears": 69.1
+      },
+      {
+        "age": 15,
+        "deathProbability": 0.000183,
+        "survivors": 99491,
+        "deaths": 18,
+        "remainingYears": 68.1
+      },
+      {
+        "age": 16,
+        "deathProbability": 0.000241,
+        "survivors": 99473,
+        "deaths": 24,
+        "remainingYears": 67.1
+      },
+      {
+        "age": 17,
+        "deathProbability": 0.000294,
+        "survivors": 99449,
+        "deaths": 29,
+        "remainingYears": 66.1
+      },
+      {
+        "age": 18,
+        "deathProbability": 0.000338,
+        "survivors": 99420,
+        "deaths": 34,
+        "remainingYears": 65.1
+      },
+      {
+        "age": 19,
+        "deathProbability": 0.000368,
+        "survivors": 99386,
+        "deaths": 37,
+        "remainingYears": 64.2
+      },
+      {
+        "age": 20,
+        "deathProbability": 0.000384,
+        "survivors": 99349,
+        "deaths": 38,
+        "remainingYears": 63.2
+      },
+      {
+        "age": 21,
+        "deathProbability": 0.000388,
+        "survivors": 99311,
+        "deaths": 38,
+        "remainingYears": 62.2
+      },
+      {
+        "age": 22,
+        "deathProbability": 0.000386,
+        "survivors": 99273,
+        "deaths": 39,
+        "remainingYears": 61.2
+      },
+      {
+        "age": 23,
+        "deathProbability": 0.000382,
+        "survivors": 99234,
+        "deaths": 37,
+        "remainingYears": 60.3
+      },
+      {
+        "age": 24,
+        "deathProbability": 0.000382,
+        "survivors": 99197,
+        "deaths": 38,
+        "remainingYears": 59.3
+      },
+      {
+        "age": 25,
+        "deathProbability": 0.000386,
+        "survivors": 99159,
+        "deaths": 39,
+        "remainingYears": 58.3
+      },
+      {
+        "age": 26,
+        "deathProbability": 0.000392,
+        "survivors": 99120,
+        "deaths": 39,
+        "remainingYears": 57.3
+      },
+      {
+        "age": 27,
+        "deathProbability": 0.000402,
+        "survivors": 99081,
+        "deaths": 39,
+        "remainingYears": 56.4
+      },
+      {
+        "age": 28,
+        "deathProbability": 0.000416,
+        "survivors": 99042,
+        "deaths": 42,
+        "remainingYears": 55.4
+      },
+      {
+        "age": 29,
+        "deathProbability": 0.000431,
+        "survivors": 99000,
+        "deaths": 42,
+        "remainingYears": 54.4
+      },
+      {
+        "age": 30,
+        "deathProbability": 0.00045,
+        "survivors": 98958,
+        "deaths": 45,
+        "remainingYears": 53.4
+      },
+      {
+        "age": 31,
+        "deathProbability": 0.000471,
+        "survivors": 98913,
+        "deaths": 46,
+        "remainingYears": 52.4
+      },
+      {
+        "age": 32,
+        "deathProbability": 0.000494,
+        "survivors": 98867,
+        "deaths": 49,
+        "remainingYears": 51.5
+      },
+      {
+        "age": 33,
+        "deathProbability": 0.000519,
+        "survivors": 98818,
+        "deaths": 52,
+        "remainingYears": 50.5
+      },
+      {
+        "age": 34,
+        "deathProbability": 0.000546,
+        "survivors": 98766,
+        "deaths": 54,
+        "remainingYears": 49.5
+      },
+      {
+        "age": 35,
+        "deathProbability": 0.000575,
+        "survivors": 98712,
+        "deaths": 56,
+        "remainingYears": 48.5
+      },
+      {
+        "age": 36,
+        "deathProbability": 0.000606,
+        "survivors": 98656,
+        "deaths": 60,
+        "remainingYears": 47.6
+      },
+      {
+        "age": 37,
+        "deathProbability": 0.00064,
+        "survivors": 98596,
+        "deaths": 63,
+        "remainingYears": 46.6
+      },
+      {
+        "age": 38,
+        "deathProbability": 0.000678,
+        "survivors": 98533,
+        "deaths": 67,
+        "remainingYears": 45.6
+      },
+      {
+        "age": 39,
+        "deathProbability": 0.00072,
+        "survivors": 98466,
+        "deaths": 71,
+        "remainingYears": 44.7
+      },
+      {
+        "age": 40,
+        "deathProbability": 0.000767,
+        "survivors": 98395,
+        "deaths": 75,
+        "remainingYears": 43.7
+      },
+      {
+        "age": 41,
+        "deathProbability": 0.00082,
+        "survivors": 98320,
+        "deaths": 81,
+        "remainingYears": 42.7
+      },
+      {
+        "age": 42,
+        "deathProbability": 0.000882,
+        "survivors": 98239,
+        "deaths": 87,
+        "remainingYears": 41.8
+      },
+      {
+        "age": 43,
+        "deathProbability": 0.000952,
+        "survivors": 98152,
+        "deaths": 93,
+        "remainingYears": 40.8
+      },
+      {
+        "age": 44,
+        "deathProbability": 0.001033,
+        "survivors": 98059,
+        "deaths": 101,
+        "remainingYears": 39.8
+      },
+      {
+        "age": 45,
+        "deathProbability": 0.001127,
+        "survivors": 97958,
+        "deaths": 111,
+        "remainingYears": 38.9
+      },
+      {
+        "age": 46,
+        "deathProbability": 0.001234,
+        "survivors": 97847,
+        "deaths": 120,
+        "remainingYears": 37.9
+      },
+      {
+        "age": 47,
+        "deathProbability": 0.001357,
+        "survivors": 97727,
+        "deaths": 133,
+        "remainingYears": 37.0
+      },
+      {
+        "age": 48,
+        "deathProbability": 0.001496,
+        "survivors": 97594,
+        "deaths": 146,
+        "remainingYears": 36.0
+      },
+      {
+        "age": 49,
+        "deathProbability": 0.001653,
+        "survivors": 97448,
+        "deaths": 161,
+        "remainingYears": 35.1
+      },
+      {
+        "age": 50,
+        "deathProbability": 0.001829,
+        "survivors": 97287,
+        "deaths": 178,
+        "remainingYears": 34.1
+      },
+      {
+        "age": 51,
+        "deathProbability": 0.002027,
+        "survivors": 97109,
+        "deaths": 197,
+        "remainingYears": 33.2
+      },
+      {
+        "age": 52,
+        "deathProbability": 0.002248,
+        "survivors": 96912,
+        "deaths": 218,
+        "remainingYears": 32.3
+      },
+      {
+        "age": 53,
+        "deathProbability": 0.002492,
+        "survivors": 96694,
+        "deaths": 241,
+        "remainingYears": 31.3
+      },
+      {
+        "age": 54,
+        "deathProbability": 0.002761,
+        "survivors": 96453,
+        "deaths": 266,
+        "remainingYears": 30.4
+      },
+      {
+        "age": 55,
+        "deathProbability": 0.003057,
+        "survivors": 96187,
+        "deaths": 294,
+        "remainingYears": 29.5
+      },
+      {
+        "age": 56,
+        "deathProbability": 0.003383,
+        "survivors": 95893,
+        "deaths": 324,
+        "remainingYears": 28.6
+      },
+      {
+        "age": 57,
+        "deathProbability": 0.003742,
+        "survivors": 95569,
+        "deaths": 358,
+        "remainingYears": 27.7
+      },
+      {
+        "age": 58,
+        "deathProbability": 0.004137,
+        "survivors": 95211,
+        "deaths": 394,
+        "remainingYears": 26.8
+      },
+      {
+        "age": 59,
+        "deathProbability": 0.004572,
+        "survivors": 94817,
+        "deaths": 433,
+        "remainingYears": 25.9
+      },
+      {
+        "age": 60,
+        "deathProbability": 0.005052,
+        "survivors": 94384,
+        "deaths": 477,
+        "remainingYears": 25.0
+      },
+      {
+        "age": 61,
+        "deathProbability": 0.005581,
+        "survivors": 93907,
+        "deaths": 524,
+        "remainingYears": 24.1
+      },
+      {
+        "age": 62,
+        "deathProbability": 0.006164,
+        "survivors": 93383,
+        "deaths": 576,
+        "remainingYears": 23.3
+      },
+      {
+        "age": 63,
+        "deathProbability": 0.006808,
+        "survivors": 92807,
+        "deaths": 632,
+        "remainingYears": 22.4
+      },
+      {
+        "age": 64,
+        "deathProbability": 0.007519,
+        "survivors": 92175,
+        "deaths": 693,
+        "remainingYears": 21.5
+      },
+      {
+        "age": 65,
+        "deathProbability": 0.008304,
+        "survivors": 91482,
+        "deaths": 759,
+        "remainingYears": 20.7
+      },
+      {
+        "age": 66,
+        "deathProbability": 0.009174,
+        "survivors": 90723,
+        "deaths": 833,
+        "remainingYears": 19.9
+      },
+      {
+        "age": 67,
+        "deathProbability": 0.010136,
+        "survivors": 89890,
+        "deaths": 911,
+        "remainingYears": 19.1
+      },
+      {
+        "age": 68,
+        "deathProbability": 0.011203,
+        "survivors": 88979,
+        "deaths": 997,
+        "remainingYears": 18.2
+      },
+      {
+        "age": 69,
+        "deathProbability": 0.012388,
+        "survivors": 87982,
+        "deaths": 1089,
+        "remainingYears": 17.4
+      },
+      {
+        "age": 70,
+        "deathProbability": 0.013704,
+        "survivors": 86893,
+        "deaths": 1191,
+        "remainingYears": 16.7
+      },
+      {
+        "age": 71,
+        "deathProbability": 0.015168,
+        "survivors": 85702,
+        "deaths": 1300,
+        "remainingYears": 15.9
+      },
+      {
+        "age": 72,
+        "deathProbability": 0.0168,
+        "survivors": 84402,
+        "deaths": 1418,
+        "remainingYears": 15.1
+      },
+      {
+        "age": 73,
+        "deathProbability": 0.01862,
+        "survivors": 82984,
+        "deaths": 1545,
+        "remainingYears": 14.4
+      },
+      {
+        "age": 74,
+        "deathProbability": 0.020655,
+        "survivors": 81439,
+        "deaths": 1682,
+        "remainingYears": 13.6
+      },
+      {
+        "age": 75,
+        "deathProbability": 0.022937,
+        "survivors": 79757,
+        "deaths": 1830,
+        "remainingYears": 12.9
+      },
+      {
+        "age": 76,
+        "deathProbability": 0.025505,
+        "survivors": 77927,
+        "deaths": 1987,
+        "remainingYears": 12.2
+      },
+      {
+        "age": 77,
+        "deathProbability": 0.028407,
+        "survivors": 75940,
+        "deaths": 2157,
+        "remainingYears": 11.5
+      },
+      {
+        "age": 78,
+        "deathProbability": 0.031699,
+        "survivors": 73783,
+        "deaths": 2339,
+        "remainingYears": 10.8
+      },
+      {
+        "age": 79,
+        "deathProbability": 0.03545,
+        "survivors": 71444,
+        "deaths": 2533,
+        "remainingYears": 10.2
+      },
+      {
+        "age": 80,
+        "deathProbability": 0.039743,
+        "survivors": 68911,
+        "deaths": 2739,
+        "remainingYears": 9.5
+      },
+      {
+        "age": 81,
+        "deathProbability": 0.044678,
+        "survivors": 66172,
+        "deaths": 2956,
+        "remainingYears": 8.9
+      },
+      {
+        "age": 82,
+        "deathProbability": 0.050377,
+        "survivors": 63216,
+        "deaths": 3185,
+        "remainingYears": 8.3
+      },
+      {
+        "age": 83,
+        "deathProbability": 0.05699,
+        "survivors": 60031,
+        "deaths": 3421,
+        "remainingYears": 7.7
+      },
+      {
+        "age": 84,
+        "deathProbability": 0.064689,
+        "survivors": 56610,
+        "deaths": 3662,
+        "remainingYears": 7.1
+      },
+      {
+        "age": 85,
+        "deathProbability": 0.073627,
+        "survivors": 52948,
+        "deaths": 3898,
+        "remainingYears": 6.6
+      },
+      {
+        "age": 86,
+        "deathProbability": 0.08395,
+        "survivors": 49050,
+        "deaths": 4118,
+        "remainingYears": 6.1
+      },
+      {
+        "age": 87,
+        "deathProbability": 0.09581,
+        "survivors": 44932,
+        "deaths": 4305,
+        "remainingYears": 5.6
+      },
+      {
+        "age": 88,
+        "deathProbability": 0.10935,
+        "survivors": 40627,
+        "deaths": 4443,
+        "remainingYears": 5.1
+      },
+      {
+        "age": 89,
+        "deathProbability": 0.1247,
+        "survivors": 36184,
+        "deaths": 4512,
+        "remainingYears": 4.7
+      },
+      {
+        "age": 90,
+        "deathProbability": 0.141962,
+        "survivors": 31672,
+        "deaths": 4496,
+        "remainingYears": 4.3
+      },
+      {
+        "age": 91,
+        "deathProbability": 0.161194,
+        "survivors": 27176,
+        "deaths": 4381,
+        "remainingYears": 3.9
+      },
+      {
+        "age": 92,
+        "deathProbability": 0.182398,
+        "survivors": 22795,
+        "deaths": 4157,
+        "remainingYears": 3.6
+      },
+      {
+        "age": 93,
+        "deathProbability": 0.205495,
+        "survivors": 18638,
+        "deaths": 3830,
+        "remainingYears": 3.3
+      },
+      {
+        "age": 94,
+        "deathProbability": 0.230328,
+        "survivors": 14808,
+        "deaths": 3411,
+        "remainingYears": 3.0
+      },
+      {
+        "age": 95,
+        "deathProbability": 0.256726,
+        "survivors": 11397,
+        "deaths": 2926,
+        "remainingYears": 2.7
+      },
+      {
+        "age": 96,
+        "deathProbability": 0.28446,
+        "survivors": 8471,
+        "deaths": 2410,
+        "remainingYears": 2.5
+      },
+      {
+        "age": 97,
+        "deathProbability": 0.313219,
+        "survivors": 6061,
+        "deaths": 1898,
+        "remainingYears": 2.3
+      },
+      {
+        "age": 98,
+        "deathProbability": 0.342612,
+        "survivors": 4163,
+        "deaths": 1426,
+        "remainingYears": 2.1
+      },
+      {
+        "age": 99,
+        "deathProbability": 0.372162,
+        "survivors": 2737,
+        "deaths": 1019,
+        "remainingYears": 1.9
+      }
+    ],
+    "female": [
+      {
+        "age": 0,
+        "deathProbability": 0.003044,
+        "survivors": 100000,
+        "deaths": 304,
+        "remainingYears": 86.3
+      },
+      {
+        "age": 1,
+        "deathProbability": 0.000141,
+        "survivors": 99696,
+        "deaths": 14,
+        "remainingYears": 85.5
+      },
+      {
+        "age": 2,
+        "deathProbability": 6.7e-05,
+        "survivors": 99682,
+        "deaths": 7,
+        "remainingYears": 84.5
+      },
+      {
+        "age": 3,
+        "deathProbability": 4.9e-05,
+        "survivors": 99675,
+        "deaths": 5,
+        "remainingYears": 83.6
+      },
+      {
+        "age": 4,
+        "deathProbability": 3.9e-05,
+        "survivors": 99670,
+        "deaths": 4,
+        "remainingYears": 82.6
+      },
+      {
+        "age": 5,
+        "deathProbability": 3.2e-05,
+        "survivors": 99666,
+        "deaths": 3,
+        "remainingYears": 81.6
+      },
+      {
+        "age": 6,
+        "deathProbability": 2.8e-05,
+        "survivors": 99663,
+        "deaths": 3,
+        "remainingYears": 80.6
+      },
+      {
+        "age": 7,
+        "deathProbability": 2.6e-05,
+        "survivors": 99660,
+        "deaths": 3,
+        "remainingYears": 79.6
+      },
+      {
+        "age": 8,
+        "deathProbability": 2.6e-05,
+        "survivors": 99657,
+        "deaths": 2,
+        "remainingYears": 78.6
+      },
+      {
+        "age": 9,
+        "deathProbability": 2.8e-05,
+        "survivors": 99655,
+        "deaths": 3,
+        "remainingYears": 77.6
+      },
+      {
+        "age": 10,
+        "deathProbability": 3.1e-05,
+        "survivors": 99652,
+        "deaths": 3,
+        "remainingYears": 76.6
+      },
+      {
+        "age": 11,
+        "deathProbability": 3.8e-05,
+        "survivors": 99649,
+        "deaths": 4,
+        "remainingYears": 75.6
+      },
+      {
+        "age": 12,
+        "deathProbability": 4.8e-05,
+        "survivors": 99645,
+        "deaths": 5,
+        "remainingYears": 74.6
+      },
+      {
+        "age": 13,
+        "deathProbability": 6.4e-05,
+        "survivors": 99640,
+        "deaths": 6,
+        "remainingYears": 73.6
+      },
+      {
+        "age": 14,
+        "deathProbability": 8.8e-05,
+        "survivors": 99634,
+        "deaths": 9,
+        "remainingYears": 72.6
+      },
+      {
+        "age": 15,
+        "deathProbability": 0.000117,
+        "survivors": 99625,
+        "deaths": 11,
+        "remainingYears": 71.6
+      },
+      {
+        "age": 16,
+        "deathProbability": 0.000148,
+        "survivors": 99614,
+        "deaths": 15,
+        "remainingYears": 70.6
+      },
+      {
+        "age": 17,
+        "deathProbability": 0.000175,
+        "survivors": 99599,
+        "deaths": 18,
+        "remainingYears": 69.6
+      },
+      {
+        "age": 18,
+        "deathProbability": 0.000194,
+        "survivors": 99581,
+        "deaths": 19,
+        "remainingYears": 68.6
+      },
+      {
+        "age": 19,
+        "deathProbability": 0.000201,
+        "survivors": 99562,
+        "deaths": 20,
+        "remainingYears": 67.6
+      },
+      {
+        "age": 20,
+        "deathProbability": 0.000197,
+        "survivors": 99542,
+        "deaths": 19,
+        "remainingYears": 66.6
+      },
+      {
+        "age": 21,
+        "deathProbability": 0.000185,
+        "survivors": 99523,
+        "deaths": 19,
+        "remainingYears": 65.7
+      },
+      {
+        "age": 22,
+        "deathProbability": 0.000172,
+        "survivors": 99504,
+        "deaths": 17,
+        "remainingYears": 64.7
+      },
+      {
+        "age": 23,
+        "deathProbability": 0.000161,
+        "survivors": 99487,
+        "deaths": 16,
+        "remainingYears": 63.7
+      },
+      {
+        "age": 24,
+        "deathProbability": 0.000154,
+        "survivors": 99471,
+        "deaths": 15,
+        "remainingYears": 62.7
+      },
+      {
+        "age": 25,
+        "deathProbability": 0.000152,
+        "survivors": 99456,
+        "deaths": 16,
+        "remainingYears": 61.7
+      },
+      {
+        "age": 26,
+        "deathProbability": 0.000154,
+        "survivors": 99440,
+        "deaths": 15,
+        "remainingYears": 60.7
+      },
+      {
+        "age": 27,
+        "deathProbability": 0.00016,
+        "survivors": 99425,
+        "deaths": 16,
+        "remainingYears": 59.7
+      },
+      {
+        "age": 28,
+        "deathProbability": 0.000168,
+        "survivors": 99409,
+        "deaths": 16,
+        "remainingYears": 58.7
+      },
+      {
+        "age": 29,
+        "deathProbability": 0.000179,
+        "survivors": 99393,
+        "deaths": 18,
+        "remainingYears": 57.7
+      },
+      {
+        "age": 30,
+        "deathProbability": 0.000193,
+        "survivors": 99375,
+        "deaths": 19,
+        "remainingYears": 56.8
+      },
+      {
+        "age": 31,
+        "deathProbability": 0.000209,
+        "survivors": 99356,
+        "deaths": 21,
+        "remainingYears": 55.8
+      },
+      {
+        "age": 32,
+        "deathProbability": 0.000228,
+        "survivors": 99335,
+        "deaths": 23,
+        "remainingYears": 54.8
+      },
+      {
+        "age": 33,
+        "deathProbability": 0.000248,
+        "survivors": 99312,
+        "deaths": 24,
+        "remainingYears": 53.8
+      },
+      {
+        "age": 34,
+        "deathProbability": 0.000269,
+        "survivors": 99288,
+        "deaths": 27,
+        "remainingYears": 52.8
+      },
+      {
+        "age": 35,
+        "deathProbability": 0.000292,
+        "survivors": 99261,
+        "deaths": 29,
+        "remainingYears": 51.8
+      },
+      {
+        "age": 36,
+        "deathProbability": 0.000315,
+        "survivors": 99232,
+        "deaths": 31,
+        "remainingYears": 50.8
+      },
+      {
+        "age": 37,
+        "deathProbability": 0.00034,
+        "survivors": 99201,
+        "deaths": 34,
+        "remainingYears": 49.8
+      },
+      {
+        "age": 38,
+        "deathProbability": 0.000367,
+        "survivors": 99167,
+        "deaths": 37,
+        "remainingYears": 48.9
+      },
+      {
+        "age": 39,
+        "deathProbability": 0.000395,
+        "survivors": 99130,
+        "deaths": 39,
+        "remainingYears": 47.9
+      },
+      {
+        "age": 40,
+        "deathProbability": 0.000427,
+        "survivors": 99091,
+        "deaths": 42,
+        "remainingYears": 46.9
+      },
+      {
+        "age": 41,
+        "deathProbability": 0.000462,
+        "survivors": 99049,
+        "deaths": 46,
+        "remainingYears": 45.9
+      },
+      {
+        "age": 42,
+        "deathProbability": 0.000501,
+        "survivors": 99003,
+        "deaths": 49,
+        "remainingYears": 44.9
+      },
+      {
+        "age": 43,
+        "deathProbability": 0.000545,
+        "survivors": 98954,
+        "deaths": 54,
+        "remainingYears": 44.0
+      },
+      {
+        "age": 44,
+        "deathProbability": 0.000595,
+        "survivors": 98900,
+        "deaths": 59,
+        "remainingYears": 43.0
+      },
+      {
+        "age": 45,
+        "deathProbability": 0.000653,
+        "survivors": 98841,
+        "deaths": 65,
+        "remainingYears": 42.0
+      },
+      {
+        "age": 46,
+        "deathProbability": 0.000718,
+        "survivors": 98776,
+        "deaths": 71,
+        "remainingYears": 41.0
+      },
+      {
+        "age": 47,
+        "deathProbability": 0.000792,
+        "survivors": 98705,
+        "deaths": 78,
+        "remainingYears": 40.1
+      },
+      {
+        "age": 48,
+        "deathProbability": 0.000875,
+        "survivors": 98627,
+        "deaths": 86,
+        "remainingYears": 39.1
+      },
+      {
+        "age": 49,
+        "deathProbability": 0.000968,
+        "survivors": 98541,
+        "deaths": 95,
+        "remainingYears": 38.1
+      },
+      {
+        "age": 50,
+        "deathProbability": 0.001072,
+        "survivors": 98446,
+        "deaths": 106,
+        "remainingYears": 37.2
+      },
+      {
+        "age": 51,
+        "deathProbability": 0.001188,
+        "survivors": 98340,
+        "deaths": 117,
+        "remainingYears": 36.2
+      },
+      {
+        "age": 52,
+        "deathProbability": 0.001317,
+        "survivors": 98223,
+        "deaths": 129,
+        "remainingYears": 35.2
+      },
+      {
+        "age": 53,
+        "deathProbability": 0.001458,
+        "survivors": 98094,
+        "deaths": 143,
+        "remainingYears": 34.3
+      },
+      {
+        "age": 54,
+        "deathProbability": 0.001613,
+        "survivors": 97951,
+        "deaths": 158,
+        "remainingYears": 33.3
+      },
+      {
+        "age": 55,
+        "deathProbability": 0.001782,
+        "survivors": 97793,
+        "deaths": 174,
+        "remainingYears": 32.4
+      },
+      {
+        "age": 56,
+        "deathProbability": 0.001968,
+        "survivors": 97619,
+        "deaths": 192,
+        "remainingYears": 31.5
+      },
+      {
+        "age": 57,
+        "deathProbability": 0.002171,
+        "survivors": 97427,
+        "deaths": 212,
+        "remainingYears": 30.5
+      },
+      {
+        "age": 58,
+        "deathProbability": 0.002395,
+        "survivors": 97215,
+        "deaths": 233,
+        "remainingYears": 29.6
+      },
+      {
+        "age": 59,
+        "deathProbability": 0.002642,
+        "survivors": 96982,
+        "deaths": 256,
+        "remainingYears": 28.7
+      },
+      {
+        "age": 60,
+        "deathProbability": 0.002915,
+        "survivors": 96726,
+        "deaths": 282,
+        "remainingYears": 27.7
+      },
+      {
+        "age": 61,
+        "deathProbability": 0.003216,
+        "survivors": 96444,
+        "deaths": 310,
+        "remainingYears": 26.8
+      },
+      {
+        "age": 62,
+        "deathProbability": 0.003551,
+        "survivors": 96134,
+        "deaths": 342,
+        "remainingYears": 25.9
+      },
+      {
+        "age": 63,
+        "deathProbability": 0.003923,
+        "survivors": 95792,
+        "deaths": 375,
+        "remainingYears": 25.0
+      },
+      {
+        "age": 64,
+        "deathProbability": 0.004338,
+        "survivors": 95417,
+        "deaths": 414,
+        "remainingYears": 24.1
+      },
+      {
+        "age": 65,
+        "deathProbability": 0.004802,
+        "survivors": 95003,
+        "deaths": 456,
+        "remainingYears": 23.2
+      },
+      {
+        "age": 66,
+        "deathProbability": 0.005321,
+        "survivors": 94547,
+        "deaths": 503,
+        "remainingYears": 22.3
+      },
+      {
+        "age": 67,
+        "deathProbability": 0.005902,
+        "survivors": 94044,
+        "deaths": 556,
+        "remainingYears": 21.4
+      },
+      {
+        "age": 68,
+        "deathProbability": 0.006556,
+        "survivors": 93488,
+        "deaths": 612,
+        "remainingYears": 20.5
+      },
+      {
+        "age": 69,
+        "deathProbability": 0.007291,
+        "survivors": 92876,
+        "deaths": 678,
+        "remainingYears": 19.7
+      },
+      {
+        "age": 70,
+        "deathProbability": 0.008119,
+        "survivors": 92198,
+        "deaths": 748,
+        "remainingYears": 18.8
+      },
+      {
+        "age": 71,
+        "deathProbability": 0.009054,
+        "survivors": 91450,
+        "deaths": 828,
+        "remainingYears": 18.0
+      },
+      {
+        "age": 72,
+        "deathProbability": 0.010112,
+        "survivors": 90622,
+        "deaths": 916,
+        "remainingYears": 17.1
+      },
+      {
+        "age": 73,
+        "deathProbability": 0.011311,
+        "survivors": 89706,
+        "deaths": 1015,
+        "remainingYears": 16.3
+      },
+      {
+        "age": 74,
+        "deathProbability": 0.012674,
+        "survivors": 88691,
+        "deaths": 1124,
+        "remainingYears": 15.5
+      },
+      {
+        "age": 75,
+        "deathProbability": 0.01423,
+        "survivors": 87567,
+        "deaths": 1246,
+        "remainingYears": 14.7
+      },
+      {
+        "age": 76,
+        "deathProbability": 0.016017,
+        "survivors": 86321,
+        "deaths": 1383,
+        "remainingYears": 13.9
+      },
+      {
+        "age": 77,
+        "deathProbability": 0.01808,
+        "survivors": 84938,
+        "deaths": 1536,
+        "remainingYears": 13.1
+      },
+      {
+        "age": 78,
+        "deathProbability": 0.020476,
+        "survivors": 83402,
+        "deaths": 1707,
+        "remainingYears": 12.3
+      },
+      {
+        "age": 79,
+        "deathProbability": 0.023276,
+        "survivors": 81695,
+        "deaths": 1902,
+        "remainingYears": 11.6
+      },
+      {
+        "age": 80,
+        "deathProbability": 0.026569,
+        "survivors": 79793,
+        "deaths": 2120,
+        "remainingYears": 10.8
+      },
+      {
+        "age": 81,
+        "deathProbability": 0.030466,
+        "survivors": 77673,
+        "deaths": 2366,
+        "remainingYears": 10.1
+      },
+      {
+        "age": 82,
+        "deathProbability": 0.035109,
+        "survivors": 75307,
+        "deaths": 2644,
+        "remainingYears": 9.4
+      },
+      {
+        "age": 83,
+        "deathProbability": 0.040678,
+        "survivors": 72663,
+        "deaths": 2956,
+        "remainingYears": 8.7
+      },
+      {
+        "age": 84,
+        "deathProbability": 0.047387,
+        "survivors": 69707,
+        "deaths": 3303,
+        "remainingYears": 8.1
+      },
+      {
+        "age": 85,
+        "deathProbability": 0.055421,
+        "survivors": 66404,
+        "deaths": 3680,
+        "remainingYears": 7.4
+      },
+      {
+        "age": 86,
+        "deathProbability": 0.064948,
+        "survivors": 62724,
+        "deaths": 4074,
+        "remainingYears": 6.9
+      },
+      {
+        "age": 87,
+        "deathProbability": 0.076125,
+        "survivors": 58650,
+        "deaths": 4465,
+        "remainingYears": 6.3
+      },
+      {
+        "age": 88,
+        "deathProbability": 0.089072,
+        "survivors": 54185,
+        "deaths": 4826,
+        "remainingYears": 5.8
+      },
+      {
+        "age": 89,
+        "deathProbability": 0.103844,
+        "survivors": 49359,
+        "deaths": 5126,
+        "remainingYears": 5.3
+      },
+      {
+        "age": 90,
+        "deathProbability": 0.120403,
+        "survivors": 44233,
+        "deaths": 5326,
+        "remainingYears": 4.8
+      },
+      {
+        "age": 91,
+        "deathProbability": 0.138575,
+        "survivors": 38907,
+        "deaths": 5391,
+        "remainingYears": 4.4
+      },
+      {
+        "age": 92,
+        "deathProbability": 0.158019,
+        "survivors": 33516,
+        "deaths": 5296,
+        "remainingYears": 4.1
+      },
+      {
+        "age": 93,
+        "deathProbability": 0.178193,
+        "survivors": 28220,
+        "deaths": 5029,
+        "remainingYears": 3.7
+      },
+      {
+        "age": 94,
+        "deathProbability": 0.198495,
+        "survivors": 23191,
+        "deaths": 4603,
+        "remainingYears": 3.5
+      },
+      {
+        "age": 95,
+        "deathProbability": 0.218866,
+        "survivors": 18588,
+        "deaths": 4068,
+        "remainingYears": 3.2
+      },
+      {
+        "age": 96,
+        "deathProbability": 0.239553,
+        "survivors": 14520,
+        "deaths": 3479,
+        "remainingYears": 2.9
+      },
+      {
+        "age": 97,
+        "deathProbability": 0.261008,
+        "survivors": 11041,
+        "deaths": 2882,
+        "remainingYears": 2.7
+      },
+      {
+        "age": 98,
+        "deathProbability": 0.283897,
+        "survivors": 8159,
+        "deaths": 2316,
+        "remainingYears": 2.5
+      },
+      {
+        "age": 99,
+        "deathProbability": 0.309139,
+        "survivors": 5843,
+        "deaths": 1806,
+        "remainingYears": 2.3
+      }
+    ]
+  }
+}

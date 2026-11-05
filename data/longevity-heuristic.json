@@ -1,0 +1,25 @@
+{
+  "version": "historical-adapted-1",
+  "origin": "Adapted arithmetic from the historical gesundheit.inc calculator, lines 443–561. Not study-derived effect estimates.",
+  "validated": false,
+  "ageRange": [18, 95],
+  "smoking": {"never": 2, "formerOverFiveYears": 1, "perCigarette": -0.2, "maxCigarettes": 80},
+  "activity": {"none": -2, "rare": -1, "low": 0, "medium": 1, "high": 2},
+  "fruit": {"yes": 1, "no": 0},
+  "bmi": {"supportedMin": 15, "supportedMax": 40, "referenceMin": 20, "referenceMax": 25, "obesityThreshold": 30, "referenceScore": 1, "outsideReferenceScore": -1, "overThirtyScore": -2},
+  "alcohol": {"none": 0, "moderate": 0, "three": 0, "four": -1, "six": -3, "eight": -5, "ten": -7},
+  "marital": {"marriedBase": 0.02, "marriedAgeCoefficient": 0.002, "maleNotMarried": -0.15, "femaleDivorced": -0.06, "femaleOtherNotMarried": -0.02},
+  "dampingStartsAt": 50,
+  "dampingEndsAt": 100,
+  "positiveCapYears": 12,
+  "minimumRemainingFraction": 0.25,
+  "adaptations": [
+    "No positive alcohol bonus.",
+    "No extra historical female-married penalty.",
+    "Smoking dose is required for a current-smoker adjustment; missing quantities are unknown.",
+    "The former-smoker bonus requires more than five years since quitting.",
+    "Unknown inputs contribute no adjustment and are reported as unknown, not healthy.",
+    "Daily fruit/vegetables, activity frequency and alcohol portions follow the old questions, not the 2014 study categories.",
+    "The coefficients and limits are heuristic choices, not validated personal or causal effects."
+  ]
+}

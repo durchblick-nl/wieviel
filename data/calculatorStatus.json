@@ -387,5 +387,24 @@
         "url": "https://statistik.admin.ch/de/asset/36649551"
       }
     ]
+  },
+  "longevity": {
+    "dataset": "longevity",
+    "note": {
+      "de": "Experimentelle persönliche Modellschätzung nach angepassten historischen Regeln mit BFS-Basis 2025. Nicht validiert. Amtliche Kurven und Zivilstandsvergleich separat.",
+      "fr": "Estimation personnelle expérimentale selon des règles historiques adaptées, avec base OFS 2025. Non validée. Courbes officielles et comparaison par état civil séparées."
+    },
+    "reviewed": "2026-11-05",
+    "next": "2027-09-01",
+    "sources": [
+      {
+        "name": "BFS / OFS – Männer / Hommes (OPEN-BY)",
+        "url": "https://statistik.admin.ch/fr/asset/36837789"
+      },
+      {
+        "name": "BFS / OFS – Frauen / Femmes (OPEN-BY)",
+        "url": "https://statistik.admin.ch/fr/asset/36837788"
+      }
+    ]
   }
 }

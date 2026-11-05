@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>{{- partial "head.html" . }}
+<link rel="stylesheet" href="/css/longevity.css?v={{ readFile "static/css/longevity.css" | sha256 | truncate 12 "" }}">
+</head>
+<body class="longevity-page">
+<div class="container longevity-calculator">
+<header class="longevity-appbar"><a class="longevity-home" href="{{ .Site.Language.Params.homePath }}"><i class="fas fa-chevron-left" aria-hidden="true"></i> {{ i18n "longevity.appAllTools" }}</a>{{- partial "header.html" . }}</header>
+<main>
+<section class="longevity-playground" aria-labelledby="longevity-app-title">
+<h1 id="longevity-app-title">{{ i18n "longevity.appTitle" }}</h1>
+<p class="longevity-app-intro">{{ i18n "longevity.appIntro" }}</p>
+<button id="longevity-edit-profile" class="longevity-profile-button" type="button"><i class="fas fa-pen" aria-hidden="true"></i> <span id="longevity-profile-label"></span></button>
+<div id="longevity-output">
+<h2 id="longevity-baseline-title" class="longevity-sr" tabindex="-1">{{ i18n "longevity.baselineTitle" }}</h2>
+<div class="longevity-estimate" aria-live="polite" aria-atomic="true">
+<span id="longevity-context" class="longevity-result-label"></span>
+<div class="longevity-result-row"><div class="longevity-result-number"><strong id="longevity-years"></strong><span>{{ i18n "longevity.appYearsRemaining" }}</span></div>
+<div class="longevity-original"><span>{{ i18n "longevity.appOriginal" }}</span><strong id="longevity-original-years"></strong><span id="longevity-scenario-difference" class="longevity-difference"></span></div></div>
+<div class="longevity-slope-labels"><span>{{ i18n "longevity.appOriginal" }}<strong id="longevity-original-plot-value"></strong></span><span>{{ i18n "longevity.appScenario" }}<strong id="longevity-scenario-plot-value"></strong></span></div>
+<svg id="longevity-scenario-chart" viewBox="0 0 300 42" role="img" aria-labelledby="longevity-scenario-chart-title"><title id="longevity-scenario-chart-title"></title><line id="longevity-scenario-connector" x1="18" x2="282" y1="21" y2="21"/><circle cx="18" cy="21" r="4"/><circle id="longevity-scenario-dot" cx="282" cy="21" r="4"/></svg>
+<p id="longevity-expected"></p>
+</div>
+<p class="longevity-short-note">{{ i18n "longevity.appShortNote" }}</p>
+<h2 class="longevity-whatif-title">{{ i18n "longevity.appWhatIf" }}</h2>
+<div class="longevity-scenario-grid">
+{{ range slice "smoking" "activity" "fruit" "weight" }}<button type="button" class="longevity-scenario-button" data-scenario="{{ . }}" aria-pressed="false"><span>{{ i18n (printf "longevity.appScenario.%s" .) }}</span><i class="fas fa-check-circle" aria-hidden="true"></i></button>{{ end }}
+</div>
+<p class="longevity-combine">{{ i18n "longevity.appCombine" }}</p>
+<p id="longevity-scenario-note" class="longevity-help" hidden></p>
+<div class="longevity-play-actions"><button id="longevity-reset-scenario" type="button">{{ i18n "longevity.appReset" }}</button></div>
+</div>
+</section>
+<nav class="longevity-reference-nav" aria-label="{{ i18n "longevity.referenceNavigation" }}"><a href="#longevity-sources">{{ i18n "longevity.sourcesLink" }}</a><a href="#longevity-faq">{{ i18n "longevity.faqLink" }}</a></nav>
+<section class="longevity-population" aria-labelledby="longevity-population-title">
+                <h2 id="longevity-population-title">{{ i18n "longevity.populationTitle" }}</h2>
+                <p id="longevity-population-value"></p>
+                <p class="longevity-note">{{ i18n "longevity.estimateNote" }}</p>
+                <div class="longevity-milestones" id="longevity-milestones"></div>
+                <p id="longevity-milestone-help" class="longevity-help"></p>
+                <figure class="longevity-chart">
+                    <figcaption>{{ i18n "longevity.curveTitle" }}</figcaption>
+                    <div class="longevity-legend"><span><i class="longevity-swatch"></i><span id="longevity-primary-label"></span></span><span id="longevity-comparison-legend"><i class="longevity-swatch longevity-swatch-secondary"></i><span id="longevity-comparison-label"></span></span></div>
+                    <svg id="longevity-curve" viewBox="0 0 600 250" role="img" aria-labelledby="longevity-curve-title longevity-curve-description">
+                        <title id="longevity-curve-title">{{ i18n "longevity.curveTitle" }}</title>
+                        <desc id="longevity-curve-description"></desc>
+                        <defs><linearGradient id="longevity-area-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="currentColor" stop-opacity=".2"/><stop offset="100%" stop-color="currentColor" stop-opacity=".02"/></linearGradient></defs>
+                        <g id="longevity-grid"></g><polygon id="longevity-area" fill="url(#longevity-area-fill)"></polygon>
+                        <polyline id="longevity-comparison-line" class="longevity-secondary-line" fill="none" stroke-width="2.5" stroke-dasharray="6 5"></polyline>
+                        <polyline id="longevity-line" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline>
+                        <g id="longevity-markers"></g><circle id="longevity-probe-dot" r="6" fill="currentColor" stroke="var(--card-bg)" stroke-width="2"></circle>
+                    </svg>
+                    <label class="longevity-checkbox"><input type="checkbox" id="longevity-compare" checked> {{ i18n "longevity.compareGroups" }}</label>
+                    <div class="longevity-probe"><label for="longevity-probe">{{ i18n "longevity.exploreAge" }}</label><input type="range" id="longevity-probe" min="60" max="99" value="80"><output id="longevity-probe-value" for="longevity-probe" aria-live="polite"></output></div>
+                    <p id="longevity-median" class="longevity-help"></p>
+                    <p class="longevity-help">{{ i18n "longevity.tailNote" }}</p>
+                </figure>
+                <details class="longevity-details"><summary>{{ i18n "longevity.showTable" }}</summary>
+                    <div class="longevity-table-wrap"><table>
+                        <caption>{{ i18n "longevity.tableCaption" }}</caption>
+                        <thead><tr><th scope="col">{{ i18n "longevity.tableAge" }}</th><th scope="col">{{ i18n "longevity.tableSurvival" }}</th></tr></thead>
+                        <tbody id="longevity-curve-table"></tbody>
+                    </table></div>
+                </details>
+</section>
+{{- partial "data-status.html" . }}
+<details id="longevity-explanations" class="longevity-explanations"><summary>{{ i18n "longevity.appStatistics" }}</summary>
+<section class="calculator-card"><h2>{{ i18n "longevity.contributionsTitle" }}</h2>
+<p class="longevity-note">{{ i18n "longevity.personalNote" }}</p><p id="longevity-personal-context" class="longevity-help"></p><p id="longevity-relative" class="longevity-relative"></p>
+<div class="longevity-contributions"><ul id="longevity-contributions"></ul><p id="longevity-limits" class="longevity-help"></p></div>
+
+</section>
+        <section class="calculator-card" aria-labelledby="longevity-lifestyle-title">
+            <span class="longevity-eyebrow">{{ i18n "longevity.step2" }}</span>
+            <h2 id="longevity-lifestyle-title">{{ i18n "longevity.lifestyleTitle" }}</h2>
+            <p>{{ i18n "longevity.lifestyleIntro" }}</p>
+            <p class="longevity-note">{{ i18n "longevity.lifestyleScope" }}</p>
+            <details class="longevity-details"><summary>{{ i18n "longevity.personalMethodTitle" }}</summary><p>{{ i18n "longevity.personalMethod" }}</p><p>{{ i18n "longevity.personalAdaptations" }}</p></details>
+            <p>{{ i18n "longevity.studyContext" }}</p>
+            <a href="https://doi.org/10.1016/j.ypmed.2014.05.023" target="_blank" rel="noopener">Martin-Diener et al., 2014 · {{ i18n "longevity.studySource" }}</a>
+        </section>
+
+        <section class="calculator-card" aria-labelledby="longevity-marital-title">
+            <span class="longevity-eyebrow">{{ i18n "longevity.step3" }}</span>
+            <h2 id="longevity-marital-title">{{ i18n "longevity.maritalTitle" }}</h2>
+            <p>{{ i18n "longevity.maritalIntro" }}</p>
+            <p id="longevity-marital-context" class="longevity-note"></p>
+            <p id="longevity-selected-marital" class="longevity-selected-summary" aria-live="polite" hidden></p>
+            {{- $marital := partialCached "calculator-dataset.html" "life-marital-comparison" "life-marital-comparison" }}
+            <figure class="longevity-chart"><figcaption>{{ i18n "longevity.maritalChart" }}</figcaption>
+                <div class="longevity-legend"><span><i class="longevity-swatch"></i>{{ i18n "longevity.male" }}</span><span><i class="longevity-swatch longevity-swatch-secondary"></i>{{ i18n "longevity.female" }}</span></div>
+                <svg id="longevity-marital-chart" viewBox="0 0 600 270" role="img" aria-labelledby="longevity-marital-chart-title"><title id="longevity-marital-chart-title">{{ i18n "longevity.maritalChartDescription" }}</title><g id="longevity-marital-plot"></g></svg>
+            </figure>
+            <div class="longevity-table-wrap"><table id="longevity-marital-table">
+                <caption>{{ i18n "longevity.maritalCaption" }}</caption>
+                <thead><tr><th scope="col">{{ i18n "longevity.status" }}</th><th scope="col" data-sex="male">{{ i18n "longevity.male" }}</th><th scope="col" data-sex="female">{{ i18n "longevity.female" }}</th></tr></thead>
+                <tbody>{{ range slice "total" "single" "married" "widowed" "divorced" }}
+                    {{- $row := index $marital.periods "2018/2023" . }}
+                    <tr data-status="{{ . }}"><th scope="row">{{ i18n (printf "longevity.status.%s" .) }}</th><td data-sex="male">{{ lang.FormatNumber 1 $row.male }}</td><td data-sex="female">{{ lang.FormatNumber 1 $row.female }}</td></tr>
+                {{ end }}</tbody>
+            </table></div>
+            <p>{{ i18n "longevity.maritalReference" }}</p>
+            <p class="longevity-help">{{ i18n "longevity.maritalNote" }}</p>
+            <p class="longevity-source-links"><a href="https://statistik.admin.ch/de/asset/36854184" target="_blank" rel="noopener">{{ i18n "longevity.maritalSource" }}</a> · <a href="{{ i18n "longevity.maritalArticleUrl" }}" target="_blank" rel="noopener">{{ i18n "longevity.maritalArticle" }}</a></p>
+        </section>
+
+        <p class="longevity-help">{{ i18n "longevity.privacy" }}</p>
+</details>
+{{ .Content }}
+<noscript><p class="longevity-note">{{ i18n "longevity.noScript" }}</p></noscript>
+<dialog id="longevity-profile-dialog" class="longevity-profile-dialog" aria-labelledby="longevity-editor-title">
+<div class="longevity-editor-header"><div class="longevity-editor-navigation"><button id="longevity-editor-back" type="button" aria-label="{{ i18n "longevity.appBack" }}"><i class="fas fa-chevron-left" aria-hidden="true"></i></button><strong id="longevity-editor-title">{{ i18n "longevity.appEditorTitle" }}</strong></div><button id="longevity-close-editor" type="button">{{ i18n "longevity.appClose" }}</button></div>
+<div id="longevity-editor-progress" class="longevity-editor-progress"><progress id="longevity-progress" max="5" value="1"></progress><p id="longevity-step-label" role="status"></p></div>
+<form id="longevity-form" novalidate>
+<section data-profile-step="0" class="longevity-profile-step"><h2>{{ i18n "longevity.appStepTitle.0" }}</h2><p>{{ i18n "longevity.appStepIntro.0" }}</p>
+<div class="longevity-field"><label for="longevity-age">{{ i18n "longevity.age" }}</label><input id="longevity-age" type="number" enterkeyhint="next" inputmode="numeric" min="18" max="99" step="1" value="60" required aria-describedby="longevity-error"><small>{{ i18n "longevity.ageHelp" }}</small></div>
+{{ partial "longevity-choice.html" (dict "id" "sex" "label" "sex" "default" "male" "choices" (slice (dict "value" "male" "key" "male") (dict "value" "female" "key" "female"))) }}
+<div class="longevity-field"><label for="longevity-marital-status">{{ i18n "longevity.status" }}</label><select id="longevity-marital-status"><option value="">{{ i18n "longevity.unknown" }}</option>{{ range slice "single" "married" "widowed" "divorced" }}<option value="{{ . }}">{{ i18n (printf "longevity.status.%s" .) }}</option>{{ end }}</select></div>
+</section>
+<section data-profile-step="1" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.1" }}</h2><p>{{ i18n "longevity.appStepIntro.1" }}</p>
+<div class="longevity-number-row"><label for="longevity-height">{{ i18n "longevity.appHeight" }}</label><input id="longevity-height" type="number" enterkeyhint="next" inputmode="numeric" min="100" max="230" step="1" placeholder="—"><span>cm</span></div>
+<div class="longevity-number-row"><label for="longevity-weight">{{ i18n "longevity.appWeight" }}</label><input id="longevity-weight" type="number" enterkeyhint="next" inputmode="decimal" min="30" max="300" step="0.1" placeholder="—"><span>kg</span></div>
+<div id="longevity-weight-slider-field" class="longevity-weight-slider" hidden><label for="longevity-weight-slider">{{ i18n "longevity.appWeightSlider" }}</label><input type="range" id="longevity-weight-slider" min="30" max="200" step="0.5" value="80"><p id="longevity-editor-estimate" class="longevity-editor-estimate" aria-live="polite"></p><p>{{ i18n "longevity.appSmallChanges" }}</p></div>
+<div class="longevity-bmi-strip"><span>{{ i18n "longevity.appBmiLabel" }}</span><strong id="longevity-bmi-value" aria-live="polite"></strong></div><small>{{ i18n "longevity.appBmiNote" }}</small>
+</section>
+<section data-profile-step="2" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.2" }}</h2><p>{{ i18n "longevity.appStepIntro.2" }}</p>
+{{ partial "longevity-choice.html" (dict "id" "smoking" "label" "smoking" "default" "" "choices" (slice (dict "value" "no" "key" "smokingNo") (dict "value" "former" "key" "smokingFormer") (dict "value" "yes" "key" "smokingYes"))) }}
+<div id="longevity-cigarettes-field" class="longevity-field" hidden><label for="longevity-cigarettes">{{ i18n "longevity.cigarettes" }}</label><input id="longevity-cigarettes" type="number" enterkeyhint="next" min="1" max="80" step="1" inputmode="numeric"></div>
+<div id="longevity-quit-field" class="longevity-field" hidden><label for="longevity-quit-years">{{ i18n "longevity.quitYears" }}</label><input id="longevity-quit-years" type="number" enterkeyhint="next" min="0" max="99" step="1" inputmode="numeric"></div>
+</section>
+<section data-profile-step="3" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.3" }}</h2><p>{{ i18n "longevity.activityHelp" }}</p>
+{{ partial "longevity-choice.html" (dict "id" "activity" "label" "activity" "default" "" "choices" (slice (dict "value" "none" "key" "activity.none") (dict "value" "rare" "key" "activity.rare") (dict "value" "low" "key" "activity.low") (dict "value" "medium" "key" "activity.medium") (dict "value" "high" "key" "activity.high"))) }}
+</section>
+<section data-profile-step="4" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.4" }}</h2><p>{{ i18n "longevity.appStepIntro.4" }}</p>
+{{ partial "longevity-choice.html" (dict "id" "fruit" "label" "fruit" "default" "" "choices" (slice (dict "value" "yes" "key" "yes") (dict "value" "no" "key" "no"))) }}
+<div class="longevity-field"><label for="longevity-alcohol">{{ i18n "longevity.alcohol" }}</label><select id="longevity-alcohol"><option value="">{{ i18n "longevity.unknown" }}</option><option value="none">{{ i18n "longevity.alcoholNone" }}</option><option value="moderate">{{ i18n "longevity.alcoholModerate" }}</option>{{ range slice "three" "four" "six" "eight" "ten" }}<option value="{{ . }}">{{ i18n (printf "longevity.alcohol.%s" .) }}</option>{{ end }}</select><small>{{ i18n "longevity.alcoholHelp" }}</small></div>
+</section>
+<p id="longevity-error" role="alert" hidden>{{ i18n "longevity.invalidAge" }}</p>
+</form>
+<div class="longevity-editor-bottom"><button type="button" id="longevity-skip-step" class="longevity-skip">{{ i18n "longevity.appSkip" }}</button><div class="longevity-editor-nav"><button type="button" id="longevity-previous-step">{{ i18n "longevity.appBack" }}</button><button type="submit" id="longevity-next-step" form="longevity-form">{{ i18n "longevity.appNext" }}</button></div></div>
+</dialog>
+</main></div>
+{{- partial "footer.html" . }}
+{{- partial "darkmode.html" . }}
+{{- $texts := dict }}
+{{- range slice "invalidAge" "context" "expected" "milestone" "nextYear" "milestoneHelp" "curveDescription" "median" "noMedian" "maritalContext" "maritalAt65" "chartAge" "male" "female" "probeValue" "remainingAxis" "selectedMarital" "personalContext" "personalPartial" "personalUnsupported" "relativePositive" "relativeNegative" "relativeNeutral" "populationValue" "bmiValue" "bmiHelp" "limitsNote" "contributionUnknown" "contributionValue" "factor.smoking" "factor.activity" "factor.fruit" "factor.alcohol" "factor.marital" "factor.bmi" "appProfile" "appStep" "appNext" "appUseProfile" "appApplyScenario" "appClose" "appScenarioTitle" "appDifference" "appDifferenceNegative" "appDifferenceZero" "appSmokeNote" "appAlreadyNonsmoker" "appSmallChanges" "appScenarioSummary" "appEditorTitle" "appEditorEstimate" }}
+    {{- $texts = merge $texts (dict . (i18n (printf "longevity.%s" .))) }}
+{{- end }}
+{{- $data := partialCached "calculator-dataset.html" "life-tables" "life-tables" }}
+<script type="application/json" id="longevity-config">{{ dict "lang" .Site.Language.Lang "texts" $texts "data" $data "heuristic" (index hugo.Data "longevity-heuristic") "marital" $marital | jsonify | safeJS }}</script>
+<script defer src="/js/longevity-core.js?v={{ readFile "static/js/longevity-core.js" | sha256 | truncate 12 "" }}"></script>
+<script defer src="/js/longevity.js?v={{ readFile "static/js/longevity.js" | sha256 | truncate 12 "" }}"></script>
+</body>
+</html>

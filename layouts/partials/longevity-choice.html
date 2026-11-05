@@ -1,0 +1,5 @@
+<div class="longevity-field longevity-choice-group" role="group" aria-labelledby="longevity-{{ .id }}-label">
+    <span id="longevity-{{ .id }}-label" class="longevity-field-label">{{ i18n (printf "longevity.%s" .label) }}</span>
+    <select id="longevity-{{ .id }}" class="longevity-choice-native" tabindex="-1" aria-hidden="true"><option value="">{{ i18n "longevity.unknown" }}</option>{{ range .choices }}<option value="{{ .value }}"{{ if eq .value $.default }} selected{{ end }}>{{ i18n (printf "longevity.%s" .key) }}</option>{{ end }}</select>
+    <div class="longevity-choice-buttons">{{ range .choices }}<button type="button" data-control="{{ $.id }}" data-value="{{ .value }}" aria-pressed="{{ if eq .value $.default }}true{{ else }}false{{ end }}">{{ i18n (printf "longevity.%s" .key) }}<i class="fas fa-check-circle" aria-hidden="true"></i></button>{{ end }}</div>
+</div>

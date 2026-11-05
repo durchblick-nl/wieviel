@@ -1,0 +1,119 @@
+{
+  "_meta": {
+    "origin": "Original gesundheit.inc calculation fragment; numeric execution via PHP",
+    "snippetSha256": "8dfe20e844241d9f818feeaf22f6727b3bd9c97c821a85baca549f23d8c78073",
+    "generatedOn": "2026-11-05",
+    "scope": "Integer ages 13\u201395; no old database connection or logging executed"
+  },
+  "cases": [
+    {
+      "age": 40,
+      "sex": "male",
+      "base": 43.7,
+      "input": {},
+      "expected": {
+        "remainingYears": 43.7,
+        "rawCorrection": 0,
+        "social": 0
+      }
+    },
+    {
+      "age": 60,
+      "sex": "male",
+      "base": 25,
+      "input": {
+        "df2": -4,
+        "ex": 2
+      },
+      "expected": {
+        "remainingYears": 23.400000000000006,
+        "rawCorrection": -2,
+        "social": 0
+      }
+    },
+    {
+      "age": 80,
+      "sex": "female",
+      "base": 10.8,
+      "input": {
+        "df2": 2,
+        "ex": 2,
+        "bf4": 1
+      },
+      "expected": {
+        "remainingYears": 12.799999999999997,
+        "rawCorrection": 5,
+        "social": 0
+      }
+    },
+    {
+      "age": 60,
+      "sex": "male",
+      "base": 25,
+      "input": {
+        "sf3": "mar"
+      },
+      "expected": {
+        "remainingYears": 27.799999999999997,
+        "rawCorrection": 3.5,
+        "social": 3.5
+      }
+    },
+    {
+      "age": 60,
+      "sex": "female",
+      "base": 25,
+      "input": {
+        "sf3": "mar"
+      },
+      "expected": {
+        "remainingYears": 27.400000000000006,
+        "rawCorrection": 3,
+        "social": 3
+      }
+    },
+    {
+      "age": 60,
+      "sex": "male",
+      "base": 25,
+      "input": {
+        "df2": -80
+      },
+      "expected": {
+        "remainingYears": 6.25,
+        "rawCorrection": -80,
+        "social": 0
+      }
+    },
+    {
+      "age": 40,
+      "sex": "female",
+      "base": 46.9,
+      "input": {
+        "df2": 30
+      },
+      "expected": {
+        "remainingYears": 58.900000000000006,
+        "rawCorrection": 30,
+        "social": 0
+      }
+    },
+    {
+      "age": 60,
+      "sex": "female",
+      "base": 27.7,
+      "input": {
+        "gf1": -12,
+        "gf2": -6,
+        "gf3": 1,
+        "sf3": "div",
+        "bf1": -2
+      },
+      "expected": {
+        "remainingYears": 15.1704,
+        "rawCorrection": -15.662,
+        "social": -1.6620000000000001
+      }
+    }
+  ]
+}

@@ -24,6 +24,10 @@
     {{- $data := partialCached "calculator-dataset.html" "birthdays" "birthdays" -}}
     {{- $period = printf "%s %v–%v" (i18n "birthday.dataPeriod") $data._meta.startYear $data._meta.endYear -}}
     {{- $reviewed = $data._meta.verifiedOn -}}
+{{- else if eq $status.dataset "longevity" -}}
+    {{- $data := partialCached "calculator-dataset.html" "life-tables" "life-tables" -}}
+    {{- $marital := partialCached "calculator-dataset.html" "life-marital-comparison" "life-marital-comparison" -}}
+    {{- $period = i18n "longevity.dataPeriod" (dict "year" $data._meta.year "period" $marital._meta.period) -}}
 {{- else if eq $status.dataset "electricity" -}}
     {{- $years := slice -}}
     {{- range $year, $tariff := hugo.Data.site.electricity.tariffs -}}

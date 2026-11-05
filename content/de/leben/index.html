@@ -1,0 +1,42 @@
+---
+title: "Lebenserwartungsrechner Schweiz"
+subtitle: "Lebensjahre einordnen. Zusammenhänge entdecken."
+description: "Entdecke deine statistische Restlebenserwartung mit Schweizer BFS-Daten, Überlebenskurven und Quellen zu Lebensstil und Zivilstand. Eine Schätzung, keine Vorhersage."
+keywords: "Lebenserwartungsrechner, Lebenserwartung Schweiz, Restlebenserwartung, Sterbetafel, Lebensstil"
+translationKey: "longevity-calculator"
+type: "longevity"
+icon: "🌱"
+ogTitle: "Was liegt statistisch noch vor dir?"
+ogImage: "https://wieviel.ch/og/lebenserwartung.png"
+lastmod: "2026-11-05"
+---
+
+<section class="seo-content">
+    <h2 id="longevity-sources">Quellen und weiterführende Studien</h2>
+    <ul>
+        <li><a href="https://statistik.admin.ch/fr/asset/36837789" target="_blank" rel="noopener">BFS: jährliche vollständige Sterbetafel, Männer, 2013–2025</a> und <a href="https://statistik.admin.ch/fr/asset/36837788" target="_blank" rel="noopener">Frauen, 2013–2025</a>. Verwendetes Jahr: 2025. Freie Nutzung mit Quellenangabe (OPEN-BY).</li>
+        <li><a href="https://doi.org/10.1016/j.ypmed.2014.05.023" target="_blank" rel="noopener">Martin-Diener et al., 2014: Kombination von vier Verhaltensfaktoren</a>. Historische Schweizer Kohorten zur Einordnung mehrerer Faktoren. Die Studie begründet nicht die genauen Jahresgewichte unseres experimentellen Modells.</li>
+        <li><a href="https://statistik.admin.ch/de/asset/36854184" target="_blank" rel="noopener">BFS: Lebenserwartung ab 65 nach Zivilstand, 2018/2023</a>. Amtlicher Gruppenvergleich, OPEN-BY. <a href="https://sozialesicherheit.ch/de/verheiratete-leben-laenger/" target="_blank" rel="noopener">Einordnung durch BSV/CHSS</a>.</li>
+        <li><a href="https://evidence.nejm.org/doi/full/10.1056/EVIDoa2300272" target="_blank" rel="noopener">Rauchen und Rauchstopp, NEJM Evidence, 2024</a> sowie <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2802963" target="_blank" rel="noopener">Alkohol und Gesamtsterblichkeit, JAMA Network Open, 2023</a>: weiterführende Einordnung, keine zusätzlichen Rechengewichte.</li>
+    </ul>
+
+    <h2 id="longevity-faq">Häufige Fragen</h2>
+    <div class="faq-section">
+        <details class="faq-item"><summary>Sagt der Rechner, wie alt ich werde?</summary><p>Er zeigt Mittelwerte und Wahrscheinlichkeiten für Gruppen unter bestimmten Annahmen. Einzelne Lebensverläufe können stark davon abweichen. Der Rechner kennt weder deine Krankengeschichte noch künftige Entwicklungen.</p></details>
+        <details class="faq-item"><summary>Warum steigt das erwartete Lebensalter, wenn ich älter bin?</summary><p>Du hast die früheren Lebensjahre bereits überlebt. Die Rechnung beginnt deshalb bei deinem heutigen Alter. Sie zieht nicht einfach dein Alter von der Lebenserwartung bei Geburt ab.</p></details>
+        <details class="faq-item"><summary>Erreichen die Hälfte der Menschen das Durchschnittsalter?</summary><p>Das folgt daraus nicht. Der Mittelwert berücksichtigt alle verbleibenden Lebenszeiten. Der Median bezeichnet dagegen das Alter, bis zu dem die Hälfte der Ausgangsgruppe überlebt. Die Kurve zeigt, wo diese 50-%-Schwelle liegt.</p></details>
+        <details class="faq-item"><summary>Wie verändern meine Antworten die Jahreszahl?</summary><p>Die Modellzahl startet beim Schweizer Grundwert für Alter und Vergleichsgruppe. Die berücksichtigten Profilangaben verändern diese Zahl über historische, angepasste Regeln. Einzelbeiträge und fehlende Angaben stehen beim Ergebnis. Das ist ein Rechenexperiment, kein nachgewiesener persönlicher Lebenszeitgewinn.</p></details>
+        <details class="faq-item"><summary>Schenkt mir eine Heirat zusätzliche Jahre?</summary><p>Die Daten zeigen einen Zusammenhang zwischen Zivilstand und Lebenserwartung. Gruppen unterscheiden sich zugleich in Gesundheit, Ressourcen, Lebensstil und Unterstützung. Eine Eheschliessung lässt sich daraus nicht als persönlicher Gewinn von einer bestimmten Zahl an Lebensjahren berechnen.</p></details>
+        <details class="faq-item"><summary>Werden meine Angaben gespeichert?</summary><p>Die Berechnung läuft lokal im Browser. Die Auswahl wird weder dauerhaft gespeichert noch in die URL übernommen. Der Rechner sendet keine Angaben als Analyseereignisse. Allgemeine Nutzungsanalyse der Website erfolgt nur mit Zustimmung.</p></details>
+    </div>
+
+    <h2>Eine alte Idee, neu aufbereitet</h2>
+    <p>Die ursprüngliche Idee dieses Lebenserwartungsrechners beruht auf der Arbeit von <strong>Christian Bachmann</strong>. Seine verständliche Vermittlung von Gesundheitsthemen ist der Ausgangspunkt für diese Weiterentwicklung. Mehr zu seiner Arbeit findest du im <a href="https://de.smartbmicalculator.com/impressum.html" target="_blank" rel="noopener">Impressum von Smart BMI</a>.</p>
+    <p>Wir führen diese Idee mit aktuellen amtlichen Basisdaten, interaktiven Grafiken und gesondert gekennzeichneten Studienvergleichen weiter.</p>
+
+    <h2>So entstehen die Ergebnisse</h2>
+    <p>Der Grundwert stammt aus den jährlichen Periodensterbetafeln 2025 des Bundesamts für Statistik. Verwendet werden die publizierte Restlebenserwartung E(X), die jährliche Sterbewahrscheinlichkeit Q(X) und die Überlebenden S(X). Bei einem Alter von 60 geht es ausschliesslich um das Überleben ab 60. Für ein höheres Zielalter teilen wir die Überlebenden am Zielalter durch jene am Ausgangsalter.</p>
+    <p>Die Kurven vergleichen Männer und Frauen bei gleichem Ausgangsalter. Der Regler lässt dich einzelne Altersstufen erkunden. Die durchgezogene Linie gehört zur oben gewählten Gruppe, die gestrichelte zur anderen. Ein Punktdiagramm vergleicht ausserdem die verbleibenden Lebensjahre nach Zivilstand ab 65. Alle Grafikwerte sind auch als Tabelle zugänglich.</p>
+    <p>Die persönliche Modellzahl kombiniert den amtlichen Grundwert mit angepassten Zu- und Abschlägen des historischen Rechners. Diese Heuristik ist nicht auf die Schweizer Bevölkerung kalibriert und keine validierte persönliche Prognose. Studien helfen bei der Einordnung der Faktoren; ihre relativen Risiken liefern nicht die verwendeten Jahresgewichte. Die amtlichen Kurven bleiben als eigener Vergleich sichtbar.</p>
+
+</section>
