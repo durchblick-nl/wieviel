@@ -39,19 +39,18 @@ Jahresheuristik. Das ist unsere eigene Verknüpfung, kein publizierter Mortalit�
 - Abstand = max(30 − SBMI, SBMI − 39, 0), auf Basis des angezeigten ganzzahligen SBMI.
 - Korrektur = −BFS-Restlebenserwartung × min(0,08, Abstand × 0,004).
 - Derselbe Abstand bedeutet denselben prozentualen Anteil am amtlichen Restjahreswert.
-- Keine zusätzliche Altersdämpfung für das Gewicht; die übrigen Faktoren behalten ihre bisherige Altersdämpfung.
-- Die Korrektur ersetzt die alten BMI-Zuschläge und -Abschläge vollständig. Kein Doppelzählen.
+- Keine zusätzliche Altersdämpfung für das Gewicht; die übrigen Faktoren wirken im gemeinsamen jährlichen Hazardmodell statt über pauschale Altersdämpfung.
+- Die Korrektur ersetzt die alten BMI-Zuschläge und -Abschläge vollständig. Der zusätzliche MPoRT-BMI-Spline wird nicht angewandt; diese eigene Ergänzung ist nicht gemeinsam mit den Studienkoeffizienten geschätzt.
 - Auch sehr niedrige und sehr hohe Werte bleiben auf maximal 8 % des BFS-Restjahreswerts begrenzt;
   oberhalb BMI 40 wird der Abschlag nicht mehr versehentlich als unbekannt ausgelassen.
-- Unvollständige oder ungültige Körperdaten bleiben unbekannt; über 95 bleibt nur der BFS-Grundwert.
+- Unvollständige oder ungültige Körperdaten bleiben unbekannt; ausserhalb des Modellbereichs 20–95 bleibt nur der BFS-Grundwert.
 
 Bei einem BFS-Grundwert von 25 Restjahren entspricht die Begrenzung 2 Jahren.
 Bei 10 Restjahren entspricht sie 0,8 Jahren. Die lineare Abstufung und die Neutralität des mittleren Bereichs
 sind Gestaltungsentscheidungen dieses Rechenexperiments. Sie sind weder auf die
 Schweizer Bevölkerung kalibriert noch als persönliche oder kausale Jahresverluste
 validiert. Die Symmetrie bedeutet keine nachgewiesene gleiche Mortalität von
-Unter- und Übergewicht. Der BFS-Vergleich bleibt unverändert. Ein gemeinsames
-Überlebensmodell für die Lebensstilfaktoren ist weiterhin nicht implementiert.
+Unter- und Übergewicht. Der BFS-Vergleich bleibt unverändert. Die Lebensstilfaktoren verwenden jetzt die experimentelle gemeinsame Überlebensrechnung aus `joint-model.md`; eine empirische Schweizer Validierung fehlt weiterhin.
 
 Die Forschung von David Fäh zur Bestimmung eines biologischen Alters
 (https://www.davidfaeh.ch/fileadmin/documents/Person/Diss130301.pdf) ist historischer
@@ -59,3 +58,5 @@ Kontext. Sie ist keine prospektive Validierung dieses Lebenserwartungsrechners.
 Die Präsentation zur Verbreitung von Übergewicht von 2010 und der vom Nutzer genannte
 Blick-Artikel über Smart BMI liefern ebenfalls keine direkt übernehmbaren jährlichen
 Sterberaten. Sie rechtfertigen keine zusätzliche SBMI-zu-Lebensjahre-Formel.
+
+Seit `joint-survival-1` wird ein Hazard-Multiplikator numerisch so bestimmt, dass auch die persönliche Kurve zum um die SBMI-Korrektur verminderten Restjahreswert passt. Der BFS-Vergleich bleibt unverändert.

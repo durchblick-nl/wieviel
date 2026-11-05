@@ -391,8 +391,8 @@
   "longevity": {
     "dataset": "longevity",
     "note": {
-      "de": "Experimentelle Modellschätzung mit BFS-Basis 2025. Gewichtskorrektur nach Smart-BMI-Abstand, proportional zu den amtlichen Restjahren. Eigene, nicht validierte Verknüpfung. Amtliche Kurven und Zivilstandsvergleich separat.",
-      "fr": "Estimation expérimentale avec base OFS 2025. Correction du poids selon l’écart Smart BMI, proportionnelle aux années restantes officielles. Conversion propre au calculateur, non validée. Courbes officielles et comparaison par état civil séparées."
+      "de": "BFS-Basis 2025 mit gemeinsam geschätzten MPoRT-Lebensstilgewichten. Synthetische kanadische Referenz, eigene Smart-BMI-Ergänzung; keine empirisch validierte Schweizer Prognose.",
+      "fr": "Base OFS 2025 avec coefficients de mode de vie MPoRT estimés conjointement. Référence canadienne synthétique et ajout Smart BMI propre ; aucune prévision suisse validée empiriquement."
     },
     "reviewed": "2026-11-05",
     "next": "2027-09-01",
@@ -404,6 +404,10 @@
       {
         "name": "BFS / OFS – Frauen / Femmes",
         "url": "https://statistik.admin.ch/fr/asset/36837788"
+      },
+      {
+        "name": "MPoRT – Manuel et al. (2016), S7/S8 / tableaux 2–3",
+        "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002082"
       }
     ]
   }

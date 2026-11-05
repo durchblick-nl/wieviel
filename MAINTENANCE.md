@@ -14,22 +14,23 @@ Der Rechner `longevity` verwendet zwei getrennt bezeichnete Datenperioden:
   Bei neuer amtlicher Publikation Quelle/Periode und Importer prüfen, danach
   `python3 scripts/update_marital_life_data.py`. Keine automatische Übertragung auf das neueste
   Jahresdatenjahr oder andere Ausgangsalter.
-- Persönliche Jahreszahl: `data/longevity-heuristic.json`, angepasste historische Regeln.
-  Änderungen an Gewichten, BMI-Grenzen, Rauchdosis, Altersdämpfung und Begrenzungen versionieren
-  und auf DE/FR im Methodentext nachführen. Das Modell ist experimentell und nicht validiert.
-- Studienrecherche: `data/longevity-study.json`, Tabelle 2 von Martin-Diener et al. (2014).
-  Relative Studienwerte werden nicht in die persönliche Heuristik hineingemischt.
-- Smart BMI: `data/longevity-smart-bmi.json` enthält die ursprünglichen Erwachsenen-Tabellen,
-  `static/js/longevity-smart-bmi.js` den numerischen Ausschnitt. Bei Änderungen gegen die
-  PHP-Referenzfälle in `tests/fixtures/longevity-smart-bmi.json` prüfen. Die eigene experimentelle
-  Jahreskorrektur ist in `longevity-heuristic.json` versioniert: SBMI 30–39 neutral,
-  je Punkt Abstand −0,4 % der BFS-Restjahre (maximal −8 %), ohne zweite Altersdämpfung, anstelle der alten BMI-Korrektur.
-  Keine publizierten Mortalitätsgewichte; Annahmen und Grenzen in `docs/longevity/smart-bmi.md`.
+- Aktive Lebensstilrechnung: `data/longevity-survival-model.json` und `static/js/longevity-survival.js`.
+  MPoRT S8/S7 und Tabellen 2/3 sind die Quelle; Parameter, Schweizer BFS-Verankerung und
+  synthetische Referenzannahmen gemeinsam versionieren. Details: `docs/longevity/joint-model.md`.
+  Gemeinsame Studiengewichte bedeuten keine empirisch validierte Schweizer Prognose.
+- Archivierter additiver Prototyp: `data/longevity-heuristic.json`, weiterhin für historische
+  Regressionen verfügbar, aber nicht mehr mit der öffentlichen UI verbunden.
+- `data/longevity-study.json` (Martin-Diener 2014) bleibt ein gesonderter Forschungsvergleich,
+  keine Quelle zusätzlicher Gewichte in der aktiven Rechnung.
+- Smart BMI: `data/longevity-smart-bmi.json` und `static/js/longevity-smart-bmi.js`.
+  Gegen die originalen PHP-Referenzfälle prüfen. Die eigene Korrektur in `longevity-survival-model.json`
+  bleibt experimentell: je Punkt ausserhalb 30–39 −0,4 % der BFS-Restjahre, maximal −8 %,
+  ohne zweiten BMI-Term oder zusätzliche Altersdämpfung. Siehe `docs/longevity/smart-bmi.md`.
 
 Der sichtbare Datenzeitraum folgt den Datendateien. Redaktionellen Prüfstand und nächsten
 Termin separat unter `data/calculatorStatus.json` → `longevity` pflegen. Nach einem Daten- oder
 Modellwechsel beide Sprachfassungen und Quellenhinweise abgleichen sowie
-`node scripts/compare_longevity.cjs`, `node --test tests/longevity.test.js`,
+`node scripts/compare_longevity.cjs`, `node --test tests/longevity*.test.js`,
 `python3 -m unittest discover -s tests -p test_life_table_import.py` und die Browserchecks ausführen.
 Hintergrund und Vergleich: `docs/longevity/model-spec.md` und `docs/longevity/comparison.md`.
 

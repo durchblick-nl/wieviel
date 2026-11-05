@@ -21,7 +21,7 @@ test('BFS published age-60 reference values and conditional survival', () => {
     assert.ok(Math.abs(annualProduct - survival(data, 'male', 60, 80)) < 0.00005);
 });
 
-test('personal heuristic starts at BFS and reacts to smoking dose, activity, BMI and civil status', () => {
+test('archived additive prototype starts at BFS and reacts to smoking dose, activity, BMI and civil status', () => {
     const estimate = answers => personalEstimate(data, heuristic, 'male', 60, answers);
     const close = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-9, `${actual} != ${expected}`);
     assert.equal(estimate({}).remainingYears, 25);
@@ -44,7 +44,7 @@ test('personal heuristic starts at BFS and reacts to smoking dose, activity, BMI
     assert.equal(baseline(data, 'male', 60).remainingYears, 25);
 });
 
-test('unknown details, unsupported BMI/age, alcohol bonus removal and bounds are explicit', () => {
+test('archived prototype: unknown details, unsupported BMI/age, alcohol bonus removal and bounds are explicit', () => {
     for (const answers of [{smoking: 'yes'}, {smoking: 'yes', cigarettes: 81}, {height: 180}, {height: 180, weight: 301}]) {
         const result = personalEstimate(data, heuristic, 'male', 60, answers);
         assert.equal(result.remainingYears, 25);
@@ -60,7 +60,7 @@ test('unknown details, unsupported BMI/age, alcohol bonus removal and bounds are
     assert.throws(() => personalEstimate(data, heuristic, 'male', 60, {activity: 'invented'}), RangeError);
 });
 
-test('Smart BMI replaces fixed BMI cutoffs with a neutral central range and a bounded proportional penalty', () => {
+test('archived prototype: Smart BMI replaces fixed BMI cutoffs with a neutral central range and a bounded proportional penalty', () => {
     const at = (age, weight) => personalEstimate(data, heuristic, 'male', age, {height: 180, weight});
     assert.equal(at(60, 81).smartBmi.sbmi, 36);
     assert.equal(at(60, 81).contributions.bmi, 0);
@@ -80,7 +80,7 @@ test('Smart BMI replaces fixed BMI cutoffs with a neutral central range and a bo
     assert.throws(() => calculatePersonal(data, heuristic, 'male', 60, {height: 180, weight: 81}), /reference tables/);
 });
 
-test('the same Smart BMI deviation changes the same fraction of remaining years without double age damping', () => {
+test('archived prototype: the same Smart BMI deviation changes the same fraction of remaining years without double age damping', () => {
     const results = [];
     for (const age of [30, 60, 80]) {
         // Find actual supported inputs producing the same displayed SBMI.

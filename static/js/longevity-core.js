@@ -70,6 +70,8 @@
             absoluteRemainingYears: null, calibratedToSwiss2025: false };
     }
 
+    // Archived additive prototype, retained for historical regression comparisons only.
+    // The public UI uses LongevitySurvival.personalEstimate instead.
     function personalEstimate(dataset, model, sex, age, answers = {}, smartBmiData) {
         const base = rowAt(dataset, sex, age).remainingYears;
         const groups = {};

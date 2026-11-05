@@ -1,6 +1,6 @@
 # Lebenserwartungsrechner: Modell- und Umsetzungsspezifikation
 
-Stand: 5. November 2026. Rechnerseiten veröffentlicht; die persönliche Jahreszahl ist weiterhin eine experimentelle Heuristik.
+Stand: 5. November 2026. Aktive Rechnung: `joint-survival-1`, dokumentiert in [joint-model.md](joint-model.md). Die folgenden Abschnitte zum additiven Prototyp beschreiben den Entwicklungsstand vor dieser Umstellung und dienen dem historischen Vergleich. Die öffentliche Seite verwendet diese Jahresregeln nicht mehr.
 
 ## Ziel und Ton
 

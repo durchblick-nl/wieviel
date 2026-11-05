@@ -21,11 +21,15 @@
         return node;
     };
     let currentResult = null;
+    let currentScenario = null;
     const optionalNumber = id => byId(id).value === '' ? null : Number(byId(id).value);
     function readForm() {
         return {age: optionalNumber('age'), sex: byId('sex').value, smoking: byId('smoking').value,
             cigarettes: optionalNumber('cigarettes'), quitYears: optionalNumber('quit-years'),
-            activity: byId('activity').value, fruit: byId('fruit').value, alcohol: byId('alcohol').value,
+            moderateMinutes: optionalNumber('moderate-minutes'), vigorousMinutes: optionalNumber('vigorous-minutes'),
+            fruitFrequency: optionalNumber('fruit-frequency'), juiceFrequency: optionalNumber('juice-frequency'),
+            carrots: byId('carrots').value, potatoFrequency: optionalNumber('potato-frequency'),
+            drinksWeek: optionalNumber('drinks-week'), binge: byId('binge').value,
             marital: byId('marital-status').value, height: optionalNumber('height'), weight: optionalNumber('weight')};
     }
     function validAge() { const age = optionalNumber('age'); return Number.isInteger(age) && age >= 18 && age <= 99 ? age : null; }
@@ -86,7 +90,8 @@
             const tr = document.createElement('tr');
             const th = document.createElement('th'); th.scope = 'row'; th.textContent = row.age;
             const td = document.createElement('td'); td.textContent = `${number(row.probability * 100)} %`;
-            tr.append(th, td); table.append(tr);
+            const personal = document.createElement('td'); personal.textContent = `${number(currentScenario.curve[row.age - result.age].probability * 100)} %`;
+            tr.append(th, td, personal); table.append(tr);
         }
         byId('curve-description').textContent = text('curveDescription', {age: result.age, year: result.year});
         byId('median').textContent = result.medianAgeInterval
@@ -132,17 +137,17 @@
 
 
     function updatePersonal(result, answers) {
-        const estimate = core.personalEstimate(config.data, config.heuristic, result.sex, result.age, answers, config.smartBmi);
+        const estimate = window.LongevitySurvival.personalEstimate(config.data, config.model, result.sex, result.age, answers, config.smartBmi);
         byId('years').textContent = number(estimate.remainingYears);
         byId('editor-estimate').textContent = text('appEditorEstimate', {years: number(estimate.remainingYears)});
         byId('expected').textContent = text('expected', {age: number(estimate.expectedAge, 1, 0)});
         byId('personal-context').textContent = !estimate.supported ? text('personalUnsupported')
-            : estimate.considered === 0 ? text('personalContext') : text('personalPartial', {count: estimate.considered, total: 6});
+            : estimate.considered === 0 ? text('personalContext') : text('personalPartial', {count: estimate.considered, total: 5});
         const key = Math.abs(estimate.difference) < 0.05 ? 'relativeNeutral' : estimate.difference > 0 ? 'relativePositive' : 'relativeNegative';
         byId('relative').textContent = text(key, {years: number(Math.abs(estimate.difference)), baseline: number(result.remainingYears)});
         byId('population-value').textContent = text('populationValue', {years: number(result.remainingYears), age: number(result.expectedAge), year: result.year});
         const list = byId('contributions'); list.replaceChildren();
-        for (const factor of ['smoking', 'activity', 'fruit', 'alcohol', 'marital', 'bmi']) {
+        for (const factor of ['smoking', 'activity', 'fruit', 'alcohol', 'bmi']) {
             const li = document.createElement('li');
             const label = document.createElement('span'); label.textContent = text(`factor.${factor}`);
             const value = document.createElement('strong');
@@ -159,6 +164,10 @@
     function render() {
         const result = core.baseline(config.data, profile.sex, profile.age);
         const scenario = updatePersonal(result, {...profile, ...overrides});
+        currentScenario = scenario;
+        const personalX = a => chart().left + (chart().right - chart().left) * (a - result.age) / Math.max(1, 99 - result.age);
+        const personalY = p => chart().bottom - (chart().bottom - chart().top) * p;
+        byId('personal-line').setAttribute('points', scenario.curve.map(p => `${personalX(p.age)},${personalY(p.probability)}`).join(' '));
         currentResult = result;
         byId('context').textContent = text('context', {age: profile.age, year: result.year});
         byId('profile-label').textContent = text('appProfile', {age: profile.age});
@@ -177,15 +186,21 @@
         byId('scenario-chart-title').textContent = text('appScenarioSummary', {average: number(result.remainingYears), scenario: number(scenario.remainingYears)});
         for (const button of document.querySelectorAll('[data-scenario]')) {
             const type = button.dataset.scenario;
+            const originalDiet = window.LongevitySurvival.exposures(config.model, profile.sex, profile.age, profile).fruit;
+            const alternativeDiet = window.LongevitySurvival.exposures(config.model, profile.sex, profile.age, {...profile, fruitFrequency: 5}).fruit;
             // Suggestions describe changes from the saved profile, not habits already present.
-            button.hidden = type === 'smoking' ? profile.smoking === 'no' || (profile.smoking === 'former' && profile.quitYears > 5)
-                : type === 'activity' ? profile.activity === 'high' : type === 'fruit' ? profile.fruit === 'yes' : false;
-            const active = type === 'smoking' ? Object.hasOwn(overrides, 'smoking') : type === 'activity' ? Object.hasOwn(overrides, 'activity')
-                : type === 'fruit' ? Object.hasOwn(overrides, 'fruit') : Object.hasOwn(overrides, 'weight');
+            button.hidden = !scenario.supported || (type === 'smoking' ? profile.smoking !== 'yes' || !profile.cigarettes
+                : type === 'activity' ? profile.moderateMinutes === null || profile.vigorousMinutes === null || profile.moderateMinutes >= 300 || profile.vigorousMinutes >= 150
+                : type === 'fruit' ? originalDiet === undefined || profile.fruitFrequency >= 5 || alternativeDiet <= originalDiet : false);
+            const active = type === 'smoking' ? Object.hasOwn(overrides, 'smoking') : type === 'activity' ? Object.hasOwn(overrides, 'moderateMinutes')
+                : type === 'fruit' ? Object.hasOwn(overrides, 'fruitFrequency') : Object.hasOwn(overrides, 'weight');
             button.setAttribute('aria-pressed', String(active));
         }
         const notes = [];
+        if (!scenario.supported) notes.push(text('personalUnsupported'));
         if (Object.hasOwn(overrides, 'smoking')) notes.push(text('appSmokeNote'));
+        if (Object.hasOwn(overrides, 'moderateMinutes')) notes.push(text('appActivityNote'));
+        if (Object.hasOwn(overrides, 'fruitFrequency')) notes.push(text('appFruitNote'));
         if (Object.hasOwn(overrides, 'weight')) notes.push(text('appSmallChanges'));
         byId('scenario-note').hidden = notes.length === 0;
         byId('scenario-note').textContent = notes.join(' ');
@@ -217,20 +232,20 @@
         drawCurve(result); drawMarital();
     }
 
-    const fieldMap = {age:'age', sex:'sex', smoking:'smoking', cigarettes:'cigarettes', quitYears:'quit-years', activity:'activity', fruit:'fruit', alcohol:'alcohol', marital:'marital-status', height:'height', weight:'weight'};
+    const fieldMap = {age:'age', sex:'sex', smoking:'smoking', cigarettes:'cigarettes', quitYears:'quit-years', moderateMinutes:'moderate-minutes', vigorousMinutes:'vigorous-minutes', fruitFrequency:'fruit-frequency', juiceFrequency:'juice-frequency', carrots:'carrots', potatoFrequency:'potato-frequency', drinksWeek:'drinks-week', binge:'binge', marital:'marital-status', height:'height', weight:'weight'};
     function fillForm(values) {
         for (const [key, id] of Object.entries(fieldMap)) byId(id).value = values[key] ?? '';
         syncChoices();
     }
     function syncChoices() {
         for (const button of document.querySelectorAll('[data-control]')) button.setAttribute('aria-pressed', String(byId(button.dataset.control).value === button.dataset.value));
-        byId('cigarettes-field').hidden = byId('smoking').value !== 'yes';
+        byId('cigarettes-field').hidden = !['yes', 'former'].includes(byId('smoking').value);
         byId('quit-field').hidden = byId('smoking').value !== 'former';
         byId('weight-slider').max = Math.max(200, optionalNumber('weight') || 0);
         byId('weight-slider').value = optionalNumber('weight') || 80;
-        const body = core.personalEstimate(config.data, config.heuristic, byId('sex').value, validAge() ?? profile.age, {
+        const body = window.LongevitySurvival.personalEstimate(config.data, config.model, byId('sex').value, validAge() ?? profile.age, {
             height: optionalNumber('height'), weight: optionalNumber('weight')
-        }, config.smartBmi);
+        }, config.smartBmi, false);
         byId('bmi-value').textContent = body.bmi === null ? text('bmiHelp') : text('bmiValue', {bmi: number(body.bmi)});
         const smartBmi = validAge() ? body.smartBmi : null;
         byId('smart-bmi').hidden = smartBmi === null;
@@ -243,13 +258,13 @@
             : text('sbmiEffectUnsupported') : '';
     }
     function setStep(next) {
-        step = Math.max(0, Math.min(4, next));
+        step = Math.max(0, Math.min(5, next));
         for (const section of document.querySelectorAll('[data-profile-step]')) section.hidden = Number(section.dataset.profileStep) !== step;
         byId('progress').value = step + 1;
-        byId('step-label').textContent = text('appStep', {step: step + 1, total: 5});
+        byId('step-label').textContent = text('appStep', {step: step + 1, total: 6});
         byId('editor-progress').hidden = editorMode === 'weight';
         byId('skip-step').hidden = step === 0 || editorMode === 'weight';
-        byId('next-step').textContent = editorMode === 'weight' ? text('appApplyScenario') : step === 4 ? text('appUseProfile') : text('appNext');
+        byId('next-step').textContent = editorMode === 'weight' ? text('appApplyScenario') : step === 5 ? text('appUseProfile') : text('appNext');
         const heading = document.querySelector(`[data-profile-step="${step}"] h2`);
         heading.tabIndex = -1; heading.focus({preventScroll: true});
         byId('form').scrollTop = 0;
@@ -308,15 +323,15 @@
     });
     byId('form').addEventListener('submit', event => {
         event.preventDefault(); if (!validateStep()) return;
-        if (editorMode === 'weight' || step === 4) closeEditor(true); else setStep(step + 1);
+        if (editorMode === 'weight' || step === 5) closeEditor(true); else setStep(step + 1);
     });
     const goBack = () => { if (editorMode === 'weight' || step === 0) closeEditor(false); else setStep(step - 1); };
     byId('previous-step').addEventListener('click', goBack);
     byId('editor-back').addEventListener('click', goBack);
     byId('skip-step').addEventListener('click', () => {
-        const fields = step === 1 ? ['height','weight'] : step === 2 ? ['smoking','cigarettes','quit-years'] : step === 3 ? ['activity'] : ['fruit','alcohol'];
+        const fields = step === 1 ? ['height','weight'] : step === 2 ? ['smoking','cigarettes','quit-years'] : step === 3 ? ['moderate-minutes','vigorous-minutes'] : step === 4 ? ['fruit-frequency','juice-frequency','carrots','potato-frequency'] : ['drinks-week','binge'];
         for (const id of fields) byId(id).value = '';
-        changeForm(); if (step === 4) closeEditor(true); else setStep(step + 1);
+        changeForm(); if (step === 5) closeEditor(true); else setStep(step + 1);
     });
     byId('close-editor').addEventListener('click', () => closeEditor(false));
     byId('profile-dialog').addEventListener('cancel', event => { event.preventDefault(); closeEditor(false); });
@@ -329,12 +344,13 @@
             if (Object.hasOwn(overrides, 'weight')) { delete overrides.weight; delete overrides.height; render(); }
             else openEditor('weight', button);
         } else {
-            const key = type === 'smoking' ? 'smoking' : type;
+            const key = type === 'smoking' ? 'smoking' : type === 'activity' ? 'moderateMinutes' : 'fruitFrequency';
             if (Object.hasOwn(overrides, key)) {
                 delete overrides[key];
                 if (type === 'smoking') { delete overrides.quitYears; delete overrides.cigarettes; }
-            } else if (type === 'smoking') Object.assign(overrides, {smoking: profile.smoking === 'no' ? 'no' : 'former', quitYears: 6, cigarettes: null});
-            else overrides[type] = type === 'activity' ? 'high' : 'yes';
+            } else if (type === 'smoking') Object.assign(overrides, {smoking: 'former', quitYears: 0, cigarettes: profile.cigarettes});
+            else if (type === 'activity') overrides.moderateMinutes = Math.max(profile.moderateMinutes, 300);
+            else overrides.fruitFrequency = 5;
             render();
         }
     });

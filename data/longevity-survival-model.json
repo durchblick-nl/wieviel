@@ -1,0 +1,134 @@
+{
+  "version": "joint-survival-1",
+  "source": {
+    "title": "Manuel et al. 2016, MPoRT",
+    "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002082",
+    "coefficients": "S8 Table",
+    "timeFunctions": "S7 Table",
+    "referenceSummary": "Tables 2 (male) and 3 (female), Canada Application",
+    "license": "CC BY",
+    "coefficientPdfSha256": "372984c3a39fdacad74d1c928c7a39851828a413f1dd58e46ce1ca2e9aef8521",
+    "formulaPdfSha256": "c09c5e10472cad022a88dc74abd336d2a1b56dc1c067aa4930ee8bf58033a38f",
+    "coefficientUrl": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1002082.s013&type=supplementary",
+    "formulaUrl": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1002082.s012&type=supplementary"
+  },
+  "validated": false,
+  "ageRange": [
+    20,
+    95
+  ],
+  "coefficients": {
+    "male": {
+      "smokingLight": 0.90032,
+      "smokingHeavy": 1.0395,
+      "quitScale": 15,
+      "activity": -0.70311,
+      "diet": -0.03441,
+      "alcoholHeavy": 0.05088
+    },
+    "female": {
+      "smokingLight": 0.80685,
+      "smokingHeavy": 1.1803,
+      "quitScale": 26,
+      "activity": -0.92835,
+      "diet": -0.04367,
+      "alcoholHeavy": 0.0797
+    }
+  },
+  "reference": {
+    "male": {
+      "smoking": [
+        {
+          "smoking": "yes",
+          "cigarettes": 20,
+          "weight": 0.082
+        },
+        {
+          "smoking": "yes",
+          "cigarettes": 10,
+          "weight": 0.164
+        },
+        {
+          "smoking": "former",
+          "cigarettes": 20,
+          "quitYears": 15,
+          "weight": 0.147
+        },
+        {
+          "smoking": "former",
+          "cigarettes": 10,
+          "quitYears": 15,
+          "weight": 0.16
+        },
+        {
+          "smoking": "no",
+          "weight": 0.447
+        }
+      ],
+      "heavyAlcoholFraction": 0.203,
+      "activityDailyMet": 1.6,
+      "dietScore": 4.552
+    },
+    "female": {
+      "smoking": [
+        {
+          "smoking": "yes",
+          "cigarettes": 20,
+          "weight": 0.04
+        },
+        {
+          "smoking": "yes",
+          "cigarettes": 10,
+          "weight": 0.147
+        },
+        {
+          "smoking": "former",
+          "cigarettes": 20,
+          "quitYears": 15,
+          "weight": 0.076
+        },
+        {
+          "smoking": "former",
+          "cigarettes": 10,
+          "quitYears": 15,
+          "weight": 0.176
+        },
+        {
+          "smoking": "no",
+          "weight": 0.561
+        }
+      ],
+      "heavyAlcoholFraction": 0.073,
+      "activityDailyMet": 1.3,
+      "dietScore": 5.604
+    },
+    "assumptions": [
+      "Canadian adult age-pooled, sex-specific smoking and heavy-alcohol marginals, not current Swiss age-specific prevalence.",
+      "Unknown joint exposure distribution: independent reference construction, not an empirically measured joint cohort.",
+      "Former-smoker reference quit time of 15 years is an explicit assumption, not a published mean.",
+      "Activity reference is the published median, not a full exposure distribution.",
+      "Synthetic diet score: male 2 + 3.3 - 2*(0.109 + 0.109 + 0.156) = 4.552; female 2 + 4.2 - 2*(0.096 + 0.086 + 0.116) = 5.604. Median fruit/veg frequency plus mean binary penalties; one excess juice frequency assumed when high. Not published mean diet scores.",
+      "Reference cigarette counts of 10 and 20 identify the published light/heavy bins; they are not observed mean cigarette counts."
+    ]
+  },
+  "activity": {
+    "moderateMet": 3,
+    "vigorousMet": 6,
+    "dailyCap": 10
+  },
+  "bmi": {
+    "centralMin": 30,
+    "centralMax": 39,
+    "penaltyFractionPerPoint": 0.004,
+    "maximumPenaltyFraction": 0.08
+  },
+  "adaptations": [
+    "Only mutually adjusted behavioural coefficients are transported. Disease/social coefficients, the Canadian absolute hazard and age coefficient are not copied into the Swiss baseline. Unmeasured covariates are assumed common; this is not a validated full MPoRT implementation.",
+    "The observed moderate-alcohol association is set to zero, so starting alcohol never earns a bonus.",
+    "MPoRT BMI spline is not added. Our separate experimental SBMI correction replaces it; BMI-related residual confounding and mediation remain uncertain.",
+    "Activity is approximated from moderate/vigorous weekly minutes, not the complete Canadian activity questionnaire.",
+    "Expected years use annual hazard integration and a common published age-99 tail, normalized to the official starting E(x).",
+    "Smart BMI reduces modeled remaining years by a fraction of official remaining years, without an extra age multiplier. A hazard multiplier is solved to make the modeled curve agree with that target.",
+    "Apart from time since quitting smoking, behaviour is held constant into the future. No individual disease, treatment or weight trajectories are forecast."
+  ]
+}

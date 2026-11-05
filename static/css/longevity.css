@@ -57,7 +57,7 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 .longevity-editor-progress progress::-webkit-progress-bar { background: var(--border-color); }
 .longevity-editor-progress progress::-webkit-progress-value { background: var(--primary-color); border-radius: 4px; }
 .longevity-editor-progress p { font-size: 13px; margin: 9px 0; }
-.longevity-profile-dialog #longevity-form { padding: 22px 20px 20px; overflow-y: auto; overscroll-behavior: contain; }
+.longevity-profile-dialog #longevity-form { padding: 22px 20px 20px; overflow-y: auto; overscroll-behavior: contain; scroll-padding-block: 16px; }
 .longevity-profile-step h2 { font: 700 29px/1.2 Arial,sans-serif; color: var(--primary-color); margin: 0 0 12px; letter-spacing: -.03em; }
 .longevity-profile-step > p { font-size: 16px; line-height: 1.55; margin: 0 0 25px; }
 .longevity-field { margin: 18px 0; }
@@ -65,7 +65,7 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 .longevity-field input, .longevity-field select { width: 100%; min-height: 54px; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--input-bg); color: var(--text-color); font: 18px Arial,sans-serif; box-sizing: border-box; }
 .longevity-field small, .longevity-profile-step > small { display: block; font-size: 12px; line-height: 1.55; margin-top: 6px; }
 .longevity-choice-buttons { display: grid; gap: 9px; }
-.longevity-choice-group:has(#longevity-sex) .longevity-choice-buttons, .longevity-choice-group:has(#longevity-fruit) .longevity-choice-buttons { grid-template-columns: 1fr 1fr; }
+.longevity-choice-group:is(:has(#longevity-sex),:has(#longevity-carrots),:has(#longevity-binge)) .longevity-choice-buttons { grid-template-columns: 1fr 1fr; }
 .longevity-choice-buttons button { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 54px; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-color); background: var(--card-bg); font: 16px/1.4 Arial,sans-serif; text-align: left; cursor: pointer; }
 .longevity-choice-buttons button i { color: var(--primary-color); visibility: hidden; }
 .longevity-choice-buttons button[aria-pressed="true"] { background: #e1f0f0; border-color: var(--primary-color); }
