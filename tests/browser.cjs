@@ -71,12 +71,22 @@ test('DE/FR longevity: joint survival model, immediate age updates, reversible s
         await page.evaluate(() => CookieConsent.acceptCategory('necessary'));
         const years = async () => Number((await page.locator('#longevity-years').innerText()).replace(',', '.'));
         assert.equal(await years(), 25);
+        const zeroLabel = route.startsWith('de/') ? '0 Jahre Abweichung' : '0 an d’écart';
+        assert.equal(await page.locator('#longevity-scenario-difference').innerText(), zeroLabel);
         assert.equal(await page.locator('.header-row').count(), 1);
         assert.equal(await page.locator('.steps-container .step-card').count(), 3);
         assert.equal(await page.locator('.longevity-links .info-step-card #longevity-sources').count(), 1);
         assert.equal(await page.evaluate(() => document.querySelector('.longevity-links').previousElementSibling.classList.contains('data-status')), true);
         assert.equal(await page.locator('#longevity-result-title').innerText(), route.startsWith('de/') ? 'Dein Szenario' : 'Ton scénario');
         await page.locator('.page-header-cta').click();
+        await page.locator('#longevity-age').fill('80');
+        assert.equal(await years(), 9.5);
+        for (const status of ['married', 'single']) {
+            await page.selectOption('#longevity-marital-status', status);
+            assert.equal(await years(), 9.5);
+            assert.equal(await page.locator('#longevity-scenario-difference').innerText(), zeroLabel);
+            assert.match(await page.locator('#longevity-average-plot-value').innerText(), /^9[.,]5/);
+        }
         await page.locator('#longevity-age').fill('60');
         await page.locator('#longevity-next-step').click();
         await page.locator('#longevity-height').fill('180');

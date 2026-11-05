@@ -24,6 +24,17 @@ test('unknown exposures remain exactly at the official age-conditional BFS basel
     assert.equal(estimate({drinksWeek: 10}).remainingYears, 25);
 });
 
+test('age-only is the zero reference for every civil status and statistical sex category', () => {
+    for (const sex of ['male', 'female']) for (const age of [20, 60, 80, 95]) {
+        for (const marital of ['', 'single', 'married', 'widowed', 'divorced']) {
+            const r = estimate({marital}, age, sex);
+            assert.equal(r.remainingYears, data.tables[sex][age].remainingYears);
+            assert.equal(r.difference, 0);
+            assert.equal(r.considered, 0);
+        }
+    }
+});
+
 test('the joint log-risk uses published S8 coefficients and the sex-specific quit time functions', () => {
     // Tables 2 and 3 are separate male/female reference samples, not a pooled table.
     assert.equal(model.reference.male.smoking.at(-1).weight, .447);
