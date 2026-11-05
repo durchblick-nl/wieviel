@@ -383,7 +383,7 @@
     "next": "2027-07-01",
     "sources": [
       {
-        "name": "BFS / OFS – BEVNAT (OPEN-BY)",
+        "name": "BFS / OFS – BEVNAT",
         "url": "https://statistik.admin.ch/de/asset/36649551"
       }
     ]
@@ -398,11 +398,11 @@
     "next": "2027-09-01",
     "sources": [
       {
-        "name": "BFS / OFS – Männer / Hommes (OPEN-BY)",
+        "name": "BFS / OFS – Männer / Hommes",
         "url": "https://statistik.admin.ch/fr/asset/36837789"
       },
       {
-        "name": "BFS / OFS – Frauen / Femmes (OPEN-BY)",
+        "name": "BFS / OFS – Frauen / Femmes",
         "url": "https://statistik.admin.ch/fr/asset/36837788"
       }
     ]
