@@ -9,7 +9,7 @@
         document.querySelector('.tool-nav a').href = `/${config.lang}/`;
     }
     const byId = id => document.getElementById(`longevity-${id}`);
-    const number = (value, digits = 1) => new Intl.NumberFormat(`${config.lang}-CH`, {minimumFractionDigits: digits, maximumFractionDigits: digits}).format(value);
+    const number = (value, digits = 1, minimumDigits = digits) => new Intl.NumberFormat(`${config.lang}-CH`, {minimumFractionDigits: minimumDigits, maximumFractionDigits: digits}).format(value);
     const text = (key, values = {}) => config.texts[key].replace(/\{(\w+)\}/g, (match, name) => values[name] ?? match);
     const svgNS = 'http://www.w3.org/2000/svg';
     const mobile = window.matchMedia('(max-width: 600px)');
@@ -135,7 +135,7 @@
         const estimate = core.personalEstimate(config.data, config.heuristic, result.sex, result.age, answers);
         byId('years').textContent = number(estimate.remainingYears);
         byId('editor-estimate').textContent = text('appEditorEstimate', {years: number(estimate.remainingYears)});
-        byId('expected').textContent = text('expected', {age: number(estimate.expectedAge)});
+        byId('expected').textContent = text('expected', {age: number(estimate.expectedAge, 1, 0)});
         byId('personal-context').textContent = !estimate.supported ? text('personalUnsupported')
             : estimate.considered === 0 ? text('personalContext') : text('personalPartial', {count: estimate.considered, total: 6});
         const key = Math.abs(estimate.difference) < 0.05 ? 'relativeNeutral' : estimate.difference > 0 ? 'relativePositive' : 'relativeNegative';
