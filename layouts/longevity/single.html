@@ -5,10 +5,16 @@
 </head>
 <body class="longevity-page">
 <div class="container longevity-calculator">
-<header class="longevity-appbar"><a class="longevity-home" href="{{ .Site.Language.Params.homePath }}"><i class="fas fa-chevron-left" aria-hidden="true"></i> {{ i18n "longevity.appAllTools" }}</a>{{- partial "header.html" . }}</header>
+{{ partial "header.html" . }}
+{{ partial "page-header.html" . }}
 <main>
-<section class="longevity-playground" aria-labelledby="longevity-app-title">
-<h1 id="longevity-app-title">{{ i18n "longevity.appTitle" }}</h1>
+<div class="steps-container">
+{{ range $index, $icon := slice "fa-user" "fa-sliders-h" "fa-chart-line" }}
+<div class="step-card"><div class="step-icon"><i class="fas {{ $icon }}" aria-hidden="true"></i><div class="step-number">{{ add $index 1 }}</div></div><div class="step-content"><h3>{{ i18n (printf "longevity.guide%dTitle" (add $index 1)) }}</h3><p>{{ i18n (printf "longevity.guide%dDesc" (add $index 1)) }}</p></div></div>
+{{ end }}
+</div>
+<section class="calculator-card longevity-playground" aria-labelledby="longevity-app-title">
+<h2 id="longevity-app-title">{{ i18n "longevity.appTitle" }}</h2>
 <p class="longevity-app-intro">{{ i18n "longevity.appIntro" }}</p>
 <button id="longevity-edit-profile" class="longevity-profile-button" type="button"><i class="fas fa-pen" aria-hidden="true"></i> <span id="longevity-profile-label"></span></button>
 <div id="longevity-output">
@@ -63,7 +69,6 @@
                     </table></div>
                 </details>
 </section>
-{{- partial "data-status.html" . }}
 <details id="longevity-explanations" class="longevity-explanations"><summary>{{ i18n "longevity.appStatistics" }}</summary>
 <section class="calculator-card"><h2>{{ i18n "longevity.contributionsTitle" }}</h2>
 <p class="longevity-note">{{ i18n "longevity.personalNote" }}</p><p id="longevity-personal-context" class="longevity-help"></p><p id="longevity-relative" class="longevity-relative"></p>

@@ -1,19 +1,10 @@
 /* Mobile app direction: white canvas, slate teal, coral, native local controls. */
-body.longevity-page { background: var(--card-bg); color: var(--text-color); font-family: Arial, sans-serif; }
-.longevity-calculator { max-width: 820px; margin: 0 auto; padding: 0 24px; }
 .longevity-calculator [hidden] { display: none !important; }
 .longevity-calculator button, .longevity-calculator button:hover { box-shadow: none; transform: none; }
-.longevity-calculator :is(h1,h2,h3) { font-family: Arial, sans-serif; color: var(--text-color); }
+:is(.longevity-playground,.longevity-profile-dialog,.longevity-population,.longevity-explanations) :is(h2,h3) { font-family: Arial, sans-serif; color: var(--text-color); }
 .longevity-calculator :is(button,select,input,summary,a):focus-visible { outline: 3px solid var(--accent-color); outline-offset: 3px; }
-.longevity-appbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; }
-.longevity-home { color: var(--primary-color); font-size: 15px; text-decoration: none; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; }
-.longevity-appbar .header-row { margin: 0; padding: 0; gap: 6px; }
-.longevity-appbar .language-switcher { gap: 0; }
-.longevity-appbar .lang-btn { border: 0; background: transparent; padding: 5px; font: 600 14px Arial,sans-serif; min-width: 44px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; }
-.longevity-appbar .lang-btn.active { color: var(--primary-color); background: transparent; }
-.longevity-appbar .dark-mode-toggle { width: 44px; height: 44px; font-size: 14px; border-color: transparent; }
-.longevity-playground { padding: 14px 0 0; }
-.longevity-playground h1 { font-size: clamp(29px, 4vw, 38px); line-height: 1.15; letter-spacing: -.035em; margin: 0 0 10px; }
+.longevity-playground { padding: 24px; }
+.longevity-playground #longevity-app-title { font-size: clamp(29px, 4vw, 38px); line-height: 1.15; letter-spacing: -.035em; margin: 0 0 10px; }
 .longevity-app-intro { font-size: 17px; line-height: 1.45; margin: 0 0 18px; }
 .longevity-profile-button { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--primary-color); border-radius: 8px; background: var(--card-bg); color: var(--primary-color); padding: 10px 14px; min-height: 44px; font: 600 16px Arial,sans-serif; cursor: pointer; margin-bottom: 20px; }
 .longevity-estimate { border-radius: 20px; background: #3f606f; color: white; padding: 22px; }
@@ -139,7 +130,7 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 [data-theme="dark"] .longevity-scenario-button[aria-pressed="true"], [data-theme="dark"] .longevity-choice-buttons button[aria-pressed="true"] { background: #293f49; }
 [data-theme="dark"] .longevity-profile-step .longevity-bmi-strip { background: #293f49; }
 @media (min-width: 700px) { .longevity-playground { max-width: 600px; margin: 0 auto; } .longevity-result-number strong { font-size: 100px; } .longevity-estimate { padding: 28px; } .longevity-profile-dialog { margin-top: min(4vh,30px); height: min(850px,calc(var(--editor-height) - 60px)); border-radius: 18px; } }
-@media (max-width: 600px) { .longevity-calculator { padding: 0 20px; } .longevity-appbar { min-height: 58px; } .longevity-playground { padding-top: 14px; } .longevity-playground h1 { font-size: 30px; } .longevity-app-intro { font-size: 15px; } .longevity-scenario-button { font-size: 16px; min-height: 86px; padding-right: 29px; } .longevity-whatif-title { font-size: 22px; } .longevity-result-number strong { font-size: 76px; } .longevity-estimate { padding: 20px; } .longevity-milestones span { font-size: 11px; } }
+@media (max-width: 600px) { .longevity-playground { padding: 20px; } .longevity-playground #longevity-app-title { font-size: 30px; } .longevity-app-intro { font-size: 15px; } .longevity-scenario-button { font-size: 16px; min-height: 86px; padding-right: 29px; } .longevity-whatif-title { font-size: 22px; } .longevity-result-number strong { font-size: 76px; } .longevity-estimate { padding: 20px; } .longevity-milestones span { font-size: 11px; } }
 @media (prefers-reduced-motion: reduce) { .longevity-scenario-button { transition: none; } }
 
 .longevity-reference-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0 0 18px; }
@@ -148,3 +139,10 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 
 .longevity-population { margin: 4px 0 28px; padding: 22px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
 .longevity-population > h2 { font-size: 23px; line-height: 1.25; margin-top: 0; }
+
+.longevity-links { margin-top: 2rem; }
+.longevity-links .info-step-card { grid-column: 1 / -1; }
+.longevity-links .step-content { min-width: 0; }
+.longevity-links .step-content ul { margin: .5rem 0; list-style: none; padding: 0; }
+.longevity-links .step-content li { margin-bottom: .5rem; padding-left: 0; overflow-wrap: anywhere; }
+.longevity-links .step-content li::before { content: none; }

@@ -70,6 +70,12 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and or
         await page.setViewportSize({width: 390, height: 844});
         await page.evaluate(() => CookieConsent.acceptCategory('necessary'));
         assert.match(await page.locator('#longevity-years').innerText(), /^25[.,]0$/);
+        assert.equal(await page.locator('.header-row').count(), 1);
+        assert.equal(await page.locator('.page-header h1').count(), 1);
+        assert.equal(await page.locator('.tool-nav a').count(), 1);
+        assert.equal(await page.locator('.steps-container .step-card').count(), 3);
+        assert.equal(await page.locator('.longevity-links .info-step-card #longevity-sources').count(), 1);
+        assert.equal(await page.locator('.data-status').count(), 1);
         await page.locator('#longevity-edit-profile').click();
         await page.locator('#longevity-age').fill('60');
         await page.locator('#longevity-next-step').click();

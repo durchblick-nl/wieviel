@@ -188,7 +188,9 @@ Abbrechen stellt die vorherigen Szenariowerte wieder her; Übernehmen verändert
 exakt wieder her. Zwei beschriftete Punkte visualisieren den Zahlenvergleich; sie sind keine
 Überlebenskurve. Die amtliche Überlebenskurve mit Regler steht direkt unter den Szenarien. Quellen und FAQ-Fragen sowie der Datenstand sind ohne Aufklappen sichtbar. Einzelbeiträge und weitere Vergleiche stehen unter «Statistik & Modell».
 
-Design: weisser Hintergrund, Slate-Teal #3f606f, Akzent #cc5c53, Systemschrift für Bedienelemente,
+Rahmen: gemeinsamer Header mit Seitentitel, Sprachwahl, Theme-Schalter, Tool-Navigation und Datenstand; drei nummerierte Schritte wie bei den übrigen Rechnern. Quellen stehen in der gemeinsamen Link-Karte.
+
+Rechnerdesign: Slate-Teal #3f606f, Akzent #cc5c53, Systemschrift für Bedienelemente,
 Economica für Ergebniszahlen, 20-px-Ergebniskarte, 10-px-Formelemente und 54-px-Navigation.
 Dark Mode verwendet die bestehenden Site-Tokens. Der Editor reagiert auf die Höhe des visuellen
 Viewports, sodass mobile Tastaturen die Navigation nicht verdecken sollen; physische Geräte

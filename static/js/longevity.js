@@ -6,7 +6,7 @@
     if (['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) {
         const alternate = document.querySelector('.language-switcher a');
         if (alternate) alternate.href = config.lang === 'de' ? '/fr/esperance-de-vie/' : '/de/leben/';
-        document.querySelector('.longevity-home').href = `/${config.lang}/`;
+        document.querySelector('.tool-nav a').href = `/${config.lang}/`;
     }
     const byId = id => document.getElementById(`longevity-${id}`);
     const number = (value, digits = 1) => new Intl.NumberFormat(`${config.lang}-CH`, {minimumFractionDigits: digits, maximumFractionDigits: digits}).format(value);
