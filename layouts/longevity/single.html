@@ -24,9 +24,10 @@
 <span id="longevity-context" class="longevity-estimate-kind"></span>
 <div class="longevity-result-row"><div class="longevity-result-number"><strong id="longevity-years"></strong><span>{{ i18n "longevity.appYearsRemaining" }}</span></div>
 <span id="longevity-scenario-difference" class="longevity-difference"></span></div>
-<div class="longevity-slope-labels"><span>{{ i18n "longevity.appOriginal" }}<strong id="longevity-original-plot-value"></strong></span><span>{{ i18n "longevity.appScenario" }}<strong id="longevity-scenario-plot-value"></strong></span></div>
+<div class="longevity-slope-labels"><span>{{ i18n "longevity.appAverage" }}<strong id="longevity-average-plot-value"></strong></span><span>{{ i18n "longevity.appScenario" }}<strong id="longevity-scenario-plot-value"></strong></span></div>
 <svg id="longevity-scenario-chart" viewBox="0 0 300 42" role="img" aria-labelledby="longevity-scenario-chart-title"><title id="longevity-scenario-chart-title"></title><line id="longevity-scenario-connector" x1="18" x2="282" y1="21" y2="21"/><circle cx="18" cy="21" r="4"/><circle id="longevity-scenario-dot" cx="282" cy="21" r="4"/></svg>
 <p id="longevity-expected"></p>
+<p id="longevity-comparison-note" class="longevity-comparison-note"></p>
 </div>
 <p class="longevity-short-note">{{ i18n "longevity.appShortNote" }}</p>
 <h2 class="longevity-whatif-title">{{ i18n "longevity.appWhatIf" }}</h2>
@@ -149,7 +150,7 @@
 {{- partial "footer.html" . }}
 {{- partial "darkmode.html" . }}
 {{- $texts := dict }}
-{{- range slice "invalidAge" "context" "expected" "milestone" "nextYear" "milestoneHelp" "curveDescription" "median" "noMedian" "maritalContext" "maritalAt65" "chartAge" "male" "female" "probeValue" "remainingAxis" "selectedMarital" "personalContext" "personalPartial" "personalUnsupported" "relativePositive" "relativeNegative" "relativeNeutral" "populationValue" "bmiValue" "bmiHelp" "limitsNote" "contributionUnknown" "contributionValue" "factor.smoking" "factor.activity" "factor.fruit" "factor.alcohol" "factor.marital" "factor.bmi" "appProfile" "appStep" "appNext" "appUseProfile" "appApplyScenario" "appClose" "appScenarioTitle" "appDifference" "appDifferenceNegative" "appDifferenceZero" "appSmokeNote" "appAlreadyNonsmoker" "appSmallChanges" "appScenarioSummary" "appEditorTitle" "appEditorEstimate" }}
+{{- range slice "invalidAge" "context" "expected" "milestone" "nextYear" "milestoneHelp" "curveDescription" "median" "noMedian" "maritalContext" "maritalAt65" "chartAge" "male" "female" "probeValue" "remainingAxis" "selectedMarital" "personalContext" "personalPartial" "personalUnsupported" "relativePositive" "relativeNegative" "relativeNeutral" "populationValue" "bmiValue" "bmiHelp" "limitsNote" "contributionUnknown" "contributionValue" "factor.smoking" "factor.activity" "factor.fruit" "factor.alcohol" "factor.marital" "factor.bmi" "appProfile" "appStep" "appNext" "appUseProfile" "appApplyScenario" "appClose" "appScenarioTitle" "appDifference" "appDifferenceNegative" "appDifferenceZero" "appSmokeNote" "appAlreadyNonsmoker" "appSmallChanges" "appScenarioSummary" "appComparisonNote" "appEditorTitle" "appEditorEstimate" }}
     {{- $texts = merge $texts (dict . (i18n (printf "longevity.%s" .))) }}
 {{- end }}
 {{- $data := partialCached "calculator-dataset.html" "life-tables" "life-tables" }}

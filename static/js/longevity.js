@@ -158,23 +158,23 @@
 
     function render() {
         const result = core.baseline(config.data, profile.sex, profile.age);
-        const original = core.personalEstimate(config.data, config.heuristic, profile.sex, profile.age, profile);
         const scenario = updatePersonal(result, {...profile, ...overrides});
         currentResult = result;
         byId('context').textContent = text('context', {age: profile.age, year: result.year});
         byId('profile-label').textContent = text('appProfile', {age: profile.age});
-        const delta = scenario.remainingYears - original.remainingYears;
+        byId('comparison-note').textContent = text('appComparisonNote', {age: profile.age});
+        const delta = scenario.remainingYears - result.remainingYears;
         const deltaKey = Math.abs(delta) < 0.05 ? 'appDifferenceZero' : delta > 0 ? 'appDifference' : 'appDifferenceNegative';
         byId('scenario-difference').textContent = text(deltaKey, {years: number(Math.abs(delta))});
         byId('scenario-difference').classList.toggle('longevity-unchanged', Math.abs(delta) < 0.05);
-        const originalText = text('contributionValue', {years: number(original.remainingYears)});
+        const averageText = text('contributionValue', {years: number(result.remainingYears)});
         const scenarioText = text('contributionValue', {years: number(scenario.remainingYears)});
-        byId('original-plot-value').textContent = originalText;
+        byId('average-plot-value').textContent = averageText;
         byId('scenario-plot-value').textContent = scenarioText;
         const endY = 21 - Math.max(-15, Math.min(15, delta * 4));
         byId('scenario-dot').setAttribute('cy', endY);
         byId('scenario-connector').setAttribute('y2', endY);
-        byId('scenario-chart-title').textContent = text('appScenarioSummary', {original: number(original.remainingYears), scenario: number(scenario.remainingYears)});
+        byId('scenario-chart-title').textContent = text('appScenarioSummary', {average: number(result.remainingYears), scenario: number(scenario.remainingYears)});
         for (const button of document.querySelectorAll('[data-scenario]')) {
             const type = button.dataset.scenario;
             // Suggestions describe changes from the saved profile, not habits already present.

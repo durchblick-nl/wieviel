@@ -185,7 +185,7 @@ keine sofortige Wirkung eines heutigen Rauchstopps berechnet wird.
 Beim Gewicht öffnet sich derselbe Körper-Editor mit zusätzlichem Regler und Live-Jahreszahl.
 Abbrechen stellt die vorherigen Szenariowerte wieder her; Übernehmen verändert nur das Szenario.
 «Szenario zurücksetzen» entfernt sämtliche Überschreibungen und stellt das Ausgangsergebnis
-exakt wieder her. Die grosse Zahl ist als «Dein Szenario» beschriftet; das Ausgangsprofil wird nur einmal bei der Grafik angezeigt. Zwei beschriftete Punkte visualisieren den Zahlenvergleich; sie sind keine
+exakt wieder her. Die grosse Zahl ist als «Dein Szenario» beschriftet. Referenz in der Grafik ist immer die unveränderte amtliche Restlebenserwartung für Alter und Geschlechtsgruppe, auch ohne aktive Szenarioänderung. Die Abweichung ist Szenarioschätzung minus BFS-Durchschnitt; so bleiben die berücksichtigten Profilangaben bereits nach der Eingabe sichtbar. Sie wird nicht als nachgewiesener persönlicher Lebenszeitgewinn dargestellt. Zwei beschriftete Punkte visualisieren den Zahlenvergleich; sie sind keine
 Überlebenskurve. Die amtliche Überlebenskurve mit Regler steht direkt unter den Szenarien. Quellen und FAQ-Fragen sowie der Datenstand sind ohne Aufklappen sichtbar. Einzelbeiträge und weitere Vergleiche stehen unter «Statistik & Modell».
 
 Rahmen: gemeinsamer Header mit Seitentitel, Sprachwahl, Theme-Schalter und Tool-Navigation; drei nummerierte Schritte wie bei den übrigen Rechnern. Der Datenstand steht unmittelbar vor der gemeinsamen Link-Karte mit den Quellen.

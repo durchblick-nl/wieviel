@@ -151,3 +151,5 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 .longevity-calculator .page-header-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; margin: 16px 0 0 60px; padding: 10px 20px; border-radius: 6px; background: var(--primary-color); color: white; font-weight: 600; text-decoration: none; }
 .longevity-calculator .page-header-cta:hover { background: var(--primary-dark); }
 @media (max-width: 768px) { .longevity-calculator .page-header-cta { margin-left: 44px; } }
+
+.longevity-estimate .longevity-comparison-note { margin: 12px 0 0; font-size: 12px; line-height: 1.5; }

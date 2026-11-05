@@ -64,7 +64,7 @@ test('all 50 language pages render one complete freshness box', async () => {
     await page.close();
 });
 
-test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and original comparison', async () => {
+test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and population comparison', async () => {
     for (const route of ['de/leben', 'fr/esperance-de-vie']) {
         const page = await pageFor(route);
         await page.setViewportSize({width: 390, height: 844});
@@ -99,14 +99,17 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and or
         await page.locator('#longevity-next-step').click();
         assert.equal(await page.locator('#longevity-profile-dialog').isVisible(), false);
         assert.match(await page.locator('#longevity-years').innerText(), /^23[.,]4$/);
-        const original = await page.locator('#longevity-original-plot-value').innerText();
+        const original = await page.locator('#longevity-average-plot-value').innerText();
+        assert.match(original, /^25[.,]0/);
+        assert.match(await page.locator('#longevity-scenario-difference').innerText(), /−1[.,]6/);
         const populationCurve = await page.locator('#longevity-line').getAttribute('points');
         await page.locator('[data-scenario="activity"]').click();
         assert.match(await page.locator('#longevity-years').innerText(), /^24[.,]2$/);
         await page.locator('[data-scenario="fruit"]').click();
         await page.locator('[data-scenario="smoking"]').click();
         assert.match(await page.locator('#longevity-years').innerText(), /^29[.,]0$/);
-        assert.equal(await page.locator('#longevity-original-plot-value').innerText(), original);
+        assert.match(await page.locator('#longevity-scenario-difference').innerText(), /\+4[.,]0/);
+        assert.equal(await page.locator('#longevity-average-plot-value').innerText(), original);
         await page.locator('[data-scenario="weight"]').click();
         await page.locator('#longevity-weight-slider').fill('110');
         assert.match(await page.locator('#longevity-editor-estimate').innerText(), /26[.,]6/);
@@ -117,6 +120,7 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and or
         await page.locator('#longevity-reset-scenario').click();
         assert.match(await page.locator('#longevity-years').innerText(), /^23[.,]4$/);
         assert.equal(await page.locator('#longevity-reset-scenario').isDisabled(), true);
+        assert.match(await page.locator('#longevity-scenario-difference').innerText(), /−1[.,]6/);
         await page.locator('[data-scenario="weight"]').click();
         await page.locator('#longevity-weight').fill('110');
         await page.locator('#longevity-close-editor').click();
