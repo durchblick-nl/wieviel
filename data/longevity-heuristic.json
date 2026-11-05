@@ -1,14 +1,52 @@
 {
-  "version": "historical-adapted-1",
+  "version": "historical-adapted-sbmi-2",
   "origin": "Adapted arithmetic from the historical gesundheit.inc calculator, lines 443–561. Not study-derived effect estimates.",
   "validated": false,
-  "ageRange": [18, 95],
-  "smoking": {"never": 2, "formerOverFiveYears": 1, "perCigarette": -0.2, "maxCigarettes": 80},
-  "activity": {"none": -2, "rare": -1, "low": 0, "medium": 1, "high": 2},
-  "fruit": {"yes": 1, "no": 0},
-  "bmi": {"supportedMin": 15, "supportedMax": 40, "referenceMin": 20, "referenceMax": 25, "obesityThreshold": 30, "referenceScore": 1, "outsideReferenceScore": -1, "overThirtyScore": -2},
-  "alcohol": {"none": 0, "moderate": 0, "three": 0, "four": -1, "six": -3, "eight": -5, "ten": -7},
-  "marital": {"marriedBase": 0.02, "marriedAgeCoefficient": 0.002, "maleNotMarried": -0.15, "femaleDivorced": -0.06, "femaleOtherNotMarried": -0.02},
+  "ageRange": [
+    18,
+    95
+  ],
+  "smoking": {
+    "never": 2,
+    "formerOverFiveYears": 1,
+    "perCigarette": -0.2,
+    "maxCigarettes": 80
+  },
+  "activity": {
+    "none": -2,
+    "rare": -1,
+    "low": 0,
+    "medium": 1,
+    "high": 2
+  },
+  "fruit": {
+    "yes": 1,
+    "no": 0
+  },
+  "bmi": {
+    "index": "Smart BMI / SBMIC 2.7",
+    "centralMin": 30,
+    "centralMax": 39,
+    "penaltyFractionPerPoint": 0.004,
+    "maximumPenaltyFraction": 0.08,
+    "interpretation": "Our experimental mapping, not a published or validated mortality coefficient. Replaces the old BMI correction. Central range is neutral; correction scales with official remaining life expectancy, without a second age multiplier."
+  },
+  "alcohol": {
+    "none": 0,
+    "moderate": 0,
+    "three": 0,
+    "four": -1,
+    "six": -3,
+    "eight": -5,
+    "ten": -7
+  },
+  "marital": {
+    "marriedBase": 0.02,
+    "marriedAgeCoefficient": 0.002,
+    "maleNotMarried": -0.15,
+    "femaleDivorced": -0.06,
+    "femaleOtherNotMarried": -0.02
+  },
   "dampingStartsAt": 50,
   "dampingEndsAt": 100,
   "positiveCapYears": 12,
@@ -20,6 +58,7 @@
     "The former-smoker bonus requires more than five years since quitting.",
     "Unknown inputs contribute no adjustment and are reported as unknown, not healthy.",
     "Daily fruit/vegetables, activity frequency and alcohol portions follow the old questions, not the 2014 study categories.",
-    "The coefficients and limits are heuristic choices, not validated personal or causal effects."
+    "The coefficients and limits are heuristic choices, not validated personal or causal effects.",
+    "Weight correction uses age- and sex-specific SBMI instead of fixed BMI cutoffs. Central 30–39 is neutral; each point outside subtracts 0.4% of official remaining years up to 8%. No additional BMI correction, age multiplier or central-range bonus."
   ]
 }

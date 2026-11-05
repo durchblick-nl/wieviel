@@ -132,7 +132,7 @@
 
 
     function updatePersonal(result, answers) {
-        const estimate = core.personalEstimate(config.data, config.heuristic, result.sex, result.age, answers);
+        const estimate = core.personalEstimate(config.data, config.heuristic, result.sex, result.age, answers, config.smartBmi);
         byId('years').textContent = number(estimate.remainingYears);
         byId('editor-estimate').textContent = text('appEditorEstimate', {years: number(estimate.remainingYears)});
         byId('expected').textContent = text('expected', {age: number(estimate.expectedAge, 1, 0)});
@@ -230,16 +230,17 @@
         byId('weight-slider').value = optionalNumber('weight') || 80;
         const body = core.personalEstimate(config.data, config.heuristic, profile.sex, profile.age, {
             height: optionalNumber('height'), weight: optionalNumber('weight')
-        });
+        }, config.smartBmi);
         byId('bmi-value').textContent = body.bmi === null ? text('bmiHelp') : text('bmiValue', {bmi: number(body.bmi)});
-        const smartBmi = window.LongevitySmartBmi.calculate(config.smartBmi, {
-            age: validAge(), sex: byId('sex').value,
-            height: optionalNumber('height'), weight: optionalNumber('weight')
-        });
+        const smartBmi = validAge() ? body.smartBmi : null;
         byId('smart-bmi').hidden = smartBmi === null;
         byId('sbmi-value').textContent = smartBmi ? text('sbmiValue', {score: number(smartBmi.sbmi, 0)}) : '';
         byId('sbmi-interpretation').textContent = smartBmi ? text(`sbmi.${smartBmi.category}`)
             + (smartBmi.ageClamped ? ` ${text('sbmiAgeClamped')}` : '') : '';
+        const weightEffect = body.contributions.bmi;
+        byId('sbmi-effect').textContent = smartBmi ? body.supported
+            ? text('sbmiEffect', {years: `${weightEffect <= -0.05 ? '−' : ''}${number(Math.abs(weightEffect))}`})
+            : text('sbmiEffectUnsupported') : '';
     }
     function setStep(next) {
         step = Math.max(0, Math.min(4, next));

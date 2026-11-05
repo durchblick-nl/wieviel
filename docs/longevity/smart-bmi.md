@@ -31,11 +31,27 @@ prüfen beide Sprachfassungen und den Gewichtsregler.
 
 ## Lebenserwartung ist eine eigene Rechnung
 
-Smart BMI liefert keine Rechengewichte für eine Sterbetafel. Deshalb wird der
-SBMI weder in Lebensjahre umgerechnet noch zusätzlich auf die bisherige BMI-Korrektur
-aufgeschlagen. Die bestehende experimentelle Jahresheuristik reagiert weiterhin auf
-Gewicht. Ein gemeinsames Überlebensmodell für die Lebensstilfaktoren ist damit noch
-nicht implementiert oder wissenschaftlich validiert.
+Smart BMI liefert keine Rechengewichte für eine Sterbetafel. Auf ausdrücklichen
+Nutzerwunsch bestimmt der SBMI trotzdem den Gewichtseinfluss in der experimentellen
+Jahresheuristik. Das ist unsere eigene Verknüpfung, kein publizierter Mortalitätskoeffizient:
+
+- SBMI 30–39 ist neutral, ohne automatischen Jahresbonus.
+- Abstand = max(30 − SBMI, SBMI − 39, 0), auf Basis des angezeigten ganzzahligen SBMI.
+- Korrektur = −BFS-Restlebenserwartung × min(0,08, Abstand × 0,004).
+- Derselbe Abstand bedeutet denselben prozentualen Anteil am amtlichen Restjahreswert.
+- Keine zusätzliche Altersdämpfung für das Gewicht; die übrigen Faktoren behalten ihre bisherige Altersdämpfung.
+- Die Korrektur ersetzt die alten BMI-Zuschläge und -Abschläge vollständig. Kein Doppelzählen.
+- Auch sehr niedrige und sehr hohe Werte bleiben auf maximal 8 % des BFS-Restjahreswerts begrenzt;
+  oberhalb BMI 40 wird der Abschlag nicht mehr versehentlich als unbekannt ausgelassen.
+- Unvollständige oder ungültige Körperdaten bleiben unbekannt; über 95 bleibt nur der BFS-Grundwert.
+
+Bei einem BFS-Grundwert von 25 Restjahren entspricht die Begrenzung 2 Jahren.
+Bei 10 Restjahren entspricht sie 0,8 Jahren. Die lineare Abstufung und die Neutralität des mittleren Bereichs
+sind Gestaltungsentscheidungen dieses Rechenexperiments. Sie sind weder auf die
+Schweizer Bevölkerung kalibriert noch als persönliche oder kausale Jahresverluste
+validiert. Die Symmetrie bedeutet keine nachgewiesene gleiche Mortalität von
+Unter- und Übergewicht. Der BFS-Vergleich bleibt unverändert. Ein gemeinsames
+Überlebensmodell für die Lebensstilfaktoren ist weiterhin nicht implementiert.
 
 Die Forschung von David Fäh zur Bestimmung eines biologischen Alters
 (https://www.davidfaeh.ch/fileadmin/documents/Person/Diss130301.pdf) ist historischer

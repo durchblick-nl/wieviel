@@ -156,5 +156,6 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 .longevity-smart-bmi { margin-top: 16px; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 12px; }
 .longevity-smart-bmi .longevity-bmi-strip { margin: 0; padding: 0; background: transparent; }
 .longevity-smart-bmi p { margin: 8px 0; font-size: 0.95rem; }
+.longevity-smart-bmi .longevity-sbmi-effect { font-weight: 600; }
 .longevity-smart-bmi a { color: var(--primary-color); text-decoration: underline; }
 [data-theme="dark"] .longevity-smart-bmi .longevity-bmi-strip { background: transparent; }

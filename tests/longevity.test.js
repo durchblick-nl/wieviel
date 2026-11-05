@@ -3,8 +3,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const data = require('../static/data/life-tables.json');
 const study = require('../data/longevity-study.json');
-const { baseline, survival, maritalComparison, personalEstimate } = require('../static/js/longevity-core.js');
+const { baseline, survival, maritalComparison, personalEstimate: calculatePersonal } = require('../static/js/longevity-core.js');
 const heuristic = require('../data/longevity-heuristic.json');
+const smartBmiData = require('../data/longevity-smart-bmi.json');
+const personalEstimate = (dataset, model, sex, age, answers) => calculatePersonal(dataset, model, sex, age, answers, smartBmiData);
 const { legacy, studyRelativeHazard } = require('../scripts/lib/longevity-models.cjs');
 
 test('BFS published age-60 reference values and conditional survival', () => {
@@ -30,20 +32,20 @@ test('personal heuristic starts at BFS and reacts to smoking dose, activity, BMI
     close(estimate({smoking: 'former', quitYears: 6}).remainingYears, 25.8);
     assert.equal(estimate({smoking: 'former', quitYears: 5}).remainingYears, 25);
     close(estimate({activity: 'high'}).remainingYears, 26.6);
-    close(estimate({height: 180, weight: 81}).remainingYears, 25.8);
-    close(estimate({height: 180, weight: 110}).remainingYears, 23.4);
+    close(estimate({height: 180, weight: 81}).remainingYears, 25);
+    close(estimate({height: 180, weight: 110}).remainingYears, 24.1);
     close(estimate({marital: 'married'}).remainingYears, 27.8);
     // The historical female-married double penalty is intentionally absent.
     close(personalEstimate(data, heuristic, 'female', 60, {marital: 'married'}).remainingYears, 30.8024);
     const combined = estimate({smoking: 'no', activity: 'high', fruit: 'yes', height: 180, weight: 81, alcohol: 'none', marital: 'married'});
-    close(combined.remainingYears, 32.6);
+    close(combined.remainingYears, 31.8);
     assert.equal(combined.considered, 6);
     assert.equal(combined.validated, false);
     assert.equal(baseline(data, 'male', 60).remainingYears, 25);
 });
 
 test('unknown details, unsupported BMI/age, alcohol bonus removal and bounds are explicit', () => {
-    for (const answers of [{smoking: 'yes'}, {smoking: 'yes', cigarettes: 81}, {height: 180}, {height: 180, weight: 300}]) {
+    for (const answers of [{smoking: 'yes'}, {smoking: 'yes', cigarettes: 81}, {height: 180}, {height: 180, weight: 301}]) {
         const result = personalEstimate(data, heuristic, 'male', 60, answers);
         assert.equal(result.remainingYears, 25);
         assert.equal(result.considered, 0);
@@ -56,6 +58,46 @@ test('unknown details, unsupported BMI/age, alcohol bonus removal and bounds are
     assert.equal(extreme.floorApplied, true);
     assert.equal(extreme.remainingYears, 9.5 / 4);
     assert.throws(() => personalEstimate(data, heuristic, 'male', 60, {activity: 'invented'}), RangeError);
+});
+
+test('Smart BMI replaces fixed BMI cutoffs with a neutral central range and a bounded proportional penalty', () => {
+    const at = (age, weight) => personalEstimate(data, heuristic, 'male', age, {height: 180, weight});
+    assert.equal(at(60, 81).smartBmi.sbmi, 36);
+    assert.equal(at(60, 81).contributions.bmi, 0);
+    assert.equal(at(60, 81).remainingYears, 25);
+    // Same BMI can fall inside the age-specific range at 80 and outside it at 30.
+    assert.equal(at(80, 90).smartBmi.sbmi, 38);
+    assert.equal(at(80, 90).contributions.bmi, 0);
+    assert.equal(at(30, 90).smartBmi.sbmi, 43);
+    assert.ok(at(30, 90).contributions.bmi < 0);
+    // Underweight and extreme high weight are bounded, never silently ignored.
+    for (const weight of [45, 200, 300]) {
+        assert.ok(Math.abs(at(60, weight).contributions.bmi + 2) < 1e-10);
+        assert.ok(!at(60, weight).unknown.includes('bmi'));
+    }
+    const female = personalEstimate(data, heuristic, 'female', 60, {height: 180, weight: 300});
+    assert.ok(Math.abs(female.contributions.bmi + 2.216) < 1e-10);
+    assert.throws(() => calculatePersonal(data, heuristic, 'male', 60, {height: 180, weight: 81}), /reference tables/);
+});
+
+test('the same Smart BMI deviation changes the same fraction of remaining years without double age damping', () => {
+    const results = [];
+    for (const age of [30, 60, 80]) {
+        // Find actual supported inputs producing the same displayed SBMI.
+        let result;
+        for (let weight = 30; weight <= 300; weight += 0.5) {
+            const candidate = personalEstimate(data, heuristic, 'male', age, {height: 180, weight});
+            if (candidate.smartBmi.sbmi === 48) { result = candidate; break; }
+        }
+        assert.ok(result, `SBMI 48 profile at ${age}`);
+        // 9 points outside the neutral range: 3.6% of the official remaining years.
+        assert.ok(Math.abs(result.contributions.bmi / result.baselineRemainingYears + 0.036) < 1e-12);
+        assert.ok(Math.abs(result.remainingYears / result.baselineRemainingYears - 0.964) < 1e-12);
+        results.push(result);
+    }
+    assert.ok(Math.abs(results[0].contributions.bmi) > Math.abs(results[1].contributions.bmi));
+    assert.ok(Math.abs(results[1].contributions.bmi) > Math.abs(results[2].contributions.bmi));
+    assert.ok(Math.abs(results[2].contributions.bmi + 0.342) < 1e-12);
 });
 
 test('conditional curves, medians and the unpublished tail are handled explicitly', () => {

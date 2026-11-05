@@ -21,8 +21,10 @@ Der Rechner `longevity` verwendet zwei getrennt bezeichnete Datenperioden:
   Relative Studienwerte werden nicht in die persönliche Heuristik hineingemischt.
 - Smart BMI: `data/longevity-smart-bmi.json` enthält die ursprünglichen Erwachsenen-Tabellen,
   `static/js/longevity-smart-bmi.js` den numerischen Ausschnitt. Bei Änderungen gegen die
-  PHP-Referenzfälle in `tests/fixtures/longevity-smart-bmi.json` prüfen. SBMI-Punkte sind
-  keine Mortalitätsgewichte; die Einordnung verändert die Jahresheuristik nicht zusätzlich.
+  PHP-Referenzfälle in `tests/fixtures/longevity-smart-bmi.json` prüfen. Die eigene experimentelle
+  Jahreskorrektur ist in `longevity-heuristic.json` versioniert: SBMI 30–39 neutral,
+  je Punkt Abstand −0,4 % der BFS-Restjahre (maximal −8 %), ohne zweite Altersdämpfung, anstelle der alten BMI-Korrektur.
+  Keine publizierten Mortalitätsgewichte; Annahmen und Grenzen in `docs/longevity/smart-bmi.md`.
 
 Der sichtbare Datenzeitraum folgt den Datendateien. Redaktionellen Prüfstand und nächsten
 Termin separat unter `data/calculatorStatus.json` → `longevity` pflegen. Nach einem Daten- oder

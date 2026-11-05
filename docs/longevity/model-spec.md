@@ -32,14 +32,17 @@ Alter ein. Eingabe zunächst in vollendeten Jahren; kein exaktes Geburtsdatum er
 
 `data/longevity-heuristic.json` versioniert die Rechengewichte und Anpassungen. Die Funktion
 `personalEstimate` in `static/js/longevity-core.js` beginnt beim amtlichen Restjahreswert,
-summiert die berücksichtigten historischen Korrekturen, dämpft diese nach Alter und wendet
+summiert die berücksichtigten Korrekturen, dämpft die historischen Faktoren nach Alter und wendet
 den historischen positiven Deckel sowie die Untergrenze an. Unbekannte Angaben werden
 ausgelassen und ausdrücklich benannt. Über 95 bleibt nur der amtliche Grundwert.
 
 Anpassungen: kein positiver Alkoholbonus, kein zusätzlicher Verheirateten-Abschlag bei Frauen,
-BMI 20,0 und 20,1 gehören zur gleichen Kategorie. Aktuelles Rauchen benötigt eine Tagesmenge;
+Smart BMI ersetzt die festen BMI-Kategorien. Aktuelles Rauchen benötigt eine Tagesmenge;
 der Bonus für ehemalige Raucher benötigt mehr als fünf Jahre seit dem Rauchstopp. Grösse und
-Gewicht werden gemeinsam berücksichtigt; die historische BMI-Korrektur ist auf 15–40 begrenzt.
+Gewicht werden gemeinsam berücksichtigt. SBMI 30–39 ist neutral; je Punkt Abstand werden
+0,4 % der amtlichen Restjahre abgezogen, maximal 8 %. Diese eigene experimentelle
+Verknüpfung ersetzt die bisherige BMI-Korrektur vollständig. Für das Gewicht gibt es
+keine zusätzliche Altersdämpfung. Details und Grenzen: `smart-bmi.md`.
 Die Faktoren werden nach den ursprünglichen Fragen abgefragt, nicht als Kategorien der Studie 2014.
 
 Der Nutzer sieht zuerst die persönliche Rechenzahl und den Vergleich zwischen Ausgangsprofil

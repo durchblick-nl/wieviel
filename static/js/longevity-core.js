@@ -1,5 +1,7 @@
 (function (root) {
     'use strict';
+    const smartBmiCalculator = typeof module !== 'undefined' && module.exports
+        ? require('./longevity-smart-bmi.js') : root.LongevitySmartBmi;
 
     function rowAt(dataset, sex, age) {
         const rows = dataset.tables[sex];
@@ -68,16 +70,21 @@
             absoluteRemainingYears: null, calibratedToSwiss2025: false };
     }
 
-    function personalEstimate(dataset, model, sex, age, answers = {}) {
+    function personalEstimate(dataset, model, sex, age, answers = {}, smartBmiData) {
         const base = rowAt(dataset, sex, age).remainingYears;
         const groups = {};
         const unknown = [];
         let bmi = null;
+        let smartBmi = null;
         if (Number.isFinite(answers.height) && Number.isFinite(answers.weight) && answers.height >= 100 && answers.height <= 230 && answers.weight >= 30 && answers.weight <= 300) {
             bmi = answers.weight / ((answers.height / 100) ** 2);
-            if (bmi >= model.bmi.supportedMin && bmi <= model.bmi.supportedMax) {
-                groups.bmi = bmi > model.bmi.obesityThreshold ? model.bmi.overThirtyScore
-                    : bmi >= model.bmi.referenceMin && bmi <= model.bmi.referenceMax ? model.bmi.referenceScore : model.bmi.outsideReferenceScore;
+            if (!smartBmiData) throw new TypeError('Smart BMI reference tables are required for the weight correction');
+            smartBmi = smartBmiCalculator.calculate(smartBmiData, {age, sex, height: answers.height, weight: answers.weight});
+            if (smartBmi) {
+                // Our bounded heuristic, NOT a coefficient from Smart BMI or a mortality study.
+                // Replace the former BMI correction; never add a second weight penalty.
+                const distance = Math.max(model.bmi.centralMin - smartBmi.sbmi, 0, smartBmi.sbmi - model.bmi.centralMax);
+                groups.bmi = distance === 0 ? 0 : -base * Math.min(model.bmi.maximumPenaltyFraction, distance * model.bmi.penaltyFractionPerPoint);
             } else unknown.push('bmi');
         } else unknown.push('bmi');
         const choice = (key, choices) => {
@@ -116,13 +123,15 @@
         const supported = age >= model.ageRange[0] && age <= model.ageRange[1];
         const damping = age > model.dampingStartsAt
             ? Math.max(0, (model.dampingEndsAt - age) / (model.dampingEndsAt - model.dampingStartsAt)) : 1;
-        const contributions = Object.fromEntries(Object.entries(groups).map(([key, value]) => [key, supported ? value * damping : 0]));
+        // Weight already scales with the official remaining lifetime. Applying the
+        // age multiplier again would damp it twice and break proportionality.
+        const contributions = Object.fromEntries(Object.entries(groups).map(([key, value]) => [key, supported ? value * (key === 'bmi' ? 1 : damping) : 0]));
         const sum = Object.values(contributions).reduce((total, value) => total + value, 0);
         const capped = Math.min(model.positiveCapYears, sum);
         const remainingYears = Math.max(base * model.minimumRemainingFraction, base + capped);
         return { remainingYears, expectedAge: age + remainingYears, baselineRemainingYears: base,
             difference: remainingYears - base, contributions, unknown, damping,
-            considered: Object.keys(groups).length, supported, bmi,
+            considered: Object.keys(groups).length, supported, bmi, smartBmi,
             capApplied: capped !== sum, floorApplied: remainingYears !== base + capped,
             version: model.version, validated: false };
     }
