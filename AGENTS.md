@@ -12,7 +12,7 @@ A collection of useful calculators for the general public in Switzerland, built 
 - https://wieviel.ch (German)
 - https://calcule.ch (French)
 
-### Current Tools (23 calculators, bilingual DE/FR):
+### Current Tools (24 calculators, bilingual DE/FR):
 
 | DE (wieviel.ch) | FR (calcule.ch) | Description |
 |-----------------|-----------------|-------------|
@@ -38,6 +38,7 @@ A collection of useful calculators for the general public in Switzerland, built 
 | `/de/strom/` | `/fr/electricite/` | Electricity cost calculator (ElCom) |
 | `/de/kaufkraft/` | `/fr/pouvoir-achat/` | Purchasing power calculator (BFS CPI/LIK) |
 | `/de/iban/` | `/fr/iban/` | IBAN checker with bank lookup (SIX) |
+| `/de/geburtstag/` | `/fr/anniversaire/` | Birthday ranking (BFS), date duel and weekend forecast |
 | `/de/alimente/` | `/fr/pension-alimentaire/` | Child support orientation (sole custody) |
 
 ## Tech Stack

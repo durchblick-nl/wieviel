@@ -324,3 +324,17 @@ Mietzins: Die gemeinsame Funktion `static/js/rent-calculator.js` verwendet für 
 nginx bindet diese Dateien je Domain über `error_page 404 /404.html` und eine interne Location ein. Die angefragte URL und der HTTP-Status 404 bleiben erhalten, auch für `/de/` auf wieviel.ch bzw. `/fr/` auf calcule.ch. Der frühere Cloudflare-Worker verwendet dieselben Dateien. Gemeinsame JavaScript-Dateien werden wie CSS direkt unter `/js/` ausgeliefert.
 
 Nach dem Hugo-Build prüft `NGINX_BIN=/pfad/zu/nginx python3 tests/test_nginx_routing.py` echte HTTP-Antworten, Sprachwahl, Homepage-/Asset-Routen und bestehende Weiterleitungen. `BUILD_DIR` und `NGINX_MIME_TYPES` erlauben abweichende lokale Pfade. Die CI führt diesen Test mit nginx aus; Worker-Tests laufen mit `npm test`.
+
+
+## Geburtstagsrechner / Calculateur d’anniversaire
+
+- Quelle: [BFS/OFS BEVNAT](https://statistik.admin.ch/de/asset/36649551), OPEN-BY (Quellenangabe erforderlich).
+- Snapshot: `static/data/birthdays.json`; Quelle, Zeitraum, Prüfdatum, SHA-256 der beiden API-Antworten und Jahreskontrollsummen stehen in `_meta`.
+- Import: `python3 scripts/update_birthday_data.py --end-year 2025` (bei einer späteren Aktualisierung das letzte vollständig veröffentlichte Jahr einsetzen).
+- SDMX-Serie: `BEVNAT_EVENT=2` (Lebendgeburten; Totgeburten sind separat Code 3), `CANTON=8100` (Schweizer Gesamtserie), `LATE_REG=0` (ohne Nachmeldungen), `FREQ=D`. Kontrollserie: dieselben Filter mit `FREQ=A`.
+- Jeder Kalendertag von 1969 bis zum Jahresende muss genau einmal vorliegen, alle Werte müssen normale, nichtnegative ganzzahlige Beobachtungen sein. Jede Jahressumme wird mit der separaten jährlichen BFS-Serie verglichen. Unvollständige oder abweichende Daten brechen den Import vor dem atomaren Ersetzen ab.
+- Das Ranking summiert Geburten je Monat/Tag; Gleichstände teilen sich denselben Rang (Wettkampfrang). Die Abweichung bezieht sich auf die Summe / 366. Der Durchschnitt pro vorkommendem Datum verwendet die tatsächliche Zahl der Vorkommen, beim 29. Februar nur Schalttage.
+- Keine Aussage über heute lebende Personen, keine Geburtszeiten und keine Berechnung individueller Zeugungsdaten. In der Oberfläche den geografischen Bezug als Schweizer BFS-Gesamtserie bezeichnen; keine Wohnort-/Geburtsortauswertung ableiten.
+- Datenstand und Prüftag werden aus dem Snapshot abgeleitet; DE/FR dürfen keine unabhängig gepflegten Jahresangaben bekommen. Jährlich nach der Veröffentlichung vollständiger BFS-Daten prüfen (nächster geplanter Check: Juli 2027).
+- Prüfungen: `node --test tests/*.test.js`, `python3 -m unittest discover -s tests -p 'test_birthday_import.py'`, Hugo-Build und `node --test tests/browser.cjs`. Für lokalen Chrome optional `CHROMIUM_PATH` setzen.
+- Manuell prüfen: beide Sprachen, 31. → Monatswechsel, 29. Februar, Duell-Gleichstand, Kalenderauswahl per Tastatur, Wochenendvorschau, Teilen/Kopieren, DE/FR-Metadaten sowie mobile Ansicht und Dark Mode.

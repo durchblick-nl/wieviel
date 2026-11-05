@@ -1,0 +1,35 @@
+.birthday-fields { display: flex; gap: 1rem; margin: 1rem 0; }
+.birthday-fields label { flex: 1; font-weight: 600; }
+.birthday-fields select { display: block; width: 100%; margin-top: .5rem; padding: .75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-color); font: inherit; }
+.birthday-result { padding: 1.5rem; border-radius: 12px; text-align: center; margin: 1.5rem 0; }
+.birthday-result h2 { color: white; margin: .4rem 0; }
+.birthday-rank { font: bold 3.5rem 'Economica', sans-serif; line-height: 1.2; }
+.birthday-badge { display: inline-block; padding: .35rem .8rem; border-radius: 20px; background: rgba(255,255,255,.16); margin-bottom: .5rem; }
+.birthday-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.birthday-stats strong { display: block; font-size: 1.4rem; }
+.birthday-note { font-size: .9rem; line-height: 1.6; margin: 1rem 0; }
+.birthday-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+.birthday-actions button { background: var(--primary-color); color: white; border: 0; border-radius: 8px; padding: .75rem 1.25rem; cursor: pointer; font: inherit; }
+.birthday-actions button + button { background: var(--secondary-color); }
+.birthday-calendar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+.birthday-month h3 { margin: 0 0 .75rem; color: var(--primary-color); }
+.birthday-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.birthday-day { border: 1px solid transparent; border-radius: 4px; min-height: 30px; padding: 0; font: inherit; font-size: .8rem; cursor: pointer; background: var(--birthday-heat); color: #203b45; }
+.birthday-day[aria-pressed="true"] { outline: 3px solid var(--accent-color); outline-offset: 1px; font-weight: bold; position: relative; z-index: 1; }
+.birthday-day:focus-visible, .birthday-actions button:focus-visible, .birthday-fields select:focus-visible { outline: 3px solid var(--accent-color); outline-offset: 3px; }
+[data-theme="dark"] .birthday-day { color: #f5f8fa; background: var(--birthday-dark-heat); }
+.birthday-legend { display: flex; align-items: center; justify-content: center; gap: .75rem; font-size: .85rem; }
+.birthday-legend-bar { width: 100px; height: 12px; border-radius: 6px; background: linear-gradient(to right, #edf4f6, #91bfcb); }
+.birthday-duel { background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; line-height: 1.7; }
+.birthday-upcoming { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: 1rem 0; }
+.birthday-upcoming li { padding: .65rem; border-radius: 8px; background: var(--light-bg); }
+.birthday-upcoming .birthday-weekend { border-left: 3px solid var(--secondary-color); font-weight: 600; }
+.birthday-feedback { min-height: 1.5em; text-align: center; font-size: .9rem; }
+.birthday-calculator h2 { margin-bottom: .75rem; color: var(--primary-color); }
+.birthday-calculator .birthday-result h2 { color: white; }
+@media (max-width: 600px) {
+    .birthday-calendar { grid-template-columns: 1fr; }
+    .birthday-day { min-height: 38px; font-size: .95rem; }
+    .birthday-stats, .birthday-upcoming { grid-template-columns: 1fr; }
+    .birthday-fields { gap: .75rem; }
+}

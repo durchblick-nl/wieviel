@@ -20,6 +20,10 @@
 {{- else if eq $status.dataset "iban" -}}
     {{- $data := partialCached "calculator-dataset.html" "bank_master" "bank_master" -}}
     {{- $period = i18n "dataStatus.bankPeriod" (dict "date" (time.Format "02.01.2006" $data._meta.validOn)) -}}
+{{- else if eq $status.dataset "birthday" -}}
+    {{- $data := partialCached "calculator-dataset.html" "birthdays" "birthdays" -}}
+    {{- $period = printf "%s %v–%v" (i18n "birthday.dataPeriod") $data._meta.startYear $data._meta.endYear -}}
+    {{- $reviewed = $data._meta.verifiedOn -}}
 {{- else if eq $status.dataset "electricity" -}}
     {{- $years := slice -}}
     {{- range $year, $tariff := hugo.Data.site.electricity.tariffs -}}

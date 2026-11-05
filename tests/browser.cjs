@@ -42,7 +42,7 @@ async function pageFor(route) {
     return page;
 }
 
-test('all 46 language pages render one complete freshness box', async () => {
+test('all 48 language pages render one complete freshness box', async () => {
     const page = await browser.newPage();
     page.on('pageerror', error => pageErrors.push(error.message));
     let checked = 0;
@@ -60,8 +60,60 @@ test('all 46 language pages render one complete freshness box', async () => {
             checked++;
         }
     }
-    assert.equal(checked, 46);
+    assert.equal(checked, 48);
     await page.close();
+});
+
+test('DE/FR birthdays: ranking, valid dates, calendar, duel, sharing and mobile dark mode', async () => {
+    for (const route of ['de/geburtstag', 'fr/anniversaire']) {
+        const page = await pageFor(route);
+        await page.evaluate(() => CookieConsent.acceptCategory('necessary'));
+        assert.equal(await page.locator('.steps-container .step-card').count(), 3);
+        assert.equal(await page.locator('.birthday-day').count(), 366);
+        await page.selectOption('#birthday-month', '9');
+        await page.selectOption('#birthday-day', '25');
+        assert.match(await page.locator('#birthday-rank').innerText(), /Rang 1 (von|sur) 366/);
+        await page.selectOption('#birthday-day', '30');
+        await page.selectOption('#birthday-month', '2');
+        assert.equal(await page.locator('#birthday-day').inputValue(), '29');
+        assert.equal(await page.locator('#birthday-leap').isVisible(), true);
+        const upcoming = await page.locator('#birthday-upcoming li').allTextContents();
+        assert.equal(upcoming.length, 8);
+        assert.ok(upcoming.every(text => /29/.test(text)));
+        await page.selectOption('#duel-month', '2');
+        await page.selectOption('#duel-day', '29');
+        assert.match(await page.locator('#birthday-duel').innerText(), /Unentschieden|Égalité/);
+        await page.locator('[data-date="09-25"]').click();
+        assert.equal(await page.locator('#birthday-month').inputValue(), '9');
+        assert.equal(await page.locator('[data-date="09-25"]').getAttribute('aria-pressed'), 'true');
+        assert.equal(await page.locator('#birthday-leap').isVisible(), false);
+        await page.evaluate(() => {
+            window.copiedBirthday = '';
+            Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.copiedBirthday = text; } } });
+        });
+        await page.locator('#birthday-copy').click();
+        assert.match(await page.evaluate(() => window.copiedBirthday), /#date=09-25/);
+        await page.evaluate(() => Object.defineProperty(navigator, 'share', { configurable: true, value: async data => { window.sharedBirthday = data; } }));
+        await page.locator('#birthday-share').click();
+        assert.match(await page.evaluate(() => window.sharedBirthday.url), /#date=09-25$/);
+        await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('denied'); } } }));
+        await page.locator('#birthday-copy').click();
+        assert.equal(await page.locator('#birthday-copy-fallback').isVisible(), true);
+        assert.match(await page.locator('#birthday-copy-fallback').inputValue(), /#date=09-25/);
+        await page.locator('[data-date="01-31"]').focus();
+        await page.keyboard.press('ArrowRight');
+        assert.equal(await page.locator('[data-date="02-01"]').evaluate(el => el === document.activeElement), true);
+        await page.keyboard.press('Enter');
+        assert.equal(await page.locator('#birthday-month').inputValue(), '2');
+        assert.equal(await page.locator('#birthday-day').inputValue(), '1');
+        await page.goto(`${baseURL}/${route}/#date=02-29`);
+        assert.equal(await page.locator('#birthday-day').inputValue(), '29');
+        await page.setViewportSize({ width: 390, height: 844 });
+        await page.locator('.dark-mode-toggle').click();
+        assert.equal(await page.locator('html').getAttribute('data-theme'), 'dark');
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
+        await page.close();
+    }
 });
 
 test('DE/FR rent: multiple steps and explanatory table agree', async () => {

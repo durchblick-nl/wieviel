@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    {{- partial "head.html" . }}
+    <link rel="stylesheet" href="/css/birthday.css?v={{ readFile "static/css/birthday.css" | sha256 | truncate 12 "" }}">
+</head>
+<body>
+<div class="container birthday-calculator">
+    {{- partial "header.html" . }}
+    {{- partial "page-header.html" . }}
+    <div class="steps-container">
+    {{ range seq 3 }}
+        <div class="step-card">
+            <div class="step-icon"><i class="fas {{ index (slice "fa-calendar-day" "fa-chart-bar" "fa-cake-candles") (sub . 1) }}" aria-hidden="true"></i><div class="step-number">{{ . }}</div></div>
+            <div class="step-content"><h3>{{ i18n (printf "birthday.step%d" .) }}</h3><p>{{ i18n (printf "birthday.step%dDesc" .) }}</p></div>
+        </div>
+    {{ end }}
+    </div>
+    <main>
+    <section class="calculator-card" aria-labelledby="birthday-question">
+        <h2 id="birthday-question">{{ i18n "birthday.question" }}</h2>
+        <div class="birthday-fields">
+            <label for="birthday-day">{{ i18n "birthday.day" }}<select id="birthday-day"></select></label>
+            <label for="birthday-month">{{ i18n "birthday.month" }}<select id="birthday-month"></select></label>
+        </div>
+        <noscript><p>{{ i18n "birthday.noScript" }}</p></noscript>
+        <p id="birthday-error" role="alert" hidden>{{ i18n "birthday.loadingError" }}</p>
+        <div id="birthday-result" class="birthday-result result-box" aria-live="polite" aria-atomic="true" hidden>
+            <span class="birthday-badge" id="birthday-badge"></span>
+            <h2 id="birthday-date"></h2>
+            <div class="birthday-rank" id="birthday-rank"></div>
+            <p>{{ i18n "birthday.rankHelp" }}</p>
+            <div class="birthday-stats">
+                <div><strong id="birthday-count"></strong><span>{{ i18n "birthday.count" }}</span></div>
+                <div><strong id="birthday-average"></strong><span>{{ i18n "birthday.average" }}</span></div>
+            </div>
+            <p id="birthday-period"></p><p id="birthday-difference"></p>
+        </div>
+        <p id="birthday-leap" class="birthday-note" hidden></p>
+        <p class="birthday-note">{{ i18n "birthday.populationNote" }}</p>
+        <div class="birthday-actions">
+            <button type="button" id="birthday-share">{{ i18n "birthday.share" }}</button>
+            <button type="button" id="birthday-copy">{{ i18n "birthday.copy" }}</button>
+        </div>
+        <p class="birthday-feedback" id="birthday-feedback" role="status"></p>
+        <textarea id="birthday-copy-fallback" readonly hidden aria-label="{{ i18n "birthday.copy" }}"></textarea>
+    </section>
+    <section class="calculator-card" aria-labelledby="birthday-duel-title">
+        <h2 id="birthday-duel-title">🥊 {{ i18n "birthday.duelTitle" }}</h2>
+        <p>{{ i18n "birthday.duelIntro" }}</p>
+        <div class="birthday-fields">
+            <label for="duel-day">{{ i18n "birthday.day" }}<select id="duel-day"></select></label>
+            <label for="duel-month">{{ i18n "birthday.month" }}<select id="duel-month"></select></label>
+        </div>
+        <div class="birthday-duel" id="birthday-duel" aria-live="polite" aria-atomic="true"></div>
+    </section>
+    <section class="calculator-card" aria-labelledby="birthday-weekend-title">
+        <h2 id="birthday-weekend-title">🎈 {{ i18n "birthday.weekendTitle" }}</h2>
+        <p>{{ i18n "birthday.weekendIntro" }}</p>
+        <p id="birthday-weekend-leap" class="birthday-note" hidden>{{ i18n "birthday.weekendLeap" }}</p>
+        <ul id="birthday-upcoming" class="birthday-upcoming"></ul>
+        <p id="birthday-next-weekend"></p>
+    </section>
+    <section class="calculator-card" aria-labelledby="birthday-calendar-title">
+        <h2 id="birthday-calendar-title">🗓️ {{ i18n "birthday.calendarTitle" }}</h2>
+        <p>{{ i18n "birthday.calendarIntro" }}</p>
+        <div class="birthday-legend"><span>{{ i18n "birthday.rareLabel" }}</span><span class="birthday-legend-bar" aria-hidden="true"></span><span>{{ i18n "birthday.commonLabel" }}</span></div>
+        <div id="birthday-calendar" class="birthday-calendar"></div>
+    </section>
+    {{ .Content }}
+    </main>
+</div>
+{{- partial "footer.html" . }}
+{{- partial "darkmode.html" . }}
+{{- $texts := dict }}
+{{- range slice "question" "day" "month" "step1" "step1Desc" "step2" "step2Desc" "step3" "step3Desc" "rank" "rankHelp" "count" "average" "period" "difference" "more" "less" "equalAverage" "common" "medium" "rare" "leapBadge" "leapNote" "populationNote" "share" "copy" "copied" "copyError" "shareText" "duelTitle" "duelIntro" "duelRow" "duelWin" "duelTie" "duelLeap" "calendarTitle" "calendarIntro" "rareLabel" "commonLabel" "calendarDay" "weekendTitle" "weekendIntro" "nextWeekend" "weekendLeap" "loadingError" "noScript" }}
+    {{- $texts = merge $texts (dict . (i18n (printf "birthday.%s" .))) }}
+{{- end }}
+{{- $data := partialCached "calculator-dataset.html" "birthdays" "birthdays" }}
+<script type="application/json" id="birthday-config">{{ dict "lang" .Site.Language.Lang "texts" $texts "data" $data | jsonify | safeJS }}</script>
+<script defer src="/js/birthday-core.js?v={{ readFile "static/js/birthday-core.js" | sha256 | truncate 12 "" }}"></script>
+<script defer src="/js/birthday.js?v={{ readFile "static/js/birthday.js" | sha256 | truncate 12 "" }}"></script>
+</body>
+</html>

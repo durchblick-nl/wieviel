@@ -373,5 +373,19 @@
         "url": "https://www.proviande.ch/de/der-fleischmarkt-in-zahlen"
       }
     ]
+  },
+  "birthday": {
+    "dataset": "birthday",
+    "note": {
+      "de": "Schweizer Tageswerte der Lebendgeburten ohne Nachmeldungen. Das Ranking zählt Geburten im Zeitraum, keine heute lebenden Personen.",
+      "fr": "Valeurs quotidiennes nationales des naissances vivantes, sans annonces tardives. Le classement porte sur les naissances de la période, pas sur les personnes vivant aujourd’hui."
+    },
+    "next": "2027-07-01",
+    "sources": [
+      {
+        "name": "BFS / OFS – BEVNAT (OPEN-BY)",
+        "url": "https://statistik.admin.ch/de/asset/36649551"
+      }
+    ]
   }
 }

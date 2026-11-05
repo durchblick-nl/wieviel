@@ -1,0 +1,1539 @@
+{
+  "_meta": {
+    "startYear": 1969,
+    "endYear": 2025,
+    "verifiedOn": "2026-11-05",
+    "sourceUrl": "https://statistik.admin.ch/de/asset/36649551",
+    "license": "OPEN-BY",
+    "series": "BEVNAT_EVENT=2,CANTON=8100,LATE_REG=0,FREQ=D",
+    "totalBirths": 4591724,
+    "observationCount": 20819,
+    "dailySha256": "041af363043a7945212e4674980275ad2293b67857fa75c1b4e5a34ef39ee396",
+    "annualSha256": "453b399792cf32213d40895058386b8e675398c5e2c1b5e4a3d60af07b8ce1a1",
+    "annualTotals": {
+      "1969": 102520,
+      "1970": 99216,
+      "1971": 96261,
+      "1972": 91342,
+      "1973": 87518,
+      "1974": 84507,
+      "1975": 78464,
+      "1976": 74199,
+      "1977": 72829,
+      "1978": 71375,
+      "1979": 71986,
+      "1980": 73661,
+      "1981": 73747,
+      "1982": 74916,
+      "1983": 73659,
+      "1984": 74710,
+      "1985": 74684,
+      "1986": 76320,
+      "1987": 76505,
+      "1988": 80338,
+      "1989": 81165,
+      "1990": 83916,
+      "1991": 86178,
+      "1992": 86894,
+      "1993": 83741,
+      "1994": 82959,
+      "1995": 82177,
+      "1996": 82986,
+      "1997": 80556,
+      "1998": 78914,
+      "1999": 78393,
+      "2000": 78439,
+      "2001": 72247,
+      "2002": 72337,
+      "2003": 71791,
+      "2004": 73015,
+      "2005": 72813,
+      "2006": 73155,
+      "2007": 74281,
+      "2008": 76447,
+      "2009": 78001,
+      "2010": 80031,
+      "2011": 80369,
+      "2012": 81749,
+      "2013": 82194,
+      "2014": 84737,
+      "2015": 86077,
+      "2016": 87347,
+      "2017": 86684,
+      "2018": 87206,
+      "2019": 85621,
+      "2020": 85310,
+      "2021": 89106,
+      "2022": 81753,
+      "2023": 79290,
+      "2024": 77629,
+      "2025": 77459
+    }
+  },
+  "days": {
+    "01-01": {
+      "births": 9789,
+      "occurrences": 57
+    },
+    "01-02": {
+      "births": 11022,
+      "occurrences": 57
+    },
+    "01-03": {
+      "births": 12574,
+      "occurrences": 57
+    },
+    "01-04": {
+      "births": 12529,
+      "occurrences": 57
+    },
+    "01-05": {
+      "births": 12639,
+      "occurrences": 57
+    },
+    "01-06": {
+      "births": 12514,
+      "occurrences": 57
+    },
+    "01-07": {
+      "births": 12198,
+      "occurrences": 57
+    },
+    "01-08": {
+      "births": 12341,
+      "occurrences": 57
+    },
+    "01-09": {
+      "births": 12388,
+      "occurrences": 57
+    },
+    "01-10": {
+      "births": 12614,
+      "occurrences": 57
+    },
+    "01-11": {
+      "births": 12526,
+      "occurrences": 57
+    },
+    "01-12": {
+      "births": 12545,
+      "occurrences": 57
+    },
+    "01-13": {
+      "births": 12355,
+      "occurrences": 57
+    },
+    "01-14": {
+      "births": 12374,
+      "occurrences": 57
+    },
+    "01-15": {
+      "births": 12507,
+      "occurrences": 57
+    },
+    "01-16": {
+      "births": 12548,
+      "occurrences": 57
+    },
+    "01-17": {
+      "births": 12498,
+      "occurrences": 57
+    },
+    "01-18": {
+      "births": 12682,
+      "occurrences": 57
+    },
+    "01-19": {
+      "births": 12284,
+      "occurrences": 57
+    },
+    "01-20": {
+      "births": 12649,
+      "occurrences": 57
+    },
+    "01-21": {
+      "births": 12653,
+      "occurrences": 57
+    },
+    "01-22": {
+      "births": 12839,
+      "occurrences": 57
+    },
+    "01-23": {
+      "births": 12770,
+      "occurrences": 57
+    },
+    "01-24": {
+      "births": 12779,
+      "occurrences": 57
+    },
+    "01-25": {
+      "births": 12575,
+      "occurrences": 57
+    },
+    "01-26": {
+      "births": 12530,
+      "occurrences": 57
+    },
+    "01-27": {
+      "births": 12464,
+      "occurrences": 57
+    },
+    "01-28": {
+      "births": 12490,
+      "occurrences": 57
+    },
+    "01-29": {
+      "births": 12606,
+      "occurrences": 57
+    },
+    "01-30": {
+      "births": 12393,
+      "occurrences": 57
+    },
+    "01-31": {
+      "births": 12438,
+      "occurrences": 57
+    },
+    "02-01": {
+      "births": 12767,
+      "occurrences": 57
+    },
+    "02-02": {
+      "births": 12782,
+      "occurrences": 57
+    },
+    "02-03": {
+      "births": 12742,
+      "occurrences": 57
+    },
+    "02-04": {
+      "births": 12672,
+      "occurrences": 57
+    },
+    "02-05": {
+      "births": 12702,
+      "occurrences": 57
+    },
+    "02-06": {
+      "births": 12553,
+      "occurrences": 57
+    },
+    "02-07": {
+      "births": 12890,
+      "occurrences": 57
+    },
+    "02-08": {
+      "births": 12723,
+      "occurrences": 57
+    },
+    "02-09": {
+      "births": 12542,
+      "occurrences": 57
+    },
+    "02-10": {
+      "births": 12876,
+      "occurrences": 57
+    },
+    "02-11": {
+      "births": 12636,
+      "occurrences": 57
+    },
+    "02-12": {
+      "births": 13049,
+      "occurrences": 57
+    },
+    "02-13": {
+      "births": 12311,
+      "occurrences": 57
+    },
+    "02-14": {
+      "births": 12849,
+      "occurrences": 57
+    },
+    "02-15": {
+      "births": 12810,
+      "occurrences": 57
+    },
+    "02-16": {
+      "births": 12761,
+      "occurrences": 57
+    },
+    "02-17": {
+      "births": 12587,
+      "occurrences": 57
+    },
+    "02-18": {
+      "births": 12534,
+      "occurrences": 57
+    },
+    "02-19": {
+      "births": 12876,
+      "occurrences": 57
+    },
+    "02-20": {
+      "births": 12757,
+      "occurrences": 57
+    },
+    "02-21": {
+      "births": 12496,
+      "occurrences": 57
+    },
+    "02-22": {
+      "births": 12886,
+      "occurrences": 57
+    },
+    "02-23": {
+      "births": 12645,
+      "occurrences": 57
+    },
+    "02-24": {
+      "births": 12920,
+      "occurrences": 57
+    },
+    "02-25": {
+      "births": 12738,
+      "occurrences": 57
+    },
+    "02-26": {
+      "births": 12795,
+      "occurrences": 57
+    },
+    "02-27": {
+      "births": 12611,
+      "occurrences": 57
+    },
+    "02-28": {
+      "births": 13013,
+      "occurrences": 57
+    },
+    "02-29": {
+      "births": 2795,
+      "occurrences": 14
+    },
+    "03-01": {
+      "births": 13176,
+      "occurrences": 57
+    },
+    "03-02": {
+      "births": 12861,
+      "occurrences": 57
+    },
+    "03-03": {
+      "births": 12979,
+      "occurrences": 57
+    },
+    "03-04": {
+      "births": 12915,
+      "occurrences": 57
+    },
+    "03-05": {
+      "births": 12649,
+      "occurrences": 57
+    },
+    "03-06": {
+      "births": 12884,
+      "occurrences": 57
+    },
+    "03-07": {
+      "births": 12632,
+      "occurrences": 57
+    },
+    "03-08": {
+      "births": 12830,
+      "occurrences": 57
+    },
+    "03-09": {
+      "births": 12468,
+      "occurrences": 57
+    },
+    "03-10": {
+      "births": 12928,
+      "occurrences": 57
+    },
+    "03-11": {
+      "births": 12669,
+      "occurrences": 57
+    },
+    "03-12": {
+      "births": 12702,
+      "occurrences": 57
+    },
+    "03-13": {
+      "births": 12666,
+      "occurrences": 57
+    },
+    "03-14": {
+      "births": 12976,
+      "occurrences": 57
+    },
+    "03-15": {
+      "births": 12693,
+      "occurrences": 57
+    },
+    "03-16": {
+      "births": 12761,
+      "occurrences": 57
+    },
+    "03-17": {
+      "births": 12731,
+      "occurrences": 57
+    },
+    "03-18": {
+      "births": 12661,
+      "occurrences": 57
+    },
+    "03-19": {
+      "births": 12550,
+      "occurrences": 57
+    },
+    "03-20": {
+      "births": 12882,
+      "occurrences": 57
+    },
+    "03-21": {
+      "births": 12666,
+      "occurrences": 57
+    },
+    "03-22": {
+      "births": 12928,
+      "occurrences": 57
+    },
+    "03-23": {
+      "births": 12801,
+      "occurrences": 57
+    },
+    "03-24": {
+      "births": 12474,
+      "occurrences": 57
+    },
+    "03-25": {
+      "births": 12727,
+      "occurrences": 57
+    },
+    "03-26": {
+      "births": 12780,
+      "occurrences": 57
+    },
+    "03-27": {
+      "births": 12647,
+      "occurrences": 57
+    },
+    "03-28": {
+      "births": 12505,
+      "occurrences": 57
+    },
+    "03-29": {
+      "births": 12771,
+      "occurrences": 57
+    },
+    "03-30": {
+      "births": 12970,
+      "occurrences": 57
+    },
+    "03-31": {
+      "births": 12755,
+      "occurrences": 57
+    },
+    "04-01": {
+      "births": 12136,
+      "occurrences": 57
+    },
+    "04-02": {
+      "births": 12663,
+      "occurrences": 57
+    },
+    "04-03": {
+      "births": 12793,
+      "occurrences": 57
+    },
+    "04-04": {
+      "births": 12820,
+      "occurrences": 57
+    },
+    "04-05": {
+      "births": 12616,
+      "occurrences": 57
+    },
+    "04-06": {
+      "births": 12597,
+      "occurrences": 57
+    },
+    "04-07": {
+      "births": 12687,
+      "occurrences": 57
+    },
+    "04-08": {
+      "births": 13034,
+      "occurrences": 57
+    },
+    "04-09": {
+      "births": 12574,
+      "occurrences": 57
+    },
+    "04-10": {
+      "births": 12786,
+      "occurrences": 57
+    },
+    "04-11": {
+      "births": 12781,
+      "occurrences": 57
+    },
+    "04-12": {
+      "births": 12768,
+      "occurrences": 57
+    },
+    "04-13": {
+      "births": 12518,
+      "occurrences": 57
+    },
+    "04-14": {
+      "births": 12815,
+      "occurrences": 57
+    },
+    "04-15": {
+      "births": 12800,
+      "occurrences": 57
+    },
+    "04-16": {
+      "births": 12741,
+      "occurrences": 57
+    },
+    "04-17": {
+      "births": 12746,
+      "occurrences": 57
+    },
+    "04-18": {
+      "births": 12832,
+      "occurrences": 57
+    },
+    "04-19": {
+      "births": 12918,
+      "occurrences": 57
+    },
+    "04-20": {
+      "births": 12973,
+      "occurrences": 57
+    },
+    "04-21": {
+      "births": 13042,
+      "occurrences": 57
+    },
+    "04-22": {
+      "births": 13224,
+      "occurrences": 57
+    },
+    "04-23": {
+      "births": 12849,
+      "occurrences": 57
+    },
+    "04-24": {
+      "births": 13271,
+      "occurrences": 57
+    },
+    "04-25": {
+      "births": 13143,
+      "occurrences": 57
+    },
+    "04-26": {
+      "births": 13208,
+      "occurrences": 57
+    },
+    "04-27": {
+      "births": 13167,
+      "occurrences": 57
+    },
+    "04-28": {
+      "births": 13232,
+      "occurrences": 57
+    },
+    "04-29": {
+      "births": 13186,
+      "occurrences": 57
+    },
+    "04-30": {
+      "births": 13088,
+      "occurrences": 57
+    },
+    "05-01": {
+      "births": 12945,
+      "occurrences": 57
+    },
+    "05-02": {
+      "births": 13302,
+      "occurrences": 57
+    },
+    "05-03": {
+      "births": 13406,
+      "occurrences": 57
+    },
+    "05-04": {
+      "births": 12771,
+      "occurrences": 57
+    },
+    "05-05": {
+      "births": 13424,
+      "occurrences": 57
+    },
+    "05-06": {
+      "births": 13192,
+      "occurrences": 57
+    },
+    "05-07": {
+      "births": 12994,
+      "occurrences": 57
+    },
+    "05-08": {
+      "births": 13273,
+      "occurrences": 57
+    },
+    "05-09": {
+      "births": 12961,
+      "occurrences": 57
+    },
+    "05-10": {
+      "births": 13195,
+      "occurrences": 57
+    },
+    "05-11": {
+      "births": 12913,
+      "occurrences": 57
+    },
+    "05-12": {
+      "births": 13111,
+      "occurrences": 57
+    },
+    "05-13": {
+      "births": 12716,
+      "occurrences": 57
+    },
+    "05-14": {
+      "births": 12953,
+      "occurrences": 57
+    },
+    "05-15": {
+      "births": 12987,
+      "occurrences": 57
+    },
+    "05-16": {
+      "births": 12959,
+      "occurrences": 57
+    },
+    "05-17": {
+      "births": 12826,
+      "occurrences": 57
+    },
+    "05-18": {
+      "births": 12868,
+      "occurrences": 57
+    },
+    "05-19": {
+      "births": 13029,
+      "occurrences": 57
+    },
+    "05-20": {
+      "births": 12777,
+      "occurrences": 57
+    },
+    "05-21": {
+      "births": 12858,
+      "occurrences": 57
+    },
+    "05-22": {
+      "births": 12860,
+      "occurrences": 57
+    },
+    "05-23": {
+      "births": 12738,
+      "occurrences": 57
+    },
+    "05-24": {
+      "births": 12609,
+      "occurrences": 57
+    },
+    "05-25": {
+      "births": 12787,
+      "occurrences": 57
+    },
+    "05-26": {
+      "births": 12763,
+      "occurrences": 57
+    },
+    "05-27": {
+      "births": 12534,
+      "occurrences": 57
+    },
+    "05-28": {
+      "births": 12469,
+      "occurrences": 57
+    },
+    "05-29": {
+      "births": 12678,
+      "occurrences": 57
+    },
+    "05-30": {
+      "births": 12583,
+      "occurrences": 57
+    },
+    "05-31": {
+      "births": 12299,
+      "occurrences": 57
+    },
+    "06-01": {
+      "births": 12719,
+      "occurrences": 57
+    },
+    "06-02": {
+      "births": 12951,
+      "occurrences": 57
+    },
+    "06-03": {
+      "births": 12724,
+      "occurrences": 57
+    },
+    "06-04": {
+      "births": 12811,
+      "occurrences": 57
+    },
+    "06-05": {
+      "births": 12750,
+      "occurrences": 57
+    },
+    "06-06": {
+      "births": 13200,
+      "occurrences": 57
+    },
+    "06-07": {
+      "births": 12744,
+      "occurrences": 57
+    },
+    "06-08": {
+      "births": 12791,
+      "occurrences": 57
+    },
+    "06-09": {
+      "births": 12870,
+      "occurrences": 57
+    },
+    "06-10": {
+      "births": 13237,
+      "occurrences": 57
+    },
+    "06-11": {
+      "births": 12801,
+      "occurrences": 57
+    },
+    "06-12": {
+      "births": 13239,
+      "occurrences": 57
+    },
+    "06-13": {
+      "births": 12734,
+      "occurrences": 57
+    },
+    "06-14": {
+      "births": 13182,
+      "occurrences": 57
+    },
+    "06-15": {
+      "births": 12887,
+      "occurrences": 57
+    },
+    "06-16": {
+      "births": 13235,
+      "occurrences": 57
+    },
+    "06-17": {
+      "births": 13024,
+      "occurrences": 57
+    },
+    "06-18": {
+      "births": 12829,
+      "occurrences": 57
+    },
+    "06-19": {
+      "births": 12870,
+      "occurrences": 57
+    },
+    "06-20": {
+      "births": 13185,
+      "occurrences": 57
+    },
+    "06-21": {
+      "births": 13216,
+      "occurrences": 57
+    },
+    "06-22": {
+      "births": 13077,
+      "occurrences": 57
+    },
+    "06-23": {
+      "births": 13089,
+      "occurrences": 57
+    },
+    "06-24": {
+      "births": 13024,
+      "occurrences": 57
+    },
+    "06-25": {
+      "births": 13004,
+      "occurrences": 57
+    },
+    "06-26": {
+      "births": 13209,
+      "occurrences": 57
+    },
+    "06-27": {
+      "births": 13035,
+      "occurrences": 57
+    },
+    "06-28": {
+      "births": 12977,
+      "occurrences": 57
+    },
+    "06-29": {
+      "births": 12810,
+      "occurrences": 57
+    },
+    "06-30": {
+      "births": 13111,
+      "occurrences": 57
+    },
+    "07-01": {
+      "births": 13377,
+      "occurrences": 57
+    },
+    "07-02": {
+      "births": 13244,
+      "occurrences": 57
+    },
+    "07-03": {
+      "births": 13192,
+      "occurrences": 57
+    },
+    "07-04": {
+      "births": 13273,
+      "occurrences": 57
+    },
+    "07-05": {
+      "births": 13301,
+      "occurrences": 57
+    },
+    "07-06": {
+      "births": 13258,
+      "occurrences": 57
+    },
+    "07-07": {
+      "births": 13353,
+      "occurrences": 57
+    },
+    "07-08": {
+      "births": 12964,
+      "occurrences": 57
+    },
+    "07-09": {
+      "births": 13108,
+      "occurrences": 57
+    },
+    "07-10": {
+      "births": 13310,
+      "occurrences": 57
+    },
+    "07-11": {
+      "births": 13148,
+      "occurrences": 57
+    },
+    "07-12": {
+      "births": 13170,
+      "occurrences": 57
+    },
+    "07-13": {
+      "births": 12768,
+      "occurrences": 57
+    },
+    "07-14": {
+      "births": 13103,
+      "occurrences": 57
+    },
+    "07-15": {
+      "births": 12956,
+      "occurrences": 57
+    },
+    "07-16": {
+      "births": 13034,
+      "occurrences": 57
+    },
+    "07-17": {
+      "births": 13140,
+      "occurrences": 57
+    },
+    "07-18": {
+      "births": 13081,
+      "occurrences": 57
+    },
+    "07-19": {
+      "births": 12865,
+      "occurrences": 57
+    },
+    "07-20": {
+      "births": 12912,
+      "occurrences": 57
+    },
+    "07-21": {
+      "births": 12933,
+      "occurrences": 57
+    },
+    "07-22": {
+      "births": 12739,
+      "occurrences": 57
+    },
+    "07-23": {
+      "births": 12955,
+      "occurrences": 57
+    },
+    "07-24": {
+      "births": 12961,
+      "occurrences": 57
+    },
+    "07-25": {
+      "births": 13052,
+      "occurrences": 57
+    },
+    "07-26": {
+      "births": 12960,
+      "occurrences": 57
+    },
+    "07-27": {
+      "births": 13080,
+      "occurrences": 57
+    },
+    "07-28": {
+      "births": 12984,
+      "occurrences": 57
+    },
+    "07-29": {
+      "births": 12887,
+      "occurrences": 57
+    },
+    "07-30": {
+      "births": 12953,
+      "occurrences": 57
+    },
+    "07-31": {
+      "births": 13144,
+      "occurrences": 57
+    },
+    "08-01": {
+      "births": 11489,
+      "occurrences": 57
+    },
+    "08-02": {
+      "births": 12299,
+      "occurrences": 57
+    },
+    "08-03": {
+      "births": 12798,
+      "occurrences": 57
+    },
+    "08-04": {
+      "births": 12771,
+      "occurrences": 57
+    },
+    "08-05": {
+      "births": 12719,
+      "occurrences": 57
+    },
+    "08-06": {
+      "births": 12780,
+      "occurrences": 57
+    },
+    "08-07": {
+      "births": 12637,
+      "occurrences": 57
+    },
+    "08-08": {
+      "births": 13181,
+      "occurrences": 57
+    },
+    "08-09": {
+      "births": 12440,
+      "occurrences": 57
+    },
+    "08-10": {
+      "births": 12676,
+      "occurrences": 57
+    },
+    "08-11": {
+      "births": 12800,
+      "occurrences": 57
+    },
+    "08-12": {
+      "births": 12926,
+      "occurrences": 57
+    },
+    "08-13": {
+      "births": 12295,
+      "occurrences": 57
+    },
+    "08-14": {
+      "births": 12818,
+      "occurrences": 57
+    },
+    "08-15": {
+      "births": 12355,
+      "occurrences": 57
+    },
+    "08-16": {
+      "births": 12749,
+      "occurrences": 57
+    },
+    "08-17": {
+      "births": 12557,
+      "occurrences": 57
+    },
+    "08-18": {
+      "births": 12829,
+      "occurrences": 57
+    },
+    "08-19": {
+      "births": 12783,
+      "occurrences": 57
+    },
+    "08-20": {
+      "births": 12755,
+      "occurrences": 57
+    },
+    "08-21": {
+      "births": 12595,
+      "occurrences": 57
+    },
+    "08-22": {
+      "births": 12438,
+      "occurrences": 57
+    },
+    "08-23": {
+      "births": 12642,
+      "occurrences": 57
+    },
+    "08-24": {
+      "births": 12639,
+      "occurrences": 57
+    },
+    "08-25": {
+      "births": 12535,
+      "occurrences": 57
+    },
+    "08-26": {
+      "births": 12372,
+      "occurrences": 57
+    },
+    "08-27": {
+      "births": 12496,
+      "occurrences": 57
+    },
+    "08-28": {
+      "births": 12578,
+      "occurrences": 57
+    },
+    "08-29": {
+      "births": 12464,
+      "occurrences": 57
+    },
+    "08-30": {
+      "births": 12319,
+      "occurrences": 57
+    },
+    "08-31": {
+      "births": 12469,
+      "occurrences": 57
+    },
+    "09-01": {
+      "births": 12826,
+      "occurrences": 57
+    },
+    "09-02": {
+      "births": 12477,
+      "occurrences": 57
+    },
+    "09-03": {
+      "births": 12605,
+      "occurrences": 57
+    },
+    "09-04": {
+      "births": 12407,
+      "occurrences": 57
+    },
+    "09-05": {
+      "births": 12630,
+      "occurrences": 57
+    },
+    "09-06": {
+      "births": 12282,
+      "occurrences": 57
+    },
+    "09-07": {
+      "births": 12506,
+      "occurrences": 57
+    },
+    "09-08": {
+      "births": 12705,
+      "occurrences": 57
+    },
+    "09-09": {
+      "births": 13139,
+      "occurrences": 57
+    },
+    "09-10": {
+      "births": 12768,
+      "occurrences": 57
+    },
+    "09-11": {
+      "births": 12443,
+      "occurrences": 57
+    },
+    "09-12": {
+      "births": 12917,
+      "occurrences": 57
+    },
+    "09-13": {
+      "births": 12669,
+      "occurrences": 57
+    },
+    "09-14": {
+      "births": 12846,
+      "occurrences": 57
+    },
+    "09-15": {
+      "births": 13057,
+      "occurrences": 57
+    },
+    "09-16": {
+      "births": 13086,
+      "occurrences": 57
+    },
+    "09-17": {
+      "births": 13050,
+      "occurrences": 57
+    },
+    "09-18": {
+      "births": 13148,
+      "occurrences": 57
+    },
+    "09-19": {
+      "births": 13345,
+      "occurrences": 57
+    },
+    "09-20": {
+      "births": 13150,
+      "occurrences": 57
+    },
+    "09-21": {
+      "births": 13548,
+      "occurrences": 57
+    },
+    "09-22": {
+      "births": 13192,
+      "occurrences": 57
+    },
+    "09-23": {
+      "births": 13205,
+      "occurrences": 57
+    },
+    "09-24": {
+      "births": 13446,
+      "occurrences": 57
+    },
+    "09-25": {
+      "births": 13808,
+      "occurrences": 57
+    },
+    "09-26": {
+      "births": 13569,
+      "occurrences": 57
+    },
+    "09-27": {
+      "births": 13182,
+      "occurrences": 57
+    },
+    "09-28": {
+      "births": 13167,
+      "occurrences": 57
+    },
+    "09-29": {
+      "births": 13127,
+      "occurrences": 57
+    },
+    "09-30": {
+      "births": 13225,
+      "occurrences": 57
+    },
+    "10-01": {
+      "births": 13223,
+      "occurrences": 57
+    },
+    "10-02": {
+      "births": 12802,
+      "occurrences": 57
+    },
+    "10-03": {
+      "births": 12871,
+      "occurrences": 57
+    },
+    "10-04": {
+      "births": 12617,
+      "occurrences": 57
+    },
+    "10-05": {
+      "births": 12375,
+      "occurrences": 57
+    },
+    "10-06": {
+      "births": 12471,
+      "occurrences": 57
+    },
+    "10-07": {
+      "births": 12426,
+      "occurrences": 57
+    },
+    "10-08": {
+      "births": 12289,
+      "occurrences": 57
+    },
+    "10-09": {
+      "births": 12063,
+      "occurrences": 57
+    },
+    "10-10": {
+      "births": 12468,
+      "occurrences": 57
+    },
+    "10-11": {
+      "births": 12098,
+      "occurrences": 57
+    },
+    "10-12": {
+      "births": 11900,
+      "occurrences": 57
+    },
+    "10-13": {
+      "births": 11672,
+      "occurrences": 57
+    },
+    "10-14": {
+      "births": 11830,
+      "occurrences": 57
+    },
+    "10-15": {
+      "births": 11805,
+      "occurrences": 57
+    },
+    "10-16": {
+      "births": 12096,
+      "occurrences": 57
+    },
+    "10-17": {
+      "births": 11955,
+      "occurrences": 57
+    },
+    "10-18": {
+      "births": 12082,
+      "occurrences": 57
+    },
+    "10-19": {
+      "births": 11817,
+      "occurrences": 57
+    },
+    "10-20": {
+      "births": 12134,
+      "occurrences": 57
+    },
+    "10-21": {
+      "births": 11851,
+      "occurrences": 57
+    },
+    "10-22": {
+      "births": 11883,
+      "occurrences": 57
+    },
+    "10-23": {
+      "births": 11821,
+      "occurrences": 57
+    },
+    "10-24": {
+      "births": 11949,
+      "occurrences": 57
+    },
+    "10-25": {
+      "births": 11899,
+      "occurrences": 57
+    },
+    "10-26": {
+      "births": 11939,
+      "occurrences": 57
+    },
+    "10-27": {
+      "births": 11949,
+      "occurrences": 57
+    },
+    "10-28": {
+      "births": 12053,
+      "occurrences": 57
+    },
+    "10-29": {
+      "births": 11926,
+      "occurrences": 57
+    },
+    "10-30": {
+      "births": 11984,
+      "occurrences": 57
+    },
+    "10-31": {
+      "births": 11839,
+      "occurrences": 57
+    },
+    "11-01": {
+      "births": 11329,
+      "occurrences": 57
+    },
+    "11-02": {
+      "births": 11550,
+      "occurrences": 57
+    },
+    "11-03": {
+      "births": 11906,
+      "occurrences": 57
+    },
+    "11-04": {
+      "births": 12028,
+      "occurrences": 57
+    },
+    "11-05": {
+      "births": 12165,
+      "occurrences": 57
+    },
+    "11-06": {
+      "births": 12028,
+      "occurrences": 57
+    },
+    "11-07": {
+      "births": 11835,
+      "occurrences": 57
+    },
+    "11-08": {
+      "births": 11927,
+      "occurrences": 57
+    },
+    "11-09": {
+      "births": 11865,
+      "occurrences": 57
+    },
+    "11-10": {
+      "births": 11996,
+      "occurrences": 57
+    },
+    "11-11": {
+      "births": 12171,
+      "occurrences": 57
+    },
+    "11-12": {
+      "births": 12017,
+      "occurrences": 57
+    },
+    "11-13": {
+      "births": 11718,
+      "occurrences": 57
+    },
+    "11-14": {
+      "births": 11949,
+      "occurrences": 57
+    },
+    "11-15": {
+      "births": 12031,
+      "occurrences": 57
+    },
+    "11-16": {
+      "births": 11672,
+      "occurrences": 57
+    },
+    "11-17": {
+      "births": 11707,
+      "occurrences": 57
+    },
+    "11-18": {
+      "births": 11773,
+      "occurrences": 57
+    },
+    "11-19": {
+      "births": 11656,
+      "occurrences": 57
+    },
+    "11-20": {
+      "births": 11856,
+      "occurrences": 57
+    },
+    "11-21": {
+      "births": 11717,
+      "occurrences": 57
+    },
+    "11-22": {
+      "births": 11940,
+      "occurrences": 57
+    },
+    "11-23": {
+      "births": 11627,
+      "occurrences": 57
+    },
+    "11-24": {
+      "births": 11783,
+      "occurrences": 57
+    },
+    "11-25": {
+      "births": 11736,
+      "occurrences": 57
+    },
+    "11-26": {
+      "births": 11857,
+      "occurrences": 57
+    },
+    "11-27": {
+      "births": 11761,
+      "occurrences": 57
+    },
+    "11-28": {
+      "births": 11747,
+      "occurrences": 57
+    },
+    "11-29": {
+      "births": 11601,
+      "occurrences": 57
+    },
+    "11-30": {
+      "births": 11437,
+      "occurrences": 57
+    },
+    "12-01": {
+      "births": 11917,
+      "occurrences": 57
+    },
+    "12-02": {
+      "births": 11879,
+      "occurrences": 57
+    },
+    "12-03": {
+      "births": 11698,
+      "occurrences": 57
+    },
+    "12-04": {
+      "births": 11591,
+      "occurrences": 57
+    },
+    "12-05": {
+      "births": 11613,
+      "occurrences": 57
+    },
+    "12-06": {
+      "births": 11589,
+      "occurrences": 57
+    },
+    "12-07": {
+      "births": 11629,
+      "occurrences": 57
+    },
+    "12-08": {
+      "births": 11469,
+      "occurrences": 57
+    },
+    "12-09": {
+      "births": 11871,
+      "occurrences": 57
+    },
+    "12-10": {
+      "births": 12014,
+      "occurrences": 57
+    },
+    "12-11": {
+      "births": 11857,
+      "occurrences": 57
+    },
+    "12-12": {
+      "births": 12228,
+      "occurrences": 57
+    },
+    "12-13": {
+      "births": 11776,
+      "occurrences": 57
+    },
+    "12-14": {
+      "births": 12109,
+      "occurrences": 57
+    },
+    "12-15": {
+      "births": 12485,
+      "occurrences": 57
+    },
+    "12-16": {
+      "births": 12335,
+      "occurrences": 57
+    },
+    "12-17": {
+      "births": 12227,
+      "occurrences": 57
+    },
+    "12-18": {
+      "births": 12367,
+      "occurrences": 57
+    },
+    "12-19": {
+      "births": 12122,
+      "occurrences": 57
+    },
+    "12-20": {
+      "births": 12290,
+      "occurrences": 57
+    },
+    "12-21": {
+      "births": 11888,
+      "occurrences": 57
+    },
+    "12-22": {
+      "births": 11875,
+      "occurrences": 57
+    },
+    "12-23": {
+      "births": 11492,
+      "occurrences": 57
+    },
+    "12-24": {
+      "births": 10356,
+      "occurrences": 57
+    },
+    "12-25": {
+      "births": 9183,
+      "occurrences": 57
+    },
+    "12-26": {
+      "births": 10227,
+      "occurrences": 57
+    },
+    "12-27": {
+      "births": 12192,
+      "occurrences": 57
+    },
+    "12-28": {
+      "births": 12120,
+      "occurrences": 57
+    },
+    "12-29": {
+      "births": 11800,
+      "occurrences": 57
+    },
+    "12-30": {
+      "births": 11485,
+      "occurrences": 57
+    },
+    "12-31": {
+      "births": 10443,
+      "occurrences": 57
+    }
+  }
+}
