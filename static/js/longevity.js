@@ -228,7 +228,7 @@
         byId('quit-field').hidden = byId('smoking').value !== 'former';
         byId('weight-slider').max = Math.max(200, optionalNumber('weight') || 0);
         byId('weight-slider').value = optionalNumber('weight') || 80;
-        const body = core.personalEstimate(config.data, config.heuristic, profile.sex, profile.age, {
+        const body = core.personalEstimate(config.data, config.heuristic, byId('sex').value, validAge() ?? profile.age, {
             height: optionalNumber('height'), weight: optionalNumber('weight')
         }, config.smartBmi);
         byId('bmi-value').textContent = body.bmi === null ? text('bmiHelp') : text('bmiValue', {bmi: number(body.bmi)});

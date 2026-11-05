@@ -91,6 +91,14 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and po
         assert.equal(await page.locator('#longevity-sbmi-value').innerText(), '36 / 70');
         assert.equal(await page.locator('#longevity-smart-bmi a').getAttribute('href'), route.startsWith('de/')
             ? 'https://de.smartbmicalculator.com/' : 'https://fr.smartbmicalculator.com/');
+        await page.locator('#longevity-previous-step').click();
+        // One input event must update the reference age immediately, before blur/change.
+        await page.locator('#longevity-age').evaluate(input => { input.value = '80'; input.dispatchEvent(new Event('input', {bubbles: true})); });
+        assert.equal(await page.locator('#longevity-sbmi-value').textContent(), '35 / 70');
+        assert.match(await page.locator('#longevity-years').innerText(), /^9[.,]5$/);
+        await page.locator('#longevity-age').evaluate(input => { input.value = '60'; input.dispatchEvent(new Event('input', {bubbles: true})); });
+        assert.equal(await page.locator('#longevity-sbmi-value').textContent(), '36 / 70');
+        await page.locator('#longevity-next-step').click();
         await page.locator('#longevity-next-step').click();
         await page.locator('[data-control="smoking"][data-value="yes"]').click();
         await page.locator('#longevity-cigarettes').fill('20');
