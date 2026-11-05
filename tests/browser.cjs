@@ -76,7 +76,8 @@ test('DE/FR longevity: mobile profile steps, reversible what-if scenarios and or
         assert.equal(await page.locator('.steps-container .step-card').count(), 3);
         assert.equal(await page.locator('.longevity-links .info-step-card #longevity-sources').count(), 1);
         assert.equal(await page.locator('.data-status').count(), 1);
-        await page.locator('#longevity-edit-profile').click();
+        await page.locator('.page-header-cta').click();
+        assert.equal(await page.locator('#longevity-profile-dialog').isVisible(), true);
         await page.locator('#longevity-age').fill('60');
         await page.locator('#longevity-next-step').click();
         await page.locator('#longevity-height').fill('180');

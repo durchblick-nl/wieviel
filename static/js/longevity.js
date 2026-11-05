@@ -313,6 +313,7 @@
     byId('close-editor').addEventListener('click', () => closeEditor(false));
     byId('profile-dialog').addEventListener('cancel', event => { event.preventDefault(); closeEditor(false); });
     byId('edit-profile').addEventListener('click', event => openEditor('profile', event.currentTarget));
+    document.querySelector('.page-header-cta').addEventListener('click', event => { event.preventDefault(); openEditor('profile', event.currentTarget); });
     byId('weight-slider').addEventListener('input', () => { byId('weight').value = byId('weight-slider').value; changeForm(); });
     for (const button of document.querySelectorAll('[data-scenario]')) button.addEventListener('click', () => {
         const type = button.dataset.scenario;

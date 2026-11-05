@@ -8,7 +8,7 @@
 {{- if .Params -}}
     {{- /* Page context */ -}}
     {{- $icon = .Params.icon | default "🔢" -}}
-    {{- $title = .Title -}}
+    {{- $title = .Params.heading | default .Title -}}
     {{- $subtitle = .Params.subtitle -}}
     {{- $homePath = .Site.Language.Params.homePath -}}
     {{- $allToolsText = .Site.Language.Params.allToolsText -}}
@@ -26,6 +26,9 @@
     {{- if $subtitle }}
     <p class="page-subtitle">{{ $subtitle }}</p>
     {{- end }}
+    {{- if .Params }}{{- with .Params.headerCta }}
+    <a class="page-header-cta" href="{{ $.Params.headerCtaTarget }}">{{ . }}</a>
+    {{- end }}{{- end }}
 </div>
 
 <nav class="tool-nav">
