@@ -12,7 +12,7 @@ dataStatusPosition: "content"
 icon: "🌱"
 ogTitle: "Combien me reste-t-il ?"
 ogImage: "https://calcule.ch/og/esperance-de-vie.png"
-lastmod: "2026-11-05"
+lastmod: "2026-11-06"
 ---
 
 <section class="seo-content">
@@ -24,6 +24,8 @@ lastmod: "2026-11-05"
         <details class="faq-item"><summary>Comment mes réponses modifient-elles le chiffre ?</summary><p>Les quatre facteurs de mode de vie modifient ensemble l’intensité annuelle de mortalité avec les coefficients publiés de MPoRT. Une courbe de survie et les années restantes sont ensuite calculées. Smart BMI ajoute notre correction expérimentale limitée du poids. Les comparaisons individuelles ne s’additionnent pas et ne prouvent aucun gain personnel de vie.</p></details>
         <details class="faq-item"><summary>Un mariage me ferait-il gagner des années ?</summary><p>Les données montrent une association entre état civil et espérance de vie. Les groupes diffèrent aussi par la santé, les ressources, les habitudes et le soutien reçu. Elles ne permettent pas de convertir un mariage en un gain personnel d’années de vie.</p></details>
         <details class="faq-item"><summary>Mes réponses sont-elles enregistrées ?</summary><p>Le calcul s’effectue localement dans le navigateur. Les choix ne sont ni conservés durablement ni ajoutés à l’URL. Le calculateur ne transmet pas de réponses dans les événements d’analyse. L’analyse générale du site nécessite un consentement.</p></details>
+        <details class="faq-item" id="longevity-development"><summary>Et la longévité des parents, les dents et les tests physiques ?</summary><p>Nous étudions ces ajouts possibles. Ils ne modifient pas le nombre d’années actuel. Le tour de taille n’entre pas non plus dans le calcul : notre premier modèle combinant Smart BMI et taille abdominale n’a pas amélioré la prédiction dans les données de contrôle séparées. Cela ne remet pas en cause l’utilité générale de cette mesure pour la santé. <a href="https://github.com/durchblick-nl/wieviel/blob/coolify/docs/longevity/waist-analysis.md" target="_blank" rel="noopener">Méthode, résultats et limites (en allemand)</a>.</p></details>
+        <details class="faq-item" id="longevity-legacy-discount"><summary>Comment l’ancien calculateur tenait-il compte de l’âge ?</summary><p>Jusqu’à 50 ans, les anciens bonus et pénalités restaient inchangés. Ensuite, ils diminuaient de façon linéaire : 80 % à 60 ans, 40 % à 80 ans. D’autres limites s’appliquaient aussi. Nous avons isolé cette règle pour les travaux de développement ; elle ne s’ajoute pas au calcul actuel. <a href="https://github.com/durchblick-nl/wieviel/blob/coolify/docs/longevity/legacy-discount.md" target="_blank" rel="noopener">Formule originale, exemples et paramètres modifiables (en allemand)</a>.</p></details>
     </div>
 
     <h2>Une idée ancienne, revisitée</h2>
@@ -56,6 +58,7 @@ lastmod: "2026-11-05"
         <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4104704/" target="_blank" rel="noopener">Cerhan et al., 2014 : tour de taille et mortalité</a>. Association après ajustement sur l’IMC ; les différences modélisées d’âge médian de survie ne sont pas une déduction personnelle d’années. <a href="https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity" target="_blank" rel="noopener">NICE NG246</a> recommande aussi le rapport tour de taille/taille chez les adultes dont l’IMC est inférieur à 35 pour évaluer le risque. Le tour de taille ne modifie pas notre calcul actuel des années.</li>
         <li><a href="https://www.who.int/news-room/fact-sheets/detail/healthy-diet" target="_blank" rel="noopener">OMS : alimentation saine et sucres libres</a> et <a href="https://www.nhsinform.scot/healthy-living/food-and-nutrition/eating-well/eatwell-guide-how-to-eat-a-healthy-balanced-diet/" target="_blank" rel="noopener">NHS inform : jus et fruits entiers</a>. Contexte de la question sur le jus : même à 100 %, il contient des sucres libres et moins de fibres que les fruits entiers. Ces recommandations n’ajoutent pas de coefficients aux années calculées.</li>
         <li><a href="https://edoc.rki.de/handle/176904/1491" target="_blank" rel="noopener">RKI : utilisation de médicaments en Allemagne (DEGS1)</a>. Contexte selon les groupes d’âge. L’enquête porte sur les sept derniers jours, pas uniquement sur les substances prises chaque jour. Le nombre de médicaments ne modifie pas notre calcul des années.</li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/25982160/" target="_blank" rel="noopener">Leong et al., 2015 : force de préhension et mortalité (PURE)</a>. La force était mesurée avec un dynamomètre, pas par le temps de suspension à une barre. Ces résultats ne permettent pas de convertir des secondes de suspension en années de vie ; aucun coefficient de ce type n’est utilisé.</li>
     </ul>
 </div></div>
 </div>

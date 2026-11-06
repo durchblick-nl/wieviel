@@ -1,0 +1,10 @@
+{
+  "checkedOn": "2026-11-06",
+  "files": [
+    {"file": "DEMO_B.xpt", "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/DEMO_B.xpt", "sha256": "6458dc2307cee244ab6ba26f70ec78c7b842ffc68e668bc43f0ab6b9737937d9"},
+    {"file": "OHXDEN_B.xpt", "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/OHXDEN_B.xpt", "sha256": "c6bf5643e4b7d2aa61591655ed5571e694813886e9c93c00f4c15c9e0a84444a"},
+    {"file": "BAX_B.xpt", "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BAX_B.xpt", "sha256": "6a0fab12bb76c9a4dc492d18e33aae75fd5bff5173bdae273855de06e6a3ec59"},
+    {"file": "NHANES_2001_2002_MORT_2019_PUBLIC.dat", "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2001_2002_MORT_2019_PUBLIC.dat", "sha256": "2788c8c8a02995ea5686882b5fe65b4b9cd415016031525f8a3c1a3646c47f1b"}
+  ],
+  "mortalityReader": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/R_ReadInProgramAllSurveys.R"
+}

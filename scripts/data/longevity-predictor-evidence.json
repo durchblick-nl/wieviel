@@ -1,0 +1,82 @@
+{
+  "version": "teeth-balance-review-1",
+  "checkedOn": "2026-11-06",
+  "productionEligible": false,
+  "sources": {
+    "teeth2026": {
+      "doi": "10.1093/aje/kwag109",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42154524/",
+      "publisherUrl": "https://academic.oup.com/aje/article/195/10/2537/8687556",
+      "access": "abstract_and_public_supplement_via_browser_main_text_restricted",
+      "population": "NHANES 1999-2018, adults aged 40+",
+      "ageMin": 40,
+      "ageMaxVerified": null,
+      "supplementLocation": "Web_Material_kwag109.docx, Table S1 (added-sugar sensitivity model), extracted via Browser Use; not the inaccessible primary table",
+      "supplementLocalCopyVerified": false,
+      "fullyAdjustedToothLossCoefficients": [
+        {"lostMin": 0, "lostMax": 1, "hazardRatio": 1, "ci95": null},
+        {"lostMin": 2, "lostMax": 6, "hazardRatio": 1.25, "ci95": [1.07, 1.45]},
+        {"lostMin": 7, "lostMax": 14, "hazardRatio": 1.53, "ci95": [1.29, 1.82]},
+        {"lostMin": 15, "lostMax": 21, "hazardRatio": 1.79, "ci95": [1.47, 2.18]},
+        {"lostMin": 22, "lostMax": 28, "hazardRatio": 1.90, "ci95": [1.58, 2.28]}
+      ],
+      "supplementCovariates": ["age", "sex", "raceEthnicity", "education", "income", "bmi", "alcohol", "smoking", "physicalActivity", "hypertension", "hypercholesterolaemia", "cardiovascularDisease", "diabetes", "dentalVisits", "hei2020Diet", "surveyYear", "addedSugar"],
+      "fullCovariatesVerified": false,
+      "toothLossDefinitionVerifiedAgainstNaturalToothCount": false,
+      "absoluteModelVerified": false
+    },
+    "balance2022": {
+      "doi": "10.1136/bjsports-2021-105360",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35728834/",
+      "fullTextUrl": "https://immediatecaretraining.ie/Plugin/Papers/assets/pdf/ICT-Successful-10-second-one-legged.pdf",
+      "fullTextSha256": "9365dce628ab23d636c6f10273be1c15fbef003d00b4b14546029e6ba04db40c",
+      "sourceLocation": "Table 2, printed page 5; limitations and data availability, printed page 6",
+      "ageMin": 51,
+      "ageMax": 75,
+      "participants": 1702,
+      "deaths": 123,
+      "medianFollowUpYears": 7,
+      "protocol": "clinimex-10s",
+      "requiresStableGait": true,
+      "test": "Supervised, barefoot, eyes open, arms beside body, raised foot behind opposite lower leg; up to three attempts; 10 seconds on either foot suffices.",
+      "adjustedFor": ["age", "sex", "bmi", "coronaryArteryDisease", "hypertension", "dyslipidaemia", "diabetes"],
+      "notMeasured": ["smoking", "physicalActivity", "diet", "recentFalls", "balanceAffectingMedication"],
+      "failedVsPassed": {"hazardRatio": 1.84, "ci95": [1.22, 2.77], "pValue": 0.003},
+      "abstractDiscrepancy": {"ci95": [1.23, 2.78], "pValueText": "p<0.001"},
+      "individualDataAccess": "reasonable_request_to_authors",
+      "jointFitWithTeethVerified": false,
+      "absoluteModelVerified": false
+    }
+  },
+  "dataRoutes": {
+    "nhanes2001": {
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BAX_B.htm",
+      "oralFile": "OHXDEN_B",
+      "balanceFile": "BAX_B",
+      "joinKey": "SEQN",
+      "access": "public",
+      "protocol": "modified-romberg-both-feet",
+      "matchesClinimex10s": false,
+      "individualRowsDownloaded": true,
+      "publicFeasibilityReport": "docs/longevity/nhanes-public-feasibility.json"
+    },
+    "elsa": {
+      "url": "https://www.elsa-project.ac.uk/accessing-elsa-data",
+      "protocolUrl": "https://www.ucl.ac.uk/population-health-sciences/sites/population_health_sciences/files/5050_elsa_waves_2-4-6-8-9_nurse_data_user_guide.pdf",
+      "protocolLocation": "Sections 4.6-4.7, pages 14-15",
+      "protocol": "30s-one-leg-eyes-open-for-eligible-age-69-and-under",
+      "matchesClinimex10s": false,
+      "oralVariablesAndTimingVerified": false,
+      "linkedMortalityAccess": "restricted_see_elsa_access_page",
+      "individualRowsDownloaded": false
+    }
+  },
+  "releaseBlockers": [
+    "teeth_primary_model_methods_and_tooth_loss_definition_unverified",
+    "no_verified_joint_teeth_balance_lifestyle_fit",
+    "no_verified_joint_reference_distribution",
+    "no_swiss_calibration_or_external_validation_for_extension",
+    "balance_follow_up_does_not_establish_lifetime_effect",
+    "study_protocol_not_validated_as_unsupervised_home_test"
+  ]
+}
