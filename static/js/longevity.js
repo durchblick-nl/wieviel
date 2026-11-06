@@ -138,6 +138,9 @@
 
     function updatePersonal(result, answers) {
         const estimate = window.LongevitySurvival.personalEstimate(config.data, config.model, result.sex, result.age, answers, config.smartBmi);
+        const discountNote = byId('age-discount-note');
+        discountNote.hidden = !estimate.supported || estimate.lifestyleDiscountFactor >= 1 || estimate.considered - (estimate.smartBmi ? 1 : 0) === 0;
+        discountNote.textContent = text('ageDiscountNote', {percent: number(100 * estimate.lifestyleDiscountFactor, 0)});
         byId('years').textContent = number(estimate.remainingYears);
         byId('editor-estimate').textContent = text('appEditorEstimate', {years: number(estimate.remainingYears)});
         byId('expected').textContent = text('expected', {age: number(estimate.expectedAge, 1, 0)});

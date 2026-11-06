@@ -14,18 +14,18 @@ Karotten ja, Kartoffeln 2-mal/Woche, kein Alkohol, kein Rauschtrinken, 175 cm, 7
 | 40 | female | 28 | passed | 47.91 | outside_studied_age | nicht berechenbar |
 | 40 | female | 0 | failed | 47.91 | outside_studied_age | nicht berechenbar |
 | 40 | female | unbekannt | not_tested | 47.91 | unknown | nicht berechenbar |
-| 60 | male | 28 | passed | 26.58 | 1 (Studienreferenz) | nicht berechenbar |
-| 60 | male | 0 | failed | 26.58 | 1.84 (1.22-2.77) | nicht berechenbar |
-| 60 | male | unbekannt | not_tested | 26.58 | unknown | nicht berechenbar |
-| 60 | female | 28 | passed | 28.79 | 1 (Studienreferenz) | nicht berechenbar |
-| 60 | female | 0 | failed | 28.79 | 1.84 (1.22-2.77) | nicht berechenbar |
-| 60 | female | unbekannt | not_tested | 28.79 | unknown | nicht berechenbar |
-| 80 | male | 28 | passed | 10.63 | outside_studied_age | nicht berechenbar |
-| 80 | male | 0 | failed | 10.63 | outside_studied_age | nicht berechenbar |
-| 80 | male | unbekannt | not_tested | 10.63 | unknown | nicht berechenbar |
-| 80 | female | 28 | passed | 11.71 | outside_studied_age | nicht berechenbar |
-| 80 | female | 0 | failed | 11.71 | outside_studied_age | nicht berechenbar |
-| 80 | female | unbekannt | not_tested | 11.71 | unknown | nicht berechenbar |
+| 60 | male | 28 | passed | 26.27 | 1 (Studienreferenz) | nicht berechenbar |
+| 60 | male | 0 | failed | 26.27 | 1.84 (1.22-2.77) | nicht berechenbar |
+| 60 | male | unbekannt | not_tested | 26.27 | unknown | nicht berechenbar |
+| 60 | female | 28 | passed | 28.57 | 1 (Studienreferenz) | nicht berechenbar |
+| 60 | female | 0 | failed | 28.57 | 1.84 (1.22-2.77) | nicht berechenbar |
+| 60 | female | unbekannt | not_tested | 28.57 | unknown | nicht berechenbar |
+| 80 | male | 28 | passed | 9.95 | outside_studied_age | nicht berechenbar |
+| 80 | male | 0 | failed | 9.95 | outside_studied_age | nicht berechenbar |
+| 80 | male | unbekannt | not_tested | 9.95 | unknown | nicht berechenbar |
+| 80 | female | 28 | passed | 11.16 | outside_studied_age | nicht berechenbar |
+| 80 | female | 0 | failed | 11.16 | outside_studied_age | nicht berechenbar |
+| 80 | female | unbekannt | not_tested | 11.16 | unknown | nicht berechenbar |
 
 *Nur Kontrast in der Originalkohorte, kein Faktor für die bestehende Jahreszahl.
 Zahnzahl unbekannt ist nicht null Zähne; ein nicht durchgeführter Test ist kein Nichtbestehen.

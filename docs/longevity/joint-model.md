@@ -1,4 +1,4 @@
-# Gemeinsames Überlebensmodell – Version joint-survival-1
+# Gemeinsames Überlebensmodell – Version joint-survival-2
 
 Stand: 5. November 2026. Dies ist eine experimentelle Übertragung und keine validierte
 Schweizer Individualprognose. Sie ersetzt die öffentlich verwendeten additiven Jahresregeln.
@@ -179,3 +179,33 @@ es in der letzten Woche nicht vorkam. Die binäre Rechenregel ändert sich nicht
 Der Saft-Hinweis verweist auf freie Zucker und geringere Nahrungsfasern. Er verändert
 keinen Studienkoeffizienten und führt keinen erfundenen Limonaden-Koeffizienten ein.
 WHO und NHS inform sind auf beiden Sprachseiten als Ernährungskontext verlinkt.
+
+
+## Alterskompromiss – joint-survival-2 (6. November 2026)
+
+Auf ausdrücklichen Wunsch wird der extrahierte historische Altersfaktor für den
+Lebensstil verwendet. Bis 50 gilt d=1, danach d=(100−Ausgangsalter)/50. Er wirkt
+auf **positive und negative Abweichungen gemeinsam** und bleibt während der
+Integration für dieses Ausgangsalter konstant. Ein mit 40 begonnenes Szenario
+hat deshalb d=1, auch für seine späteren Kurvenpunkte. Das entspricht der Verwendung
+des heutigen Alters im historischen Term, keiner zusätzlich erfundenen jährlichen
+Abzinsung. Die individuelle Zukunft ist weiterhin eine Modellannahme.
+
+Vor der Gewichtskorrektur gilt `E_neu = E_BFS + d × (E_Lebensstil − E_BFS)`.
+Jede persönliche Kurve wird mit der rechnerisch BFS-verankerten Referenzkurve im
+selben Verhältnis gemischt. Diese konvexe Mischung bleibt monoton und zwischen
+null und eins. Im Code werden die beiden Teilkohorten gemeinsam integriert;
+Jahresintegration, Kurven und gemeinsamer Alter-99-Rest bleiben konsistent.
+Die bestehende kleine Normalisierung auf das amtliche E(x) bleibt bestehen.
+Ohne Angaben bleibt exakt der amtliche Ausgangswert samt amtlicher Kurve erhalten.
+
+Die Smart-BMI-Korrektur wird **nach** dieser Mischung mit dem bisherigen Anteil
+der BFS-Restjahre angewandt. Der gemeinsame Hazard-Multiplikator wird auf beiden
+Teilkohorten gelöst; die Form der Endkurve bleibt damit zum Ergebnis passend.
+Bei denselben SBMI-Punkten wird der bisherige Gewichtseffekt nicht nochmals um
+d vermindert. Historische Kappungen werden nicht übernommen.
+
+Das ist ein transparenter heuristischer Kompromiss, keine empirisch validierte
+Altersinteraktion. Die MPoRT-Koeffizienten selbst werden nicht verändert. Die
+synthetische Referenz und ihre Grenzen bleiben bestehen. Ein künftiges gemeinsam
+validiertes Altersmodell könnte diesen Faktor ersetzen.
