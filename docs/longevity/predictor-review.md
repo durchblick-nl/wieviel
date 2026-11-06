@@ -64,17 +64,50 @@ werden. Die Tests sperren andere Altersbereiche und abweichende Protokolle.
 | [ELSA-Zugang](https://www.elsa-project.ac.uk/accessing-elsa-data) | UKDS-Lizenz und verknüpfte Mortalitätsdaten | UKDS-Zugang benötigt; verknüpfte Mortalität zusätzlich eingeschränkt |
 | CLINIMEX-Originalstudie | Datenverfügbarkeitserklärung | Individualdaten nur auf begründete Anfrage; Zahnstatus nicht belegt |
 
-Es wurden keine Individualdaten heruntergeladen oder verknüpft. Ein passender
-gemeinsamer Datensatz ist nicht nachgewiesen. Bei ELSA sind zusätzlich Zahnvariablen,
+Auf Wunsch ausschliesslich öffentliche Quellen: Die vier anonymisierten öffentlichen
+NHANES-Dateien (Demografie, Zahnstatus, Romberg und Mortalität bis 2019) wurden
+heruntergeladen, mit SHA-256 geprüft und über eindeutige SEQN verknüpft.
+Der [reproduzierbare Prüfbericht](nhanes-public-feasibility.json) enthält nur
+aggregierte, **ungewichtete Verfügbarkeitszahlen**, keine individuellen Datensätze.
+Die Rohdateien bleiben ausserhalb des Repositorys.
+
+Von 3'486 Personen ab 40 haben 2'942 vollständig bekannte Zahnpositionen ohne
+Weisheitszähne. Bei 2'939 sind zusätzlich Mortalitätsstatus und positive
+Nachbeobachtungszeit ab Untersuchung verfügbar (1'190 Todesfälle). Mit bekanntem
+erstem Romberg-Versuch verbleiben 2'461 Personen (921 Todesfälle). Das sind noch
+keine nach Lebensstilvariablen bereinigten Modellstichproben und keine Nachweise
+zusätzlichen Prognosenutzens. Der erste Romberg-Versuch wird nur zur Abdeckung
+gezählt; er ist weder ein Gesamt-Balanceergebnis noch ein Einbeinstand.
+
+Reproduktion mit Python und pandas, nach Download der vier im Manifest genannten
+Dateien in ein Verzeichnis ausserhalb des Repositorys:
+
+```sh
+python3 scripts/profile_public_nhanes.py --data-dir /tmp/wieviel-nhanes-public
+python3 -m unittest discover -s tests -p 'test_nhanes_feasibility.py'
+```
+
+Fehlende Zahnpositionen liefern keinen Zahnzählwert; Implantate, bleibende und
+Milchzähne werden getrennt gezählt. Fehlende Versuche werden nicht als Scheitern
+interpretiert. Die Mortalitätsdatei enthält Todesbescheinigungsmerkmale für Diabetes
+und Hypertonie: Diese sind ausdrücklich **keine Ausgangsdiagnosen** und werden
+nicht importiert. Öffentliche Nachbeobachtungszeiten können zum Datenschutz
+verändert sein; dies muss eine spätere Analyse berücksichtigen.
+Stichprobendesign, Gewichte (einschliesslich Balance-Teilgewichten), weitere
+Ausgangsvariablen und Auswahlverzerrung sind vor einer Modellschätzung zu prüfen.
+
+Ein passender gemeinsamer Datensatz für den **10-Sekunden-Einbeinstand** ist weiterhin
+nicht nachgewiesen. Bei ELSA sind zusätzlich Zahnvariablen,
 Erhebungszeitpunkte, Endpunktabdeckung und Protokollübertragbarkeit zu klären.
 Keine synthetische Verbindung nicht identischer Personen aus verschiedenen Kohorten.
 
-## Konkrete Fortsetzung nach Datenzugang
+## Konkrete Fortsetzung mit öffentlichen Quellen
 
 1. Haupttext und Anhang der Zahn-Studie unabhängig prüfen; Definition und Modell
-   dokumentieren. Anfragen sind in [source-requests.md](source-requests.md) vorbereitet.
-2. Passende Personendaten samt dokumentiertem Nutzungsrecht und Endpunkten beschaffen.
-   Für ELSA zunächst von der Datenstelle die konkrete Verfügbarkeit bestätigen lassen.
+   dokumentieren. Vorbereitete Anfragen bleiben gemäss Nutzerwunsch zurückgestellt.
+2. Den öffentlichen NHANES-Weg zunächst für Zahnstatus weiter prüfen; passende
+   Lebensstilvariablen und weitere Zyklen dokumentieren. ELSA-Zugang und
+   Autorenanfragen sind zurückgestellt. Romberg nicht als Einbeinstand einsetzen.
 3. Vor Berechnung ein gemeinsames Ausgangsdatum, Altersintervall und Studienprotokoll
    festlegen. Nur Angaben vor Beginn der Nachbeobachtung verwenden. Nichtteilnahme,
    Ausschluss und Messfehler getrennt von einem negativen Ergebnis halten.
@@ -97,7 +130,7 @@ Keine synthetische Verbindung nicht identischer Personen aus verschiedenen Kohor
 
 Keine neue öffentliche Zahn-/Balancefrage, keine Lebensjahreskorrektur, keine
 biologische Alterszahl und kein Trainingsbonus. Keine Autorenmail wurde versandt,
-kein Zugang beantragt und kein Artikel gekauft. Die Entwürfe sind sofort verwendbar.
+kein Zugang beantragt und kein Artikel gekauft. Die Entwürfe bleiben zurückgestellt; es werden zunächst nur öffentliche Quellen genutzt.
 
 ## Verifikation
 
@@ -106,3 +139,6 @@ kein Zugang beantragt und kein Artikel gekauft. Die Entwürfe sind sofort verwen
 - `node --test --test-name-pattern='DE/FR longevity' tests/browser.cjs`: keine
   Forschungsfragen öffentlich; bestehender Rechner und Tastaturkorrektur funktionieren.
 - Hugo-Produktionsbuild: erfolgreich. Keine Forschungsdatei wird im Frontend geladen.
+
+- Öffentliche Datenprüfung: vier Python-Tests für Fehlwerte, Zahnkodierung,
+  Personenverknüpfung und feste Mortalitätsspalten; Rohdaten-Prüfsummen vor Import.

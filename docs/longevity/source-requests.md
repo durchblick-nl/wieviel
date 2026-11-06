@@ -1,6 +1,7 @@
 # Vorbereitete Quellen- und Datenanfragen
 
-Stand: 6. November 2026. **Entwürfe, nicht versandt.**
+Stand: 6. November 2026. **Zurückgestellt, nicht versandt.**
+Nutzerentscheidung: zunächst ausschliesslich öffentliche Quellen nutzen.
 Keine institutionelle Zugehörigkeit oder bestehende Zugangsberechtigung wird behauptet.
 Die Antwort muss Nutzungsrechte und die tatsächlich verfügbaren Unterlagen klären.
 

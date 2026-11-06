@@ -57,7 +57,8 @@
       "access": "public",
       "protocol": "modified-romberg-both-feet",
       "matchesClinimex10s": false,
-      "individualRowsDownloaded": false
+      "individualRowsDownloaded": true,
+      "publicFeasibilityReport": "docs/longevity/nhanes-public-feasibility.json"
     },
     "elsa": {
       "url": "https://www.elsa-project.ac.uk/accessing-elsa-data",
