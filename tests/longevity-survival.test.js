@@ -127,3 +127,17 @@ test('marital status no longer changes the result; alcohol initiation earns no b
         assert.equal(r.remainingYears, data.tables.male[age].remainingYears);
     }
 });
+
+
+test('separate produce and weekly potatoes reconstruct the legacy total without counting potatoes twice', () => {
+    for (const sex of ['male', 'female']) {
+        const legacy = {...profile, fruitFrequency: 4, potatoFrequency: 7};
+        const separated = {...legacy, produceFrequency: 3};
+        assert.equal(exposures(model, sex, 60, separated).fruit, exposures(model, sex, 60, legacy).fruit);
+        near(estimate(separated, 60, sex).remainingYears, estimate(legacy, 60, sex).remainingYears);
+    }
+    // Explicit new-schema unknown does not fall back to an unrelated legacy value.
+    assert.equal(exposures(model, 'male', 60, {...profile, produceFrequency: null}).fruit, undefined);
+    assert.equal(exposures(model, 'male', 60, {...profile, produceFrequency: 3, potatoFrequency: null}).fruit, undefined);
+    assert.equal(exposures(model, 'male', 60, {...profile, produceFrequency: 12, potatoFrequency: 21, juiceFrequency: 0}).fruit, 8);
+});
