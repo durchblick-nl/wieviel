@@ -149,7 +149,19 @@
 <div class="longevity-field"><label for="longevity-vigorous-minutes">{{ i18n "longevity.vigorousMinutes" }}</label><input id="longevity-vigorous-minutes" aria-describedby="longevity-vigorous-minutes-help" type="number" min="0" max="2520" step="1" inputmode="decimal" enterkeyhint="next" placeholder="—"><small id="longevity-vigorous-minutes-help">{{ i18n "longevity.vigorousHelp" }}</small></div>
 </section>
 <section data-profile-step="4" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.4" }}</h2><p>{{ i18n "longevity.appStepIntro.4" }}</p>
-<div class="longevity-field"><label for="longevity-fruit-frequency">{{ i18n "longevity.fruitFrequency" }}</label><input id="longevity-fruit-frequency" aria-describedby="longevity-fruit-frequency-help" type="number" min="0" max="12" step="0.5" inputmode="decimal" enterkeyhint="next" placeholder="—"><small id="longevity-fruit-frequency-help">{{ i18n "longevity.produceHelp" }}</small></div>
+<div class="longevity-field" role="group" aria-labelledby="longevity-produce-label" aria-describedby="longevity-fruit-frequency-help">
+<span id="longevity-produce-label" class="longevity-field-label">{{ i18n "longevity.fruitFrequency" }}</span>
+<div class="longevity-portion-grid">
+{{ range slice "0" "1" "3" "5" "7" }}
+<button type="button" class="longevity-portion-card{{ if eq . "0" }} longevity-portion-zero{{ end }}" data-control="fruit-frequency" data-value="{{ . }}" aria-pressed="false">
+{{ partial "longevity-produce-art.html" . }}
+<span><strong>{{ i18n (printf "longevity.portions.%s" .) }}</strong><small>{{ i18n (printf "longevity.portionsExample.%s" .) }}</small></span><i class="fas fa-check-circle" aria-hidden="true"></i>
+</button>
+{{ end }}
+</div>
+<details id="longevity-produce-custom" class="longevity-produce-custom"><summary>{{ i18n "longevity.portionsCustom" }}</summary><label for="longevity-fruit-frequency">{{ i18n "longevity.portionsExact" }}</label><input id="longevity-fruit-frequency" aria-describedby="longevity-fruit-frequency-help" type="number" min="0" max="12" step="0.5" inputmode="decimal" enterkeyhint="next" placeholder="—"></details>
+<small id="longevity-fruit-frequency-help">{{ i18n "longevity.produceHelp" }}</small>
+</div>
 </section>
 <section data-profile-step="5" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.5" }}</h2><p>{{ i18n "longevity.alcoholHelp" }}</p>
 <div class="longevity-field"><label for="longevity-drinks-week">{{ i18n "longevity.drinksWeek" }}</label><input id="longevity-drinks-week" type="number" min="0" max="140" step="1" inputmode="decimal" enterkeyhint="next" placeholder="—"></div>

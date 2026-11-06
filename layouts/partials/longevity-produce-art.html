@@ -1,0 +1,20 @@
+{{- $id := printf "produce-%s" . -}}
+<svg viewBox="0 0 160 100" aria-hidden="true" focusable="false">
+<defs>
+<g id="{{ $id }}-apple"><path d="M0-15C-23-30-38-8-31 14C-26 32-10 36 0 29C10 36 26 32 31 14C38-8 23-30 0-15Z" fill="#dc6252"/><path d="M-22-6C-26 0-25 9-22 13" fill="none" stroke="#f7b19a" stroke-width="5" stroke-linecap="round"/><path d="M0-16L3-30" stroke="#79543d" stroke-width="5" stroke-linecap="round"/><path d="M4-23C11-40 29-37 29-29C21-20 13-19 4-23Z" fill="#52936a"/></g>
+<g id="{{ $id }}-salad"><ellipse cy="-5" rx="31" ry="15" fill="#b8d49e"/><path d="M-25-7C-35-21-16-29-9-18C-3-36 13-30 15-17C30-26 39-10 23-4Z" fill="#559769"/><circle cx="-13" cy="-13" r="7" fill="#8cbb73"/><circle cx="10" cy="-10" r="7" fill="#df7761"/><path d="M-33-5H33C28 18 16 26 0 26S-28 18-33-5Z" fill="#c9dce0"/><path d="M-26 3H26" stroke="#edf4f1" stroke-width="4" stroke-linecap="round"/></g>
+<g id="{{ $id }}-broccoli"><path d="M-5 4L-9 30H10L6 4" fill="#91b77e"/><circle cx="-14" cy="-5" r="16" fill="#4d8c62"/><circle cy="-17" r="17" fill="#5e9e6d"/><circle cx="16" cy="-3" r="16" fill="#6aaa78"/><path d="M-9 9L0 17L10 6" fill="none" stroke="#a7c88f" stroke-width="4" stroke-linecap="round"/></g>
+<g id="{{ $id }}-berries"><circle cx="-11" cy="3" r="12" fill="#7587ac"/><circle cx="10" cy="7" r="12" fill="#586b94"/><circle cy="-12" r="12" fill="#8a9bbd"/><path d="M-4-17L0-12L5-17" fill="none" stroke="#d9e3f1" stroke-width="2"/></g>
+<g id="{{ $id }}-pepper"><path d="M-3-19C-29-29-35 22-14 27C-7 32 0 24 4 27C26 35 37-21 12-23L-3-19Z" fill="#edbb59"/><path d="M-7-21C0-25 4-29 2-34" fill="none" stroke="#57906a" stroke-width="5" stroke-linecap="round"/><path d="M5-13C15-11 16 9 9 17" fill="none" stroke="#f7d88a" stroke-width="4" stroke-linecap="round"/></g>
+</defs>
+{{ if eq . "0" }}
+<ellipse cx="80" cy="55" rx="49" ry="28" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="3"/><ellipse cx="80" cy="55" rx="35" ry="18" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="2"/><path d="M66 55H94" stroke="currentColor" stroke-opacity=".4" stroke-width="4" stroke-linecap="round"/>
+{{ else if eq . "1" }}<use href="#{{ $id }}-apple" transform="translate(80 51) scale(.95)"/>
+{{ else if eq . "3" }}
+<use href="#{{ $id }}-apple" transform="translate(34 54) scale(.65)"/><use href="#{{ $id }}-salad" transform="translate(83 58) scale(.77)"/><use href="#{{ $id }}-broccoli" transform="translate(131 55) scale(.64)"/>
+{{ else }}
+<ellipse cx="80" cy="55" rx="70" ry="39" fill="#e8eeeb"/><ellipse cx="80" cy="55" rx="59" ry="30" fill="#f9fbf7" stroke="#cadbd6" stroke-width="2"/>
+<use href="#{{ $id }}-apple" transform="translate(47 40) scale(.47)"/><use href="#{{ $id }}-salad" transform="translate(104 36) scale(.54)"/><use href="#{{ $id }}-broccoli" transform="translate(119 65) scale(.45)"/><use href="#{{ $id }}-pepper" transform="translate(77 65) scale(.45)"/><use href="#{{ $id }}-berries" transform="translate(40 72) scale(.51)"/>
+{{ if eq . "7" }}<use href="#{{ $id }}-broccoli" transform="translate(77 23) scale(.34)"/><use href="#{{ $id }}-apple" transform="translate(139 45) scale(.31)"/>{{ end }}
+{{ end }}
+</svg>

@@ -193,3 +193,14 @@ test('the sole diet answer is sufficient and matches the unchanged diet referenc
         assert.equal(estimate({fruitVegFrequency:null},60,sex).considered,0);
     }
 });
+
+test('graphical portion input preserves zero versus unknown and makes its frequency proxy explicit', () => {
+    assert.ok(estimate({fruitVegPortions:0}).considered===1);
+    assert.equal(estimate({fruitVegPortions:null,fruitVegFrequency:3}).considered,0);
+    for(const sex of ['male','female']) {
+        const values=[0,1,3,5,7].map(n=>estimate({fruitVegPortions:n},60,sex).remainingYears);
+        for(let i=1;i<values.length;i++) assert.ok(values[i]>values[i-1]);
+        near(estimate({fruitVegPortions:3},60,sex).remainingYears,estimate({fruitVegFrequency:3},60,sex).remainingYears);
+        near(estimate({fruitVegPortions:8},60,sex).remainingYears,estimate({fruitVegPortions:12},60,sex).remainingYears);
+    }
+});

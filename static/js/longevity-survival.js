@@ -16,13 +16,14 @@
             result.activity = Math.min(model.activity.dailyCap,
                 (model.activity.moderateMet * answers.moderateMinutes + model.activity.vigorousMet * answers.vigorousMinutes) / 420);
         }
-        if (Object.hasOwn(answers, 'fruitVegFrequency')) {
+        const simpleDietKey = Object.hasOwn(answers, 'fruitVegPortions') ? 'fruitVegPortions' : 'fruitVegFrequency';
+        if (Object.hasOwn(answers, simpleDietKey)) {
             // The simplified UI asks for total produce, never individual vegetables.
             // Unasked historic details receive the same published reference means,
             // not a personal "no carrots" penalty or invented healthy answers.
             const reference = model.reference[sex].unaskedDiet;
-            if (valid(answers.fruitVegFrequency, 12) && reference) {
-                result.fruit = Math.max(0, Math.min(10, 2 + Math.min(8, answers.fruitVegFrequency)
+            if (valid(answers[simpleDietKey], 12) && reference) {
+                result.fruit = Math.max(0, Math.min(10, 2 + Math.min(8, answers[simpleDietKey])
                     - 2 * (reference.noCarrotFraction + reference.highPotatoFraction + reference.highJuiceFraction)));
             }
         } else {
@@ -151,7 +152,7 @@
             if (Object.keys(known).length === 0 && (!smartBmi || smartBmi.category === 'central')) { remainingYears = base; curve = officialCurve; }
             if (withContributions) for (const key of groups.filter(k => k !== 'bmi' && Object.hasOwn(known, k))) {
                 const without = {...answers};
-                const fields = {smoking: ['smoking'], activity: ['moderateMinutes', 'vigorousMinutes'], fruit: ['fruitVegFrequency', 'produceFrequency', 'fruitFrequency'], alcohol: ['drinksWeek']};
+                const fields = {smoking: ['smoking'], activity: ['moderateMinutes', 'vigorousMinutes'], fruit: ['fruitVegPortions', 'fruitVegFrequency', 'produceFrequency', 'fruitFrequency'], alcohol: ['drinksWeek']};
                 for (const field of fields[key]) delete without[field];
                 contributions[key] = remainingYears - personalEstimate(data, model, sex, age, without, smartData, false).remainingYears;
             }
