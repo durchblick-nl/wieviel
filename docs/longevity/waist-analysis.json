@@ -1,0 +1,258 @@
+{
+  "version": "waist-sbmi-ten-year-review-1",
+  "checkedOn": "2026-11-06",
+  "productionEligible": false,
+  "target": "Death within 120 months of examination, age 40-79, BMI below 35",
+  "trainingCycle": "2001-2002",
+  "validationCycle": "2003-2004",
+  "cohorts": {
+    "training": {
+      "startingRows": 11039,
+      "sequentialExclusions": {
+        "outside_age": 8095,
+        "bmi_35plus": 356,
+        "pregnant_or_unverified": 29,
+        "missing_or_invalid_body_measure": 337,
+        "missing_lifestyle": 93,
+        "outcome_unavailable_or_censored": 1
+      },
+      "includedRows": 2128,
+      "tenYearDeaths": 300
+    },
+    "validation": {
+      "startingRows": 10122,
+      "sequentialExclusions": {
+        "outside_age": 7340,
+        "missing_lifestyle": 124,
+        "bmi_35plus": 352,
+        "missing_or_invalid_body_measure": 270,
+        "outcome_unavailable_or_censored": 6,
+        "pregnant_or_unverified": 14
+      },
+      "includedRows": 2016,
+      "tenYearDeaths": 315
+    }
+  },
+  "models": {
+    "controls": {
+      "coefficients": {
+        "intercept": -2.5862219947798297,
+        "age_decade_from_60": 0.7194255880644639,
+        "age_hinge_60": 0.38486929146977944,
+        "age_hinge_75": 0.9348854684435906,
+        "female": -0.12034707937275671,
+        "smoking_former": 0.7727252034025732,
+        "smoking_current": 1.6342025883744988,
+        "activity_some": -0.37973933758935813,
+        "activity_unable": 0.7703733882138574,
+        "alcohol_none_current": 0.2789724096040585,
+        "alcohol_up_to_7": -0.19146982883552183,
+        "alcohol_up_to_14": -0.3314155017607858,
+        "alcohol_over_14": 0.08991532661747213
+      },
+      "validation": {
+        "auc": 0.8269613222894038,
+        "brier": 0.07847109550025495,
+        "observedTenYearRisk": 0.10455049020117414,
+        "predictedTenYearRisk": 0.12188895034346073,
+        "observedToExpected": 0.8577519939795201,
+        "calibrationIntercept": -0.15663702107626332,
+        "calibrationSlope": 1.036385303818595
+      }
+    },
+    "controls_sbmi": {
+      "coefficients": {
+        "intercept": -2.552986314682768,
+        "age_decade_from_60": 0.7201136048404847,
+        "age_hinge_60": 0.3570844456579205,
+        "age_hinge_75": 0.9255880024491792,
+        "female": -0.1295519054769902,
+        "smoking_former": 0.7723500042053546,
+        "smoking_current": 1.6024696673835184,
+        "activity_some": -0.38433796785238855,
+        "activity_unable": 0.7676117075528333,
+        "alcohol_none_current": 0.2752009840179103,
+        "alcohol_up_to_7": -0.19530822234249776,
+        "alcohol_up_to_14": -0.3380647548421397,
+        "alcohol_over_14": 0.07926853255217704,
+        "sbmi_below_30_per_10": 0.41311215372412474,
+        "sbmi_above_39_per_10": -0.08922567700028257
+      },
+      "validation": {
+        "auc": 0.8287073985696629,
+        "brier": 0.07817153980937548,
+        "observedTenYearRisk": 0.10455049020117414,
+        "predictedTenYearRisk": 0.1212995481744981,
+        "observedToExpected": 0.8619198651158269,
+        "calibrationIntercept": -0.13154768749734513,
+        "calibrationSlope": 1.0487566462455242
+      }
+    },
+    "controls_whtr": {
+      "coefficients": {
+        "intercept": -2.5635128275625156,
+        "age_decade_from_60": 0.711018435305984,
+        "age_hinge_60": 0.37814358956359584,
+        "age_hinge_75": 1.0291422102123962,
+        "female": -0.4911463774823064,
+        "smoking_former": 0.8186921568485859,
+        "smoking_current": 1.6632879031521484,
+        "activity_some": -0.34506141306316707,
+        "activity_unable": 0.7553863845582837,
+        "alcohol_none_current": 0.31484685801525575,
+        "alcohol_up_to_7": -0.13820955225944279,
+        "alcohol_up_to_14": -0.2822052882863433,
+        "alcohol_over_14": 0.11893784807221507,
+        "whtr_per_0_1": -0.15060159945556675,
+        "whtr_per_0_1_by_female": 0.4996837198966596
+      },
+      "validation": {
+        "auc": 0.8205295675005672,
+        "brier": 0.07946621408832225,
+        "observedTenYearRisk": 0.10455049020117414,
+        "predictedTenYearRisk": 0.12292600890253431,
+        "observedToExpected": 0.8505156161384059,
+        "calibrationIntercept": -0.2449366004818944,
+        "calibrationSlope": 0.9847989952510593
+      }
+    },
+    "controls_sbmi_whtr": {
+      "coefficients": {
+        "intercept": -2.6542604264422063,
+        "age_decade_from_60": 0.6566936216102757,
+        "age_hinge_60": 0.32742680716082484,
+        "age_hinge_75": 1.1200314495787114,
+        "female": -0.44859178969347663,
+        "smoking_former": 0.8023066342940305,
+        "smoking_current": 1.6124144436394143,
+        "activity_some": -0.3369708882035864,
+        "activity_unable": 0.7613788257318783,
+        "alcohol_none_current": 0.3242113878751533,
+        "alcohol_up_to_7": -0.1255822526319876,
+        "alcohol_up_to_14": -0.2884894907620624,
+        "alcohol_over_14": 0.10610652886796994,
+        "sbmi_below_30_per_10": 0.6903826490960102,
+        "sbmi_above_39_per_10": -0.6312299790374837,
+        "whtr_per_0_1": 0.13655629761542742,
+        "whtr_per_0_1_by_female": 0.3871629093314385
+      },
+      "validation": {
+        "auc": 0.8202769111174114,
+        "brier": 0.0795630705087359,
+        "observedTenYearRisk": 0.10455049020117414,
+        "predictedTenYearRisk": 0.12226644484999538,
+        "observedToExpected": 0.8551037067401743,
+        "calibrationIntercept": -0.23836138301834914,
+        "calibrationSlope": 0.9842621883271548
+      }
+    }
+  },
+  "addedWaistOnValidation": {
+    "aucDifference": -0.0084304874522515,
+    "brierDifference": 0.001391530699360428,
+    "aucDifferenceConditionalBootstrap95": [
+      -0.013708099558867103,
+      -0.004434118406603512
+    ],
+    "brierDifferenceConditionalBootstrap95": [
+      0.0009181875439725004,
+      0.0020596210644579236
+    ],
+    "bootstrapReplicates": 200,
+    "seed": 20261106
+  },
+  "limitations": [
+    "Exploratory US temporal evaluation, not independent Swiss validation.",
+    "Conditional validation intervals exclude training coefficient uncertainty.",
+    "No diet, disease, income, education or ethnicity adjustment; no causal interpretation.",
+    "Complete-case selection and limited follow-up horizon; no lifetime extrapolation.",
+    "Public follow-up times may be perturbed; weights are MEC weights without a mortality-linkage nonresponse correction.",
+    "No conversion to remaining life years or combination with current production coefficients."
+  ],
+  "software": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "node": "v24.22.1"
+  },
+  "sbmiInputHashes": {
+    "static/js/longevity-smart-bmi.js": "ad550e4c9f9448a093753e593a8d1358ee031fe316a4e9a6d09e070921404284",
+    "data/longevity-smart-bmi.json": "73342a599c46f0be15bcbcc40e0b20bf8dc66cbf9705bc448dbce38a2112e6e0"
+  },
+  "sources": {
+    "checkedOn": "2026-11-06",
+    "files": [
+      {
+        "cycle": "2001-2002",
+        "file": "DEMO_B.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/DEMO_B.xpt",
+        "sha256": "6458dc2307cee244ab6ba26f70ec78c7b842ffc68e668bc43f0ab6b9737937d9"
+      },
+      {
+        "cycle": "2001-2002",
+        "file": "BMX_B.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BMX_B.xpt",
+        "sha256": "55715d4387960f88e48a2adf44da0b270a83290b1edf7c8e4ecc0eb2c29c59cf"
+      },
+      {
+        "cycle": "2001-2002",
+        "file": "SMQ_B.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/SMQ_B.xpt",
+        "sha256": "179d7ad46de9478824d475de0e6425f474b34dd4798066a552acd31b89f07fde"
+      },
+      {
+        "cycle": "2001-2002",
+        "file": "PAQ_B.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PAQ_B.xpt",
+        "sha256": "c03073bb2e50ac4a97b588947fd4b4783a3b5c43da07a9d9a53f0879ec0b9229"
+      },
+      {
+        "cycle": "2001-2002",
+        "file": "ALQ_B.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/ALQ_B.xpt",
+        "sha256": "ed2f90b82e1d9dc87ada702c2fb3f11c7f53942bd5a7a6d7463c209b894e3765"
+      },
+      {
+        "cycle": "2001-2002",
+        "file": "NHANES_2001_2002_MORT_2019_PUBLIC.dat",
+        "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2001_2002_MORT_2019_PUBLIC.dat",
+        "sha256": "2788c8c8a02995ea5686882b5fe65b4b9cd415016031525f8a3c1a3646c47f1b"
+      },
+      {
+        "cycle": "2003-2004",
+        "file": "DEMO_C.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/DEMO_C.xpt",
+        "sha256": "2a2fdb88263337bfa06f0516bfb419631595f0a0ee88fb96069bed13d1857c6f"
+      },
+      {
+        "cycle": "2003-2004",
+        "file": "BMX_C.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BMX_C.xpt",
+        "sha256": "b3d3e431b5964ea8b5807035044322fcf32f3878d814d4a844204e51c793f090"
+      },
+      {
+        "cycle": "2003-2004",
+        "file": "SMQ_C.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/SMQ_C.xpt",
+        "sha256": "fbfe1e4b286ab43fdc3fd84c3830bb241b8b5ca84b3ab5902b8808e4136efc2c"
+      },
+      {
+        "cycle": "2003-2004",
+        "file": "PAQ_C.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/PAQ_C.xpt",
+        "sha256": "085928dcff32acc98efc8d1d30eeceb022b56d6ab565e0572251a325a576c765"
+      },
+      {
+        "cycle": "2003-2004",
+        "file": "ALQ_C.xpt",
+        "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/ALQ_C.xpt",
+        "sha256": "e223a963ad4470e1a2e0dd1561b55a3fa91781dab3b46f5017f9eb1f62d0ced9"
+      },
+      {
+        "cycle": "2003-2004",
+        "file": "NHANES_2003_2004_MORT_2019_PUBLIC.dat",
+        "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2003_2004_MORT_2019_PUBLIC.dat",
+        "sha256": "639f6b3292a55b112fbfc842954af3d8d32bcce287cd8ae49319e5aca1c033c0"
+      }
+    ]
+  }
+}

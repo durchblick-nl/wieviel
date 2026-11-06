@@ -1,0 +1,77 @@
+{
+  "checkedOn": "2026-11-06",
+  "files": [
+    {
+      "cycle": "2001-2002",
+      "file": "DEMO_B.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/DEMO_B.xpt",
+      "sha256": "6458dc2307cee244ab6ba26f70ec78c7b842ffc68e668bc43f0ab6b9737937d9"
+    },
+    {
+      "cycle": "2001-2002",
+      "file": "BMX_B.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BMX_B.xpt",
+      "sha256": "55715d4387960f88e48a2adf44da0b270a83290b1edf7c8e4ecc0eb2c29c59cf"
+    },
+    {
+      "cycle": "2001-2002",
+      "file": "SMQ_B.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/SMQ_B.xpt",
+      "sha256": "179d7ad46de9478824d475de0e6425f474b34dd4798066a552acd31b89f07fde"
+    },
+    {
+      "cycle": "2001-2002",
+      "file": "PAQ_B.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PAQ_B.xpt",
+      "sha256": "c03073bb2e50ac4a97b588947fd4b4783a3b5c43da07a9d9a53f0879ec0b9229"
+    },
+    {
+      "cycle": "2001-2002",
+      "file": "ALQ_B.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/ALQ_B.xpt",
+      "sha256": "ed2f90b82e1d9dc87ada702c2fb3f11c7f53942bd5a7a6d7463c209b894e3765"
+    },
+    {
+      "cycle": "2001-2002",
+      "file": "NHANES_2001_2002_MORT_2019_PUBLIC.dat",
+      "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2001_2002_MORT_2019_PUBLIC.dat",
+      "sha256": "2788c8c8a02995ea5686882b5fe65b4b9cd415016031525f8a3c1a3646c47f1b"
+    },
+    {
+      "cycle": "2003-2004",
+      "file": "DEMO_C.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/DEMO_C.xpt",
+      "sha256": "2a2fdb88263337bfa06f0516bfb419631595f0a0ee88fb96069bed13d1857c6f"
+    },
+    {
+      "cycle": "2003-2004",
+      "file": "BMX_C.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BMX_C.xpt",
+      "sha256": "b3d3e431b5964ea8b5807035044322fcf32f3878d814d4a844204e51c793f090"
+    },
+    {
+      "cycle": "2003-2004",
+      "file": "SMQ_C.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/SMQ_C.xpt",
+      "sha256": "fbfe1e4b286ab43fdc3fd84c3830bb241b8b5ca84b3ab5902b8808e4136efc2c"
+    },
+    {
+      "cycle": "2003-2004",
+      "file": "PAQ_C.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/PAQ_C.xpt",
+      "sha256": "085928dcff32acc98efc8d1d30eeceb022b56d6ab565e0572251a325a576c765"
+    },
+    {
+      "cycle": "2003-2004",
+      "file": "ALQ_C.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/ALQ_C.xpt",
+      "sha256": "e223a963ad4470e1a2e0dd1561b55a3fa91781dab3b46f5017f9eb1f62d0ced9"
+    },
+    {
+      "cycle": "2003-2004",
+      "file": "NHANES_2003_2004_MORT_2019_PUBLIC.dat",
+      "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2003_2004_MORT_2019_PUBLIC.dat",
+      "sha256": "639f6b3292a55b112fbfc842954af3d8d32bcce287cd8ae49319e5aca1c033c0"
+    }
+  ]
+}
