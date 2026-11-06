@@ -64,6 +64,58 @@ test('all 50 language pages render one complete freshness box', async () => {
     await page.close();
 });
 
+test('DE/FR longevity: optional oral health preserves scenarios, handles unknowns and clears locally', async () => {
+    for (const route of ['de/leben', 'fr/esperance-de-vie']) {
+        const page = await pageFor(route);
+        await page.setViewportSize({width: 390, height: 844});
+        await page.evaluate(() => CookieConsent.acceptCategory('necessary'));
+        await page.locator('#longevity-edit-profile').click();
+        for (let step = 0; step < 3; step++) await page.locator('#longevity-next-step').click();
+        await page.locator('#longevity-moderate-minutes').fill('50');
+        await page.locator('#longevity-vigorous-minutes').fill('0');
+        await page.locator('#longevity-close-editor').click();
+        await page.locator('[data-scenario="activity"]').click();
+        const years = await page.locator('#longevity-years').textContent();
+        const curve = await page.locator('#longevity-personal-line').getAttribute('points');
+        await page.locator('#longevity-oral-health > summary').click();
+        assert.equal(await page.locator('#longevity-oral-summary').isVisible(), false);
+        assert.match(await page.locator('#longevity-oral-reference').textContent(), /35.+44.+65.+74/);
+        await page.locator('#longevity-teeth').fill('0');
+        for (const key of ['dentures', 'chewing', 'periodontitis']) await page.selectOption(`#longevity-oral-${key}`, 'yes');
+        assert.equal(await page.locator('#longevity-oral-values dd').first().textContent(), '0');
+        assert.equal(await page.locator('#longevity-oral-values dd').count(), 4);
+        assert.equal(await page.locator('#longevity-years').textContent(), years);
+        assert.equal(await page.locator('#longevity-personal-line').getAttribute('points'), curve);
+        assert.equal(await page.locator('[data-scenario="activity"]').getAttribute('aria-pressed'), 'true');
+        for (const value of ['29', '-1', '12.5']) {
+            await page.locator('#longevity-teeth').fill(value);
+            assert.equal(await page.locator('#longevity-teeth-error').isVisible(), true);
+            assert.equal(await page.locator('#longevity-oral-values dd').count(), 3);
+        }
+        await page.locator('#longevity-teeth').fill('28');
+        assert.equal(await page.locator('#longevity-teeth-error').isVisible(), false);
+        await page.locator('#longevity-edit-profile').click();
+        await page.locator('#longevity-age').fill('40');
+        await page.locator('#longevity-close-editor').click();
+        assert.match(await page.locator('#longevity-oral-reference').textContent(), /26,6/);
+        await page.locator('#longevity-edit-profile').click();
+        await page.locator('#longevity-age').fill('70');
+        await page.locator('#longevity-close-editor').click();
+        assert.match(await page.locator('#longevity-oral-reference').textContent(), /19,3/);
+        assert.equal(await page.locator('#longevity-teeth').inputValue(), '28');
+        await page.locator('#longevity-oral-form button[type="reset"]').click();
+        await page.waitForFunction(() => document.querySelector('#longevity-oral-summary').hidden);
+        assert.equal(await page.locator('#longevity-teeth').inputValue(), '');
+        assert.equal(await page.locator('#longevity-oral-dentures').inputValue(), '');
+        await page.locator('#longevity-teeth').fill('22');
+        await page.reload();
+        assert.equal(await page.locator('#longevity-teeth').inputValue(), '');
+        assert.equal(new URL(page.url()).search, '');
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+        await page.close();
+    }
+});
+
 test('DE/FR longevity: number fields stay visible when the keyboard shrinks and pans the viewport', async () => {
     for (const route of ['de/leben', 'fr/esperance-de-vie']) {
         const page = await pageFor(route);

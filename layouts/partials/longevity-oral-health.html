@@ -1,0 +1,31 @@
+<details id="longevity-oral-health" class="longevity-explanations longevity-oral-health">
+    <summary>{{ i18n "longevity.oral.title" }}</summary>
+    <p class="longevity-help">{{ i18n "longevity.oral.intro" }}</p>
+    <p class="longevity-note">{{ i18n "longevity.oral.limit" }}</p>
+    <form id="longevity-oral-form" novalidate>
+        <div class="longevity-field">
+            <label for="longevity-teeth">{{ i18n "longevity.oral.teeth" }}</label>
+            <input id="longevity-teeth" type="number" inputmode="numeric" min="0" max="28" step="1" placeholder="—" aria-describedby="longevity-teeth-help longevity-teeth-error">
+            <small id="longevity-teeth-help">{{ i18n "longevity.oral.teethHelp" }}</small>
+            <p id="longevity-teeth-error" class="longevity-help" role="alert" hidden>{{ i18n "longevity.oral.invalid" }}</p>
+        </div>
+        {{ range slice "dentures" "chewing" "periodontitis" }}
+        <div class="longevity-field">
+            <label for="longevity-oral-{{ . }}">{{ i18n (printf "longevity.oral.%s" .) }}</label>
+            <select id="longevity-oral-{{ . }}">
+                <option value="">{{ i18n "longevity.oral.unknown" }}</option>
+                <option value="yes">{{ i18n "longevity.yes" }}</option>
+                <option value="no">{{ i18n "longevity.no" }}</option>
+            </select>
+        </div>
+        {{ end }}
+        <button type="reset" class="longevity-profile-button">{{ i18n "longevity.oral.reset" }}</button>
+    </form>
+    <div id="longevity-oral-summary" hidden>
+        <h3>{{ i18n "longevity.oral.summary" }}</h3>
+        <dl id="longevity-oral-values"></dl>
+    </div>
+    <p id="longevity-oral-reference" class="longevity-help"></p>
+    <p class="longevity-help">{{ i18n "longevity.oral.referenceLimit" }} <a href="https://pubmed.ncbi.nlm.nih.gov/40091723/" target="_blank" rel="noopener">{{ i18n "longevity.oral.source" }}</a></p>
+    <p class="longevity-help">{{ i18n "longevity.privacy" }}</p>
+</details>

@@ -39,6 +39,7 @@
 <div class="longevity-play-actions"><button id="longevity-reset-scenario" type="button">{{ i18n "longevity.appReset" }}</button></div>
 </div>
 </section>
+{{ partial "longevity-oral-health.html" . }}
 <nav class="longevity-reference-nav" aria-label="{{ i18n "longevity.referenceNavigation" }}"><a href="#longevity-sources">{{ i18n "longevity.sourcesLink" }}</a><a href="#longevity-faq">{{ i18n "longevity.faqLink" }}</a></nav>
 <section class="longevity-population" aria-labelledby="longevity-population-title">
                 <h2 id="longevity-population-title">{{ i18n "longevity.populationTitle" }}</h2>
@@ -169,7 +170,7 @@
     {{- $texts = merge $texts (dict . (i18n (printf "longevity.%s" .))) }}
 {{- end }}
 {{- $data := partialCached "calculator-dataset.html" "life-tables" "life-tables" }}
-{{- range slice "sbmiValue" "sbmi.below" "sbmi.central" "sbmi.above" "sbmiAgeClamped" "sbmiEffect" "sbmiEffectUnsupported" }}
+{{- range slice "oral.referenceAdults" "oral.referenceSeniors" "oral.noReference" "sbmiValue" "sbmi.below" "sbmi.central" "sbmi.above" "sbmiAgeClamped" "sbmiEffect" "sbmiEffectUnsupported" }}
 {{- $texts = merge $texts (dict . (i18n (printf "longevity.%s" .))) }}
 {{- end }}
 <script type="application/json" id="longevity-config">{{ dict "lang" .Site.Language.Lang "texts" $texts "data" $data "model" (index hugo.Data "longevity-survival-model") "smartBmi" (index hugo.Data "longevity-smart-bmi") "marital" $marital | jsonify | safeJS }}</script>
