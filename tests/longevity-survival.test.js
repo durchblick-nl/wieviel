@@ -141,3 +141,33 @@ test('separate produce and weekly potatoes reconstruct the legacy total without 
     assert.equal(exposures(model, 'male', 60, {...profile, produceFrequency: 3, potatoFrequency: null}).fruit, undefined);
     assert.equal(exposures(model, 'male', 60, {...profile, produceFrequency: 12, potatoFrequency: 21, juiceFrequency: 0}).fruit, 8);
 });
+
+test('historical age weight shrinks positive and negative lifestyle deviations and their curves exactly once', () => {
+    const undampedModel = {...model}; delete undampedModel.lifestyleDiscount;
+    const good = {...profile, smoking:'no', moderateMinutes:300, fruitFrequency:5, juiceFrequency:0};
+    const bad = {...profile, moderateMinutes:0, fruitFrequency:0, carrots:'no', juiceFrequency:5, drinksWeek:30};
+    for (const sex of ['male','female']) for (const [age, weight] of [[40,1],[50,1],[60,.8],[80,.4],[95,.1]]) {
+        for (const answers of [good,bad]) {
+            const raw = personalEstimate(data,undampedModel,sex,age,answers,smart,false);
+            const own = personalEstimate(data,model,sex,age,answers,smart,false);
+            const reference = referenceCurve(data,model,sex,age);
+            near(own.lifestyleDiscountFactor,weight);
+            near(own.difference,raw.difference*weight);
+            for(let i=0;i<own.curve.length;i++) {
+                near(own.curve[i].probability,weight*raw.curve[i].probability+(1-weight)*reference[i].probability,1e-11);
+            }
+        }
+    }
+});
+
+test('age weighting never discounts the SBMI penalty or invents a lifestyle change for BMI-only inputs', () => {
+    for(const age of [40,60,80,95]) {
+        const bmiOnly=estimate({height:180,weight:110},age);
+        const combined=estimate({...profile,height:180,weight:110},age);
+        const unweighted=estimate(profile,age);
+        const penalty=-bmiOnly.contributions.bmi;
+        near(data.tables.male[age].remainingYears-bmiOnly.remainingYears,penalty);
+        near(unweighted.remainingYears-combined.remainingYears,penalty);
+        assert.ok(penalty>0);
+    }
+});

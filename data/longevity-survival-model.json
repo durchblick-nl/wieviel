@@ -1,5 +1,5 @@
 {
-  "version": "joint-survival-1",
+  "version": "joint-survival-2",
   "source": {
     "title": "Manuel et al. 2016, MPoRT",
     "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002082",
@@ -129,6 +129,16 @@
     "Activity is approximated from moderate/vigorous weekly minutes, not the complete Canadian activity questionnaire.",
     "Expected years use annual hazard integration and a common published age-99 tail, normalized to the official starting E(x).",
     "Smart BMI reduces modeled remaining years by a fraction of official remaining years, without an extra age multiplier. A hazard multiplier is solved to make the modeled curve agree with that target.",
-    "Apart from time since quitting smoking, behaviour is held constant into the future. No individual disease, treatment or weight trajectories are forecast."
-  ]
+    "Apart from time since quitting smoking, behaviour is held constant into the future. No individual disease, treatment or weight trajectories are forecast.",
+    "The historical age factor is applied once to the joint lifestyle deviation by mixing personal and reference survival curves: 100% up to age 50, then (100-startingAge)/50. The same mixture is used in years and curves. This is an experimental adaptation, not an MPoRT coefficient or validated age interaction. Smart BMI is applied afterwards without that factor. Historical +12-year caps and remaining-years floors are not imported."
+  ],
+  "lifestyleDiscount": {
+    "fullUntil": 50,
+    "zeroAt": 100,
+    "method": "profile_reference_survival_mixture",
+    "scope": "lifestyle_only",
+    "validated": false,
+    "source": "Historical gesundheit.inc:550; linear age factor. Application to survival curves is our experimental adaptation.",
+    "documentationUrl": "https://github.com/durchblick-nl/wieviel/blob/coolify/docs/longevity/legacy-discount.md"
+  }
 }

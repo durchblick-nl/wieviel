@@ -30,6 +30,7 @@
 <p id="longevity-comparison-note" class="longevity-comparison-note"></p>
 </div>
 <p class="longevity-short-note">{{ i18n "longevity.appShortNote" }}</p>
+<p id="longevity-age-discount-note" class="longevity-help" hidden></p>
 <h2 class="longevity-whatif-title">{{ i18n "longevity.appWhatIf" }}</h2>
 <div class="longevity-scenario-grid">
 {{ range slice "smoking" "activity" "fruit" "weight" }}<button type="button" class="longevity-scenario-button" data-scenario="{{ . }}" aria-pressed="false"><span>{{ i18n (printf "longevity.appScenario.%s" .) }}</span><i class="fas fa-check-circle" aria-hidden="true"></i></button>{{ end }}
@@ -165,7 +166,7 @@
 {{- partial "footer.html" . }}
 {{- partial "darkmode.html" . }}
 {{- $texts := dict }}
-{{- range slice "invalidAge" "context" "expected" "milestone" "nextYear" "milestoneHelp" "curveDescription" "median" "noMedian" "maritalContext" "maritalAt65" "chartAge" "male" "female" "probeValue" "remainingAxis" "selectedMarital" "personalContext" "personalPartial" "personalUnsupported" "relativePositive" "relativeNegative" "relativeNeutral" "populationValue" "bmiValue" "bmiHelp" "limitsNote" "contributionUnknown" "contributionValue" "factor.smoking" "factor.activity" "factor.fruit" "factor.alcohol" "factor.marital" "factor.bmi" "appProfile" "appStep" "appNext" "appUseProfile" "appApplyScenario" "appClose" "appScenarioTitle" "appDifference" "appDifferenceNegative" "appDifferenceZero" "appSmokeNote" "appActivityNote" "appFruitNote" "appAlreadyNonsmoker" "appSmallChanges" "appScenarioSummary" "appComparisonNote" "appEditorTitle" "appEditorEstimate" "cigarettes" "cigarettesFormer" }}
+{{- range slice "invalidAge" "context" "expected" "milestone" "nextYear" "milestoneHelp" "curveDescription" "median" "noMedian" "maritalContext" "maritalAt65" "chartAge" "male" "female" "probeValue" "remainingAxis" "selectedMarital" "personalContext" "personalPartial" "personalUnsupported" "relativePositive" "relativeNegative" "relativeNeutral" "populationValue" "bmiValue" "bmiHelp" "limitsNote" "contributionUnknown" "contributionValue" "factor.smoking" "factor.activity" "factor.fruit" "factor.alcohol" "factor.marital" "factor.bmi" "appProfile" "appStep" "appNext" "appUseProfile" "appApplyScenario" "appClose" "appScenarioTitle" "appDifference" "appDifferenceNegative" "appDifferenceZero" "appSmokeNote" "appActivityNote" "appFruitNote" "appAlreadyNonsmoker" "appSmallChanges" "appScenarioSummary" "appComparisonNote" "appEditorTitle" "appEditorEstimate" "cigarettes" "cigarettesFormer" "ageDiscountNote" }}
     {{- $texts = merge $texts (dict . (i18n (printf "longevity.%s" .))) }}
 {{- end }}
 {{- $data := partialCached "calculator-dataset.html" "life-tables" "life-tables" }}
@@ -175,6 +176,7 @@
 <script type="application/json" id="longevity-config">{{ dict "lang" .Site.Language.Lang "texts" $texts "data" $data "model" (index hugo.Data "longevity-survival-model") "smartBmi" (index hugo.Data "longevity-smart-bmi") "marital" $marital | jsonify | safeJS }}</script>
 <script defer src="/js/longevity-smart-bmi.js?v={{ readFile "static/js/longevity-smart-bmi.js" | sha256 | truncate 12 "" }}"></script>
 <script defer src="/js/longevity-core.js?v={{ readFile "static/js/longevity-core.js" | sha256 | truncate 12 "" }}"></script>
+<script defer src="/js/longevity-age-discount.js?v={{ readFile "static/js/longevity-age-discount.js" | sha256 | truncate 12 "" }}"></script>
 <script defer src="/js/longevity-survival.js?v={{ readFile "static/js/longevity-survival.js" | sha256 | truncate 12 "" }}"></script>
 <script defer src="/js/longevity.js?v={{ readFile "static/js/longevity.js" | sha256 | truncate 12 "" }}"></script>
 </body>

@@ -1,6 +1,7 @@
 (function (root) {
     'use strict';
     const smart = typeof module !== 'undefined' && module.exports ? require('./longevity-smart-bmi.js') : root.LongevitySmartBmi;
+    const discount = typeof module !== 'undefined' && module.exports ? require('./longevity-age-discount.js') : root.LongevityAgeDiscount;
     const cache = new WeakMap();
     const valid = (x, max) => Number.isFinite(x) && x >= 0 && x <= max;
 
@@ -77,8 +78,13 @@
         return value;
     }
 
-    function integrate(data, model, sex, age, known, hazards, multiplier = 1) {
-        const cohort = referenceCohort(model, sex).map(p => ({...p, ...known, survival: p.weight}));
+    function integrate(data, model, sex, age, known, hazards, multiplier = 1, lifestyleWeight = 1) {
+        const reference = referenceCohort(model, sex);
+        // Convex mixture shrinks the entire joint lifestyle deviation, including
+        // its survival curve. BMI is applied afterwards through a common hazard
+        // multiplier and is deliberately not multiplied by lifestyleWeight.
+        const cohort = reference.map(p => ({...p, ...known, survival: p.weight * lifestyleWeight}));
+        if (lifestyleWeight < 1) cohort.push(...reference.map(p => ({...p, survival: p.weight * (1 - lifestyleWeight)})));
         const curve = [{age, probability: 1}];
         let years = 0;
         for (let i = 0; i < hazards.length; i++) {
@@ -101,6 +107,7 @@
         const known = exposures(model, sex, age, answers);
         const smartBmi = smart.calculate(smartData, {age, sex, height: answers.height, weight: answers.weight});
         const supported = age >= model.ageRange[0] && age <= model.ageRange[1];
+        const lifestyleDiscountFactor = supported && model.lifestyleDiscount ? discount.ageDiscount(age, model.lifestyleDiscount) : 1;
         const groups = ['smoking', 'activity', 'fruit', 'alcohol', 'bmi'];
         const unknown = groups.filter(key => key === 'bmi' ? !smartBmi : !Object.hasOwn(known, key));
         const contributions = {};
@@ -110,7 +117,7 @@
             const {hazards} = calibration(data, model, sex, age);
             const reference = integrate(data, model, sex, age, {}, hazards);
             const normalization = base / reference.years;
-            const own = integrate(data, model, sex, age, known, hazards);
+            const own = integrate(data, model, sex, age, known, hazards, 1, lifestyleDiscountFactor);
             remainingYears = own.years * normalization;
             curve = own.curve;
             if (smartBmi) {
@@ -119,12 +126,12 @@
                 if (correction > 0) {
                     const target = Math.max(0.1, remainingYears - correction);
                     let low = 1, high = 2;
-                    while (integrate(data, model, sex, age, known, hazards, high).years * normalization > target) high *= 2;
+                    while (integrate(data, model, sex, age, known, hazards, high, lifestyleDiscountFactor).years * normalization > target) high *= 2;
                     for (let i = 0; i < 28; i++) {
                         const mid = (low + high) / 2;
-                        if (integrate(data, model, sex, age, known, hazards, mid).years * normalization > target) low = mid; else high = mid;
+                        if (integrate(data, model, sex, age, known, hazards, mid, lifestyleDiscountFactor).years * normalization > target) low = mid; else high = mid;
                     }
-                    const adjusted = integrate(data, model, sex, age, known, hazards, (low + high) / 2);
+                    const adjusted = integrate(data, model, sex, age, known, hazards, (low + high) / 2, lifestyleDiscountFactor);
                     remainingYears = adjusted.years * normalization; curve = adjusted.curve;
                 }
                 contributions.bmi = remainingYears - own.years * normalization;
@@ -140,7 +147,7 @@
         }
         return {remainingYears, expectedAge: age + remainingYears, baselineRemainingYears: base,
             difference: remainingYears - base, curve, contributions, unknown, considered: 5 - unknown.length,
-            supported, smartBmi, bmi: smartBmi ? answers.weight / (answers.height / 100) ** 2 : null,
+            supported, lifestyleDiscountFactor, smartBmi, bmi: smartBmi ? answers.weight / (answers.height / 100) ** 2 : null,
             capApplied: false, floorApplied: false, validated: false, version: model.version};
     }
 

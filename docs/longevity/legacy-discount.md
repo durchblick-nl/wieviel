@@ -74,6 +74,10 @@ ageDiscount(80, {fullUntil: 60, zeroAt: 110}); // 0.6
 Parameter `fullUntil`, `zeroAt`, `positiveCap` und `minimumFraction` können für
 gekennzeichnete Entwicklungsvergleiche verändert werden. Die historischen
 Standardwerte bleiben 50, 100, 12 und 0,25. Eine Modifikation ist dadurch nicht
-medizinisch validiert. Es wurde keine neue Dämpfung in die öffentliche
-MPoRT-/SBMI-Rechnung eingebaut: Eine zusätzliche Anwendung könnte dort Effekte
-nochmals abschwächen und wäre eine eigenständige Modelländerung.
+medizinisch validiert. Seit `joint-survival-2` wird der reine Altersfaktor in der öffentlichen Rechnung
+für die **gemeinsame Lebensstil-Abweichung** verwendet. Persönliche und
+Referenz-Überlebenskurve werden im Verhältnis `d(a)` zu `1−d(a)` gemischt.
+Die SBMI-Korrektur wird danach ohne weitere Dämpfung angewandt. Es werden keine
+historischen additiven Gruppenregeln, +12-Jahre-Obergrenze oder Viertel-Untergrenze
+auf das heutige Modell übertragen. Diese Anpassung ist eine explizite eigene
+Modellannahme, keine medizinisch validierte Übernahme aus MPoRT.
