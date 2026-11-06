@@ -1,6 +1,6 @@
-# Gemeinsames Überlebensmodell – Version joint-survival-2
+# Gemeinsames Überlebensmodell – Version joint-survival-3
 
-Stand: 5. November 2026. Dies ist eine experimentelle Übertragung und keine validierte
+Stand: 6. November 2026. Dies ist eine experimentelle Übertragung und keine validierte
 Schweizer Individualprognose. Sie ersetzt die öffentlich verwendeten additiven Jahresregeln.
 
 ## Quelle und übernommene Teile
@@ -209,3 +209,33 @@ Das ist ein transparenter heuristischer Kompromiss, keine empirisch validierte
 Altersinteraktion. Die MPoRT-Koeffizienten selbst werden nicht verändert. Die
 synthetische Referenz und ihre Grenzen bleiben bestehen. Ein künftiges gemeinsam
 validiertes Altersmodell könnte diesen Faktor ersetzen.
+
+
+## Vereinfachte Gemüsefrage – joint-survival-3 (6. November 2026)
+
+Die öffentliche Ernährungseingabe hat nur noch **eine Frage** zur gesamten
+Früchte-/Gemüsehäufigkeit. `fruitVegFrequency` umfasst alle Sorten, roh oder
+zubereitet, aber keinen Saft, keine Pommes oder Chips. Es gibt weder eine eigene
+Karotten-/Kartoffel- noch eine Saftfrage und keine persönliche Bewertung dieser
+Einzelangaben. Ganze Früchte und verschiedenste Gemüsearten zählen gleich.
+
+Die nicht mehr abgefragten Indexdetails werden für alle Personen derselben
+Vergleichsgruppe mit den veröffentlichten kanadischen Referenzanteilen angenähert:
+Tabelle 2, Männer: kein Karottenkonsum 0,109, hoher Kartoffelkonsum 0,109,
+hoher Saftkonsum 0,156; Tabelle 3, Frauen: 0,086, 0,096, 0,116, jeweils Canada
+Application. Wie in der bisherigen synthetischen Referenz wird bei hohem Saftkonsum
+ein zusätzlicher Saftanlass angenommen. Die konstante mittlere Detailkorrektur
+beträgt damit 0,748 beziehungsweise 0,596 Punkte, für alle derselben Gruppe gleich.
+
+Das ist eine dokumentierte Mean-Score-Annahme für unbekannte Details, keine
+beobachtete persönliche Antwort und kein als Null angenommenes Risiko. Die
+Ernährungsreferenz bleibt unverändert: Bei 3,3 gesamten Anlässen für Männer und
+4,2 für Frauen trifft die neue Eingabe genau den bisherigen Referenzscore.
+Die Begrenzung des Scores nach Mittelwertbildung bleibt eine Approximation.
+Eine einzelne Häufigkeitsfrage ist kein validierter umfassender Ernährungstest.
+
+Die alten detaillierten `fruitFrequency`-/`produceFrequency`-Profile bleiben allein
+für reproduzierbare Forschungs-/Versionsvergleiche unterstützt. Neue öffentliche
+Eingaben werden nicht stillschweigend darauf zurückgeführt. Ein explizit fehlender
+neuer Gesamtwert bleibt unbekannt. Szenarien und Beitragsvergleiche verwenden die
+neue Gesamtfrage. Der Alterskompromiss aus Version 2 und Smart BMI bleiben erhalten.

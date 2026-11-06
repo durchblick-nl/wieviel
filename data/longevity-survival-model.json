@@ -1,5 +1,5 @@
 {
-  "version": "joint-survival-2",
+  "version": "joint-survival-3",
   "source": {
     "title": "Manuel et al. 2016, MPoRT",
     "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002082",
@@ -67,7 +67,12 @@
       ],
       "heavyAlcoholFraction": 0.203,
       "activityDailyMet": 1.6,
-      "dietScore": 4.552
+      "dietScore": 4.552,
+      "unaskedDiet": {
+        "noCarrotFraction": 0.109,
+        "highPotatoFraction": 0.109,
+        "highJuiceFraction": 0.156
+      }
     },
     "female": {
       "smoking": [
@@ -100,7 +105,12 @@
       ],
       "heavyAlcoholFraction": 0.073,
       "activityDailyMet": 1.3,
-      "dietScore": 5.604
+      "dietScore": 5.604,
+      "unaskedDiet": {
+        "noCarrotFraction": 0.086,
+        "highPotatoFraction": 0.096,
+        "highJuiceFraction": 0.116
+      }
     },
     "assumptions": [
       "Canadian adult age-pooled, sex-specific smoking and heavy-alcohol marginals, not current Swiss age-specific prevalence.",
@@ -130,7 +140,8 @@
     "Expected years use annual hazard integration and a common published age-99 tail, normalized to the official starting E(x).",
     "Smart BMI reduces modeled remaining years by a fraction of official remaining years, without an extra age multiplier. A hazard multiplier is solved to make the modeled curve agree with that target.",
     "Apart from time since quitting smoking, behaviour is held constant into the future. No individual disease, treatment or weight trajectories are forecast.",
-    "The historical age factor is applied once to the joint lifestyle deviation by mixing personal and reference survival curves: 100% up to age 50, then (100-startingAge)/50. The same mixture is used in years and curves. This is an experimental adaptation, not an MPoRT coefficient or validated age interaction. Smart BMI is applied afterwards without that factor. Historical +12-year caps and remaining-years floors are not imported."
+    "The historical age factor is applied once to the joint lifestyle deviation by mixing personal and reference survival curves: 100% up to age 50, then (100-startingAge)/50. The same mixture is used in years and curves. This is an experimental adaptation, not an MPoRT coefficient or validated age interaction. Smart BMI is applied afterwards without that factor. Historical +12-year caps and remaining-years floors are not imported.",
+    "The public form asks only total whole fruit/vegetable frequency, including raw and cooked vegetables but excluding juice/fries/chips. Unasked carrot/potato/juice details are held at the same sex-specific Canadian Application reference means for everyone (Table 2/3; one excess juice occasion assumed in the high-juice subgroup, as in the existing reference). This is an explicit mean-score approximation, not observed personal answers or a validated substitute questionnaire. Legacy detailed profiles remain available for research comparison only."
   ],
   "lifestyleDiscount": {
     "fullUntil": 50,

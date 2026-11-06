@@ -150,9 +150,6 @@
 </section>
 <section data-profile-step="4" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.4" }}</h2><p>{{ i18n "longevity.appStepIntro.4" }}</p>
 <div class="longevity-field"><label for="longevity-fruit-frequency">{{ i18n "longevity.fruitFrequency" }}</label><input id="longevity-fruit-frequency" aria-describedby="longevity-fruit-frequency-help" type="number" min="0" max="12" step="0.5" inputmode="decimal" enterkeyhint="next" placeholder="—"><small id="longevity-fruit-frequency-help">{{ i18n "longevity.produceHelp" }}</small></div>
-{{ partial "longevity-choice.html" (dict "id" "carrots" "label" "carrots" "default" "" "choices" (slice (dict "value" "yes" "key" "yes") (dict "value" "no" "key" "no"))) }}
-<div class="longevity-field"><label for="longevity-potato-frequency">{{ i18n "longevity.potatoFrequency" }}</label><input id="longevity-potato-frequency" aria-describedby="longevity-potato-frequency-help" type="number" min="0" max="21" step="0.5" inputmode="decimal" enterkeyhint="next" placeholder="—"><small id="longevity-potato-frequency-help">{{ i18n "longevity.potatoHelp" }}</small></div>
-<div class="longevity-field"><label for="longevity-juice-frequency">{{ i18n "longevity.juiceFrequency" }}</label><input id="longevity-juice-frequency" aria-describedby="longevity-juice-help" type="number" min="0" max="6" step="0.5" inputmode="decimal" enterkeyhint="next" placeholder="—"><small id="longevity-juice-help">{{ i18n "longevity.juiceHelp" }}</small></div>
 </section>
 <section data-profile-step="5" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.5" }}</h2><p>{{ i18n "longevity.alcoholHelp" }}</p>
 <div class="longevity-field"><label for="longevity-drinks-week">{{ i18n "longevity.drinksWeek" }}</label><input id="longevity-drinks-week" type="number" min="0" max="140" step="1" inputmode="decimal" enterkeyhint="next" placeholder="—"></div>

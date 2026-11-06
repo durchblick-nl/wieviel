@@ -16,16 +16,27 @@
             result.activity = Math.min(model.activity.dailyCap,
                 (model.activity.moderateMet * answers.moderateMinutes + model.activity.vigorousMet * answers.vigorousMinutes) / 420);
         }
-        // The UI asks for produce without potatoes. Keep legacy total-frequency
-        // profiles reproducible; reconstruct the study total only for the new schema.
-        const hasProduce = Object.hasOwn(answers, 'produceFrequency');
-        const validProduce = hasProduce ? valid(answers.produceFrequency, 12) : valid(answers.fruitFrequency, 12);
-        const totalProduce = hasProduce ? answers.produceFrequency + answers.potatoFrequency / 7 : answers.fruitFrequency;
-        if (validProduce && valid(answers.juiceFrequency, 6) &&
-            ['yes', 'no'].includes(answers.carrots) && valid(answers.potatoFrequency, 21)) {
-            result.fruit = Math.max(0, Math.min(10, 2 + Math.min(8, totalProduce)
-                - (answers.carrots === 'no' ? 2 : 0) - (answers.potatoFrequency >= (sex === 'male' ? 7 : 5) ? 2 : 0)
-                - 2 * Math.max(0, Math.min(5, answers.juiceFrequency - 1))));
+        if (Object.hasOwn(answers, 'fruitVegFrequency')) {
+            // The simplified UI asks for total produce, never individual vegetables.
+            // Unasked historic details receive the same published reference means,
+            // not a personal "no carrots" penalty or invented healthy answers.
+            const reference = model.reference[sex].unaskedDiet;
+            if (valid(answers.fruitVegFrequency, 12) && reference) {
+                result.fruit = Math.max(0, Math.min(10, 2 + Math.min(8, answers.fruitVegFrequency)
+                    - 2 * (reference.noCarrotFraction + reference.highPotatoFraction + reference.highJuiceFraction)));
+            }
+        } else {
+            // Prior detailed form schemas remain reproducible for research comparisons.
+            // produceFrequency excluded potatoes; fruitFrequency included them.
+            const hasProduce = Object.hasOwn(answers, 'produceFrequency');
+            const validProduce = hasProduce ? valid(answers.produceFrequency, 12) : valid(answers.fruitFrequency, 12);
+            const totalProduce = hasProduce ? answers.produceFrequency + answers.potatoFrequency / 7 : answers.fruitFrequency;
+            if (validProduce && valid(answers.juiceFrequency, 6) &&
+                ['yes', 'no'].includes(answers.carrots) && valid(answers.potatoFrequency, 21)) {
+                result.fruit = Math.max(0, Math.min(10, 2 + Math.min(8, totalProduce)
+                    - (answers.carrots === 'no' ? 2 : 0) - (answers.potatoFrequency >= (sex === 'male' ? 7 : 5) ? 2 : 0)
+                    - 2 * Math.max(0, Math.min(5, answers.juiceFrequency - 1))));
+            }
         }
         if (valid(answers.drinksWeek, 140) && ['yes', 'no'].includes(answers.binge)) {
             result.alcohol = answers.drinksWeek > (sex === 'male' ? 21 : 14) || answers.binge === 'yes';
@@ -140,7 +151,7 @@
             if (Object.keys(known).length === 0 && (!smartBmi || smartBmi.category === 'central')) { remainingYears = base; curve = officialCurve; }
             if (withContributions) for (const key of groups.filter(k => k !== 'bmi' && Object.hasOwn(known, k))) {
                 const without = {...answers};
-                const fields = {smoking: ['smoking'], activity: ['moderateMinutes', 'vigorousMinutes'], fruit: ['produceFrequency', 'fruitFrequency'], alcohol: ['drinksWeek']};
+                const fields = {smoking: ['smoking'], activity: ['moderateMinutes', 'vigorousMinutes'], fruit: ['fruitVegFrequency', 'produceFrequency', 'fruitFrequency'], alcohol: ['drinksWeek']};
                 for (const field of fields[key]) delete without[field];
                 contributions[key] = remainingYears - personalEstimate(data, model, sex, age, without, smartData, false).remainingYears;
             }
