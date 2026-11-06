@@ -27,7 +27,8 @@ if (process.argv.includes('--json')) {
 } else {
     const lines = ['# Interne Prüfung: Zähne und Einbeinstand', '',
         'Generiert mit `node scripts/review_longevity_predictors.cjs`.', '',
-        'Bestehendes experimentelles Modell; keine neue Individualprognose. Referenzprofil: Nichtraucher,',
+        'Bestehendes experimentelles Modell; keine neue Individualprognose. Detailliertes internes Referenzprofil,',
+        'nicht die vereinfachte öffentliche Einzelfrage. Referenzprofil: Nichtraucher,',
         '150 mässige Bewegungsminuten/Woche, 0 intensive Minuten, Obst/Gemüse 3-mal/Tag, kein Saft,',
         'Karotten ja, Kartoffeln 2-mal/Woche, kein Alkohol, kein Rauschtrinken, 175 cm, 75 kg.', '',
         '| Alter | Geschlecht | Eigene Zähne | 10-s-Test | Bisherige Restjahre | Studien-HR Balance* | Erweiterte Restjahre |',

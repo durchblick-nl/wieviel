@@ -171,3 +171,25 @@ test('age weighting never discounts the SBMI penalty or invents a lifestyle chan
         assert.ok(penalty>0);
     }
 });
+
+test('one total produce question counts all vegetables without a personal carrot or potato penalty', () => {
+    for(const [sex,expected] of [['male',4.252],['female',4.404]]) {
+        const input={fruitVegFrequency:3};
+        near(exposures(model,sex,60,input).fruit,expected);
+        near(exposures(model,sex,60,{...input,carrots:'no',potatoFrequency:20}).fruit,expected);
+        near(exposures(model,sex,60,{...input,carrots:'yes',potatoFrequency:0}).fruit,expected);
+        assert.equal(exposures(model,sex,60,{...profile,fruitVegFrequency:null}).fruit,undefined);
+        near(exposures(model,sex,60,{...input,juiceFrequency:6}).fruit,expected);
+        assert.ok(estimate({...profile,fruitVegFrequency:5},60,sex).remainingYears > estimate({...profile,fruitVegFrequency:3},60,sex).remainingYears);
+    }
+});
+
+test('the sole diet answer is sufficient and matches the unchanged diet reference without extra vegetable answers', () => {
+    for(const [sex,frequency] of [['male',3.3],['female',4.2]]) {
+        const r=estimate({fruitVegFrequency:frequency},60,sex);
+        near(r.difference,0);
+        assert.equal(r.considered,1);
+        assert.ok(!r.unknown.includes('fruit'));
+        assert.equal(estimate({fruitVegFrequency:null},60,sex).considered,0);
+    }
+});

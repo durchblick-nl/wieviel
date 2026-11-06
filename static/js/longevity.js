@@ -27,8 +27,7 @@
         return {age: optionalNumber('age'), sex: byId('sex').value, smoking: byId('smoking').value,
             cigarettes: optionalNumber('cigarettes'), quitYears: optionalNumber('quit-years'),
             moderateMinutes: optionalNumber('moderate-minutes'), vigorousMinutes: optionalNumber('vigorous-minutes'),
-            produceFrequency: optionalNumber('fruit-frequency'), juiceFrequency: optionalNumber('juice-frequency'),
-            carrots: byId('carrots').value, potatoFrequency: optionalNumber('potato-frequency'),
+            fruitVegFrequency: optionalNumber('fruit-frequency'),
             drinksWeek: optionalNumber('drinks-week'), binge: byId('binge').value,
             marital: byId('marital-status').value, height: optionalNumber('height'), weight: optionalNumber('weight')};
     }
@@ -190,20 +189,20 @@
         for (const button of document.querySelectorAll('[data-scenario]')) {
             const type = button.dataset.scenario;
             const originalDiet = window.LongevitySurvival.exposures(config.model, profile.sex, profile.age, profile).fruit;
-            const alternativeDiet = window.LongevitySurvival.exposures(config.model, profile.sex, profile.age, {...profile, produceFrequency: 5}).fruit;
+            const alternativeDiet = window.LongevitySurvival.exposures(config.model, profile.sex, profile.age, {...profile, fruitVegFrequency: 5}).fruit;
             // Suggestions describe changes from the saved profile, not habits already present.
             button.hidden = !scenario.supported || (type === 'smoking' ? profile.smoking !== 'yes' || !profile.cigarettes
                 : type === 'activity' ? profile.moderateMinutes === null || profile.vigorousMinutes === null || profile.moderateMinutes >= 300 || profile.vigorousMinutes >= 150
-                : type === 'fruit' ? originalDiet === undefined || profile.produceFrequency >= 5 || alternativeDiet <= originalDiet : false);
+                : type === 'fruit' ? originalDiet === undefined || profile.fruitVegFrequency >= 5 || alternativeDiet <= originalDiet : false);
             const active = type === 'smoking' ? Object.hasOwn(overrides, 'smoking') : type === 'activity' ? Object.hasOwn(overrides, 'moderateMinutes')
-                : type === 'fruit' ? Object.hasOwn(overrides, 'produceFrequency') : Object.hasOwn(overrides, 'weight');
+                : type === 'fruit' ? Object.hasOwn(overrides, 'fruitVegFrequency') : Object.hasOwn(overrides, 'weight');
             button.setAttribute('aria-pressed', String(active));
         }
         const notes = [];
         if (!scenario.supported) notes.push(text('personalUnsupported'));
         if (Object.hasOwn(overrides, 'smoking')) notes.push(text('appSmokeNote'));
         if (Object.hasOwn(overrides, 'moderateMinutes')) notes.push(text('appActivityNote'));
-        if (Object.hasOwn(overrides, 'produceFrequency')) notes.push(text('appFruitNote'));
+        if (Object.hasOwn(overrides, 'fruitVegFrequency')) notes.push(text('appFruitNote'));
         if (Object.hasOwn(overrides, 'weight')) notes.push(text('appSmallChanges'));
         byId('scenario-note').hidden = notes.length === 0;
         byId('scenario-note').textContent = notes.join(' ');
@@ -235,7 +234,7 @@
         drawCurve(result); drawMarital();
     }
 
-    const fieldMap = {age:'age', sex:'sex', smoking:'smoking', cigarettes:'cigarettes', quitYears:'quit-years', moderateMinutes:'moderate-minutes', vigorousMinutes:'vigorous-minutes', produceFrequency:'fruit-frequency', juiceFrequency:'juice-frequency', carrots:'carrots', potatoFrequency:'potato-frequency', drinksWeek:'drinks-week', binge:'binge', marital:'marital-status', height:'height', weight:'weight'};
+    const fieldMap = {age:'age', sex:'sex', smoking:'smoking', cigarettes:'cigarettes', quitYears:'quit-years', moderateMinutes:'moderate-minutes', vigorousMinutes:'vigorous-minutes', fruitVegFrequency:'fruit-frequency', drinksWeek:'drinks-week', binge:'binge', marital:'marital-status', height:'height', weight:'weight'};
     function fillForm(values) {
         for (const [key, id] of Object.entries(fieldMap)) byId(id).value = values[key] ?? '';
         syncChoices();
@@ -353,7 +352,7 @@
     byId('previous-step').addEventListener('click', goBack);
     byId('editor-back').addEventListener('click', goBack);
     byId('skip-step').addEventListener('click', () => {
-        const fields = step === 1 ? ['height','weight'] : step === 2 ? ['smoking','cigarettes','quit-years'] : step === 3 ? ['moderate-minutes','vigorous-minutes'] : step === 4 ? ['fruit-frequency','juice-frequency','carrots','potato-frequency'] : ['drinks-week','binge'];
+        const fields = step === 1 ? ['height','weight'] : step === 2 ? ['smoking','cigarettes','quit-years'] : step === 3 ? ['moderate-minutes','vigorous-minutes'] : step === 4 ? ['fruit-frequency'] : ['drinks-week','binge'];
         for (const id of fields) byId(id).value = '';
         changeForm(); if (step === 5) closeEditor(true); else setStep(step + 1);
     });
@@ -368,13 +367,13 @@
             if (Object.hasOwn(overrides, 'weight')) { delete overrides.weight; delete overrides.height; render(); }
             else openEditor('weight', button);
         } else {
-            const key = type === 'smoking' ? 'smoking' : type === 'activity' ? 'moderateMinutes' : 'produceFrequency';
+            const key = type === 'smoking' ? 'smoking' : type === 'activity' ? 'moderateMinutes' : 'fruitVegFrequency';
             if (Object.hasOwn(overrides, key)) {
                 delete overrides[key];
                 if (type === 'smoking') { delete overrides.quitYears; delete overrides.cigarettes; }
             } else if (type === 'smoking') Object.assign(overrides, {smoking: 'former', quitYears: 0, cigarettes: profile.cigarettes});
             else if (type === 'activity') overrides.moderateMinutes = Math.max(profile.moderateMinutes, 300);
-            else overrides.produceFrequency = 5;
+            else overrides.fruitVegFrequency = 5;
             render();
         }
     });
