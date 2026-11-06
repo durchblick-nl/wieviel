@@ -169,7 +169,8 @@ test('DE/FR longevity: joint survival model, immediate age updates, reversible s
         await page.locator('#longevity-vigorous-minutes').fill('0');
         await page.locator('#longevity-next-step').click();
         const produceLabel = await page.locator('label[for="longevity-fruit-frequency"]').innerText();
-        assert.match(produceLabel, route.startsWith('de') ? /ohne Kartoffeln und Saft/ : /sans pommes de terre ni jus/);
+        assert.match(produceLabel, route.startsWith('de') ? /Wie oft am Tag/ : /Combien de fois par jour/);
+        assert.match(await page.locator('#longevity-fruit-frequency-help').innerText(), route.startsWith('de') ? /Kartoffeln.*nicht mitzählen/ : /Ne compte pas ici les pommes de terre/);
         assert.equal(await page.locator('#longevity-potato-frequency').count(), 1);
         assert.equal(await page.locator('#longevity-juice-frequency').getAttribute('aria-describedby'), 'longevity-juice-help');
         assert.ok((await page.locator('#longevity-juice-help').innerText()).length > 80);

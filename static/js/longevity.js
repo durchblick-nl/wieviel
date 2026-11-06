@@ -240,6 +240,7 @@
     function syncChoices() {
         for (const button of document.querySelectorAll('[data-control]')) button.setAttribute('aria-pressed', String(byId(button.dataset.control).value === button.dataset.value));
         byId('cigarettes-field').hidden = !['yes', 'former'].includes(byId('smoking').value);
+        document.querySelector('label[for="longevity-cigarettes"]').textContent = text(byId('smoking').value === 'former' ? 'cigarettesFormer' : 'cigarettes');
         byId('quit-field').hidden = byId('smoking').value !== 'former';
         byId('weight-slider').max = Math.max(200, optionalNumber('weight') || 0);
         byId('weight-slider').value = optionalNumber('weight') || 80;
