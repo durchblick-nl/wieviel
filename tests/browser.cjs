@@ -168,12 +168,16 @@ test('DE/FR longevity: joint survival model, immediate age updates, reversible s
         await page.locator('#longevity-moderate-minutes').fill('150');
         await page.locator('#longevity-vigorous-minutes').fill('0');
         await page.locator('#longevity-next-step').click();
-        const produceLabel = await page.locator('label[for="longevity-fruit-frequency"]').innerText();
-        assert.match(produceLabel, route.startsWith('de') ? /Wie oft am Tag/ : /Combien de fois par jour/);
-        assert.match(await page.locator('#longevity-fruit-frequency-help').innerText(), route.startsWith('de') ? /Ganze Früchte/ : /fruits entiers/);
+        const produceLabel = await page.locator('#longevity-produce-label').innerText();
+        assert.match(produceLabel, route.startsWith('de') ? /Wie viele Portionen/ : /Combien de portions/);
+        assert.match(await page.locator('#longevity-fruit-frequency-help').innerText(), route.startsWith('de') ? /eine Handvoll/ : /une poignée/);
         assert.equal(await page.locator('#longevity-potato-frequency, #longevity-carrots, #longevity-juice-frequency').count(), 0);
         assert.equal(await page.locator('[data-profile-step="4"] input').count(), 1);
-        await page.locator('#longevity-fruit-frequency').fill('3');
+        assert.equal(await page.locator('.longevity-portion-card').count(), 5);
+        await page.locator('[data-control="fruit-frequency"][data-value="3"]').click();
+        assert.equal(await page.locator('#longevity-fruit-frequency').inputValue(), '3');
+        assert.equal(await page.evaluate(()=>document.activeElement.tagName),'BUTTON');
+        assert.equal(await page.locator('[data-control="fruit-frequency"][data-value="3"]').getAttribute('aria-pressed'), 'true');
         await page.locator('#longevity-next-step').click();
         assert.ok(await page.locator('#longevity-binge-help').isVisible());
         assert.match(await page.locator('#longevity-binge-help').innerText(), route.startsWith('de') ? /mindestens einmal pro Woche/ : /au moins une fois par semaine/);
@@ -226,7 +230,7 @@ test('DE/FR longevity: joint survival model, immediate age updates, reversible s
         await page.locator('#longevity-next-step').click();
         await page.locator('#longevity-moderate-minutes').fill('300');
         await page.locator('#longevity-next-step').click();
-        await page.locator('#longevity-fruit-frequency').fill('5');
+        await page.locator('[data-control="fruit-frequency"][data-value="5"]').click();
         await page.locator('#longevity-close-editor').click();
         for (const key of ['smoking', 'activity', 'fruit']) assert.equal(await page.locator(`[data-scenario="${key}"]`).isVisible(), false);
         assert.equal(await page.locator('#longevity-curve').isVisible(), true);
@@ -402,4 +406,35 @@ test('electricity: year, manual price, stale responses and missing tariff', asyn
     await page.waitForFunction(() => document.querySelector('#tariffMessage').textContent.includes('nicht geladen'));
     assert.match(await page.locator('#priceBasis').innerText(), /2026: 27.70/);
     await page.close();
+});
+
+
+test('DE/FR longevity: portion cards, exact values, keyboard selection and unknown reset share one answer', async () => {
+    for(const route of ['de/leben','fr/esperance-de-vie']) {
+        const page=await pageFor(route);
+        await page.setViewportSize({width:390,height:844});
+        await page.evaluate(()=>CookieConsent.acceptCategory('necessary'));
+        await page.locator('#longevity-edit-profile').click();
+        for(let i=0;i<4;i++) await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('.longevity-portion-card[aria-pressed="true"]').count(),0);
+        const seven=page.locator('[data-control="fruit-frequency"][data-value="7"]');
+        await seven.focus(); await page.keyboard.press('Space');
+        assert.equal(await page.locator('#longevity-fruit-frequency').inputValue(),'7');
+        assert.equal(await seven.getAttribute('aria-pressed'),'true');
+        await page.locator('#longevity-produce-custom summary').click();
+        await page.locator('#longevity-fruit-frequency').fill('2');
+        assert.equal(await page.locator('.longevity-portion-card[aria-pressed="true"]').count(),0);
+        await page.locator('#longevity-close-editor').click();
+        await page.locator('#longevity-edit-profile').click();
+        for(let i=0;i<4;i++) await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('#longevity-produce-custom').getAttribute('open'),'');
+        assert.equal(await page.locator('#longevity-fruit-frequency').inputValue(),'2');
+        await page.locator('[data-control="fruit-frequency"][data-value="0"]').click();
+        assert.equal(await page.locator('#longevity-fruit-frequency').inputValue(),'0');
+        assert.equal(await page.locator('#longevity-produce-custom').getAttribute('open'),null);
+        await page.locator('#longevity-skip-step').click();
+        assert.equal(await page.locator('#longevity-fruit-frequency').inputValue(),'');
+        assert.equal(await page.locator('.longevity-portion-card[aria-pressed="true"]').count(),0);
+        await page.close();
+    }
 });

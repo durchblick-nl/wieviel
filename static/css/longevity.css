@@ -169,3 +169,31 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 .longevity-smart-bmi .longevity-sbmi-effect { font-weight: 600; }
 .longevity-smart-bmi a { color: var(--primary-color); text-decoration: underline; }
 [data-theme="dark"] .longevity-smart-bmi .longevity-bmi-strip { background: transparent; }
+
+/* Illustrated daily produce choices. Images are decorative; text names each amount. */
+.longevity-portion-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin: 12px 0; }
+.longevity-portion-card { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; min-height: 118px; padding: 8px 7px; border: 2px solid var(--border-color); border-radius: 14px; background: var(--card-bg); color: var(--text-color); font: 16px/1.3 Arial,sans-serif; cursor: pointer; text-align: center; transition: background-color .15s, border-color .15s; }
+.longevity-portion-card svg { display: block; width: 100%; max-width: 145px; height: 64px; }
+.longevity-portion-card strong { display: block; color: var(--primary-color); font-size: 17px; }
+.longevity-portion-card small { display: block; margin-top: 4px; font-size: 12px; }
+.longevity-portion-card i { position: absolute; top: 8px; right: 8px; color: var(--primary-color); visibility: hidden; }
+.longevity-portion-card[aria-pressed="true"] { border-color: var(--primary-color); background: #e1f0f0; }
+.longevity-portion-card[aria-pressed="true"] i { visibility: visible; }
+.longevity-portion-card:focus-visible { outline: 3px solid var(--primary-color); outline-offset: 3px; }
+.longevity-produce-custom { margin-top: 14px; }
+.longevity-produce-custom summary { color: var(--primary-color); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.longevity-produce-custom[open] label { display: block; margin-top: 12px; }
+[data-theme="dark"] .longevity-portion-card[aria-pressed="true"] { background: #293f49; }
+.longevity-portion-zero { grid-column: 1/-1; flex-direction: row; justify-content: flex-start; min-height: 52px; padding: 4px 12px; gap: 12px; text-align: left; }
+.longevity-portion-zero svg { width: 76px; height: 40px; }
+.longevity-portion-zero small { display: none; }
+@media (max-width: 600px) {
+    .longevity-portion-card { min-height: 103px; }
+    .longevity-portion-card svg { height: 57px; }
+    .longevity-portion-card small { display: none; }
+    .longevity-portion-zero { grid-column: 1/-1; flex-direction: row; justify-content: flex-start; min-height: 50px; padding: 4px 12px; gap: 12px; text-align: left; }
+    .longevity-portion-zero svg { width: 76px; height: 38px; }
+    .longevity-portion-zero small { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) { .longevity-portion-card { transition: none; } }

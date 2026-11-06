@@ -1,4 +1,4 @@
-# Gemeinsames Überlebensmodell – Version joint-survival-3
+# Gemeinsames Überlebensmodell – Version joint-survival-4
 
 Stand: 6. November 2026. Dies ist eine experimentelle Übertragung und keine validierte
 Schweizer Individualprognose. Sie ersetzt die öffentlich verwendeten additiven Jahresregeln.
@@ -239,3 +239,27 @@ für reproduzierbare Forschungs-/Versionsvergleiche unterstützt. Neue öffentli
 Eingaben werden nicht stillschweigend darauf zurückgeführt. Ein explizit fehlender
 neuer Gesamtwert bleibt unbekannt. Szenarien und Beitragsvergleiche verwenden die
 neue Gesamtfrage. Der Alterskompromiss aus Version 2 und Smart BMI bleiben erhalten.
+
+
+## Grafische Portionsauswahl – joint-survival-4 (6. November 2026)
+
+Die öffentliche Frage verwendet jetzt Portionen pro Tag und fünf illustrierte
+Schaltflächen 0/1/3/5/7+. Es wird nichts vorausgewählt; unbekannt bleibt unbekannt.
+Die Kategorie 7+ setzt konservativ 7, nicht unendlich oder einen Sonderbonus.
+Eine optionale genaue Eingabe für 0–12 bleibt möglich, etwa für 2 oder 4 Portionen.
+Die numerische Scorebegrenzung bei acht bleibt unverändert. Auswahl, Zurücksetzen,
+Überspringen und Wiederöffnen verwenden denselben Wert; Bilder sind rein dekorativ.
+
+`fruitVegPortions` kennzeichnet die neue Einheit. Sie wird ausdrücklich eins zu eins
+als Proxy für die bisherige Studien-Häufigkeit verwendet. Das ist keine empirisch
+validierte Umrechnung von Portionen in Essanlässe; dieselbe Mahlzeit kann mehrere
+Portionen enthalten. Die älteren Frequenz-Schemata bleiben für interne Vergleiche
+verfügbar. Bei explizit unbekannter Portionsangabe gibt es keinen alten Fallback.
+
+Die [BLV-Empfehlungen](https://www.blv.admin.ch/de/ernaehrung-erwachsene) erklären eine
+Portion als ungefähr eine Handvoll und empfehlen gesunden Erwachsenen fünf pro Tag.
+Dies erklärt die Darstellung, nicht unsere Mortalitätskoeffizienten. Die Bilder
+illustrieren die Tagesmenge, nicht eine exakte Grammzahl oder Anzahl verschiedener
+Lebensmittel auf einem Teller. Eine Platte mit fünf Sorten ist nicht automatisch
+fünf Portionen. Die Original-Vektoren liegen als Hugo-Partial vor; keine Bild-API,
+kein Tracking und keine externen Assets sind dafür erforderlich.
