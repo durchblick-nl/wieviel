@@ -1,0 +1,32 @@
+{
+  "version": "parental-review-1",
+  "checkedOn": "2026-11-06",
+  "productionEligible": false,
+  "source": {
+    "doi": "10.1016/j.jacc.2016.05.072",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12159424/",
+    "location": "Methods and all-cause mortality results, printed pages 874-875",
+    "participants": 186151,
+    "deaths": 4705,
+    "offspringAgeRange": [55, 73],
+    "requiresBothBiologicalParentsDeceased": true,
+    "excludedParentalDeathBelow": {"mother": 57, "father": 46},
+    "perDecadeContrastAppliesFromParentalAge": 70,
+    "perDecadeAllCauseHazardRatio": {
+      "mother": {"hazardRatio": 0.84, "ci95": [0.79, 0.89]},
+      "father": {"hazardRatio": 0.83, "ci95": [0.78, 0.89]}
+    },
+    "adjustedFor": ["age", "sex", "ethnicity", "education", "income", "smoking", "alcoholUse", "physicalActivity", "bmi"],
+    "upperParentalAgeForLinearContrastVerified": false,
+    "jointMotherFatherCoefficientCovarianceVerified": false,
+    "livingParentPredictionVerified": false,
+    "causeSpecificAdjustmentVerified": false
+  },
+  "releaseBlockers": [
+    "no_joint_parental_lifestyle_model_and_reference_distribution",
+    "no_calibrated_absolute_hazard_or_lifetime_effect",
+    "living_parent_censoring_requires_fitted_model_not_age_at_death_substitution",
+    "early_parental_death_and_death_causes_not_supported_by_reported_linear_contrast",
+    "no_swiss_external_validation"
+  ]
+}
