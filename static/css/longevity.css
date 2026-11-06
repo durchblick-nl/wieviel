@@ -87,7 +87,7 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 .longevity-editor-nav { display: grid; grid-template-columns: 1fr 1.8fr; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 14px; }
 .longevity-editor-nav button { min-height: 54px; border: 1px solid var(--primary-color); border-radius: 10px; font: 600 16px Arial,sans-serif; padding: 12px; background: var(--card-bg); color: var(--primary-color); cursor: pointer; }
 .longevity-editor-nav button:last-child { background: var(--primary-color); color: white; }
-/* Keep the active field visible above an on-screen keyboard, including on iOS. */
+/* Reserve room for the active field above the keyboard; restore progress and skip actions afterwards. */
 .longevity-profile-dialog.longevity-keyboard-open { margin-top: 0; height: var(--editor-height); border-radius: 0; }
 .longevity-profile-dialog.longevity-keyboard-open[open] { grid-template-rows: auto minmax(0,1fr) auto; }
 .longevity-keyboard-open .longevity-editor-progress,

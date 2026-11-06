@@ -276,7 +276,7 @@
         const height = viewport ? viewport.height : window.innerHeight;
         dialog.style.setProperty('--editor-height', `${height}px`);
         dialog.style.setProperty('--editor-top', `${viewport ? viewport.offsetTop : 0}px`);
-        // Mobile keyboards can shrink and pan the visual viewport independently.
+        // Track both keyboard resizing and viewport panning to position the fixed sheet.
         // Leave the limited space to the form rather than the sheet's chrome.
         const editing = byId('form').contains(document.activeElement)
             && document.activeElement.matches('input:not([type="range"]), select');
