@@ -161,30 +161,7 @@
         return estimate;
     }
 
-    // Oral health stays separate from the mortality model and scenario overrides.
-    function renderOralHealth() {
-        const teeth = byId('teeth');
-        const valid = teeth.checkValidity();
-        teeth.setAttribute('aria-invalid', String(!valid));
-        byId('teeth-error').hidden = valid;
-        const values = byId('oral-values');
-        values.replaceChildren();
-        for (const id of ['teeth', 'oral-dentures', 'oral-chewing', 'oral-periodontitis']) {
-            const input = byId(id);
-            if (input.value === '' || !input.checkValidity()) continue;
-            const label = document.querySelector(`label[for="${input.id}"]`);
-            const term = document.createElement('dt'); term.textContent = label.textContent;
-            const value = document.createElement('dd');
-            value.textContent = input.tagName === 'SELECT' ? input.selectedOptions[0].textContent : input.value;
-            values.append(term, value);
-        }
-        byId('oral-summary').hidden = values.children.length === 0;
-        const key = profile.age >= 35 && profile.age <= 44 ? 'referenceAdults'
-            : profile.age >= 65 && profile.age <= 74 ? 'referenceSeniors' : 'noReference';
-        byId('oral-reference').textContent = text(`oral.${key}`);
-    }
     function render() {
-        renderOralHealth();
         const result = core.baseline(config.data, profile.sex, profile.age);
         const scenario = updatePersonal(result, {...profile, ...overrides});
         currentScenario = scenario;
@@ -361,10 +338,6 @@
     });
     byId('form').addEventListener('input', changeForm);
     byId('form').addEventListener('change', changeForm);
-    byId('oral-form').addEventListener('input', renderOralHealth);
-    byId('oral-form').addEventListener('change', renderOralHealth);
-    byId('oral-form').addEventListener('submit', event => event.preventDefault());
-    byId('oral-form').addEventListener('reset', () => requestAnimationFrame(renderOralHealth));
     byId('height').addEventListener('keydown', event => {
         if (event.key === 'Enter') { event.preventDefault(); byId('weight').focus(); }
     });

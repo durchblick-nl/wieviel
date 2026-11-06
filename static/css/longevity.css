@@ -39,12 +39,6 @@
 .longevity-explanations[open] > summary { margin-bottom: 24px; }
 .longevity-explanations .calculator-card { box-shadow: none; padding: 24px 0; border-bottom: 1px solid var(--border-color); border-radius: 0; margin: 0; }
 .longevity-explanations .calculator-card > h2 { font-size: 23px; }
-.longevity-oral-health { padding: 0 4px; }
-.longevity-oral-health > summary { list-style-position: inside; }
-.longevity-oral-health dl { margin: 12px 0 20px; }
-.longevity-oral-health dt { margin-top: 12px; font-weight: 600; }
-.longevity-oral-health dd { margin: 4px 0 0; }
-.longevity-oral-health input[aria-invalid="true"] { border-color: var(--accent-color); }
 .longevity-sr, .longevity-choice-native { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip-path: inset(50%); white-space: nowrap; }
 .longevity-choice-native { display: none; }
 /* The editor is a single full-height sheet, not a stack of nested cards. */
