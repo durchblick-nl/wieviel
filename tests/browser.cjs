@@ -64,6 +64,58 @@ test('all 50 language pages render one complete freshness box', async () => {
     await page.close();
 });
 
+test('DE/FR longevity: number fields stay visible when the keyboard shrinks and pans the viewport', async () => {
+    for (const route of ['de/leben', 'fr/esperance-de-vie']) {
+        const page = await pageFor(route);
+        await page.setViewportSize({width: 390, height: 844});
+        await page.evaluate(() => CookieConsent.acceptCategory('necessary'));
+        // Desktop automation has no software keyboard. Model its independent
+        // resize and pan before the calculator subscribes to viewport events.
+        await page.addInitScript(() => {
+            const viewport = new EventTarget();
+            Object.assign(viewport, {height: 844, offsetTop: 0});
+            Object.defineProperty(window, 'visualViewport', {configurable: true, value: viewport});
+        });
+        await page.reload();
+        await page.locator('.page-header-cta').click();
+        await page.locator('#longevity-next-step').click();
+        await page.locator('#longevity-height').focus();
+        await page.evaluate(() => {
+            Object.assign(visualViewport, {height: 330, offsetTop: 55});
+            visualViewport.dispatchEvent(new Event('resize'));
+        });
+        const assertVisible = async id => {
+            await page.waitForFunction(id => {
+                const input = document.getElementById(id).getBoundingClientRect();
+                const form = document.getElementById('longevity-form').getBoundingClientRect();
+                const dialog = document.getElementById('longevity-profile-dialog').getBoundingClientRect();
+                return dialog.top >= visualViewport.offsetTop - 1
+                    && dialog.bottom <= visualViewport.offsetTop + visualViewport.height + 1
+                    && input.top >= form.top && input.bottom <= form.bottom;
+            }, id);
+        };
+        await assertVisible('longevity-height');
+        await page.locator('#longevity-height').fill('180');
+        await page.locator('#longevity-height').press('Enter');
+        await page.locator('#longevity-weight').fill('81.5');
+        await assertVisible('longevity-weight');
+        assert.equal(await page.locator('#longevity-weight').inputValue(), '81.5');
+        await page.evaluate(() => {
+            visualViewport.offsetTop = 90;
+            visualViewport.dispatchEvent(new Event('scroll'));
+        });
+        await assertVisible('longevity-weight');
+        await page.evaluate(() => {
+            Object.assign(visualViewport, {height: 844, offsetTop: 0});
+            visualViewport.dispatchEvent(new Event('resize'));
+        });
+        assert.equal(await page.locator('#longevity-skip-step').isVisible(), true);
+        await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('[data-profile-step="2"]').isVisible(), true);
+        await page.close();
+    }
+});
+
 test('DE/FR longevity: joint survival model, immediate age updates, reversible scenarios and unchanged BFS reference', async () => {
     for (const route of ['de/leben', 'fr/esperance-de-vie']) {
         const page = await pageFor(route);

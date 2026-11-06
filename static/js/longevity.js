@@ -270,7 +270,27 @@
         byId('form').scrollTop = 0;
     }
     function resizeEditor() {
-        byId('profile-dialog').style.setProperty('--editor-height', `${window.visualViewport ? window.visualViewport.height : window.innerHeight}px`);
+        const dialog = byId('profile-dialog');
+        if (!dialog.open) return;
+        const viewport = window.visualViewport;
+        const height = viewport ? viewport.height : window.innerHeight;
+        dialog.style.setProperty('--editor-height', `${height}px`);
+        dialog.style.setProperty('--editor-top', `${viewport ? viewport.offsetTop : 0}px`);
+        // Mobile keyboards can shrink and pan the visual viewport independently.
+        // Leave the limited space to the form rather than the sheet's chrome.
+        const editing = byId('form').contains(document.activeElement)
+            && document.activeElement.matches('input:not([type="range"]), select');
+        dialog.classList.toggle('longevity-keyboard-open', editing && document.documentElement.clientHeight - height > 120);
+        requestAnimationFrame(() => {
+            const input = document.activeElement;
+            const form = byId('form');
+            if (!dialog.open || !form.contains(input) || !input.matches('input, select')) return;
+            const field = input.closest('.longevity-field, .longevity-number-row') || input;
+            const bounds = form.getBoundingClientRect();
+            const target = field.getBoundingClientRect();
+            if (target.bottom > bounds.bottom - 16) form.scrollTop += target.bottom - bounds.bottom + 16;
+            if (target.top < bounds.top + 16) form.scrollTop -= bounds.top + 16 - target.top;
+        });
     }
     function openEditor(mode, trigger) {
         editorMode = mode; editorTrigger = trigger;
@@ -280,9 +300,9 @@
         byId('age').setAttribute('aria-invalid', 'false');
         byId('editor-title').textContent = mode === 'weight' ? text('appScenarioTitle') : text('appEditorTitle');
         byId('weight-slider-field').hidden = mode !== 'weight';
-        resizeEditor();
         byId('profile-dialog').showModal();
         setStep(mode === 'weight' ? 1 : 0);
+        resizeEditor();
     }
     function validateStep() {
         if (step === 0 && validAge() === null) {
@@ -358,6 +378,12 @@
     byId('compare').addEventListener('change', () => { if (currentResult) drawCurve(currentResult); });
     byId('probe').addEventListener('input', updateProbe);
     mobile.addEventListener('change', render);
-    if (window.visualViewport) window.visualViewport.addEventListener('resize', resizeEditor);
+    byId('form').addEventListener('focusin', resizeEditor);
+    byId('form').addEventListener('focusout', () => requestAnimationFrame(resizeEditor));
+    window.addEventListener('resize', resizeEditor);
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', resizeEditor);
+        window.visualViewport.addEventListener('scroll', resizeEditor);
+    }
     syncChoices(); render();
 })();

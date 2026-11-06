@@ -42,7 +42,7 @@
 .longevity-sr, .longevity-choice-native { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip-path: inset(50%); white-space: nowrap; }
 .longevity-choice-native { display: none; }
 /* The editor is a single full-height sheet, not a stack of nested cards. */
-.longevity-profile-dialog { --editor-height: 100dvh; width: min(100vw, 520px); max-width: 100vw; height: var(--editor-height); max-height: var(--editor-height); margin: 0 auto; padding: 0; border: 0; box-sizing: border-box; background: var(--card-bg); color: var(--text-color); overflow: hidden; }
+.longevity-profile-dialog { --editor-height: 100dvh; position: fixed; inset: var(--editor-top, 0px) 0 auto; width: min(100vw, 520px); max-width: 100vw; height: var(--editor-height); max-height: var(--editor-height); margin: 0 auto; padding: 0; border: 0; box-sizing: border-box; background: var(--card-bg); color: var(--text-color); overflow: hidden; }
 .longevity-profile-dialog[open] { display: grid; grid-template-rows: auto auto minmax(0,1fr) auto; }
 .longevity-profile-dialog[open]:has(#longevity-editor-progress[hidden]) { grid-template-rows: auto minmax(0,1fr) auto; }
 .longevity-profile-dialog::backdrop { background: rgb(20 35 42 / .42); }
@@ -87,6 +87,16 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 .longevity-editor-nav { display: grid; grid-template-columns: 1fr 1.8fr; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 14px; }
 .longevity-editor-nav button { min-height: 54px; border: 1px solid var(--primary-color); border-radius: 10px; font: 600 16px Arial,sans-serif; padding: 12px; background: var(--card-bg); color: var(--primary-color); cursor: pointer; }
 .longevity-editor-nav button:last-child { background: var(--primary-color); color: white; }
+/* Keep the active field visible above an on-screen keyboard, including on iOS. */
+.longevity-profile-dialog.longevity-keyboard-open { margin-top: 0; height: var(--editor-height); border-radius: 0; }
+.longevity-profile-dialog.longevity-keyboard-open[open] { grid-template-rows: auto minmax(0,1fr) auto; }
+.longevity-keyboard-open .longevity-editor-progress,
+.longevity-keyboard-open .longevity-skip { display: none; }
+.longevity-keyboard-open .longevity-editor-header { padding: 4px 16px; }
+.longevity-keyboard-open #longevity-form { padding: 12px 20px; }
+.longevity-keyboard-open .longevity-editor-bottom { padding: 0 16px 8px; }
+.longevity-keyboard-open .longevity-editor-nav { padding-top: 8px; }
+.longevity-keyboard-open .longevity-editor-nav button { min-height: 44px; padding: 8px 12px; }
 /* Source comparisons remain accessible, separate from the what-if model. */
 .longevity-note { background: var(--light-bg); border-left: 3px solid var(--secondary-color); padding: 12px 14px; line-height: 1.65; font-size: 14px; margin: 16px 0; }
 .longevity-help { font-size: 13px; line-height: 1.65; }
