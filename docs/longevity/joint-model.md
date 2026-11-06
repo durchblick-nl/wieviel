@@ -158,3 +158,24 @@ Unterschiede dürfen nicht als nachgewiesener persönlicher Gewinn durch einen
 Rauchstopp gelesen werden. Sie zeigen, dass die Altersabhängigkeit aus der
 Überlebensrechnung entsteht und der Rauchstopp nicht mit einem sofortigen
 historischen Jahresbonus verwechselt wird.
+
+
+## Getrennte Ernährungseingaben (6. November 2026)
+
+Die öffentliche tägliche Obst-/Gemüsefrage schliesst Kartoffeln und Saft jetzt aus.
+`produceFrequency` bezeichnet diese neue Eingabe. Für den unveränderten Studienindex
+wird `produceFrequency + potatoFrequency / 7` als tägliche Gesamthäufigkeit verwendet;
+Kartoffeln werden nur einmal abgefragt. Der separate geschlechtsspezifische
+Kartoffelterm des Index bleibt bestehen. Bestehende interne Profile mit
+`fruitFrequency` behalten ihre Bedeutung als Gesamthäufigkeit einschliesslich
+Kartoffeln. Bei explizit unbekannter neuer Eingabe wird nicht darauf zurückgegriffen.
+Szenarien, Wiederöffnen und Beitragsvergleiche verwenden ebenfalls die neue Eingabe.
+
+Die Hauptfrage zum hohen Alkoholkonsum ist kürzer. Der sichtbare, zugänglich
+verknüpfte Hinweis erhält die zweite Studienbedingung: auch normalerweise mindestens
+wöchentlicher Konsum von fünf oder mehr Getränken bei einem Anlass zählt, selbst wenn
+es in der letzten Woche nicht vorkam. Die binäre Rechenregel ändert sich nicht.
+
+Der Saft-Hinweis verweist auf freie Zucker und geringere Nahrungsfasern. Er verändert
+keinen Studienkoeffizienten und führt keinen erfundenen Limonaden-Koeffizienten ein.
+WHO und NHS inform sind auf beiden Sprachseiten als Ernährungskontext verlinkt.
