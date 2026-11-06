@@ -1,4 +1,5 @@
 'use strict';
+const {applyLegacyCorrection} = require('./longevity-legacy-discount.cjs');
 
 // Research comparison only. Original PHP: gesundheit.inc, lines 413–561, 742–778.
 // Supports integer ages 13–95; intentionally excludes legacy rounding/UI and bugs
@@ -41,13 +42,8 @@ function legacy(remainingYears, age, sex, input = {}) {
         substances: sum(['df1', 'df2', 'df3', 'df4', 'df5']), activity: value('ex')
     };
     const rawCorrection = Object.values(groups).reduce((a, b) => a + b, 0);
-    const ageMultiplier = age > 50 ? (100 - age) / 50 : 1;
-    const cappedCorrection = Math.min(12, rawCorrection * ageMultiplier);
-    const result = Math.max(remainingYears / 4, remainingYears + cappedCorrection);
-    return { remainingYears: result, expectedAge: age + result, groups, rawCorrection,
-        ageMultiplier, cappedCorrection, appliedCorrection: result - remainingYears,
-        positiveCapApplied: rawCorrection * ageMultiplier > 12,
-        floorApplied: remainingYears + cappedCorrection < remainingYears / 4 };
+    const adjusted = applyLegacyCorrection(remainingYears, age, rawCorrection);
+    return {...adjusted, expectedAge: age + adjusted.remainingYears, groups, rawCorrection};
 }
 
 // Published sex-specific total-mortality estimates from ONE mutually adjusted model.
