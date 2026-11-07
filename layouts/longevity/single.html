@@ -128,8 +128,8 @@
 <div class="longevity-field"><label for="longevity-marital-status">{{ i18n "longevity.maritalQuestion" }}</label><select id="longevity-marital-status"><option value="">{{ i18n "longevity.unknown" }}</option>{{ range slice "single" "married" "widowed" "divorced" }}<option value="{{ . }}">{{ i18n (printf "longevity.status.%s" .) }}</option>{{ end }}</select></div>
 </section>
 <section data-profile-step="1" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.1" }}</h2><p>{{ i18n "longevity.appStepIntro.1" }}</p>
-<div class="longevity-number-row"><label for="longevity-height">{{ i18n "longevity.appHeight" }}</label><input id="longevity-height" type="number" enterkeyhint="next" inputmode="numeric" min="100" max="230" step="1" placeholder="—"><span>cm</span></div>
-<div class="longevity-number-row"><label for="longevity-weight">{{ i18n "longevity.appWeight" }}</label><input id="longevity-weight" type="number" enterkeyhint="next" inputmode="decimal" min="30" max="300" step="0.1" placeholder="—"><span>kg</span></div>
+<div class="longevity-number-row"><label for="longevity-height">{{ partial "longevity-profile-art.html" "height" }}<span>{{ i18n "longevity.appHeight" }}</span></label><input id="longevity-height" type="number" enterkeyhint="next" inputmode="numeric" min="100" max="230" step="1" placeholder="—"><span>cm</span></div>
+<div class="longevity-number-row"><label for="longevity-weight">{{ partial "longevity-profile-art.html" "weight" }}<span>{{ i18n "longevity.appWeight" }}</span></label><input id="longevity-weight" type="number" enterkeyhint="next" inputmode="decimal" min="30" max="300" step="0.1" placeholder="—"><span>kg</span></div>
 <div id="longevity-weight-slider-field" class="longevity-weight-slider" hidden><label for="longevity-weight-slider">{{ i18n "longevity.appWeightSlider" }}</label><input type="range" id="longevity-weight-slider" min="30" max="200" step="0.5" value="80"><p id="longevity-editor-estimate" class="longevity-editor-estimate" aria-live="polite"></p><p>{{ i18n "longevity.appSmallChanges" }}</p></div>
 <div class="longevity-bmi-strip"><span>{{ i18n "longevity.appBmiLabel" }}</span><strong id="longevity-bmi-value" aria-live="polite"></strong></div><small>{{ i18n "longevity.appBmiNote" }}</small>
 <div class="longevity-smart-bmi" id="longevity-smart-bmi" hidden>
@@ -145,8 +145,8 @@
 <div id="longevity-quit-field" class="longevity-field" hidden><label for="longevity-quit-years">{{ i18n "longevity.quitYears" }}</label><input id="longevity-quit-years" type="number" enterkeyhint="next" min="0" max="99" step="1" inputmode="numeric"></div>
 </section>
 <section data-profile-step="3" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.3" }}</h2><p>{{ i18n "longevity.activityHelp" }}</p>
-<div class="longevity-field"><label for="longevity-moderate-minutes">{{ i18n "longevity.moderateMinutes" }}</label><input id="longevity-moderate-minutes" aria-describedby="longevity-moderate-minutes-help" type="number" min="0" max="2520" step="1" inputmode="decimal" enterkeyhint="next" placeholder="—"><small id="longevity-moderate-minutes-help">{{ i18n "longevity.moderateHelp" }}</small></div>
-<div class="longevity-field"><label for="longevity-vigorous-minutes">{{ i18n "longevity.vigorousMinutes" }}</label><input id="longevity-vigorous-minutes" aria-describedby="longevity-vigorous-minutes-help" type="number" min="0" max="2520" step="1" inputmode="decimal" enterkeyhint="next" placeholder="—"><small id="longevity-vigorous-minutes-help">{{ i18n "longevity.vigorousHelp" }}</small></div>
+{{ partial "longevity-activity.html" "moderate" }}
+{{ partial "longevity-activity.html" "vigorous" }}
 </section>
 <section data-profile-step="4" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.4" }}</h2><p>{{ i18n "longevity.appStepIntro.4" }}</p>
 <div class="longevity-field" role="group" aria-labelledby="longevity-produce-label" aria-describedby="longevity-fruit-frequency-help">

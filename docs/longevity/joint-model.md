@@ -288,3 +288,15 @@ Konsum, selbst bei einer ausnahmsweise alkoholfreien Woche. Fehlende Antworten
 werden nicht als «nein» behandelt. Studienmenge und Bildbeispiele für Bier/Wein
 bleiben direkt sichtbar; die Mengen entsprechen nicht beliebig grossen Gläsern.
 Es werden keine neuen Sterblichkeitskoeffizienten oder Alkoholboni eingeführt.
+
+### Grafische Profilangaben (7. November 2026)
+
+Rauchen verwendet drei beschriftete Bildkarten (nie, früher, heute); die bisherigen
+Folgefragen und Modellwerte bleiben gleich. Bewegung und intensiver Sport haben
+getrennte Symbolbilder und Zeittasten für genau 0, 30, 60 und 150 Minuten pro Woche.
+Die Tasten befüllen dieselben Zahlenfelder wie die freie Eingabe. «Andere Dauer»
+fokussiert das bearbeitbare Feld; es gibt keine neue Kategorie oder Interpolation.
+Ein leeres Feld bleibt unbekannt, 0 bleibt eine ausdrückliche Angabe. Grösse und
+Gewicht erhalten dekorative Symbole neben den unveränderten beschrifteten Eingaben.
+Alle Symbole ergänzen sichtbaren Text und sind für Hilfstechnologien ausgeblendet.
+Quellen und Modellparameter ändern sich nicht.
