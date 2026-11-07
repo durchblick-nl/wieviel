@@ -204,3 +204,17 @@ test('graphical portion input preserves zero versus unknown and makes its freque
         near(estimate({fruitVegPortions:8},60,sex).remainingYears,estimate({fruitVegPortions:12},60,sex).remainingYears);
     }
 });
+
+test('weekly alcohol ranges preserve existing classification for both sexes without inventing exact counts', () => {
+    for(const sex of ['male','female']) for(const [band,counts] of [['none',[0]],['1-14',[1,7,14]],['15-21',[15,18,21]],['22plus',[22,60,140]]]) {
+        for(const n of counts) {
+            assert.equal(exposures(model,sex,60,{alcoholWeekBand:band,binge:'no'}).alcohol,
+                exposures(model,sex,60,{drinksWeek:n,binge:'no'}).alcohol);
+        }
+        assert.equal(exposures(model,sex,60,{alcoholWeekBand:band,binge:'yes'}).alcohol,true);
+    }
+    assert.equal(exposures(model,'male',60,{alcoholWeekBand:'none'}).alcohol,undefined);
+    assert.equal(exposures(model,'male',60,{alcoholWeekBand:'invalid',drinksWeek:0,binge:'no'}).alcohol,undefined);
+    assert.equal(exposures(model,'female',60,{alcoholWeekBand:'exact',drinksWeek:14.5,binge:'no'}).alcohol,true);
+    assert.equal(exposures(model,'male',60,{alcoholWeekBand:'exact',drinksWeek:14.5,binge:'no'}).alcohol,false);
+});

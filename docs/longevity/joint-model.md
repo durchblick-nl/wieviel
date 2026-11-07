@@ -1,6 +1,6 @@
-# Gemeinsames Überlebensmodell – Version joint-survival-4
+# Gemeinsames Überlebensmodell – Version joint-survival-5
 
-Stand: 6. November 2026. Dies ist eine experimentelle Übertragung und keine validierte
+Stand: 7. November 2026. Dies ist eine experimentelle Übertragung und keine validierte
 Schweizer Individualprognose. Sie ersetzt die öffentlich verwendeten additiven Jahresregeln.
 
 ## Quelle und übernommene Teile
@@ -263,3 +263,28 @@ illustrieren die Tagesmenge, nicht eine exakte Grammzahl oder Anzahl verschieden
 Lebensmittel auf einem Teller. Eine Platte mit fünf Sorten ist nicht automatisch
 fünf Portionen. Die Original-Vektoren liegen als Hugo-Partial vor; keine Bild-API,
 kein Tracking und keine externen Assets sind dafür erforderlich.
+
+
+## Grafische Alkoholauswahl – joint-survival-5 (7. November 2026)
+
+Die bereits veröffentlichte Portionsauswahl bleibt bestehen; 0 Portionen zeigt auf
+Nutzerwunsch einen durchgestrichenen Apfel. Bei Alkohol zeigt «kein» ein leeres Glas.
+Die neue Wochenfrage hat vier Bildkarten: kein Alkohol, 1–14, 15–21, 22+ Getränke.
+Die Bereiche überschreiten keine der bisher verwendeten Grenzen von 14 (Frauen)
+beziehungsweise 21 (Männern). Sie sind historische Modellkategorien, keine heutigen
+Empfehlungen oder Aussagen über sichere Trinkmengen.
+
+`alcoholWeekBand` speichert die Kategorie, niemals eine erfundene genaue Zahl.
+Die vorhandene MPoRT-Klassifizierung bleibt gleich: über der jeweiligen Wochengrenze
+oder positive Antwort zur Fünf-plus-/Binge-Frage. Bei genauer Eingabe wird der
+bisherige `drinksWeek`-Wert verwendet; auch halbe Studiengetränke sind eingebbar.
+Beim Wechsel zur genauen Eingabe lautet der Modus `exact`; eine alte Bereichswahl
+wird nicht weiter als Antwort verwendet. Umgekehrt löscht eine Bereichsauswahl den
+alten Zahlenwert. Wiederöffnen und Überspringen behandeln beide Felder gemeinsam.
+
+Die Binge-Frage bleibt getrennt und wird nicht aus einer Woche ohne Alkohol
+abgeleitet: Die ursprüngliche Definition enthält auch normalerweise wöchentlichen
+Konsum, selbst bei einer ausnahmsweise alkoholfreien Woche. Fehlende Antworten
+werden nicht als «nein» behandelt. Studienmenge und Bildbeispiele für Bier/Wein
+bleiben direkt sichtbar; die Mengen entsprechen nicht beliebig grossen Gläsern.
+Es werden keine neuen Sterblichkeitskoeffizienten oder Alkoholboni eingeführt.
