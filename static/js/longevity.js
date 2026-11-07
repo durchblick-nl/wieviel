@@ -344,6 +344,9 @@
         if (button.dataset.control === 'alcohol-week-band') { byId('drinks-week').value = ''; byId('alcohol-custom').open = false; }
         changeForm();
     });
+    for (const button of document.querySelectorAll('[data-duration-custom]')) button.addEventListener('click', () => {
+        const input = byId(button.dataset.durationCustom); input.focus(); input.select();
+    });
     byId('drinks-week').addEventListener('input', () => { byId('alcohol-week-band').value = 'exact'; });
     byId('form').addEventListener('input', changeForm);
     byId('form').addEventListener('change', changeForm);

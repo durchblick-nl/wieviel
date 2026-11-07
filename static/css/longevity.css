@@ -209,3 +209,25 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 .longevity-alcohol-card { min-height: 84px; padding: 5px; }
 .longevity-alcohol-card svg { height: 44px; color: var(--primary-color); }
 .longevity-alcohol-card strong { font-size: 16px; }
+
+/* Profile illustrations supplement visible labels; times remain exact numeric answers. */
+.longevity-smoking-choices { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.longevity-smoking-choices button { position: relative; flex-direction: column; justify-content: center; gap: 4px; padding: 8px 5px; text-align: center; }
+.longevity-smoking-choices svg { width: 100%; max-width: 100px; height: 65px; color: var(--primary-color); }
+.longevity-smoking-choices button i { position: absolute; top: 6px; right: 6px; }
+.longevity-number-row label { display: flex; align-items: center; gap: 7px; padding-left: 10px; }
+.longevity-number-row label svg { width: 36px; height: 38px; flex-shrink: 0; color: var(--primary-color); }
+.longevity-activity-field { border-top: 1px solid var(--border-color); padding-top: 12px; }
+.longevity-activity-heading { display: flex; align-items: center; gap: 12px; }
+.longevity-activity-heading svg { width: 92px; height: 62px; flex-shrink: 0; color: var(--primary-color); }
+.longevity-activity-heading strong { font: bold 16px/1.4 Arial,sans-serif; }
+.longevity-activity-question { margin: 4px 0 8px; font-weight: bold; }
+.longevity-duration-choices { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; margin-bottom: 10px; }
+.longevity-duration-choices button { position: relative; min-height: 44px; padding: 8px 23px 8px 8px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--card-bg); color: var(--text-color); font: 15px/1.3 Arial,sans-serif; cursor: pointer; }
+.longevity-duration-choices button i { position: absolute; top: 12px; right: 7px; visibility: hidden; color: var(--primary-color); }
+.longevity-duration-choices button[aria-pressed="true"] { background: #e1f0f0; border-color: var(--primary-color); }
+.longevity-duration-choices button[aria-pressed="true"] i { visibility: visible; }
+.longevity-duration-choices button[data-duration-custom] { grid-column: 1/-1; padding-right: 8px; }
+.longevity-duration-label { font-size: 13px !important; }
+[data-theme="dark"] .longevity-duration-choices button[aria-pressed="true"] { background: #293f49; }
+@media (max-width: 360px) { .longevity-number-row { grid-template-columns: 1fr 90px 38px; } .longevity-number-row label { gap: 3px; padding-left: 5px; } .longevity-number-row label svg { width: 27px; } }

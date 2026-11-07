@@ -1,0 +1,16 @@
+<svg viewBox="{{ if eq . "height" }}35 0 50 80{{ else if eq . "weight" }}20 0 80 80{{ else }}0 0 120 80{{ end }}" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+{{ if in (slice "no" "former" "yes") . }}
+<path d="M22 42H86V55H22Z" fill="var(--card-bg)"/><path d="M68 42V55M78 42V55"/><path d="M92 44V53" stroke="var(--accent-color)"/><path d="M84 32C72 20 95 21 83 9"/>
+{{ if eq . "no" }}<circle cx="60" cy="40" r="35"/><path d="M35 15L85 65" stroke="var(--card-bg)" stroke-width="7"/><path d="M35 15L85 65" stroke="var(--accent-color)"/>
+{{ else if eq . "former" }}<circle cx="93" cy="23" r="17" fill="var(--card-bg)"/><path d="M93 12V23L102 27"/>
+{{ end }}
+{{ else if eq . "height" }}<path d="M44 8H77V72H44Z"/><path d="M44 19H59M44 30H54M44 41H59M44 52H54M44 63H59"/>
+{{ else if eq . "weight" }}<rect x="29" y="10" width="62" height="60" rx="12"/><path d="M42 33A22 22 0 0 1 36-16"/><path d="M60 34L69 23"/>
+{{ else if eq . "moderate" }}
+<circle cx="28" cy="13" r="6"/><path d="M28 23L23 44L13 65M23 44L39 64M27 28L12 37M27 28L41 37"/>
+<circle cx="68" cy="58" r="13"/><circle cx="103" cy="58" r="13"/><path d="M68 58L78 34L91 58H68L84 43H98L103 58M73 34H83M96 27H102L98 43"/>
+{{ else }}
+<circle cx="30" cy="13" r="6"/><path d="M31 23L44 35L58 30M32 24L20 36L9 30M38 30L29 46L46 51L51 66M29 46L19 61L6 61"/>
+<circle cx="72" cy="59" r="12"/><circle cx="104" cy="59" r="12"/><path d="M72 59L82 36L94 59H72L88 44H100L104 59M78 36H87M98 30H105L100 44"/>
+{{ end }}
+</svg>

@@ -1,0 +1,11 @@
+<div class="longevity-field longevity-activity-field" role="group" aria-labelledby="longevity-{{ . }}-title" aria-describedby="longevity-{{ . }}-minutes-help">
+<div class="longevity-activity-heading">{{ partial "longevity-profile-art.html" . }}<strong id="longevity-{{ . }}-title">{{ i18n (printf "longevity.%sTitle" .) }}</strong></div>
+<p class="longevity-activity-question">{{ i18n "longevity.durationQuestion" }}</p>
+<div class="longevity-duration-choices">
+{{ range $value := slice "0" "30" "60" "150" }}<button type="button" data-control="{{ $ }}-minutes" data-value="{{ . }}" aria-pressed="false">{{ i18n (printf "longevity.duration.%s" .) }}<i class="fas fa-check-circle" aria-hidden="true"></i></button>{{ end }}
+<button type="button" data-duration-custom="{{ . }}-minutes">{{ i18n "longevity.durationCustom" }}</button>
+</div>
+<label for="longevity-{{ . }}-minutes" class="longevity-duration-label">{{ i18n "longevity.durationExact" }}</label>
+<input id="longevity-{{ . }}-minutes" aria-describedby="longevity-{{ . }}-minutes-help" type="number" min="0" max="2520" step="1" inputmode="decimal" enterkeyhint="next" placeholder="—">
+<small id="longevity-{{ . }}-minutes-help">{{ i18n (printf "longevity.%sHelp" .) }}</small>
+</div>

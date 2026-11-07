@@ -469,3 +469,43 @@ test('DE/FR longevity: alcohol ranges remain ranges and exact amounts survive re
         await page.close();
     }
 });
+
+test('DE/FR longevity: illustrated profile choices preserve exact times, smoking follow-ups and unknown reset', async () => {
+    for (const route of ['de/leben','fr/esperance-de-vie']) {
+        const page = await pageFor(route); await page.setViewportSize({width:390,height:844});
+        await page.evaluate(()=>CookieConsent.acceptCategory('necessary'));
+        await page.locator('#longevity-edit-profile').click(); await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('.longevity-number-row label svg').count(),2);
+        await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('.longevity-smoking-choices svg').count(),3);
+        await page.locator('[data-control="smoking"][data-value="former"]').click();
+        assert.equal(await page.locator('#longevity-quit-field').isVisible(),true);
+        assert.equal(await page.locator('#longevity-cigarettes-field').isVisible(),true);
+        await page.locator('[data-control="smoking"][data-value="no"]').click();
+        assert.equal(await page.locator('#longevity-quit-field').isVisible(),false);
+        await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('.longevity-duration-choices [aria-pressed="true"]').count(),0);
+        for (const id of ['moderate','vigorous']) {
+            for (const value of ['0','30','60','150']) {
+                const button=page.locator(`[data-control="${id}-minutes"][data-value="${value}"]`);
+                await button.focus(); await page.keyboard.press('Space');
+                assert.equal(await page.locator(`#longevity-${id}-minutes`).inputValue(),value);
+                assert.equal(await button.getAttribute('aria-pressed'),'true');
+            }
+            await page.locator(`[data-duration-custom="${id}-minutes"]`).click();
+            assert.equal(await page.locator(`#longevity-${id}-minutes`).evaluate(el=>el===document.activeElement),true);
+            await page.locator(`#longevity-${id}-minutes`).fill(id==='moderate'?'95':'0');
+        }
+        assert.equal(await page.locator('[data-control="moderate-minutes"][aria-pressed="true"]').count(),0);
+        await page.locator('#longevity-close-editor').click(); await page.locator('#longevity-edit-profile').click();
+        for(let i=0;i<3;i++) await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('#longevity-moderate-minutes').inputValue(),'95');
+        assert.equal(await page.locator('#longevity-vigorous-minutes').inputValue(),'0');
+        assert.equal(await page.locator('[data-control="vigorous-minutes"][data-value="0"]').getAttribute('aria-pressed'),'true');
+        await page.locator('#longevity-skip-step').click();
+        assert.equal(await page.locator('#longevity-moderate-minutes').inputValue(),'');
+        assert.equal(await page.locator('#longevity-vigorous-minutes').inputValue(),'');
+        assert.equal(await page.locator('.longevity-duration-choices [aria-pressed="true"]').count(),0);
+        await page.close();
+    }
+});
