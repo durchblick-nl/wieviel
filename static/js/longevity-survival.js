@@ -39,8 +39,15 @@
                     - 2 * Math.max(0, Math.min(5, answers.juiceFrequency - 1))));
             }
         }
-        if (valid(answers.drinksWeek, 140) && ['yes', 'no'].includes(answers.binge)) {
-            result.alcohol = answers.drinksWeek > (sex === 'male' ? 21 : 14) || answers.binge === 'yes';
+        // Bands align with both study cut-points; no band straddles 14 or 21.
+        // A range is not stored as an invented exact drink count.
+        const band = answers.alcoholWeekBand;
+        const knownBand = ['none', '1-14', '15-21', '22plus'].includes(band);
+        const exactAllowed = band === undefined || band === null || band === '' || band === 'exact';
+        if (['yes', 'no'].includes(answers.binge) && (knownBand || (exactAllowed && valid(answers.drinksWeek, 140)))) {
+            const highWeekly = knownBand ? band === '22plus' || (band === '15-21' && sex === 'female')
+                : answers.drinksWeek > (sex === 'male' ? 21 : 14);
+            result.alcohol = highWeekly || answers.binge === 'yes';
         }
         return result;
     }
@@ -152,7 +159,7 @@
             if (Object.keys(known).length === 0 && (!smartBmi || smartBmi.category === 'central')) { remainingYears = base; curve = officialCurve; }
             if (withContributions) for (const key of groups.filter(k => k !== 'bmi' && Object.hasOwn(known, k))) {
                 const without = {...answers};
-                const fields = {smoking: ['smoking'], activity: ['moderateMinutes', 'vigorousMinutes'], fruit: ['fruitVegPortions', 'fruitVegFrequency', 'produceFrequency', 'fruitFrequency'], alcohol: ['drinksWeek']};
+                const fields = {smoking: ['smoking'], activity: ['moderateMinutes', 'vigorousMinutes'], fruit: ['fruitVegPortions', 'fruitVegFrequency', 'produceFrequency', 'fruitFrequency'], alcohol: ['alcoholWeekBand', 'drinksWeek']};
                 for (const field of fields[key]) delete without[field];
                 contributions[key] = remainingYears - personalEstimate(data, model, sex, age, without, smartData, false).remainingYears;
             }

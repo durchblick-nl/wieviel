@@ -163,8 +163,16 @@
 <small id="longevity-fruit-frequency-help">{{ i18n "longevity.produceHelp" }}</small>
 </div>
 </section>
-<section data-profile-step="5" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.5" }}</h2><p>{{ i18n "longevity.alcoholHelp" }}</p>
-<div class="longevity-field"><label for="longevity-drinks-week">{{ i18n "longevity.drinksWeek" }}</label><input id="longevity-drinks-week" type="number" min="0" max="140" step="1" inputmode="decimal" enterkeyhint="next" placeholder="—"></div>
+<section data-profile-step="5" class="longevity-profile-step" hidden><h2>{{ i18n "longevity.appStepTitle.5" }}</h2>
+<div class="longevity-alcohol-units"><strong>{{ i18n "longevity.drinkUnit" }}</strong><div><span>{{ partial "longevity-alcohol-art.html" "beer" }}{{ i18n "longevity.drinkUnitBeer" }}</span><em>{{ i18n "longevity.or" }}</em><span>{{ partial "longevity-alcohol-art.html" "wine" }}{{ i18n "longevity.drinkUnitWine" }}</span></div><small>{{ i18n "longevity.drinkUnitNote" }}</small></div>
+<div class="longevity-field" role="group" aria-labelledby="longevity-alcohol-band-label">
+<span id="longevity-alcohol-band-label" class="longevity-field-label">{{ i18n "longevity.drinksWeek" }}</span>
+<input id="longevity-alcohol-week-band" type="hidden" value="">
+<div class="longevity-alcohol-grid">
+{{ range slice "none" "1-14" "15-21" "22plus" }}<button type="button" class="longevity-portion-card longevity-alcohol-card" data-control="alcohol-week-band" data-value="{{ . }}" aria-pressed="false">{{ partial "longevity-alcohol-art.html" . }}<strong>{{ i18n (printf "longevity.alcoholBand.%s" .) }}</strong><i class="fas fa-check-circle" aria-hidden="true"></i></button>{{ end }}
+</div>
+<details id="longevity-alcohol-custom" class="longevity-produce-custom"><summary>{{ i18n "longevity.alcoholCustom" }}</summary><label for="longevity-drinks-week">{{ i18n "longevity.drinksExact" }}</label><input id="longevity-drinks-week" type="number" min="0" max="140" step="0.5" inputmode="decimal" enterkeyhint="next" placeholder="—"></details>
+</div>
 {{ partial "longevity-choice.html" (dict "id" "binge" "label" "binge" "help" "longevity.bingeHelp" "default" "" "choices" (slice (dict "value" "yes" "key" "yes") (dict "value" "no" "key" "no"))) }}
 </section>
 <p id="longevity-error" role="alert" hidden>{{ i18n "longevity.invalidAge" }}</p>

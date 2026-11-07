@@ -173,7 +173,7 @@ test('DE/FR longevity: joint survival model, immediate age updates, reversible s
         assert.match(await page.locator('#longevity-fruit-frequency-help').innerText(), route.startsWith('de') ? /eine Handvoll/ : /une poignée/);
         assert.equal(await page.locator('#longevity-potato-frequency, #longevity-carrots, #longevity-juice-frequency').count(), 0);
         assert.equal(await page.locator('[data-profile-step="4"] input').count(), 1);
-        assert.equal(await page.locator('.longevity-portion-card').count(), 5);
+        assert.equal(await page.locator('.longevity-portion-grid .longevity-portion-card').count(), 5);
         await page.locator('[data-control="fruit-frequency"][data-value="3"]').click();
         assert.equal(await page.locator('#longevity-fruit-frequency').inputValue(), '3');
         assert.equal(await page.evaluate(()=>document.activeElement.tagName),'BUTTON');
@@ -181,7 +181,7 @@ test('DE/FR longevity: joint survival model, immediate age updates, reversible s
         await page.locator('#longevity-next-step').click();
         assert.ok(await page.locator('#longevity-binge-help').isVisible());
         assert.match(await page.locator('#longevity-binge-help').innerText(), route.startsWith('de') ? /mindestens einmal pro Woche/ : /au moins une fois par semaine/);
-        await page.locator('#longevity-drinks-week').fill('0');
+        await page.locator('[data-control="alcohol-week-band"][data-value="none"]').click();
         await page.locator('[data-control="binge"][data-value="no"]').click();
         await page.locator('#longevity-next-step').click();
         assert.equal(await page.locator('#longevity-profile-dialog').isVisible(), false);
@@ -416,14 +416,14 @@ test('DE/FR longevity: portion cards, exact values, keyboard selection and unkno
         await page.evaluate(()=>CookieConsent.acceptCategory('necessary'));
         await page.locator('#longevity-edit-profile').click();
         for(let i=0;i<4;i++) await page.locator('#longevity-next-step').click();
-        assert.equal(await page.locator('.longevity-portion-card[aria-pressed="true"]').count(),0);
+        assert.equal(await page.locator('.longevity-portion-grid .longevity-portion-card[aria-pressed="true"]').count(),0);
         const seven=page.locator('[data-control="fruit-frequency"][data-value="7"]');
         await seven.focus(); await page.keyboard.press('Space');
         assert.equal(await page.locator('#longevity-fruit-frequency').inputValue(),'7');
         assert.equal(await seven.getAttribute('aria-pressed'),'true');
         await page.locator('#longevity-produce-custom summary').click();
         await page.locator('#longevity-fruit-frequency').fill('2');
-        assert.equal(await page.locator('.longevity-portion-card[aria-pressed="true"]').count(),0);
+        assert.equal(await page.locator('.longevity-portion-grid .longevity-portion-card[aria-pressed="true"]').count(),0);
         await page.locator('#longevity-close-editor').click();
         await page.locator('#longevity-edit-profile').click();
         for(let i=0;i<4;i++) await page.locator('#longevity-next-step').click();
@@ -434,7 +434,38 @@ test('DE/FR longevity: portion cards, exact values, keyboard selection and unkno
         assert.equal(await page.locator('#longevity-produce-custom').getAttribute('open'),null);
         await page.locator('#longevity-skip-step').click();
         assert.equal(await page.locator('#longevity-fruit-frequency').inputValue(),'');
-        assert.equal(await page.locator('.longevity-portion-card[aria-pressed="true"]').count(),0);
+        assert.equal(await page.locator('.longevity-portion-grid .longevity-portion-card[aria-pressed="true"]').count(),0);
+        await page.close();
+    }
+});
+
+
+test('DE/FR longevity: alcohol ranges remain ranges and exact amounts survive reopening', async () => {
+    for(const route of ['de/leben','fr/esperance-de-vie']) {
+        const page=await pageFor(route);await page.setViewportSize({width:390,height:844});
+        await page.evaluate(()=>CookieConsent.acceptCategory('necessary'));
+        await page.locator('#longevity-edit-profile').click();
+        for(let i=0;i<5;i++) await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('.longevity-alcohol-card').count(),4);
+        assert.equal(await page.locator('.longevity-alcohol-card[aria-pressed="true"]').count(),0);
+        await page.locator('[data-control="alcohol-week-band"][data-value="15-21"]').focus();
+        await page.keyboard.press('Space');
+        assert.equal(await page.locator('#longevity-alcohol-week-band').inputValue(),'15-21');
+        assert.equal(await page.locator('#longevity-drinks-week').inputValue(),'');
+        await page.locator('#longevity-alcohol-custom summary').click();
+        await page.locator('#longevity-drinks-week').fill('14.5');
+        assert.equal(await page.locator('#longevity-alcohol-week-band').inputValue(),'exact');
+        assert.equal(await page.locator('.longevity-alcohol-card[aria-pressed="true"]').count(),0);
+        await page.locator('#longevity-close-editor').click();await page.locator('#longevity-edit-profile').click();
+        for(let i=0;i<5;i++) await page.locator('#longevity-next-step').click();
+        assert.equal(await page.locator('#longevity-alcohol-custom').getAttribute('open'),'');
+        assert.equal(await page.locator('#longevity-drinks-week').inputValue(),'14.5');
+        await page.locator('[data-control="alcohol-week-band"][data-value="none"]').click();
+        assert.equal(await page.locator('#longevity-drinks-week').inputValue(),'');
+        assert.equal(await page.locator('#longevity-binge').inputValue(),'');
+        await page.locator('#longevity-skip-step').click();
+        assert.equal(await page.locator('#longevity-alcohol-week-band').inputValue(),'');
+        assert.equal(await page.locator('#longevity-drinks-week').inputValue(),'');
         await page.close();
     }
 });

@@ -8,7 +8,10 @@
 <g id="{{ $id }}-pepper"><path d="M-3-19C-29-29-35 22-14 27C-7 32 0 24 4 27C26 35 37-21 12-23L-3-19Z" fill="#edbb59"/><path d="M-7-21C0-25 4-29 2-34" fill="none" stroke="#57906a" stroke-width="5" stroke-linecap="round"/><path d="M5-13C15-11 16 9 9 17" fill="none" stroke="#f7d88a" stroke-width="4" stroke-linecap="round"/></g>
 </defs>
 {{ if eq . "0" }}
-<ellipse cx="80" cy="55" rx="49" ry="28" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="3"/><ellipse cx="80" cy="55" rx="35" ry="18" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="2"/><path d="M66 55H94" stroke="currentColor" stroke-opacity=".4" stroke-width="4" stroke-linecap="round"/>
+<use href="#{{ $id }}-apple" transform="translate(80 51) scale(.8)" opacity=".45"/>
+<circle cx="80" cy="50" r="37" fill="none" stroke="var(--accent-color)" stroke-width="3"/>
+<path d="M54 24L106 76" stroke="var(--card-bg)" stroke-width="8"/><path d="M54 24L106 76" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round"/>
+
 {{ else if eq . "1" }}<use href="#{{ $id }}-apple" transform="translate(80 51) scale(.95)"/>
 {{ else if eq . "3" }}
 <use href="#{{ $id }}-apple" transform="translate(34 54) scale(.65)"/><use href="#{{ $id }}-salad" transform="translate(83 58) scale(.77)"/><use href="#{{ $id }}-broccoli" transform="translate(131 55) scale(.64)"/>

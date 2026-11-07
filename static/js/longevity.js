@@ -28,7 +28,7 @@
             cigarettes: optionalNumber('cigarettes'), quitYears: optionalNumber('quit-years'),
             moderateMinutes: optionalNumber('moderate-minutes'), vigorousMinutes: optionalNumber('vigorous-minutes'),
             fruitVegPortions: optionalNumber('fruit-frequency'),
-            drinksWeek: optionalNumber('drinks-week'), binge: byId('binge').value,
+            alcoholWeekBand: byId('alcohol-week-band').value, drinksWeek: optionalNumber('drinks-week'), binge: byId('binge').value,
             marital: byId('marital-status').value, height: optionalNumber('height'), weight: optionalNumber('weight')};
     }
     function validAge() { const age = optionalNumber('age'); return Number.isInteger(age) && age >= 18 && age <= 99 ? age : null; }
@@ -234,10 +234,11 @@
         drawCurve(result); drawMarital();
     }
 
-    const fieldMap = {age:'age', sex:'sex', smoking:'smoking', cigarettes:'cigarettes', quitYears:'quit-years', moderateMinutes:'moderate-minutes', vigorousMinutes:'vigorous-minutes', fruitVegPortions:'fruit-frequency', drinksWeek:'drinks-week', binge:'binge', marital:'marital-status', height:'height', weight:'weight'};
+    const fieldMap = {age:'age', sex:'sex', smoking:'smoking', cigarettes:'cigarettes', quitYears:'quit-years', moderateMinutes:'moderate-minutes', vigorousMinutes:'vigorous-minutes', fruitVegPortions:'fruit-frequency', alcoholWeekBand:'alcohol-week-band', drinksWeek:'drinks-week', binge:'binge', marital:'marital-status', height:'height', weight:'weight'};
     function fillForm(values) {
         for (const [key, id] of Object.entries(fieldMap)) byId(id).value = values[key] ?? '';
         byId('produce-custom').open = values.fruitVegPortions !== null && values.fruitVegPortions !== undefined && ![0, 1, 3, 5, 7].includes(values.fruitVegPortions);
+        byId('alcohol-custom').open = values.alcoholWeekBand === 'exact' || (!values.alcoholWeekBand && Number.isFinite(values.drinksWeek));
         syncChoices();
     }
     function syncChoices() {
@@ -340,8 +341,10 @@
     for (const button of document.querySelectorAll('[data-control]')) button.addEventListener('click', () => {
         byId(button.dataset.control).value = button.dataset.value;
         if (button.dataset.control === 'fruit-frequency') byId('produce-custom').open = false;
+        if (button.dataset.control === 'alcohol-week-band') { byId('drinks-week').value = ''; byId('alcohol-custom').open = false; }
         changeForm();
     });
+    byId('drinks-week').addEventListener('input', () => { byId('alcohol-week-band').value = 'exact'; });
     byId('form').addEventListener('input', changeForm);
     byId('form').addEventListener('change', changeForm);
     byId('height').addEventListener('keydown', event => {
@@ -355,7 +358,7 @@
     byId('previous-step').addEventListener('click', goBack);
     byId('editor-back').addEventListener('click', goBack);
     byId('skip-step').addEventListener('click', () => {
-        const fields = step === 1 ? ['height','weight'] : step === 2 ? ['smoking','cigarettes','quit-years'] : step === 3 ? ['moderate-minutes','vigorous-minutes'] : step === 4 ? ['fruit-frequency'] : ['drinks-week','binge'];
+        const fields = step === 1 ? ['height','weight'] : step === 2 ? ['smoking','cigarettes','quit-years'] : step === 3 ? ['moderate-minutes','vigorous-minutes'] : step === 4 ? ['fruit-frequency'] : ['alcohol-week-band','drinks-week','binge'];
         for (const id of fields) byId(id).value = '';
         changeForm(); if (step === 5) closeEditor(true); else setStep(step + 1);
     });

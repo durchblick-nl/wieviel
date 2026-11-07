@@ -197,3 +197,15 @@ html:has(.longevity-profile-dialog[open]) { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) { .longevity-portion-card { transition: none; } }
+
+.longevity-alcohol-units { margin: 10px 0 16px; font-size: 13px; }
+.longevity-alcohol-units > strong { display: block; }
+.longevity-alcohol-units > div { display: flex; align-items: center; gap: 8px; }
+.longevity-alcohol-units span { display: flex; align-items: center; gap: 4px; }
+.longevity-alcohol-units svg { width: 45px; height: 42px; color: var(--primary-color); }
+.longevity-alcohol-units em { font-style: normal; }
+.longevity-alcohol-units small { font-size: 12px; }
+.longevity-alcohol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 10px 0; }
+.longevity-alcohol-card { min-height: 84px; padding: 5px; }
+.longevity-alcohol-card svg { height: 44px; color: var(--primary-color); }
+.longevity-alcohol-card strong { font-size: 16px; }
