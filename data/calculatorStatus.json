@@ -5,11 +5,11 @@
       "fr": "Assurances sociales 2026"
     },
     "note": {
-      "de": "AHV/IV/EO, ALV und BVG: Werte für 2026 am 16.09.2026 abgeglichen. Unfall- und Pensionskassenbeiträge sind Schätzwerte und können abweichen.",
-      "fr": "AVS/AI/APG, AC et LPP : valeurs 2026 vérifiées le 16.09.2026. Les cotisations accidents et de caisse de pension sont estimatives et peuvent varier."
+      "de": "AHV/IV/EO, ALV und BVG: Werte für 2026 am 16.11.2026 abgeglichen. Unfall- und Pensionskassenbeiträge sind Schätzwerte und können abweichen.",
+      "fr": "AVS/AI/APG, AC et LPP : valeurs 2026 vérifiées le 16.11.2026. Les cotisations accidents et de caisse de pension sont estimatives et peuvent varier."
     },
-    "reviewed": "2026-09-16",
-    "next": "2026-11-15",
+    "reviewed": "2026-11-16",
+    "next": "2027-01-01",
     "sources": [
       {
         "name": "BSV / OFAS",
@@ -33,8 +33,8 @@
       "de": "Säule-3a-Grenzbeträge für 2026 abgeglichen. Zinssatz und Rendite sind deine Annahmen; die Zinseszinsformel benötigt keine jährliche Aktualisierung.",
       "fr": "Plafonds du pilier 3a vérifiés pour 2026. Le taux et le rendement sont tes hypothèses ; la formule des intérêts composés ne nécessite pas de mise à jour annuelle."
     },
-    "reviewed": "2026-09-16",
-    "next": "2026-11-15",
+    "reviewed": "2026-11-16",
+    "next": "2027-01-01",
     "sources": [
       {
         "name": "BSV / OFAS",
@@ -48,11 +48,11 @@
       "fr": "Prestations APG 2026"
     },
     "note": {
-      "de": "80 % des Erwerbseinkommens, höchstens CHF 220 pro Tag. Quellen am 16.09.2026 abgeglichen; betriebliche Zusatzleistungen sind nicht enthalten.",
-      "fr": "80 % du revenu, au maximum CHF 220 par jour. Sources vérifiées le 16.09.2026 ; les prestations supplémentaires de l’employeur ne sont pas incluses."
+      "de": "80 % des Erwerbseinkommens, höchstens CHF 220 pro Tag. Quellen am 16.11.2026 abgeglichen; betriebliche Zusatzleistungen sind nicht enthalten.",
+      "fr": "80 % du revenu, au maximum CHF 220 par jour. Sources vérifiées le 16.11.2026 ; les prestations supplémentaires de l’employeur ne sont pas incluses."
     },
-    "reviewed": "2026-09-16",
-    "next": "2026-11-15",
+    "reviewed": "2026-11-16",
+    "next": "2027-01-01",
     "sources": [
       {
         "name": "AHV / AVS",
@@ -107,7 +107,7 @@
       "de": "Die Datenperiode und der letzte Index stammen direkt aus der verwendeten BFS-Datei.",
       "fr": "La période et le dernier indice proviennent directement du fichier OFS utilisé."
     },
-    "next": "2026-11-03",
+    "next": "2026-12-02",
     "sources": [
       {
         "name": "BFS / OFS",
@@ -122,7 +122,7 @@
       "fr": "La clé de contrôle confirme le format IBAN, pas l’existence d’un compte."
     },
     "reviewed": "2026-09-16",
-    "next": "2026-10-16",
+    "next": "2026-12-16",
     "sources": [
       {
         "name": "SIX",

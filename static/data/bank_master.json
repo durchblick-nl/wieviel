@@ -1721,7 +1721,7 @@
   },
   "30217": {
     "name": "FAB Private Bank (Suisse) SA",
-    "city": "Genève 11",
+    "city": "Geneva 1",
     "zip": "1211",
     "address": "Quai de l'Ile 5",
     "bic": "NBPSCHGGXXX",
@@ -2208,7 +2208,7 @@
     "clearing": "30313"
   },
   "30314": {
-    "name": "Quilvest (Switzerland) Ltd.",
+    "name": "EFG Bank AG (ex Quilvest (Switzerland) Ltd.)",
     "city": "Zürich",
     "zip": "8001",
     "address": "Füsslistrasse 6",
@@ -7913,7 +7913,7 @@
   },
   "08499": {
     "name": "FAB Private Bank (Suisse) SA",
-    "city": "Genève 11",
+    "city": "Geneva 1",
     "zip": "1211",
     "address": "Quai de l'Ile 5",
     "bic": "NBPSCHGGXXX",
@@ -8768,7 +8768,7 @@
     "clearing": "08838"
   },
   "08839": {
-    "name": "Quilvest (Switzerland) Ltd.",
+    "name": "EFG Bank AG (ex Quilvest (Switzerland) Ltd.)",
     "city": "Zürich",
     "zip": "8001",
     "address": "Füsslistrasse 6",
@@ -9312,8 +9312,8 @@
     "clearing": "09000"
   },
   "_meta": {
-    "validOn": "2026-11-02",
-    "importedOn": "2026-11-02",
+    "validOn": "2026-11-16",
+    "importedOn": "2026-11-16",
     "sourceUrl": "https://api.six-group.com/api/epcd/bankmaster/v3/bankmaster.json",
     "recordCount": 1164
   }

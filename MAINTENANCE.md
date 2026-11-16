@@ -2,6 +2,51 @@
 
 Dieser Plan dokumentiert alle Datenquellen und wann sie aktualisiert werden müssen.
 
+## Wochencheck vom 16. November 2026
+
+Quellenabgleich und lokale Validierung des Wartungsupdates.
+Der lokale Ausgangsstand `cb8d98d` entspricht dem aktuellen GitHub-Branch `coolify`.
+Die anfänglich gemeldeten 65 zusätzlichen Commits beruhten auf einer veralteten
+lokalen Remote-Referenz: `remote.origin.fetch` führt nur `main` nach; ein Fetch von
+`coolify` ohne explizites Ziel aktualisierte nur `FETCH_HEAD`. Nach explizitem Fetch
+auf `refs/remotes/origin/coolify` besteht kein Commit-Unterschied. Die öffentlich
+ausgelieferten Dateien `js/longevity.js` auf beiden Domains und
+`data/life-tables.json` auf wieviel.ch stimmen bytegenau mit dem lokalen Stand
+überein. Die Live-LIK-Datei enthält September 2026. Für diesen Wochencheck sind
+sechs lokal geänderte Dateien neu zu veröffentlichen, kein Paket von 65 Commits.
+
+| Bereich | Abgleich und lokale Änderung |
+|---|---|
+| LIK | [BFS-Indexierungstabelle, veröffentlicht 03.11.2026](https://dam-api.bfs.admin.ch/hub/api/dam/assets/36970588/master): `Index_m!L4` = Dezember 2020, `A1274` = Oktober 2026, **`L1274` = 108,7**. `M1274` = 101,7 gehört zu Dezember 2025 und wird nicht übernommen. Januar–September 2026 stimmen mit der bestehenden Serie überein. Oktober ergänzt, Prüftag 16.11.2026 und [nächste Publikation 02.12.2026](https://statistik.admin.ch/de/konsumentenpreise) eingetragen. |
+| Banken | [SIX JSON](https://api.six-group.com/api/epcd/bankmaster/v3/bankmaster.json), `validOn=2026-11-16`, 1’164 Einträge. Gegen den lokalen Stand 02.11.2026 ändern sich vier aufgelöste IIDs: 30217/08499 Ortsangabe Genève 11 → Geneva 1; 30314/08839 Bankname Quilvest → EFG Bank AG (ex Quilvest (Switzerland) Ltd.). Importer erfolgreich ausgeführt. |
+| Miete | [BWO](https://www.bwo.admin.ch/de/referenzzinssatz): 1,25 %, unverändert ab 02.09.2026; nächste Publikation 01.12.2026. Keine Zahlenänderung. |
+| MWST | [ESTV](https://www.estv.admin.ch/de/mwst-steuersaetze-schweiz): weiterhin 8,1 / 2,6 / 3,8 %. Keine Zahlenänderung. |
+| Sozialversicherung | [AHV-Merkblatt 2.01](https://www.ahv-iv.ch/p/2.01.d): Arbeitnehmeranteil 5,3 %. [ALV 2.08](https://www.ahv-iv.ch/p/2.08.d): je 1,1 % bis CHF 148’200. [BSV-Masszahlen](https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf): BVG 2026 CHF 22’680 / 26’460 / 90’720 / 3’780, Mindestzins 1,25 %, Säule 3a CHF 7’258 / 36’288. Keine Änderung der aktiven 2026er-Werte. |
+| Ausblick 2027 | [Bundesratsbeschluss 04.11.2026](https://www.edi.admin.ch/de/newnsb/8DF8zxcfvu7l): BVG-Mindestzins **2 % ab 01.01.2027**. Hinweis im Lohnrechner DE/FR ergänzt. Bereits erläuterte AHV-/BVG-Grenzwertänderungen durch [Beschluss 02.10.2026](https://www.admin.ch/de/newnsb/BqB41FVYi5FB) bestätigt; Umstellung der aktiven Werte bleibt dem Jahreswechsel vorbehalten. |
+| EO und Familienzulagen | [Mutterschaft](https://www.ahv-iv.ch/p/6.02.d) / [anderer Elternteil](https://www.ahv-iv.ch/p/6.04.d): 80 %, höchstens CHF 220/Tag. [BSV Familienzulagen](https://www.bsv.admin.ch/de/familienzulagen-leistungen-und-voraussetzungen): mindestens CHF 215/268. Keine Zahlenänderung. |
+| Strom | [ElCom 2027](https://www.elcom.admin.ch/de/newnsb/1miE201yRzoA): H4-Median 26,5 Rp./kWh, 1,2 Rp. weniger als 2026 (27,7). Bestehende Medianwerte bestätigt. Die vollständigen LINDAS-Beobachtungen und Min/Max wurden in diesem Check nicht erneut abgefragt. |
+| Kindesunterhalt | [BJ, Stand 28.10.2026](https://www.bj.admin.ch/de/unterhalt-des-kindes): Stellungnahme zur Förderung alternierender Obhut, keine dort neu ausgewiesene Inkraftsetzung. Keine Formeländerung daraus abgeleitet. Keine Vollprüfung neuer Bundesgerichtsentscheide oder aller kantonalen Richtlinien. |
+| 3a-Nachzahlungen | [BSV](https://www.bsv.admin.ch/de/die-dritte-saeule): Hinweis im Teilzeitrechner DE/FR präzisiert. Erste Nachzahlung 2026 für Lücken aus 2025; nur Lücken ab 2025, höchstens zehn Jahre rückwirkend, Beitragsberechtigung in beiden Jahren, voller ordentlicher Jahresbeitrag im Einkaufsjahr und jährliche Einkaufsgrenze. |
+
+Prüfdatum für die oben erneut abgeglichenen AHV/ALV/BVG-, 3a- und EO-Werte auf
+16.11.2026 gesetzt; nächste Prüfung zum Jahreswechsel. Der nächste Bankdatencheck
+ist am 16.12.2026 vorgesehen; das redaktionelle IBAN-Prüfdatum bleibt separat.
+
+Die BFS-XLSX wurde mit `curl` geladen und mit den Python-Standardbibliotheken
+`zipfile`, `xml.etree.ElementTree` und `datetime` gelesen; `requests` und `openpyxl`
+sind dafür nicht erforderlich. SHA-256 der geprüften Datei:
+`3f7fe630aad02f857abf72422fc2639b1408b8e1152f2dd51dd99172f9372761`.
+Die Basiszeile enthält Excel-Datumswerte (Epoche 30.12.1899), keine Jahreszahlen.
+
+Dieser Check deckt die regelmässigen Wartungsquellen oben ab. Die übrigen
+Gesundheits-, Modell-, Umwelt- und Rechtshinweise wurden nicht vollständig neu
+begutachtet; deren redaktionelle Prüfdaten bleiben unverändert.
+
+Validierung: 49 Node-Tests und zwei Bankimport-Tests erfolgreich; Produktionsbuild
+mit Hugo 0.163.3 erfolgreich. Erzeugte LIK-Datenboxen (DE/FR), Oktoberwert im
+ausgelieferten Build-JSON und beide 2027-Quellenhinweise geprüft. Keine erneute
+interaktive Browserprüfung und keine Live-Abnahme einer neuen Veröffentlichung.
+
 ## Lebenserwartung: amtliche Daten und experimentelles persönliches Modell
 
 Der Rechner `longevity` verwendet zwei getrennt bezeichnete Datenperioden:
